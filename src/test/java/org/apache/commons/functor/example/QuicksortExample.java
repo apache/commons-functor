@@ -25,7 +25,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.commons.functor.Algorithms;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
@@ -33,6 +32,8 @@ import org.apache.commons.functor.core.collection.IsEmpty;
 import org.apache.commons.functor.core.comparator.IsGreaterThanOrEqual;
 import org.apache.commons.functor.core.comparator.IsLessThan;
 import org.apache.commons.functor.core.composite.ConditionalUnaryFunction;
+import org.apache.commons.functor.generator.FilteredGenerator;
+import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 
 /*
  * ----------------------------------------------------------------------------
@@ -461,9 +462,9 @@ public class QuicksortExample extends TestCase {
  */
     private BinaryFunction lesserTail = new ObjectListFunction() {
         public Object evaluate(Object head, List tail) {
-            return Algorithms.collect(Algorithms.select(
-                tail.iterator(),
-                IsLessThan.instance((Comparable) head)));
+            return new FilteredGenerator(
+                    IteratorToGeneratorAdapter.adapt(tail.iterator()),
+                IsLessThan.instance((Comparable) head)).toCollection();
         }
     };
 
@@ -474,9 +475,9 @@ public class QuicksortExample extends TestCase {
  */
     private BinaryFunction greaterTail = new ObjectListFunction() {
         public Object evaluate(Object head, List tail) {
-            return Algorithms.collect(Algorithms.select(
-                tail.iterator(),
-                IsGreaterThanOrEqual.instance((Comparable) head)));
+            return new FilteredGenerator(
+                    IteratorToGeneratorAdapter.adapt(tail.iterator()),
+                IsGreaterThanOrEqual.instance((Comparable) head)).toCollection();
         }
     };
 
