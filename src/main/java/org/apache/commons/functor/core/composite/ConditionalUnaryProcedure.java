@@ -56,7 +56,7 @@ public final class ConditionalUnaryProcedure implements UnaryProcedure, Serializ
      * @param thenProc then
      */
     public ConditionalUnaryProcedure(UnaryPredicate ifPred, UnaryProcedure thenProc) {
-    	this(ifPred, thenProc, NoOp.INSTANCE);
+    	this(ifPred, thenProc, NoOp.instance());
 	}
 
     /**
