@@ -25,7 +25,7 @@ import org.apache.commons.functor.Predicate;
  * Adapts a
  * {@link BinaryPredicate BinaryPredicate}
  * to the
- * {@link UnaryPredicate UnaryPredicate} interface
+ * {@link org.apache.commons.functor.UnaryPredicate UnaryPredicate} interface
  * using a constant left-side argument.
  * <p/>
  * Note that although this class implements
