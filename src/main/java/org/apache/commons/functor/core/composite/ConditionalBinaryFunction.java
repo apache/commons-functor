@@ -42,6 +42,10 @@ import org.apache.commons.functor.BinaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -994698971284481482L;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryPredicate<? super L, ? super R> ifPred;

@@ -42,6 +42,10 @@ import org.apache.commons.functor.core.NoOp;
  * @author Rodney Waldhoff
  */
 public final class ConditionalProcedure implements Procedure, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4228632798836328605L;
     // attributes
     // ------------------------------------------------------------------------
     private final Predicate ifPred;

@@ -43,6 +43,10 @@ import org.apache.commons.functor.core.NoOp;
  */
 public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3521992036791188475L;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryPredicate<? super L, ? super R> ifPred;

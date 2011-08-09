@@ -38,6 +38,10 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -9211927278252224707L;
     /** The {@link UnaryFunction UnaryFunction} I'm wrapping. */
     private final UnaryFunction<? super A, Boolean> function;
 

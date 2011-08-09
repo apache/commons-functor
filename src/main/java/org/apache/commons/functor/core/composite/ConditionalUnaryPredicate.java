@@ -41,6 +41,10 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1214714029872180155L;
     // attributes
     // ------------------------------------------------------------------------
     private final UnaryPredicate<? super A> ifPred;

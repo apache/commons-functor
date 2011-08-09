@@ -28,10 +28,19 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
     /**
+     * 
+     */
+    private static final long serialVersionUID = 3312781645741807814L;
+
+    /**
      * Type-remembering helper
      * @param <X>
      */
     private static class Helper<X, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8141488776884860650L;
         private BinaryFunction<? super L, ? super R, ? extends X> preceding;
         private UnaryFunction<? super X, ? extends T> following;
 

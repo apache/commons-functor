@@ -32,6 +32,11 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
  */
 public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
+     * 
+     */
+    private static final long serialVersionUID = 9190170976707323848L;
+
+    /**
      * Basic Min instance.
      */
     public static final Min<Comparable<?>> INSTANCE = Min.<Comparable<?>>instance();

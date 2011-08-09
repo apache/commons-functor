@@ -30,6 +30,10 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -12374650738412129L;
     private static final Size<Object> INSTANCE = new Size<Object>();
 
     // constructor

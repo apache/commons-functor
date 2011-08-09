@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryProcedure;
  * @author Rodney Waldhoff
  */
 public final class BoundProcedure implements Procedure, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6010802933400471747L;
     /** The {@link UnaryProcedure UnaryProcedure} I'm wrapping. */
     private final UnaryProcedure<Object> procedure;
     /** The parameter to pass to {@code procedure}. */

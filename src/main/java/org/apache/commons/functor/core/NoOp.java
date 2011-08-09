@@ -32,6 +32,10 @@ import org.apache.commons.functor.UnaryProcedure;
  * @author Rodney Waldhoff
  */
 public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProcedure<Object, Object>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3768926349922273291L;
     // static attributes
     // ------------------------------------------------------------------------
     /**

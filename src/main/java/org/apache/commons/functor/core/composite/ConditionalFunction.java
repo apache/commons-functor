@@ -42,6 +42,10 @@ import org.apache.commons.functor.Predicate;
  * @author Rodney Waldhoff
  */
 public final class ConditionalFunction<T> implements Function<T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4214871352184887792L;
     // attributes
     // ------------------------------------------------------------------------
     private final Predicate ifPred;

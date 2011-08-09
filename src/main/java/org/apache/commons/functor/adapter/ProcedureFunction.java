@@ -39,6 +39,10 @@ import org.apache.commons.functor.Procedure;
  * @author Rodney Waldhoff
  */
 public final class ProcedureFunction<T> implements Function<T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -655207616317672341L;
     /** The {@link Procedure Procedure} I'm wrapping. */
     private final Procedure procedure;
 

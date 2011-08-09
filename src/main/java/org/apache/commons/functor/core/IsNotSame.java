@@ -29,6 +29,10 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @author Matt Benson
  */
 public final class IsNotSame<L, R> implements BinaryPredicate<L, R>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5566555980860979281L;
     // static attributes
     // ------------------------------------------------------------------------
     /**

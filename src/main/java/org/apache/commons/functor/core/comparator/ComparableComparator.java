@@ -28,6 +28,10 @@ import java.util.Comparator;
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 final class ComparableComparator implements Comparator, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5849476573719561212L;
     /** Singleton */
     public static final ComparableComparator INSTANCE = new ComparableComparator();
 

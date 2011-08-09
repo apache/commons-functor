@@ -39,12 +39,21 @@ import org.apache.commons.functor.BinaryFunction;
 public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 2570517284319064043L;
+
+    /**
      * Type-remembering Helper
      *
      * @param <G>
      * @param <H>
      */
     private static class Helper<G, H, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6013646799505641592L;
         private BinaryFunction<? super G, ? super H, ? extends T> f;
         private BinaryFunction<? super L, ? super R, ? extends G> g;
         private BinaryFunction<? super L, ? super R, ? extends H> h;

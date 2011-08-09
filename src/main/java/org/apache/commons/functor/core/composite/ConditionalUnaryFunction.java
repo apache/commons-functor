@@ -42,6 +42,10 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8152490481969255068L;
     // attributes
     // ------------------------------------------------------------------------
     private final UnaryPredicate<? super A> ifPred;

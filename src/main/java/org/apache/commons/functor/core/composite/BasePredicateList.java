@@ -37,6 +37,10 @@ import org.apache.commons.functor.Predicate;
  * @author Rodney Waldhoff
  */
 abstract class BasePredicateList implements Predicate, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7860902316994888181L;
     // attributes
     // ------------------------------------------------------------------------
     private final List<Predicate> list = new ArrayList<Predicate>();

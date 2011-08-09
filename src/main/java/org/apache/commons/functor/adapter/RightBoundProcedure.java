@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryProcedure;
  * @author Rodney Waldhoff
  */
 public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3267188080481758226L;
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */
     private final BinaryProcedure<? super A, Object> procedure;
     /** The parameter to pass to {@code procedure}. */

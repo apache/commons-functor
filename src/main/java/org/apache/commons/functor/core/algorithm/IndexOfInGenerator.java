@@ -29,6 +29,10 @@ import org.apache.commons.functor.generator.Generator;
  * @version $Revision$ $Date$
  */
 public final class IndexOfInGenerator<T> implements BinaryFunction<Generator<? extends T>, UnaryPredicate<? super T>, Number>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -11365986575536471L;
     private static final IndexOfInGenerator<Object> INSTANCE = new IndexOfInGenerator<Object>();
 
     /**

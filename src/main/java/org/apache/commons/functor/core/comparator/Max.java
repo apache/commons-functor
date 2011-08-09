@@ -32,6 +32,11 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
  */
 public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
+     * 
+     */
+    private static final long serialVersionUID = 6514424464263828685L;
+
+    /**
      * Basic Max instance.
      */
     public static final Max<Comparable<?>> INSTANCE = Max.<Comparable<?>>instance();

@@ -35,6 +35,10 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -97785102566566058L;
     // attributes
     // ------------------------------------------------------------------------
     private final UnaryPredicate<? super A> predicate;

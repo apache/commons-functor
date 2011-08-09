@@ -40,6 +40,10 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3851481216909573294L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */
     private final BinaryPredicate<Object, ? super A> predicate;
     /** The parameter to pass to {@code predicate}. */

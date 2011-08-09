@@ -29,10 +29,19 @@ import org.apache.commons.functor.UnaryProcedure;
  */
 public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
     /**
+     * 
+     */
+    private static final long serialVersionUID = -7559182250073101798L;
+
+    /**
      * Type-remembering helper
      * @param <X>
      */
     private static class Helper<X, L, R> implements BinaryProcedure<L, R>, Serializable {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4229496007094829301L;
         private BinaryFunction<? super L, ? super R, ? extends X> function;
         private UnaryProcedure<? super X> procedure;
 

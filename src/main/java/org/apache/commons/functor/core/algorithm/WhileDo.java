@@ -27,6 +27,11 @@ import org.apache.commons.functor.Procedure;
 public class WhileDo extends PredicatedLoop {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 7562985255209473649L;
+
+    /**
      * Create a new WhileDo.
      * @param test whether to keep going
      * @param body to execute

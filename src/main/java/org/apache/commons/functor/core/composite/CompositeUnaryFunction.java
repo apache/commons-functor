@@ -51,12 +51,21 @@ import org.apache.commons.functor.UnaryFunction;
 public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 4945193629275757281L;
+
+    /**
      * Encapsulates a double function evaluation.
      * @param <A> argument type
      * @param <X> intermediate type
      * @param <T> return type
      */
     private static class Helper<X, A, T> implements UnaryFunction<A, T>, Serializable {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8167255331321876718L;
         private UnaryFunction<? super X, ? extends T> following;
         private UnaryFunction<? super A, ? extends X> preceding;
 

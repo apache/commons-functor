@@ -30,6 +30,10 @@ import java.io.Serializable;
  * @author Rodney Waldhoff
  */
 public abstract class AbstractLoopProcedure implements Procedure, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5903381842630236070L;
     private final Predicate condition;
     private final Procedure action;
 

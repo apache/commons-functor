@@ -32,6 +32,10 @@ import org.apache.commons.functor.BinaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5150315320718936186L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */
     private final BinaryFunction<? super L, ? super R, Boolean> function;
 

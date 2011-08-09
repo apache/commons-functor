@@ -27,6 +27,11 @@ import org.apache.commons.functor.Procedure;
 public class DoWhile extends PredicatedLoop {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -5439107633846597703L;
+
+    /**
      * Create a new DoWhile.
      * @param body to execute
      * @param test whether to keep going

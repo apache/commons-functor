@@ -29,6 +29,11 @@ import org.apache.commons.functor.core.composite.UnaryNot;
  * @version $Revision$ $Date$
  */
 public final class RetainMatching<T> implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6760018011875465469L;
+
     private static final RetainMatching<Object> INSTANCE = new RetainMatching<Object>();
 
     private RemoveMatching<T> removeMatching = new RemoveMatching<T>();

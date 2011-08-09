@@ -28,6 +28,10 @@ import org.apache.commons.functor.UnaryFunction;
  * @version $Revision$ $Date$
  */
 public final class InPlaceTransform<T> implements BinaryProcedure<ListIterator<T>, UnaryFunction<? super T, ? extends T>>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4365206078517376006L;
     private static final InPlaceTransform<Object> INSTANCE = new InPlaceTransform<Object>();
 
     /**

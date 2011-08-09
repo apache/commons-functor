@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryFunction;
  * @author Rodney Waldhoff
  */
 public final class FunctionUnaryFunction<A, T> implements UnaryFunction<A, T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1993899041200996524L;
     /** The {@link Function Function} I'm wrapping. */
     private final Function<? extends T> function;
 

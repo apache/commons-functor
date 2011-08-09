@@ -30,6 +30,10 @@ import org.apache.commons.functor.generator.Generator;
  */
 public final class GeneratorContains<T> implements BinaryPredicate<Generator<? extends T>, UnaryPredicate<? super T>>,
         Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1539983619621733276L;
     private static final GeneratorContains<Object> INSTANCE = new GeneratorContains<Object>();
 
     /**

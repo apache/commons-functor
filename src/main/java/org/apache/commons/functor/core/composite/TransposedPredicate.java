@@ -40,6 +40,10 @@ import org.apache.commons.functor.BinaryPredicate;
  * @author Rodney Waldhoff
  */
 public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3441209087576289240L;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryPredicate<? super R, ? super L> predicate;

@@ -42,6 +42,10 @@ import org.apache.commons.functor.UnaryProcedure;
  */
 public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 9194268249717820246L;
     // attributes
     // ------------------------------------------------------------------------
     private List<UnaryProcedure<? super A>> list = new ArrayList<UnaryProcedure<? super A>>();

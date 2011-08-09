@@ -35,6 +35,10 @@ import org.apache.commons.functor.BinaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3488974286912054737L;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryPredicate<? super L, ? super R> predicate;

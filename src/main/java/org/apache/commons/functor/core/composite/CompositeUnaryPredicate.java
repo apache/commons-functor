@@ -46,6 +46,10 @@ import org.apache.commons.functor.adapter.UnaryPredicateUnaryFunction;
  * @author Rodney Waldhoff
  */
 public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4880363949059265252L;
     // attributes
     // ------------------------------------------------------------------------
     private final CompositeUnaryFunction<? super A, Boolean> function;

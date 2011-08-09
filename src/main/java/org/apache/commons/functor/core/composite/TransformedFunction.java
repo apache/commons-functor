@@ -28,10 +28,19 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public class TransformedFunction<T> implements Function<T>, Serializable {
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1201423110871342081L;
+
+    /**
      * Type-remembering helper
      * @param <X>
      */
     private static class Helper<X, T> implements Function<T>, Serializable {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -7177784125292465809L;
         private Function<? extends X> preceding;
         private UnaryFunction<? super X, ? extends T> following;
 

@@ -29,6 +29,11 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 
 public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7584005207181667878L;
+
     /** Hashcode of the name of this Predicate. */
     private static final int nameHashCode = "IsWithinRange".hashCode();
 

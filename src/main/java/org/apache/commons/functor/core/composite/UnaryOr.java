@@ -36,6 +36,11 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class UnaryOr<A> extends BaseUnaryPredicateList<A> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4072936447932983645L;
+
     // constructor
     // ------------------------------------------------------------------------
     /**

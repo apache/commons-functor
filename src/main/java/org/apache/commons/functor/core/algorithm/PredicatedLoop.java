@@ -27,6 +27,10 @@ import org.apache.commons.functor.Procedure;
  * @version $Revision$ $Date$
  */
 abstract class PredicatedLoop implements Procedure, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3221684231735316893L;
     private final Procedure body;
     private final Predicate test;
 

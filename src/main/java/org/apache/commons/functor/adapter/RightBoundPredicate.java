@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1768544281714574302L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */
     private final BinaryPredicate<? super A, Object> predicate;
     /** The parameter to pass to {@code predicate}. */

@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryProcedure;
  * @author Rodney Waldhoff
  */
 public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7650992440581629785L;
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */
     private final BinaryProcedure<Object, ? super A> procedure;
     /** The parameter to pass to {@code procedure}. */

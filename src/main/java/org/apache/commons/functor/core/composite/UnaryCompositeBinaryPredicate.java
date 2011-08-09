@@ -39,7 +39,16 @@ import org.apache.commons.functor.UnaryFunction;
  * @author Rodney Waldhoff
  */
 public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3841123079006929493L;
+
     private static class Helper<G, H, L, R> implements BinaryPredicate<L, R>, Serializable {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3463108273324567825L;
         private BinaryPredicate<? super G, ? super H> f;
         private UnaryFunction<? super L, ? extends G> g;
         private UnaryFunction<? super R, ? extends H> h;

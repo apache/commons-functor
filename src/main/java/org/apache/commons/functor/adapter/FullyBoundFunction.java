@@ -39,6 +39,10 @@ import org.apache.commons.functor.Function;
  * @author Matt Benson
  */
 public final class FullyBoundFunction<T> implements Function<T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8588331452137525985L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */
     private final BinaryFunction<Object, Object, ? extends T> function;
     /** The left parameter to pass to {@code function}. */

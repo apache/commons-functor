@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryFunction;
  * @author Rodney Waldhoff
  */
 public final class IgnoreLeftFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4677703245851183542L;
     /** The {@link UnaryFunction UnaryFunction} I'm wrapping. */
     private final UnaryFunction<? super R, ? extends T> function;
 

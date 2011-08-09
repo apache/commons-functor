@@ -44,6 +44,11 @@ import org.apache.commons.functor.UnaryPredicate;
 public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>, BinaryFunction<Object, Object, T>,
         Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8754373778528773039L;
+
     // static attributes
     // ------------------------------------------------------------------------
     /**

@@ -27,6 +27,10 @@ import org.apache.commons.functor.Function;
  * function of a type other than that expected is returned.
  */
 public class RecursiveEvaluation implements Function<Object>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7992078213921938619L;
     private final Class<?> functionType;
     private Function<?> function;
 

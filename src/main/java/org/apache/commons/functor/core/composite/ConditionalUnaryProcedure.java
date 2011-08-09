@@ -42,6 +42,10 @@ import org.apache.commons.functor.core.NoOp;
  * @author Rodney Waldhoff
  */
 public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -895833369740247391L;
     // attributes
     // ------------------------------------------------------------------------
     private final UnaryPredicate<? super A> ifPred;

@@ -38,6 +38,11 @@ import org.apache.commons.functor.Procedure;
  */
 public class DoWhileProcedure extends AbstractLoopProcedure {
     /**
+     * 
+     */
+    private static final long serialVersionUID = -6064417600588553892L;
+
+    /**
      * Create a new DoWhileProcedure.
      * @param action to do
      * @param condition while true

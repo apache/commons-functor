@@ -40,6 +40,10 @@ import org.apache.commons.functor.Predicate;
  */
 public final class FullyBoundPredicate implements Predicate, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7676235030688391839L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */
     private final BinaryPredicate<Object, Object> predicate;
     /** The left parameter to pass to {@code predicate}. */

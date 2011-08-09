@@ -38,6 +38,11 @@ import org.apache.commons.functor.Procedure;
  */
 public class WhileDoProcedure extends AbstractLoopProcedure {
     /**
+     * 
+     */
+    private static final long serialVersionUID = 8157389586531784657L;
+
+    /**
      * Create a new WhileDoProcedure.
      * @param condition while
      * @param action to do

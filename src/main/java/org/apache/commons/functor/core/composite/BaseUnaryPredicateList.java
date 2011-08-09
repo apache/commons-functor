@@ -38,6 +38,10 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1467575113401282954L;
     // attributes
     // ------------------------------------------------------------------------
     private final List<UnaryPredicate<? super A>> list = new ArrayList<UnaryPredicate<? super A>>();

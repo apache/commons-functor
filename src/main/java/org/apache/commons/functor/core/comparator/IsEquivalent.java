@@ -38,6 +38,11 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  */
 public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializable {
     /**
+     * 
+     */
+    private static final long serialVersionUID = -6392784113015793664L;
+
+    /**
      * Basic IsEquivalent instance.
      */
     public static final IsEquivalent<Comparable<?>> INSTANCE = IsEquivalent.<Comparable<?>> instance();

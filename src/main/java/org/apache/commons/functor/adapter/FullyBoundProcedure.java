@@ -39,6 +39,10 @@ import org.apache.commons.functor.Procedure;
  * @author Matt Benson
  */
 public final class FullyBoundProcedure implements Procedure, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -904891610081737737L;
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */
     private final BinaryProcedure<Object, Object> procedure;
     /** The left parameter to pass to {@code procedure}. */

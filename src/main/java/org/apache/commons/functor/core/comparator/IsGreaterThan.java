@@ -35,6 +35,11 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  */
 public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializable {
     /**
+     * 
+     */
+    private static final long serialVersionUID = -8592932496891910273L;
+
+    /**
      * Basic IsGreaterThan instance.
      */
     public static final IsGreaterThan<Comparable<?>> INSTANCE = IsGreaterThan.<Comparable<?>>instance();

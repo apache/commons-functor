@@ -46,6 +46,10 @@ import org.apache.commons.functor.adapter.UnaryProcedureUnaryFunction;
  * @author Rodney Waldhoff
  */
 public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7496282561355676509L;
     // attributes
     // ------------------------------------------------------------------------
     private final CompositeUnaryFunction<? super A, Object> function;

@@ -28,6 +28,10 @@ import org.apache.commons.functor.UnaryPredicate;
  * @version $Revision$ $Date$
  */
 public final class RemoveMatching<T> implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8376577687898040683L;
     private static final RemoveMatching<Object> INSTANCE = new RemoveMatching<Object>();
 
     /**

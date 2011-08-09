@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryFunction;
  * @author Rodney Waldhoff
  */
 public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1313775632123661422L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */
     private final BinaryFunction<? super A, Object, ? extends T> function;
     /** The parameter to pass to {@code function}. */

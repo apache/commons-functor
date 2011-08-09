@@ -38,6 +38,10 @@ import org.apache.commons.functor.Predicate;
  */
 public final class FunctionPredicate implements Predicate, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6564796937660102222L;
     /** The {@link Function Function} I'm wrapping. */
     private final Function<Boolean> function;
 

@@ -40,6 +40,10 @@ import org.apache.commons.functor.BinaryProcedure;
  * @author Rodney Waldhoff
  */
 public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4472683678460290015L;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryProcedure<? super R, ? super L> procedure;

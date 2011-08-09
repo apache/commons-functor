@@ -39,6 +39,10 @@ import org.apache.commons.functor.UnaryProcedure;
  * @author Rodney Waldhoff
  */
 public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 513435556181843298L;
     /** The {@link UnaryProcedure UnaryProcedure} I'm wrapping. */
     private final UnaryProcedure<? super R> procedure;
 
