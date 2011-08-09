@@ -78,7 +78,7 @@ abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, S
             }
         }
     }
-    
+
     // abstract
     // ------------------------------------------------------------------------
     /**

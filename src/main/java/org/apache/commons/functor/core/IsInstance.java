@@ -78,7 +78,7 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
     }
 
     /**
-     * Get an IsInstanceOf UnaryPredicate. 
+     * Get an IsInstanceOf UnaryPredicate.
      * @param <T>
      * @param clazz bound right-side argument
      * @return UnaryPredicate<T>

@@ -42,7 +42,7 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
      * Create a new Max.
      */
     @SuppressWarnings("unchecked")
-    public Max() { 
+    public Max() {
         this(ComparableComparator.instance());
     }
 

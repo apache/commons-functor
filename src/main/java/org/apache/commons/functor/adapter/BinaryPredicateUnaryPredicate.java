@@ -57,9 +57,9 @@ public final class BinaryPredicateUnaryPredicate<A> implements UnaryPredicate<A>
     /**
      * Learn whether another BinaryPredicateUnaryPredicate is equal to
      * <code>this</code>.
-     * 
+     *
      * @param that BinaryPredicateUnaryPredicate to check
-     * 
+     *
      * @return whether equal
      */
     public boolean equals(BinaryPredicateUnaryPredicate<?> that) {

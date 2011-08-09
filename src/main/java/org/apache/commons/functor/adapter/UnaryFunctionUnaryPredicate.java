@@ -102,7 +102,6 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
     }
 
     /**
-     * 
      * Adapt the given, possibly-<code>null</code>,
      * {@link UnaryFunction UnaryFunction} to the
      * {@link UnaryPredicate UnaryPredicate} interface.

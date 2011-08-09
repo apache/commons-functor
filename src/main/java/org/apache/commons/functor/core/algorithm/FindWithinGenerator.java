@@ -123,7 +123,7 @@ public final class FindWithinGenerator<E> implements BinaryFunction<Generator<? 
         if (!this.useIfNone) {
             return System.identityHashCode(INSTANCE);
         }
-        int result = "FindWithinGenerator".hashCode(); 
+        int result = "FindWithinGenerator".hashCode();
         result ^= this.ifNone == null ? 0 : this.ifNone.hashCode();
         return result;
     }

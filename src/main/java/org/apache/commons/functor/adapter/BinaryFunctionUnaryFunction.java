@@ -40,7 +40,6 @@ public final class BinaryFunctionUnaryFunction<A, T> implements UnaryFunction<A,
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     public T evaluate(A obj) {

@@ -56,8 +56,8 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
      * @param thenProc then
      */
     public ConditionalUnaryProcedure(UnaryPredicate<? super A> ifPred, UnaryProcedure<? super A> thenProc) {
-    	this(ifPred, thenProc, NoOp.instance());
-	}
+        this(ifPred, thenProc, NoOp.instance());
+    }
 
     /**
      * Create a new ConditionalUnaryProcedure.

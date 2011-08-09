@@ -38,7 +38,7 @@ public final class And extends BasePredicateList {
 
     // constructor
     // ------------------------------------------------------------------------
-    
+
     /**
      * Create a new And.
      */

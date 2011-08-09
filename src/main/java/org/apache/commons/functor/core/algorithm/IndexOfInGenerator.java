@@ -67,7 +67,7 @@ public final class IndexOfInGenerator<T> implements BinaryFunction<Generator<? e
      * @param right UnaryPredicate
      */
     public Number evaluate(Generator<? extends T> left, UnaryPredicate<? super T> right) {
-        IndexProcedure findProcedure = new IndexProcedure(left, right); 
+        IndexProcedure findProcedure = new IndexProcedure(left, right);
         left.run(findProcedure);
         return findProcedure.index;
     }

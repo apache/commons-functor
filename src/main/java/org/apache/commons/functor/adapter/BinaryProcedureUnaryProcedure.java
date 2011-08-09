@@ -57,9 +57,9 @@ public final class BinaryProcedureUnaryProcedure<A> implements UnaryProcedure<A>
     /**
      * Learn whether another BinaryProcedureUnaryProcedure is equal to
      * <code>this</code>.
-     * 
+     *
      * @param that BinaryProcedureUnaryProcedure to check
-     * 
+     *
      * @return whether equal
      */
     public boolean equals(BinaryProcedureUnaryProcedure<?> that) {

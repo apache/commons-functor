@@ -135,5 +135,5 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
     public static <E> Iterator<?> maybeTransform(Iterator<? extends E> iter, UnaryFunction<? super E, ?> func) {
         return null == func ? (null == iter ? null : iter) : new TransformedIterator<E, Object>(iter, func);
     }
-    
+
 }

@@ -65,7 +65,7 @@ public final class RightIdentity {
     }
 
     /**
-     * Get a typed right-identity BinaryPredicate. 
+     * Get a typed right-identity BinaryPredicate.
      * @param <L>
      * @return BinaryPredicate<L, Boolean>
      */
