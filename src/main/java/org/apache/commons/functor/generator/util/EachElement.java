@@ -57,10 +57,7 @@ public final class EachElement {
      */
     @SuppressWarnings("unchecked")
     public static final <K, V> Generator<Map.Entry<K, V>> from(Map<? extends K, ? extends V> map) {
-        if (map == null) {
-            return null;
-        }
-        return EachElement.from(((Map<K, V>) map).entrySet().iterator());
+        return map == null ? null : EachElement.from(((Map<K, V>) map).entrySet().iterator());
     }
 
     /**
