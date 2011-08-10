@@ -41,26 +41,27 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
     /**
      * Helper class
      */
-    private class FoldRightHelper implements UnaryProcedure<T> {
+    private static class FoldRightHelper<T> implements UnaryProcedure<T> {
         private final Stack<T> stk = new Stack<T>();
+        private final BinaryFunction<? super T, ? super T, ? extends T> function;
         private final T seed;
         private final boolean hasSeed;
 
         /**
          * Create a seedless FoldRightHelper.
          */
-        public FoldRightHelper() {
-            seed = null;
-            hasSeed = false;
+        public FoldRightHelper(BinaryFunction<? super T, ? super T, ? extends T> function) {
+            this(null, function);
         }
 
         /**
          * Create a new FoldRightHelper.
          * @param seed initial left argument
          */
-        FoldRightHelper(T seed) {
+        FoldRightHelper(T seed, BinaryFunction<? super T, ? super T, ? extends T> function) {
             this.seed = seed;
-            hasSeed = true;
+            hasSeed = seed != null ? true : false;
+            this.function = function;
         }
 
         /**
@@ -106,7 +107,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
      * @param obj {@link Generator} to transform
      */
     public T evaluate(Generator<T> obj) {
-        FoldRightHelper helper = new FoldRightHelper();
+        FoldRightHelper<T> helper = new FoldRightHelper<T>(function);
         obj.run(helper);
         return helper.getResult();
     }
@@ -117,7 +118,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
      * @param right seed object
      */
     public T evaluate(Generator<T> left, T right) {
-        FoldRightHelper helper = new FoldRightHelper(right);
+        FoldRightHelper<T> helper = new FoldRightHelper<T>(right, function);
         left.run(helper);
         return helper.getResult();
     }

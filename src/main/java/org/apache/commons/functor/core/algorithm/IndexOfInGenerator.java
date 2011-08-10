@@ -38,7 +38,7 @@ public final class IndexOfInGenerator<T> implements BinaryFunction<Generator<? e
     /**
      * Helper procedure.
      */
-    private class IndexProcedure implements UnaryProcedure<T> {
+    private static class IndexProcedure<T> implements UnaryProcedure<T> {
         private final Generator<? extends T> generator;
         private final UnaryPredicate<? super T> pred;
         private long index = -1L;
@@ -71,7 +71,7 @@ public final class IndexOfInGenerator<T> implements BinaryFunction<Generator<? e
      * @param right UnaryPredicate
      */
     public Number evaluate(Generator<? extends T> left, UnaryPredicate<? super T> right) {
-        IndexProcedure findProcedure = new IndexProcedure(left, right);
+        IndexProcedure<T> findProcedure = new IndexProcedure<T>(left, right);
         left.run(findProcedure);
         return findProcedure.index;
     }

@@ -41,23 +41,26 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
     /**
      * Helper procedure
      */
-    private class FoldLeftHelper implements UnaryProcedure<T> {
+    private static class FoldLeftHelper<T> implements UnaryProcedure<T> {
+        private final BinaryFunction<? super T, ? super T, ? extends T> function;
         private T seed;
         private boolean started;
 
         /**
          * Create a seedless FoldLeftHelper.
          */
-        public FoldLeftHelper() {
+        public FoldLeftHelper(BinaryFunction<? super T, ? super T, ? extends T> function) {
+            this(null, function);
         }
 
         /**
          * Create a new FoldLeftHelper.
          * @param seed initial left argument
          */
-        FoldLeftHelper(T seed) {
+        FoldLeftHelper(T seed, BinaryFunction<? super T, ? super T, ? extends T> function) {
             this.seed = seed;
-            started = true;
+            started = seed != null ? true : false;
+            this.function = function;
         }
 
         /**
@@ -97,7 +100,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
      * @param obj {@link Generator} to transform
      */
     public T evaluate(Generator<T> obj) {
-        FoldLeftHelper helper = new FoldLeftHelper();
+        FoldLeftHelper<T> helper = new FoldLeftHelper<T>(function);
         obj.run(helper);
         return helper.getResult();
     }
@@ -108,7 +111,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
      * @param right seed object
      */
     public T evaluate(Generator<T> left, T right) {
-        FoldLeftHelper helper = new FoldLeftHelper(right);
+        FoldLeftHelper<T> helper = new FoldLeftHelper<T>(right, function);
         left.run(helper);
         return helper.getResult();
     }

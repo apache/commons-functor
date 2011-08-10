@@ -39,7 +39,7 @@ public final class GeneratorContains<T> implements BinaryPredicate<Generator<? e
     /**
      * Helper procedure.
      */
-    private class ContainsProcedure implements UnaryProcedure<T> {
+    private static class ContainsProcedure<T> implements UnaryProcedure<T> {
         private final UnaryPredicate<? super T> pred;
         private boolean found;
 
@@ -65,7 +65,7 @@ public final class GeneratorContains<T> implements BinaryPredicate<Generator<? e
      * @param right UnaryPredicate
      */
     public boolean test(Generator<? extends T> left, UnaryPredicate<? super T> right) {
-        ContainsProcedure findProcedure = new ContainsProcedure(right);
+        ContainsProcedure<T> findProcedure = new ContainsProcedure<T>(right);
         left.run(findProcedure);
         return findProcedure.found;
     }
