@@ -34,7 +34,7 @@ import org.apache.commons.functor.generator.Generator;
 public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 2473542974105910450L;
 

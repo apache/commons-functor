@@ -33,7 +33,7 @@ import org.apache.commons.functor.BinaryPredicate;
  */
 public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -5150315320718936186L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */

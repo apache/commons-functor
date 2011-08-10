@@ -34,7 +34,7 @@ import org.apache.commons.functor.generator.Generator;
 public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4671387086700391506L;
 

@@ -43,7 +43,7 @@ import org.apache.commons.functor.Predicate;
  */
 public final class ConditionalFunction<T> implements Function<T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4214871352184887792L;
     // attributes

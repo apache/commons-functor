@@ -43,7 +43,7 @@ import org.apache.commons.functor.UnaryProcedure;
 public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 9194268249717820246L;
     // attributes

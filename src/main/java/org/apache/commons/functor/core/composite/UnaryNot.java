@@ -36,7 +36,7 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -97785102566566058L;
     // attributes

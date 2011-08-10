@@ -51,7 +51,7 @@ import org.apache.commons.functor.UnaryFunction;
 public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4945193629275757281L;
 

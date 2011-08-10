@@ -43,7 +43,7 @@ import org.apache.commons.functor.BinaryProcedure;
  */
 public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 1371075584406178258L;
     // attributes

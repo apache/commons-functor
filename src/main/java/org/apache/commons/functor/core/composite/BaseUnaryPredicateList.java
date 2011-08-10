@@ -39,7 +39,7 @@ import org.apache.commons.functor.UnaryPredicate;
 abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 1467575113401282954L;
     // attributes

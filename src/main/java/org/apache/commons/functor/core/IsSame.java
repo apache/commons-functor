@@ -30,7 +30,7 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  */
 public final class IsSame<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 7024585699909734072L;
     // static attributes

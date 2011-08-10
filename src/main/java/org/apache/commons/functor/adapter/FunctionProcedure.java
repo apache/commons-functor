@@ -39,7 +39,7 @@ import org.apache.commons.functor.Procedure;
  */
 public final class FunctionProcedure implements Procedure, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7300031015086684901L;
     /** The {@link Function Function} I'm wrapping. */

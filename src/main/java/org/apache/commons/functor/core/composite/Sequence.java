@@ -43,7 +43,7 @@ import org.apache.commons.functor.Procedure;
 public class Sequence implements Procedure, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 8041703589149547883L;
     // attributes

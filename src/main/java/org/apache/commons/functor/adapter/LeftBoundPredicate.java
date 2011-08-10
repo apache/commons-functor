@@ -41,7 +41,7 @@ import org.apache.commons.functor.UnaryPredicate;
 public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 3851481216909573294L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */

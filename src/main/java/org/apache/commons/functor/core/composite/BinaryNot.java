@@ -36,7 +36,7 @@ import org.apache.commons.functor.BinaryPredicate;
  */
 public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -3488974286912054737L;
     // attributes

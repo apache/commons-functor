@@ -41,7 +41,7 @@ import org.apache.commons.functor.BinaryFunction;
  */
 public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -5824252875453493940L;
     // attributes

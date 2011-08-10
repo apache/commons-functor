@@ -43,7 +43,7 @@ import org.apache.commons.functor.core.NoOp;
  */
 public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -895833369740247391L;
     // attributes

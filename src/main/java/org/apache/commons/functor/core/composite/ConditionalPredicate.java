@@ -42,7 +42,7 @@ import org.apache.commons.functor.Predicate;
  */
 public final class ConditionalPredicate implements Predicate, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 7333505000745854098L;
     // attributes

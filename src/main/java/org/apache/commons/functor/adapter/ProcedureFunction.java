@@ -40,7 +40,7 @@ import org.apache.commons.functor.Procedure;
  */
 public final class ProcedureFunction<T> implements Function<T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -655207616317672341L;
     /** The {@link Procedure Procedure} I'm wrapping. */

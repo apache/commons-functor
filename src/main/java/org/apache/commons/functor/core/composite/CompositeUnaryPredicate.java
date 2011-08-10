@@ -47,7 +47,7 @@ import org.apache.commons.functor.adapter.UnaryPredicateUnaryFunction;
  */
 public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4880363949059265252L;
     // attributes

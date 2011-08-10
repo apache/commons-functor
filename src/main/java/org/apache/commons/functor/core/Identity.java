@@ -36,7 +36,7 @@ import org.apache.commons.functor.UnaryPredicate;
 public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4145504259013789494L;
     // static attributes

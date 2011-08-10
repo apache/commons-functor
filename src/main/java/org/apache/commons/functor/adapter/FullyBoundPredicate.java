@@ -41,7 +41,7 @@ import org.apache.commons.functor.Predicate;
 public final class FullyBoundPredicate implements Predicate, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 7676235030688391839L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */

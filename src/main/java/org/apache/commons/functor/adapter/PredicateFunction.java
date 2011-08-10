@@ -39,7 +39,7 @@ import org.apache.commons.functor.Predicate;
  */
 public final class PredicateFunction implements Function<Boolean>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -8858981355549412629L;
     /** The {@link Predicate Predicate} I'm wrapping. */

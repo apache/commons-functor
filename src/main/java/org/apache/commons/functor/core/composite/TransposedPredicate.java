@@ -41,7 +41,7 @@ import org.apache.commons.functor.BinaryPredicate;
  */
 public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 3441209087576289240L;
     // attributes

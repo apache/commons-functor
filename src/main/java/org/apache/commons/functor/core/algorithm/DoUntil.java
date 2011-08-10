@@ -27,7 +27,7 @@ import org.apache.commons.functor.Procedure;
 public class DoUntil extends PredicatedLoop {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -961919312045591167L;
 

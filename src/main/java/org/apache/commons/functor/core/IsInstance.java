@@ -33,7 +33,7 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  */
 public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 9104265415387129627L;
     /**

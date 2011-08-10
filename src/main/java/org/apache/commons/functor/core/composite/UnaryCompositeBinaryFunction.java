@@ -41,13 +41,13 @@ import org.apache.commons.functor.UnaryFunction;
 public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 264219357293822629L;
 
     private static class Helper<G, H, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
         /**
-         * 
+         * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 4513309646430305164L;
         private BinaryFunction<? super G, ? super H, ? extends T> f;

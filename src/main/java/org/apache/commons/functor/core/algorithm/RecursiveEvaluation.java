@@ -28,7 +28,7 @@ import org.apache.commons.functor.Function;
  */
 public class RecursiveEvaluation implements Function<Object>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7992078213921938619L;
     private final Class<?> functionType;

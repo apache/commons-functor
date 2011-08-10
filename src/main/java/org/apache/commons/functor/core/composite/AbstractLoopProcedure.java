@@ -31,7 +31,7 @@ import java.io.Serializable;
  */
 public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -5903381842630236070L;
     private final Predicate condition;

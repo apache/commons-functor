@@ -35,7 +35,7 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  */
 public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7270189005780457145L;
 

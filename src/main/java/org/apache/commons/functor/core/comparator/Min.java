@@ -32,7 +32,7 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
  */
 public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 9190170976707323848L;
 

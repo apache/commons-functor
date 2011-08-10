@@ -43,7 +43,7 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -8152490481969255068L;
     // attributes

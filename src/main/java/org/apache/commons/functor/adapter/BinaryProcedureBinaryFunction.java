@@ -40,7 +40,7 @@ import org.apache.commons.functor.BinaryProcedure;
  */
 public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 2099210273403668624L;
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */

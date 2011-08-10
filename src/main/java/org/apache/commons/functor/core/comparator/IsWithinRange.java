@@ -30,7 +30,7 @@ import org.apache.commons.functor.UnaryPredicate;
 
 public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7584005207181667878L;
 

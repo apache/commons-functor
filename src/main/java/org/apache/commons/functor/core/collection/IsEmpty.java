@@ -33,7 +33,7 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
     // ------------------------------------------------------------------------
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 6555097970639642373L;
     /**

@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public final class LeftBoundFunction<A, T> implements UnaryFunction<A, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7456827102718911769L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */

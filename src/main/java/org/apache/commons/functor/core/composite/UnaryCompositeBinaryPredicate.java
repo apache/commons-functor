@@ -40,13 +40,13 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 3841123079006929493L;
 
     private static class Helper<G, H, L, R> implements BinaryPredicate<L, R>, Serializable {
         /**
-         * 
+         * serialVersionUID declaration.
          */
         private static final long serialVersionUID = -3463108273324567825L;
         private BinaryPredicate<? super G, ? super H> f;

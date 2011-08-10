@@ -30,7 +30,7 @@ import org.apache.commons.functor.BinaryFunction;
  */
 public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 1642024869929206095L;
 

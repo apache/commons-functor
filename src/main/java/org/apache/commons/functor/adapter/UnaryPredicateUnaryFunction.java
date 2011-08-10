@@ -39,7 +39,7 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Boolean>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 5660724725036398625L;
     /** The {@link UnaryPredicate UnaryPredicate} I'm wrapping. */

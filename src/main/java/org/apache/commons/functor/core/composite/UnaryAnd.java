@@ -37,7 +37,7 @@ import org.apache.commons.functor.UnaryPredicate;
 public final class UnaryAnd<A> extends BaseUnaryPredicateList<A> {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 8324861737107307302L;
 

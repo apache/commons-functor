@@ -40,7 +40,7 @@ public final class And extends BasePredicateList {
     // ------------------------------------------------------------------------
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -6053343095016685571L;
 

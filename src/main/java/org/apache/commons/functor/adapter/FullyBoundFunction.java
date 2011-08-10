@@ -40,7 +40,7 @@ import org.apache.commons.functor.Function;
  */
 public final class FullyBoundFunction<T> implements Function<T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -8588331452137525985L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */

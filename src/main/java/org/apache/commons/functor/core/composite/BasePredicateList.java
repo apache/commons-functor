@@ -38,7 +38,7 @@ import org.apache.commons.functor.Predicate;
  */
 abstract class BasePredicateList implements Predicate, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 7860902316994888181L;
     // attributes

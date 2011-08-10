@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryProcedure;
  */
 public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 7650992440581629785L;
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */

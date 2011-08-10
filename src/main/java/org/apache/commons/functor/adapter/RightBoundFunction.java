@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -1313775632123661422L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */

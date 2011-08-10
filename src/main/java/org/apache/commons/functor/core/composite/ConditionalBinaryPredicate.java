@@ -42,7 +42,7 @@ import org.apache.commons.functor.BinaryPredicate;
  */
 public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -4511946801764080748L;
     // attributes

@@ -39,7 +39,7 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  */
 public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -6777016236280121159L;
     // static attributes

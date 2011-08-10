@@ -33,7 +33,7 @@ import org.apache.commons.functor.adapter.IgnoreRightPredicate;
  */
 public final class IsNotNull<T> implements UnaryPredicate<T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -6856387958371590330L;
 

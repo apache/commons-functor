@@ -39,7 +39,7 @@ import org.apache.commons.functor.BinaryPredicate;
 abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -8218822378485819939L;
     // attributes

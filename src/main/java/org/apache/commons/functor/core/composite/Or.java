@@ -37,7 +37,7 @@ import org.apache.commons.functor.Predicate;
 public final class Or extends BasePredicateList {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -1636233158061690073L;
 

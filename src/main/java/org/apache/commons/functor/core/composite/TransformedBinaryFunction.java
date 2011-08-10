@@ -28,7 +28,7 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 3312781645741807814L;
 
@@ -38,7 +38,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      */
     private static class Helper<X, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
         /**
-         * 
+         * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 8141488776884860650L;
         private BinaryFunction<? super L, ? super R, ? extends X> preceding;

@@ -41,7 +41,7 @@ import org.apache.commons.functor.BinaryProcedure;
  */
 public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4472683678460290015L;
     // attributes

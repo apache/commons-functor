@@ -37,7 +37,7 @@ import org.apache.commons.functor.Predicate;
 public final class Not implements Predicate, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 8268713706856765874L;
     // attributes

@@ -47,7 +47,7 @@ import org.apache.commons.functor.adapter.UnaryProcedureUnaryFunction;
  */
 public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7496282561355676509L;
     // attributes

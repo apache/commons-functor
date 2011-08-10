@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryProcedure;
  */
 public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 3267188080481758226L;
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */

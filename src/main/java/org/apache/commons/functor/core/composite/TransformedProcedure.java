@@ -29,7 +29,7 @@ import org.apache.commons.functor.UnaryProcedure;
  */
 public class TransformedProcedure implements Procedure, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -4111958123789033410L;
 
@@ -39,7 +39,7 @@ public class TransformedProcedure implements Procedure, Serializable {
      */
     private static class Helper<X> implements Procedure, Serializable {
         /**
-         * 
+         * serialVersionUID declaration.
          */
         private static final long serialVersionUID = -4093503167446891318L;
         private Function<? extends X> function;

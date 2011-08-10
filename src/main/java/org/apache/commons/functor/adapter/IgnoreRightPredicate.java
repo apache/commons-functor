@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -4236624667788627722L;
     /** The {@link UnaryPredicate UnaryPredicate} I'm wrapping. */

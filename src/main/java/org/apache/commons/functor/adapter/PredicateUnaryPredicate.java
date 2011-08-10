@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class PredicateUnaryPredicate<A> implements UnaryPredicate<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -5168896606842881702L;
     /** The {@link Predicate Predicate} I'm wrapping. */

@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public final class BoundFunction<T> implements Function<T>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 8873081237760986490L;
     /** The {@link UnaryFunction UnaryFunction} I'm wrapping. */

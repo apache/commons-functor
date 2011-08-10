@@ -37,7 +37,7 @@ import org.apache.commons.functor.BinaryPredicate;
 public final class BinaryAnd<L, R> extends BaseBinaryPredicateList<L, R> {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -6741089498337923680L;
 

@@ -33,7 +33,7 @@ import org.apache.commons.functor.UnaryProcedure;
  */
 public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProcedure<Object, Object>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 3768926349922273291L;
     // static attributes

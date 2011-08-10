@@ -40,7 +40,7 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializable {
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -1768544281714574302L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */

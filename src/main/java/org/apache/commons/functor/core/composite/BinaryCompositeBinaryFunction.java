@@ -39,7 +39,7 @@ import org.apache.commons.functor.BinaryFunction;
 public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
 
     /**
-     * 
+     * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 2570517284319064043L;
 
