@@ -34,15 +34,16 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @author Rodney Waldhoff
  */
 public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7270189005780457145L;
 
     /**
      * Basic IsLessThanOrEqual instance.
      */
     public static final IsLessThanOrEqual<Comparable<?>> INSTANCE = IsLessThanOrEqual.<Comparable<?>>instance();
+
+    /**
+     * serialVersionUID declaration.
+     */
+    private static final long serialVersionUID = -7270189005780457145L;
 
     private final Comparator<? super T> comparator;
 

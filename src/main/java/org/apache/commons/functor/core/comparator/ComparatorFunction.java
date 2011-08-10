@@ -29,15 +29,16 @@ import org.apache.commons.functor.BinaryFunction;
  * @author Rodney Waldhoff
  */
 public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 1642024869929206095L;
 
     /**
      * Basic ComparatorFunction instance.
      */
     public static final ComparatorFunction<Comparable<?>> INSTANCE = ComparatorFunction.<Comparable<?>>instance();
+
+    /**
+     * serialVersionUID declaration.
+     */
+    private static final long serialVersionUID = 1642024869929206095L;
 
     private final Comparator<? super T> comparator;
 

@@ -31,14 +31,16 @@ import org.apache.commons.functor.generator.Generator;
  */
 public final class FindWithinGenerator<E>
     implements BinaryFunction<Generator<? extends E>, UnaryPredicate<? super E>, E>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -2824239991638326134L;
+
     /**
      * Basic instance.
      */
     public static final FindWithinGenerator<Object> INSTANCE = new FindWithinGenerator<Object>();
+
+    /**
+     * serialVersionUID declaration.
+     */
+    private static final long serialVersionUID = -2824239991638326134L;
 
     /**
      * Helper procedure.

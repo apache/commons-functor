@@ -34,14 +34,14 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>, Serializable {
+    // static attributes
+    // ------------------------------------------------------------------------
+    public static final Identity<Object> INSTANCE = new Identity<Object>();
 
     /**
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4145504259013789494L;
-    // static attributes
-    // ------------------------------------------------------------------------
-    public static final Identity<Object> INSTANCE = new Identity<Object>();
 
     // constructor
     // ------------------------------------------------------------------------

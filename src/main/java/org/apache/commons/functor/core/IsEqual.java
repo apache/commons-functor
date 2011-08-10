@@ -38,16 +38,16 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @author Rodney Waldhoff
  */
 public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -6777016236280121159L;
     // static attributes
     // ------------------------------------------------------------------------
     /**
      * Basic IsEqual<Object, Object> instance.
      */
     public static final IsEqual<Object, Object> INSTANCE = IsEqual.<Object, Object>instance();
+    /**
+     * serialVersionUID declaration.
+     */
+    private static final long serialVersionUID = -6777016236280121159L;
 
     // constructor
     // ------------------------------------------------------------------------

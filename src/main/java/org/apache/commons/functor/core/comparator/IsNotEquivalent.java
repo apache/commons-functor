@@ -37,15 +37,16 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  *
  */
 public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 1021154684877529051L;
 
     /**
      * Basic IsNotEquivalent instance.
      */
     public static final IsNotEquivalent<Comparable<?>> INSTANCE = IsNotEquivalent.<Comparable<?>>instance();
+
+    /**
+     * serialVersionUID declaration.
+     */
+    private static final long serialVersionUID = 1021154684877529051L;
 
     private final Comparator<? super T> comparator;
 

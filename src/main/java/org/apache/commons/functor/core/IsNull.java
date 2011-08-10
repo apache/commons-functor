@@ -32,10 +32,6 @@ import org.apache.commons.functor.adapter.IgnoreRightPredicate;
  * @author Rodney Waldhoff
  */
 public final class IsNull<A> implements UnaryPredicate<A>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 6001380107746171952L;
 
     // static attributes
     // ------------------------------------------------------------------------
@@ -53,6 +49,11 @@ public final class IsNull<A> implements UnaryPredicate<A>, Serializable {
      * Right-handed BinaryPredicate.
      */
     public static final BinaryPredicate<Object, Object> RIGHT = IsNull.<Object>right();
+
+    /**
+     * serialVersionUID declaration.
+     */
+    private static final long serialVersionUID = 6001380107746171952L;
 
     // constructor
     // ------------------------------------------------------------------------
