@@ -29,7 +29,8 @@ import org.apache.commons.functor.generator.Generator;
  *
  * @version $Revision$ $Date$
  */
-public final class FindWithinGenerator<E> implements BinaryFunction<Generator<? extends E>, UnaryPredicate<? super E>, E>, Serializable {
+public final class FindWithinGenerator<E>
+    implements BinaryFunction<Generator<? extends E>, UnaryPredicate<? super E>, E>, Serializable {
     /**
      * serialVersionUID declaration.
      */

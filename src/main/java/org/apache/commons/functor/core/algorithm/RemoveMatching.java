@@ -27,7 +27,8 @@ import org.apache.commons.functor.UnaryPredicate;
  *
  * @version $Revision$ $Date$
  */
-public final class RemoveMatching<T> implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
+public final class RemoveMatching<T>
+    implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
     /**
      * serialVersionUID declaration.
      */

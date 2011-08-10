@@ -50,7 +50,8 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
          * @param function BinaryFunction
          * @param procedure UnaryFunction
          */
-        private Helper(BinaryFunction<? super L, ? super R, ? extends X> function, UnaryProcedure<? super X> procedure) {
+        private Helper(BinaryFunction<? super L, ? super R, ? extends X> function,
+                UnaryProcedure<? super X> procedure) {
             this.function = function;
             this.procedure = procedure;
         }

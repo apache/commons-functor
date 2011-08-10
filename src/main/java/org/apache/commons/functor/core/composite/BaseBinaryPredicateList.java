@@ -44,7 +44,8 @@ abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, S
     private static final long serialVersionUID = -8218822378485819939L;
     // attributes
     // ------------------------------------------------------------------------
-    private final List<BinaryPredicate<? super L, ? super R>> list = new ArrayList<BinaryPredicate<? super L, ? super R>>();
+    private final List<BinaryPredicate<? super L, ? super R>> list =
+        new ArrayList<BinaryPredicate<? super L, ? super R>>();
 
     // constructor
     // ------------------------------------------------------------------------

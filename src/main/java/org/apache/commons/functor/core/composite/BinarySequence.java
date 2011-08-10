@@ -48,7 +48,8 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     private static final long serialVersionUID = 1371075584406178258L;
     // attributes
     // ------------------------------------------------------------------------
-    private final List<BinaryProcedure<? super L, ? super R>> list = new ArrayList<BinaryProcedure<? super L, ? super R>>();
+    private final List<BinaryProcedure<? super L, ? super R>> list =
+        new ArrayList<BinaryProcedure<? super L, ? super R>>();
 
     // constructor
     // ------------------------------------------------------------------------

@@ -27,7 +27,8 @@ import org.apache.commons.functor.UnaryFunction;
  *
  * @version $Revision$ $Date$
  */
-public final class InPlaceTransform<T> implements BinaryProcedure<ListIterator<T>, UnaryFunction<? super T, ? extends T>>, Serializable {
+public final class InPlaceTransform<T>
+    implements BinaryProcedure<ListIterator<T>, UnaryFunction<? super T, ? extends T>>, Serializable {
     /**
      * serialVersionUID declaration.
      */

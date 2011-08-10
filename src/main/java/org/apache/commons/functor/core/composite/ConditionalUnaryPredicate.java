@@ -82,7 +82,8 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalUnaryPredicate<?> && equals((ConditionalUnaryPredicate<?>) that));
+        return that == this || (that instanceof ConditionalUnaryPredicate<?>
+                                    && equals((ConditionalUnaryPredicate<?>) that));
     }
 
     /**

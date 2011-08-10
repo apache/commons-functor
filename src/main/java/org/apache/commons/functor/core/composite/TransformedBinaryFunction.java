@@ -49,7 +49,8 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
          * @param preceding BinaryFunction
          * @param following UnaryFunction
          */
-        private Helper(BinaryFunction<? super L, ? super R, ? extends X> preceding, UnaryFunction<? super X, ? extends T> following) {
+        private Helper(BinaryFunction<? super L, ? super R, ? extends X> preceding,
+                UnaryFunction<? super X, ? extends T> following) {
             this.preceding = preceding;
             this.following = following;
         }

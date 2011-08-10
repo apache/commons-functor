@@ -51,7 +51,7 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      */
     private static class Helper<G, H, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
         /**
-         * 
+         * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 6013646799505641592L;
         private BinaryFunction<? super G, ? super H, ? extends T> f;
@@ -65,7 +65,8 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
          * @param h right preceding BinaryFunction
          */
         public Helper(BinaryFunction<? super G, ? super H, ? extends T> f,
-                BinaryFunction<? super L, ? super R, ? extends G> g, BinaryFunction<? super L, ? super R, ? extends H> h) {
+                BinaryFunction<? super L, ? super R, ? extends G> g,
+                BinaryFunction<? super L, ? super R, ? extends H> h) {
             this.f = f;
             this.g = g;
             this.h = h;
@@ -110,8 +111,8 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this
-                || (that instanceof BinaryCompositeBinaryFunction<?, ?, ?> && equals((BinaryCompositeBinaryFunction<?, ?, ?>) that));
+        return that == this || (that instanceof BinaryCompositeBinaryFunction<?, ?, ?>
+                                    && equals((BinaryCompositeBinaryFunction<?, ?, ?>) that));
     }
 
     /**

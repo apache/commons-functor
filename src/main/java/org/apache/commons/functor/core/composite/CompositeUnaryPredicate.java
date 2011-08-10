@@ -99,7 +99,8 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this || (that instanceof CompositeUnaryPredicate<?> && equals((CompositeUnaryPredicate<?>) that));
+        return that == this || (that instanceof CompositeUnaryPredicate<?>
+                                    && equals((CompositeUnaryPredicate<?>) that));
     }
 
     /**

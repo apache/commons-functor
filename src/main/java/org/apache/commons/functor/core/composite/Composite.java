@@ -108,7 +108,8 @@ public final class Composite {
      * @param g UnaryFunction to apply first
      * @return UnaryFunction
      */
-    public static final <A, X, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super X, ? extends T> f, UnaryFunction<? super A, ? extends X> g) {
+    public static final <A, X, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super X, ? extends T> f,
+            UnaryFunction<? super A, ? extends X> g) {
         return new CompositeUnaryFunction<X, T>(f).of(g);
     }
 
@@ -122,7 +123,9 @@ public final class Composite {
 //     * @param g BinaryFunction to apply first
 //     * @return BinaryFunction<L, R, T>
 //     */
-//    public static final <L, R, X, T> BinaryFunction<L, R, T> function(UnaryFunction<? super X, ? extends T> f, BinaryFunction<? super L, ? super R, ? extends X> g) {
+//    public static final <L, R, X, T> BinaryFunction<L, R, T> function(UnaryFunction<? super X, ? extends T> f,
+//             BinaryFunction<? super L,
+//             ? super R, ? extends X> g) {
 //        return new CompositeUnaryFunction<X, T>(f).of(g);
 //    }
 

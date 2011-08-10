@@ -115,7 +115,8 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
      * @param arg Object that will always be used for the right side of the BinaryFunction delegate.
      * @return RightBoundFunction
      */
-    public static <L, R, T> RightBoundFunction<L, T> bind(BinaryFunction<? super L, ? super R, ? extends T> function, R arg) {
+    public static <L, R, T> RightBoundFunction<L, T> bind(BinaryFunction<? super L, ? super R, ? extends T> function,
+                                                          R arg) {
         return null == function ? null : new RightBoundFunction<L, T>(function, arg);
     }
 

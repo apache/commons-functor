@@ -69,8 +69,8 @@ public final class UnaryProcedureUnaryFunction<A, T> implements UnaryFunction<A,
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this
-                || (that instanceof UnaryProcedureUnaryFunction<?, ?> && equals((UnaryProcedureUnaryFunction<?, ?>) that));
+        return that == this || (that instanceof UnaryProcedureUnaryFunction<?, ?>
+                                    && equals((UnaryProcedureUnaryFunction<?, ?>) that));
     }
 
     /**

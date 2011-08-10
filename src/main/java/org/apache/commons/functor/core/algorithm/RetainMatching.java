@@ -28,7 +28,8 @@ import org.apache.commons.functor.core.composite.UnaryNot;
  *
  * @version $Revision$ $Date$
  */
-public final class RetainMatching<T> implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
+public final class RetainMatching<T>
+    implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
     /**
      * serialVersionUID declaration.
      */

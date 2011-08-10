@@ -103,8 +103,8 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this
-                || (that instanceof ConditionalBinaryProcedure<?, ?> && equals((ConditionalBinaryProcedure<?, ?>) that));
+        return that == this || (that instanceof ConditionalBinaryProcedure<?, ?>
+                                    && equals((ConditionalBinaryProcedure<?, ?>) that));
     }
 
     /**

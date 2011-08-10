@@ -82,8 +82,8 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this
-                || (that instanceof ConditionalBinaryPredicate<?, ?> && equals((ConditionalBinaryPredicate<?, ?>) that));
+        return that == this || (that instanceof ConditionalBinaryPredicate<?, ?>
+                                    && equals((ConditionalBinaryPredicate<?, ?>) that));
     }
 
     /**

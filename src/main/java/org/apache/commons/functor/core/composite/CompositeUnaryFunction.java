@@ -63,7 +63,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      */
     private static class Helper<X, A, T> implements UnaryFunction<A, T>, Serializable {
         /**
-         * 
+         * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 8167255331321876718L;
         private UnaryFunction<? super X, ? extends T> following;
@@ -74,7 +74,8 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
          * @param following UnaryFunction<X, Y>
          * @param preceding UnaryFunction<Y, Z>
          */
-        public Helper(UnaryFunction<? super X, ? extends T> following, UnaryFunction<? super A, ? extends X> preceding) {
+        public Helper(UnaryFunction<? super X, ? extends T> following,
+                UnaryFunction<? super A, ? extends X> preceding) {
             this.following = following;
             this.preceding = preceding;
         }

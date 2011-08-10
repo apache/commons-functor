@@ -41,7 +41,8 @@ public final class RightIdentity {
     /**
      * Right-identity predicate.
      */
-    public static final BinaryPredicate<Object, Boolean> PREDICATE = BinaryFunctionBinaryPredicate.adapt(IgnoreLeftFunction.adapt(new Identity<Boolean>()));
+    public static final BinaryPredicate<Object, Boolean> PREDICATE =
+        BinaryFunctionBinaryPredicate.adapt(IgnoreLeftFunction.adapt(new Identity<Boolean>()));
 
     // constructor
     // ------------------------------------------------------------------------
@@ -70,6 +71,7 @@ public final class RightIdentity {
      * @return BinaryPredicate<L, Boolean>
      */
     public static <L> BinaryPredicate<L, Boolean> predicate() {
-        return BinaryFunctionBinaryPredicate.adapt(IgnoreLeftFunction.<L, Boolean, Boolean>adapt(new Identity<Boolean>()));
+        return BinaryFunctionBinaryPredicate.adapt(
+                IgnoreLeftFunction.<L, Boolean, Boolean>adapt(new Identity<Boolean>()));
     }
 }

@@ -69,7 +69,9 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
      * @param thenProc then
      * @param elseProc else
      */
-    public ConditionalUnaryProcedure(UnaryPredicate<? super A> ifPred, UnaryProcedure<? super A> thenProc, UnaryProcedure<? super A> elseProc) {
+    public ConditionalUnaryProcedure(UnaryPredicate<? super A> ifPred,
+            UnaryProcedure<? super A> thenProc,
+            UnaryProcedure<? super A> elseProc) {
         if (ifPred == null) {
             throw new IllegalArgumentException("UnaryPredicate argument was null");
         }
@@ -98,7 +100,8 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalUnaryProcedure<?> && equals((ConditionalUnaryProcedure<?>) that));
+        return that == this || (that instanceof ConditionalUnaryProcedure<?>
+                                    && equals((ConditionalUnaryProcedure<?>) that));
     }
 
     /**

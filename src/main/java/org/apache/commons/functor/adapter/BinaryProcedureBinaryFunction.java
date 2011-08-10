@@ -69,8 +69,8 @@ public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunct
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this
-                || (that instanceof BinaryProcedureBinaryFunction<?, ?, ?> && equals((BinaryProcedureBinaryFunction<?, ?, ?>) that));
+        return that == this || (that instanceof BinaryProcedureBinaryFunction<?, ?, ?>
+                                    && equals((BinaryProcedureBinaryFunction<?, ?, ?>) that));
     }
 
     /**

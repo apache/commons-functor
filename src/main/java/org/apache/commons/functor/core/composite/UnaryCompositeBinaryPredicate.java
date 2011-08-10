@@ -110,8 +110,8 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
      * {@inheritDoc}
      */
     public boolean equals(Object that) {
-        return that == this
-                || (that instanceof UnaryCompositeBinaryPredicate<?, ?> && equals((UnaryCompositeBinaryPredicate<?, ?>) that));
+        return that == this || (that instanceof UnaryCompositeBinaryPredicate<?, ?>
+                                    && equals((UnaryCompositeBinaryPredicate<?, ?>) that));
     }
 
     /**
