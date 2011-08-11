@@ -30,7 +30,7 @@ import org.apache.commons.functor.UnaryFunction;
 public final class BinaryFunctionUnaryFunction<A, T> implements UnaryFunction<A, T> {
     private final BinaryFunction<? super A, ? super A, ? extends T> function;
 
-    /**``
+    /**
      * Create a new BinaryFunctionUnaryFunction.
      * @param function to adapt
      */
