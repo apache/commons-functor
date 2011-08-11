@@ -109,7 +109,7 @@ public final class LongRange extends BaseGenerator<Long> {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof LongRange == false) {
+        if (!(obj instanceof LongRange)) {
             return false;
         }
         LongRange that = (LongRange) obj;
