@@ -17,11 +17,14 @@
 package org.apache.commons.functor;
 
 /**
- * A functor that takes two arguments and returns an <code>Object</code> value.
+ * A functor that takes two arguments and returns a value.
  * <p>
  * Implementors are encouraged but not required to make their functors
  * {@link java.io.Serializable Serializable}.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
+ * @param <T> the returned value type.
  * @since 1.0
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
