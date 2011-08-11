@@ -85,7 +85,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof RecursiveEvaluation == false) {
+        if (!(obj instanceof RecursiveEvaluation)) {
             return false;
         }
         return ((RecursiveEvaluation) obj).function.equals(function);

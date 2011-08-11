@@ -98,7 +98,7 @@ public final class FilteredIterator<T> implements Iterator<T> {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof FilteredIterator<?> == false) {
+        if (!(obj instanceof FilteredIterator<?>)) {
             return false;
         }
         FilteredIterator<?> that = (FilteredIterator<?>) obj;
