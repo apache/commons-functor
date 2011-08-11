@@ -23,6 +23,7 @@ package org.apache.commons.functor;
  * {@link java.io.Serializable Serializable}.
  * </p>
  *
+ * @param <A> the argument type.
  * @since 1.0
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
