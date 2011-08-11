@@ -17,12 +17,13 @@
 package org.apache.commons.functor;
 
 /**
- * A functor that takes no arguments and returns an <code>Object</code> value.
+ * A functor that takes no arguments and returns a value.
  * <p>
  * Implementors are encouraged but not required to make their functors
  * {@link java.io.Serializable Serializable}.
  * </p>
  *
+ * @param <T> the returned value type.
  * @since 1.0
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
