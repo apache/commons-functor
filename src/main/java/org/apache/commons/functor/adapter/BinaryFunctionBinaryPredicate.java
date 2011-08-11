@@ -59,9 +59,9 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * {@link BinaryFunction#evaluate evaluate} method of my underlying
      * function.
      *
-     * @throws NullPointerException if my underlying function returns
-     * <code>null</code>
-     * @throws ClassCastException if my underlying function returns a
+     * The mehod throws NullPointerException if the underlying function returns
+     * <code>null</code>, and
+     * ClassCastException if the underlying function returns a
      * non-<code>Boolean</code>
      */
     public boolean test(final L left, final R right) {
