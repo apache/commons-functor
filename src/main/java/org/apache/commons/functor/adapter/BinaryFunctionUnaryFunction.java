@@ -22,6 +22,8 @@ import org.apache.commons.functor.UnaryFunction;
 /**
  * Adapts a BinaryFunction as a UnaryFunction by sending the same argument to both sides of the BinaryFunction.
  * It sounds nonsensical, but using Composite functions, can be made to do something useful.
+ * @param <A> the argument type.
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
