@@ -115,7 +115,7 @@ public final class FindWithinGenerator<E>
         if (obj == this) {
             return true;
         }
-        if (obj instanceof FindWithinGenerator<?> == false) {
+        if (!(obj instanceof FindWithinGenerator<?>)) {
             return false;
         }
         FindWithinGenerator<?> other = (FindWithinGenerator<?>) obj;
