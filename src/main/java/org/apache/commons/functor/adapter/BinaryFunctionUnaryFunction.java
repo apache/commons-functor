@@ -28,6 +28,9 @@ import org.apache.commons.functor.UnaryFunction;
  * @author Rodney Waldhoff
  */
 public final class BinaryFunctionUnaryFunction<A, T> implements UnaryFunction<A, T> {
+    /**
+     * The adapted function.
+     */
     private final BinaryFunction<? super A, ? super A, ? extends T> function;
 
     /**
