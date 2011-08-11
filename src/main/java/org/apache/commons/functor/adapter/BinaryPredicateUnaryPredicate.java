@@ -21,6 +21,7 @@ import org.apache.commons.functor.UnaryPredicate;
 
 /**
  * Adapts a BinaryPredicate as a UnaryPredicate by sending the same argument to both sides of the BinaryPredicate.
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
