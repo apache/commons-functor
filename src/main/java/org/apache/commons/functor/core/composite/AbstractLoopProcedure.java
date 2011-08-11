@@ -54,7 +54,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
         if (object == this) {
             return true;
         }
-        if (object instanceof AbstractLoopProcedure == false) {
+        if (!(object instanceof AbstractLoopProcedure)) {
             return false;
         }
         AbstractLoopProcedure that = (AbstractLoopProcedure) object;
