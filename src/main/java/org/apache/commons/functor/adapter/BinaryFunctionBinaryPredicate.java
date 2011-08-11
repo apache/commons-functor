@@ -28,6 +28,8 @@ import org.apache.commons.functor.BinaryPredicate;
  * truly <code>Serializable</code> if the underlying functor is. Attempts to
  * serialize an instance whose delegate is not <code>Serializable</code> will
  * result in an exception. </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
