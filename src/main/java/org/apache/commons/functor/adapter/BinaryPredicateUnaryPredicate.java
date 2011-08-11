@@ -26,6 +26,9 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Matt Benson
  */
 public final class BinaryPredicateUnaryPredicate<A> implements UnaryPredicate<A> {
+    /**
+     * The adapted {@link BinaryPredicate}.
+     */
     private final BinaryPredicate<? super A, ? super A> predicate;
 
     /**
