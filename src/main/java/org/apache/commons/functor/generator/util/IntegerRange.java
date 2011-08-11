@@ -110,7 +110,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof IntegerRange == false) {
+        if (!(obj instanceof IntegerRange)) {
             return false;
         }
         IntegerRange that = (IntegerRange) obj;
