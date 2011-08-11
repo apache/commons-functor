@@ -46,7 +46,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * {@link BinaryFunction BinaryFunction}.
      * @param function the {@link BinaryFunction BinaryFunction} to wrap
      */
-    public BinaryFunctionBinaryPredicate(BinaryFunction<? super L, ? super R, Boolean> function) {
+    public BinaryFunctionBinaryPredicate(final BinaryFunction<? super L, ? super R, Boolean> function) {
         if (function == null) {
             throw new IllegalArgumentException("BinaryFunction argument must not be null");
         }
@@ -64,14 +64,14 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * @throws ClassCastException if my underlying function returns a
      * non-<code>Boolean</code>
      */
-    public boolean test(L left, R right) {
+    public boolean test(final L left, final R right) {
         return function.evaluate(left, right);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object that) {
+    public boolean equals(final Object that) {
         return that == this
                 || (that instanceof BinaryFunctionBinaryPredicate<?, ?>
                 && equals((BinaryFunctionBinaryPredicate<?, ?>) that));
@@ -82,7 +82,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * @param that BinaryFunctionBinaryPredicate to test
      * @return boolean
      */
-    public boolean equals(BinaryFunctionBinaryPredicate<?, ?> that) {
+    public boolean equals(final BinaryFunctionBinaryPredicate<?, ?> that) {
         return null != that && (null == function ? null == that.function : function.equals(that.function));
     }
 
@@ -120,7 +120,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * <code>BinaryFunction</code> is <code>null</code>
      */
     public static <L, R, T> BinaryFunctionBinaryPredicate<L, R> adapt(
-            BinaryFunction<? super L, ? super R, Boolean> function) {
+            final BinaryFunction<? super L, ? super R, Boolean> function) {
         return null == function ? null : new BinaryFunctionBinaryPredicate<L, R>(function);
     }
 
