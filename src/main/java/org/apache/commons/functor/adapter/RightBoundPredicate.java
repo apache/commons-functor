@@ -114,6 +114,8 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
 
     /**
      * Adapt a BinaryPredicate as a UnaryPredicate.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param predicate to adapt
      * @param arg right side
      * @return RightBoundPredicate
