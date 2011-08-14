@@ -114,6 +114,9 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
 
     /**
      * Adapt a BinaryFunction to the UnaryFunction interface.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
+     * @param <T> the returned value type.
      * @param function BinaryFunction to adapt
      * @param arg Object that will always be used for the right side of the BinaryFunction delegate.
      * @return RightBoundFunction
