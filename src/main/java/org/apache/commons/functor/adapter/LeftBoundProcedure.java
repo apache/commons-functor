@@ -51,6 +51,7 @@ public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializa
 
     /**
      * Create a new LeftBoundProcedure.
+     * @param <L> the left argument type.
      * @param procedure the procedure to adapt
      * @param arg the constant argument to use
      */
