@@ -52,6 +52,7 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
 
     /**
      * Create a new LeftBoundPredicate.
+     * @param <L> the left argument type.
      * @param predicate the predicate to adapt
      * @param arg the constant argument to use
      */
