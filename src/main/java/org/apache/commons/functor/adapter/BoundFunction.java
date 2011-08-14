@@ -46,7 +46,7 @@ public final class BoundFunction<T> implements Function<T>, Serializable {
     private static final long serialVersionUID = 8873081237760986490L;
     /** The {@link UnaryFunction UnaryFunction} I'm wrapping. */
     private final UnaryFunction<Object, ? extends T> function;
-    /** The argument to pass to {@code function} */
+    /** The argument to pass to {@code function}. */
     private final Object arg;
 
     /**
