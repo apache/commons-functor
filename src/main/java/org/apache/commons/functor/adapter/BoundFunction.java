@@ -51,7 +51,7 @@ public final class BoundFunction<T> implements Function<T>, Serializable {
 
     /**
      * Create a new BoundFunction instance.
-     * @param <A>
+     * @param <A> the argument value type
      * @param function the function to adapt
      * @param arg the constant argument to use
      */
