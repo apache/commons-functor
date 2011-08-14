@@ -102,7 +102,7 @@ public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, 
     }
 
     /**
-     * Adapt a UnaryPredicate as an IgnoreRightPredicate
+     * Adapt a UnaryPredicate as an IgnoreRightPredicate.
      * @param <L> left type
      * @param <R> right type
      * @param predicate to adapt
