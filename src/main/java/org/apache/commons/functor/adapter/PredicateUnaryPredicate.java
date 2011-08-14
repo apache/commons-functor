@@ -103,7 +103,7 @@ public final class PredicateUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     /**
      * Adapt a Predicate to the UnaryPredicate interface.
      * @param predicate to adapt
-     * @return PredicateUnaryPredicate<A
+     * @return PredicateUnaryPredicate<A>
      */
     public static <A> PredicateUnaryPredicate<A> adapt(Predicate predicate) {
         return null == predicate ? null : new PredicateUnaryPredicate<A>(predicate);
