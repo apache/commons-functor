@@ -106,6 +106,7 @@ public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Bo
 
     /**
      * Adapt a UnaryPredicate to the UnaryFunction interface.
+     * @param <A> the argument type.
      * @param predicate to adapt
      * @return UnaryPredicateUnaryFunction
      */
