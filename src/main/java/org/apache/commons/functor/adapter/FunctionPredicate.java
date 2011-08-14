@@ -61,8 +61,6 @@ public final class FunctionPredicate implements Predicate, Serializable {
      * <code>Boolean</code> returned by the {@link Function#evaluate evaluate}
      * method of my underlying function.
      * {@inheritDoc}
-     * @throws NullPointerException if my underlying function returns <code>null</code>
-     * @throws ClassCastException if my underlying function returns a non-<code>Boolean</code>
      */
     public boolean test() {
         return function.evaluate();
