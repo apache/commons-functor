@@ -115,6 +115,8 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
 
     /**
      * Adapt a BinaryPredicate to the UnaryPredicate interface.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param predicate to adapt
      * @param arg Object argument to always send as the left operand to the wrapped function
      * @return LeftBoundPredicate
