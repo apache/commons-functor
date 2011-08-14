@@ -21,6 +21,7 @@ import org.apache.commons.functor.UnaryProcedure;
 
 /**
  * Adapts a BinaryProcedure as a UnaryProcedure by sending the same argument to both sides of the BinaryProcedure.
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
