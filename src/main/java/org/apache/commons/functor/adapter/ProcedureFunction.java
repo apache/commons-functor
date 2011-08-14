@@ -102,6 +102,7 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
 
     /**
      * Adapt a Procedure as a Function.
+     * @param <T> the returned value type.
      * @param procedure to adapt
      * @return ProcedureFunction<T>
      */
