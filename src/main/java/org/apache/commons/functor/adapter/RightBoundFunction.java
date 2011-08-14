@@ -51,6 +51,7 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
     private final Object param;
 
     /**
+     * @param <R> bound arg type
      * @param function the function to adapt
      * @param arg the constant argument to use
      */
