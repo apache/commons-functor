@@ -34,6 +34,7 @@ import org.apache.commons.functor.UnaryProcedure;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  *
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
