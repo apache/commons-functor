@@ -63,9 +63,6 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
      * Returns the <code>boolean</code> value of the non-<code>null</code>
      * <code>Boolean</code> returned by the {@link UnaryFunction#evaluate evaluate}
      * method of my underlying function.
-     *
-     * @throws NullPointerException if my underlying function returns <code>null</code>
-     * @throws ClassCastException if my underlying function returns a non-<code>Boolean</code>
      */
     public boolean test(A obj) {
         return function.evaluate(obj);
