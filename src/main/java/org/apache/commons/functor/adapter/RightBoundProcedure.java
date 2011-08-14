@@ -51,6 +51,7 @@ public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializ
 
     /**
      * Create a new RightBoundProcedure.
+     * @param <R> bound arg type
      * @param procedure the procedure to adapt
      * @param arg the constant argument to use
      */
