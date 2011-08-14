@@ -102,6 +102,7 @@ public final class ProcedureUnaryProcedure<A> implements UnaryProcedure<A>, Seri
 
     /**
      * Adapt a Procedure to the UnaryProcedure interface.
+     * @param <A> the argument type.
      * @param procedure to adapt
      * @return ProcedureUnaryProcedure<A>
      */
