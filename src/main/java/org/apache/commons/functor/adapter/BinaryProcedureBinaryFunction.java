@@ -110,6 +110,9 @@ public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunct
      * When the given <code>BinaryProcedure</code> is <code>null</code>,
      * returns <code>null</code>.
      *
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
+     * @param <T> the returned value type.
      * @param procedure the possibly-<code>null</code>
      *        {@link BinaryFunction BinaryFunction} to adapt
      * @return a <code>BinaryProcedureBinaryFunction</code> wrapping the given
