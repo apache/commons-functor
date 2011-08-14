@@ -110,7 +110,7 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
      * When the given <code>UnaryFunction</code> is <code>null</code>,
      * returns <code>null</code>.
      *
-     * @param <A>
+     * @param <A> the argument type.
      * @param function the possibly-<code>null</code>
      *        {@link UnaryFunction UnaryFunction} to adapt
      * @return a {@link UnaryPredicate UnaryPredicate} wrapping the given
