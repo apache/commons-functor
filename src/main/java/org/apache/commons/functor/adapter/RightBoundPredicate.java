@@ -51,6 +51,7 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
 
     /**
      * Create a new RightBoundPredicate.
+     * @param <R> bound arg type
      * @param predicate the predicate to adapt
      * @param arg the constant argument to use
      */
