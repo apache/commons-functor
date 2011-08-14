@@ -53,6 +53,8 @@ public final class FullyBoundFunction<T> implements Function<T>, Serializable {
 
     /**
      * Create a new FullyBoundFunction.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param function the function to adapt
      * @param left the left side argument to use
      * @param right the right side argument to use
