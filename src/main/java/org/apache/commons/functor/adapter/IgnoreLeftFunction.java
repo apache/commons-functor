@@ -35,6 +35,9 @@ import org.apache.commons.functor.UnaryFunction;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  *
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
