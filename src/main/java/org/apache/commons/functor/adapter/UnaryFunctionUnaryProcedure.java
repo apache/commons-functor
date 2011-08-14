@@ -110,6 +110,7 @@ public final class UnaryFunctionUnaryProcedure<A> implements UnaryProcedure<A>, 
      * When the given <code>UnaryFunction</code> is <code>null</code>,
      * returns <code>null</code>.
      *
+     * @param <A> the argument type.
      * @param function the possibly-<code>null</code>
      *        {@link UnaryFunction UnaryFunction} to adapt
      * @return a {@link UnaryProcedure UnaryProcedure} wrapping the given
