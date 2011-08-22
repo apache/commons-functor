@@ -25,6 +25,8 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
 /**
  * {@link #test Tests} the reference (!=) inequality of its arguments.
  *
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
