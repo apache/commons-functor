@@ -37,6 +37,9 @@ import org.apache.commons.functor.UnaryPredicate;
 public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>, Serializable {
     // static attributes
     // ------------------------------------------------------------------------
+    /**
+     * A generic {@code Identity<Object>} instance.
+     */
     public static final Identity<Object> INSTANCE = new Identity<Object>();
 
     /**
