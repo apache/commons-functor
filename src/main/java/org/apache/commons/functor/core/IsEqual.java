@@ -34,6 +34,8 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * <code>Object.equals</code> contract.
  * </p>
  *
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
