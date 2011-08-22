@@ -108,6 +108,7 @@ public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>
 
     /**
      * Get an Identity instance.
+     * @param <T> the identity returned value type.
      * @return Identity
      */
     public static <T> Identity<T> instance() {
