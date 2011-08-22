@@ -163,7 +163,7 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
 
     /**
      * Get a <code>Constant</code> that always
-     * returns <code>true</code>
+     * returns <code>true</code>.
      * @return a <code>Constant</code> that always
      *         returns <code>true</code>
      */
@@ -173,7 +173,7 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
 
     /**
      * Get a <code>Constant</code> that always
-     * returns <code>false</code>
+     * returns <code>false</code>.
      * @return a <code>Constant</code> that always
      *         returns <code>false</code>
      */
@@ -183,7 +183,7 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
 
     /**
      * Get a <code>Constant</code> that always
-     * returns <i>value</i>
+     * returns <i>value</i>.
      * @param value the constant value
      * @return a <code>Constant</code> that always
      *         returns <i>value</i>
