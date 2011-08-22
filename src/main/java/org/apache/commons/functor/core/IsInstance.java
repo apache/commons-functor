@@ -28,6 +28,7 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * {@link Class#isInstance is an instance}
  * of some specified {@link Class Class}.
  *
+ * @param <T> the object instance has to be tested against the input class.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
