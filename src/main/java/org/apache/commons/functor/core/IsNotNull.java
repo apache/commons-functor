@@ -98,6 +98,7 @@ public final class IsNotNull<T> implements UnaryPredicate<T>, Serializable {
     // ------------------------------------------------------------------------
     /**
      * Get an IsNotNull instance.
+     * @param <T> the predicate argument type.
      * @return IsNotNull
      */
     public static <T> IsNotNull<T> instance() {
