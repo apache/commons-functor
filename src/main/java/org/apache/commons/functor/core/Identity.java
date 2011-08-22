@@ -30,6 +30,7 @@ import org.apache.commons.functor.UnaryPredicate;
  * the parameter isn't a non-<code>null</code>
  * <code>Boolean</code>.
  *
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
