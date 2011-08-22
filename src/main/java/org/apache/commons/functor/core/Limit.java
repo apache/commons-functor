@@ -33,7 +33,13 @@ import org.apache.commons.functor.UnaryPredicate;
 public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object> {
     // instance variables
     //---------------------------------------------------------------
+    /**
+     * The max number of times the predicate can be invoked.
+     */
     private final int max;
+    /**
+     * The current number of times the predicate has been invoked.
+     */
     private int current;
 
     /**
