@@ -26,6 +26,9 @@ import org.apache.commons.functor.UnaryProcedure;
  * @author Matt Benson
  */
 public final class BinaryProcedureUnaryProcedure<A> implements UnaryProcedure<A> {
+    /**
+     * The adapted procedure.
+     */
     private final BinaryProcedure<? super A, ? super A> procedure;
 
     /**
