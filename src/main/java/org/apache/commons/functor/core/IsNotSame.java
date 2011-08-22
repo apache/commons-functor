@@ -84,6 +84,8 @@ public final class IsNotSame<L, R> implements BinaryPredicate<L, R>, Serializabl
     // ------------------------------------------------------------------------
     /**
      * Get an IsNotSame instance.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @return IsNotSame
      */
     public static <L, R> IsNotSame<L, R> instance() {
@@ -92,8 +94,8 @@ public final class IsNotSame<L, R> implements BinaryPredicate<L, R>, Serializabl
 
     /**
      * Get an IsNotSame UnaryPredicate.
-     * @param <L>
-     * @param <R>
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param object bound comparison object
      * @return UnaryPredicate<L>
      */
