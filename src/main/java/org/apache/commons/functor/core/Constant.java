@@ -50,12 +50,12 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
     /**
      * Constant for <code>true</code>.
      */
-    public static final Constant<Boolean> TRUE = Constant.of(true);
+    public static final Constant<Boolean> TRUE = of(true);
 
     /**
      * Constant for <code>false</code>.
      */
-    public static final Constant<Boolean> FALSE = Constant.of(false);
+    public static final Constant<Boolean> FALSE = of(false);
 
     /**
      * serialVersionUID declaration.
