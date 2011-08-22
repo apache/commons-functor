@@ -83,7 +83,7 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
 
     /**
      * Get an IsInstance instance.
-     * @param <T>
+     * @param <T> the object instance has to be tested against the input class.
      * @return IsInstance<T>
      */
     public static <T> IsInstance<T> instance() {
@@ -92,7 +92,7 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
 
     /**
      * Get an IsInstanceOf UnaryPredicate.
-     * @param <T>
+     * @param <T> the object instance has to be tested against the input class.
      * @param clazz bound right-side argument
      * @return UnaryPredicate<T>
      */
