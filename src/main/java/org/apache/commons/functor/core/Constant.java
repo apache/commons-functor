@@ -38,6 +38,7 @@ import org.apache.commons.functor.UnaryPredicate;
  * an instance whose value is not
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
