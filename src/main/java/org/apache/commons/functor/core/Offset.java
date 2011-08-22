@@ -34,7 +34,13 @@ import org.apache.commons.functor.UnaryPredicate;
 public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object> {
     // instance variables
     //---------------------------------------------------------------
+    /**
+     * The number of times the predicate must return {@code false}.
+     */
     private final int min;
+    /**
+     * The current number of times the predicate has been invoked.
+     */
     private int current;
 
     /**
