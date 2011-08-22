@@ -28,6 +28,7 @@ import org.apache.commons.functor.adapter.IgnoreRightPredicate;
  * <code>true</code> iff its argument
  * is <code>null</code>.
  *
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
