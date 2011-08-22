@@ -64,6 +64,9 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
 
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The constant value.
+     */
     private final T value;
 
     // constructor
