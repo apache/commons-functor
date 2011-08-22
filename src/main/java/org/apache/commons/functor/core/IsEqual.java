@@ -93,6 +93,8 @@ public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable 
     // ------------------------------------------------------------------------
     /**
      * Get an IsEqual instance.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @return IsEqual
      */
     public static <L, R> IsEqual<L, R> instance() {
@@ -101,8 +103,8 @@ public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable 
 
     /**
      * Get an IsEqual UnaryPredicate.
-     * @param <L>
-     * @param <R>
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param object bound comparison object
      * @return UnaryPredicate<L>
      */
