@@ -31,6 +31,8 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * This relation is symmetric but irreflexive
  * and not transitive.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
