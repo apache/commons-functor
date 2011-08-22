@@ -57,8 +57,8 @@ public final class RightIdentity {
 
     /**
      * Get a typed right-identity BinaryFunction.
-     * @param <L>
-     * @param <R>
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @return BinaryFunction<L, R, R>
      */
     public static <L, R> BinaryFunction<L, R, R> function() {
@@ -67,7 +67,7 @@ public final class RightIdentity {
 
     /**
      * Get a typed right-identity BinaryPredicate.
-     * @param <L>
+     * @param <L> the left argument type.
      * @return BinaryPredicate<L, Boolean>
      */
     public static <L> BinaryPredicate<L, Boolean> predicate() {
