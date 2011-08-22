@@ -107,6 +107,7 @@ public final class IsNotNull<T> implements UnaryPredicate<T>, Serializable {
 
     /**
      * Get a BinaryPredicate that matches if the left argument is not null.
+     * @param <A> the left {@code BinaryPredicate} argument type.
      * @return BinaryPredicate<A, Object>
      */
     public static <A> BinaryPredicate<A, Object> left() {
@@ -115,6 +116,7 @@ public final class IsNotNull<T> implements UnaryPredicate<T>, Serializable {
 
     /**
      * Get a BinaryPredicate that matches if the right argument is null.
+     * @param <A> the right {@code BinaryPredicate} argument type.
      * @return BinaryPredicate<Object, A>
      */
     public static <A> BinaryPredicate<Object, A> right() {
