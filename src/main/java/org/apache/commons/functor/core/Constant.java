@@ -194,7 +194,7 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
 
     /**
      * Get a Constant instance for the specified value.
-     * @param <T>
+     * @param <T> the constant value
      * @param value T
      * @return Constant<T>
      */
