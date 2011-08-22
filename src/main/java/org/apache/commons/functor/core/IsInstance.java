@@ -41,6 +41,14 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 9104265415387129627L;
+    /**
+     * The non zero number used to shift the initial hashcode.
+     */
+    private static final int NONZERO_SHIFT_NUMBER = 4;
+    /**
+     * The non zero number used to bitwise or the hashcode.
+     */
+    private static final int NONZERO_BITWISE_NUMBER = 37;
 
     // predicate interface
     // ------------------------------------------------------------------------
@@ -63,7 +71,7 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
      * {@inheritDoc}
      */
     public int hashCode() {
-        return ("IsInstance".hashCode() << 4) | 37;
+        return ("IsInstance".hashCode() << NONZERO_SHIFT_NUMBER) | NONZERO_BITWISE_NUMBER;
     }
 
     /**
