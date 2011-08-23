@@ -22,6 +22,7 @@ import org.apache.commons.functor.UnaryProcedure;
  * The Generator interface defines a number of useful actions applying UnaryFunctors
  * to each in a series of argument Objects.
  *
+ * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  * @author Jason Horman (jason@jhorman.org)
  * @author Rodney Waldhoff
@@ -55,7 +56,6 @@ public interface Generator<E> {
 
     /**
      * Same as to(new CollectionTransformer(collection)).
-     * @param <E> the type of elements held in the input/output collection.
      * @param collection Collection to which my elements should be added
      * @return <code>collection</code>
      */
@@ -63,7 +63,6 @@ public interface Generator<E> {
 
     /**
      * Same as to(new CollectionTransformer()).
-     * @param <E> the type of elements held in the output collection.
      * @return Collection
      */
     Collection<? super E> toCollection();
