@@ -46,7 +46,7 @@ public final class EachElement {
      * @param collection to iterate
      * @return Generator<E>
      */
-    public static final <E> Generator<E> from(Collection<? extends E> collection) {
+    public static <E> Generator<E> from(Collection<? extends E> collection) {
         return collection == null ? null : EachElement.from(collection.iterator());
     }
 
@@ -56,7 +56,7 @@ public final class EachElement {
      * @return Generator
      */
     @SuppressWarnings("unchecked")
-    public static final <K, V> Generator<Map.Entry<K, V>> from(Map<? extends K, ? extends V> map) {
+    public static <K, V> Generator<Map.Entry<K, V>> from(Map<? extends K, ? extends V> map) {
         return map == null ? null : EachElement.from(((Map<K, V>) map).entrySet().iterator());
     }
 
@@ -65,7 +65,7 @@ public final class EachElement {
      * @param array to iterate
      * @return Generator
      */
-    public static final <E> Generator<E> from(E[] array) {
+    public static <E> Generator<E> from(E[] array) {
         return array == null ? null : EachElement.from(Arrays.asList(array).iterator());
     }
 
@@ -74,7 +74,7 @@ public final class EachElement {
      * @param iter to iterate
      * @return Generator
      */
-    public static final <E> Generator<E> from(Iterator<? extends E> iter) {
+    public static <E> Generator<E> from(Iterator<? extends E> iter) {
         return iter == null ? null : new IteratorToGeneratorAdapter<E>(iter);
     }
 }
