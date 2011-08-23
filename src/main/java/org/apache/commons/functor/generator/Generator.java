@@ -49,6 +49,7 @@ public interface Generator<E> {
      * Transforms this generator using the passed in
      * transformer. An example transformer might turn the contents of the
      * generator into a {@link Collection} of elements.
+     * @param <Z> the returned value type of the input {@link UnaryFunction}.
      * @param transformer UnaryFunction to apply to this
      * @return transformation result
      */
