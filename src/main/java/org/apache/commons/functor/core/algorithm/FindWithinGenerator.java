@@ -27,6 +27,7 @@ import org.apache.commons.functor.generator.Generator;
 /**
  * Return the first Object in a {@link Generator} matching a {@link UnaryPredicate}.
  *
+ * @param <E> the arguments type.
  * @version $Revision$ $Date$
  */
 public final class FindWithinGenerator<E>
