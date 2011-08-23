@@ -65,6 +65,7 @@ public final class EachElement {
 
     /**
      * Get a Generator for each element of an Object[].
+     * @param <E> the type of elements held in the input array.
      * @param array to iterate
      * @return Generator
      */
@@ -74,6 +75,7 @@ public final class EachElement {
 
     /**
      * Get a Generator for each element of an Iterator.
+     * @param <E> the type of elements held in the input iterator.
      * @param iter to iterate
      * @return Generator
      */
