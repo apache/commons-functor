@@ -53,6 +53,8 @@ public final class EachElement {
 
     /**
      * Get a Generator for each entry of a Map.
+     * @param <K> the type of keys maintained by the input map.
+     * @param <V> the type of mapped values in the input map.
      * @param map to iterate
      * @return Generator
      */
