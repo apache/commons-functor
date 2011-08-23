@@ -81,7 +81,14 @@ public final class FindWithinGenerator<E>
         }
     }
 
+    /**
+     * Flag to mark the {@link FindWithinGenerator#evaluate(Generator, UnaryPredicate)} method must return a user
+     * defined object when the adapted procedure does not find any object.
+     */
     private final boolean useIfNone;
+    /**
+     * Object to be returned in the case the adapted procedure does not find any object.
+     */
     private final E ifNone;
 
     /**
