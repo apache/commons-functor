@@ -45,6 +45,8 @@ public final class FindWithinGenerator<E>
 
     /**
      * Helper procedure.
+     *
+     * @param <T> the argument type.
      */
     private static class FindProcedure<T> implements UnaryProcedure<T> {
         private T found;
