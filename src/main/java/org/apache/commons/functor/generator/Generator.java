@@ -55,6 +55,7 @@ public interface Generator<E> {
 
     /**
      * Same as to(new CollectionTransformer(collection)).
+     * @param <E> the type of elements held in the input/output collection.
      * @param collection Collection to which my elements should be added
      * @return <code>collection</code>
      */
