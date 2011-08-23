@@ -31,18 +31,18 @@ public interface Generator<E> {
      * Generators must implement this method.
      * @param proc UnaryProcedure to run
      */
-    public abstract void run(UnaryProcedure<? super E> proc);
+    void run(UnaryProcedure<? super E> proc);
 
     /**
      * Stop the generator. Will stop the wrapped generator if one was set.
      */
-    public abstract void stop();
+    void stop();
 
     /**
      * Check if the generator is stopped.
      * @return true if stopped
      */
-    public abstract boolean isStopped();
+    boolean isStopped();
 
     /**
      * Transforms this generator using the passed in
@@ -51,18 +51,18 @@ public interface Generator<E> {
      * @param transformer UnaryFunction to apply to this
      * @return transformation result
      */
-    public abstract <Z> Z to(UnaryFunction<Generator<? extends E>, ? extends Z> transformer);
+    <Z> Z to(UnaryFunction<Generator<? extends E>, ? extends Z> transformer);
 
     /**
      * Same as to(new CollectionTransformer(collection)).
      * @param collection Collection to which my elements should be added
      * @return <code>collection</code>
      */
-    public abstract Collection<? super E> to(Collection<? super E> collection);
+    Collection<? super E> to(Collection<? super E> collection);
 
     /**
      * Same as to(new CollectionTransformer()).
      * @return Collection
      */
-    public abstract Collection<? super E> toCollection();
+    Collection<? super E> toCollection();
 }
