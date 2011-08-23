@@ -40,7 +40,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
     private static final long serialVersionUID = 2473542974105910450L;
 
     /**
-     * Helper procedure
+     * Helper procedure.
      */
     private static class FoldLeftHelper<T> implements UnaryProcedure<T> {
         private final BinaryFunction<? super T, ? super T, ? extends T> function;
