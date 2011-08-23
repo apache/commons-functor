@@ -29,6 +29,7 @@ import org.apache.commons.functor.generator.Generator;
  * then uses the result of that evaluation as the next left-side argument, until the {@link Generator}'s
  * elements have been expended.
  *
+ * @param <T> the returned evaluation type.
  * @version $Revision$ $Date$
  */
 public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
