@@ -25,6 +25,7 @@ import org.apache.commons.functor.generator.Generator;
  * Transforms a generator into a collection. If a collection is not passed into
  * the constructor an ArrayList will be returned from the transform method.
  *
+ * @param <E> the type of elements held in the adapted collection.
  * @since 1.0
  * @version $Revision$ $Date$
  * @author Jason Horman (jason@jhorman.org)
