@@ -43,6 +43,7 @@ public final class EachElement {
 
     /**
      * Get a Generator for each element of a Collection.
+     * @param <E> the type of elements held in the input collection.
      * @param collection to iterate
      * @return Generator<E>
      */
