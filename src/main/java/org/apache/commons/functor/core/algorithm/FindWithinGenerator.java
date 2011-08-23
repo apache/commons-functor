@@ -49,13 +49,22 @@ public final class FindWithinGenerator<E>
      * @param <T> the argument type.
      */
     private static class FindProcedure<T> implements UnaryProcedure<T> {
+        /**
+         * The object found, if any.
+         */
         private T found;
+        /**
+         * Flag to mark an object has been found.
+         */
         private boolean wasFound;
+        /**
+         * The adapted predicate.
+         */
         private UnaryPredicate<? super T> pred;
 
         /**
          * Create a new FindProcedure.
-         * @pred test
+         * @param pred the adapted predicate.
          */
         public FindProcedure(UnaryPredicate<? super T> pred) {
             this.pred = pred;
