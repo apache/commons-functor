@@ -41,6 +41,9 @@ public class CollectionTransformer<E> implements UnaryFunction<Generator<? exten
 
     // instance methods
     //---------------------------------------------------
+    /**
+     * The adapted collection has to be filled.
+     */
     private final Collection<? super E> toFill;
 
     // constructors
