@@ -62,6 +62,7 @@ public interface Generator<E> {
 
     /**
      * Same as to(new CollectionTransformer()).
+     * @param <E> the type of elements held in the output collection.
      * @return Collection
      */
     Collection<? super E> toCollection();
