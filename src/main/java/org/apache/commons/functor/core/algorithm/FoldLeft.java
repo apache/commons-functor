@@ -56,7 +56,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
 
         /**
          * Create a new FoldLeftHelper.
-         * @param seed initial left argument
+         * @param seed initial left-side argument
          */
         FoldLeftHelper(T seed, BinaryFunction<? super T, ? super T, ? extends T> function) {
             this.seed = seed;
@@ -109,7 +109,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
     /**
      * {@inheritDoc}
      * @param left {@link Generator} to transform
-     * @param right seed object
+     * @param right initial left-side seed object
      */
     public T evaluate(Generator<T> left, T right) {
         FoldLeftHelper<T> helper = new FoldLeftHelper<T>(right, function);
