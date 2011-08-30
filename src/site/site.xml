@@ -15,7 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<project name="Commons&#xA0;Functor">
+<project name="Commons Functor">
   <bannerRight>
     <name>Commons Functor</name>
     <src>/images/functor-logo-white.png</src>
