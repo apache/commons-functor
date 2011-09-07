@@ -28,7 +28,7 @@ import org.apache.commons.functor.adapter.UnaryProcedureUnaryFunction;
  * {@link UnaryFunction UnaryFunctions},
  * "chaining" the output of one to the input
  * of another.  For example,
- * <pre>new CompositeUnaryProcedure(p).of(f)</code>
+ * <pre>new CompositeUnaryProcedure(p).of(f)</pre>
  * {@link #run runs} to
  * <code>p.run(f.evaluate(obj))</code>, and
  * <pre>new CompositeUnaryProcedure(p).of(f).of(g)</pre>
