@@ -142,7 +142,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
-    public T evaluate(A obj) {
+    public final T evaluate(A obj) {
         return function.evaluate(obj);
     }
 
@@ -152,7 +152,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      * @param preceding UnaryFunction
      * @return CompositeUnaryFunction<P, T>
      */
-    public <P> CompositeUnaryFunction<P, T> of(UnaryFunction<? super P, ? extends A> preceding) {
+    public final <P> CompositeUnaryFunction<P, T> of(UnaryFunction<? super P, ? extends A> preceding) {
         if (preceding == null) {
             throw new IllegalArgumentException("preceding function was null");
         }
@@ -162,7 +162,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object that) {
+    public final boolean equals(Object that) {
         return that == this
                 || (that instanceof CompositeUnaryFunction<?, ?> && equals((CompositeUnaryFunction<?, ?>) that));
     }
@@ -172,7 +172,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      * @param that CompositeUnaryFunction to test
      * @return boolean
      */
-    public boolean equals(CompositeUnaryFunction<?, ?> that) {
+    public final boolean equals(CompositeUnaryFunction<?, ?> that) {
         // by construction, list is never null
         return null != that && function.equals(that.function);
     }
@@ -180,7 +180,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         // by construction, list is never null
         return ("CompositeUnaryFunction".hashCode() << 4) ^ function.hashCode();
     }
@@ -188,7 +188,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public final String toString() {
         return "CompositeUnaryFunction<" + function + ">";
     }
 
