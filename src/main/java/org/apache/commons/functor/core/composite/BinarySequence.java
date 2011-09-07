@@ -93,7 +93,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
      * @param p BinaryProcedure to add
      * @return this
      */
-    public BinarySequence<L, R> then(BinaryProcedure<? super L, ? super R> p) {
+    public final BinarySequence<L, R> then(BinaryProcedure<? super L, ? super R> p) {
         list.add(p);
         return this;
     }
@@ -103,7 +103,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
-    public void run(L left, R right) {
+    public final void run(L left, R right) {
         for (Iterator<BinaryProcedure<? super L, ? super R>> iter = list.iterator(); iter.hasNext();) {
             iter.next().run(left, right);
         }
@@ -112,7 +112,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object that) {
+    public final boolean equals(Object that) {
         return that == this || (that instanceof BinarySequence<?, ?> && equals((BinarySequence<?, ?>) that));
     }
 
@@ -121,7 +121,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
      * @param that BinarySequence to test
      * @return boolean
      */
-    public boolean equals(BinarySequence<?, ?> that) {
+    public final boolean equals(BinarySequence<?, ?> that) {
         // by construction, list is never null
         return null != that && list.equals(that.list);
     }
@@ -129,7 +129,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         // by construction, list is never null
         return "BinarySequence".hashCode() ^ list.hashCode();
     }
@@ -137,7 +137,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public final String toString() {
         return "BinarySequence<" + list + ">";
     }
 
