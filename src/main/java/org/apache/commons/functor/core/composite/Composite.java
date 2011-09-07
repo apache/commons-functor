@@ -45,7 +45,7 @@ public final class Composite {
      * @param procedure UnaryProcedure to execute against output of <code>f</code>
      * @return CompositeUnaryProcedure<A>
      */
-    public static final <A> CompositeUnaryProcedure<A> procedure(UnaryProcedure<? super A> procedure) {
+    public static <A> CompositeUnaryProcedure<A> procedure(UnaryProcedure<? super A> procedure) {
         return new CompositeUnaryProcedure<A>(procedure);
     }
 
@@ -55,7 +55,7 @@ public final class Composite {
      * @param function UnaryFunction to apply
      * @return CompositeUnaryProcedure<A>
      */
-    public static final <A, T> CompositeUnaryProcedure<A> procedure(UnaryProcedure<? super T> procedure,
+    public static <A, T> CompositeUnaryProcedure<A> procedure(UnaryProcedure<? super T> procedure,
             UnaryFunction<? super A, ? extends T> function) {
         return new CompositeUnaryProcedure<T>(procedure).of(function);
     }
@@ -65,7 +65,7 @@ public final class Composite {
      * @param pred UnaryPredicate to test the output of <code>f</code>
      * @return CompositeUnaryPredicate<A>
      */
-    public static final <A> CompositeUnaryPredicate<A> predicate(UnaryPredicate<? super A> pred) {
+    public static <A> CompositeUnaryPredicate<A> predicate(UnaryPredicate<? super A> pred) {
         return new CompositeUnaryPredicate<A>(pred);
     }
 
@@ -75,7 +75,7 @@ public final class Composite {
      * @param function UnaryFunction to apply
      * @return CompositeUnaryPredicate<A>
      */
-    public static final <A, T> CompositeUnaryPredicate<A> predicate(UnaryPredicate<? super T> predicate,
+    public static <A, T> CompositeUnaryPredicate<A> predicate(UnaryPredicate<? super T> predicate,
             UnaryFunction<? super A, ? extends T> function) {
         return new CompositeUnaryPredicate<T>(predicate).of(function);
     }
@@ -87,7 +87,7 @@ public final class Composite {
      * @param h right UnaryFunction
      * @return BinaryPredicate
      */
-    public static final <L, R, G, H> UnaryCompositeBinaryPredicate<L, R> predicate(
+    public static <L, R, G, H> UnaryCompositeBinaryPredicate<L, R> predicate(
             BinaryPredicate<? super G, ? super H> p, UnaryFunction<? super L, ? extends G> g,
             UnaryFunction<? super R, ? extends H> h) {
         return new UnaryCompositeBinaryPredicate<L, R>(p, g, h);
@@ -98,7 +98,7 @@ public final class Composite {
      * @param f UnaryFunction to apply to the output of <code>g</code>
      * @return UnaryFunction
      */
-    public static final <A, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super A, ? extends T> f) {
+    public static <A, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super A, ? extends T> f) {
         return new CompositeUnaryFunction<A, T>(f);
     }
 
@@ -108,7 +108,7 @@ public final class Composite {
      * @param g UnaryFunction to apply first
      * @return UnaryFunction
      */
-    public static final <A, X, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super X, ? extends T> f,
+    public static <A, X, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super X, ? extends T> f,
             UnaryFunction<? super A, ? extends X> g) {
         return new CompositeUnaryFunction<X, T>(f).of(g);
     }
@@ -123,7 +123,7 @@ public final class Composite {
 //     * @param g BinaryFunction to apply first
 //     * @return BinaryFunction<L, R, T>
 //     */
-//    public static final <L, R, X, T> BinaryFunction<L, R, T> function(UnaryFunction<? super X, ? extends T> f,
+//    public static <L, R, X, T> BinaryFunction<L, R, T> function(UnaryFunction<? super X, ? extends T> f,
 //             BinaryFunction<? super L,
 //             ? super R, ? extends X> g) {
 //        return new CompositeUnaryFunction<X, T>(f).of(g);
@@ -136,7 +136,7 @@ public final class Composite {
      * @param h right UnaryFunction
      * @return BinaryFunction
      */
-    public static final <L, R, G, H, T> UnaryCompositeBinaryFunction<L, R, T> function(
+    public static <L, R, G, H, T> UnaryCompositeBinaryFunction<L, R, T> function(
             BinaryFunction<? super G, ? super H, ? extends T> f, UnaryFunction<? super L, ? extends G> g,
             UnaryFunction<? super R, ? extends H> h) {
         return new UnaryCompositeBinaryFunction<L, R, T>(f, g, h);
@@ -149,7 +149,7 @@ public final class Composite {
      * @param h right BinaryFunction
      * @return BinaryFunction
      */
-    public static final <L, R, G, H, T> BinaryCompositeBinaryFunction<L, R, T> function(
+    public static <L, R, G, H, T> BinaryCompositeBinaryFunction<L, R, T> function(
             BinaryFunction<? super G, ? super H, ? extends T> f, BinaryFunction<? super L, ? super R, ? extends G> g,
             BinaryFunction<? super L, ? super R, ? extends H> h) {
         return new BinaryCompositeBinaryFunction<L, R, T>(f, g, h);
