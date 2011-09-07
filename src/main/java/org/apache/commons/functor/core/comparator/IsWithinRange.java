@@ -35,7 +35,7 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
     private static final long serialVersionUID = -7584005207181667878L;
 
     /** Hashcode of the name of this Predicate. */
-    private static final int nameHashCode = "IsWithinRange".hashCode();
+    private static final int NAME_HASH_CODE = "IsWithinRange".hashCode();
 
     /***************************************************
      *  Instance variables
@@ -97,7 +97,7 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
      * {@inheritDoc}
      */
     public int hashCode() {
-        return 29 * min.hashCode() + max.hashCode() + nameHashCode;
+        return 29 * min.hashCode() + max.hashCode() + NAME_HASH_CODE;
     }
 
     /**
