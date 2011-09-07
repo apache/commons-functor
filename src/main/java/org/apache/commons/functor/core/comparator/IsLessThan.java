@@ -125,7 +125,7 @@ public final class IsLessThan<T> implements BinaryPredicate<T, T>, Serializable 
      * @param <T>
      * @return IsLessThan<T>
      */
-    public static final <T extends Comparable<?>> IsLessThan<T> instance() {
+    public static <T extends Comparable<?>> IsLessThan<T> instance() {
         return new IsLessThan<T>();
     }
 
@@ -134,7 +134,7 @@ public final class IsLessThan<T> implements BinaryPredicate<T, T>, Serializable 
      * @param right the right side object of the comparison.
      * @return UnaryPredicate
      */
-    public static final <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
         return RightBoundPredicate.bind(new IsLessThan<T>(), right);
     }
 
