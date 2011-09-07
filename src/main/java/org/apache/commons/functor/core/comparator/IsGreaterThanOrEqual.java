@@ -126,7 +126,7 @@ public final class IsGreaterThanOrEqual<T> implements BinaryPredicate<T, T>, Ser
      * @param <T>
      * @return IsGreaterThanOrEqual<T>
      */
-    public static final <T extends Comparable<?>> IsGreaterThanOrEqual<T> instance() {
+    public static <T extends Comparable<?>> IsGreaterThanOrEqual<T> instance() {
         return new IsGreaterThanOrEqual<T>();
     }
 
@@ -135,7 +135,7 @@ public final class IsGreaterThanOrEqual<T> implements BinaryPredicate<T, T>, Ser
      * @param right the right side object of the IsGreaterThanOrEqual comparison
      * @return UnaryPredicate
      */
-    public static final <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
         return RightBoundPredicate.bind(new IsGreaterThanOrEqual<T>(), right);
     }
 
