@@ -100,7 +100,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
      * {@inheritDoc}
      * @param obj {@link Generator} to transform
      */
-    public T evaluate(Generator<T> obj) {
+    public final T evaluate(Generator<T> obj) {
         FoldLeftHelper<T> helper = new FoldLeftHelper<T>(function);
         obj.run(helper);
         return helper.getResult();
@@ -111,7 +111,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
      * @param left {@link Generator} to transform
      * @param right initial left-side seed object
      */
-    public T evaluate(Generator<T> left, T right) {
+    public final T evaluate(Generator<T> left, T right) {
         FoldLeftHelper<T> helper = new FoldLeftHelper<T>(right, function);
         left.run(helper);
         return helper.getResult();
@@ -120,7 +120,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
@@ -133,7 +133,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         return "FoldLeft".hashCode() << 2 ^ function.hashCode();
     }
 
