@@ -137,7 +137,7 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
      * Get an IsEmpty instance.
      * @return IsEmpty
      */
-    public static final <A> IsEmpty<A> instance() {
+    public static <A> IsEmpty<A> instance() {
         return new IsEmpty<A>();
     }
 
