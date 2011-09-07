@@ -75,14 +75,14 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
      * {@inheritDoc}
      * Test if the passed in object is within the specified range.
      */
-    public boolean test(A o) {
+    public final boolean test(A o) {
         return o.compareTo(min) >= 0 && o.compareTo(max) <= 0;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -96,14 +96,14 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         return 29 * min.hashCode() + max.hashCode() + NAME_HASH_CODE;
     }
 
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public final String toString() {
         return "IsWithinRange(" + min + ", " + max + ")";
     }
 
