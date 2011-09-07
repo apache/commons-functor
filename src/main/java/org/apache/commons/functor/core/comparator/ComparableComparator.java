@@ -29,7 +29,7 @@ import java.util.Comparator;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 final class ComparableComparator implements Comparator, Serializable {
 
-    /** Singleton */
+    /** Singleton. */
     public static final ComparableComparator INSTANCE = new ComparableComparator();
 
     /**
