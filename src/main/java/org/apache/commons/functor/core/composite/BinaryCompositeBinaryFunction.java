@@ -103,14 +103,14 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
     /**
      * {@inheritDoc}
      */
-    public T evaluate(L left, R right) {
+    public final T evaluate(L left, R right) {
         return helper.evaluate(left, right);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object that) {
+    public final boolean equals(Object that) {
         return that == this || (that instanceof BinaryCompositeBinaryFunction<?, ?, ?>
                                     && equals((BinaryCompositeBinaryFunction<?, ?, ?>) that));
     }
@@ -120,7 +120,7 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      * @param that BinaryCompositeBinaryFunction to test
      * @return boolean
      */
-    public boolean equals(BinaryCompositeBinaryFunction<?, ?, ?> that) {
+    public final boolean equals(BinaryCompositeBinaryFunction<?, ?, ?> that) {
         return null != that
                 && helper.f.equals(that.helper.f)
                 && helper.g.equals(that.helper.g)
@@ -144,7 +144,7 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public final String toString() {
         return "BinaryCompositeBinaryFunction<" + helper.f + ";" + helper.g + ";" + helper.h + ">";
     }
 
