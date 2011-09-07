@@ -55,6 +55,9 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      */
     private static final long serialVersionUID = 4945193629275757281L;
 
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
+
     /**
      * Encapsulates a double function evaluation.
      * @param <A> argument type
@@ -182,7 +185,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      */
     public final int hashCode() {
         // by construction, list is never null
-        return ("CompositeUnaryFunction".hashCode() << 4) ^ function.hashCode();
+        return ("CompositeUnaryFunction".hashCode() << HASH_SHIFT) ^ function.hashCode();
     }
 
     /**
