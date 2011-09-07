@@ -45,6 +45,9 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -4511946801764080748L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryPredicate<? super L, ? super R> ifPred;
@@ -104,15 +107,15 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
     public int hashCode() {
         int hash = "ConditionalBinaryPredicate".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenPred.hashCode();
         }
         if (null != elsePred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elsePred.hashCode();
         }
         return hash;
