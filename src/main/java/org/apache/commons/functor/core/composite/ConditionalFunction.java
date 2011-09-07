@@ -46,6 +46,9 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4214871352184887792L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final Predicate ifPred;
@@ -110,15 +113,15 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
     public int hashCode() {
         int hash = "ConditionalFunction".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenFunc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenFunc.hashCode();
         }
         if (null != elseFunc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elseFunc.hashCode();
         }
         return hash;
