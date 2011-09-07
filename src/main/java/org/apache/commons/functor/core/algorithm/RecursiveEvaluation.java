@@ -62,7 +62,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
     /**
      * {@inheritDoc}
      */
-    public Object evaluate() {
+    public final Object evaluate() {
         Object result = null;
         // if the function returns another function, execute it. stop executing
         // when the result is not of the expected type.
@@ -81,7 +81,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
@@ -94,7 +94,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         return "RecursiveEvaluation".hashCode() << 2 ^ function.hashCode();
     }
 
