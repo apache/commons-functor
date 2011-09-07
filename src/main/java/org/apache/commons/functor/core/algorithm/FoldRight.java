@@ -106,7 +106,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
      * {@inheritDoc}
      * @param obj {@link Generator} to transform
      */
-    public T evaluate(Generator<T> obj) {
+    public final T evaluate(Generator<T> obj) {
         FoldRightHelper<T> helper = new FoldRightHelper<T>(function);
         obj.run(helper);
         return helper.getResult();
@@ -117,7 +117,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
      * @param left {@link Generator} to transform
      * @param right initial right-side seed object
      */
-    public T evaluate(Generator<T> left, T right) {
+    public final T evaluate(Generator<T> left, T right) {
         FoldRightHelper<T> helper = new FoldRightHelper<T>(right, function);
         left.run(helper);
         return helper.getResult();
@@ -126,7 +126,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
@@ -139,7 +139,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         return "FoldRight".hashCode() << 2 ^ function.hashCode();
     }
 
