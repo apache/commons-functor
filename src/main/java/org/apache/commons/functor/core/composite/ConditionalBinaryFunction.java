@@ -46,6 +46,9 @@ public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -994698971284481482L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryPredicate<? super L, ? super R> ifPred;
@@ -113,15 +116,15 @@ public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<
     public int hashCode() {
         int hash = "ConditionalBinaryFunction".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenFunc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenFunc.hashCode();
         }
         if (null != elseFunc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elseFunc.hashCode();
         }
         return hash;
