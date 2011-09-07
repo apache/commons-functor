@@ -47,6 +47,9 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -3521992036791188475L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final BinaryPredicate<? super L, ? super R> ifPred;
@@ -125,15 +128,15 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
     public int hashCode() {
         int hash = "ConditionalBinaryProcedure".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenProc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenProc.hashCode();
         }
         if (null != elseProc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elseProc.hashCode();
         }
         return hash;
