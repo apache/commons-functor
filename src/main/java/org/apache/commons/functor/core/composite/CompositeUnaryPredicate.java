@@ -28,7 +28,7 @@ import org.apache.commons.functor.adapter.UnaryPredicateUnaryFunction;
  * {@link UnaryFunction UnaryFunctions},
  * "chaining" the output of one to the input
  * of another.  For example,
- * <pre>new CompositeUnaryPredicate(p).of(f)</code>
+ * <pre>new CompositeUnaryPredicate(p).of(f)</pre>
  * {@link #test tests} to
  * <code>p.test(f.evaluate(obj))</code>, and
  * <pre>new CompositeUnaryPredicate(p).of(f).of(g)</pre>
