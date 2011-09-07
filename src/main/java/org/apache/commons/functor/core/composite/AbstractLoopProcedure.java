@@ -34,6 +34,10 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -5903381842630236070L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
+
     private final Predicate condition;
     private final Procedure action;
 
@@ -82,11 +86,11 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
      * @return int
      */
     protected int hashCode(int hash) {
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         if (null != getAction()) {
             hash ^= getAction().hashCode();
         }
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         if (null != getCondition()) {
             hash ^= getCondition().hashCode();
         }
