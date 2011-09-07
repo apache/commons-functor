@@ -128,7 +128,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
      * @return IsEquivalent<T>
      */
     @SuppressWarnings("unchecked")
-    public static final <T extends Comparable<?>> IsEquivalent<T> instance() {
+    public static <T extends Comparable<?>> IsEquivalent<T> instance() {
         return new IsEquivalent<T>(ComparableComparator.INSTANCE);
     }
 
@@ -137,7 +137,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
      * @param right argument
      * @return UnaryPredicate
      */
-    public static final <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
         return RightBoundPredicate.bind(instance(), right);
     }
 
