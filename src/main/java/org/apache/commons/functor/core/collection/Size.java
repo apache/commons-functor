@@ -87,7 +87,7 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
      * Get a Size instance.
      * @return Size
      */
-    public static final Size<Object> instance() {
+    public static Size<Object> instance() {
         return INSTANCE;
     }
 
