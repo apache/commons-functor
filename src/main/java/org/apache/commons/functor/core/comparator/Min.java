@@ -113,7 +113,7 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
      * @param right the right side argument of the Min function
      * @return UnaryFunction<T, T>
      */
-    public static final <T extends Comparable<?>> UnaryFunction<T, T> instance(T right) {
+    public static <T extends Comparable<?>> UnaryFunction<T, T> instance(T right) {
         return RightBoundFunction.bind(new Min<T>(), right);
     }
 
