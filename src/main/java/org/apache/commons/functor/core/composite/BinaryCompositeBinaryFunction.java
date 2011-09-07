@@ -43,6 +43,9 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      */
     private static final long serialVersionUID = 2570517284319064043L;
 
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
+
     /**
      * Type-remembering Helper
      *
@@ -132,11 +135,11 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      */
     public int hashCode() {
         int hash = "BinaryCompositeBinaryFunction".hashCode();
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= helper.f.hashCode();
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= helper.g.hashCode();
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= helper.h.hashCode();
         return hash;
     }
