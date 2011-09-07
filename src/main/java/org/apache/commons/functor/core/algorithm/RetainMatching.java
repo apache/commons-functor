@@ -66,7 +66,7 @@ public final class RetainMatching<T>
      * Get a static {@link RetainMatching} instance.
      * @return {@link RetainMatching}
      */
-    public static final RetainMatching<Object> instance() {
+    public static RetainMatching<Object> instance() {
         return INSTANCE;
     }
 }
