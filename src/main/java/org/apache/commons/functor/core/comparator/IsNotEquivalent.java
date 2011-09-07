@@ -127,7 +127,7 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
      * @return IsNotEquivalent
      */
     @SuppressWarnings("unchecked")
-    public static final <T extends Comparable<?>> IsNotEquivalent<T> instance() {
+    public static <T extends Comparable<?>> IsNotEquivalent<T> instance() {
         return new IsNotEquivalent<T>(ComparableComparator.INSTANCE);
     }
 
@@ -136,7 +136,7 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
      * @param right Comparable against which UnaryPredicate arguments will be compared.
      * @return UnaryPredicate
      */
-    public static final <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
         return RightBoundPredicate.bind(instance(), right);
     }
 
