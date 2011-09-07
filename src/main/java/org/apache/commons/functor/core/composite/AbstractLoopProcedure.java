@@ -50,7 +50,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object object) {
+    public final boolean equals(Object object) {
         if (object == this) {
             return true;
         }
@@ -65,7 +65,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         return hashCode("AbstractLoopProcedure".hashCode());
     }
 
@@ -97,7 +97,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
      * Get the condition.
      * @return Predicate
      */
-    protected Predicate getCondition() {
+    protected final Predicate getCondition() {
         return condition;
     }
 
@@ -105,7 +105,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
      * Get the action.
      * @return Procedure
      */
-    protected Procedure getAction() {
+    protected final Procedure getAction() {
         return action;
     }
 
