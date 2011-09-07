@@ -125,7 +125,7 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
      * @param <T>
      * @return IsGreaterThan<T>
      */
-    public static final <T extends Comparable<?>> IsGreaterThan<T> instance() {
+    public static <T extends Comparable<?>> IsGreaterThan<T> instance() {
         return new IsGreaterThan<T>();
     }
 
@@ -134,7 +134,7 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
      * @param right the right side object of the IsGreaterThan comparison
      * @return UnaryPredicate<T>
      */
-    public static final <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
         return RightBoundPredicate.bind(new IsGreaterThan<T>(), right);
     }
 
