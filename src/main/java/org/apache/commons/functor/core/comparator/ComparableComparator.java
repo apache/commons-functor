@@ -75,7 +75,7 @@ final class ComparableComparator implements Comparator, Serializable {
      * Get a ComparableComparator instance.
      * @return ComparableComparator
      */
-    public static final ComparableComparator instance() {
+    public static ComparableComparator instance() {
         return INSTANCE;
     }
 
