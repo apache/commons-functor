@@ -66,7 +66,7 @@ public final class RemoveMatching<T>
      * Get a static {@link RemoveMatching} instance.
      * @return {@link RemoveMatching}
      */
-    public static final RemoveMatching<Object> instance() {
+    public static RemoveMatching<Object> instance() {
         return INSTANCE;
     }
 
