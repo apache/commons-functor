@@ -45,6 +45,9 @@ public final class ConditionalPredicate implements Predicate, Serializable {
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 7333505000745854098L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final Predicate ifPred;
@@ -102,15 +105,15 @@ public final class ConditionalPredicate implements Predicate, Serializable {
     public int hashCode() {
         int hash = "ConditionalPredicate".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenPred.hashCode();
         }
         if (null != elsePred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elsePred.hashCode();
         }
         return hash;
