@@ -37,6 +37,9 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
     /** Hashcode of the name of this Predicate. */
     private static final int NAME_HASH_CODE = "IsWithinRange".hashCode();
 
+    /** Base Hashcode. */
+    private static final int BASE_HASH_CODE = 29;
+
     /***************************************************
      *  Instance variables
      ***************************************************/
@@ -97,7 +100,7 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
      * {@inheritDoc}
      */
     public final int hashCode() {
-        return 29 * min.hashCode() + max.hashCode() + NAME_HASH_CODE;
+        return BASE_HASH_CODE * min.hashCode() + max.hashCode() + NAME_HASH_CODE;
     }
 
     /**
