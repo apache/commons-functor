@@ -43,7 +43,7 @@ public class WhileDo extends PredicatedLoop {
     /**
      * {@inheritDoc}
      */
-    public void run() {
+    public final void run() {
         while (getTest().test()) {
             getBody().run();
         }
