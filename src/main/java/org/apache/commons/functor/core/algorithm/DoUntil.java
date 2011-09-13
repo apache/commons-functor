@@ -43,7 +43,7 @@ public class DoUntil extends PredicatedLoop {
     /**
      * {@inheritDoc}
      */
-    public void run() {
+    public final void run() {
         do {
             getBody().run();
         } while (!getTest().test());
