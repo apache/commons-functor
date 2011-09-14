@@ -45,6 +45,9 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 1214714029872180155L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final UnaryPredicate<? super A> ifPred;
@@ -104,15 +107,15 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
     public int hashCode() {
         int hash = "ConditionalUnaryPredicate".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenPred.hashCode();
         }
         if (null != elsePred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elsePred.hashCode();
         }
         return hash;
