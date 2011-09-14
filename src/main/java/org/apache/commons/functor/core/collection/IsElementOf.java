@@ -42,7 +42,7 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7639051806015321070L;
-    private static IsElementOf<Object, Object> INSTANCE = new IsElementOf<Object, Object>();
+    private static final IsElementOf<Object, Object> INSTANCE = new IsElementOf<Object, Object>();
 
     // constructors
     //---------------------------------------------------------------
