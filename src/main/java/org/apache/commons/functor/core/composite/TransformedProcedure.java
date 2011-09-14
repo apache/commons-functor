@@ -37,7 +37,7 @@ public class TransformedProcedure implements Procedure, Serializable {
      * Type-remembering helper
      * @param <X>
      */
-    private static class Helper<X> implements Procedure, Serializable {
+    private static final class Helper<X> implements Procedure, Serializable {
         /**
          * serialVersionUID declaration.
          */
