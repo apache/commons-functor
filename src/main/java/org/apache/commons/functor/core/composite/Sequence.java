@@ -104,7 +104,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public void run() {
+    public final void run() {
         for (Iterator<Procedure> iter = list.iterator(); iter.hasNext();) {
             iter.next().run();
         }
