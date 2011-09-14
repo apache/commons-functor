@@ -120,7 +120,7 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public final String toString() {
         return "TransformedBinaryProcedure<" + helper.function + "; " + helper.procedure + ">";
     }
 }
