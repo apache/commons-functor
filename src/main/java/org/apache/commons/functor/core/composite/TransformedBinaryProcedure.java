@@ -98,7 +98,7 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      * @param that instance to test
      * @return whether equal
      */
-    public boolean equals(TransformedBinaryProcedure<?, ?> that) {
+    public final boolean equals(TransformedBinaryProcedure<?, ?> that) {
         return that != null && that.helper.function.equals(this.helper.function)
                 && that.helper.procedure.equals(this.helper.procedure);
     }
