@@ -138,7 +138,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public final String toString() {
         return "Sequence<" + list + ">";
     }
 
