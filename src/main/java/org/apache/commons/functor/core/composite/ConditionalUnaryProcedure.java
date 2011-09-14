@@ -46,6 +46,9 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -895833369740247391L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final UnaryPredicate<? super A> ifPred;
@@ -122,15 +125,15 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
     public int hashCode() {
         int hash = "ConditionalUnaryProcedure".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenProc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenProc.hashCode();
         }
         if (null != elseProc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elseProc.hashCode();
         }
         return hash;
