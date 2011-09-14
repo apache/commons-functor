@@ -37,7 +37,7 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      * Type-remembering helper
      * @param <X>
      */
-    private static class Helper<X, L, R> implements BinaryProcedure<L, R>, Serializable {
+    private static final class Helper<X, L, R> implements BinaryProcedure<L, R>, Serializable {
         /**
          * serialVersionUID declaration.
          */
