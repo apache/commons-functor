@@ -36,7 +36,7 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
      * Type-remembering helper
      * @param <X>
      */
-    private static class Helper<X, T> implements Function<T>, Serializable {
+    private static final class Helper<X, T> implements Function<T>, Serializable {
         /**
          * serialVersionUID declaration.
          */
