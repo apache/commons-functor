@@ -101,7 +101,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public final String toString() {
         return "TransposedFunction<" + function + ">";
     }
 
