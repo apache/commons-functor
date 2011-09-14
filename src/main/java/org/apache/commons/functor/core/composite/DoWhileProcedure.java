@@ -54,7 +54,7 @@ public class DoWhileProcedure extends AbstractLoopProcedure {
     /**
      * {@inheritDoc}
      */
-    public void run() {
+    public final void run() {
         do {
             getAction().run();
         } while (getCondition().test());
