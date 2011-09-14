@@ -66,7 +66,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
-    public T evaluate(L left, R right) {
+    public final T evaluate(L left, R right) {
         return function.evaluate(right, left);
     }
 
