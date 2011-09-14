@@ -73,7 +73,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object that) {
+    public final boolean equals(Object that) {
         return that == this || (that instanceof TransposedFunction<?, ?, ?>
                                     && equals((TransposedFunction<?, ?, ?>) that));
     }
