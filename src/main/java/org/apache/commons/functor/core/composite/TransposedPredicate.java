@@ -66,7 +66,7 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
     /**
      * {@inheritDoc}
      */
-    public boolean test(L left, R right) {
+    public final boolean test(L left, R right) {
         return predicate.test(right, left);
     }
 
