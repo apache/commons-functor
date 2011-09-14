@@ -80,7 +80,7 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
     /**
      * {@inheritDoc}
      */
-    public void run(L left, R right) {
+    public final void run(L left, R right) {
         helper.run(left, right);
     }
 
