@@ -63,7 +63,7 @@ public class DoWhileProcedure extends AbstractLoopProcedure {
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public final String toString() {
         return "DoWhileProcedure<do(" + getAction() + ") while(" + getCondition() + ")>";
     }
 }
