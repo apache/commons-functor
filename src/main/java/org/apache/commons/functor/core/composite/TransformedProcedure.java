@@ -78,7 +78,7 @@ public class TransformedProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public void run() {
+    public final void run() {
         helper.run();
     }
 
