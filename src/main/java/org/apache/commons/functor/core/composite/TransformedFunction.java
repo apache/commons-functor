@@ -95,7 +95,7 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
      * @param that instance to test
      * @return whether equal
      */
-    public boolean equals(TransformedFunction<?> that) {
+    public final boolean equals(TransformedFunction<?> that) {
         return that != null && that.helper.preceding.equals(this.helper.preceding)
                 && that.helper.following.equals(this.helper.following);
     }
