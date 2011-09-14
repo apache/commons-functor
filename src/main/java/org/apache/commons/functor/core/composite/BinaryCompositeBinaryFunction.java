@@ -133,7 +133,7 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
     /**
      * {@inheritDoc}
      */
-    public int hashCode() {
+    public final int hashCode() {
         int hash = "BinaryCompositeBinaryFunction".hashCode();
             hash <<= HASH_SHIFT;
             hash ^= helper.f.hashCode();
