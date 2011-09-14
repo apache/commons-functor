@@ -36,7 +36,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      * Type-remembering helper
      * @param <X>
      */
-    private static class Helper<X, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
+    private static final class Helper<X, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
         /**
          * serialVersionUID declaration.
          */
