@@ -79,7 +79,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
     /**
      * {@inheritDoc}
      */
-    public T evaluate(L left, R right) {
+    public final T evaluate(L left, R right) {
         return helper.evaluate(left, right);
     }
 
