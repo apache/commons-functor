@@ -96,7 +96,7 @@ public class TransformedProcedure implements Procedure, Serializable {
      * @param that instance to test
      * @return whether equal
      */
-    public boolean equals(TransformedProcedure that) {
+    public final boolean equals(TransformedProcedure that) {
         return that != null && that.helper.function.equals(this.helper.function)
                 && that.helper.procedure.equals(this.helper.procedure);
     }
