@@ -118,7 +118,7 @@ public class TransformedProcedure implements Procedure, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public final String toString() {
         return "TransformedProcedure<" + helper.function + "; " + helper.procedure + ">";
     }
 }
