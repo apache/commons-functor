@@ -113,7 +113,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object that) {
+    public final boolean equals(Object that) {
         return that == this || (that instanceof Sequence && equals((Sequence) that));
     }
 
