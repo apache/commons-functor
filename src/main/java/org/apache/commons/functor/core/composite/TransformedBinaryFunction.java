@@ -97,7 +97,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      * @param that instance to test
      * @return whether equal
      */
-    public boolean equals(TransformedBinaryFunction<?, ?, ?> that) {
+    public final boolean equals(TransformedBinaryFunction<?, ?, ?> that) {
         return that != null && that.helper.preceding.equals(this.helper.preceding)
                 && that.helper.following.equals(this.helper.following);
     }
