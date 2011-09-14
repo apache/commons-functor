@@ -46,6 +46,10 @@ public final class ConditionalProcedure implements Procedure, Serializable {
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -4228632798836328605L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
+
     // attributes
     // ------------------------------------------------------------------------
     private final Predicate ifPred;
@@ -119,15 +123,15 @@ public final class ConditionalProcedure implements Procedure, Serializable {
     public int hashCode() {
         int hash = "ConditionalProcedure".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenProc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenProc.hashCode();
         }
         if (null != elseProc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elseProc.hashCode();
         }
         return hash;
