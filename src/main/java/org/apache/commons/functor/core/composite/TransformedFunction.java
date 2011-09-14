@@ -117,7 +117,7 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public final String toString() {
         return "TransformedFunction<" + helper.preceding + "; " + helper.following + ">";
     }
 }
