@@ -33,6 +33,9 @@ public class TransformedProcedure implements Procedure, Serializable {
      */
     private static final long serialVersionUID = -4111958123789033410L;
 
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 2;
+
     /**
      * Type-remembering helper
      * @param <X>
@@ -107,9 +110,9 @@ public class TransformedProcedure implements Procedure, Serializable {
     @Override
     public final int hashCode() {
         int result = "TransformedProcedure".hashCode();
-        result <<= 2;
+        result <<= HASH_SHIFT;
         result |= helper.procedure.hashCode();
-        result <<= 2;
+        result <<= HASH_SHIFT;
         result |= helper.function.hashCode();
         return result;
     }
