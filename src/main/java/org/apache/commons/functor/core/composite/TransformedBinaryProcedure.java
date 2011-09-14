@@ -88,7 +88,7 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         return obj == this || obj instanceof TransformedBinaryProcedure<?, ?>
                 && equals((TransformedBinaryProcedure<?, ?>) obj);
     }
