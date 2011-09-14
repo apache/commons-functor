@@ -119,7 +119,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public final String toString() {
         return "TransformedBinaryFunction<" + helper.preceding + "; " + helper.following + ">";
     }
 }
