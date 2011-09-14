@@ -78,7 +78,7 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
-    public T evaluate() {
+    public final T evaluate() {
         return helper.evaluate();
     }
 
