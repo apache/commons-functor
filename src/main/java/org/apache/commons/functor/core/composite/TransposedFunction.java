@@ -83,7 +83,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
      * @param that TransposedFunction to test
      * @return boolean
      */
-    public boolean equals(TransposedFunction<?, ?, ?> that) {
+    public final boolean equals(TransposedFunction<?, ?, ?> that) {
         return null != that && (null == function ? null == that.function : function.equals(that.function));
     }
 
