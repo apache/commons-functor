@@ -46,6 +46,9 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -8152490481969255068L;
+
+    /** Base hash integer used to shift hash */
+    private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
     private final UnaryPredicate<? super A> ifPred;
@@ -112,15 +115,15 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
     public int hashCode() {
         int hash = "ConditionalUnaryFunction".hashCode();
         if (null != ifPred) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= ifPred.hashCode();
         }
         if (null != thenFunc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= thenFunc.hashCode();
         }
         if (null != elseFunc) {
-            hash <<= 4;
+            hash <<= HASH_SHIFT;
             hash ^= elseFunc.hashCode();
         }
         return hash;
