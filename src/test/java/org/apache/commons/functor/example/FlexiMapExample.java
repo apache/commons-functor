@@ -197,16 +197,16 @@ public class FlexiMapExample {
      */
     @Test
     public void testIntegerValuesOnly() {
-		Map map = makeTypeConstrainedMap(Integer.class);
-		map.put("key", new Integer(2));
-		assertEquals( new Integer(2), map.get("key") );
-		try {
-			map.put("key2","value");
-			fail("Expected ClassCastException");
-		} catch(ClassCastException e) {
-			// expected
-		}
-	}
+        Map map = makeTypeConstrainedMap(Integer.class);
+        map.put("key", new Integer(2));
+        assertEquals( new Integer(2), map.get("key") );
+        try {
+            map.put("key2","value");
+            fail("Expected ClassCastException");
+        } catch(ClassCastException e) {
+            // expected
+        }
+    }
 
     /*
      * A more interesting specialization is that used by the
@@ -219,38 +219,38 @@ public class FlexiMapExample {
      */
     @Test
     public void testMultiMap() {
-		Map map = makeMultiMap();
+        Map map = makeMultiMap();
 
-		map.put("key", "value 1");
+        map.put("key", "value 1");
 
-		{
-			Collection result = (Collection)(map.get("key"));
-			assertEquals(1,result.size());
-			assertEquals("value 1", result.iterator().next());
-		}
+        {
+            Collection result = (Collection)(map.get("key"));
+            assertEquals(1,result.size());
+            assertEquals("value 1", result.iterator().next());
+        }
 
-		map.put("key", "value 2");
+        map.put("key", "value 2");
 
-		{
-			Collection result = (Collection)(map.get("key"));
-			assertEquals(2,result.size());
-			Iterator iter = result.iterator();
-			assertEquals("value 1", iter.next());
-			assertEquals("value 2", iter.next());
-		}
+        {
+            Collection result = (Collection)(map.get("key"));
+            assertEquals(2,result.size());
+            Iterator iter = result.iterator();
+            assertEquals("value 1", iter.next());
+            assertEquals("value 2", iter.next());
+        }
 
-		map.put("key", "value 3");
+        map.put("key", "value 3");
 
-		{
-			Collection result = (Collection)(map.get("key"));
-			assertEquals(3,result.size());
-			Iterator iter = result.iterator();
-			assertEquals("value 1", iter.next());
-			assertEquals("value 2", iter.next());
-			assertEquals("value 3", iter.next());
-		}
+        {
+            Collection result = (Collection)(map.get("key"));
+            assertEquals(3,result.size());
+            Iterator iter = result.iterator();
+            assertEquals("value 1", iter.next());
+            assertEquals("value 2", iter.next());
+            assertEquals("value 3", iter.next());
+        }
 
-	}
+    }
 
     /*
      * Here's another variation on the MultiMap theme.
@@ -261,14 +261,14 @@ public class FlexiMapExample {
      */
     @Test
     public void testStringConcatMap() {
-		Map map = makeStringConcatMap();
-		map.put("key", "value 1");
-		assertEquals("value 1",map.get("key"));
-		map.put("key", "value 2");
-		assertEquals("value 1, value 2",map.get("key"));
-		map.put("key", "value 3");
-		assertEquals("value 1, value 2, value 3",map.get("key"));
-	}
+        Map map = makeStringConcatMap();
+        map.put("key", "value 1");
+        assertEquals("value 1",map.get("key"));
+        map.put("key", "value 2");
+        assertEquals("value 1, value 2",map.get("key"));
+        map.put("key", "value 3");
+        assertEquals("value 1, value 2, value 3",map.get("key"));
+    }
 
     /*
      * ----------------------------------------------------------------------------
@@ -424,123 +424,123 @@ public class FlexiMapExample {
      * provide an onGet function, simliar to the onPut method used
      * above.
      */
-	private Map makeDefaultValueForNullMap(Object defaultValue) {
-		return new FlexiMap(
+    private Map makeDefaultValueForNullMap(Object defaultValue) {
+        return new FlexiMap(
             null,
             /*
              * We ignore the left-hand argument,
              */
-			IgnoreLeftFunction.adapt(
+            IgnoreLeftFunction.adapt(
                 /*
                  * and for the right-hand,
                  */
-				Conditional.function(
+                Conditional.function(
                     /*
                      * we'll test for null,
                      */
-					IsNull.instance(),
+                    IsNull.instance(),
                     /*
                      * returning our default when the value is otherwise null,
                      */
-					new Constant(defaultValue),
+                    new Constant(defaultValue),
                     /*
                      * and passing through all non-null values.
                      */
-					Identity.instance()
-				)
-			)
-		);
-	}
+                    Identity.instance()
+                )
+            )
+        );
+    }
 
     /*
      * To constrain the value types, we'll
      * provide an onPut function,
      */
-	private Map makeTypeConstrainedMap(Class clazz) {
-		return new FlexiMap(
+    private Map makeTypeConstrainedMap(Class clazz) {
+        return new FlexiMap(
             /*
              * ignore the left-hand argument,
              */
-			IgnoreLeftFunction.adapt(
-				Conditional.function(
+            IgnoreLeftFunction.adapt(
+                Conditional.function(
                     /*
                      * we'll test the type of the right-hand argument,
                      */
-					IsInstance.of(clazz),
+                    IsInstance.of(clazz),
                     /*
                      * and either pass the given value through,
                      */
-					Identity.instance(),
+                    Identity.instance(),
                     /*
                      * or throw a ClassCastException.
                      */
-					throwCCE
-				)
-			),
-			null
-		);
-	}
+                    throwCCE
+                )
+            ),
+            null
+        );
+    }
 
     /*
      * The MultiMap is a bit more interesting, since we'll
      * need to consider both the old and new values during
      * onPut:
      */
-	private Map makeMultiMap() {
-		return new FlexiMap(
-			new BinaryFunction() {
-				public Object evaluate(Object oldval, Object newval) {
-					List list = null;
-					if (null == oldval) {
-						list = new ArrayList();
-					} else {
-						list = (List) oldval;
-					}
-					list.add(newval);
-					return list;
-				}
-			},
-			null
-		);
-	}
+    private Map makeMultiMap() {
+        return new FlexiMap(
+            new BinaryFunction() {
+                public Object evaluate(Object oldval, Object newval) {
+                    List list = null;
+                    if (null == oldval) {
+                        list = new ArrayList();
+                    } else {
+                        list = (List) oldval;
+                    }
+                    list.add(newval);
+                    return list;
+                }
+            },
+            null
+        );
+    }
 
     /*
      * The StringConcatMap is more interesting still.
      */
-	private Map makeStringConcatMap() {
-		return new FlexiMap(
+    private Map makeStringConcatMap() {
+        return new FlexiMap(
             /*
              * The onPut function looks similiar to the MultiMap
              * method:
              */
-			new BinaryFunction() {
-				public Object evaluate(Object oldval, Object newval) {
-					StringBuffer buf = null;
-					if (null == oldval) {
-						buf = new StringBuffer();
-					} else {
-						buf = (StringBuffer) oldval;
-						buf.append(", ");
-					}
-					buf.append(newval);
-					return buf;
-				}
-			},
+            new BinaryFunction() {
+                public Object evaluate(Object oldval, Object newval) {
+                    StringBuffer buf = null;
+                    if (null == oldval) {
+                        buf = new StringBuffer();
+                    } else {
+                        buf = (StringBuffer) oldval;
+                        buf.append(", ");
+                    }
+                    buf.append(newval);
+                    return buf;
+                }
+            },
             /*
              * but we'll also need an onGet functor to convert
              * the StringBuffer to a String:
              */
-			new BinaryFunction() {
-				public Object evaluate(Object key, Object val) {
-					if (null == val) {
-						return null;
-					} else {
-						return ((StringBuffer) val).toString();
-					}
-				}
-			}
-		);
-	}
+            new BinaryFunction() {
+                public Object evaluate(Object key, Object val) {
+                    if (null == val) {
+                        return null;
+                    } else {
+                        return ((StringBuffer) val).toString();
+                    }
+                }
+            }
+        );
+    }
 
     /*
      * (This "UniversalFunctor" type provides a functor
@@ -574,16 +574,16 @@ public class FlexiMapExample {
         }
     }
 
-	private UniversalFunctor throwNPE = new UniversalFunctor() {
-		public void run() {
-			throw new NullPointerException();
-		}
-	};
+    private UniversalFunctor throwNPE = new UniversalFunctor() {
+        public void run() {
+            throw new NullPointerException();
+        }
+    };
 
-	private UniversalFunctor throwCCE = new UniversalFunctor() {
-		public void run() {
-			throw new ClassCastException();
-		}
-	};
+    private UniversalFunctor throwCCE = new UniversalFunctor() {
+        public void run() {
+            throw new ClassCastException();
+        }
+    };
 
 }

@@ -38,27 +38,27 @@ public class TestAbstractLoopProcedure extends BaseFunctorTest {
     // ------------------------------------------------------------------------
 
     protected Object makeFunctor() {
-		return new MockLoopProcedure(Constant.FALSE, NoOp.INSTANCE);
+        return new MockLoopProcedure(Constant.FALSE, NoOp.INSTANCE);
     }
 
-	// tests
-	// ------------------------------------------------------------------------
+    // tests
+    // ------------------------------------------------------------------------
     @Test
     public void testEqualsAndHashCodeWithNullArgs() {
-		Procedure p = new MockLoopProcedure(null,null);
-		assertNotNull(p.toString());
-		assertFalse(p.equals(null));
-		assertTrue(p.equals(p));
-		assertEquals(p.hashCode(),p.hashCode());
-	}
+        Procedure p = new MockLoopProcedure(null,null);
+        assertNotNull(p.toString());
+        assertFalse(p.equals(null));
+        assertTrue(p.equals(p));
+        assertEquals(p.hashCode(),p.hashCode());
+    }
 
 }
 
 class MockLoopProcedure extends AbstractLoopProcedure {
-	public MockLoopProcedure(Predicate condition, Procedure action) {
-		super(condition,action);
-	}
+    public MockLoopProcedure(Predicate condition, Procedure action) {
+        super(condition,action);
+    }
 
-	public void run() {
-	}
+    public void run() {
+    }
 }

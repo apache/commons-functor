@@ -44,16 +44,16 @@ import org.apache.commons.functor.generator.FilteredGenerator;
  * @author Rodney Waldhoff
  */
 public class DataMunger {
-	/** See {@link #process(Reader,int,int,int)} */
+    /** See {@link #process(Reader,int,int,int)} */
     public static final Object process(final InputStream file, final int selected, final int col1, final int col2) {
         return process(new InputStreamReader(file),selected,col1,col2);
     }
 
-	/**
-	 * Processes each line of the given Reader, returning the <i>selected</i> column for the
-	 * line where the absolute difference between the integer value of <i>col1</i> and <i>col2</i>
-	 * is least.  Note that lines that don't begin with an Integer are ignored.
-	 */
+    /**
+     * Processes each line of the given Reader, returning the <i>selected</i> column for the
+     * line where the absolute difference between the integer value of <i>col1</i> and <i>col2</i>
+     * is least.  Note that lines that don't begin with an Integer are ignored.
+     */
     public static final Object process(final Reader file, final int selected, final int col1, final int col2) {
         return NthColumn.instance(selected).evaluate(
                 new FoldLeft<String>(lesserSpread(col1, col2)).evaluate(new FilteredGenerator<String>(Lines.from(file),
@@ -81,11 +81,11 @@ public class DataMunger {
         );
     }
 
-	/**
-	 * A UnaryFunction that returns the absolute value of the difference
-	 * between the Integers stored in the <i>col1</i> and <i>col2</i>th
-	 * whitespace delimited columns of the input line (a String).
-	 */
+    /**
+     * A UnaryFunction that returns the absolute value of the difference
+     * between the Integers stored in the <i>col1</i> and <i>col2</i>th
+     * whitespace delimited columns of the input line (a String).
+     */
     private static UnaryFunction<String, Integer> absSpread(final int col1, final int col2) {
         return Composite.function(
             Abs.instance(),

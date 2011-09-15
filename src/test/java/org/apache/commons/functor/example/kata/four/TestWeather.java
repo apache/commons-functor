@@ -37,8 +37,8 @@ public class TestWeather extends TestCase {
     }
 
     public void testProcess() {
-		// for our soccer example, we want to select the first column of the
-		// line with the minimal difference between the second and third columns.
+        // for our soccer example, we want to select the first column of the
+        // line with the minimal difference between the second and third columns.
         assertEquals(
             "14",
             DataMunger.process(getClass().getResourceAsStream("weather.txt"),0,1,2));

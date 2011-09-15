@@ -31,8 +31,8 @@ public class TestSoccer {
 
     @Test
     public void testProcess() {
-    	// for our soccer example, we want to select the second column of the
-    	// line with the minimal difference between the seventh and ninth columns.
+        // for our soccer example, we want to select the second column of the
+        // line with the minimal difference between the seventh and ninth columns.
         assertEquals(
             "Aston_Villa",
             DataMunger.process(getClass().getResourceAsStream("soccer.txt"),1,6,8));
