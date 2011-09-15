@@ -95,10 +95,10 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
          */
         @Override
         public boolean equals(Object obj) {
-            return obj == this || obj instanceof Helper<?, ?, ?> && equals((Helper<?, A, T>) obj);
+            return obj == this || obj instanceof Helper<?, ?, ?> && equals((Helper<?, ?, ?>) obj);
         }
 
-        private boolean equals(Helper<?, A, T> helper) {
+        private boolean equals(Helper<?, ?, ?> helper) {
             return helper.following.equals(following) && helper.preceding.equals(preceding);
         }
 
