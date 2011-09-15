@@ -130,7 +130,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         // by construction, list is never null
         return "Sequence".hashCode() ^ list.hashCode();
     }
@@ -138,7 +138,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public final String toString() {
+    public String toString() {
         return "Sequence<" + list + ">";
     }
 

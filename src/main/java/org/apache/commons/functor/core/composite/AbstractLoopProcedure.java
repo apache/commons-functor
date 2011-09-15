@@ -69,7 +69,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         return hashCode("AbstractLoopProcedure".hashCode());
     }
 

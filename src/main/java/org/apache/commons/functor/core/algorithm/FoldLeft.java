@@ -120,7 +120,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
     /**
      * {@inheritDoc}
      */
-    public final boolean equals(Object obj) {
+    public boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
@@ -133,7 +133,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         return "FoldLeft".hashCode() << 2 ^ function.hashCode();
     }
 

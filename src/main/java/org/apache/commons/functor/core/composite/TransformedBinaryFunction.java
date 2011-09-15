@@ -106,7 +106,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      * {@inheritDoc}
      */
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         int result = "TransformedBinaryFunction".hashCode();
         result <<= 2;
         result |= helper.following.hashCode();
@@ -119,7 +119,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      * {@inheritDoc}
      */
     @Override
-    public final String toString() {
+    public String toString() {
         return "TransformedBinaryFunction<" + helper.preceding + "; " + helper.following + ">";
     }
 }

@@ -139,7 +139,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         return "FoldRight".hashCode() << 2 ^ function.hashCode();
     }
 

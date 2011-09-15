@@ -104,7 +104,7 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         int result = "TransformedFunction".hashCode();
         result <<= 2;
         result |= helper.following.hashCode();
@@ -117,7 +117,7 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public final String toString() {
+    public String toString() {
         return "TransformedFunction<" + helper.preceding + "; " + helper.following + ">";
     }
 }

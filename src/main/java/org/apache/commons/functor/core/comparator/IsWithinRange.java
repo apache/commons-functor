@@ -99,14 +99,14 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         return BASE_HASH_CODE * min.hashCode() + max.hashCode() + NAME_HASH_CODE;
     }
 
     /**
      * {@inheritDoc}
      */
-    public final String toString() {
+    public String toString() {
         return "IsWithinRange(" + min + ", " + max + ")";
     }
 

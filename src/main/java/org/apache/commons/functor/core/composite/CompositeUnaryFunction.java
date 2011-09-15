@@ -183,7 +183,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         // by construction, list is never null
         return ("CompositeUnaryFunction".hashCode() << HASH_SHIFT) ^ function.hashCode();
     }
@@ -191,7 +191,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
-    public final String toString() {
+    public String toString() {
         return "CompositeUnaryFunction<" + function + ">";
     }
 

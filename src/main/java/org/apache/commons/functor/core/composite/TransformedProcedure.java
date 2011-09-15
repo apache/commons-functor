@@ -108,7 +108,7 @@ public class TransformedProcedure implements Procedure, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         int result = "TransformedProcedure".hashCode();
         result <<= HASH_SHIFT;
         result |= helper.procedure.hashCode();
@@ -121,7 +121,7 @@ public class TransformedProcedure implements Procedure, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public final String toString() {
+    public String toString() {
         return "TransformedProcedure<" + helper.function + "; " + helper.procedure + ">";
     }
 }

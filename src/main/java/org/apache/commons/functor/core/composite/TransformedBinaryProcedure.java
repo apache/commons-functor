@@ -107,7 +107,7 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      * {@inheritDoc}
      */
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         int result = "TransformedBinaryProcedure".hashCode();
         result <<= 2;
         result |= helper.procedure.hashCode();
@@ -120,7 +120,7 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      * {@inheritDoc}
      */
     @Override
-    public final String toString() {
+    public String toString() {
         return "TransformedBinaryProcedure<" + helper.function + "; " + helper.procedure + ">";
     }
 }

@@ -94,7 +94,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         return "RecursiveEvaluation".hashCode() << 2 ^ function.hashCode();
     }
 

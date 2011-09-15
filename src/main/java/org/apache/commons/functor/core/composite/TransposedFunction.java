@@ -90,7 +90,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         int hash = "TransposedFunction".hashCode();
         if (null != function) {
             hash ^= function.hashCode();
@@ -101,7 +101,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
-    public final String toString() {
+    public String toString() {
         return "TransposedFunction<" + function + ">";
     }
 

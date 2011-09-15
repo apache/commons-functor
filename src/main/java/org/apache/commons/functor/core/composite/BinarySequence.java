@@ -129,7 +129,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
-    public final int hashCode() {
+    public int hashCode() {
         // by construction, list is never null
         return "BinarySequence".hashCode() ^ list.hashCode();
     }
@@ -137,7 +137,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
-    public final String toString() {
+    public String toString() {
         return "BinarySequence<" + list + ">";
     }
 
