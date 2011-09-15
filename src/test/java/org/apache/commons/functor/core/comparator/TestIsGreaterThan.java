@@ -16,27 +16,18 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIsGreaterThan extends BaseComparisonPredicateTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsGreaterThan(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsGreaterThan.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -45,20 +36,10 @@ public class TestIsGreaterThan extends BaseComparisonPredicateTest {
         return new IsGreaterThan<Comparable<?>>();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         IsGreaterThan<Integer> p = new IsGreaterThan<Integer>();
         assertFalse(p.test(new Integer(2),new Integer(4)));
@@ -68,11 +49,13 @@ public class TestIsGreaterThan extends BaseComparisonPredicateTest {
         assertTrue(p.test(new Integer(6),new Integer(4)));
     }
 
+    @Test
     public void testInstance() {
         assertTrue(IsGreaterThan.instance(new Integer(7)).test(new Integer(8)));
         assertTrue(! IsGreaterThan.instance(new Integer(7)).test(new Integer(6)));
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEquals() throws Exception {
         IsGreaterThan<Comparable<?>> p = new IsGreaterThan<Comparable<?>>();

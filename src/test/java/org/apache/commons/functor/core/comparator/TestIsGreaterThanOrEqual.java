@@ -16,27 +16,18 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIsGreaterThanOrEqual extends BaseComparisonPredicateTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsGreaterThanOrEqual(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsGreaterThanOrEqual.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -45,20 +36,10 @@ public class TestIsGreaterThanOrEqual extends BaseComparisonPredicateTest {
         return new IsGreaterThanOrEqual<Comparable<?>>();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         IsGreaterThanOrEqual<Integer> p = new IsGreaterThanOrEqual<Integer>();
         assertFalse(p.test(new Integer(2),new Integer(4)));
@@ -68,11 +49,13 @@ public class TestIsGreaterThanOrEqual extends BaseComparisonPredicateTest {
         assertTrue(p.test(new Integer(6),new Integer(4)));
     }
 
+    @Test
     public void testInstance() {
         assertTrue(IsGreaterThanOrEqual.instance(new Integer(7)).test(new Integer(8)));
         assertTrue(! IsGreaterThanOrEqual.instance(new Integer(7)).test(new Integer(6)));
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEquals() throws Exception {
         IsGreaterThanOrEqual<Comparable<?>> p = new IsGreaterThanOrEqual<Comparable<?>>();

@@ -16,15 +16,15 @@
  */
 package org.apache.commons.functor.core.composite;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -33,17 +33,6 @@ import org.apache.commons.functor.core.NoOp;
 @SuppressWarnings("unchecked")
 public class TestBinarySequence extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinarySequence(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinarySequence.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
@@ -51,26 +40,17 @@ public class TestBinarySequence extends BaseFunctorTest {
         return new BinarySequence(new NoOp(),new NoOp());
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRunZero() throws Exception {
         BinarySequence seq = new BinarySequence();
         seq.run(null,null);
         seq.run("xyzzy","xyzzy");
     }
 
+    @Test
     public void testRunOne() throws Exception {
         RunCounter counter = new RunCounter();
         BinarySequence seq = new BinarySequence(counter);
@@ -81,6 +61,7 @@ public class TestBinarySequence extends BaseFunctorTest {
         assertEquals(2,counter.count);
     }
 
+    @Test
     public void testRunTwo() throws Exception {
         RunCounter[] counter = { new RunCounter(), new RunCounter() };
         BinarySequence seq = new BinarySequence(counter[0],counter[1]);
@@ -94,6 +75,7 @@ public class TestBinarySequence extends BaseFunctorTest {
         assertEquals(2,counter[1].count);
     }
 
+    @Test
     public void testThen() throws Exception {
         List list = new ArrayList();
         BinarySequence seq = new BinarySequence();
@@ -109,6 +91,7 @@ public class TestBinarySequence extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinarySequence p = new BinarySequence();
         assertEquals(p,p);

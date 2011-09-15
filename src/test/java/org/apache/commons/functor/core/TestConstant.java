@@ -16,27 +16,19 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConstant extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConstant(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConstant.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -45,20 +37,10 @@ public class TestConstant extends BaseFunctorTest {
         return new Constant<Object>("K");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         Constant<Object> f = new Constant<Object>("xyzzy");
         assertEquals("xyzzy",f.evaluate());
@@ -69,6 +51,7 @@ public class TestConstant extends BaseFunctorTest {
         assertEquals("xyzzy",f.evaluate("foo",new Integer(2)));
     }
 
+    @Test
     public void testEvaluateConstantNull() throws Exception {
         Constant<Object> f = new Constant<Object>(null);
         assertNull(f.evaluate());
@@ -79,6 +62,7 @@ public class TestConstant extends BaseFunctorTest {
         assertNull(f.evaluate("foo",new Integer(2)));
     }
 
+    @Test
     public void testConstantTrue() throws Exception {
         Constant<Object> truePred = new Constant<Object>(true);
         assertTrue(truePred.test());
@@ -90,6 +74,7 @@ public class TestConstant extends BaseFunctorTest {
         assertTrue(truePred.test("foo",new Integer(2)));
     }
 
+    @Test
     public void testConstantFalse() throws Exception {
         Constant<Object> falsePred = new Constant<Object>(false);
         assertTrue(!falsePred.test());
@@ -101,6 +86,7 @@ public class TestConstant extends BaseFunctorTest {
         assertTrue(!falsePred.test("foo",new Integer(2)));
     }
 
+    @Test
     public void testEquals() throws Exception {
         Constant<Object> f = new Constant<Object>("xyzzy");
         assertEquals(f,f);
@@ -110,6 +96,7 @@ public class TestConstant extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new Constant<Object>(null));
     }
 
+    @Test
     public void testConstants() throws Exception {
         assertEquals(Constant.predicate(true),Constant.TRUE);
 

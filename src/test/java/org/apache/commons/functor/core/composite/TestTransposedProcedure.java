@@ -16,29 +16,20 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestTransposedProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestTransposedProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestTransposedProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +38,10 @@ public class TestTransposedProcedure extends BaseFunctorTest {
         return new TransposedProcedure<Object, Object>(NoOp.INSTANCE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         LeftNotNullCounter counter = new LeftNotNullCounter();
         BinaryProcedure<Object, Object> p = new TransposedProcedure<Object, Object>(counter);
@@ -71,6 +52,7 @@ public class TestTransposedProcedure extends BaseFunctorTest {
         assertEquals(1,counter.count);
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryProcedure<Object, Object> p = new TransposedProcedure<Object, Object>(NoOp.INSTANCE);
         assertEquals(p,p);
@@ -80,10 +62,12 @@ public class TestTransposedProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
     }
 
+    @Test
     public void testTransposeNull() throws Exception {
         assertNull(TransposedProcedure.transpose(null));
     }
 
+    @Test
     public void testTranspose() throws Exception {
         assertNotNull(TransposedProcedure.transpose(NoOp.INSTANCE));
     }

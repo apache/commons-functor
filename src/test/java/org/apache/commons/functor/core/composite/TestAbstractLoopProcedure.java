@@ -16,31 +16,23 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestAbstractLoopProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestAbstractLoopProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestAbstractLoopProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -51,7 +43,8 @@ public class TestAbstractLoopProcedure extends BaseFunctorTest {
 
 	// tests
 	// ------------------------------------------------------------------------
-	public void testEqualsAndHashCodeWithNullArgs() {
+    @Test
+    public void testEqualsAndHashCodeWithNullArgs() {
 		Procedure p = new MockLoopProcedure(null,null);
 		assertNotNull(p.toString());
 		assertFalse(p.equals(null));

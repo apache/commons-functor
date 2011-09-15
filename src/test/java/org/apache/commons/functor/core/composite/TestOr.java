@@ -16,29 +16,20 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestOr extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestOr(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestOr.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +38,10 @@ public class TestOr extends BaseFunctorTest {
         return new Or(Constant.FALSE, Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTrue() throws Exception {
         assertTrue((new Or(Constant.TRUE)).test());
         assertTrue((new Or(Constant.FALSE, Constant.TRUE)).test());
@@ -84,6 +65,7 @@ public class TestOr extends BaseFunctorTest {
         assertTrue(r.test());
     }
 
+    @Test
     public void testFalse() throws Exception {
         assertFalse(new Or().test());
         assertFalse(new Or(Constant.FALSE).test());
@@ -108,6 +90,7 @@ public class TestOr extends BaseFunctorTest {
         assertTrue(!r.test());
     }
 
+    @Test
     public void testDuplicateAdd() throws Exception {
         Predicate p = Constant.TRUE;
         Or q = new Or(p,p);
@@ -118,6 +101,7 @@ public class TestOr extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         Or p = new Or();
         assertEquals(p,p);

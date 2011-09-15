@@ -16,6 +16,10 @@
  */
 package org.apache.commons.functor.core.collection;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,12 +28,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -38,17 +40,6 @@ import org.apache.commons.functor.core.Constant;
 @SuppressWarnings("unchecked")
 public class TestIsEmpty extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsEmpty(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsEmpty.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
@@ -56,20 +47,10 @@ public class TestIsEmpty extends BaseFunctorTest {
         return new IsEmpty();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         assertTrue(IsEmpty.instance().test(Collections.EMPTY_LIST));
         assertTrue(IsEmpty.instance().test(Collections.EMPTY_SET));
@@ -87,6 +68,7 @@ public class TestIsEmpty extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testTestNull() throws Exception {
         try {
             IsEmpty.instance().test(null);
@@ -96,6 +78,7 @@ public class TestIsEmpty extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testTestNonCollection() throws Exception {
         try {
             IsEmpty.instance().test(new Integer(3));
@@ -105,6 +88,7 @@ public class TestIsEmpty extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testTestArray() throws Exception {
         assertTrue(! IsEmpty.instance().test(new int[10]));
         assertTrue(! IsEmpty.instance().test(new Object[10]));
@@ -112,11 +96,13 @@ public class TestIsEmpty extends BaseFunctorTest {
         assertTrue(IsEmpty.instance().test(new Object[0]));
     }
 
+    @Test
     public void testTestString() throws Exception {
         assertTrue(! IsEmpty.instance().test("xyzzy"));
         assertTrue(IsEmpty.instance().test(""));
     }
 
+    @Test
     public void testTestMap() throws Exception {
         Map map = new HashMap();
         assertTrue(IsEmpty.instance().test(map));
@@ -124,6 +110,7 @@ public class TestIsEmpty extends BaseFunctorTest {
         assertTrue(! IsEmpty.instance().test(map));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryPredicate p = new IsEmpty();
         assertEquals(p,p);

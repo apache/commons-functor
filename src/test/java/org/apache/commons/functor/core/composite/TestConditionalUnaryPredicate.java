@@ -16,29 +16,19 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalUnaryPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalUnaryPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalUnaryPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -50,20 +40,10 @@ public class TestConditionalUnaryPredicate extends BaseFunctorTest {
             Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         ConditionalUnaryPredicate<Object> p = new ConditionalUnaryPredicate<Object>(
             Identity.INSTANCE,
@@ -73,6 +53,7 @@ public class TestConditionalUnaryPredicate extends BaseFunctorTest {
         assertTrue(!p.test(Boolean.FALSE));
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalUnaryPredicate<Object> p = new ConditionalUnaryPredicate<Object>(
             Identity.INSTANCE,

@@ -16,29 +16,22 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestRightIdentity extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestRightIdentity(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestRightIdentity.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +40,10 @@ public class TestRightIdentity extends BaseFunctorTest {
         return RightIdentity.FUNCTION;
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryFunction<Object, Object, Object> f = RightIdentity.FUNCTION;
         assertNull(f.evaluate(null,null));
@@ -73,6 +56,7 @@ public class TestRightIdentity extends BaseFunctorTest {
         assertSame(obj,f.evaluate(obj,obj));
     }
 
+    @Test
     public void testTest() throws Exception {
         BinaryPredicate<Object, Boolean> p = RightIdentity.PREDICATE;
         assertTrue(p.test(null,Boolean.TRUE));
@@ -85,6 +69,7 @@ public class TestRightIdentity extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryFunction<Object, Object, Object> f = RightIdentity.FUNCTION;
         assertEquals(f,f);
@@ -95,6 +80,7 @@ public class TestRightIdentity extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of("abcde"));
     }
 
+    @Test
     public void testConstant() throws Exception {
         assertEquals(RightIdentity.function(),RightIdentity.function());
     }

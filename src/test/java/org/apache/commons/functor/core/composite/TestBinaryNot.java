@@ -16,29 +16,21 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBinaryNot extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryNot(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryNot.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +39,10 @@ public class TestBinaryNot extends BaseFunctorTest {
         return new BinaryNot<Object, Object>(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         BinaryPredicate<Object, Object> truePred = new BinaryNot<Object, Object>(Constant.FALSE);
         assertTrue(truePred.test(null,null));
@@ -68,6 +50,7 @@ public class TestBinaryNot extends BaseFunctorTest {
         assertTrue(truePred.test("xyzzy",new Integer(3)));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryNot<Object, Object> p = new BinaryNot<Object, Object>(Constant.TRUE);
         assertEquals(p,p);
@@ -77,10 +60,12 @@ public class TestBinaryNot extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.TRUE);
     }
 
+    @Test
     public void testNotNull() throws Exception {
         assertNull(BinaryNot.not(null));
     }
 
+    @Test
     public void testNotNotNull() throws Exception {
         assertNotNull(BinaryNot.not(Constant.truePredicate()));
     }

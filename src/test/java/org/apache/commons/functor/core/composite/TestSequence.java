@@ -16,15 +16,15 @@
  */
 package org.apache.commons.functor.core.composite;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -33,17 +33,6 @@ import org.apache.commons.functor.core.NoOp;
 @SuppressWarnings("unchecked")
 public class TestSequence extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestSequence(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestSequence.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
@@ -51,25 +40,16 @@ public class TestSequence extends BaseFunctorTest {
         return new Sequence(new NoOp(),new NoOp());
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRunZero() throws Exception {
         Sequence seq = new Sequence();
         seq.run();
     }
 
+    @Test
     public void testRunOne() throws Exception {
         RunCounter counter = new RunCounter();
         Sequence seq = new Sequence(counter);
@@ -78,6 +58,7 @@ public class TestSequence extends BaseFunctorTest {
         assertEquals(1,counter.count);
     }
 
+    @Test
     public void testRunTwo() throws Exception {
         RunCounter[] counter = { new RunCounter(), new RunCounter() };
         Sequence seq = new Sequence(counter[0],counter[1]);
@@ -88,6 +69,7 @@ public class TestSequence extends BaseFunctorTest {
         assertEquals(1,counter[1].count);
     }
 
+    @Test
     public void testThen() throws Exception {
         List list = new ArrayList();
         Sequence seq = new Sequence();
@@ -103,6 +85,7 @@ public class TestSequence extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         Sequence p = new Sequence();
         assertEquals(p,p);

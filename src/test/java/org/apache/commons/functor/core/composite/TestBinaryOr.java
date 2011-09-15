@@ -16,29 +16,19 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBinaryOr extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryOr(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryOr.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +37,10 @@ public class TestBinaryOr extends BaseFunctorTest {
         return new BinaryOr<Object, Object>(Constant.FALSE, Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTrue() throws Exception {
         assertTrue((new BinaryOr<Object, Object>(Constant.TRUE)).test("xyzzy",new Integer(3)));
         assertTrue((new BinaryOr<Object, Object>(Constant.FALSE,Constant.TRUE)).test("xyzzy",new Integer(3)));
@@ -84,6 +64,7 @@ public class TestBinaryOr extends BaseFunctorTest {
         assertTrue(r.test("xyzzy",new Integer(3)));
     }
 
+    @Test
     public void testFalse() throws Exception {
         assertTrue(!(new BinaryOr<Object, Object>()).test("xyzzy",new Integer(3)));
         assertTrue(!(new BinaryOr<Object, Object>(Constant.FALSE)).test("xyzzy",new Integer(3)));
@@ -108,6 +89,7 @@ public class TestBinaryOr extends BaseFunctorTest {
         assertTrue(!r.test("xyzzy",new Integer(3)));
     }
 
+    @Test
     public void testDuplicateAdd() throws Exception {
         BinaryPredicate<Object, Object> p = Constant.TRUE;
         BinaryOr<Object, Object> q = new BinaryOr<Object, Object>(p,p);
@@ -118,6 +100,7 @@ public class TestBinaryOr extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryOr<Object, Object> p = new BinaryOr<Object, Object>();
         assertEquals(p,p);

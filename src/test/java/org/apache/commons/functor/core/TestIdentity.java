@@ -16,29 +16,22 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIdentity extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIdentity(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIdentity.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +40,10 @@ public class TestIdentity extends BaseFunctorTest {
         return Identity.INSTANCE;
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         UnaryFunction<Object, Object> f = new Identity<Object>();
         assertNull(f.evaluate(null));
@@ -70,6 +53,7 @@ public class TestIdentity extends BaseFunctorTest {
         assertSame(obj,f.evaluate(obj));
     }
 
+    @Test
     public void testTest() throws Exception {
         UnaryPredicate<Object> p = new Identity<Object>();
         assertTrue(p.test(Boolean.TRUE));
@@ -87,6 +71,8 @@ public class TestIdentity extends BaseFunctorTest {
             // expected
         }
     }
+
+    @Test
     public void testEquals() throws Exception {
         UnaryFunction<Object, Object> f = new Identity<Object>();
         assertEquals(f,f);
@@ -95,6 +81,7 @@ public class TestIdentity extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of("abcde"));
     }
 
+    @Test
     public void testConstant() throws Exception {
         assertEquals(Identity.instance(),Identity.instance());
     }

@@ -16,45 +16,36 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertNotNull;
 
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.NoOp;
 import org.apache.commons.functor.core.comparator.IsGreaterThan;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-public class TestComposite extends TestCase {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestComposite(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestComposite.class);
-    }
+public class TestComposite {
 
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testHasNoArgConstructor() throws Exception {
         assertNotNull(new Composite());
     }
 
+    @Test
     public void testUnaryMethods() {
         assertNotNull(Composite.procedure(NoOp.instance(),Identity.instance()));
         assertNotNull(Composite.predicate(Identity.instance(),Identity.instance()));
         assertNotNull(Composite.function(Identity.instance(),Identity.instance()));
     }
 
+    @Test
     public void testBinaryMethods() {
         assertNotNull(Composite.function(LeftIdentity.function(),LeftIdentity.function(),LeftIdentity.function()));
         assertNotNull(Composite.predicate(IsGreaterThan.instance(),new Identity<Comparable<?>>(),new Identity<Comparable<?>>()));

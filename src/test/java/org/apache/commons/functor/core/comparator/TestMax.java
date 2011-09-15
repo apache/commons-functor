@@ -16,29 +16,18 @@
  */
 package org.apache.commons.functor.core.comparator;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Collections;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestMax extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestMax(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestMax.class);
-    }
 
     // Framework
     // ------------------------------------------------------------------------
@@ -55,6 +44,7 @@ public class TestMax extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() {
         Max<Integer> f = Max.instance();
         assertEquals(ONE,f.evaluate(ONE,ONE));
@@ -65,6 +55,7 @@ public class TestMax extends BaseFunctorTest {
         assertEquals(MINUS_TWO,f.evaluate(MIN,MINUS_TWO));
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEquals() {
         Max<Comparable<?>> f = Max.instance();

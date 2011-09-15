@@ -16,29 +16,18 @@
  */
 package org.apache.commons.functor.core.comparator;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Collections;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestComparatorFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestComparatorFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestComparatorFunction.class);
-    }
 
     // Framework
     // ------------------------------------------------------------------------
@@ -50,6 +39,7 @@ public class TestComparatorFunction extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() {
         ComparatorFunction<Integer> f = ComparatorFunction.<Integer>instance();
 
@@ -84,6 +74,7 @@ public class TestComparatorFunction extends BaseFunctorTest {
         assertTrue(((Integer)(f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(Integer.MIN_VALUE)))).intValue() == 0);
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEquals() {
         ComparatorFunction<Comparable<?>> f = ComparatorFunction.instance();

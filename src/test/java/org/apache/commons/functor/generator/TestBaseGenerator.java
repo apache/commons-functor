@@ -16,47 +16,34 @@
  */
 package org.apache.commons.functor.generator;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
-//import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
-//import org.apache.commons.functor.adapter.LeftBoundPredicate;
-//import org.apache.commons.functor.core.IsEqual;
 import org.apache.commons.functor.generator.util.CollectionTransformer;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Tests the Base Generator class.
  * @author Jason Horman (jason@jhorman.org)
  */
 @SuppressWarnings("unchecked")
-public class TestBaseGenerator extends TestCase {
+public class TestBaseGenerator {
 
     private Generator simpleGenerator = null;
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBaseGenerator(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBaseGenerator.class);
-    }
 
     // Lifecycle
     // ------------------------------------------------------------------------
 
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
-
         simpleGenerator = new BaseGenerator() {
             public void run(UnaryProcedure proc) {
                 for (int i=0;i<5;i++) {
@@ -85,8 +72,8 @@ public class TestBaseGenerator extends TestCase {
         }
     }
 
+    @After
     public void tearDown() throws Exception {
-        super.tearDown();
         simpleGenerator = null;
         list = null;
         evens = null;
@@ -97,6 +84,7 @@ public class TestBaseGenerator extends TestCase {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testSimpleGenerator() {
         final StringBuffer result = new StringBuffer();
         simpleGenerator.run(new UnaryProcedure() {
@@ -108,6 +96,7 @@ public class TestBaseGenerator extends TestCase {
         assertEquals("01234", result.toString());
     }
 
+    @Test
     public void testStop() {
         final StringBuffer result = new StringBuffer();
         simpleGenerator.run(new UnaryProcedure() {
@@ -123,6 +112,7 @@ public class TestBaseGenerator extends TestCase {
         assertEquals("012", result.toString());
     }
 
+    @Test
     public void testWrappingGenerator() {
         final StringBuffer result = new StringBuffer();
         final Generator gen = new BaseGenerator(simpleGenerator) {
@@ -163,6 +153,7 @@ public class TestBaseGenerator extends TestCase {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTo() {
         Collection col = (Collection) simpleGenerator.to(new CollectionTransformer());
         assertEquals("[0, 1, 2, 3, 4]", col.toString());

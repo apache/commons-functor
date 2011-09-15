@@ -16,9 +16,7 @@
  */
 package org.apache.commons.functor.example.kata.one;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.adapter.BinaryFunctionUnaryFunction;
@@ -27,6 +25,7 @@ import org.apache.commons.functor.core.comparator.IsGreaterThan;
 import org.apache.commons.functor.core.composite.Composite;
 import org.apache.commons.functor.core.composite.ConditionalUnaryFunction;
 import org.apache.commons.functor.core.composite.UnaryCompositeBinaryFunction;
+import org.junit.Test;
 
 /**
  * Dave Thomas's Kata One asks us to think about how one might
@@ -51,22 +50,7 @@ import org.apache.commons.functor.core.composite.UnaryCompositeBinaryFunction;
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-public class SupermarketPricingExample extends TestCase {
-    public SupermarketPricingExample(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(SupermarketPricingExample.class);
-    }
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
+public class SupermarketPricingExample {
 
     // tests
     //----------------------------------------------------------
@@ -84,6 +68,7 @@ public class SupermarketPricingExample extends TestCase {
      * special Product constructor to wrap up create the
      * functors for us.
      */
+    @Test
     public void testConstantPricePerUnit() throws Exception {
         {
             Product beans = new Product(
@@ -131,6 +116,7 @@ public class SupermarketPricingExample extends TestCase {
      *
      * We can implement either:
      */
+    @Test
     public void testFourForADollar_A() throws Exception {
         Product banana = new Product(
             "Banana",
@@ -153,6 +139,7 @@ public class SupermarketPricingExample extends TestCase {
     }
 
 
+    @Test
     public void testFourForADollar_B() throws Exception {
         Product banana = new Product(
             "Banana",
@@ -189,6 +176,7 @@ public class SupermarketPricingExample extends TestCase {
      *
      * For example...
      */
+    @Test
     public void testBuyTwoGetOneFree_1() throws Exception {
         Product apple = new Product(
             "Apple",
@@ -248,6 +236,7 @@ public class SupermarketPricingExample extends TestCase {
        private int n, m, costPerUnit;
    }
 
+    @Test
     public void testBuyTwoGetOneFree_2() throws Exception {
         Product apple = new Product(
             "Apple",
@@ -267,7 +256,8 @@ public class SupermarketPricingExample extends TestCase {
         assertEquals(new Money(7*40),apple.getPrice(10));
     }
 
-   public void testBuyThreeGetTwoFree() throws Exception {
+    @Test
+    public void testBuyThreeGetTwoFree() throws Exception {
         Product apple = new Product(
             "Apple",
             "SKU-0003",
@@ -287,6 +277,7 @@ public class SupermarketPricingExample extends TestCase {
         assertEquals(new Money(7*40),apple.getPrice(11));
     }
 
+    @Test
     public void testBuyTwoGetFiveFree() throws Exception {
          Product apple = new Product(
              "Apple",

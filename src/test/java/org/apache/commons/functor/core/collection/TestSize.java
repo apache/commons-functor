@@ -16,18 +16,21 @@
  */
 package org.apache.commons.functor.core.collection;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -36,17 +39,6 @@ import org.apache.commons.functor.core.Constant;
 @SuppressWarnings("unchecked")
 public class TestSize extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestSize(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestSize.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
@@ -54,20 +46,10 @@ public class TestSize extends BaseFunctorTest {
         return new Size();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         assertEquals(new Integer(0),Size.instance().evaluate(Collections.EMPTY_LIST));
         assertEquals(new Integer(0),Size.instance().evaluate(Collections.EMPTY_SET));
@@ -91,6 +73,7 @@ public class TestSize extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEvaluateNull() throws Exception {
         try {
             Size.instance().evaluate(null);
@@ -100,6 +83,7 @@ public class TestSize extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEvaluateNonCollection() throws Exception {
         try {
             Size.instance().evaluate(new Integer(3));
@@ -109,15 +93,18 @@ public class TestSize extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEvaluateArray() throws Exception {
         assertEquals(new Integer(10),Size.instance().evaluate(new int[10]));
         assertEquals(new Integer(7),Size.instance().evaluate(new String[7]));
     }
 
+    @Test
     public void testEvaluateString() throws Exception {
         assertEquals(new Integer("xyzzy".length()),Size.instance().evaluate("xyzzy"));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryFunction f = new Size();
         assertEquals(f,f);

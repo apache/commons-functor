@@ -16,29 +16,20 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestPredicateFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestPredicateFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestPredicateFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,30 +38,22 @@ public class TestPredicateFunction extends BaseFunctorTest {
         return new PredicateFunction(Constant.of(true));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTestWhenTrue() throws Exception {
         Function<Boolean> f = new PredicateFunction(Constant.TRUE);
         assertEquals(Boolean.TRUE,f.evaluate());
     }
 
+    @Test
     public void testTestWhenFalse() throws Exception {
         Function<Boolean> f = new PredicateFunction(Constant.FALSE);
         assertEquals(Boolean.FALSE,f.evaluate());
     }
 
+    @Test
     public void testEquals() throws Exception {
         Function<Boolean> f = new PredicateFunction(Constant.TRUE);
         assertEquals(f,f);
@@ -79,10 +62,12 @@ public class TestPredicateFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new PredicateFunction(Constant.FALSE));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(FunctionPredicate.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(PredicateFunction.adapt(Constant.TRUE));
     }

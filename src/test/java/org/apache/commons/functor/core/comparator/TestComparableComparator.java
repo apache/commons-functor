@@ -16,41 +16,22 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-public class TestComparableComparator extends TestCase {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestComparableComparator(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestComparableComparator.class);
-    }
-
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
+public class TestComparableComparator {
 
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testCompareIntegers() {
         assertTrue(ComparableComparator.instance().compare(new Integer(Integer.MIN_VALUE),new Integer(Integer.MIN_VALUE)) == 0);
         assertTrue(ComparableComparator.instance().compare(new Integer(-1),new Integer(-1)) == 0);
@@ -59,6 +40,7 @@ public class TestComparableComparator extends TestCase {
         assertTrue(ComparableComparator.instance().compare(new Integer(1),new Integer(1)) == 0);
     }
 
+    @Test
     public void testCompareIncomparable() {
         try {
             ComparableComparator.instance().compare(new Object(),new Integer(2));
@@ -68,6 +50,7 @@ public class TestComparableComparator extends TestCase {
         }
     }
 
+    @Test
     public void testCompareNull() {
         try {
             ComparableComparator.instance().compare(null,new Integer(2));
@@ -77,6 +60,7 @@ public class TestComparableComparator extends TestCase {
         }
     }
 
+    @Test
     public void testEqualsAndHashCode() {
         assertEquals(new ComparableComparator(),new ComparableComparator());
         assertEquals(new ComparableComparator().hashCode(),new ComparableComparator().hashCode());

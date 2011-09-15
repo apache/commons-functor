@@ -16,37 +16,23 @@
  */
 package org.apache.commons.functor;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-public abstract class BaseFunctorTest extends TestCase {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public BaseFunctorTest(String testName) {
-        super(testName);
-    }
-
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
+public abstract class BaseFunctorTest {
 
     // Framework
     // ------------------------------------------------------------------------
@@ -56,6 +42,7 @@ public abstract class BaseFunctorTest extends TestCase {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public final void testObjectEquals() throws Exception {
         Object obj = makeFunctor();
         assertEquals("equals must be reflexive",obj,obj);
@@ -71,6 +58,7 @@ public abstract class BaseFunctorTest extends TestCase {
         }
     }
 
+    @Test
     public final void testSerializeDeserializeThenCompare() throws Exception {
         Object obj = makeFunctor();
         if (obj instanceof Serializable) {
@@ -87,6 +75,7 @@ public abstract class BaseFunctorTest extends TestCase {
         }
     }
 
+    @Test
     public void testToStringIsOverridden() throws Exception {
         Object obj = makeFunctor();
         assertNotNull("toString should never return null",obj.toString());
@@ -97,6 +86,7 @@ public abstract class BaseFunctorTest extends TestCase {
 
     // protected utils
     // ------------------------------------------------------------------------
+
     public static void assertObjectsAreEqual(Object a, Object b) {
         assertEquals(a,b);
         assertEquals(b,a);

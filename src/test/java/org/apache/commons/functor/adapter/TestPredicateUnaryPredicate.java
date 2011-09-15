@@ -16,29 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestPredicateUnaryPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestPredicateUnaryPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestPredicateUnaryPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,25 +39,16 @@ public class TestPredicateUnaryPredicate extends BaseFunctorTest {
         return new PredicateUnaryPredicate<Object>(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         UnaryPredicate<Object> p = new PredicateUnaryPredicate<Object>(Constant.TRUE);
         assertTrue(p.test(null));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryPredicate<Object> p = new PredicateUnaryPredicate<Object>(Constant.TRUE);
         assertEquals(p,p);
@@ -75,10 +58,12 @@ public class TestPredicateUnaryPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.FALSE);
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(PredicateUnaryPredicate.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(PredicateUnaryPredicate.adapt(Constant.TRUE));
     }

@@ -16,27 +16,17 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIsNotEquivalent extends BaseComparisonPredicateTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsNotEquivalent(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsNotEquivalent.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -45,20 +35,10 @@ public class TestIsNotEquivalent extends BaseComparisonPredicateTest {
         return IsNotEquivalent.instance();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         IsNotEquivalent<Integer> p = new IsNotEquivalent<Integer>();
         assertTrue(p.test(new Integer(2),new Integer(4)));
@@ -68,11 +48,13 @@ public class TestIsNotEquivalent extends BaseComparisonPredicateTest {
         assertTrue(p.test(new Integer(6),new Integer(4)));
     }
 
+    @Test
     public void testInstance() {
         assertTrue(! IsNotEquivalent.instance(new Integer(7)).test(new Integer(7)));
         assertTrue(IsNotEquivalent.instance(new Integer(7)).test(new Integer(8)));
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEquals() throws Exception {
         IsNotEquivalent<Comparable<?>> p = new IsNotEquivalent<Comparable<?>>();

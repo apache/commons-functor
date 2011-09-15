@@ -16,30 +16,20 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestNoOp extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestNoOp(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestNoOp.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,20 +38,10 @@ public class TestNoOp extends BaseFunctorTest {
         return new NoOp();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         NoOp p = new NoOp();
         p.run();
@@ -73,6 +53,7 @@ public class TestNoOp extends BaseFunctorTest {
         p.run("foo","bar");
     }
 
+    @Test
     public void testEquals() throws Exception {
         NoOp p = new NoOp();
         assertEquals(p,p);
@@ -83,6 +64,7 @@ public class TestNoOp extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,new BinaryProcedure<Object, Object>() { public void run(Object a, Object b) { } });
     }
 
+    @Test
     public void testConstant() throws Exception {
         assertEquals(NoOp.instance(),NoOp.instance());
         assertSame(NoOp.instance(),NoOp.instance());

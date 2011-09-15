@@ -16,31 +16,22 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestRightBoundFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestRightBoundFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestRightBoundFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,25 +40,16 @@ public class TestRightBoundFunction extends BaseFunctorTest {
         return new RightBoundFunction<Object, Object>(LeftIdentity.FUNCTION,"xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         UnaryFunction<String, String> f = RightBoundFunction.bind(LeftIdentity.<String, String>function(),"foo");
         assertEquals("xyzzy",f.evaluate("xyzzy"));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryFunction<Object, Object> f = RightBoundFunction.bind(LeftIdentity.FUNCTION,"xyzzy");
         assertEquals(f,f);
@@ -77,10 +59,12 @@ public class TestRightBoundFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new RightBoundFunction<Object, Object>(LeftIdentity.FUNCTION,"bar"));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(RightBoundFunction.bind(null,"xyzzy"));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(RightBoundFunction.bind(LeftIdentity.FUNCTION,"xyzzy"));
         assertNotNull(RightBoundFunction.bind(LeftIdentity.FUNCTION,null));

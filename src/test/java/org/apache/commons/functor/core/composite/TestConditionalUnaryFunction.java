@@ -16,29 +16,18 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalUnaryFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalUnaryFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalUnaryFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -50,20 +39,10 @@ public class TestConditionalUnaryFunction extends BaseFunctorTest {
             Constant.of("right"));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         ConditionalUnaryFunction<Object, Object> f = new ConditionalUnaryFunction<Object, Object>(
             Identity.INSTANCE,
@@ -73,6 +52,7 @@ public class TestConditionalUnaryFunction extends BaseFunctorTest {
         assertEquals("right",f.evaluate(Boolean.FALSE));
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalUnaryFunction<Object, Object> f = new ConditionalUnaryFunction<Object, Object>(
             Identity.INSTANCE,

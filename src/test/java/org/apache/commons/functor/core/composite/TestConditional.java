@@ -16,9 +16,7 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertNotNull;
 
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
@@ -26,37 +24,30 @@ import org.apache.commons.functor.core.IsNull;
 import org.apache.commons.functor.core.NoOp;
 import org.apache.commons.functor.core.comparator.IsGreaterThan;
 import org.apache.commons.functor.core.comparator.Max;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-public class TestConditional extends TestCase {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditional(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditional.class);
-    }
+public class TestConditional {
 
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testHasNoArgConstructor() throws Exception {
         assertNotNull(new Conditional());
     }
 
+    @Test
     public void testUnaryMethods() {
         assertNotNull(Conditional.procedure(IsNull.instance(),NoOp.instance(),NoOp.instance()));
         assertNotNull(Conditional.function(IsNull.instance(),Identity.instance(),Identity.instance()));
         assertNotNull(Conditional.predicate(IsNull.instance(),Constant.truePredicate(),Constant.truePredicate()));
     }
 
+    @Test
     public void testBinaryMethods() {
         assertNotNull(Conditional.procedure(IsGreaterThan.instance(),NoOp.instance(),NoOp.instance()));
         assertNotNull(Conditional.function(IsGreaterThan.instance(),Max.instance(),Max.instance()));

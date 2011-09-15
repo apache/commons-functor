@@ -16,29 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestFunctionPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestFunctionPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestFunctionPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,30 +39,22 @@ public class TestFunctionPredicate extends BaseFunctorTest {
         return new FunctionPredicate(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTestWhenTrue() throws Exception {
         Predicate p = new FunctionPredicate(Constant.TRUE);
         assertTrue(p.test());
     }
 
+    @Test
     public void testTestWhenFalse() throws Exception {
         Predicate p = new FunctionPredicate(Constant.FALSE);
         assertTrue(!p.test());
     }
 
+    @Test
     public void testEquals() throws Exception {
         Predicate p = new FunctionPredicate(Constant.TRUE);
         assertEquals(p,p);
@@ -79,10 +63,12 @@ public class TestFunctionPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,new FunctionPredicate(Constant.FALSE));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(FunctionPredicate.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(FunctionPredicate.adapt(Constant.TRUE));
     }

@@ -16,27 +16,17 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIsEquivalent extends BaseComparisonPredicateTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsEquivalent(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsEquivalent.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -45,20 +35,10 @@ public class TestIsEquivalent extends BaseComparisonPredicateTest {
         return IsEquivalent.INSTANCE;
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         IsEquivalent<Integer> p = IsEquivalent.<Integer>instance();
         assertTrue(!p.test(new Integer(2),new Integer(4)));
@@ -68,11 +48,13 @@ public class TestIsEquivalent extends BaseComparisonPredicateTest {
         assertTrue(!p.test(new Integer(6),new Integer(4)));
     }
 
+    @Test
     public void testInstance() {
         assertTrue(IsEquivalent.instance("Xyzzy").test("Xyzzy"));
         assertTrue(!IsEquivalent.instance("Xyzzy").test("z"));
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEquals() throws Exception {
         IsEquivalent<Comparable<?>> p = IsEquivalent.INSTANCE;

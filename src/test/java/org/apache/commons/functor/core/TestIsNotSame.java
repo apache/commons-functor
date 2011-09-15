@@ -16,28 +16,21 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
 public class TestIsNotSame extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsNotSame(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsNotSame.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -46,20 +39,10 @@ public class TestIsNotSame extends BaseFunctorTest {
         return new IsNotSame<Object, Object>();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         IsNotSame<Object, Object> p = new IsNotSame<Object, Object>();
         assertFalse("For symmetry, two nulls should be same", p.test(null, null));
@@ -76,6 +59,7 @@ public class TestIsNotSame extends BaseFunctorTest {
         assertTrue(p.test(new Integer(3), "3"));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Object, Object> f = new IsNotSame<Object, Object>();
         assertEquals(f, f);
@@ -85,6 +69,7 @@ public class TestIsNotSame extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, Constant.truePredicate());
     }
 
+    @Test
     public void testConstant() throws Exception {
         assertEquals(IsNotSame.instance(), IsNotSame.instance());
         assertNotSame(IsNotSame.instance(), IsNotSame.instance());

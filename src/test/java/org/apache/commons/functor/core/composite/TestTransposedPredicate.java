@@ -16,31 +16,22 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.adapter.BinaryFunctionBinaryPredicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestTransposedPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestTransposedPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestTransposedPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,20 +40,10 @@ public class TestTransposedPredicate extends BaseFunctorTest {
         return new TransposedPredicate<Object, Object>(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryPredicate<Boolean, Boolean> p = new TransposedPredicate<Boolean, Boolean>(BinaryFunctionBinaryPredicate
                 .adapt(LeftIdentity.<Boolean, Boolean> function()));
@@ -70,6 +51,7 @@ public class TestTransposedPredicate extends BaseFunctorTest {
         assertEquals(false,p.test(Boolean.TRUE,Boolean.FALSE));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Object, Object> p = new TransposedPredicate<Object, Object>(Constant.TRUE);
         assertEquals(p,p);
@@ -79,10 +61,12 @@ public class TestTransposedPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.TRUE);
     }
 
+    @Test
     public void testTransposeNull() throws Exception {
         assertNull(TransposedPredicate.transpose(null));
     }
 
+    @Test
     public void testTranspose() throws Exception {
         assertNotNull(TransposedPredicate.transpose(Constant.TRUE));
     }

@@ -16,6 +16,10 @@
  */
 package org.apache.commons.functor.example;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,10 +27,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
@@ -41,6 +41,7 @@ import org.apache.commons.functor.core.IsInstance;
 import org.apache.commons.functor.core.IsNull;
 import org.apache.commons.functor.core.RightIdentity;
 import org.apache.commons.functor.core.composite.Conditional;
+import org.junit.Test;
 
 /*
  * ----------------------------------------------------------------------------
@@ -61,15 +62,7 @@ import org.apache.commons.functor.core.composite.Conditional;
  * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
-public class FlexiMapExample extends TestCase {
-
-    public FlexiMapExample(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(FlexiMapExample.class);
-    }
+public class FlexiMapExample {
 
     /*
      * ----------------------------------------------------------------------------
@@ -89,6 +82,7 @@ public class FlexiMapExample extends TestCase {
     /*
      * The basic Map interface lets one associate keys and values:
      */
+    @Test
     public void testBasicMap() {
         /* (We'll define these make*Map functions below.) */
         Map map = makeBasicMap();
@@ -102,6 +96,7 @@ public class FlexiMapExample extends TestCase {
      * If there is no value associated with a key,
      * the basic Map will return null for that key:
      */
+    @Test
     public void testBasicMapReturnsNullForMissingKey() {
         Map map = makeBasicMap();
         assertNull( map.get("key") );
@@ -111,6 +106,7 @@ public class FlexiMapExample extends TestCase {
      * One can also explicitly store a null value for
      * some key:
      */
+    @Test
     public void testBasicMapAllowsNull() {
         Map map = makeBasicMap();
         Object key = "key";
@@ -123,6 +119,7 @@ public class FlexiMapExample extends TestCase {
      * The basic Map deals with Objects--it can store keys
      * and values of multiple or differing types:
      */
+    @Test
     public void testBasicMapAllowsMultipleTypes() {
         Map map = makeBasicMap();
         map.put("key-1","value-1");
@@ -141,6 +138,7 @@ public class FlexiMapExample extends TestCase {
      * key will overwrite the first value--the basic Map only
      * stores the most recently put value for each key:
      */
+    @Test
     public void testBasicMapStoresOnlyOneValuePerKey() {
         Map map = makeBasicMap();
 
@@ -158,6 +156,7 @@ public class FlexiMapExample extends TestCase {
      * One common specialization is to forbid null values,
      * like our old friend Hashtable:
      */
+    @Test
     public void testForbidNull() {
         Map map = makeNullForbiddenMap();
 
@@ -178,6 +177,7 @@ public class FlexiMapExample extends TestCase {
      * contains a counter--when there's no count yet, we'll
      * want to treat it as zero.):
      */
+    @Test
     public void testNullDefaultsToZero() {
         Map map = makeDefaultValueForNullMap(new Integer(0));
         /*
@@ -195,7 +195,8 @@ public class FlexiMapExample extends TestCase {
      * Another common specialization is to constrain the type of values
      * that may be stored in the Map:
      */
-	public void testIntegerValuesOnly() {
+    @Test
+    public void testIntegerValuesOnly() {
 		Map map = makeTypeConstrainedMap(Integer.class);
 		map.put("key", new Integer(2));
 		assertEquals( new Integer(2), map.get("key") );
@@ -216,7 +217,8 @@ public class FlexiMapExample extends TestCase {
      * with a key adds to that collection, rather than overwriting the
      * previous value:
      */
-	public void testMultiMap() {
+    @Test
+    public void testMultiMap() {
 		Map map = makeMultiMap();
 
 		map.put("key", "value 1");
@@ -257,7 +259,8 @@ public class FlexiMapExample extends TestCase {
      * (Such a Map might be used by the Commons Collection's
      * ExtendedProperties type.):
      */
-	public void testStringConcatMap() {
+    @Test
+    public void testStringConcatMap() {
 		Map map = makeStringConcatMap();
 		map.put("key", "value 1");
 		assertEquals("value 1",map.get("key"));

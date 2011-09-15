@@ -16,9 +16,9 @@
  */
 package org.apache.commons.functor.example.kata.four;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
  * See http://pragprog.com/pragdave/Practices/Kata/KataFour.rdoc,v
@@ -27,15 +27,9 @@ import junit.framework.TestSuite;
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-public class TestSoccer extends TestCase {
-    public TestSoccer(String testName) {
-        super(testName);
-    }
+public class TestSoccer {
 
-    public static Test suite() {
-        return new TestSuite(TestSoccer.class);
-    }
-
+    @Test
     public void testProcess() {
     	// for our soccer example, we want to select the second column of the
     	// line with the minimal difference between the seventh and ninth columns.

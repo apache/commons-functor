@@ -16,31 +16,21 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryCompositeBinaryFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryCompositeBinaryFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -52,20 +42,10 @@ public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
             RightIdentity.FUNCTION);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEvaluateRaw() throws Exception {
         BinaryFunction f = new BinaryCompositeBinaryFunction(
@@ -77,6 +57,7 @@ public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
         assertEquals("right",f.evaluate(null,"right"));
     }
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryFunction<String, String, String> f = new BinaryCompositeBinaryFunction<String, String, String>(
                 RightIdentity.<String, String>function(),
@@ -87,6 +68,7 @@ public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
         assertEquals("right",f.evaluate(null,"right"));
     }
     
+    @Test
     public void testEvaluateObject() throws Exception {
         BinaryFunction<Object, Object, Object> f = new BinaryCompositeBinaryFunction<Object, Object, Object>(
                 RightIdentity.FUNCTION,
@@ -97,6 +79,7 @@ public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
         assertEquals("right",f.evaluate(null,"right"));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryFunction<Object, Object, Object> f = new BinaryCompositeBinaryFunction<Object, Object, Object>(
             LeftIdentity.FUNCTION,

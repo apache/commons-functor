@@ -16,28 +16,18 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,20 +39,10 @@ public class TestConditionalPredicate extends BaseFunctorTest {
             Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         {
             ConditionalPredicate p = new ConditionalPredicate(
@@ -80,6 +60,7 @@ public class TestConditionalPredicate extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalPredicate p = new ConditionalPredicate(
             Constant.TRUE,

@@ -16,31 +16,22 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
 public class TestFullyBoundFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestFullyBoundFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestFullyBoundFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,25 +40,16 @@ public class TestFullyBoundFunction extends BaseFunctorTest {
         return new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         Function<Object> f = new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "foo");
         assertEquals("foo", f.evaluate());
     }
 
+    @Test
     public void testEquals() throws Exception {
         Function<Object> f = new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "xyzzy");
         assertEquals(f, f);
@@ -77,10 +59,12 @@ public class TestFullyBoundFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "bar"));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(FullyBoundFunction.bind(null, null, "xyzzy"));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(FullyBoundFunction.bind(RightIdentity.FUNCTION, "xyzzy", "foobar"));
         assertNotNull(FullyBoundFunction.bind(RightIdentity.FUNCTION, null, null));

@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestProcedureUnaryProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestProcedureUnaryProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestProcedureUnaryProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,25 +39,16 @@ public class TestProcedureUnaryProcedure extends BaseFunctorTest {
         return new ProcedureUnaryProcedure<Object>(NoOp.INSTANCE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         UnaryProcedure<Object> p = new ProcedureUnaryProcedure<Object>(new FunctionProcedure(Constant.of(null)));
         p.run(Boolean.TRUE);
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryProcedure<Object> p = new ProcedureUnaryProcedure<Object>(NoOp.INSTANCE);
         assertEquals(p,p);
@@ -74,10 +56,12 @@ public class TestProcedureUnaryProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(ProcedureUnaryProcedure.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(ProcedureUnaryProcedure.adapt(NoOp.INSTANCE));
     }

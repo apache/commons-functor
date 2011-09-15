@@ -16,6 +16,13 @@
  */
 package org.apache.commons.functor;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,10 +30,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.adapter.LeftBoundPredicate;
 import org.apache.commons.functor.core.Identity;
@@ -51,30 +54,22 @@ import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.apache.commons.functor.generator.TransformedGenerator;
 import org.apache.commons.functor.generator.util.IntegerRange;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
-public class TestAlgorithms extends TestCase {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestAlgorithms(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestAlgorithms.class);
-    }
+public class TestAlgorithms {
 
     // Lifecycle
     // ------------------------------------------------------------------------
 
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         list = new ArrayList();
         evens = new ArrayList();
         doubled = new ArrayList();
@@ -92,8 +87,8 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @After
     public void tearDown() throws Exception {
-        super.tearDown();
         list = null;
         evens = null;
         listWithDuplicates = null;
@@ -103,6 +98,7 @@ public class TestAlgorithms extends TestCase {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testDetect() {
         assertEquals(new Integer(3),FindWithinGenerator.instance().evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()),equalsThree));
         try {
@@ -113,51 +109,60 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @Test
     public void testDetectIfNone() {
         assertEquals(new Integer(3),new FindWithinGenerator("Xyzzy").evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()),equalsThree));
         assertEquals("Xyzzy",new FindWithinGenerator("Xyzzy").evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()),equalsTwentyThree));
     }
 
+    @Test
     public void testRun() {
         Summer summer = new Summer();
         IteratorToGeneratorAdapter.adapt(list.iterator()).run(summer);
         assertEquals(sum,summer.sum);
     }
 
+    @Test
     public void testSelect1() {
         Collection result = new FilteredGenerator(IteratorToGeneratorAdapter.adapt(list.iterator()),isEven).toCollection();
         assertNotNull(result);
         assertEquals(evens,result);
     }
 
+    @Test
     public void testSelect2() {
         ArrayList result = new ArrayList();
         assertSame(result,new FilteredGenerator(IteratorToGeneratorAdapter.adapt(list.iterator()),isEven).to(result));
         assertEquals(evens,result);
     }
 
+    @Test
     public void testReject1() {
         Collection result = new FilteredGenerator(IteratorToGeneratorAdapter.adapt(list.iterator()),new UnaryNot(isOdd)).toCollection();
         assertNotNull(result);
         assertEquals(evens,result);
     }
 
+    @Test
     public void testReject2() {
         ArrayList result = new ArrayList();
         assertSame(result,new FilteredGenerator(IteratorToGeneratorAdapter.adapt(list.iterator()),new UnaryNot(isOdd)).to(result));
         assertEquals(evens,result);
     }
 
+    @Test
     public void testRetain() {
         RetainMatching.instance().run(list.iterator(),isEven);
         assertEquals(evens,list);
     }
 
+    @Test
     public void testRemove() {
         RemoveMatching.instance().run(list.iterator(),isOdd);
         assertEquals(evens,list);
     }
 
+    @Test
     public void testTransform() {
         InPlaceTransform.instance().run(
             list.listIterator(),
@@ -170,6 +175,7 @@ public class TestAlgorithms extends TestCase {
         assertEquals(doubled,list);
     }
 
+    @Test
     public void testApplyToGenerator() {
         Generator gen = new IntegerRange(1,5);
         Summer summer = new Summer();
@@ -179,6 +185,7 @@ public class TestAlgorithms extends TestCase {
         assertEquals(2*(1+2+3+4),summer.sum);
     }
 
+    @Test
     public void testApply() {
         Collection result = new TransformedGenerator(IteratorToGeneratorAdapter.adapt(list.iterator()), new Doubler())
                 .toCollection();
@@ -186,6 +193,7 @@ public class TestAlgorithms extends TestCase {
         assertEquals(doubled,result);
     }
 
+    @Test
     public void testApply2() {
         Set set = new HashSet();
         assertSame(set, new TransformedGenerator(IteratorToGeneratorAdapter.adapt(list.iterator()), Identity.instance())
@@ -196,6 +204,7 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @Test
     public void testApply3() {
         Set set = new HashSet();
         assertSame(set, new TransformedGenerator(IteratorToGeneratorAdapter.adapt(listWithDuplicates.iterator()),
@@ -206,11 +215,13 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @Test
     public void testContains() {
         assertTrue(GeneratorContains.instance().test(IteratorToGeneratorAdapter.adapt(list.iterator()),equalsThree));
         assertFalse(GeneratorContains.instance().test(IteratorToGeneratorAdapter.adapt(list.iterator()),equalsTwentyThree));
     }
 
+    @Test
     public void testFoldLeft() {
         FoldLeft foldLeft = new FoldLeft(new BinaryFunction() {
             public Object evaluate(Object a, Object b) {
@@ -221,6 +232,7 @@ public class TestAlgorithms extends TestCase {
         assertEquals(new Integer(sum), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()), new Integer(0)));
     }
 
+    @Test
     public void testFoldRight() {
         FoldRight foldRight = new FoldRight(new BinaryFunction() {
             public Object evaluate(Object left, Object right) {
@@ -232,6 +244,7 @@ public class TestAlgorithms extends TestCase {
         assertEquals("0123456789x", foldRight.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()), "x").toString());
     }
 
+    @Test
     public void testDoUntil() {
         for (int i=0;i<3;i++){
             Counter counter = new Counter();
@@ -240,6 +253,7 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @Test
     public void testDoWhile() {
         for (int i=0;i<3;i++){
             Counter counter = new Counter();
@@ -248,6 +262,7 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @Test
     public void testUntilDo() {
         for (int i=0;i<3;i++){
             Counter counter = new Counter();
@@ -256,6 +271,7 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @Test
     public void testWhileDo() {
         for (int i=0;i<3;i++){
             Counter counter = new Counter();
@@ -264,6 +280,7 @@ public class TestAlgorithms extends TestCase {
         }
     }
 
+    @Test
     public void testRecurse() {
         assertEquals(new Integer(5), new RecursiveEvaluation(new RecFunc(0, false)).evaluate());
 

@@ -16,28 +16,20 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestCompositeUnaryPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestCompositeUnaryPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestCompositeUnaryPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -46,26 +38,17 @@ public class TestCompositeUnaryPredicate extends BaseFunctorTest {
         return Composite.predicate(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         assertTrue(Composite.predicate(Constant.TRUE).test(null));
         assertTrue(Composite.predicate(Constant.TRUE, Constant.of(3)).test("xyzzy"));
         assertFalse(Composite.predicate(Constant.FALSE, Constant.of(4)).test("xyzzy"));
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testNullNotAllowed() throws Exception {
         try {
@@ -82,6 +65,7 @@ public class TestCompositeUnaryPredicate extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testOf() throws Exception {
         CompositeUnaryPredicate<Object> f = new CompositeUnaryPredicate<Object>(Constant.TRUE);
         assertTrue(f.test(null));
@@ -91,6 +75,7 @@ public class TestCompositeUnaryPredicate extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         CompositeUnaryPredicate<Object> f = new CompositeUnaryPredicate<Object>(Constant.TRUE);
         assertEquals(f,f);

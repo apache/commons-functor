@@ -16,14 +16,19 @@
  */
 package org.apache.commons.functor.generator;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -31,17 +36,6 @@ import org.apache.commons.functor.BaseFunctorTest;
  */
 @SuppressWarnings("unchecked")
 public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIteratorToGeneratorAdapter(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIteratorToGeneratorAdapter.class);
-    }
 
     public Object makeFunctor() {
         List list = new ArrayList();
@@ -54,30 +48,33 @@ public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
 
     private List list = null;
 
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         list = new ArrayList();
         list.add("1");
         list.add("two");
         list.add("c");
     }
 
+    @After
     public void tearDown() throws Exception {
-        super.tearDown();
         list = null;
     }
 
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testAdaptNull() {
         assertNull(IteratorToGeneratorAdapter.adapt(null));
     }
 
+    @Test
     public void testAdaptNonNull() {
         assertNotNull(IteratorToGeneratorAdapter.adapt(list.iterator()));
     }
 
+    @Test
     public void testGenerate() {
         Iterator iter = list.iterator();
         Generator gen = new IteratorToGeneratorAdapter(iter);
@@ -86,6 +83,7 @@ public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
         assertEquals(list,list2);
     }
 
+    @Test
     public void testConstructNull() {
         try {
             new IteratorToGeneratorAdapter(null);
@@ -95,6 +93,7 @@ public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() {
         Iterator iter = list.iterator();
         Generator gen = new IteratorToGeneratorAdapter(iter);

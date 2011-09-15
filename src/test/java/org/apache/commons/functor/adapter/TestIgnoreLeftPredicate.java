@@ -16,30 +16,22 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIgnoreLeftPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIgnoreLeftPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIgnoreLeftPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,20 +40,10 @@ public class TestIgnoreLeftPredicate extends BaseFunctorTest {
         return new IgnoreLeftPredicate<Object, Object>(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryPredicate<Object, Boolean> p = new IgnoreLeftPredicate<Object, Boolean>(
                 new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean> instance()));
@@ -69,6 +51,7 @@ public class TestIgnoreLeftPredicate extends BaseFunctorTest {
         assertTrue(!p.test(null,Boolean.FALSE));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Object, Boolean> p = new IgnoreLeftPredicate<Object, Boolean>(
                 new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean> instance()));
@@ -80,10 +63,12 @@ public class TestIgnoreLeftPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.FALSE);
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(IgnoreLeftPredicate.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(IgnoreLeftPredicate.adapt(Constant.TRUE));
     }

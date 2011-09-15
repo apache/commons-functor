@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIgnoreRightFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIgnoreRightFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIgnoreRightFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,20 +39,10 @@ public class TestIgnoreRightFunction extends BaseFunctorTest {
         return new IgnoreRightFunction<Object, Object, Object>(Constant.of("xyzzy"));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryFunction<String, String, String> f = new IgnoreRightFunction<String, String, String>(new Identity<String>());
         assertNull(f.evaluate(null,null));
@@ -70,6 +51,7 @@ public class TestIgnoreRightFunction extends BaseFunctorTest {
         assertEquals("xyzzy",f.evaluate("xyzzy","abc"));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryFunction<String, String, String> f = new IgnoreRightFunction<String, String, String>(Constant.of("xyzzy"));
         assertEquals(f,f);
@@ -79,10 +61,12 @@ public class TestIgnoreRightFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of(null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(IgnoreRightFunction.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(IgnoreRightFunction.adapt(Constant.of("xyzzy")));
     }

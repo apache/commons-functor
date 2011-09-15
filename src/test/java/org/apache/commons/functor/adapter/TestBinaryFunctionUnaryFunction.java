@@ -16,31 +16,20 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.IsNotSame;
 import org.apache.commons.functor.core.IsSame;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
 public class TestBinaryFunctionUnaryFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryFunctionUnaryFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryFunctionUnaryFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,30 +38,22 @@ public class TestBinaryFunctionUnaryFunction extends BaseFunctorTest {
         return new BinaryFunctionUnaryFunction<Object, Object>(BinaryPredicateBinaryFunction.adapt(IsSame.INSTANCE));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTestWhenTrue() throws Exception {
         UnaryFunction<Object, Boolean> f = new BinaryFunctionUnaryFunction<Object, Boolean>(BinaryPredicateBinaryFunction.adapt(IsSame.INSTANCE));
         assertTrue(f.evaluate(null));
     }
 
+    @Test
     public void testTestWhenFalse() throws Exception {
         UnaryFunction<Object, Boolean> f = new BinaryFunctionUnaryFunction<Object, Boolean>(BinaryPredicateBinaryFunction.adapt(IsNotSame.INSTANCE));
         assertFalse(f.evaluate(null));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryFunction<Object, Boolean> f = new BinaryFunctionUnaryFunction<Object, Boolean>(BinaryPredicateBinaryFunction.adapt(IsSame.INSTANCE));
         assertEquals(f, f);
@@ -81,10 +62,12 @@ public class TestBinaryFunctionUnaryFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, new BinaryFunctionUnaryFunction<Object, Boolean>(BinaryPredicateBinaryFunction.adapt(IsNotSame.INSTANCE)));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BinaryFunctionUnaryFunction.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BinaryFunctionUnaryFunction.adapt(Constant.TRUE));
     }

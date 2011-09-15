@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.NoOp;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestLeftBoundProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestLeftBoundProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestLeftBoundProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,20 +39,10 @@ public class TestLeftBoundProcedure extends BaseFunctorTest {
         return new LeftBoundProcedure<Object>(NoOp.INSTANCE,"xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         UnaryProcedure<Object> p = new LeftBoundProcedure<Object>(
                 new BinaryFunctionBinaryProcedure<Object, Object>(RightIdentity.FUNCTION), "foo");
@@ -69,6 +50,7 @@ public class TestLeftBoundProcedure extends BaseFunctorTest {
         p.run(Boolean.FALSE);
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryProcedure<Object> f = new LeftBoundProcedure<Object>(NoOp.INSTANCE, "xyzzy");
         assertEquals(f, f);
@@ -80,10 +62,12 @@ public class TestLeftBoundProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, new LeftBoundProcedure<Object>(NoOp.INSTANCE, null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(LeftBoundProcedure.bind(null,"xyzzy"));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(LeftBoundProcedure.bind(new NoOp(),"xyzzy"));
         assertNotNull(LeftBoundProcedure.bind(new NoOp(),null));

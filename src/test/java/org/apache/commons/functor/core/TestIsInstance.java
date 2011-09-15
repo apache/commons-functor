@@ -16,29 +16,21 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIsInstance extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsInstance(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsInstance.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +39,10 @@ public class TestIsInstance extends BaseFunctorTest {
         return IsInstance.of(String.class);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         BinaryPredicate<Object, Class<?>> p = IsInstance.INSTANCE;
         assertFalse(p.test(null, Number.class));
@@ -69,6 +51,7 @@ public class TestIsInstance extends BaseFunctorTest {
         assertTrue(p.test(3L, Number.class));
     }
 
+    @Test
     public void testBoundTest() throws Exception {
         UnaryPredicate<Object> p = IsInstance.of(Number.class);
         assertFalse(p.test(null));
@@ -77,6 +60,7 @@ public class TestIsInstance extends BaseFunctorTest {
         assertTrue(p.test(3L));
     }
 
+    @Test
     public void testInstanceOfNull() throws Exception {
         BinaryPredicate<Object, Class<?>> p = new IsInstance<Object>();
         try {
@@ -87,6 +71,7 @@ public class TestIsInstance extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Object, Class<?>> p = IsInstance.INSTANCE;
         assertEquals(p, p);
@@ -94,6 +79,7 @@ public class TestIsInstance extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.truePredicate());
     }
 
+    @Test
     public void testBoundEquals() throws Exception {
         UnaryPredicate<Object> p = IsInstance.of(Object.class);
         assertEquals(p,p);

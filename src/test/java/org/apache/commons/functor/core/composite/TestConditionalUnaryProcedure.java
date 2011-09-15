@@ -16,31 +16,20 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalUnaryProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalUnaryProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalUnaryProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -52,20 +41,10 @@ public class TestConditionalUnaryProcedure extends BaseFunctorTest {
             NoOp.INSTANCE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         RunCounter left = new RunCounter();
         RunCounter right = new RunCounter();
@@ -86,6 +65,7 @@ public class TestConditionalUnaryProcedure extends BaseFunctorTest {
         assertEquals(1,right.count);
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalUnaryProcedure<Object> p = new ConditionalUnaryProcedure<Object>(
             Identity.INSTANCE,

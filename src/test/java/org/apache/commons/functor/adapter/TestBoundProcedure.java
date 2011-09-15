@@ -16,30 +16,19 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBoundProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBoundProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBoundProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,25 +37,16 @@ public class TestBoundProcedure extends BaseFunctorTest {
         return new BoundProcedure(NoOp.INSTANCE,"xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         Procedure p = new BoundProcedure(new UnaryFunctionUnaryProcedure<Object>(Identity.INSTANCE),Boolean.TRUE);
         p.run();
     }
 
+    @Test
     public void testEquals() throws Exception {
         Procedure f = new BoundProcedure(NoOp.INSTANCE,"xyzzy");
         assertEquals(f,f);
@@ -77,10 +57,12 @@ public class TestBoundProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new BoundProcedure(NoOp.INSTANCE,null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BoundProcedure.bind(null,"xyzzy"));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BoundProcedure.bind(new NoOp(),"xyzzy"));
         assertNotNull(BoundProcedure.bind(new NoOp(),null));

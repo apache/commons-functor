@@ -16,29 +16,18 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestCompositeUnaryFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestCompositeUnaryFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestCompositeUnaryFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +36,10 @@ public class TestCompositeUnaryFunction extends BaseFunctorTest {
         return Composite.function(Constant.of(3));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
 
         assertEquals(new Integer(4),(new CompositeUnaryFunction<Object, Integer>(Constant.of(4))).evaluate(null));
@@ -69,6 +48,7 @@ public class TestCompositeUnaryFunction extends BaseFunctorTest {
         assertEquals(new Integer(3),(new CompositeUnaryFunction<Object, Integer>(Constant.of(3)).of(Constant.of(4)).evaluate("xyzzy")));
     }
 
+    @Test
     public void testOf() throws Exception {
         UnaryFunction<Object, Integer> uf = new UnaryFunction<Object, Integer>() {
             public Integer evaluate(Object obj) {
@@ -86,6 +66,7 @@ public class TestCompositeUnaryFunction extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         CompositeUnaryFunction<Object, String> f = new CompositeUnaryFunction<Object, String>(Constant.of("x"));
         assertEquals(f,f);

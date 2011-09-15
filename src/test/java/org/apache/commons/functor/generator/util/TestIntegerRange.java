@@ -16,13 +16,14 @@
  */
 package org.apache.commons.functor.generator.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -31,16 +32,6 @@ import org.apache.commons.functor.BaseFunctorTest;
  */
 @SuppressWarnings("unchecked")
 public class TestIntegerRange extends BaseFunctorTest {
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIntegerRange(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIntegerRange.class);
-    }
 
     protected Object makeFunctor() throws Exception {
         return new IntegerRange(10, 20);
@@ -49,6 +40,7 @@ public class TestIntegerRange extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testGenerateListExample() {
         // generates a collection of Integers from 0 (inclusive) to 10 (exclusive)
         {
@@ -67,6 +59,7 @@ public class TestIntegerRange extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testStepChecking() {
         {
             new IntegerRange(2, 2, 0); // step of 0 is ok when range is empty
@@ -103,6 +96,7 @@ public class TestIntegerRange extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testObjectConstructor() {
         IntegerRange range = new IntegerRange(new Integer(0), new Integer(5));
         assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
@@ -111,36 +105,42 @@ public class TestIntegerRange extends BaseFunctorTest {
     }
 
 
+    @Test
     public void testReverseStep() {
         IntegerRange range = new IntegerRange(10, 0, -2);
         assertEquals("[10, 8, 6, 4, 2]", range.toCollection().toString());
         assertEquals("[10, 8, 6, 4, 2]", range.toCollection().toString());
     }
 
+    @Test
     public void testStep() {
         IntegerRange range = new IntegerRange(0, 10, 2);
         assertEquals("[0, 2, 4, 6, 8]", range.toCollection().toString());
         assertEquals("[0, 2, 4, 6, 8]", range.toCollection().toString());
     }
 
+    @Test
     public void testForwardRange() {
         IntegerRange range = new IntegerRange(0, 5);
         assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
         assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
     }
 
+    @Test
     public void testReverseRange() {
         IntegerRange range = new IntegerRange(5, 0);
         assertEquals("[5, 4, 3, 2, 1]", range.toCollection().toString());
         assertEquals("[5, 4, 3, 2, 1]", range.toCollection().toString());
     }
 
+    @Test
     public void testEdgeCase() {
         IntegerRange range = new IntegerRange(Integer.MAX_VALUE - 3, Integer.MAX_VALUE);
         assertEquals("[2147483644, 2147483645, 2147483646]", range.toCollection().toString());
         assertEquals("[2147483644, 2147483645, 2147483646]", range.toCollection().toString());
     }
 
+    @Test
     public void testEquals() {
         IntegerRange range = new IntegerRange(1, 5);
         assertObjectsAreEqual(range, range);

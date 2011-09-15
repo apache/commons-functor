@@ -16,29 +16,22 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBinaryFunctionBinaryPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryFunctionBinaryPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryFunctionBinaryPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,30 +40,22 @@ public class TestBinaryFunctionBinaryPredicate extends BaseFunctorTest {
         return new BinaryFunctionBinaryPredicate<Object, Object>(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTestWhenTrue() throws Exception {
         BinaryPredicate<Object, Object> p = new BinaryFunctionBinaryPredicate<Object, Object>(Constant.TRUE);
         assertTrue(p.test(null,null));
     }
 
+    @Test
     public void testTestWhenFalse() throws Exception {
         BinaryPredicate<Object, Object> p = new BinaryFunctionBinaryPredicate<Object, Object>(Constant.FALSE);
         assertFalse(p.test(null,null));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Object, Object> p = new BinaryFunctionBinaryPredicate<Object, Object>(Constant.TRUE);
         assertEquals(p,p);
@@ -79,10 +64,12 @@ public class TestBinaryFunctionBinaryPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,new BinaryFunctionBinaryPredicate<Object, Object>(Constant.FALSE));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BinaryFunctionBinaryPredicate.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BinaryFunctionBinaryPredicate.adapt(Constant.TRUE));
     }

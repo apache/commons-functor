@@ -16,29 +16,20 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
 public class TestBinaryProcedureUnaryProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryProcedureUnaryProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryProcedureUnaryProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,25 +38,16 @@ public class TestBinaryProcedureUnaryProcedure extends BaseFunctorTest {
         return new BinaryProcedureUnaryProcedure<Object>(NoOp.INSTANCE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         UnaryProcedure<Object> p = new BinaryProcedureUnaryProcedure<Object>(NoOp.INSTANCE);
         p.run(null);
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryProcedure<Object> p = new BinaryProcedureUnaryProcedure<Object>(NoOp.INSTANCE);
         assertEquals(p, p);
@@ -74,10 +56,12 @@ public class TestBinaryProcedureUnaryProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(p, new BinaryProcedureUnaryProcedure<Object>(IgnoreLeftProcedure.adapt(NoOp.INSTANCE)));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BinaryProcedureUnaryProcedure.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BinaryProcedureUnaryProcedure.adapt(NoOp.INSTANCE));
     }

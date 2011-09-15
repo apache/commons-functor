@@ -16,15 +16,15 @@
  */
 package org.apache.commons.functor.core.composite;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -33,17 +33,6 @@ import org.apache.commons.functor.core.NoOp;
 @SuppressWarnings("unchecked")
 public class TestUnarySequence extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestUnarySequence(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestUnarySequence.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
@@ -51,26 +40,17 @@ public class TestUnarySequence extends BaseFunctorTest {
         return new UnarySequence(new NoOp(),new NoOp());
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRunZero() throws Exception {
         UnarySequence seq = new UnarySequence();
         seq.run(null);
         seq.run("xyzzy");
     }
 
+    @Test
     public void testRunOne() throws Exception {
         RunCounter counter = new RunCounter();
         UnarySequence seq = new UnarySequence(counter);
@@ -81,6 +61,7 @@ public class TestUnarySequence extends BaseFunctorTest {
         assertEquals(2,counter.count);
     }
 
+    @Test
     public void testRunTwo() throws Exception {
         RunCounter[] counter = { new RunCounter(), new RunCounter() };
         UnarySequence seq = new UnarySequence(counter[0],counter[1]);
@@ -94,6 +75,7 @@ public class TestUnarySequence extends BaseFunctorTest {
         assertEquals(2,counter[1].count);
     }
 
+    @Test
     public void testThen() throws Exception {
         List list = new ArrayList();
         UnarySequence seq = new UnarySequence();
@@ -109,6 +91,7 @@ public class TestUnarySequence extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnarySequence p = new UnarySequence();
         assertEquals(p,p);

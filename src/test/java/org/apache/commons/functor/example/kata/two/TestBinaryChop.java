@@ -16,12 +16,10 @@
  */
 package org.apache.commons.functor.example.kata.two;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Collections;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
@@ -29,6 +27,7 @@ import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.algorithm.RecursiveEvaluation;
 import org.apache.commons.functor.core.algorithm.UntilDo;
 import org.apache.commons.functor.generator.util.IntegerRange;
+import org.junit.Test;
 
 /**
  * Examples of binary search implementations.
@@ -74,14 +73,7 @@ import org.apache.commons.functor.generator.util.IntegerRange;
  * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
-public class TestBinaryChop extends TestCase {
-    public TestBinaryChop(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryChop.class);
-    }
+public class TestBinaryChop {
 
     /**
      * This is Dave's test case, plus
@@ -126,6 +118,7 @@ public class TestBinaryChop extends TestCase {
      * java.util.Collections, but that's not
      * really the point of this exercise.
      */
+    @Test
     public void testBuiltIn() {
         chopTest(new BaseBinaryChop() {
             public int find(Object seeking, List list) {
@@ -155,6 +148,7 @@ public class TestBinaryChop extends TestCase {
      * that we can return -1 if the element is not yet
      * in the list.
      */
+    @Test
     public void testIterative() {
         chopTest(new BaseBinaryChop() {
             public int find(Object seeking, List list) {
@@ -278,6 +272,7 @@ public class TestBinaryChop extends TestCase {
      * Now we can use the Algorithms.dountil method to
      * execute that loop:
      */
+    @Test
     public void testIterativeWithInvariants() {
         chopTest(new BaseBinaryChop() {
 
@@ -395,6 +390,7 @@ public class TestBinaryChop extends TestCase {
         private final List list;
     }
 
+    @Test
     public void testIterativeWithInvariantsAndAssertions() {
         chopTest(new BaseBinaryChop() {
             public int find(Object seeking, List list) {
@@ -409,6 +405,7 @@ public class TestBinaryChop extends TestCase {
      * method parameters to track the upper and
      * lower bounds.
      */
+    @Test
     public void testRecursive() {
         chopTest(new BaseBinaryChop() {
             public int find(Object seeking, List list) {
@@ -442,6 +439,7 @@ public class TestBinaryChop extends TestCase {
      * tail recursion, since there is a bit of state
      * to be tracked.
      */
+    @Test
     public void testTailRecursive() {
         chopTest(new BaseBinaryChop() {
             public int find(final Object seeking, final List list) {
@@ -487,6 +485,7 @@ public class TestBinaryChop extends TestCase {
      * is probably less efficient than either the iterative
      * or the recursive implemenations above.
      */
+    @Test
     public void testRecursive2() {
         chopTest(new BaseBinaryChop() {
             public int find(Object seeking, List list) {
@@ -516,6 +515,7 @@ public class TestBinaryChop extends TestCase {
      * Again, the anonymous Function implemenation
      * holds the "continuation" state.
      */
+    @Test
     public void testTailRecursive2() {
         chopTest(new BaseBinaryChop() {
             public int find(final Object seeking, final List list) {

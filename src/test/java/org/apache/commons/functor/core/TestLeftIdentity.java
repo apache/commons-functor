@@ -16,29 +16,22 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestLeftIdentity extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestLeftIdentity(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestLeftIdentity.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +40,10 @@ public class TestLeftIdentity extends BaseFunctorTest {
         return LeftIdentity.FUNCTION;
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryFunction<Object, Object, Object> f = LeftIdentity.FUNCTION;
         assertNull(f.evaluate(null,null));
@@ -73,6 +56,7 @@ public class TestLeftIdentity extends BaseFunctorTest {
         assertSame(obj,f.evaluate(obj,obj));
     }
 
+    @Test
     public void testTest() throws Exception {
         BinaryPredicate<Boolean, Object> p = LeftIdentity.PREDICATE;
         assertTrue(p.test(Boolean.TRUE,null));
@@ -84,6 +68,7 @@ public class TestLeftIdentity extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryFunction<Object, Object, Object> f = LeftIdentity.<Object, Object>function();
         assertEquals(f,f);
@@ -94,6 +79,7 @@ public class TestLeftIdentity extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of(true));
     }
 
+    @Test
     public void testConstant() throws Exception {
         assertEquals(LeftIdentity.function(),LeftIdentity.function());
     }

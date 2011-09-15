@@ -16,29 +16,20 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestUnaryPredicateUnaryFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestUnaryPredicateUnaryFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestUnaryPredicateUnaryFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,30 +38,22 @@ public class TestUnaryPredicateUnaryFunction extends BaseFunctorTest {
         return new UnaryPredicateUnaryFunction<Object>(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTestWhenTrue() throws Exception {
         UnaryFunction<Object, Boolean> f = new UnaryPredicateUnaryFunction<Object>(Constant.TRUE);
         assertEquals(Boolean.TRUE,f.evaluate(null));
     }
 
+    @Test
     public void testTestWhenFalse() throws Exception {
         UnaryFunction<Object, Boolean> f = new UnaryPredicateUnaryFunction<Object>(Constant.FALSE);
         assertEquals(Boolean.FALSE,f.evaluate(null));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryFunction<Object, Boolean> f = new UnaryPredicateUnaryFunction<Object>(Constant.TRUE);
         assertEquals(f,f);
@@ -79,10 +62,12 @@ public class TestUnaryPredicateUnaryFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new UnaryPredicateUnaryFunction<Object>(Constant.FALSE));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(UnaryFunctionUnaryPredicate.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(UnaryPredicateUnaryFunction.adapt(Constant.TRUE));
     }

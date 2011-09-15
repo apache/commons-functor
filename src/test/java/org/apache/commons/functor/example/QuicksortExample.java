@@ -16,14 +16,14 @@
  */
 package org.apache.commons.functor.example;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
@@ -34,6 +34,7 @@ import org.apache.commons.functor.core.comparator.IsLessThan;
 import org.apache.commons.functor.core.composite.ConditionalUnaryFunction;
 import org.apache.commons.functor.generator.FilteredGenerator;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
+import org.junit.Test;
 
 /*
  * ----------------------------------------------------------------------------
@@ -59,21 +60,7 @@ import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
  * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
-public class QuicksortExample extends TestCase {
-
-/*
- * Let's declare the constructor and suite() methods we need
- * to ensure this test suite can be executed along with all the
- * others:
- */
-
-    public QuicksortExample(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(QuicksortExample.class);
-    }
+public class QuicksortExample {
 
 /*
  * ----------------------------------------------------------------------------
@@ -94,6 +81,7 @@ public class QuicksortExample extends TestCase {
  * Sorting an empty List should produce an empty list:
  */
 
+    @Test
     public void testSortEmpty() {
         List empty = Collections.EMPTY_LIST;
         List result = quicksort(empty);
@@ -105,6 +93,7 @@ public class QuicksortExample extends TestCase {
  * should produce an equivalent list:
  */
 
+    @Test
     public void testSortSingleElementList() {
         List list = new ArrayList();
         list.add("element");
@@ -126,6 +115,7 @@ public class QuicksortExample extends TestCase {
  * of a single value should produce an equivalent list:
  */
 
+    @Test
     public void testSortSingleValueList() {
         List list = new ArrayList();
         for (int i = 0; i < 10; i++) {
@@ -147,6 +137,7 @@ public class QuicksortExample extends TestCase {
  *
  * Sorting an already sorted list:
  */
+    @Test
     public void testSortSorted() {
         List list = new ArrayList();
         for (int i = 0; i < 10; i++) {
@@ -169,6 +160,7 @@ public class QuicksortExample extends TestCase {
  * Sorting a reverse-order list (finally, a test case that requires something
  * more than an identity function):
  */
+    @Test
     public void testSortReversed() {
         List expected = new ArrayList();
         List tosort = new ArrayList();
@@ -189,6 +181,7 @@ public class QuicksortExample extends TestCase {
 /*
  * Just for fun, let's add some randomness to the tests, first by shuffling:
  */
+    @Test
     public void testSortShuffled() {
         List expected = new ArrayList();
         for (int i = 0; i < 10; i++) {
@@ -203,6 +196,7 @@ public class QuicksortExample extends TestCase {
 /*
  * and then using random values:
  */
+    @Test
     public void testSortRandom() {
         Random random = new Random();
         /*
@@ -232,6 +226,7 @@ public class QuicksortExample extends TestCase {
     private static final int SIZE = 1000;
     private static final int COUNT = 100;
 
+    @Test
     public void testTimings() {
         /*
          * We'll need the total elapsed time:

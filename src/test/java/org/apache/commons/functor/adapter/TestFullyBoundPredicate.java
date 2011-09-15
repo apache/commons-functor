@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
 public class TestFullyBoundPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestFullyBoundPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestFullyBoundPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,20 +39,10 @@ public class TestFullyBoundPredicate extends BaseFunctorTest {
         return new FullyBoundPredicate(Constant.TRUE, null, "xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         Predicate p = new FullyBoundPredicate(
                 new BinaryFunctionBinaryPredicate<Object, Boolean>(RightIdentity.<Object, Boolean> function()), "foo",
@@ -69,6 +50,7 @@ public class TestFullyBoundPredicate extends BaseFunctorTest {
         assertEquals(true, p.test());
     }
 
+    @Test
     public void testEquals() throws Exception {
         Predicate p = new FullyBoundPredicate(Constant.TRUE, "xyzzy", null);
         assertEquals(p, p);
@@ -79,10 +61,12 @@ public class TestFullyBoundPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p, new FullyBoundPredicate(Constant.TRUE, null, "xyzzy"));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(FullyBoundPredicate.bind(null, "xyzzy", null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(FullyBoundPredicate.bind(Constant.FALSE, "xyzzy", "foobar"));
         assertNotNull(FullyBoundPredicate.bind(Constant.FALSE, null, null));

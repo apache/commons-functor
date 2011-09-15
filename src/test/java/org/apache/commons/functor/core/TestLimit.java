@@ -16,13 +16,14 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -30,16 +31,6 @@ import org.apache.commons.functor.UnaryPredicate;
  */
 public class TestLimit extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestLimit(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestLimit.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,12 +39,10 @@ public class TestLimit extends BaseFunctorTest {
         return new Limit(3);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testZero() throws Exception {
         Predicate p = new Limit(0);
         assertTrue(! p.test());
@@ -61,6 +50,7 @@ public class TestLimit extends BaseFunctorTest {
         assertTrue(! p.test());
     }
 
+    @Test
     public void testBadArgs() throws Exception {
         try {
             new Limit(-1);
@@ -70,6 +60,7 @@ public class TestLimit extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testTestNullary() throws Exception {
         Predicate p = new Limit(3);
         assertTrue(p.test());
@@ -78,6 +69,7 @@ public class TestLimit extends BaseFunctorTest {
         assertTrue(! p.test());
     }
 
+    @Test
     public void testTestUnary() throws Exception {
         UnaryPredicate<Object> p = new Limit(3);
         assertTrue(p.test(null));
@@ -86,6 +78,7 @@ public class TestLimit extends BaseFunctorTest {
         assertTrue(! p.test(null));
     }
 
+    @Test
     public void testTestBinary() throws Exception {
         BinaryPredicate<Object, Object> p = new Limit(3);
         assertTrue(p.test(null,null));

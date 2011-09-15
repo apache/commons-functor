@@ -16,29 +16,20 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestFunctionUnaryFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestFunctionUnaryFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestFunctionUnaryFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,26 +38,17 @@ public class TestFunctionUnaryFunction extends BaseFunctorTest {
         return new FunctionUnaryFunction<Object, Object>(Constant.of("xyzzy"));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         UnaryFunction<Object, Object> f = new FunctionUnaryFunction<Object, Object>(Constant.of("xyzzy"));
         assertEquals("xyzzy",f.evaluate(null));
         assertEquals("xyzzy",f.evaluate("abc"));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryFunction<Object, Object> f = new FunctionUnaryFunction<Object, Object>(Constant.of("xyzzy"));
         assertEquals(f,f);
@@ -76,10 +58,12 @@ public class TestFunctionUnaryFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of(null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(FunctionUnaryFunction.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(FunctionUnaryFunction.adapt(Constant.of("xyzzy")));
     }

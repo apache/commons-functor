@@ -16,29 +16,19 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBinaryAnd extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryAnd(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryAnd.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +37,10 @@ public class TestBinaryAnd extends BaseFunctorTest {
         return new BinaryAnd<Object, Object>(Constant.TRUE, Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTrue() throws Exception {
         assertTrue((new BinaryAnd<String, Integer>()).test("xyzzy",3));
         assertTrue((new BinaryAnd<String, Integer>(Constant.TRUE)).test("xyzzy",3));
@@ -85,6 +65,7 @@ public class TestBinaryAnd extends BaseFunctorTest {
         assertTrue(r.test("xyzzy",3));
     }
 
+    @Test
     public void testFalse() throws Exception {
         assertTrue(!(new BinaryAnd<String, Integer>(Constant.FALSE)).test("xyzzy",3));
         assertTrue(!(new BinaryAnd<String, Integer>(Constant.TRUE,Constant.FALSE)).test("xyzzy",3));
@@ -108,6 +89,7 @@ public class TestBinaryAnd extends BaseFunctorTest {
         assertTrue(!r.test("xyzzy",3));
     }
 
+    @Test
     public void testDuplicateAdd() throws Exception {
         BinaryPredicate<Object, Object> p = Constant.TRUE;
         BinaryAnd<String, Integer> q = new BinaryAnd<String, Integer>(p,p);
@@ -118,6 +100,7 @@ public class TestBinaryAnd extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryAnd<Object, Object> p = new BinaryAnd<Object, Object>();
         assertEquals(p,p);

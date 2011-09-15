@@ -16,31 +16,22 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestFunctionProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestFunctionProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestFunctionProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,20 +40,10 @@ public class TestFunctionProcedure extends BaseFunctorTest {
         return new FunctionProcedure(Constant.of("K"));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         class EvaluateCounter implements Function<Integer> {
             int count = 0;
@@ -77,6 +58,7 @@ public class TestFunctionProcedure extends BaseFunctorTest {
         assertEquals(2,counter.count);
     }
 
+    @Test
     public void testEquals() throws Exception {
         Procedure p = new FunctionProcedure(Constant.of("K"));
         assertEquals(p,p);
@@ -85,10 +67,12 @@ public class TestFunctionProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,new FunctionProcedure(Constant.of("J")));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(FunctionProcedure.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(FunctionProcedure.adapt(Constant.of("K")));
     }

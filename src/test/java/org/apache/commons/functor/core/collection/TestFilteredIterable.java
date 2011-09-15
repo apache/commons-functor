@@ -16,6 +16,12 @@
  */
 package org.apache.commons.functor.core.collection;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,13 +30,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.IsEqual;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -49,17 +55,6 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     };
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestFilteredIterable(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestFilteredIterable.class);
-    }
-
     public Object makeFunctor() {
         List<String> list = new ArrayList<String>();
         list.add("xyzzy");
@@ -69,8 +64,8 @@ public class TestFilteredIterable extends BaseFunctorTest {
     // Lifecycle
     // ------------------------------------------------------------------------
 
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         list = new ArrayList<Integer>();
         evens = new ArrayList<Integer>();
         for (int i = 0; i < 10; i++) {
@@ -81,8 +76,8 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @After
     public void tearDown() throws Exception {
-        super.tearDown();
         list = null;
         evens = null;
     }
@@ -90,6 +85,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testSomePass() {
         Iterator<Integer> expected = evens.iterator();
 
@@ -100,6 +96,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(expected.hasNext());
     }
 
+    @Test
     public void testAllPass() {
         Iterator<Integer> expected = evens.iterator();
 
@@ -110,6 +107,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(expected.hasNext());
     }
 
+    @Test
     public void testAllPass2() {
         Iterator<Integer> expected = list.iterator();
         for (Integer i : FilteredIterable.of(list)) {
@@ -119,18 +117,22 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(expected.hasNext());
     }
 
+    @Test
     public void testEmptyFilteredIterable() {
         assertFalse(FilteredIterable.empty().iterator().hasNext());
     }
 
+    @Test
     public void testEmptyList() {
         assertFalse(FilteredIterable.of(Collections.EMPTY_LIST).iterator().hasNext());
     }
 
+    @Test
     public void testNonePass() {
         assertFalse(FilteredIterable.of(list).retain(Constant.falsePredicate()).iterator().hasNext());
     }
 
+    @Test
     public void testNextWithoutHasNext() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
         Iterator<Integer> expected = evens.iterator();
@@ -140,6 +142,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(testing.hasNext());
     }
 
+    @Test
     public void testNextAfterEndOfList() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
         Iterator<Integer> expected = evens.iterator();
@@ -154,6 +157,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testNextOnEmptyList() {
         try {
             FilteredIterable.empty().iterator().next();
@@ -163,6 +167,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testRemoveBeforeNext() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
         try {
@@ -173,6 +178,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testRemoveAfterNext() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
         testing.next();
@@ -185,6 +191,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testRemoveSome() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
         while (testing.hasNext()) {
@@ -194,6 +201,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertTrue(Collections.disjoint(list, evens));
     }
 
+    @Test
     public void testRemoveAll() {
         Iterator<Integer> testing = FilteredIterable.of(list).iterator();
         while (testing.hasNext()) {
@@ -203,6 +211,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertTrue(list.isEmpty());
     }
 
+    @Test
     public void testRemoveWithoutHasNext() {
         Iterator<Integer> testing = FilteredIterable.of(list).iterator();
         for (int i = 0, m = list.size(); i < m; i++) {
@@ -212,10 +221,12 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertTrue(list.isEmpty());
     }
 
+    @Test
     public void testFilterWithNullIteratorReturnsNull() {
         assertNull(FilteredIterable.of(null));
     }
 
+    @Test
     public void testRetainOneType() {
         Iterable<Object> objects = Arrays.asList((Object) "foo", "bar", "baz", 2L, BigInteger.ZERO);
         Iterable<String> strings = FilteredIterable.of(objects).retain(String.class);
@@ -224,6 +235,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testRetainOneType2() {
         Iterable<Object> objects = Arrays.asList((Object) "foo", "bar", "baz", 2L, BigInteger.ZERO);
         Iterator<Number> iterator = FilteredIterable.of(objects).retain(Number.class).iterator();
@@ -232,6 +244,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(iterator.hasNext());
     }
 
+    @Test
     public void testRetainMultipleTypes() {
         Iterable<Object> objects = Arrays.asList((Object) "foo", "bar", "baz", 2L, BigInteger.ZERO);
         Iterator<Object> iterator = FilteredIterable.of(objects).retain(Long.class, BigInteger.class).iterator();
@@ -240,6 +253,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(iterator.hasNext());
     }
 
+    @Test
     public void testMultipleLevels() {
         Iterable<Object> objects = Arrays.asList((Object) "foo", "bar", "baz", 2L, BigInteger.ZERO);
         Iterator<String> iterator = FilteredIterable.of(objects).retain(String.class).retain(IsEqual.to("foo"))
@@ -248,6 +262,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(iterator.hasNext());
     }
 
+    @Test
     public void testMultipleLevels2() {
         Iterable<Object> objects = Arrays.asList((Object) "foo", "bar", "baz", 2L, BigInteger.ZERO);
         Iterator<Long> iterator = FilteredIterable.of(objects).retain(Number.class).retain(Long.class).iterator();
@@ -255,6 +270,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(iterator.hasNext());
     }
 
+    @Test
     public void testRetainNullType() {
         try {
             FilteredIterable.of(Collections.singleton("foo")).retain((Class<?>) null);
@@ -264,6 +280,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testRetainNullTypes() {
         try {
             FilteredIterable.of(Collections.singleton("foo")).retain((Class<?>[]) null);
@@ -273,6 +290,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testRetainNullPredicate() {
         try {
             FilteredIterable.of(Collections.singleton("foo")).retain((UnaryPredicate<String>) null);

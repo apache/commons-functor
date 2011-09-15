@@ -16,15 +16,15 @@
  */
 package org.apache.commons.functor.generator.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Limit;
@@ -33,6 +33,8 @@ import org.apache.commons.functor.generator.GenerateUntil;
 import org.apache.commons.functor.generator.GenerateWhile;
 import org.apache.commons.functor.generator.UntilGenerate;
 import org.apache.commons.functor.generator.WhileGenerate;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author Jason Horman (jason@jhorman.org)
@@ -44,17 +46,6 @@ public class TestEachElement extends BaseFunctorTest {
     private Map map = null;
     private Object[] array = null;
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestEachElement(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestEachElement.class);
-    }
-
     protected Object makeFunctor() throws Exception {
         return EachElement.from(new ArrayList());
     }
@@ -62,9 +53,8 @@ public class TestEachElement extends BaseFunctorTest {
     // Lifecycle
     // ------------------------------------------------------------------------
 
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
-
         list = new ArrayList();
         list.add(new Integer(0));
         list.add(new Integer(1));
@@ -87,13 +77,10 @@ public class TestEachElement extends BaseFunctorTest {
         array[4] = "5";
     }
 
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testFromNull() {
         assertNull(EachElement.from((Collection) null));
         assertNull(EachElement.from((Map) null));
@@ -102,11 +89,13 @@ public class TestEachElement extends BaseFunctorTest {
     }
 
 
+    @Test
     public void testWithList() {
         Collection col = EachElement.from(list).toCollection();
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
     }
 
+    @Test
     public void testWithMap() {
         List col = (List) EachElement.from(map).toCollection();
         int i = 0;
@@ -128,11 +117,13 @@ public class TestEachElement extends BaseFunctorTest {
         assertEquals(5, i);
     }
 
+    @Test
     public void testWithArray() {
         Collection col = EachElement.from(array).toCollection();
         assertEquals("[1, 2, 3, 4, 5]", col.toString());
     }
 
+    @Test
     public void testWithStop() {
         assertEquals("[0, 1, 2]", new UntilGenerate(new Offset(3), EachElement.from(list)).toCollection().toString());
         assertEquals("[0, 1, 2, 3]", new GenerateUntil(EachElement.from(list), new Offset(3)).toCollection().toString());
@@ -140,6 +131,7 @@ public class TestEachElement extends BaseFunctorTest {
         assertEquals("[0, 1, 2, 3]", new GenerateWhile(EachElement.from(list), new Limit(3)).toCollection().toString());
     }
 
+    @Test
     public void testWithIterator() {
         Collection col = EachElement.from(list.iterator()).toCollection();
         assertEquals("[0, 1, 2, 3, 4]", col.toString());

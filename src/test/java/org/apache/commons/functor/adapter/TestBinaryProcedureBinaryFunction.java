@@ -16,31 +16,20 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBinaryProcedureBinaryFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryProcedureBinaryFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryProcedureBinaryFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,25 +38,16 @@ public class TestBinaryProcedureBinaryFunction extends BaseFunctorTest {
         return new BinaryProcedureBinaryFunction<Object, Object, Object>(NoOp.instance());
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryFunction<Object, Object, Object> f = new BinaryProcedureBinaryFunction<Object, Object, Object>(NoOp.instance());
         assertNull(f.evaluate(null,null));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryFunction<Object, Object, Object> f = new BinaryProcedureBinaryFunction<Object, Object, Object>(new NoOp());
         assertEquals(f,f);
@@ -81,10 +61,12 @@ public class TestBinaryProcedureBinaryFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of(null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BinaryFunctionBinaryProcedure.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BinaryProcedureBinaryFunction.adapt(NoOp.instance()));
     }

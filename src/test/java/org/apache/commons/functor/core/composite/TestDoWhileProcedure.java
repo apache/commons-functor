@@ -16,8 +16,11 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
@@ -26,9 +29,7 @@ import org.apache.commons.functor.adapter.BoundPredicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.NoOp;
 import org.apache.commons.functor.core.collection.IsEmpty;
-
-import java.util.LinkedList;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -36,33 +37,11 @@ import java.util.List;
  */
 public class TestDoWhileProcedure extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestDoWhileProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestDoWhileProcedure.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
     protected Object makeFunctor() {
         return new DoWhileProcedure(NoOp.INSTANCE, Constant.FALSE);
-    }
-
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
     }
 
     // Tests
@@ -92,6 +71,7 @@ public class TestDoWhileProcedure extends BaseFunctorTest {
     }
 
 
+    @Test
     public void testLoopWithAction() throws Exception {
         List<Object> list=getList();
 
@@ -122,6 +102,7 @@ public class TestDoWhileProcedure extends BaseFunctorTest {
         assertTrue("The list should still contain \"d\"", list.contains("d"));
     }
 
+    @Test
     public void testLoopForNothing() {
         List<Object> list=getList();
         Procedure action=new ListRemoveFirstProcedure(list);

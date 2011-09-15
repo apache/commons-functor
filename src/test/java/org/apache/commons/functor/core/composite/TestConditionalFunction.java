@@ -16,28 +16,17 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,20 +38,10 @@ public class TestConditionalFunction extends BaseFunctorTest {
             Constant.of("right"));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         {
             ConditionalFunction<Object> f = new ConditionalFunction<Object>(
@@ -80,6 +59,7 @@ public class TestConditionalFunction extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalFunction<Object> f = new ConditionalFunction<Object>(
             Constant.TRUE,

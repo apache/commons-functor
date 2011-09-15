@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestRightBoundPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestRightBoundPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestRightBoundPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,20 +39,10 @@ public class TestRightBoundPredicate extends BaseFunctorTest {
         return new RightBoundPredicate<Object>(Constant.TRUE, "xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         UnaryPredicate<Boolean> f = new RightBoundPredicate<Boolean>(
                 new BinaryFunctionBinaryPredicate<Boolean, Object>(LeftIdentity.<Boolean, Object> function()), "foo");
@@ -69,6 +50,7 @@ public class TestRightBoundPredicate extends BaseFunctorTest {
         assertEquals(false, f.test(Boolean.FALSE));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryPredicate<Boolean> f = new RightBoundPredicate<Boolean>(Constant.TRUE, "xyzzy");
         assertEquals(f, f);
@@ -79,10 +61,12 @@ public class TestRightBoundPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, new RightBoundPredicate<Boolean>(Constant.TRUE, null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(RightBoundPredicate.bind(null, "xyzzy"));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(RightBoundPredicate.bind(Constant.FALSE, "xyzzy"));
         assertNotNull(RightBoundPredicate.bind(Constant.FALSE, null));

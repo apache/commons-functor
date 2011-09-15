@@ -16,28 +16,19 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalBinaryPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalBinaryPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalBinaryPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,20 +40,10 @@ public class TestConditionalBinaryPredicate extends BaseFunctorTest {
             Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         {
             ConditionalBinaryPredicate<Object, Object> p = new ConditionalBinaryPredicate<Object, Object>(
@@ -80,6 +61,7 @@ public class TestConditionalBinaryPredicate extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalBinaryPredicate<Object, Object> p = new ConditionalBinaryPredicate<Object, Object>(
             Constant.TRUE,

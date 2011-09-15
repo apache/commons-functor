@@ -16,29 +16,21 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestUnaryNot extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestUnaryNot(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestUnaryNot.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +39,10 @@ public class TestUnaryNot extends BaseFunctorTest {
         return new UnaryNot<Object>(Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         UnaryPredicate<Object> truePred = new UnaryNot<Object>(Constant.FALSE);
         assertTrue(truePred.test(null));
@@ -68,6 +50,7 @@ public class TestUnaryNot extends BaseFunctorTest {
         assertTrue(truePred.test(new Integer(3)));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryNot<Object> p = new UnaryNot<Object>(Constant.TRUE);
         assertEquals(p,p);
@@ -77,10 +60,12 @@ public class TestUnaryNot extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.TRUE);
     }
 
+    @Test
     public void testNotNull() throws Exception {
         assertNull(UnaryNot.not(null));
     }
 
+    @Test
     public void testNotNotNull() throws Exception {
         assertNotNull(UnaryNot.not(Constant.truePredicate()));
     }

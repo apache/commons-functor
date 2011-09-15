@@ -16,30 +16,19 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -51,20 +40,10 @@ public class TestConditionalProcedure extends BaseFunctorTest {
             NoOp.INSTANCE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         {
             RunCounter left = new RunCounter();
@@ -106,6 +85,7 @@ public class TestConditionalProcedure extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalProcedure p = new ConditionalProcedure(
             Constant.FALSE,

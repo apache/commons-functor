@@ -16,8 +16,7 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
@@ -25,23 +24,13 @@ import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestUnaryCompositeBinaryPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestUnaryCompositeBinaryPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestUnaryCompositeBinaryPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -53,20 +42,10 @@ public class TestUnaryCompositeBinaryPredicate extends BaseFunctorTest {
                 new Identity<Boolean>());
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryPredicate<Boolean, Boolean> f = new UnaryCompositeBinaryPredicate<Boolean, Boolean>(
                 RightIdentity.PREDICATE,
@@ -76,6 +55,7 @@ public class TestUnaryCompositeBinaryPredicate extends BaseFunctorTest {
         assertEquals(true,f.test(null,Boolean.TRUE));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Boolean, Boolean> f = new UnaryCompositeBinaryPredicate<Boolean, Boolean>(
                 LeftIdentity.PREDICATE,

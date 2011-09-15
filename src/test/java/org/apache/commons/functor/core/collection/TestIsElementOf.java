@@ -16,14 +16,16 @@
  */
 package org.apache.commons.functor.core.collection;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import java.util.ArrayList;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -33,17 +35,6 @@ import org.apache.commons.functor.core.Constant;
 @SuppressWarnings("unchecked")
 public class TestIsElementOf extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsElementOf(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsElementOf.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
@@ -51,12 +42,10 @@ public class TestIsElementOf extends BaseFunctorTest {
         return new IsElementOf();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTestCollection() throws Exception {
         ArrayList list = new ArrayList();
         list.add(new Integer(5));
@@ -73,6 +62,7 @@ public class TestIsElementOf extends BaseFunctorTest {
 
     }
 
+    @Test
     public void testTestArray() throws Exception {
         int[] list = new int[] { 5, 10, 15 };
 
@@ -85,12 +75,14 @@ public class TestIsElementOf extends BaseFunctorTest {
         assertTrue(!p.test(new Integer(11)));
     }
 
+    @Test
     public void testTestArrayWithNull() throws Exception {
         assertTrue(! IsElementOf.instance().test(null,new int[] { 5, 10, 15 }));
         assertTrue(IsElementOf.instance().test(null,new Integer[] { new Integer(5), null, new Integer(15) }));
         assertTrue(IsElementOf.instance().test(new Integer(15),new Integer[] { new Integer(5), null, new Integer(15) }));
     }
 
+    @Test
     public void testWrapNull() {
         try {
             IsElementOf.instance(null);
@@ -100,6 +92,7 @@ public class TestIsElementOf extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testWrapNonCollection() {
         try {
             IsElementOf.instance(new Integer(3));
@@ -109,6 +102,7 @@ public class TestIsElementOf extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testTestNull() {
         try {
             IsElementOf.instance().test(new Integer(5),null);
@@ -118,6 +112,7 @@ public class TestIsElementOf extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testTestNonCollection() {
         try {
             IsElementOf.instance().test(new Integer(5),new Long(5));
@@ -127,6 +122,7 @@ public class TestIsElementOf extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         IsElementOf p1 = new IsElementOf();
         assertObjectsAreEqual(p1, p1);

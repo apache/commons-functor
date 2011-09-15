@@ -16,31 +16,20 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestConditionalBinaryProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestConditionalBinaryProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestConditionalBinaryProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -52,20 +41,10 @@ public class TestConditionalBinaryProcedure extends BaseFunctorTest {
             NoOp.instance());
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         RunCounter left = new RunCounter();
         RunCounter right = new RunCounter();
@@ -86,6 +65,7 @@ public class TestConditionalBinaryProcedure extends BaseFunctorTest {
         assertEquals(1,right.count);
     }
 
+    @Test
     public void testEquals() throws Exception {
         ConditionalBinaryProcedure<?, ?> p = new ConditionalBinaryProcedure<Boolean, Object>(
             LeftIdentity.PREDICATE,

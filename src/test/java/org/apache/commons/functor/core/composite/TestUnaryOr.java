@@ -16,29 +16,19 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestUnaryOr extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestUnaryOr(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestUnaryOr.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +37,10 @@ public class TestUnaryOr extends BaseFunctorTest {
         return new UnaryOr<Object>(Constant.FALSE,Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTrue() throws Exception {
         assertTrue((new UnaryOr<Object>(Constant.TRUE)).test("xyzzy"));
         assertTrue((new UnaryOr<Object>(Constant.FALSE,Constant.TRUE)).test("xyzzy"));
@@ -84,6 +64,7 @@ public class TestUnaryOr extends BaseFunctorTest {
         assertTrue(r.test("xyzzy"));
     }
 
+    @Test
     public void testFalse() throws Exception {
         assertTrue(!(new UnaryOr<Object>()).test("xyzzy"));
         assertTrue(!(new UnaryOr<Object>(Constant.FALSE)).test("xyzzy"));
@@ -108,6 +89,7 @@ public class TestUnaryOr extends BaseFunctorTest {
         assertTrue(!r.test("xyzzy"));
     }
 
+    @Test
     public void testDuplicateAdd() throws Exception {
         UnaryPredicate<Object> p = Constant.TRUE;
         UnaryOr<Object> q = new UnaryOr<Object>(p,p);
@@ -118,6 +100,7 @@ public class TestUnaryOr extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryOr<Object> p = new UnaryOr<Object>();
         assertEquals(p,p);

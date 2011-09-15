@@ -16,28 +16,18 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIsNotNull extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsNotNull(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsNotNull.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -46,20 +36,10 @@ public class TestIsNotNull extends BaseFunctorTest {
         return new IsNotNull<Object>();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         UnaryPredicate<Object> p = new IsNotNull<Object>();
         assertTrue(!p.test(null));
@@ -67,6 +47,7 @@ public class TestIsNotNull extends BaseFunctorTest {
         assertTrue(p.test(new Integer(3)));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryPredicate<Object> p = new IsNotNull<Object>();
         assertEquals(p,p);
@@ -75,6 +56,7 @@ public class TestIsNotNull extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.TRUE);
     }
 
+    @Test
     public void testConstant() throws Exception {
         assertEquals(IsNotNull.instance(),IsNotNull.instance());
     }

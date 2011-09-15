@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBoundPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBoundPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBoundPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,20 +39,10 @@ public class TestBoundPredicate extends BaseFunctorTest {
         return new BoundPredicate(Constant.TRUE,"xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         {
             Predicate p = new BoundPredicate(new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean>instance()),Boolean.TRUE);
@@ -73,6 +54,7 @@ public class TestBoundPredicate extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         Predicate f = new BoundPredicate(Constant.TRUE,"xyzzy");
         assertEquals(f,f);
@@ -83,10 +65,12 @@ public class TestBoundPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new BoundPredicate(Constant.TRUE,null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BoundPredicate.bind(null,"xyzzy"));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BoundPredicate.bind(Constant.TRUE,"xyzzy"));
         assertNotNull(BoundPredicate.bind(Constant.TRUE,null));

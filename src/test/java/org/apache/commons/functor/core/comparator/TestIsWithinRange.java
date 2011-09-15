@@ -16,10 +16,12 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -28,17 +30,6 @@ import org.apache.commons.functor.BaseFunctorTest;
  */
 public class TestIsWithinRange extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsWithinRange(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsWithinRange.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
@@ -46,20 +37,10 @@ public class TestIsWithinRange extends BaseFunctorTest {
         return new IsWithinRange<Integer>(new Integer(5), new Integer(10));
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         IsWithinRange<Integer> p = new IsWithinRange<Integer>(new Integer(5), new Integer(10));
         assertTrue(p.test(new Integer(5)));
@@ -74,6 +55,7 @@ public class TestIsWithinRange extends BaseFunctorTest {
 
     }
 
+    @Test
     public void testInvalidRange() {
         try {
             new IsWithinRange<Integer>(new Integer(5), new Integer(4));
@@ -94,6 +76,7 @@ public class TestIsWithinRange extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         IsWithinRange<Integer> p1 = new IsWithinRange<Integer>(new Integer(5), new Integer(10));
         IsWithinRange<Integer> p2 = new IsWithinRange<Integer>(new Integer(5), new Integer(10));
@@ -104,6 +87,7 @@ public class TestIsWithinRange extends BaseFunctorTest {
         assertTrue(!p1.equals(p2));
     }
 
+    @Test
     public void testFactory() throws Exception {
         IsWithinRange<Integer> p = IsWithinRange.instance(new Integer(5), new Integer(10));
         assertTrue(p.test(new Integer(5)));

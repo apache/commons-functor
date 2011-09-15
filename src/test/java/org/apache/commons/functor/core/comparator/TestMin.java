@@ -16,29 +16,18 @@
  */
 package org.apache.commons.functor.core.comparator;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Collections;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.apache.commons.functor.BaseFunctorTest;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestMin extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestMin(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestMin.class);
-    }
 
     // Framework
     // ------------------------------------------------------------------------
@@ -55,6 +44,7 @@ public class TestMin extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() {
         Min<Integer> f = Min.instance();
         assertEquals(ONE,f.evaluate(ONE,ONE));
@@ -65,6 +55,7 @@ public class TestMin extends BaseFunctorTest {
         assertEquals(MIN,f.evaluate(MIN,MINUS_TWO));
     }
 
+    @Test
     @SuppressWarnings("unchecked")
     public void testEquals() {
         Min<Comparable<?>> f = Min.instance();

@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIgnoreRightProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIgnoreRightProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIgnoreRightProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,26 +39,17 @@ public class TestIgnoreRightProcedure extends BaseFunctorTest {
         return new IgnoreRightProcedure<Object, Object>(NoOp.INSTANCE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryProcedure<Object, Object> p = new IgnoreRightProcedure<Object, Object>(
                 new UnaryFunctionUnaryProcedure<Object>(Identity.INSTANCE));
         p.run(Boolean.TRUE,null);
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryProcedure<Object, Object> p = new IgnoreRightProcedure<Object, Object>(NoOp.INSTANCE);
         assertEquals(p,p);
@@ -75,10 +57,12 @@ public class TestIgnoreRightProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(IgnoreRightProcedure.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(IgnoreRightProcedure.adapt(NoOp.INSTANCE));
     }

@@ -16,28 +16,18 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestIsNotEqual extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestIsNotEqual(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestIsNotEqual.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -46,20 +36,10 @@ public class TestIsNotEqual extends BaseFunctorTest {
         return new IsNotEqual<Object, Object>();
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTest() throws Exception {
         IsNotEqual<Object, Object> p = new IsNotEqual<Object, Object>();
         assertTrue("For symmetry, two nulls should be equal",!p.test(null,null));
@@ -76,6 +56,7 @@ public class TestIsNotEqual extends BaseFunctorTest {
         assertTrue(p.test(new Integer(3),"3"));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Object, Object> p = new IsNotEqual<Object, Object>();
         assertEquals(p,p);
@@ -84,6 +65,7 @@ public class TestIsNotEqual extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.truePredicate());
     }
 
+    @Test
     public void testConstant() throws Exception {
         assertEquals(IsNotEqual.instance(),IsNotEqual.instance());
     }

@@ -16,8 +16,8 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
@@ -30,33 +30,11 @@ import org.apache.commons.functor.core.NoOp;
  */
 public class TestCompositeUnaryProcedure extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestCompositeUnaryProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestCompositeUnaryProcedure.class);
-    }
-
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
     protected Object makeFunctor() {
         return Composite.procedure(NoOp.instance(), Constant.TRUE);
-    }
-
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
     }
 
     // Tests

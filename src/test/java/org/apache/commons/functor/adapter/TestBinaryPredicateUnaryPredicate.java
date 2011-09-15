@@ -16,31 +16,24 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.IsNotSame;
 import org.apache.commons.functor.core.IsSame;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
 public class TestBinaryPredicateUnaryPredicate extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBinaryPredicateUnaryPredicate(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBinaryPredicateUnaryPredicate.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,30 +42,22 @@ public class TestBinaryPredicateUnaryPredicate extends BaseFunctorTest {
         return new BinaryPredicateUnaryPredicate<Object>(IsSame.INSTANCE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTestWhenTrue() throws Exception {
         UnaryPredicate<Object> p = new BinaryPredicateUnaryPredicate<Object>(IsSame.INSTANCE);
         assertTrue(p.test(null));
     }
 
+    @Test
     public void testTestWhenFalse() throws Exception {
         UnaryPredicate<Object> p = new BinaryPredicateUnaryPredicate<Object>(IsNotSame.INSTANCE);
         assertFalse(p.test(null));
     }
 
+    @Test
     public void testEquals() throws Exception {
         UnaryPredicate<Object> p = new BinaryPredicateUnaryPredicate<Object>(IsSame.INSTANCE);
         assertEquals(p, p);
@@ -81,10 +66,12 @@ public class TestBinaryPredicateUnaryPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p, new BinaryPredicateUnaryPredicate<Object>(IsNotSame.INSTANCE));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BinaryPredicateUnaryPredicate.adapt(null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BinaryPredicateUnaryPredicate.adapt(Constant.TRUE));
     }

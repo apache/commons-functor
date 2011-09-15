@@ -16,30 +16,20 @@
  */
 package org.apache.commons.functor.core;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestOffset extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestOffset(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestOffset.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -54,6 +44,7 @@ public class TestOffset extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testZero() throws Exception {
         Predicate p = new Offset(0);
         assertTrue( p.test());
@@ -61,6 +52,7 @@ public class TestOffset extends BaseFunctorTest {
         assertTrue( p.test());
     }
 
+    @Test
     public void testBadArgs() throws Exception {
         try {
             new Offset(-1);
@@ -70,6 +62,7 @@ public class TestOffset extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testTestNullary() throws Exception {
         Predicate p = new Offset(3);
         assertTrue(!p.test());
@@ -78,6 +71,7 @@ public class TestOffset extends BaseFunctorTest {
         assertTrue(p.test());
     }
 
+    @Test
     public void testTestUnary() throws Exception {
         UnaryPredicate<Object> p = new Offset(3);
         assertTrue(!p.test(null));
@@ -86,6 +80,7 @@ public class TestOffset extends BaseFunctorTest {
         assertTrue(p.test(null));
     }
 
+    @Test
     public void testTestBinary() throws Exception {
         BinaryPredicate<Object, Object> p = new Offset(3);
         assertTrue(!p.test(null,null));

@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestBoundFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestBoundFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestBoundFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,25 +39,16 @@ public class TestBoundFunction extends BaseFunctorTest {
         return new BoundFunction<Object>(Identity.INSTANCE,"xyzzy");
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         Function<Object> f = new BoundFunction<Object>(Identity.INSTANCE,"xyzzy");
         assertEquals("xyzzy",f.evaluate());
     }
 
+    @Test
     public void testEquals() throws Exception {
         Function<Object> f = new BoundFunction<Object>(Identity.INSTANCE,"xyzzy");
         assertEquals(f,f);
@@ -77,10 +59,12 @@ public class TestBoundFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new BoundFunction<Object>(Identity.INSTANCE,null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(BoundFunction.bind(null,"xyzzy"));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(BoundFunction.bind(Identity.INSTANCE,"xyzzy"));
         assertNotNull(BoundFunction.bind(Identity.INSTANCE,null));

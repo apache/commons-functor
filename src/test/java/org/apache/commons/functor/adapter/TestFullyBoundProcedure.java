@@ -16,30 +16,21 @@
  */
 package org.apache.commons.functor.adapter;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.NoOp;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
 public class TestFullyBoundProcedure extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestFullyBoundProcedure(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestFullyBoundProcedure.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -48,26 +39,17 @@ public class TestFullyBoundProcedure extends BaseFunctorTest {
         return new FullyBoundProcedure(NoOp.INSTANCE, "xyzzy", null);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         Procedure p = new FullyBoundProcedure(new BinaryFunctionBinaryProcedure<Object, Object>(
                 RightIdentity.FUNCTION), "foo", null);
         p.run();
     }
 
+    @Test
     public void testEquals() throws Exception {
         Procedure f = new FullyBoundProcedure(NoOp.INSTANCE, "xyzzy", null);
         assertEquals(f, f);
@@ -79,10 +61,12 @@ public class TestFullyBoundProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, new FullyBoundProcedure(NoOp.INSTANCE, null, null));
     }
 
+    @Test
     public void testAdaptNull() throws Exception {
         assertNull(FullyBoundProcedure.bind(null, "xyzzy", null));
     }
 
+    @Test
     public void testAdapt() throws Exception {
         assertNotNull(FullyBoundProcedure.bind(new NoOp(), "xyzzy", "foobar"));
         assertNotNull(FullyBoundProcedure.bind(new NoOp(), null, null));

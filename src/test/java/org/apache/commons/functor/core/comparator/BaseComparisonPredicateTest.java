@@ -16,8 +16,11 @@
  */
 package org.apache.commons.functor.core.comparator;
 
+import static org.junit.Assert.fail;
+
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -25,27 +28,10 @@ import org.apache.commons.functor.BinaryPredicate;
  */
 public abstract class BaseComparisonPredicateTest extends BaseFunctorTest {
 
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public BaseComparisonPredicateTest(String testName) {
-        super(testName);
-    }
-
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public final void testTestNull() throws Exception {
         @SuppressWarnings("unchecked")
         BinaryPredicate<Object, Object> p = (BinaryPredicate<Object, Object>)(makeFunctor());
@@ -69,6 +55,7 @@ public abstract class BaseComparisonPredicateTest extends BaseFunctorTest {
         }
     }
 
+    @Test
     public final void testTestNonComparable() throws Exception {
         @SuppressWarnings("unchecked")
         BinaryPredicate<Object, Object> p = (BinaryPredicate<Object, Object>)(makeFunctor());

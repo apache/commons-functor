@@ -16,31 +16,22 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.RightIdentity;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestTransposedFunction extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestTransposedFunction(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestTransposedFunction.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -49,26 +40,17 @@ public class TestTransposedFunction extends BaseFunctorTest {
         return new TransposedFunction<Object, Object, Object>(LeftIdentity.FUNCTION);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testEvaluate() throws Exception {
         BinaryFunction<Object, Object, Object> f = new TransposedFunction<Object, Object, Object>(LeftIdentity.FUNCTION);
         assertEquals("xyzzy",f.evaluate(null,"xyzzy"));
         assertNull(f.evaluate("xyzzy",null));
     }
 
+    @Test
     public void testEquals() throws Exception {
         BinaryFunction<Object, Object, Object> f = new TransposedFunction<Object, Object, Object>(LeftIdentity.FUNCTION);
         assertEquals(f,f);
@@ -77,10 +59,12 @@ public class TestTransposedFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of("y"));
     }
 
+    @Test
     public void testTransposeNull() throws Exception {
         assertNull(TransposedFunction.transpose(null));
     }
 
+    @Test
     public void testTranspose() throws Exception {
         assertNotNull(TransposedFunction.transpose(Constant.of("x")));
     }

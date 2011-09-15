@@ -16,29 +16,19 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
 public class TestAnd extends BaseFunctorTest {
-
-    // Conventional
-    // ------------------------------------------------------------------------
-
-    public TestAnd(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(TestAnd.class);
-    }
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
@@ -47,20 +37,10 @@ public class TestAnd extends BaseFunctorTest {
         return new And(Constant.TRUE, Constant.TRUE);
     }
 
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testTrue() throws Exception {
         assertTrue((new And()).test());
         assertTrue((new And(Constant.TRUE)).test());
@@ -85,6 +65,7 @@ public class TestAnd extends BaseFunctorTest {
         assertTrue(r.test());
     }
 
+    @Test
     public void testFalse() throws Exception {
         assertTrue(!(new And(Constant.FALSE)).test());
         assertTrue(!(new And(Constant.TRUE,Constant.FALSE)).test());
@@ -108,6 +89,7 @@ public class TestAnd extends BaseFunctorTest {
         assertTrue(!r.test());
     }
 
+    @Test
     public void testDuplicateAdd() throws Exception {
         Predicate p = Constant.TRUE;
         And q = new And(p,p);
@@ -118,6 +100,7 @@ public class TestAnd extends BaseFunctorTest {
         }
     }
 
+    @Test
     public void testEquals() throws Exception {
         And p = new And();
         assertEquals(p,p);
