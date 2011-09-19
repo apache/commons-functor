@@ -39,9 +39,9 @@
   <url>http://commons.apache.org/sandbox/functor/</url>
 
   <scm>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/commons/sandbox/functor/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/commons/sandbox/functor/trunk/</developerConnection>
-    <url>http://svn.apache.org/viewvc/commons/sandbox/functor/trunk/</url>
+    <connection>scm:svn:http://svn.apache.org/repos/asf/commons/proper/functor/trunk/</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/commons/proper/functor/trunk/</developerConnection>
+    <url>http://svn.apache.org/viewvc/commons/proper/functor/trunk/</url>
   </scm>
   <distributionManagement>
     <!-- Cannot define in parent ATM, see COMMONSSITE-26 -->
