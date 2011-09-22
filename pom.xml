@@ -48,7 +48,7 @@
     <site>
       <id>people.apache.org</id>
       <name>Apache Commons Site</name>
-      <url>${commons.deployment.protocol}://people.apache.org/www/commons.apache.org/proper/functor</url>
+      <url>${commons.deployment.protocol}://people.apache.org/www/commons.apache.org/functor</url>
     </site>
   </distributionManagement>
 
