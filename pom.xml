@@ -108,15 +108,6 @@
   </properties>
 
   <build>
-    <testResources>
-      <testResource>
-        <directory>src/test/java/</directory>
-        <filtering>false</filtering>
-        <includes>
-          <include>**/*.txt</include>
-        </includes>
-      </testResource>
-    </testResources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
