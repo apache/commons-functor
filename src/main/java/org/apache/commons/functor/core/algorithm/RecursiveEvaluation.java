@@ -31,7 +31,13 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7992078213921938619L;
+    /**
+     * The initial recursive Function type.
+     */
     private final Class<?> functionType;
+    /**
+     * The initial, potentially recursive Function.
+     */
     private Function<?> function;
 
     /**
@@ -100,10 +106,10 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
 
     /**
      * Get the class of the specified object, or <code>null</code> if <code>o</code> is <code>null</code>.
-     * @param o Object to check
+     * @param f Object to check
      * @return Class found
      */
-    private static <T> Class<?> getClass(Function<?> f) {
+    private static Class<?> getClass(Function<?> f) {
         return f == null ? null : f.getClass();
     }
 }
