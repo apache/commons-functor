@@ -26,6 +26,7 @@ import org.apache.commons.functor.core.composite.UnaryNot;
 /**
  * Retain elements in left Iterator that match right UnaryPredicate.
  *
+ * @param <T> the procedure argument type
  * @version $Revision$ $Date$
  */
 public final class RetainMatching<T>
@@ -34,9 +35,13 @@ public final class RetainMatching<T>
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 6760018011875465469L;
-
+    /**
+     * A static {@code RetainMatching} instance reference.
+     */
     private static final RetainMatching<Object> INSTANCE = new RetainMatching<Object>();
-
+    /**
+     * The {@code RemoveMatching} instance used to remove elements from input iterator.
+     */
     private RemoveMatching<T> removeMatching = new RemoveMatching<T>();
 
     /**
