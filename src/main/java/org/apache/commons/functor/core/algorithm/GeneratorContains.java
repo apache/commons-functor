@@ -26,6 +26,7 @@ import org.apache.commons.functor.generator.Generator;
 /**
  * Tests whether a {@link Generator} contains an element that matches a {@link UnaryPredicate}.
  *
+ * @param <T> the predicate argument type.
  * @version $Revision$ $Date$
  */
 public final class GeneratorContains<T> implements BinaryPredicate<Generator<? extends T>, UnaryPredicate<? super T>>,
@@ -34,18 +35,30 @@ public final class GeneratorContains<T> implements BinaryPredicate<Generator<? e
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -1539983619621733276L;
+    /**
+     * A static {@link GeneratorContains} instance reference.
+     */
     private static final GeneratorContains<Object> INSTANCE = new GeneratorContains<Object>();
 
     /**
      * Helper procedure.
+     *
+     * @param <T> the predicate argument type.
      */
     private static class ContainsProcedure<T> implements UnaryProcedure<T> {
+        /**
+         * The wrapped predicate.
+         */
         private final UnaryPredicate<? super T> pred;
+        /**
+         * Flag to mark if the wrapped predicate succeeded or not.
+         */
         private boolean found;
 
         /**
          * Create a new ContainsProcedure.
-         * @pred test
+         *
+         * @param pred The wrapped predicate
          */
         public ContainsProcedure(UnaryPredicate<? super T> pred) {
             this.pred = pred;
