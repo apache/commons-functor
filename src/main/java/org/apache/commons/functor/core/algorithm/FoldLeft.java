@@ -41,6 +41,8 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
 
     /**
      * Helper procedure.
+     *
+     * @param <T> the returned evaluation type.
      */
     private static class FoldLeftHelper<T> implements UnaryProcedure<T> {
         /**
