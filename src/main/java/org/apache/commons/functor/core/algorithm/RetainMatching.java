@@ -42,7 +42,7 @@ public final class RetainMatching<T>
     /**
      * The {@code RemoveMatching} instance used to remove elements from input iterator.
      */
-    private RemoveMatching<T> removeMatching = new RemoveMatching<T>();
+    private final RemoveMatching<T> removeMatching = new RemoveMatching<T>();
 
     /**
      * {@inheritDoc}
