@@ -25,6 +25,7 @@ import org.apache.commons.functor.UnaryFunction;
 /**
  * Implements an in-place transformation of a ListIterator's contents.
  *
+ * @param <T> the arguments type
  * @version $Revision$ $Date$
  */
 public final class InPlaceTransform<T>
@@ -33,6 +34,9 @@ public final class InPlaceTransform<T>
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 4365206078517376006L;
+    /**
+     * A static {@code InPlaceTransform} instance reference.
+     */
     private static final InPlaceTransform<Object> INSTANCE = new InPlaceTransform<Object>();
 
     /**
