@@ -29,29 +29,47 @@ import org.apache.commons.functor.core.composite.UnaryAnd;
  *
  * @version $Revision$ $Date$
  *
- * @param <T>
+ * @param <T> the Iterable generic type
  */
 public class FilteredIterable<T> implements Iterable<T> {
+    /**
+     * A default {@code FilteredIterable} static instance that iterates over an empty collection.
+     */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     // type irrelevant for empty instance
     private static final FilteredIterable EMPTY = new FilteredIterable(Collections.EMPTY_LIST) {
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public FilteredIterable retain(Class type) {
             return this;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public synchronized FilteredIterable retain(UnaryPredicate predicate) {
             return this;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public FilteredIterable retain(Class... ofType) {
             return this;
         }
     };
 
+    /**
+     * The {@link Iterable} has to be filtered.
+     */
     private final Iterable<? extends T> iterable;
+    /**
+     * The predicate used to test input {@link Iterable} elements.
+     */
     private UnaryAnd<T> predicate;
 
     /**
@@ -70,6 +88,9 @@ public class FilteredIterable<T> implements Iterable<T> {
         return FilteredIterator.filter(iterable.iterator(), predicate);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "FilteredIterable<" + iterable + ">";
@@ -95,7 +116,8 @@ public class FilteredIterable<T> implements Iterable<T> {
 
     /**
      * Retain elements of a given type with type-safety.
-     * @param <U>
+     *
+     * @param <U> the input Class generic type.
      * @param type filter, non-<code>null</code>
      * @return new FilteredIterable instance that delegates to <code>this</code>
      */
@@ -147,7 +169,7 @@ public class FilteredIterable<T> implements Iterable<T> {
      * Get a {@link FilteredIterable} of <code>iterable</code>.  If <code>wrapped</code> is <code>null</code>,
      * result will also be <code>null</code>.  A {@link FilteredIterable} argument will be passed back
      * directly; any other argument will be wrapped in a new {@link FilteredIterable} object.
-     * @param <T>
+     * @param <T> the input iterable generic type
      * @param iterable wrapped
      * @return FilteredIterable
      */
@@ -163,7 +185,7 @@ public class FilteredIterable<T> implements Iterable<T> {
 
     /**
      * Get an empty FilteredIterable.
-     * @param <T>
+     * @param <T> the expected {@link Iterable} generic type.
      * @return FilteredIterable<T>
      */
     @SuppressWarnings("unchecked")
