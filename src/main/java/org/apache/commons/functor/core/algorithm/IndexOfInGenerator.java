@@ -26,6 +26,7 @@ import org.apache.commons.functor.generator.Generator;
 /**
  * Return the index of the first Object in a {@link Generator} matching a {@link UnaryPredicate}, or -1 if not found.
  *
+ * @param <T> the procedure argument types
  * @version $Revision$ $Date$
  */
 public final class IndexOfInGenerator<T>
@@ -34,20 +35,40 @@ public final class IndexOfInGenerator<T>
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -11365986575536471L;
+    /**
+     * A static {@code IndexOfInGenerator} instance reference.
+     */
     private static final IndexOfInGenerator<Object> INSTANCE = new IndexOfInGenerator<Object>();
 
     /**
      * Helper procedure.
+     *
+     * @param <T> the procedure argument type
      */
     private static class IndexProcedure<T> implements UnaryProcedure<T> {
+        /**
+         * The wrapped generator
+         */
         private final Generator<? extends T> generator;
+        /**
+         * The wrapped predicate
+         */
         private final UnaryPredicate<? super T> pred;
+        /**
+         * The number of iterations needed before the wrapped predicate found the target,
+         * {@code -1} means the target was not found.
+         */
         private long index = -1L;
+        /**
+         * A local accumulator to increment the number of attempts.
+         */
         private long current = 0L;
 
         /**
          * Create a new IndexProcedure.
-         * @pred test
+         *
+         * @param generator The wrapped generator
+         * @param pred The wrapped predicate
          */
         IndexProcedure(Generator<? extends T> generator, UnaryPredicate<? super T> pred) {
             this.generator = generator;
