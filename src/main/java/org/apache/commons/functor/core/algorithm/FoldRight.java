@@ -29,6 +29,8 @@ import org.apache.commons.functor.generator.Generator;
  * Uses the seed object (if supplied) as the initial right-side argument to the {@link BinaryFunction},
  * then uses the result of that evaluation as the next right-side argument, until the {@link Generator}'s
  * elements have been expended.
+ *
+ * @param <T> the returned evaluation type.
  * @version $Revision$ $Date$
  */
 public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
@@ -40,15 +42,31 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
 
     /**
      * Helper class
+     *
+     * @param <T> the returned evaluation type.
      */
     private static class FoldRightHelper<T> implements UnaryProcedure<T> {
+        /**
+         * The stack where storing the wrapped function evaluations.
+         */
         private final Stack<T> stk = new Stack<T>();
+        /**
+         * The wrapped function.
+         */
         private final BinaryFunction<? super T, ? super T, ? extends T> function;
+        /**
+         * The seed object.
+         */
         private final T seed;
+        /**
+         * Flag to check the helper started or not.
+         */
         private final boolean hasSeed;
 
         /**
          * Create a seedless FoldRightHelper.
+         *
+         * @param function The wrapped function
          */
         public FoldRightHelper(BinaryFunction<? super T, ? super T, ? extends T> function) {
             this(null, function);
@@ -56,7 +74,9 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
 
         /**
          * Create a new FoldRightHelper.
+         *
          * @param seed initial right-side argument
+         * @param function The wrapped function
          */
         FoldRightHelper(T seed, BinaryFunction<? super T, ? super T, ? extends T> function) {
             this.seed = seed;
@@ -92,6 +112,9 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
 
     }
 
+    /**
+     * {@link BinaryFunction} to apply to each (seed, next).
+     */
     private final BinaryFunction<? super T, ? super T, ? extends T> function;
 
     /**
