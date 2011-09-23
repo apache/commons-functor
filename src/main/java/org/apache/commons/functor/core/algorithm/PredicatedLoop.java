@@ -31,7 +31,13 @@ abstract class PredicatedLoop implements Procedure, Serializable {
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 3221684231735316893L;
+    /**
+     * The procedure body to execute.
+     */
     private final Procedure body;
+    /**
+     * The test wether to keep going.
+     */
     private final Predicate test;
 
     /**
