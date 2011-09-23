@@ -25,6 +25,7 @@ import org.apache.commons.functor.UnaryPredicate;
 /**
  * Remove elements from left Iterator that match right UnaryPredicate.
  *
+ * @param <T> the procedure argument type.
  * @version $Revision$ $Date$
  */
 public final class RemoveMatching<T>
@@ -33,6 +34,9 @@ public final class RemoveMatching<T>
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -8376577687898040683L;
+    /**
+     * A static {@link RemoveMatching} instance reference.
+     */
     private static final RemoveMatching<Object> INSTANCE = new RemoveMatching<Object>();
 
     /**
