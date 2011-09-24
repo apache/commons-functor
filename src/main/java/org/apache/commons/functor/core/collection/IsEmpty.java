@@ -24,6 +24,7 @@ import java.util.Map;
 import org.apache.commons.functor.UnaryPredicate;
 
 /**
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -135,6 +136,8 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
     // ------------------------------------------------------------------------
     /**
      * Get an IsEmpty instance.
+     *
+     * @param <A> the predicate argument type.
      * @return IsEmpty
      */
     public static <A> IsEmpty<A> instance() {
