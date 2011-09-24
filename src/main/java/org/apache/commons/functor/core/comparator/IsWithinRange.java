@@ -24,6 +24,7 @@ import org.apache.commons.functor.UnaryPredicate;
  * within a range. The range is defined in the constructor.
  *
  * @since 1.0
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  * @author  Jason Horman (jason@jhorman.org)
  */
@@ -112,9 +113,9 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
 
     /**
      * Obtain an IsWithinRange instance.
-     * @param <A>
-     * @param min A
-     * @param max A
+     * @param <A> the argument type.
+     * @param min the min value
+     * @param max the max value
      * @return IsWithinRange<A>
      */
     public static <A extends Comparable<A>> IsWithinRange<A> instance(A min, A max) {
