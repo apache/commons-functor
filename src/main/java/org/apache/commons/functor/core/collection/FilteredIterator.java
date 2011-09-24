@@ -24,6 +24,8 @@ import org.apache.commons.functor.UnaryPredicate;
 /**
  * Iterator that filters another Iterator by only passing through those elements
  * that are matched by a specified UnaryPredicate.
+ *
+ * @param <T> the {@link Iterator} generic type
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -31,11 +33,26 @@ public final class FilteredIterator<T> implements Iterator<T> {
     // attributes
     // ------------------------------------------------------------------------
 
+    /**
+     * The predicate used to test this Iterator elements.
+     */
     private final UnaryPredicate<? super T> predicate;
+    /**
+     * The wrapped iterator.
+     */
     private final Iterator<? extends T> iterator;
 
+    /**
+     * Reference to next element has to be returned by this iterator.
+     */
     private T next = null;
+    /**
+     * Flag to mark this iterator has more elements or not.
+     */
     private boolean nextSet = false;
+    /**
+     * Flag to mark current iterator element can be removed.
+     */
     private boolean canRemove = false;
 
     // constructor
@@ -128,6 +145,7 @@ public final class FilteredIterator<T> implements Iterator<T> {
     // ------------------------------------------------------------------------
     /**
      * Get a filtered Iterator instance applying <code>pred</code> to <code>iter</code>.
+     * @param <T> the input iterator generic type
      * @param iter to filter
      * @param pred to apply
      * @return Iterator
