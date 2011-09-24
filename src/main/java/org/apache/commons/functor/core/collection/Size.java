@@ -25,6 +25,8 @@ import org.apache.commons.functor.UnaryFunction;
 /**
  * Returns the size of the specified Collection, or the length
  * of the specified array or String.
+ *
+ * @param <A> the function argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -34,6 +36,9 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -12374650738412129L;
+    /**
+     * A static {@code Size} instance reference.
+     */
     private static final Size<Object> INSTANCE = new Size<Object>();
 
     // constructor
