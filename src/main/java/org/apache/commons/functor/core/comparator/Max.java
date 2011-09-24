@@ -27,6 +27,7 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
  * Adapts a {@link Comparator Comparator} to the
  * {@link BinaryFunction} interface.
  *
+ * @param T the binary function arguments and return types.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -42,6 +43,9 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
      */
     private static final long serialVersionUID = 6514424464263828685L;
 
+    /**
+     * The wrapped comparator.
+     */
     private final Comparator<T> comparator;
 
     /**
@@ -102,6 +106,8 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
 
     /**
      * Get a Max instance.
+     *
+     * @param T the binary function arguments and return types.
      * @return Max
      */
     public static <T extends Comparable<?>> Max<T> instance() {
@@ -110,6 +116,8 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
 
     /**
      * Get a Max UnaryFunction.
+     *
+     * @param T the binary function arguments and return types.
      * @param right the right side argument of the Max function
      * @return UnaryFunction<T, T>
      */
