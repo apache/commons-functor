@@ -29,6 +29,8 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * specified object is an element of the specified
  * Collection.
  *
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @since 1.0
  * @version $Revision$ $Date$
  * @author  Jason Horman (jason@jhorman.org)
@@ -42,6 +44,9 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7639051806015321070L;
+    /**
+     * A static {@link IsElementOf} instance reference.
+     */
     private static final IsElementOf<Object, Object> INSTANCE = new IsElementOf<Object, Object>();
 
     // constructors
@@ -132,6 +137,8 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
 
     /**
      * Get an IsElementOf(collection|array) UnaryPredicate.
+     *
+     * @param <A> the UnaryPredicate argument generic type
      * @param obj collection/array to search
      * @return UnaryPredicate
      */
