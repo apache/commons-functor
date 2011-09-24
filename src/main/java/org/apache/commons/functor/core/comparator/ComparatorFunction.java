@@ -25,6 +25,7 @@ import org.apache.commons.functor.BinaryFunction;
  * Adapts a {@link Comparator Comparator} to the
  * {@link BinaryFunction} interface.
  *
+ * @param <T> the binary function input types
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -40,6 +41,9 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
      */
     private static final long serialVersionUID = 1642024869929206095L;
 
+    /**
+     * The comparator to wrap.
+     */
     private final Comparator<? super T> comparator;
 
     /**
@@ -92,6 +96,8 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
 
     /**
      * Get a basic ComparatorFunction instance.
+     *
+     * @param <T> the binary function input types
      * @return ComparatorFunction
      */
     @SuppressWarnings("unchecked")
