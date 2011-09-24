@@ -47,11 +47,11 @@ public final class IndexOfInGenerator<T>
      */
     private static class IndexProcedure<T> implements UnaryProcedure<T> {
         /**
-         * The wrapped generator
+         * The wrapped generator.
          */
         private final Generator<? extends T> generator;
         /**
-         * The wrapped predicate
+         * The wrapped predicate.
          */
         private final UnaryPredicate<? super T> pred;
         /**

@@ -41,7 +41,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
     private static final long serialVersionUID = 4671387086700391506L;
 
     /**
-     * Helper class
+     * Helper class.
      *
      * @param <T> the returned evaluation type.
      */
