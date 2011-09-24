@@ -31,7 +31,7 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * a {@link Comparable Comparable} <code>Comparator</code> is used.
  *
  * @see org.apache.commons.functor.core.IsEqual
- *
+ * @param <T> the binary predicate input types
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  *
@@ -48,6 +48,9 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
      */
     private static final long serialVersionUID = 1021154684877529051L;
 
+    /**
+     * The wrapped comparator.
+     */
     private final Comparator<? super T> comparator;
 
     /**
@@ -124,6 +127,8 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
 
     /**
      * Get an IsNotEquivalent instance.
+     *
+     * @param <T> the binary predicate input types
      * @return IsNotEquivalent
      */
     @SuppressWarnings("unchecked")
@@ -133,6 +138,8 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
 
     /**
      * Get an IsNotEquivalent UnaryPredicate.
+     *
+     * @param <T> the binary predicate input types
      * @param right Comparable against which UnaryPredicate arguments will be compared.
      * @return UnaryPredicate
      */
