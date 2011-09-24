@@ -30,6 +30,7 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * When no (or a <code>null</code> <code>Comparator</code> is specified,
  * a {@link Comparable Comparable} <code>Comparator</code> is used.
  *
+ * @param <T> the binary predicate input types
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -45,6 +46,9 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
      */
     private static final long serialVersionUID = -8592932496891910273L;
 
+    /**
+     * The wrapped comparator.
+     */
     private final Comparator<? super T> comparator;
 
     /**
@@ -122,7 +126,8 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
 
     /**
      * Get a typed IsGreaterThan instance.
-     * @param <T>
+     *
+     * @param <T> the binary predicate input types
      * @return IsGreaterThan<T>
      */
     public static <T extends Comparable<?>> IsGreaterThan<T> instance() {
@@ -131,6 +136,8 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
 
     /**
      * Get an IsGreaterThan UnaryPredicate.
+     *
+     * @param <T> the binary predicate input types
      * @param right the right side object of the IsGreaterThan comparison
      * @return UnaryPredicate<T>
      */
