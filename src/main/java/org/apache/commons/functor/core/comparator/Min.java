@@ -27,6 +27,7 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
  * Adapts a {@link Comparator Comparator} to the
  * {@link BinaryFunction} interface.
  *
+ * @param T the binary function arguments and return types.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -42,6 +43,9 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
      */
     private static final long serialVersionUID = 9190170976707323848L;
 
+    /**
+     * The wrapped comparator.
+     */
     private final Comparator<T> comparator;
 
     /**
@@ -102,6 +106,8 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
 
     /**
      * Get a basic Min instance.
+     *
+     * @param T the binary function arguments and return types.
      * @return Min
      */
     public static <T extends Comparable<?>> Min<T> instance() {
@@ -110,6 +116,8 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
 
     /**
      * Get a Min UnaryFunction.
+     *
+     * @param T the binary function arguments and return types.
      * @param right the right side argument of the Min function
      * @return UnaryFunction<T, T>
      */
