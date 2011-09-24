@@ -22,6 +22,9 @@ import org.apache.commons.functor.UnaryFunction;
 
 /**
  * Iterator that transforms another Iterator by applying a UnaryFunction to each returned element.
+ *
+ * @param <E> the function argument type
+ * @param <T> the iterator elements type
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -30,7 +33,13 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
     // attributes
     // ------------------------------------------------------------------------
 
+    /**
+     * The function to apply to each iterator element.
+     */
     private final UnaryFunction<? super E, ? extends T> function;
+    /**
+     * The wrapped iterator.
+     */
     private final Iterator<? extends E> iterator;
 
     // constructor
@@ -115,6 +124,9 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
     // ------------------------------------------------------------------------
     /**
      * Get a Transformed Iterator instance.
+     *
+     * @param <E> the function argument type
+     * @param <T> the iterator elements type
      * @param iter to decorate, if null result is null
      * @param func transforming function, cannot be null
      * @return Iterator<T>
@@ -128,6 +140,8 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
 
     /**
      * Get an Iterator instance that may be transformed.
+     *
+     * @param <E> the iterator elements type
      * @param iter to decorate, if null result is null
      * @param func transforming function, if null result is iter
      * @return Iterator<?>
