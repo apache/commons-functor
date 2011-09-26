@@ -35,10 +35,18 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
      */
     private static final long serialVersionUID = -5903381842630236070L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
 
+    /**
+     * The condition has to be verified that while true,
+     * forces the action repetition.
+     */
     private final Predicate condition;
+
+    /**
+     * The action to be repeated until the condition is true.
+     */
     private final Procedure action;
 
     /**
