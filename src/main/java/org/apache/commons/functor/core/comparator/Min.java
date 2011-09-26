@@ -83,7 +83,7 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
 
     /**
      * Learn whether another Min is equal to this.
-     * @param <T>hat Min to test
+     * @param that Min to test
      * @return boolean
      */
     public boolean equals(Min<?> that) {
