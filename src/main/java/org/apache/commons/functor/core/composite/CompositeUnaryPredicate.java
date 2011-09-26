@@ -42,6 +42,7 @@ import org.apache.commons.functor.adapter.UnaryPredicateUnaryFunction;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -52,6 +53,9 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     private static final long serialVersionUID = 4880363949059265252L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted composite function.
+     */
     private final CompositeUnaryFunction<? super A, Boolean> function;
 
     // constructor
@@ -79,6 +83,7 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     // ------------------------------------------------------------------------
     /**
      * Fluently obtain a CompositeUnaryPredicate that applies our predicate to the result of the preceding function.
+     * @param <P> the input function left argument and output predicate argument types
      * @param preceding UnaryFunction
      * @return CompositeUnaryPredicate<P>
      */
