@@ -42,6 +42,7 @@ public final class Composite {
 
     /**
      * Create a composite UnaryProcedure.
+     * @param <A> the procedure argument type.
      * @param procedure UnaryProcedure to execute against output of <code>f</code>
      * @return CompositeUnaryProcedure<A>
      */
@@ -51,6 +52,8 @@ public final class Composite {
 
     /**
      * Create a composite UnaryProcedure.
+     * @param <A> the function argument type.
+     * @param <T> the the procedure argument type and function returned value type.
      * @param procedure UnaryProcedure to execute against output of <code>f</code>
      * @param function UnaryFunction to apply
      * @return CompositeUnaryProcedure<A>
@@ -62,6 +65,7 @@ public final class Composite {
 
     /**
      * Create a composite UnaryPredicate.
+     * @param <A> the predicate argument type.
      * @param pred UnaryPredicate to test the output of <code>f</code>
      * @return CompositeUnaryPredicate<A>
      */
@@ -71,6 +75,8 @@ public final class Composite {
 
     /**
      * Create a composite UnaryPredicate.
+     * @param <A> the function argument type.
+     * @param <T> the predicate argument type and the function returned value type.
      * @param predicate UnaryPredicate to test the output of <code>f</code>
      * @param function UnaryFunction to apply
      * @return CompositeUnaryPredicate<A>
@@ -82,6 +88,10 @@ public final class Composite {
 
     /**
      * Create a composite BinaryPredicate.
+     * @param <L> the output predicate left argument type.
+     * @param <R> the output predicate right argument type.
+     * @param <G> the input functions left argument type.
+     * @param <H> the input functions right argument type.
      * @param p BinaryPredicate to test <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
      * @param g left UnaryFunction
      * @param h right UnaryFunction
@@ -95,6 +105,8 @@ public final class Composite {
 
     /**
      * Create a composite UnaryFunction.
+     * @param <A> the function argument type.
+     * @param <T> the function returned value type.
      * @param f UnaryFunction to apply to the output of <code>g</code>
      * @return UnaryFunction
      */
@@ -104,6 +116,9 @@ public final class Composite {
 
     /**
      * Create a composite UnaryFunction.
+     * @param <A> the function argument type.
+     * @param <X> the function argument type.
+     * @param <T> the function returned value type.
      * @param f UnaryFunction to apply to the output of <code>g</code>
      * @param g UnaryFunction to apply first
      * @return UnaryFunction
@@ -131,6 +146,11 @@ public final class Composite {
 
     /**
      * Create a composite<UnaryFunction> BinaryFunction.
+     * @param <L> the output predicate left argument type.
+     * @param <R> the output predicate right argument type.
+     * @param <G> the input functions left argument type.
+     * @param <H> the input functions right argument type.
+ *   * @param <T> the function returned value type.
      * @param f BinaryFunction to apply to <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
      * @param g left UnaryFunction
      * @param h right UnaryFunction
@@ -144,6 +164,11 @@ public final class Composite {
 
     /**
      * Create a composite<BinaryFunction> BinaryFunction.
+     * @param <L> the output predicate left argument type.
+     * @param <R> the output predicate right argument type.
+     * @param <G> the input functions left argument type.
+     * @param <H> the input functions right argument type.
+ *   * @param <T> the function returned value type.
      * @param f BinaryFunction to apply to <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
      * @param g left BinaryFunction
      * @param h right BinaryFunction
