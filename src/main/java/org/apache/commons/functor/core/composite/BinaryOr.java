@@ -31,6 +31,8 @@ import org.apache.commons.functor.BinaryPredicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -53,7 +55,7 @@ public final class BinaryOr<L, R> extends BaseBinaryPredicateList<L, R> {
     /**
      * Create a new BinaryOr instance.
      *
-     * @param predicates
+     * @param predicates the predicates to add
      */
     public BinaryOr(BinaryPredicate<? super L, ? super R>... predicates) {
         super(predicates);
@@ -62,7 +64,7 @@ public final class BinaryOr<L, R> extends BaseBinaryPredicateList<L, R> {
     /**
      * Create a new BinaryOr instance.
      *
-     * @param predicates
+     * @param predicates the predicates to add
      */
     public BinaryOr(Iterable<BinaryPredicate<? super L, ? super R>> predicates) {
         super(predicates);
