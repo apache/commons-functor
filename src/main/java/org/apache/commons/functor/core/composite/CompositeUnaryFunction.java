@@ -44,6 +44,8 @@ import org.apache.commons.functor.UnaryFunction;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  * @author Matt Benson
@@ -55,7 +57,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      */
     private static final long serialVersionUID = 4945193629275757281L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
 
     /**
@@ -69,7 +71,13 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 8167255331321876718L;
+        /**
+         * The last evaluator function.
+         */
         private UnaryFunction<? super X, ? extends T> following;
+        /**
+         * The first evaluator function.
+         */
         private UnaryFunction<? super A, ? extends X> preceding;
 
         /**
@@ -98,6 +106,12 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
             return obj == this || obj instanceof Helper<?, ?, ?> && equals((Helper<?, ?, ?>) obj);
         }
 
+        /**
+         * Checks if input helper is equals to this instance.
+         *
+         * @param helper the helper to check
+         * @return true, if helpers are equals, false otherwise
+         */
         private boolean equals(Helper<?, ?, ?> helper) {
             return helper.following.equals(following) && helper.preceding.equals(preceding);
         }
@@ -124,6 +138,9 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
         }
     }
 
+    /**
+     * The adapted function.
+     */
     private final UnaryFunction<? super A, ? extends T> function;
 
     /**
@@ -137,6 +154,13 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
         this.function = function;
     }
 
+    /**
+     * Creates a new {@link CompositeUnaryFunction} instance given the input functions.
+     *
+     * @param <X> the argument type.
+     * @param following The first evaluator function.
+     * @param preceding The last evaluator function.
+     */
     private <X> CompositeUnaryFunction(UnaryFunction<? super X, ? extends T> following,
             UnaryFunction<? super A, ? extends X> preceding) {
         this.function = new Helper<X, A, T>(following, preceding);
