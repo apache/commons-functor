@@ -33,6 +33,7 @@ import org.apache.commons.functor.UnaryPredicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -44,6 +45,9 @@ abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializa
     private static final long serialVersionUID = 1467575113401282954L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * A list where storing the adapted predicates.
+     */
     private final List<UnaryPredicate<? super A>> list = new ArrayList<UnaryPredicate<? super A>>();
 
     // constructor
@@ -103,7 +107,7 @@ abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializa
     // modifiers
     // ------------------------------------------------------------------------
     /**
-     * Add a UnaryPredicate to the list
+     * Add a UnaryPredicate to the list.
      * @param p UnaryPredicate to add
      */
     protected void addUnaryPredicate(UnaryPredicate<? super A> p) {
@@ -125,7 +129,7 @@ abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializa
     }
 
     /**
-     * Learn whether another BaseUnaryPredicateList has content equal to this
+     * Learn whether another BaseUnaryPredicateList has content equal to this.
      * @param that the BaseUnaryPredicateList to test
      * @return boolean
      */
