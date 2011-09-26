@@ -42,6 +42,7 @@ import org.apache.commons.functor.adapter.UnaryProcedureUnaryFunction;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the procedure argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -52,6 +53,9 @@ public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     private static final long serialVersionUID = -7496282561355676509L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted composite procedure.
+     */
     private final CompositeUnaryFunction<? super A, Object> function;
 
     // constructor
@@ -67,6 +71,10 @@ public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Seri
         this.function = new CompositeUnaryFunction<A, Object>(new UnaryProcedureUnaryFunction<A, Object>(procedure));
     }
 
+    /**
+     * Create a new CompositeUnaryProcedure.
+     * @param function final CompositeUnaryFunction to run
+     */
     private CompositeUnaryProcedure(CompositeUnaryFunction<? super A, Object> function) {
         this.function = function;
     }
@@ -75,6 +83,7 @@ public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     // ------------------------------------------------------------------------
     /**
      * Fluently obtain a CompositeUnaryProcedure that runs our procedure against the result of the preceding function.
+     * @param <T> the input function left argument and output procedure argument type
      * @param preceding UnaryFunction
      * @return CompositeUnaryProcedure<P>
      */
