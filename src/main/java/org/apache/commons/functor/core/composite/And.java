@@ -54,7 +54,7 @@ public final class And extends BasePredicateList {
     /**
      * Create a new And instance.
      *
-     * @param predicates
+     * @param predicates the predicates to add
      */
     public And(Iterable<Predicate> predicates) {
         super(predicates);
@@ -63,7 +63,7 @@ public final class And extends BasePredicateList {
     /**
      * Create a new And instance.
      *
-     * @param predicates
+     * @param predicates the predicates to add
      */
     public And(Predicate... predicates) {
         super(predicates);
