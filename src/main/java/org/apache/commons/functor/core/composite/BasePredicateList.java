@@ -43,6 +43,9 @@ abstract class BasePredicateList implements Predicate, Serializable {
     private static final long serialVersionUID = 7860902316994888181L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * A list where storing the adapted predicates.
+     */
     private final List<Predicate> list = new ArrayList<Predicate>();
 
     // constructor
