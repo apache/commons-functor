@@ -33,6 +33,8 @@ import org.apache.commons.functor.BinaryPredicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -44,6 +46,9 @@ abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, S
     private static final long serialVersionUID = -8218822378485819939L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * A list to maintain all the adapted predicates.
+     */
     private final List<BinaryPredicate<? super L, ? super R>> list =
         new ArrayList<BinaryPredicate<? super L, ? super R>>();
 
@@ -104,7 +109,7 @@ abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, S
     // modifiers
     // ------------------------------------------------------------------------
     /**
-     * Add a BinaryPredicate to the list
+     * Add a BinaryPredicate to the list.
      * @param p BinaryPredicate to add
      */
     protected void addBinaryPredicate(BinaryPredicate<? super L, ? super R> p) {
