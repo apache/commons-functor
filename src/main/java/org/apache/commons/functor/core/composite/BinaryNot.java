@@ -31,6 +31,8 @@ import org.apache.commons.functor.BinaryPredicate;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -41,6 +43,9 @@ public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializabl
     private static final long serialVersionUID = -3488974286912054737L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted predicate.
+     */
     private final BinaryPredicate<? super L, ? super R> predicate;
 
     // constructor
@@ -103,6 +108,8 @@ public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializabl
     // ------------------------------------------------------------------------
     /**
      * Negate a BinaryPredicate.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param that BinaryPredicate to negate
      * @return BinaryPredicate
      */
