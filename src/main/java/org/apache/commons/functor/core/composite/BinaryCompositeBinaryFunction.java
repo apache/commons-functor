@@ -33,6 +33,9 @@ import org.apache.commons.functor.BinaryFunction;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the function left argument type.
+ * @param <R> the function right argument type.
+ * @param <T> the function returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -43,22 +46,31 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      */
     private static final long serialVersionUID = 2570517284319064043L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
 
     /**
-     * Type-remembering Helper
+     * Type-remembering Helper.
      *
-     * @param <G>
-     * @param <H>
+     * @param <G> the function left argument type.
+     * @param <H> the function right argument type.
      */
     private static class Helper<G, H, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
         /**
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 6013646799505641592L;
+        /**
+         * Global evaluator.
+         */
         private BinaryFunction<? super G, ? super H, ? extends T> f;
+        /**
+         * This function evaluation will be the left argument of main evaluator.
+         */
         private BinaryFunction<? super L, ? super R, ? extends G> g;
+        /**
+         * This function evaluation will be the right argument of main evaluator.
+         */
         private BinaryFunction<? super L, ? super R, ? extends H> h;
 
         /**
@@ -83,12 +95,18 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
         }
     }
 
+    /**
+     * The helper used for the evaluation.
+     */
     private final Helper<?, ?, L, R, T> helper;
 
     // constructor
     // ------------------------------------------------------------------------
     /**
      * Create a new BinaryCompositeBinaryFunction.
+     *
+     * @param <G> the main function left argument type.
+     * @param <H> the main function right argument type.
      * @param f final BinaryFunction to evaluate
      * @param g left preceding BinaryFunction
      * @param h right preceding BinaryFunction
