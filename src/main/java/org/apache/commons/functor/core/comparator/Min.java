@@ -27,7 +27,7 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
  * Adapts a {@link Comparator Comparator} to the
  * {@link BinaryFunction} interface.
  *
- * @param T the binary function arguments and return types.
+ * @param <T> the binary function arguments and return types.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -83,7 +83,7 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
 
     /**
      * Learn whether another Min is equal to this.
-     * @param that Min to test
+     * @param <T>hat Min to test
      * @return boolean
      */
     public boolean equals(Min<?> that) {
@@ -107,7 +107,7 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
      * Get a basic Min instance.
      *
-     * @param T the binary function arguments and return types.
+     * @param <T> the binary function arguments and return types.
      * @return Min
      */
     public static <T extends Comparable<?>> Min<T> instance() {
@@ -117,7 +117,7 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
      * Get a Min UnaryFunction.
      *
-     * @param T the binary function arguments and return types.
+     * @param <T> the binary function arguments and return types.
      * @param right the right side argument of the Min function
      * @return UnaryFunction<T, T>
      */
