@@ -38,6 +38,8 @@ import org.apache.commons.functor.BinaryProcedure;
  * <code>Serializable</code> will result in an exception.
  * </p>
  *
+ * @param <L> the procedure left argument type.
+ * @param <R> the procedure right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -48,6 +50,9 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     private static final long serialVersionUID = 1371075584406178258L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * A list where storing all the procedures references.
+     */
     private final List<BinaryProcedure<? super L, ? super R>> list =
         new ArrayList<BinaryProcedure<? super L, ? super R>>();
 
