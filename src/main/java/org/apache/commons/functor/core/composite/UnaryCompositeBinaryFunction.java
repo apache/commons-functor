@@ -48,6 +48,9 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
      */
     private static final long serialVersionUID = 264219357293822629L;
 
+    /** Base hash integer used to shift hash. */
+    private static final int HASH_SHIFT = 4;
+
     /**
      *
      *
@@ -157,11 +160,11 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
      */
     public int hashCode() {
         int hash = "UnaryCompositeBinaryFunction".hashCode();
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         hash ^= helper.f.hashCode();
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         hash ^= helper.g.hashCode();
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         hash ^= helper.h.hashCode();
         return hash;
     }
