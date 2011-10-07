@@ -31,6 +31,7 @@ import org.apache.commons.functor.UnaryPredicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -53,7 +54,7 @@ public final class UnaryAnd<A> extends BaseUnaryPredicateList<A> {
     /**
      * Create a new UnaryAnd instance.
      *
-     * @param predicates
+     * @param predicates the predicates to put in unary and.
      */
     public UnaryAnd(Iterable<UnaryPredicate<? super A>> predicates) {
         super(predicates);
@@ -62,7 +63,7 @@ public final class UnaryAnd<A> extends BaseUnaryPredicateList<A> {
     /**
      * Create a new UnaryAnd instance.
      *
-     * @param predicates
+     * @param predicates the predicates to put in unary and.
      */
     public UnaryAnd(UnaryPredicate<? super A>... predicates) {
         super(predicates);
