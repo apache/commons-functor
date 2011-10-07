@@ -47,13 +47,22 @@ public final class ConditionalProcedure implements Procedure, Serializable {
      */
     private static final long serialVersionUID = -4228632798836328605L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
 
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * the condition to be evaluated.
+     */
     private final Predicate ifPred;
+    /**
+     * the procedure executed if the condition is satisfied.
+     */
     private final Procedure thenProc;
+    /**
+     * the procedure executed if the condition is not satisfied.
+     */
     private final Procedure elseProc;
 
     // constructor
