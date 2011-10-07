@@ -37,6 +37,7 @@ import org.apache.commons.functor.UnaryPredicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -46,12 +47,21 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
      */
     private static final long serialVersionUID = 1214714029872180155L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * the condition to be evaluated.
+     */
     private final UnaryPredicate<? super A> ifPred;
+    /**
+     * the predicate executed if the condition is satisfied.
+     */
     private final UnaryPredicate<? super A> thenPred;
+    /**
+     * the predicate executed if the condition is not satisfied.
+     */
     private final UnaryPredicate<? super A> elsePred;
 
     // constructor
