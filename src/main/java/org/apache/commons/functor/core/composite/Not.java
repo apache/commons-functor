@@ -42,6 +42,9 @@ public final class Not implements Predicate, Serializable {
     private static final long serialVersionUID = 8268713706856765874L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted predicate has to be negated.
+     */
     private final Predicate predicate;
 
     // constructor
