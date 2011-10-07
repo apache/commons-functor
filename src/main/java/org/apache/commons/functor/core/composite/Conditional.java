@@ -71,6 +71,7 @@ public final class Conditional {
 
     /**
      * Create a conditional Function.
+     * @param <T> the input functions parameter type
      * @param q if
      * @param r then
      * @param s else
@@ -93,6 +94,8 @@ public final class Conditional {
 
     /**
      * Create a guarded UnaryProcedure.
+     *
+     * @param <A> the predicates argument type.
      * @param q if
      * @param r then
      * @return UnaryProcedure<A>
@@ -103,6 +106,8 @@ public final class Conditional {
 
     /**
      * Create a conditional UnaryProcedure.
+     *
+     * @param <A> the predicates argument type.
      * @param q if
      * @param r then
      * @param s else
@@ -115,6 +120,8 @@ public final class Conditional {
 
     /**
      * Create a conditional UnaryFunction.
+     * @param <A> the predicates argument type.
+     * @param <T> the output function returned value type.
      * @param q if
      * @param r then
      * @param s else
@@ -127,6 +134,7 @@ public final class Conditional {
 
     /**
      * Create a conditional UnaryPredicate.
+     * @param <A> the predicates argument type.
      * @param q if
      * @param r then
      * @param s else
@@ -139,6 +147,8 @@ public final class Conditional {
 
     /**
      * Create a guarded BinaryProcedure.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param q if
      * @param r then
      * @return BinaryProcedure<L, R>
@@ -150,6 +160,9 @@ public final class Conditional {
 
     /**
      * Create a conditional BinaryProcedure.
+     *
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param q if
      * @param r then
      * @param s else
@@ -162,6 +175,10 @@ public final class Conditional {
 
     /**
      * Create a conditional BinaryFunction.
+     *
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
+     * @param <T> the output function returned value type.
      * @param q if
      * @param r then
      * @param s else
@@ -174,6 +191,9 @@ public final class Conditional {
 
     /**
      * Create a conditional BinaryPredicate.
+     *
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param q if
      * @param r then
      * @param s else
