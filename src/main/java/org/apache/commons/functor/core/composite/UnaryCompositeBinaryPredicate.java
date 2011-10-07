@@ -44,6 +44,9 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
      */
     private static final long serialVersionUID = 3841123079006929493L;
 
+    /** Base hash integer used to shift hash. */
+    private static final int HASH_SHIFT = 4;
+
     private static class Helper<G, H, L, R> implements BinaryPredicate<L, R>, Serializable {
         /**
          * serialVersionUID declaration.
@@ -129,11 +132,11 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
      */
     public int hashCode() {
         int hash = "UnaryCompositeBinaryPredicate".hashCode();
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         hash ^= helper.f.hashCode();
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         hash ^= helper.g.hashCode();
-        hash <<= 4;
+        hash <<= HASH_SHIFT;
         hash ^= helper.h.hashCode();
         return hash;
     }
