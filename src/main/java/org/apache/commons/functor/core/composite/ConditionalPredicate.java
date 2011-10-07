@@ -46,12 +46,21 @@ public final class ConditionalPredicate implements Predicate, Serializable {
      */
     private static final long serialVersionUID = 7333505000745854098L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * the condition to be evaluated.
+     */
     private final Predicate ifPred;
+    /**
+     * the predicate executed if the condition is satisfied.
+     */
     private final Predicate thenPred;
+    /**
+     * the predicate executed if the condition is not satisfied.
+     */
     private final Predicate elsePred;
 
     // constructor
