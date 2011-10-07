@@ -38,6 +38,7 @@ import org.apache.commons.functor.core.NoOp;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -47,12 +48,21 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
      */
     private static final long serialVersionUID = -895833369740247391L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * the condition to be evaluated.
+     */
     private final UnaryPredicate<? super A> ifPred;
+    /**
+     * the procedure executed if the condition is satisfied.
+     */
     private final UnaryProcedure<? super A> thenProc;
+    /**
+     * the procedure executed if the condition is not satisfied.
+     */
     private final UnaryProcedure<? super A> elseProc;
 
     // constructor
