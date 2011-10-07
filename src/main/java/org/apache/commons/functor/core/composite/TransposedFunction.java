@@ -36,6 +36,10 @@ import org.apache.commons.functor.BinaryFunction;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  * </p>
+ *
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -46,6 +50,9 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     private static final long serialVersionUID = -5824252875453493940L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted function.
+     */
     private final BinaryFunction<? super R, ? super L, ? extends T> function;
 
     // constructor
@@ -109,6 +116,9 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     // ------------------------------------------------------------------------
     /**
      * Transpose a BinaryFunction.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
+     * @param <T> the returned value type.
      * @param f BinaryFunction to transpose
      * @return TransposedFunction
      */
