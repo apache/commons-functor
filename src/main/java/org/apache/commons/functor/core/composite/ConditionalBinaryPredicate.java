@@ -37,6 +37,8 @@ import org.apache.commons.functor.BinaryPredicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -46,12 +48,21 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
      */
     private static final long serialVersionUID = -4511946801764080748L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * the condition to be evaluated.
+     */
     private final BinaryPredicate<? super L, ? super R> ifPred;
+    /**
+     * the predicate executed if the condition is satisfied.
+     */
     private final BinaryPredicate<? super L, ? super R> thenPred;
+    /**
+     * the predicate executed if the condition is not satisfied.
+     */
     private final BinaryPredicate<? super L, ? super R> elsePred;
 
     // constructor
