@@ -23,6 +23,8 @@ import org.apache.commons.functor.UnaryFunction;
 
 /**
  * A Function whose result is then run through a UnaryFunction.
+ *
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
@@ -33,15 +35,22 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
     private static final long serialVersionUID = 1201423110871342081L;
 
     /**
-     * Type-remembering helper
-     * @param <X>
+     * Type-remembering helper.
+     *
+     * @param <X> the adapted function argument type
      */
     private static final class Helper<X, T> implements Function<T>, Serializable {
         /**
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = -7177784125292465809L;
+        /**
+         * The preceding function.
+         */
         private Function<? extends X> preceding;
+        /**
+         * The following function.
+         */
         private UnaryFunction<? super X, ? extends T> following;
 
         /**
@@ -62,11 +71,14 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
         }
     }
 
+    /**
+     * The adapted helper.
+     */
     private final Helper<?, T> helper;
 
     /**
      * Create a new TransformedFunction.
-     * @param <X>
+     * @param <X> the preceding function argument type.
      * @param preceding Function
      * @param following UnaryFunction
      */
