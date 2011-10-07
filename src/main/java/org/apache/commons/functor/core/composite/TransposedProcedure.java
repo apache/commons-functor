@@ -36,6 +36,8 @@ import org.apache.commons.functor.BinaryProcedure;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -46,6 +48,9 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
     private static final long serialVersionUID = 4472683678460290015L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted procedure.
+     */
     private final BinaryProcedure<? super R, ? super L> procedure;
 
     // constructor
@@ -108,6 +113,9 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
     // ------------------------------------------------------------------------
     /**
      * Transpose a BinaryProcedure.
+     *
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param p to transpose
      * @return TransposedProcedure
      */
