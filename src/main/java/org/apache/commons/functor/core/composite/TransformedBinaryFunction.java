@@ -74,6 +74,9 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
         }
     }
 
+    /**
+     * The adapted helper.
+     */
     private final Helper<?, L, R, T> helper;
 
     /**
