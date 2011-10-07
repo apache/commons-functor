@@ -53,7 +53,7 @@ public final class Or extends BasePredicateList {
     /**
      * Create a new Or instance.
      *
-     * @param predicates
+     * @param predicates predicates have to be put in or condition.
      */
     public Or(Iterable<Predicate> predicates) {
         super(predicates);
@@ -62,7 +62,7 @@ public final class Or extends BasePredicateList {
     /**
      * Create a new Or instance.
      *
-     * @param predicates
+     * @param predicates predicates have to be put in or condition.
      */
     public Or(Predicate... predicates) {
         super(predicates);
