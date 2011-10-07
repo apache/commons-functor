@@ -35,6 +35,8 @@ import org.apache.commons.functor.UnaryFunction;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -47,13 +49,30 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
 
+    /**
+     * Internal helper.
+     *
+     * @param <G> right function type.
+     * @param <H> right function type.
+     * @param <L> left function type.
+     * @param <R> left function type.
+     */
     private static class Helper<G, H, L, R> implements BinaryPredicate<L, R>, Serializable {
         /**
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = -3463108273324567825L;
+        /**
+         * BinaryPredicate to test <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>.
+         */
         private BinaryPredicate<? super G, ? super H> f;
+        /**
+         * left UnaryFunction.
+         */
         private UnaryFunction<? super L, ? extends G> g;
+        /**
+         * right UnaryFunction.
+         */
         private UnaryFunction<? super R, ? extends H> h;
 
         /**
@@ -79,6 +98,9 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
 
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted helper.
+     */
     private final Helper<?, ?, L, R> helper;
 
     // constructor
