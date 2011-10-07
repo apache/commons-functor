@@ -48,6 +48,9 @@ public class Sequence implements Procedure, Serializable {
     private static final long serialVersionUID = 8041703589149547883L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The data structure where storing procedures sequence.
+     */
     private List<Procedure> list = new ArrayList<Procedure>();
 
     // constructor
