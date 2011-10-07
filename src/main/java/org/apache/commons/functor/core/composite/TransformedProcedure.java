@@ -33,19 +33,25 @@ public class TransformedProcedure implements Procedure, Serializable {
      */
     private static final long serialVersionUID = -4111958123789033410L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 2;
 
     /**
-     * Type-remembering helper
-     * @param <X>
+     * Type-remembering helper.
+     * @param <X> the adapted function argument type.
      */
     private static final class Helper<X> implements Procedure, Serializable {
         /**
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = -4093503167446891318L;
+        /**
+         * The adapted function.
+         */
         private Function<? extends X> function;
+        /**
+         * The adapted procedure.
+         */
         private UnaryProcedure<? super X> procedure;
 
         /**
@@ -66,11 +72,14 @@ public class TransformedProcedure implements Procedure, Serializable {
         }
     }
 
+    /**
+     * The adapted helper.
+     */
     private final Helper<?> helper;
 
     /**
      * Create a new TransformedProcedure.
-     * @param <X>
+     * @param <X> the adapted function argument type.
      * @param function Function
      * @param procedure UnaryProcedure
      */
