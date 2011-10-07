@@ -24,6 +24,9 @@ import org.apache.commons.functor.UnaryProcedure;
 
 /**
  * A BinaryProcedure composed of a BinaryFunction whose result is then run through a UnaryProcedure.
+ *
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
@@ -34,15 +37,22 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
     private static final long serialVersionUID = -7559182250073101798L;
 
     /**
-     * Type-remembering helper
-     * @param <X>
+     * Type-remembering helper.
+     *
+     * @param <X> the wrapped procedure argument.
      */
     private static final class Helper<X, L, R> implements BinaryProcedure<L, R>, Serializable {
         /**
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = -4229496007094829301L;
+        /**
+         * The wrapped function.
+         */
         private BinaryFunction<? super L, ? super R, ? extends X> function;
+        /**
+         * The wrapped procedure.
+         */
         private UnaryProcedure<? super X> procedure;
 
         /**
@@ -64,11 +74,14 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
         }
     }
 
+    /**
+     * The adapted helper.
+     */
     private final Helper<?, L, R> helper;
 
     /**
      * Create a new TransformedBinaryProcedure.
-     * @param <X>
+     * @param <X> the wrapped procedure argument.
      * @param function BinaryFunction
      * @param procedure UnaryProcedure
      */
