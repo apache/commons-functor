@@ -31,6 +31,7 @@ import org.apache.commons.functor.UnaryPredicate;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -41,6 +42,9 @@ public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     private static final long serialVersionUID = -97785102566566058L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted predicate.
+     */
     private final UnaryPredicate<? super A> predicate;
 
     // constructor
@@ -103,8 +107,9 @@ public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     // ------------------------------------------------------------------------
     /**
      * Invert a UnaryPredicate.
+     * @param <A> the argument type.
      * @param pred UnaryPredicate to invert
-     * @return UnaryPredicate<A
+     * @return UnaryPredicate<A>
      */
     public static <A> UnaryPredicate<A> not(UnaryPredicate<? super A> pred) {
         return null == pred ? null : new UnaryNot<A>(pred);
