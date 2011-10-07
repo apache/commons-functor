@@ -38,6 +38,7 @@ import org.apache.commons.functor.Predicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -47,12 +48,21 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
      */
     private static final long serialVersionUID = 4214871352184887792L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * the condition to be evaluated.
+     */
     private final Predicate ifPred;
+    /**
+     * the function executed if the condition is satisfied.
+     */
     private final Function<? extends T> thenFunc;
+    /**
+     * the function executed if the condition is not satisfied.
+     */
     private final Function<? extends T> elseFunc;
 
     // constructor
