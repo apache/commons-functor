@@ -36,6 +36,8 @@ import org.apache.commons.functor.BinaryPredicate;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -46,6 +48,9 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
     private static final long serialVersionUID = 3441209087576289240L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The adapted predicate.
+     */
     private final BinaryPredicate<? super R, ? super L> predicate;
 
     // constructor
@@ -108,6 +113,9 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
     // ------------------------------------------------------------------------
     /**
      * Return the transposition of <code>p</code>.
+     *
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
      * @param p BinaryPredicate to transpose
      * @return TransposedPredicate
      */
