@@ -38,6 +38,8 @@ import org.apache.commons.functor.core.NoOp;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -48,12 +50,21 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
      */
     private static final long serialVersionUID = -3521992036791188475L;
 
-    /** Base hash integer used to shift hash */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * the condition to be evaluated.
+     */
     private final BinaryPredicate<? super L, ? super R> ifPred;
+    /**
+     * the predicate executed if the condition is satisfied.
+     */
     private final BinaryProcedure<? super L, ? super R> thenProc;
+    /**
+     * the predicate executed if the condition is not satisfied.
+     */
     private final BinaryProcedure<? super L, ? super R> elseProc;
 
     // constructor
