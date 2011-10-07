@@ -35,6 +35,9 @@ import org.apache.commons.functor.UnaryFunction;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -45,13 +48,31 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
      */
     private static final long serialVersionUID = 264219357293822629L;
 
+    /**
+     *
+     *
+     * @param <G> the adapted function left argument type.
+     * @param <H> the adapted function right argument type.
+     * @param <L> the left argument type.
+     * @param <R> the right argument type.
+     * @param <T> the returned value type.
+     */
     private static class Helper<G, H, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
         /**
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 4513309646430305164L;
+        /**
+         * The adapted function to receive <code>(output(g), output(h))</code>.
+         */
         private BinaryFunction<? super G, ? super H, ? extends T> f;
+        /**
+         * The adapted left function.
+         */
         private UnaryFunction<? super L, ? extends G> g;
+        /**
+         * The adapted right function.
+         */
         private UnaryFunction<? super R, ? extends H> h;
 
         /**
@@ -75,12 +96,18 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
         }
     }
 
+    /**
+     * The adapted helper.
+     */
     private final Helper<?, ?, L, R, T> helper;
 
     // constructor
     // ------------------------------------------------------------------------
     /**
      * Create a new UnaryCompositeBinaryFunction.
+     *
+     * @param <G> the adapted function left argument type.
+     * @param <H> the adapted function right argument type.
      * @param f BinaryFunction to receive <code>(output(g), output(h))</code>
      * @param g left UnaryFunction
      * @param h right UnaryFunction
