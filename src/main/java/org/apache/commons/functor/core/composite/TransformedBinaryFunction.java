@@ -23,6 +23,10 @@ import org.apache.commons.functor.UnaryFunction;
 
 /**
  * A BinaryFunction whose result is then run through a UnaryFunction.
+ *
+ * @param <L> the left argument type.
+ * @param <R> the right argument type.
+ * @param <T> the returned value type.
  * @version $Revision$ $Date$
  * @author Matt Benson
  */
@@ -33,15 +37,22 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
     private static final long serialVersionUID = 3312781645741807814L;
 
     /**
-     * Type-remembering helper
-     * @param <X>
+     * Type-remembering helper.
+     *
+     * @param <X> the following function left argument.
      */
     private static final class Helper<X, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
         /**
          * serialVersionUID declaration.
          */
         private static final long serialVersionUID = 8141488776884860650L;
+        /**
+         * The preceding function.
+         */
         private BinaryFunction<? super L, ? super R, ? extends X> preceding;
+        /**
+         * The following function.
+         */
         private UnaryFunction<? super X, ? extends T> following;
 
         /**
@@ -67,7 +78,7 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
 
     /**
      * Create a new TransformedBinaryFunction.
-     * @param <X>
+     * @param <X> the following function left argument.
      * @param preceding BinaryFunction
      * @param following UnaryFunction
      */
