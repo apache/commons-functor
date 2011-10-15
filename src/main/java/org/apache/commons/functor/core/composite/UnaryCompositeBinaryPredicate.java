@@ -107,6 +107,9 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
     // ------------------------------------------------------------------------
     /**
      * Create a new UnaryCompositeBinaryPredicate.
+     *
+     * @param <G> right function type.
+     * @param <H> right function type.
      * @param f BinaryPredicate to test <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
      * @param g left UnaryFunction
      * @param h right UnaryFunction
