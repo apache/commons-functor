@@ -31,9 +31,8 @@
   <name>Commons Functor</name>
   <inceptionYear>2003</inceptionYear>
   <description>
-    A "functor" is an entity that serves the role of a function
-    but can be operated upon like an object.  Commons Functor
-    defines common functor and functor-related interfaces,
+    A "functor" is an entity that serves the role of a function but can be operated upon like an object.
+    The Apache Commons Functor library defines common functor and functor-related interfaces,
     implementations, and utilities.
   </description>
   <url>http://commons.apache.org/sandbox/functor/</url>
