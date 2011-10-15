@@ -23,10 +23,10 @@
   </bannerRight>
   <body>
     <menu name="Commons Functor">
-      <item name="Overview" href="/index.html"/>
-      <item name="Examples" href="/examples.html"/>
-      <item name="Javadoc" href="apidocs/index.html"/>
-      <item name="Downloads" href="/download_functor.cgi"/>
+      <item name="Overview" href="/index.html" />
+      <item name="Examples" href="/examples.html" />
+      <item name="Javadoc" href="apidocs/index.html" />
+      <item name="Downloads" href="/download_functor.cgi" />
     </menu>
   </body>
 </project>
