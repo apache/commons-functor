@@ -23,6 +23,7 @@ import org.apache.commons.functor.generator.util.CollectionTransformer;
  * Base class for generators. Adds support for all of the {@link Algorithms} to
  * each subclass.
  *
+ * @param <E> the type of elements held in this generator.
  * @since 1.0
  * @version $Revision$ $Date$
  * @author  Jason Horman (jason@jhorman.org)
