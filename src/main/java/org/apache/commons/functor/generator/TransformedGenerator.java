@@ -22,9 +22,15 @@ import org.apache.commons.functor.UnaryProcedure;
 /**
  * Generator that transforms the elements of another Generator.
  *
+ * @param <I> the type of elements held in the wrapped generator.
+ * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
 public class TransformedGenerator<I, E> extends BaseGenerator<E> {
+
+    /**
+     * The UnaryFunction to apply to each element.
+     */
     private final UnaryFunction<? super I, ? extends E> func;
 
     /**
