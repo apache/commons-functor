@@ -29,8 +29,19 @@ public final class LongRange extends BaseGenerator<Long> {
     // attributes
     //---------------------------------------------------------------
 
+    /**
+     * The start index.
+     */
     private final long from;
+
+    /**
+     * The end index.
+     */
     private final long to;
+
+    /**
+     * The increment counter.
+     */
     private final long step;
 
     // constructors
