@@ -26,8 +26,6 @@
       <item name="Overview" href="/index.html"/>
       <item name="Examples" href="/examples.html"/>
       <item name="Javadoc" href="apidocs/index.html"/>
-      <item name="Mailing lists" href="/mail-lists.html"/>
-      <item name="Issue Tracking" href="/issue-tracking.html"/>
       <item name="Downloads" href="/download_functor.cgi"/>
     </menu>
   </body>
