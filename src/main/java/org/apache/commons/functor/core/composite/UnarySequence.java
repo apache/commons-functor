@@ -37,6 +37,7 @@ import org.apache.commons.functor.UnaryProcedure;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
@@ -48,6 +49,9 @@ public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
     private static final long serialVersionUID = 9194268249717820246L;
     // attributes
     // ------------------------------------------------------------------------
+    /**
+     * The data structure to store the procedure sequence.
+     */
     private List<UnaryProcedure<? super A>> list = new ArrayList<UnaryProcedure<? super A>>();
 
     // constructor
