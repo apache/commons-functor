@@ -37,6 +37,11 @@
   </description>
   <url>http://commons.apache.org/sandbox/functor/</url>
 
+  <issueManagement>
+    <system>jira</system>
+    <url>http://issues.apache.org/jira/browse/FUNCTOR</url>
+  </issueManagement>
+
   <scm>
     <connection>scm:svn:http://svn.apache.org/repos/asf/commons/proper/functor/trunk/</connection>
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/commons/proper/functor/trunk/</developerConnection>
