@@ -22,7 +22,7 @@
     <href>/index.html</href>
   </bannerRight>
   <body>
-    <menu name="Commons&#xA0;Functor">
+    <menu name="Commons Functor">
       <item name="Overview" href="/index.html"/>
       <item name="Examples" href="/examples.html"/>
       <item name="Javadoc" href="apidocs/index.html"/>
