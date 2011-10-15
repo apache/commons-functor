@@ -52,7 +52,7 @@ public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
     /**
      * The data structure to store the procedure sequence.
      */
-    private List<UnaryProcedure<? super A>> list = new ArrayList<UnaryProcedure<? super A>>();
+    private final List<UnaryProcedure<? super A>> list = new ArrayList<UnaryProcedure<? super A>>();
 
     // constructor
     // ------------------------------------------------------------------------
