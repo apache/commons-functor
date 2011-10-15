@@ -21,6 +21,7 @@ import java.util.Iterator;
 /**
  * Adapts an {@link Iterator} to the {@link Generator} interface.
  *
+ * @param <E> the type of elements held in this generator.
  * @since 1.0
  * @version $Revision$ $Date$
  * @author Jason Horman (jason@jhorman.org)
@@ -30,6 +31,9 @@ public final class IteratorToGeneratorAdapter<E> extends BaseGenerator<E> {
     // instance variables
     //-----------------------------------------------------
 
+    /**
+     * The adapted iterator.
+     */
     private final Iterator<? extends E> iter;
 
     // constructors
@@ -94,6 +98,8 @@ public final class IteratorToGeneratorAdapter<E> extends BaseGenerator<E> {
     //-----------------------------------------------------
     /**
      * Adapt an Iterator to the Generator interface.
+     *
+     * @param <E> the type of elements held in this generator.
      * @param iter to adapt
      * @return IteratorToGeneratorAdapter
      */
