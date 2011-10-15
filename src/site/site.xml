@@ -30,12 +30,5 @@
       <item name="Issue Tracking" href="/issue-tracking.html"/>
       <item name="Downloads" href="/download_functor.cgi"/>
     </menu>
-    <menu name="Development">
-      <item name="Building" href="/building.html"/>
-      <item name="Test Coverage" href="/cobertura/index.html"/>
-      <item name="Team" href="/team-list.html"/>
-      <item name="Status" href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/STATUS.txt"/>
-      <item name="SVN" href="/source-repository.html"/>
-    </menu>
   </body>
 </project>
