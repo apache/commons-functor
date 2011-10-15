@@ -24,9 +24,14 @@ import org.apache.commons.functor.core.composite.ConditionalUnaryProcedure;
  * Generator that filters another Generator by only passing through those elements
  * that are matched by a specified UnaryPredicate.
  *
+ * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
 public class FilteredGenerator<E> extends BaseGenerator<E> {
+
+    /**
+     * The wrapped generator.
+     */
     private final UnaryPredicate<? super E> pred;
 
     /**
