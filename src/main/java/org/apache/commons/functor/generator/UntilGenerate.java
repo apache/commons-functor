@@ -23,9 +23,14 @@ import org.apache.commons.functor.UnaryProcedure;
  * Wrap another {@link Generator} such that {@link #run(UnaryProcedure)} terminates once
  * a condition has been satisfied.
  *
+ * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
 public class UntilGenerate<E> extends BaseGenerator<E> {
+
+    /**
+     * The condition has to verified in order to execute the generation.
+     */
     private final UnaryPredicate<? super E> test;
 
     /**
