@@ -101,10 +101,13 @@
   </dependencies>
 
   <properties>
-    <commons.componentid>functor</commons.componentid>
     <maven.compile.source>1.5</maven.compile.source>
     <maven.compile.target>1.5</maven.compile.target>
-    <commons.jira.componentid>12312256</commons.jira.componentid>
+    <commons.componentid>functor</commons.componentid>
+    <commons.release.version>1.0</commons.release.version>
+    <commons.rc.version>RC1</commons.rc.version>
+    <commons.jira.id>FUNCTOR</commons.jira.id>
+    <commons.jira.pid>????????</commons.jira.pid>
   </properties>
 
   <build>
