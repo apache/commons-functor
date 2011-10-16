@@ -50,7 +50,7 @@ public class FilteredIterable<T> implements Iterable<T> {
          * {@inheritDoc}
          */
         @Override
-        public synchronized FilteredIterable retain(UnaryPredicate predicate) {
+        public FilteredIterable retain(UnaryPredicate predicate) {
             return this;
         }
 
@@ -85,7 +85,11 @@ public class FilteredIterable<T> implements Iterable<T> {
      * {@inheritDoc}
      */
     public Iterator<T> iterator() {
-        return FilteredIterator.filter(iterable.iterator(), predicate);
+        UnaryPredicate<T> _predicate;
+        synchronized (this) {
+            _predicate = predicate;
+        }
+        return FilteredIterator.filter(iterable.iterator(), _predicate);
     }
 
     /**
