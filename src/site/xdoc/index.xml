@@ -80,9 +80,9 @@
     
     
 <section name="Releases">
-<p>
-None. Yet.
-</p>
+    <subsection name="Functor 1.0 Release (October 2011)">
+      This is the first official Apache Commons-Functor release.
+    </subsection>
 </section>
 
   </body>
