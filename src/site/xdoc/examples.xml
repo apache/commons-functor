@@ -71,7 +71,7 @@
           <a href="http://pragprog.com/pragdave/">blogging</a> 
           a series of programming exercises he calls 
           <a href="http://pragprog.com/pragdave/Practices/Kata">Code Katas</a>.
-          These exercises are intended to provide "practice sesssions" that allow
+          These exercises are intended to provide "practice sessions" that allow
           programmers to hone their craft.  The notion is borrowed from the 
           practice of Karate, where, in Dave's words 
           "a kata is an exercise where you repeat a form many, many times, 
@@ -94,8 +94,8 @@
           <dt><a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/two/">Kata Two: Binary Chop</a></dt>
           <dd>
             <a href="http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v">Kata Two</a> asks us
-            to create several different implemenations of the binary search algorithm, which once you
-            get past three or four implemenations, is more difficult that it sounds.            
+            to create several different implementations of the binary search algorithm, which once you
+            get past three or four implementations, is more difficult that it sounds.            
             <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/two/TestBinaryChop.java">TestBinaryChop</a>
             presents several implementations, with functor and non-functor variations.
           </dd>
