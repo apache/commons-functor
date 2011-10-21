@@ -32,7 +32,7 @@
     The Apache Commons Functor library defines common functor and functor-related interfaces,
     implementations, and utilities.
   </description>
-  <url>http://commons.apache.org/sandbox/functor/</url>
+  <url>http://commons.apache.org/functor/</url>
 
   <issueManagement>
     <system>jira</system>
