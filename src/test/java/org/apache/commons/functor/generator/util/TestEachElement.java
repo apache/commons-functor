@@ -42,13 +42,13 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class TestEachElement extends BaseFunctorTest {
 
-    private List list = null;
-    private Map map = null;
+    private List<Integer> list = null;
+    private Map<String, String> map = null;
     private Object[] array = null;
 
     @Override
     protected Object makeFunctor() throws Exception {
-        return EachElement.from(new ArrayList());
+        return EachElement.from(new ArrayList<Object>());
     }
 
     // Lifecycle
@@ -56,14 +56,14 @@ public class TestEachElement extends BaseFunctorTest {
 
     @Before
     public void setUp() throws Exception {
-        list = new ArrayList();
+        list = new ArrayList<Integer>();
         list.add(new Integer(0));
         list.add(new Integer(1));
         list.add(new Integer(2));
         list.add(new Integer(3));
         list.add(new Integer(4));
 
-        map = new HashMap();
+        map = new HashMap<String, String>();
         map.put("1", "1-1");
         map.put("2", "2-1");
         map.put("3", "3-1");
@@ -83,22 +83,22 @@ public class TestEachElement extends BaseFunctorTest {
 
     @Test
     public void testFromNull() {
-        assertNull(EachElement.from((Collection) null));
-        assertNull(EachElement.from((Map) null));
-        assertNull(EachElement.from((Iterator) null));
+        assertNull(EachElement.from((Collection<?>) null));
+        assertNull(EachElement.from((Map<?, ?>) null));
+        assertNull(EachElement.from((Iterator<?>) null));
         assertNull(EachElement.from((Object[]) null));
     }
 
 
     @Test
     public void testWithList() {
-        Collection col = EachElement.from(list).toCollection();
+        Collection<?> col = EachElement.from(list).toCollection();
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
     }
 
     @Test
     public void testWithMap() {
-        List col = (List) EachElement.from(map).toCollection();
+        List<?> col = (List<?>) EachElement.from(map).toCollection();
         int i = 0;
         for (;i<col.size();i++) {
             Map.Entry entry = (Map.Entry) col.get(i);
@@ -120,21 +120,21 @@ public class TestEachElement extends BaseFunctorTest {
 
     @Test
     public void testWithArray() {
-        Collection col = EachElement.from(array).toCollection();
+        Collection<?> col = EachElement.from(array).toCollection();
         assertEquals("[1, 2, 3, 4, 5]", col.toString());
     }
 
     @Test
     public void testWithStop() {
-        assertEquals("[0, 1, 2]", new UntilGenerate(new Offset(3), EachElement.from(list)).toCollection().toString());
-        assertEquals("[0, 1, 2, 3]", new GenerateUntil(EachElement.from(list), new Offset(3)).toCollection().toString());
-        assertEquals("[0, 1, 2]", new WhileGenerate(new Limit(3), EachElement.from(list)).toCollection().toString());
-        assertEquals("[0, 1, 2, 3]", new GenerateWhile(EachElement.from(list), new Limit(3)).toCollection().toString());
+        assertEquals("[0, 1, 2]", new UntilGenerate<Integer>(new Offset(3), EachElement.from(list)).toCollection().toString());
+        assertEquals("[0, 1, 2, 3]", new GenerateUntil<Integer>(EachElement.from(list), new Offset(3)).toCollection().toString());
+        assertEquals("[0, 1, 2]", new WhileGenerate<Integer>(new Limit(3), EachElement.from(list)).toCollection().toString());
+        assertEquals("[0, 1, 2, 3]", new GenerateWhile<Integer>(EachElement.from(list), new Limit(3)).toCollection().toString());
     }
 
     @Test
     public void testWithIterator() {
-        Collection col = EachElement.from(list.iterator()).toCollection();
+        Collection<?> col = EachElement.from(list.iterator()).toCollection();
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
     }
 
