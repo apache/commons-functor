@@ -74,6 +74,7 @@ public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializ
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof RightBoundProcedure<?> && equals((RightBoundProcedure<?>) that));
     }
@@ -92,6 +93,7 @@ public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializ
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "RightBoundProcedure".hashCode();
         if (null != procedure) {
@@ -108,6 +110,7 @@ public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializ
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "RightBoundProcedure<" + procedure + "(?," + param + ")>";
     }

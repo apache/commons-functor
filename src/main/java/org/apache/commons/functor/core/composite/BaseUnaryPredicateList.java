@@ -92,16 +92,19 @@ abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract boolean equals(Object that);
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract int hashCode();
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract String toString();
 
     // modifiers

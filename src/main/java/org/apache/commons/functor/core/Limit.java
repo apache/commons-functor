@@ -82,6 +82,7 @@ public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPre
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Limit<" + max + ">";
     }

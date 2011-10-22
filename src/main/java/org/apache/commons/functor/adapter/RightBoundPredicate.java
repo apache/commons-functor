@@ -74,6 +74,7 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof RightBoundPredicate<?> && equals((RightBoundPredicate<?>) that));
     }
@@ -92,6 +93,7 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "RightBoundPredicate".hashCode();
         if (null != predicate) {
@@ -108,6 +110,7 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "RightBoundPredicate<" + predicate + "(?," + param + ")>";
     }

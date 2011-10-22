@@ -116,6 +116,7 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalBinaryProcedure<?, ?>
                                     && equals((ConditionalBinaryProcedure<?, ?>) that));
@@ -136,6 +137,7 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalBinaryProcedure".hashCode();
         if (null != ifPred) {
@@ -156,6 +158,7 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalBinaryProcedure<" + ifPred + "?" + thenProc + ":" + elseProc + ">";
     }

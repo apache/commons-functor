@@ -95,6 +95,7 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalBinaryPredicate<?, ?>
                                     && equals((ConditionalBinaryPredicate<?, ?>) that));
@@ -115,6 +116,7 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalBinaryPredicate".hashCode();
         if (null != ifPred) {
@@ -135,6 +137,7 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalBinaryPredicate<" + ifPred + "?" + thenPred + ":" + elsePred + ">";
     }

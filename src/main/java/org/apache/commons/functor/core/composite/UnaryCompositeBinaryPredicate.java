@@ -137,6 +137,7 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof UnaryCompositeBinaryPredicate<?, ?>
                                     && equals((UnaryCompositeBinaryPredicate<?, ?>) that));
@@ -155,6 +156,7 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "UnaryCompositeBinaryPredicate".hashCode();
         hash <<= HASH_SHIFT;
@@ -169,6 +171,7 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnaryCompositeBinaryPredicate<" + helper.f + ";" + helper.g + ";" + helper.h + ">";
     }

@@ -69,6 +69,7 @@ public final class FunctionProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof FunctionProcedure && equals((FunctionProcedure) that));
     }
@@ -85,6 +86,7 @@ public final class FunctionProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "FunctionProcedure".hashCode();
         if (null != function) {
@@ -96,6 +98,7 @@ public final class FunctionProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "FunctionProcedure<" + function + ">";
     }

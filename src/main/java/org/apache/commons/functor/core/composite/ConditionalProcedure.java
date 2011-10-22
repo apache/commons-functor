@@ -110,6 +110,7 @@ public final class ConditionalProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalProcedure && equals((ConditionalProcedure) that));
     }
@@ -129,6 +130,7 @@ public final class ConditionalProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalProcedure".hashCode();
         if (null != ifPred) {
@@ -149,6 +151,7 @@ public final class ConditionalProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalProcedure<" + ifPred + "?" + thenProc + ":" + elseProc + ">";
     }

@@ -80,6 +80,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object that) {
         return that == this || (that instanceof TransposedFunction<?, ?, ?>
                                     && equals((TransposedFunction<?, ?, ?>) that));
@@ -97,6 +98,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "TransposedFunction".hashCode();
         if (null != function) {
@@ -108,6 +110,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "TransposedFunction<" + function + ">";
     }

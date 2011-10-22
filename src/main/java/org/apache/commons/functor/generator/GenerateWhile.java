@@ -75,6 +75,7 @@ public class GenerateWhile<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -89,6 +90,7 @@ public class GenerateWhile<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int result = "GenerateWhile".hashCode();
         result <<= 2;

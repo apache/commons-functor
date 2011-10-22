@@ -88,6 +88,7 @@ public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof IsLessThanOrEqual<?> && equals((IsLessThanOrEqual<?>) that));
     }
@@ -110,6 +111,7 @@ public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IsLessThanOrEqual".hashCode();
         // by construction, comparator is never null
@@ -120,6 +122,7 @@ public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsLessThanOrEqual<" + comparator + ">";
     }

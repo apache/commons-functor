@@ -87,6 +87,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -100,6 +101,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "RecursiveEvaluation".hashCode() << 2 ^ function.hashCode();
     }

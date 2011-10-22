@@ -69,6 +69,7 @@ public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedur
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this
                 || (that instanceof BinaryFunctionBinaryProcedure<?, ?>
@@ -87,6 +88,7 @@ public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedur
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "BinaryFunctionBinaryProcedure".hashCode();
         if (null != function) {
@@ -98,6 +100,7 @@ public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedur
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BinaryFunctionBinaryProcedure<" + function + ">";
     }

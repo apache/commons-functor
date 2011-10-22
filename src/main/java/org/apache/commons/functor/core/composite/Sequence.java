@@ -116,6 +116,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object that) {
         return that == this || (that instanceof Sequence && equals((Sequence) that));
     }
@@ -133,6 +134,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         // by construction, list is never null
         return "Sequence".hashCode() ^ list.hashCode();
@@ -141,6 +143,7 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Sequence<" + list + ">";
     }

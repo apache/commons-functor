@@ -62,6 +62,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object object) {
         if (object == this) {
             return true;
@@ -77,6 +78,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return hashCode("AbstractLoopProcedure".hashCode());
     }
@@ -84,6 +86,7 @@ public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return getClass().getName() + "<" + getCondition() + "," + getAction() + ">";
     }

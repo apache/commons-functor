@@ -74,6 +74,7 @@ public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof LeftBoundProcedure<?> && equals((LeftBoundProcedure<?>) that));
     }
@@ -92,6 +93,7 @@ public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "LeftBoundProcedure".hashCode();
         if (null != procedure) {
@@ -108,6 +110,7 @@ public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "LeftBoundProcedure<" + procedure + "(" + param + ",?)>";
     }

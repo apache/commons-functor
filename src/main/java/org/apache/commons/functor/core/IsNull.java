@@ -76,6 +76,7 @@ public final class IsNull<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that instanceof IsNull<?>;
     }
@@ -83,6 +84,7 @@ public final class IsNull<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "IsNull".hashCode();
     }
@@ -90,6 +92,7 @@ public final class IsNull<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsNull";
     }

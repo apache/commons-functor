@@ -69,6 +69,7 @@ public final class IgnoreLeftPredicate<L, R> implements BinaryPredicate<L, R>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof IgnoreLeftPredicate<?, ?> && equals((IgnoreLeftPredicate<?, ?>) that));
     }
@@ -85,6 +86,7 @@ public final class IgnoreLeftPredicate<L, R> implements BinaryPredicate<L, R>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IgnoreLeftPredicate".hashCode();
         if (null != predicate) {
@@ -96,6 +98,7 @@ public final class IgnoreLeftPredicate<L, R> implements BinaryPredicate<L, R>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IgnoreLeftPredicate<" + predicate + ">";
     }

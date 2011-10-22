@@ -88,6 +88,7 @@ public final class IsLessThan<T> implements BinaryPredicate<T, T>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof IsLessThan<?> && equals((IsLessThan<?>) that));
     }
@@ -110,6 +111,7 @@ public final class IsLessThan<T> implements BinaryPredicate<T, T>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IsLessThan".hashCode();
         // by construction, comparator is never null
@@ -120,6 +122,7 @@ public final class IsLessThan<T> implements BinaryPredicate<T, T>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsLessThan<" + comparator + ">";
     }

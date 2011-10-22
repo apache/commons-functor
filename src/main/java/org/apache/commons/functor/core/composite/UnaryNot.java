@@ -72,6 +72,7 @@ public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof UnaryNot<?> && equals((UnaryNot<?>) that));
     }
@@ -88,6 +89,7 @@ public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "UnaryNot".hashCode();
         if (null != predicate) {
@@ -99,6 +101,7 @@ public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnaryNot<" + predicate + ">";
     }

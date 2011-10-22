@@ -111,6 +111,7 @@ public final class FilteredIterator<T> implements Iterator<T> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -125,6 +126,7 @@ public final class FilteredIterator<T> implements Iterator<T> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "FilteredIterator".hashCode();
         hash <<= 2;
@@ -137,6 +139,7 @@ public final class FilteredIterator<T> implements Iterator<T> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "FilteredIterator<" + iterator + "," + predicate + ">";
     }

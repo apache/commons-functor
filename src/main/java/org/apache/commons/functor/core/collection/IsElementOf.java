@@ -78,6 +78,7 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         return (obj instanceof IsElementOf<?, ?>);
     }
@@ -85,6 +86,7 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "IsElementOf".hashCode();
     }
@@ -92,6 +94,7 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsElementOf";
     }

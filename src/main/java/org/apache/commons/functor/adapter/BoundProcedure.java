@@ -73,6 +73,7 @@ public final class BoundProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof BoundProcedure && equals((BoundProcedure) that));
     }
@@ -91,6 +92,7 @@ public final class BoundProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "BoundProcedure".hashCode();
         if (null != procedure) {
@@ -107,6 +109,7 @@ public final class BoundProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BoundProcedure<" + procedure + "(" + param + ")>";
     }

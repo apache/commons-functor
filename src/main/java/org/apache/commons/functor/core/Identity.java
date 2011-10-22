@@ -85,6 +85,7 @@ public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return (that instanceof Identity<?>);
     }
@@ -92,6 +93,7 @@ public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "Identity".hashCode();
     }
@@ -99,6 +101,7 @@ public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Identity";
     }

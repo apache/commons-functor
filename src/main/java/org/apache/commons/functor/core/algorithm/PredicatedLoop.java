@@ -69,6 +69,7 @@ abstract class PredicatedLoop implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -83,6 +84,7 @@ abstract class PredicatedLoop implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         String classname = getClass().getName();
         int dot = classname.lastIndexOf('.');

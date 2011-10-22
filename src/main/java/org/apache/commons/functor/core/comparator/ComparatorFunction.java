@@ -67,6 +67,7 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ComparatorFunction<?> && equals((ComparatorFunction<?>) that));
     }
@@ -83,6 +84,7 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "ComparatorFunction".hashCode() ^ comparator.hashCode();
     }
@@ -90,6 +92,7 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ComparatorFunction<" + comparator + ">";
     }

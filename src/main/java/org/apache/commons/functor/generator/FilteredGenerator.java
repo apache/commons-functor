@@ -69,6 +69,7 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -83,6 +84,7 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int result = "FilteredGenerator".hashCode();
         result <<= 2;

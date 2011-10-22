@@ -127,6 +127,7 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof Constant<?> && equals((Constant<?>) that));
     }
@@ -143,6 +144,7 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "Constant".hashCode();
         if (null != value) {
@@ -154,6 +156,7 @@ public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>,
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Constant<" + String.valueOf(value) + ">";
     }

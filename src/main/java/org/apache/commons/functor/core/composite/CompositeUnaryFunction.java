@@ -189,6 +189,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object that) {
         return that == this
                 || (that instanceof CompositeUnaryFunction<?, ?> && equals((CompositeUnaryFunction<?, ?>) that));
@@ -207,6 +208,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         // by construction, list is never null
         return ("CompositeUnaryFunction".hashCode() << HASH_SHIFT) ^ function.hashCode();
@@ -215,6 +217,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "CompositeUnaryFunction<" + function + ">";
     }

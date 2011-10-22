@@ -92,6 +92,7 @@ public final class ConditionalPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalPredicate && equals((ConditionalPredicate) that));
     }
@@ -111,6 +112,7 @@ public final class ConditionalPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalPredicate".hashCode();
         if (null != ifPred) {
@@ -131,6 +133,7 @@ public final class ConditionalPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalPredicate<" + ifPred + "?" + thenPred + ":" + elsePred + ">";
     }

@@ -69,6 +69,7 @@ public final class FunctionUnaryFunction<A, T> implements UnaryFunction<A, T>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof FunctionUnaryFunction<?, ?>
                 && equals((FunctionUnaryFunction<?, ?>) that));
@@ -86,6 +87,7 @@ public final class FunctionUnaryFunction<A, T> implements UnaryFunction<A, T>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "FunctionUnaryFunction".hashCode();
         if (null != function) {
@@ -97,6 +99,7 @@ public final class FunctionUnaryFunction<A, T> implements UnaryFunction<A, T>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "FunctionUnaryFunction<" + function + ">";
     }

@@ -69,6 +69,7 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ProcedureFunction<?> && equals((ProcedureFunction<?>) that));
     }
@@ -85,6 +86,7 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ProcedureFunction".hashCode();
         if (null != procedure) {
@@ -96,6 +98,7 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ProcedureFunction<" + procedure + ">";
     }

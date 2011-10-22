@@ -90,16 +90,19 @@ abstract class BasePredicateList implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract boolean equals(Object that);
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract int hashCode();
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract String toString();
 
     // modifiers

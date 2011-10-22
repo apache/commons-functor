@@ -70,6 +70,7 @@ public final class IgnoreRightFunction<L, R, T> implements BinaryFunction<L, R, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof IgnoreRightFunction<?, ?, ?>
                                     && equals((IgnoreRightFunction<?, ?, ?>) that));
@@ -87,6 +88,7 @@ public final class IgnoreRightFunction<L, R, T> implements BinaryFunction<L, R, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IgnoreRightFunction".hashCode();
         if (null != function) {
@@ -98,6 +100,7 @@ public final class IgnoreRightFunction<L, R, T> implements BinaryFunction<L, R, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IgnoreRightFunction<" + function + ">";
     }

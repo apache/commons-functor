@@ -98,6 +98,7 @@ public final class And extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof And && equals((And) that));
     }
@@ -114,6 +115,7 @@ public final class And extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "And".hashCode() ^ getPredicateListHashCode();
     }
@@ -121,6 +123,7 @@ public final class And extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "And<" + getPredicateListToString() + ">";
     }

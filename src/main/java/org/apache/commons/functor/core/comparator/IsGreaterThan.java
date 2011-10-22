@@ -88,6 +88,7 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof IsGreaterThan<?> && equals((IsGreaterThan<?>) that));
     }
@@ -110,6 +111,7 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IsGreaterThan".hashCode();
         // by construction, comparator is never null
@@ -120,6 +122,7 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsGreaterThan<" + comparator + ">";
     }

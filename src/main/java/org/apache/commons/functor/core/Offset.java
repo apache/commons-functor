@@ -83,6 +83,7 @@ public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPr
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Offset<" + min + ">";
     }

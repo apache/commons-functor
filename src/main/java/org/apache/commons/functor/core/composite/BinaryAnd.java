@@ -99,6 +99,7 @@ public final class BinaryAnd<L, R> extends BaseBinaryPredicateList<L, R> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof BinaryAnd<?, ?> && equals((BinaryAnd<?, ?>) that));
     }
@@ -115,6 +116,7 @@ public final class BinaryAnd<L, R> extends BaseBinaryPredicateList<L, R> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "BinaryAnd".hashCode() ^ getBinaryPredicateListHashCode();
     }
@@ -122,6 +124,7 @@ public final class BinaryAnd<L, R> extends BaseBinaryPredicateList<L, R> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BinaryAnd<" + getBinaryPredicateListToString() + ">";
     }

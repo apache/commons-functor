@@ -78,6 +78,7 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof TransposedProcedure<?, ?> && equals((TransposedProcedure<?, ?>) that));
     }
@@ -94,6 +95,7 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "TransposedProcedure".hashCode();
         if (null != procedure) {
@@ -105,6 +107,7 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "TransposedProcedure<" + procedure + ">";
     }

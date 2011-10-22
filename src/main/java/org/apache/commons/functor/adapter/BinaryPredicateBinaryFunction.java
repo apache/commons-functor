@@ -70,6 +70,7 @@ public final class BinaryPredicateBinaryFunction<L, R> implements BinaryFunction
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this
                 || (that instanceof BinaryPredicateBinaryFunction<?, ?>
@@ -88,6 +89,7 @@ public final class BinaryPredicateBinaryFunction<L, R> implements BinaryFunction
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "BinaryPredicateBinaryFunction".hashCode();
         if (null != predicate) {
@@ -99,6 +101,7 @@ public final class BinaryPredicateBinaryFunction<L, R> implements BinaryFunction
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BinaryPredicateBinaryFunction<" + predicate + ">";
     }

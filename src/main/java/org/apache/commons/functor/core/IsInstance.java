@@ -63,6 +63,7 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that instanceof IsInstance<?>;
     }
@@ -70,6 +71,7 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return ("IsInstance".hashCode() << NONZERO_SHIFT_NUMBER) | NONZERO_BITWISE_NUMBER;
     }
@@ -77,6 +79,7 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsInstance";
     }

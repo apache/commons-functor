@@ -94,16 +94,19 @@ abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract boolean equals(Object that);
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract int hashCode();
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public abstract String toString();
 
     // modifiers

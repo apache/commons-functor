@@ -53,6 +53,7 @@ public final class InPlaceTransform<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         return obj == this || obj != null && obj.getClass().equals(getClass());
     }
@@ -60,6 +61,7 @@ public final class InPlaceTransform<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return System.identityHashCode(INSTANCE);
     }

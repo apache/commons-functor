@@ -101,6 +101,7 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalFunction<?> && equals((ConditionalFunction<?>) that));
     }
@@ -120,6 +121,7 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalFunction".hashCode();
         if (null != ifPred) {
@@ -140,6 +142,7 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalFunction<" + ifPred + "?" + thenFunc + ":" + elseFunc + ">";
     }

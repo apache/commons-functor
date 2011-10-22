@@ -66,6 +66,7 @@ public final class IteratorToGeneratorAdapter<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -80,6 +81,7 @@ public final class IteratorToGeneratorAdapter<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IteratorToGeneratorAdapater".hashCode();
         hash <<= 2;
@@ -90,6 +92,7 @@ public final class IteratorToGeneratorAdapter<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IteratorToGeneratorAdapter<" + iter + ">";
     }

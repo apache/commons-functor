@@ -73,6 +73,7 @@ public final class BoundPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof BoundPredicate && equals((BoundPredicate) that));
     }
@@ -92,6 +93,7 @@ public final class BoundPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "BoundPredicate".hashCode();
         if (null != predicate) {
@@ -108,6 +110,7 @@ public final class BoundPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BoundPredicate<" + predicate + "(" + param + ")>";
     }

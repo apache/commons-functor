@@ -103,6 +103,7 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalUnaryFunction<?, ?>
                                     && equals((ConditionalUnaryFunction<?, ?>) that));
@@ -123,6 +124,7 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalUnaryFunction".hashCode();
         if (null != ifPred) {
@@ -143,6 +145,7 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalUnaryFunction<" + ifPred + "?" + thenFunc + ":" + elseFunc + ">";
     }

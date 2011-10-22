@@ -62,6 +62,7 @@ public final class IsSame<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that instanceof IsSame<?, ?>;
     }
@@ -69,6 +70,7 @@ public final class IsSame<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "IsSame".hashCode();
     }
@@ -76,6 +78,7 @@ public final class IsSame<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsSame";
     }

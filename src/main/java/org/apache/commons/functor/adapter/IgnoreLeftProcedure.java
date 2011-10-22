@@ -69,6 +69,7 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof IgnoreLeftProcedure<?, ?> && equals((IgnoreLeftProcedure<?, ?>) that));
     }
@@ -85,6 +86,7 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IgnoreLeftProcedure".hashCode();
         if (null != procedure) {
@@ -96,6 +98,7 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IgnoreLeftProcedure<" + procedure + ">";
     }

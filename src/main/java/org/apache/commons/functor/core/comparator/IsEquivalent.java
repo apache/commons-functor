@@ -89,6 +89,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof IsEquivalent<?> && equals((IsEquivalent<?>) that));
     }
@@ -111,6 +112,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IsEquivalent".hashCode();
         // by construction, comparator is never null
@@ -121,6 +123,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsEquivalent<" + comparator + ">";
     }

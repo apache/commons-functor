@@ -74,6 +74,7 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof RightBoundFunction<?, ?> && equals((RightBoundFunction<?, ?>) that));
     }
@@ -92,6 +93,7 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "RightBoundFunction".hashCode();
         if (null != function) {
@@ -108,6 +110,7 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "RightBoundFunction<" + function + "(?," + param + ")>";
     }

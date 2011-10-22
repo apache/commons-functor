@@ -138,6 +138,7 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof UnaryCompositeBinaryFunction<?, ?, ?>
                                     && equals((UnaryCompositeBinaryFunction<?, ?, ?>) that));
@@ -158,6 +159,7 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "UnaryCompositeBinaryFunction".hashCode();
         hash <<= HASH_SHIFT;
@@ -172,6 +174,7 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnaryCompositeBinaryFunction<" + helper.f + ";" + helper.g + ";" + helper.h + ">";
     }

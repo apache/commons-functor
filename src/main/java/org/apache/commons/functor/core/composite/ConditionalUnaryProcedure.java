@@ -112,6 +112,7 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalUnaryProcedure<?>
                                     && equals((ConditionalUnaryProcedure<?>) that));
@@ -132,6 +133,7 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalUnaryProcedure".hashCode();
         if (null != ifPred) {
@@ -152,6 +154,7 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalUnaryProcedure<" + ifPred + "?" + thenProc + ":" + elseProc + ">";
     }

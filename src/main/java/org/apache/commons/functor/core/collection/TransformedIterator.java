@@ -90,6 +90,7 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -104,6 +105,7 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "TransformedIterator".hashCode();
         hash <<= 2;
@@ -116,6 +118,7 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "TransformedIterator<" + iterator + "," + function + ">";
     }

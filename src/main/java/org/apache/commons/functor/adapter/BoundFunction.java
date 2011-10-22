@@ -74,6 +74,7 @@ public final class BoundFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof BoundFunction<?> && equals((BoundFunction<?>) that));
     }
@@ -96,6 +97,7 @@ public final class BoundFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int result = "BoundFunction".hashCode();
         result <<= 2;
@@ -107,6 +109,7 @@ public final class BoundFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BoundFunction<" + function.toString() + "(" + arg + ")>";
     }

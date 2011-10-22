@@ -94,6 +94,7 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalUnaryPredicate<?>
                                     && equals((ConditionalUnaryPredicate<?>) that));
@@ -114,6 +115,7 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalUnaryPredicate".hashCode();
         if (null != ifPred) {
@@ -134,6 +136,7 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalUnaryPredicate<" + ifPred + "?" + thenPred + ":" + elsePred + ">";
     }

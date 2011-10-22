@@ -103,6 +103,7 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof CompositeUnaryPredicate<?>
                                     && equals((CompositeUnaryPredicate<?>) that));
@@ -120,6 +121,7 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "CompositeUnaryPredicate".hashCode();
         hash <<= 2;
@@ -130,6 +132,7 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "CompositeUnaryFunction<" + function + ">";
     }

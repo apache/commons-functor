@@ -105,6 +105,7 @@ public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ConditionalBinaryFunction<?, ?, ?>
                                     && equals((ConditionalBinaryFunction<?, ?, ?>) that));
@@ -125,6 +126,7 @@ public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ConditionalBinaryFunction".hashCode();
         if (null != ifPred) {
@@ -145,6 +147,7 @@ public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ConditionalBinaryFunction<" + ifPred + "?" + thenFunc + ":" + elseFunc + ">";
     }

@@ -75,6 +75,7 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof LeftBoundPredicate<?> && equals((LeftBoundPredicate<?>) that));
     }
@@ -93,6 +94,7 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "LeftBoundPredicate".hashCode();
         if (null != predicate) {
@@ -109,6 +111,7 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "LeftBoundPredicate<" + predicate + "(" + param + ",?)>";
     }

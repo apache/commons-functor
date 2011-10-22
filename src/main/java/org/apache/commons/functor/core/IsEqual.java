@@ -71,6 +71,7 @@ public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that instanceof IsEqual<?, ?>;
     }
@@ -78,6 +79,7 @@ public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "IsEqual".hashCode();
     }
@@ -85,6 +87,7 @@ public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsEqual";
     }

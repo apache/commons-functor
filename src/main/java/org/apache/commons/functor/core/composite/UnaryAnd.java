@@ -98,6 +98,7 @@ public final class UnaryAnd<A> extends BaseUnaryPredicateList<A> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof UnaryAnd<?> && equals((UnaryAnd<?>) that));
     }
@@ -114,6 +115,7 @@ public final class UnaryAnd<A> extends BaseUnaryPredicateList<A> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "UnaryAnd".hashCode() ^ getUnaryPredicateListHashCode();
     }
@@ -121,6 +123,7 @@ public final class UnaryAnd<A> extends BaseUnaryPredicateList<A> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnaryAnd<" + getUnaryPredicateListToString() + ">";
     }

@@ -149,6 +149,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -162,6 +163,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "FoldRight".hashCode() << 2 ^ function.hashCode();
     }

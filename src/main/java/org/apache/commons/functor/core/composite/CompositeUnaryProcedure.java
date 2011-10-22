@@ -103,6 +103,7 @@ public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof CompositeUnaryProcedure<?>
                                     && equals((CompositeUnaryProcedure<?>) that));
@@ -120,6 +121,7 @@ public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "CompositeUnaryProcedure".hashCode();
         hash <<= 2;
@@ -130,6 +132,7 @@ public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "CompositeUnaryProcedure<" + function + ">";
     }

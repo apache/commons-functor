@@ -117,6 +117,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object that) {
         return that == this || (that instanceof BinarySequence<?, ?> && equals((BinarySequence<?, ?>) that));
     }
@@ -134,6 +135,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         // by construction, list is never null
         return "BinarySequence".hashCode() ^ list.hashCode();
@@ -142,6 +144,7 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BinarySequence<" + list + ">";
     }

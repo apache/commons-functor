@@ -79,6 +79,7 @@ public final class FullyBoundFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof FullyBoundFunction<?> && equals((FullyBoundFunction<?>) that));
     }
@@ -97,6 +98,7 @@ public final class FullyBoundFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "FullyBoundFunction".hashCode();
         if (null != function) {
@@ -117,6 +119,7 @@ public final class FullyBoundFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "FullyBoundFunction<" + function + "(" + left + ", " + right + ")>";
     }

@@ -78,6 +78,7 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that instanceof IsEmpty<?>;
     }
@@ -85,6 +86,7 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "IsEmpty".hashCode();
     }
@@ -92,6 +94,7 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsEmpty()";
     }

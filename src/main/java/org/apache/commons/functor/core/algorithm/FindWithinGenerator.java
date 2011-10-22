@@ -130,6 +130,7 @@ public final class FindWithinGenerator<E>
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -145,6 +146,7 @@ public final class FindWithinGenerator<E>
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         if (!this.useIfNone) {
             return System.identityHashCode(INSTANCE);

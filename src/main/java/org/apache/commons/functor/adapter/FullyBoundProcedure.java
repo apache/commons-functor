@@ -78,6 +78,7 @@ public final class FullyBoundProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof FullyBoundProcedure && equals((FullyBoundProcedure) that));
     }
@@ -96,6 +97,7 @@ public final class FullyBoundProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "FullyBoundProcedure".hashCode();
         if (null != procedure) {
@@ -116,6 +118,7 @@ public final class FullyBoundProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "FullyBoundProcedure<" + procedure + "(" + left + ", " + right + ")>";
     }

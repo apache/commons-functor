@@ -86,6 +86,7 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
     /**
      * {@inheritDoc}
      */
+    @Override
     public final boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -100,6 +101,7 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return BASE_HASH_CODE * min.hashCode() + max.hashCode() + NAME_HASH_CODE;
     }
@@ -107,6 +109,7 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IsWithinRange(" + min + ", " + max + ")";
     }

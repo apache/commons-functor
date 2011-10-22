@@ -53,6 +53,7 @@ final class ComparableComparator implements Comparator, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         return (obj instanceof ComparableComparator);
     }
@@ -60,6 +61,7 @@ final class ComparableComparator implements Comparator, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return toString().hashCode();
     }
@@ -67,6 +69,7 @@ final class ComparableComparator implements Comparator, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ComparableComparator";
     }

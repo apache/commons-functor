@@ -110,6 +110,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "IntegerRange<" + from + "," + to + "," + step + ">";
     }
@@ -117,6 +118,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -131,6 +133,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "IntegerRange".hashCode();
         hash <<= 2;

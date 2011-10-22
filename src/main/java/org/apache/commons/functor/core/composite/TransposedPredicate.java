@@ -78,6 +78,7 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof TransposedPredicate<?, ?> && equals((TransposedPredicate<?, ?>) that));
     }
@@ -94,6 +95,7 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "TransposedPredicate".hashCode();
         if (null != predicate) {
@@ -105,6 +107,7 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "TransposedPredicate<" + predicate + ">";
     }

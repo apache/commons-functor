@@ -74,6 +74,7 @@ public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProc
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return (that instanceof NoOp);
     }
@@ -81,6 +82,7 @@ public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProc
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "NoOp".hashCode();
     }
@@ -88,6 +90,7 @@ public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProc
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "NoOp";
     }

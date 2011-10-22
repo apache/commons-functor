@@ -79,6 +79,7 @@ public final class FullyBoundPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof FullyBoundPredicate && equals((FullyBoundPredicate) that));
     }
@@ -97,6 +98,7 @@ public final class FullyBoundPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "FullyBoundPredicate".hashCode();
         if (null != predicate) {
@@ -117,6 +119,7 @@ public final class FullyBoundPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "FullyBoundPredicate<" + predicate + "(" + left + ", " + right + ")>";
     }

@@ -72,6 +72,7 @@ public final class Not implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof Not && equals((Not) that));
     }
@@ -88,6 +89,7 @@ public final class Not implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "Not".hashCode();
         if (null != predicate) {
@@ -99,6 +101,7 @@ public final class Not implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Not<" + predicate + ">";
     }

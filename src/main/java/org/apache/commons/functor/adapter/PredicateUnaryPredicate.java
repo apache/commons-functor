@@ -68,6 +68,7 @@ public final class PredicateUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof PredicateUnaryPredicate<?>
                                     && equals((PredicateUnaryPredicate<?>) that));
@@ -85,6 +86,7 @@ public final class PredicateUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "PredicateUnaryPredicate".hashCode();
         if (null != predicate) {
@@ -96,6 +98,7 @@ public final class PredicateUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "PredicateUnaryPredicate<" + predicate + ">";
     }

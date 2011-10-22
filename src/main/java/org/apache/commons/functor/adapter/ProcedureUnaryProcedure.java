@@ -68,6 +68,7 @@ public final class ProcedureUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof ProcedureUnaryProcedure<?>
                                     && equals((ProcedureUnaryProcedure<?>) that));
@@ -85,6 +86,7 @@ public final class ProcedureUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "ProcedureUnaryProcedure".hashCode();
         if (null != procedure) {
@@ -96,6 +98,7 @@ public final class ProcedureUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "ProcedureUnaryProcedure<" + procedure + ">";
     }

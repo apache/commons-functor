@@ -95,6 +95,7 @@ public final class Or extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof Or && equals((Or) that));
     }
@@ -111,6 +112,7 @@ public final class Or extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "Or".hashCode() ^ getPredicateListHashCode();
     }
@@ -118,6 +120,7 @@ public final class Or extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Or<" + getPredicateListToString() + ">";
     }

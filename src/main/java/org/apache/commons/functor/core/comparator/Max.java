@@ -77,6 +77,7 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof Max<?> && equals((Max<?>) that));
     }
@@ -93,6 +94,7 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "Max".hashCode() ^ comparator.hashCode();
     }
@@ -100,6 +102,7 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Max<" + comparator + ">";
     }

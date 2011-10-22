@@ -117,6 +117,7 @@ public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof UnarySequence<?> && equals((UnarySequence<?>) that));
     }
@@ -134,6 +135,7 @@ public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         // by construction, list is never null
         return "UnarySequence".hashCode() ^ list.hashCode();
@@ -142,6 +144,7 @@ public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnarySequence<" + list + ">";
     }

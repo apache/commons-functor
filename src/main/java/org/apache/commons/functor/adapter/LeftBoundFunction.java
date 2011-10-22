@@ -75,6 +75,7 @@ public final class LeftBoundFunction<A, T> implements UnaryFunction<A, T>, Seria
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof LeftBoundFunction<?, ?> && equals((LeftBoundFunction<?, ?>) that));
     }
@@ -93,6 +94,7 @@ public final class LeftBoundFunction<A, T> implements UnaryFunction<A, T>, Seria
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "LeftBoundFunction".hashCode();
         if (null != function) {
@@ -109,6 +111,7 @@ public final class LeftBoundFunction<A, T> implements UnaryFunction<A, T>, Seria
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "LeftBoundFunction<" + function + "(" + param + ",?)>";
     }

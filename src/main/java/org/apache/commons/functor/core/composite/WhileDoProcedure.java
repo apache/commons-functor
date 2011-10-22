@@ -63,6 +63,7 @@ public class WhileDoProcedure extends AbstractLoopProcedure {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "WhileDoProcedure<while(" + getCondition() + ") do(" + getAction() + ")>";
     }
