@@ -97,7 +97,7 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
      * {@inheritDoc}
      */
     public boolean test(A obj) {
-        return function.evaluate(obj);
+        return function.evaluate(obj).booleanValue();
     }
 
     /**

@@ -98,11 +98,11 @@ public final class IntegerRange extends BaseGenerator<Integer> {
     public void run(UnaryProcedure<? super Integer> proc) {
         if (signOf(step) == -1) {
             for (int i = from; i > to; i += step) {
-                proc.run(i);
+                proc.run(Integer.valueOf(i));
             }
         } else {
             for (int i = from; i < to; i += step) {
-                proc.run(i);
+                proc.run(Integer.valueOf(i));
             }
         }
     }
