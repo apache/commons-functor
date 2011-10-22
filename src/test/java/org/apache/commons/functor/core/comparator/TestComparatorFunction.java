@@ -44,35 +44,35 @@ public class TestComparatorFunction extends BaseFunctorTest {
     public void testEvaluate() {
         ComparatorFunction<Integer> f = ComparatorFunction.<Integer>instance();
 
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(Integer.MAX_VALUE)))).intValue() == 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(1)))).intValue() > 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(0)))).intValue() > 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(-1)))).intValue() > 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(Integer.MIN_VALUE)))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(Integer.MAX_VALUE))).intValue() == 0);
+        assertTrue((f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(1))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(0))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(-1))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(Integer.MAX_VALUE),new Integer(Integer.MIN_VALUE))).intValue() > 0);
 
-        assertTrue(((Integer)(f.evaluate(new Integer(1),new Integer(Integer.MAX_VALUE)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(1),new Integer(1)))).intValue() == 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(1),new Integer(0)))).intValue() > 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(1),new Integer(-1)))).intValue() > 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(1),new Integer(Integer.MIN_VALUE)))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(1),new Integer(Integer.MAX_VALUE))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(1),new Integer(1))).intValue() == 0);
+        assertTrue((f.evaluate(new Integer(1),new Integer(0))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(1),new Integer(-1))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(1),new Integer(Integer.MIN_VALUE))).intValue() > 0);
 
-        assertTrue(((Integer)(f.evaluate(new Integer(0),new Integer(Integer.MAX_VALUE)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(0),new Integer(1)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(0),new Integer(0)))).intValue() == 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(0),new Integer(-1)))).intValue() > 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(0),new Integer(Integer.MIN_VALUE)))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(0),new Integer(Integer.MAX_VALUE))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(0),new Integer(1))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(0),new Integer(0))).intValue() == 0);
+        assertTrue((f.evaluate(new Integer(0),new Integer(-1))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(0),new Integer(Integer.MIN_VALUE))).intValue() > 0);
 
-        assertTrue(((Integer)(f.evaluate(new Integer(-1),new Integer(Integer.MAX_VALUE)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(-1),new Integer(1)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(-1),new Integer(0)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(-1),new Integer(-1)))).intValue() == 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(-1),new Integer(Integer.MIN_VALUE)))).intValue() > 0);
+        assertTrue((f.evaluate(new Integer(-1),new Integer(Integer.MAX_VALUE))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(-1),new Integer(1))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(-1),new Integer(0))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(-1),new Integer(-1))).intValue() == 0);
+        assertTrue((f.evaluate(new Integer(-1),new Integer(Integer.MIN_VALUE))).intValue() > 0);
 
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(Integer.MAX_VALUE)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(1)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(0)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(-1)))).intValue() < 0);
-        assertTrue(((Integer)(f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(Integer.MIN_VALUE)))).intValue() == 0);
+        assertTrue((f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(Integer.MAX_VALUE))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(1))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(0))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(-1))).intValue() < 0);
+        assertTrue((f.evaluate(new Integer(Integer.MIN_VALUE),new Integer(Integer.MIN_VALUE))).intValue() == 0);
     }
 
     @Test
