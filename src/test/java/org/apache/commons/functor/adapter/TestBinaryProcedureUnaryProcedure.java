@@ -34,6 +34,7 @@ public class TestBinaryProcedureUnaryProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BinaryProcedureUnaryProcedure<Object>(NoOp.INSTANCE);
     }

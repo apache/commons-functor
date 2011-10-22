@@ -35,6 +35,7 @@ public class TestIgnoreLeftFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IgnoreLeftFunction<Object, Object, Object>(Constant.of("xyzzy"));
     }

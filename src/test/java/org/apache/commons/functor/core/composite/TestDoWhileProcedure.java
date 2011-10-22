@@ -40,6 +40,7 @@ public class TestDoWhileProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new DoWhileProcedure(NoOp.INSTANCE, Constant.FALSE);
     }

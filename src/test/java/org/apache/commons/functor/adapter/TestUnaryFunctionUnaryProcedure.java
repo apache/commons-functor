@@ -36,6 +36,7 @@ public class TestUnaryFunctionUnaryProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new UnaryFunctionUnaryProcedure<Object>(Constant.of("K"));
     }

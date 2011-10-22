@@ -49,11 +49,13 @@ public class TestLines extends TestCase {
 
     private Reader reader = null;
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         reader = new StringReader(DOCUMENT);
     }
 
+    @Override
     public void tearDown() throws Exception {
         super.tearDown();
         reader = null;

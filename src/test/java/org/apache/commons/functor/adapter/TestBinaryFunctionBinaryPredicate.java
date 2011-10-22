@@ -36,6 +36,7 @@ public class TestBinaryFunctionBinaryPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BinaryFunctionBinaryPredicate<Object, Object>(Constant.TRUE);
     }

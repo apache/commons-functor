@@ -37,6 +37,7 @@ public class TestAbstractLoopProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new MockLoopProcedure(Constant.FALSE, NoOp.INSTANCE);
     }

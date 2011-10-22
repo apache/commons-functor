@@ -35,6 +35,7 @@ public class TestIsNotSame extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IsNotSame<Object, Object>();
     }

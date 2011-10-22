@@ -33,6 +33,7 @@ public class TestConditionalBinaryPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new ConditionalBinaryPredicate<Object, Object>(
             Constant.TRUE,

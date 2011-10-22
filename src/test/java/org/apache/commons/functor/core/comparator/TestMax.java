@@ -32,6 +32,7 @@ public class TestMax extends BaseFunctorTest {
     // Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return Max.instance();
     }

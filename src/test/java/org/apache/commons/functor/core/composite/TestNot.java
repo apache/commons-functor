@@ -35,6 +35,7 @@ public class TestNot extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new Not(Constant.TRUE);
     }

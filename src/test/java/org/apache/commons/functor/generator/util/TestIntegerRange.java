@@ -33,6 +33,7 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class TestIntegerRange extends BaseFunctorTest {
 
+    @Override
     protected Object makeFunctor() throws Exception {
         return new IntegerRange(10, 20);
     }

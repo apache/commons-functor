@@ -32,6 +32,7 @@ public class TestCompositeUnaryFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return Composite.function(Constant.of(3));
     }

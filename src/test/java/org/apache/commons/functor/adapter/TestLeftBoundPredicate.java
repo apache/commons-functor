@@ -35,6 +35,7 @@ public class TestLeftBoundPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new LeftBoundPredicate<Object>(Constant.TRUE,"xyzzy");
     }

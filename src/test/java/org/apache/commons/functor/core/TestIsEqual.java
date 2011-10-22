@@ -35,6 +35,7 @@ public class TestIsEqual extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IsEqual<Object, Object>();
     }

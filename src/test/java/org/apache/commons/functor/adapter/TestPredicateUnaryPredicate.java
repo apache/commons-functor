@@ -35,6 +35,7 @@ public class TestPredicateUnaryPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new PredicateUnaryPredicate<Object>(Constant.TRUE);
     }

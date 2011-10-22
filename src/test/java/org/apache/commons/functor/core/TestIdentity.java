@@ -36,6 +36,7 @@ public class TestIdentity extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return Identity.INSTANCE;
     }

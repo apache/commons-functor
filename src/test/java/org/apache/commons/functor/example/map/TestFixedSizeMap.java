@@ -42,6 +42,7 @@ public class TestFixedSizeMap extends TestCase {
     private Map baseMap = null;
     private Map fixedMap = null;
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         baseMap = new HashMap();
@@ -54,6 +55,7 @@ public class TestFixedSizeMap extends TestCase {
         fixedMap = new FixedSizeMap(baseMap);
     }
 
+    @Override
     public void tearDown() throws Exception {
         super.tearDown();
         baseMap = null;

@@ -36,6 +36,7 @@ public class TestBinaryFunctionBinaryProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BinaryFunctionBinaryProcedure<Object, Object>(Constant.of("K"));
     }

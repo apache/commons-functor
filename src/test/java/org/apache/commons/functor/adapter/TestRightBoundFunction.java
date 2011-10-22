@@ -36,6 +36,7 @@ public class TestRightBoundFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new RightBoundFunction<Object, Object>(LeftIdentity.FUNCTION,"xyzzy");
     }

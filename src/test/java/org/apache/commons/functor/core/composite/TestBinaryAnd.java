@@ -33,6 +33,7 @@ public class TestBinaryAnd extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BinaryAnd<Object, Object>(Constant.TRUE, Constant.TRUE);
     }

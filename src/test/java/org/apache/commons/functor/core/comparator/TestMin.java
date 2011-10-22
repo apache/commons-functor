@@ -32,6 +32,7 @@ public class TestMin extends BaseFunctorTest {
     // Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return Min.instance();
     }

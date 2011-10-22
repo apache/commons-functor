@@ -36,6 +36,7 @@ public class TestTransposedPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new TransposedPredicate<Object, Object>(Constant.TRUE);
     }

@@ -43,12 +43,14 @@ public class TestPredicatedMap extends TestCase {
 
     private Map baseMap = null;
     private Map predicatedMap = null;
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         baseMap = new HashMap();
         predicatedMap = new PredicatedMap(baseMap,IsInstance.of(String.class),IsInstance.of(Integer.class));
     }
 
+    @Override
     public void tearDown() throws Exception {
         super.tearDown();
         baseMap = null;

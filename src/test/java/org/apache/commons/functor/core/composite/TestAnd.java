@@ -33,6 +33,7 @@ public class TestAnd extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new And(Constant.TRUE, Constant.TRUE);
     }

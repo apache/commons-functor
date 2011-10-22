@@ -33,6 +33,7 @@ public class TestIsWithinRange extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IsWithinRange<Integer>(new Integer(5), new Integer(10));
     }

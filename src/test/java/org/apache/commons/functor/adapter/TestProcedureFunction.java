@@ -36,6 +36,7 @@ public class TestProcedureFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new ProcedureFunction<Object>(NoOp.INSTANCE);
     }

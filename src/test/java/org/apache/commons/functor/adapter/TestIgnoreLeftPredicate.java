@@ -36,6 +36,7 @@ public class TestIgnoreLeftPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IgnoreLeftPredicate<Object, Object>(Constant.TRUE);
     }

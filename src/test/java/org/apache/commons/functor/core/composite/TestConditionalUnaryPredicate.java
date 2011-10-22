@@ -33,6 +33,7 @@ public class TestConditionalUnaryPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new ConditionalUnaryPredicate<Object>(
             Constant.TRUE,

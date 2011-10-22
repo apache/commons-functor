@@ -31,6 +31,7 @@ public class TestIsNotEquivalent extends BaseComparisonPredicateTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return IsNotEquivalent.instance();
     }

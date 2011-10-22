@@ -37,6 +37,7 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
 
+    @Override
     public Object makeFunctor() {
         List list = new ArrayList();
         list.add("1");

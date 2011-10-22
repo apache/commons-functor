@@ -33,6 +33,7 @@ public class TestCompositeUnaryProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return Composite.procedure(NoOp.instance(), Constant.TRUE);
     }

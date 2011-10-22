@@ -32,6 +32,7 @@ public class TestIsNotNull extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IsNotNull<Object>();
     }

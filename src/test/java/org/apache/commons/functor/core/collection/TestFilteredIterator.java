@@ -42,6 +42,7 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class TestFilteredIterator extends BaseFunctorTest {
 
+    @Override
     public Object makeFunctor() {
         List list = new ArrayList();
         list.add("xyzzy");

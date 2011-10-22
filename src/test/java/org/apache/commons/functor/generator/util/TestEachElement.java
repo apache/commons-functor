@@ -46,6 +46,7 @@ public class TestEachElement extends BaseFunctorTest {
     private Map map = null;
     private Object[] array = null;
 
+    @Override
     protected Object makeFunctor() throws Exception {
         return EachElement.from(new ArrayList());
     }

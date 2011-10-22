@@ -34,6 +34,7 @@ public class TestOffset extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new Offset(3);
     }

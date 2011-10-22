@@ -35,6 +35,7 @@ public class TestBoundFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BoundFunction<Object>(Identity.INSTANCE,"xyzzy");
     }

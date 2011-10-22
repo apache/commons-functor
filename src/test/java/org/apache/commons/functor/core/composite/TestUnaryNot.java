@@ -35,6 +35,7 @@ public class TestUnaryNot extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new UnaryNot<Object>(Constant.TRUE);
     }

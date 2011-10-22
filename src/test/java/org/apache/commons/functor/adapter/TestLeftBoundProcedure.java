@@ -35,6 +35,7 @@ public class TestLeftBoundProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new LeftBoundProcedure<Object>(NoOp.INSTANCE,"xyzzy");
     }

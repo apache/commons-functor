@@ -34,6 +34,7 @@ public class TestBinaryFunctionUnaryFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BinaryFunctionUnaryFunction<Object, Object>(BinaryPredicateBinaryFunction.adapt(IsSame.INSTANCE));
     }

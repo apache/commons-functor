@@ -55,6 +55,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
         }
     };
 
+    @Override
     public Object makeFunctor() {
         List<String> list = new ArrayList<String>();
         list.add("xyzzy");

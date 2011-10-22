@@ -36,6 +36,7 @@ public class TestSequence extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new Sequence(new NoOp(),new NoOp());
     }

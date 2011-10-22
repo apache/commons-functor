@@ -36,6 +36,7 @@ public class TestUnarySequence extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new UnarySequence(new NoOp(),new NoOp());
     }

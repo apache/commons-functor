@@ -575,12 +575,14 @@ public class FlexiMapExample {
     }
 
     private UniversalFunctor throwNPE = new UniversalFunctor() {
+        @Override
         public void run() {
             throw new NullPointerException();
         }
     };
 
     private UniversalFunctor throwCCE = new UniversalFunctor() {
+        @Override
         public void run() {
             throw new ClassCastException();
         }

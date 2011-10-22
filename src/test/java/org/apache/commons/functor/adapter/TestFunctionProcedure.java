@@ -36,6 +36,7 @@ public class TestFunctionProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new FunctionProcedure(Constant.of("K"));
     }

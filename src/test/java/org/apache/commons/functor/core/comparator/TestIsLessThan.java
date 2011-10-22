@@ -32,6 +32,7 @@ public class TestIsLessThan extends BaseComparisonPredicateTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IsLessThan<Comparable<?>>();
     }

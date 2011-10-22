@@ -35,6 +35,7 @@ public class TestFullyBoundProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new FullyBoundProcedure(NoOp.INSTANCE, "xyzzy", null);
     }

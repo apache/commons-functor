@@ -29,6 +29,7 @@ public class Money {
         return cents;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Money) {
             Money that = (Money) obj;
@@ -38,10 +39,12 @@ public class Money {
         }
     }
 
+    @Override
     public int hashCode() {
         return getValueAsCents();
     }
 
+    @Override
     public String toString() {
         return getValueAsCents() + " cents";
     }

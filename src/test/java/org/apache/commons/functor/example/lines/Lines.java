@@ -60,6 +60,7 @@ public class Lines extends BaseGenerator<String> {
         }
     }
 
+    @Override
     public void stop() {
         super.stop();
         try {
@@ -83,6 +84,7 @@ public class Lines extends BaseGenerator<String> {
         /**
          * Get the cause of this TunneledException
          */
+        @Override
         public Throwable getCause() {
             return exception;
         }

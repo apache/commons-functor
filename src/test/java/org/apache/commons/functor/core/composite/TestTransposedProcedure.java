@@ -34,6 +34,7 @@ public class TestTransposedProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new TransposedProcedure<Object, Object>(NoOp.INSTANCE);
     }

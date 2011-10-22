@@ -36,6 +36,7 @@ public class TestFullyBoundFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "xyzzy");
     }

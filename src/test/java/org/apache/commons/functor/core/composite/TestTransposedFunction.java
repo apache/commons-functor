@@ -36,6 +36,7 @@ public class TestTransposedFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new TransposedFunction<Object, Object, Object>(LeftIdentity.FUNCTION);
     }

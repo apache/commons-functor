@@ -32,6 +32,7 @@ public class TestConditionalUnaryFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new ConditionalUnaryFunction<Object, Object>(
             Constant.TRUE,

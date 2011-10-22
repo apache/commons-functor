@@ -46,6 +46,7 @@ public class TestLazyMap extends TestCase {
     private Map lazyMap = null;
     private Map expectedMap = null;
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         expectedMap = new HashMap();
@@ -59,6 +60,7 @@ public class TestLazyMap extends TestCase {
         lazyMap = new LazyMap(baseMap,Size.instance());
     }
 
+    @Override
     public void tearDown() throws Exception {
         super.tearDown();
         baseMap = null;

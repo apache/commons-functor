@@ -37,10 +37,12 @@ public class FunctoredMap implements Map {
         this.map = map;
     }
 
+    @Override
     public int hashCode() {
         return map.hashCode();
     }
 
+    @Override
     public String toString() {
         return map.toString();
     }
@@ -89,6 +91,7 @@ public class FunctoredMap implements Map {
         return onremove.evaluate(map,key);
     }
 
+    @Override
     public boolean equals(Object obj) {
         return map.equals(obj);
     }

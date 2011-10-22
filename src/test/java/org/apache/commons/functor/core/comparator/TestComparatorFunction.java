@@ -32,6 +32,7 @@ public class TestComparatorFunction extends BaseFunctorTest {
     // Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return ComparatorFunction.INSTANCE;
     }

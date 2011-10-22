@@ -35,6 +35,7 @@ public class TestBoundPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BoundPredicate(Constant.TRUE,"xyzzy");
     }

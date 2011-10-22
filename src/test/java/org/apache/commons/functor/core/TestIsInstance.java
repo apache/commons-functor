@@ -35,6 +35,7 @@ public class TestIsInstance extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return IsInstance.of(String.class);
     }

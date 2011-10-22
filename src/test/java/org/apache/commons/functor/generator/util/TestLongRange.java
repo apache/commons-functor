@@ -33,6 +33,7 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class TestLongRange extends BaseFunctorTest {
 
+    @Override
     protected Object makeFunctor() throws Exception {
         return new LongRange(10, 20);
     }

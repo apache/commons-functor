@@ -35,6 +35,7 @@ public class TestIgnoreRightProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new IgnoreRightProcedure<Object, Object>(NoOp.INSTANCE);
     }

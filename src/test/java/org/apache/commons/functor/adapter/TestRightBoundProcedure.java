@@ -35,6 +35,7 @@ public class TestRightBoundProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new RightBoundProcedure<Object>(NoOp.INSTANCE,"xyzzy");
     }

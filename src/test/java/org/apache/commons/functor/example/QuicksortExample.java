@@ -344,6 +344,7 @@ public class QuicksortExample {
         new Constant(Collections.EMPTY_LIST),
         /* ...else, apply the following function... */
         new ListFunction() {
+            @Override
             public Object evaluate(List list) {
                 /* Create a list to contain the results. */
                 List result = new ArrayList(list.size());
@@ -434,6 +435,7 @@ public class QuicksortExample {
  */
 
     private UnaryFunction head = new ListFunction() {
+        @Override
         public Object evaluate(List list) {
             return list.get(0);
         }
@@ -443,6 +445,7 @@ public class QuicksortExample {
  * and its tail:
  */
     private UnaryFunction tail = new ListFunction() {
+        @Override
         public Object evaluate(List list) {
             return list.size() < 2 ?
                 Collections.EMPTY_LIST :
@@ -457,6 +460,7 @@ public class QuicksortExample {
  * a predicate identifying elements less than the head.
  */
     private BinaryFunction lesserTail = new ObjectListFunction() {
+        @Override
         public Object evaluate(Object head, List tail) {
             return new FilteredGenerator(
                     IteratorToGeneratorAdapter.adapt(tail.iterator()),
@@ -470,6 +474,7 @@ public class QuicksortExample {
  * is similar to the lesserTail approach.
  */
     private BinaryFunction greaterTail = new ObjectListFunction() {
+        @Override
         public Object evaluate(Object head, List tail) {
             return new FilteredGenerator(
                     IteratorToGeneratorAdapter.adapt(tail.iterator()),

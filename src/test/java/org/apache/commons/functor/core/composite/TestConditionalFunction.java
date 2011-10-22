@@ -31,6 +31,7 @@ public class TestConditionalFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new ConditionalFunction<Object>(
             Constant.TRUE,

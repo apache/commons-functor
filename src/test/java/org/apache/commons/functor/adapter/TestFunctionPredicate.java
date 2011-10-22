@@ -35,6 +35,7 @@ public class TestFunctionPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new FunctionPredicate(Constant.TRUE);
     }

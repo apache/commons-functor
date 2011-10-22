@@ -35,6 +35,7 @@ public class TestBinaryNot extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BinaryNot<Object, Object>(Constant.TRUE);
     }

@@ -36,6 +36,7 @@ public class TestUnaryCompositeBinaryFunction extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new UnaryCompositeBinaryFunction<Object, Object, Object>(
             RightIdentity.FUNCTION,

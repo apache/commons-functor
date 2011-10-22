@@ -38,6 +38,7 @@ public class TestBinaryPredicateUnaryPredicate extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new BinaryPredicateUnaryPredicate<Object>(IsSame.INSTANCE);
     }

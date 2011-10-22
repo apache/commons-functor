@@ -121,6 +121,7 @@ public class TestBinaryChop {
     @Test
     public void testBuiltIn() {
         chopTest(new BaseBinaryChop() {
+            @Override
             public int find(Object seeking, List list) {
                 int result = Collections.binarySearch(list,seeking);
                 //
@@ -151,6 +152,7 @@ public class TestBinaryChop {
     @Test
     public void testIterative() {
         chopTest(new BaseBinaryChop() {
+            @Override
             public int find(Object seeking, List list) {
                 int high = list.size();
                 int low = 0;
@@ -276,6 +278,7 @@ public class TestBinaryChop {
     public void testIterativeWithInvariants() {
         chopTest(new BaseBinaryChop() {
 
+            @Override
             public int find(final Object seeking, final List list) {
                 Loop loop = new Loop() {
                     int high = list.size();
@@ -393,6 +396,7 @@ public class TestBinaryChop {
     @Test
     public void testIterativeWithInvariantsAndAssertions() {
         chopTest(new BaseBinaryChop() {
+            @Override
             public int find(Object seeking, List list) {
                 BinarySearchLoop loop = new BinarySearchLoop(seeking,list);
                 loop.run();
@@ -408,6 +412,7 @@ public class TestBinaryChop {
     @Test
     public void testRecursive() {
         chopTest(new BaseBinaryChop() {
+            @Override
             public int find(Object seeking, List list) {
                 return find(seeking, list, 0, list.size());
             }
@@ -442,6 +447,7 @@ public class TestBinaryChop {
     @Test
     public void testTailRecursive() {
         chopTest(new BaseBinaryChop() {
+            @Override
             public int find(final Object seeking, final List list) {
                 return ((Number) new RecursiveEvaluation(new Function() {
                     public Object evaluate() {
@@ -488,6 +494,7 @@ public class TestBinaryChop {
     @Test
     public void testRecursive2() {
         chopTest(new BaseBinaryChop() {
+            @Override
             public int find(Object seeking, List list) {
                 return find(seeking,list,0);
             }
@@ -518,6 +525,7 @@ public class TestBinaryChop {
     @Test
     public void testTailRecursive2() {
         chopTest(new BaseBinaryChop() {
+            @Override
             public int find(final Object seeking, final List list) {
                 return ((Number) new RecursiveEvaluation(new Function() {
                     public Object evaluate() {

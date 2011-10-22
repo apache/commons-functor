@@ -33,6 +33,7 @@ public class TestConstant extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new Constant<Object>("K");
     }

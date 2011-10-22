@@ -34,6 +34,7 @@ public class TestConditionalBinaryProcedure extends BaseFunctorTest {
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
         return new ConditionalBinaryProcedure<Object, Object>(
             Constant.TRUE,
