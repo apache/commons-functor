@@ -39,7 +39,6 @@ import org.junit.Test;
 /**
  * @author Jason Horman (jason@jhorman.org)
  */
-@SuppressWarnings("unchecked")
 public class TestEachElement extends BaseFunctorTest {
 
     private List<Integer> list = null;
