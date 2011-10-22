@@ -70,6 +70,7 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that instanceof Size<?>;
     }
@@ -77,6 +78,7 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return "Size".hashCode();
     }
@@ -84,6 +86,7 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "Size()";
     }
