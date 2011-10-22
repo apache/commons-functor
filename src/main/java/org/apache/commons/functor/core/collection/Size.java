@@ -101,8 +101,8 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
      * @param col to evaluate
      * @return Integer
      */
-    private int evaluate(Collection<?> col) {
-        return col.size();
+    private Integer evaluate(Collection<?> col) {
+        return Integer.valueOf(col.size());
     }
 
     /**
@@ -110,8 +110,8 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
      * @param str to evaluate
      * @return Integer
      */
-    private int evaluate(String str) {
-        return str.length();
+    private Integer evaluate(String str) {
+        return Integer.valueOf(str.length());
     }
 
     /**
@@ -119,8 +119,8 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
      * @param array to evaluate
      * @return Integer
      */
-    private int evaluateArray(Object array) {
-        return Array.getLength(array);
+    private Integer evaluateArray(Object array) {
+        return Integer.valueOf(Array.getLength(array));
     }
 
 }
