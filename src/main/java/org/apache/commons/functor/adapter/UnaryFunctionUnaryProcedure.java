@@ -71,6 +71,7 @@ public final class UnaryFunctionUnaryProcedure<A> implements UnaryProcedure<A>, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this
                 || (that instanceof UnaryFunctionUnaryProcedure<?> && equals((UnaryFunctionUnaryProcedure<?>) that));
@@ -88,6 +89,7 @@ public final class UnaryFunctionUnaryProcedure<A> implements UnaryProcedure<A>, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "UnaryFunctionUnaryProcedure".hashCode();
         if (null != function) {
@@ -99,6 +101,7 @@ public final class UnaryFunctionUnaryProcedure<A> implements UnaryProcedure<A>, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnaryFunctionUnaryProcedure<" + function + ">";
     }

@@ -65,12 +65,13 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
      * @return a non-<code>null</code> <code>Boolean</code> instance
      */
     public Boolean evaluate() {
-        return predicate.test();
+        return Boolean.valueOf(predicate.test());
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof PredicateFunction && equals((PredicateFunction) that));
     }
@@ -87,6 +88,7 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "PredicateFunction".hashCode();
         if (null != predicate) {
@@ -98,6 +100,7 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "PredicateFunction<" + predicate + ">";
     }

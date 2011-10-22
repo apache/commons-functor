@@ -95,12 +95,13 @@ public final class IndexOfInGenerator<T>
     public Number evaluate(Generator<? extends T> left, UnaryPredicate<? super T> right) {
         IndexProcedure<T> findProcedure = new IndexProcedure<T>(left, right);
         left.run(findProcedure);
-        return findProcedure.index;
+        return Long.valueOf(findProcedure.index);
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         return obj == this || obj != null && obj.getClass().equals(getClass());
     }
@@ -108,6 +109,7 @@ public final class IndexOfInGenerator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return System.identityHashCode(INSTANCE);
     }

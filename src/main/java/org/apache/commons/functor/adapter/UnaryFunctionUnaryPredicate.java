@@ -65,12 +65,13 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
      * method of my underlying function.
      */
     public boolean test(A obj) {
-        return function.evaluate(obj);
+        return function.evaluate(obj).booleanValue();
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this
                 || (that instanceof UnaryFunctionUnaryPredicate<?> && equals((UnaryFunctionUnaryPredicate<?>) that));
@@ -88,6 +89,7 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "UnaryFunctionUnaryPredicate".hashCode();
         if (null != function) {
@@ -99,6 +101,7 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnaryFunctionUnaryPredicate<" + function + ">";
     }

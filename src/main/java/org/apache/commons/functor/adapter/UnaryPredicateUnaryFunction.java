@@ -66,12 +66,13 @@ public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Bo
      * @return a non-<code>null</code> <code>Boolean</code> instance
      */
     public Boolean evaluate(A obj) {
-        return predicate.test(obj);
+        return Boolean.valueOf(predicate.test(obj));
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this
                 || (that instanceof UnaryPredicateUnaryFunction<?> && equals((UnaryPredicateUnaryFunction<?>) that));
@@ -89,6 +90,7 @@ public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Bo
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "UnaryPredicateUnaryFunction".hashCode();
         if (null != predicate) {
@@ -100,6 +102,7 @@ public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Bo
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "UnaryPredicateUnaryFunction<" + predicate + ">";
     }

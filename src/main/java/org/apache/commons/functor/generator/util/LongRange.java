@@ -97,11 +97,11 @@ public final class LongRange extends BaseGenerator<Long> {
     public void run(UnaryProcedure<? super Long> proc) {
         if (signOf(step) == -1L) {
             for (long i = from; i > to; i += step) {
-                proc.run(i);
+                proc.run(Long.valueOf(i));
             }
         } else {
             for (long i = from; i < to; i += step) {
-                proc.run(i);
+                proc.run(Long.valueOf(i));
             }
         }
     }
@@ -109,6 +109,7 @@ public final class LongRange extends BaseGenerator<Long> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "LongRange<" + from + "," + to + "," + step + ">";
     }
@@ -116,6 +117,7 @@ public final class LongRange extends BaseGenerator<Long> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -130,6 +132,7 @@ public final class LongRange extends BaseGenerator<Long> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "LongRange".hashCode();
         hash <<= 2;

@@ -63,12 +63,13 @@ public final class FunctionPredicate implements Predicate, Serializable {
      * {@inheritDoc}
      */
     public boolean test() {
-        return function.evaluate();
+        return function.evaluate().booleanValue();
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object that) {
         return that == this || (that instanceof FunctionPredicate && equals((FunctionPredicate) that));
     }
@@ -85,6 +86,7 @@ public final class FunctionPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "FunctionPredicate".hashCode();
         if (null != function) {
@@ -96,6 +98,7 @@ public final class FunctionPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "FunctionPredicate<" + function + ">";
     }

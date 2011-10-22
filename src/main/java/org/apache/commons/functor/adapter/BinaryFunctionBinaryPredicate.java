@@ -65,12 +65,13 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * non-<code>Boolean</code>
      */
     public boolean test(final L left, final R right) {
-        return function.evaluate(left, right);
+        return function.evaluate(left, right).booleanValue();
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(final Object that) {
         return that == this
                 || (that instanceof BinaryFunctionBinaryPredicate<?, ?>
@@ -89,6 +90,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         int hash = "BinaryFunctionBinaryPredicate".hashCode();
         if (null != function) {
@@ -100,6 +102,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return "BinaryFunctionBinaryPredicate<" + function + ">";
     }
