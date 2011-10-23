@@ -32,9 +32,9 @@
          In order to keep the examples in sync with the rest of the code,         
          each example is written as a <a href="http://junit.org/">JUnit</a> 
          <code>TestCase</code>.  The example programs are executed along with 
-         all the other unit tests, and can be invoked via <code>ant test</code>
-         or <code>maven test</code> once you've set up Ant or Maven as described
-         in the <a href="building.html">build instructions</a>.
+         all the other unit tests, and can be invoked via <code>mvn test</code> 
+         once you've set up Maven as described in the 
+         <a href="building.html">build instructions</a>.
       </p>
       <p>
          If you're not familiar with JUnit, don't worry. An understanding of 
@@ -43,24 +43,18 @@
       </p>
       <p>
          Two things you'll want to know about JUnit are (a) all the methods
-         whose names start with "test" will be executed automatically by the 
-         test suite and (b) there are various "assert" methods that can be used
-         to make assertions about the Objects being tested.  If any assertion
-         fails, the JUnit framework will count (and report) this as a test 
-         failure.
+         annotated with "@Test" will be executed automatically by the 
+         test runner and (b) there are various "assert" methods present in 
+         org.junit.Assert that can be used to make assertions about the Objects 
+         being tested.  If any assertion fails, the JUnit framework will count 
+         (and report) this as a test failure.
       </p>
-      <p>You can run a specific test case or sub-suite via Ant by invoking</p>
-      <pre>ant -Dtest.entry=&lt;fully-specified-test-case-name&gt; test</pre>
-      <p>or in Maven by invoking</p>
-      <pre>maven -Dtestcase=&lt;fully-specified-test-case-name&gt; test:single</pre>
+      <p>You can run a specific test case or sub-suite in Maven by invoking</p>
+      <pre>mvn -e -X -Dtest==&lt;fully-specified-test-case-name&gt; test</pre>
       <p>For example, to run the Quicksort example, invoke</p>
-      <pre>ant -Dtest.entry=org.apache.commons.functor.example.QuicksortExample test</pre>
-      <p>or</p>
-      <pre>maven -Dtestcase=org.apache.commons.functor.example.QuicksortExample test:single</pre>
+      <pre>mvn -e -X -Dtest=org.apache.commons.functor.example.QuicksortExample test</pre>
       <p>To run all the examples, invoke:</p>
-      <pre>ant -Dtest.entry=org.apache.commons.functor.example.TestAll test</pre>
-      <p>or</p>
-      <pre>maven -Dtestcase=org.apache.commons.functor.example.TestAll test:single</pre>    
+      <pre>mvn -e -X -Dtest==&lt;fully-specified-package-name.*&gt; test</pre>    
       <p>
          Each example is has descriptive prose mixed right in with the source, as 
          <code>/* C++ style */</code> comments.

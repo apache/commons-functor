@@ -30,8 +30,8 @@
          <a href="source-repository.html">the SVN server</a>.
       </p>
       <p>
-         Commons Functor can be built using <a href="http://maven.apache.org/">Maven</a>
-         or <a href="http://ant.apache.org/">Ant</a>.  
+         In order to build Commons Functor you will need <a href="http://maven.apache.org/">Maven</a>. 
+         Install a recent Maven release.
          <!--
          The <a href="http://jakarta.apache.org/gump">Gump</a>
          continuous integration process attempts to build Functor several times a day (against the built-from-scratch
@@ -40,47 +40,11 @@
          <a href="http://cvs.apache.org/builds/gump/latest/commons-functor.html">view the status of the latest gump build here</a>.
          -->
       </p>
-      <subsection name="Building with Maven">
-        <ol>
-          <li>
-            Install a recent Maven release.  Maven is available from 
-            <a href="http://maven.apache.org/">http://maven.apache.org/</a>.
-          </li>
-          <li>
+      <p>
             With Maven installed, you should be able to run an arbitrary maven goal from the root Commons Functor 
-            directory.  Use <code>maven -g</code> for a list of avaiable goals.  Commonly used goals include 
-            <code>clean</code>, <code>test</code>, <code>dist</code>, <code>site</code> and <code>clover</code>.
-          </li>
-        </ol>
-      </subsection>      
-      <subsection name="Building with Ant">
-        <ol>
-          <li>
-            Install a recent Ant release.  Ant is available from 
-            <a href="http://ant.apache.org/">http://ant.apache.org/</a>.
-          </li>
-          <li>
-            Obtain JUnit 3.8.1 or later.  JUnit is available from 
-            <a href="http://junit.org/">http://junit.org/</a>.
-            Note that JUnit is a needed to compile and run the unit tests,
-            but is not needed at runtime by clients of Commons Functor.
-          </li>
-          <li>
-            Copy the <code>build.properties.sample</code> file found in the 
-            root Commons Functor directory to a file named <code>build.properties</code>.
-            Modify this file to provide the location of the <code>junit.jar</code> file.
-            (Note that Commons Functor supports a "shared" <code>build.properties</code> 
-            file placed either at <code>../build.properties</code> or
-            <code>../../jakarta-commons/build.properties</code>, or both, relative to the 
-            root Commons Functor directory.)
-          </li>
-          <li>
-            You may run <code>ant -projecthelp</code> to obtain a list of the available Ant targets.
-            Commonly used targets include <code>clean</code>, <code>test</code>, <code>compile</code>,
-            <code>dist</code>, and <code>javadoc</code>.            
-          </li>
-        </ol>
-      </subsection>      
+            directory.  Commonly used goals include 
+            <code>clean</code>, <code>test</code>, <code>compile</code>, <code>package</code>, <code>install</code> and <code>site</code>.
+      </p>
     </section>
   </body>
 </document>
