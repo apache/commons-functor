@@ -30,7 +30,6 @@ import org.junit.Test;
  * @author Jason Horman (jason@jhorman.org)
  * @author Rodney Waldhoff
  */
-@SuppressWarnings("unchecked")
 public class TestIntegerRange extends BaseFunctorTest {
 
     @Override
@@ -45,7 +44,7 @@ public class TestIntegerRange extends BaseFunctorTest {
     public void testGenerateListExample() {
         // generates a collection of Integers from 0 (inclusive) to 10 (exclusive)
         {
-            List list = (List)(new IntegerRange(0,10).to(new ArrayList()));
+            List<? super Integer> list = (List<? super Integer>)(new IntegerRange(0,10).to(new ArrayList<Integer>()));
             for (int i=0;i<10;i++) {
                 assertEquals(new Integer(i),list.get(i));
             }
@@ -53,7 +52,7 @@ public class TestIntegerRange extends BaseFunctorTest {
 
         // generates a collection of Integers from 10 (inclusive) to 0 (exclusive)
         {
-            List list = (List)(new IntegerRange(10,0).to(new ArrayList()));
+            List<? super Integer> list = (List<? super Integer>)(new IntegerRange(10,0).to(new ArrayList<Integer>()));
             for (int i=10;i>0;i--) {
                 assertEquals(new Integer(i),list.get(10-i));
             }

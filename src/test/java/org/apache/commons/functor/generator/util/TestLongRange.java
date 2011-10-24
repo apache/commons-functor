@@ -30,7 +30,6 @@ import org.junit.Test;
  * @author Jason Horman (jason@jhorman.org)
  * @author Rodney Waldhoff
  */
-@SuppressWarnings("unchecked")
 public class TestLongRange extends BaseFunctorTest {
 
     @Override
@@ -45,7 +44,7 @@ public class TestLongRange extends BaseFunctorTest {
     public void testGenerateListExample() {
         // generates a collection of Integers from 0 (inclusive) to 10 (exclusive)
         {
-            List list = (List)(new LongRange(0,10).to(new ArrayList()));
+            List<? super Long> list = (List<? super Long>)(new LongRange(0,10).to(new ArrayList<Long>()));
             for (int i=0;i<10;i++) {
                 assertEquals(new Long(i),list.get(i));
             }
@@ -53,7 +52,7 @@ public class TestLongRange extends BaseFunctorTest {
 
         // generates a collection of Integers from 10 (inclusive) to 0 (exclusive)
         {
-            List list = (List)(new LongRange(10,0).to(new ArrayList()));
+            List<? super Long> list = (List<? super Long>)(new LongRange(10,0).to(new ArrayList<Long>()));
             for (int i=10;i>0;i--) {
                 assertEquals(new Long(i),list.get(10-i));
             }
