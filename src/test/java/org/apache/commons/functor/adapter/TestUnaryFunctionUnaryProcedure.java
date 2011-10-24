@@ -48,7 +48,7 @@ public class TestUnaryFunctionUnaryProcedure extends BaseFunctorTest {
     public void testRun() throws Exception {
         class EvaluateCounter implements UnaryFunction<Object, Integer> {
             int count = 0;
-            public Integer evaluate(Object a) { return count++; }
+            public Integer evaluate(Object a) { return Integer.valueOf(count++); }
         }
         EvaluateCounter counter = new EvaluateCounter();
         UnaryProcedure<Object> p = new UnaryFunctionUnaryProcedure<Object>(counter);

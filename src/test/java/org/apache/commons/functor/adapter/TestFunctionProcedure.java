@@ -48,7 +48,7 @@ public class TestFunctionProcedure extends BaseFunctorTest {
     public void testRun() throws Exception {
         class EvaluateCounter implements Function<Integer> {
             int count = 0;
-            public Integer evaluate() { return count++; }
+            public Integer evaluate() { return Integer.valueOf(count++); }
         }
         EvaluateCounter counter = new EvaluateCounter();
         Procedure p = new FunctionProcedure(counter);
