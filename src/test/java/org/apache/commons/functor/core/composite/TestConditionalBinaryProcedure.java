@@ -55,13 +55,13 @@ public class TestConditionalBinaryProcedure extends BaseFunctorTest {
             right);
         assertEquals(0,left.count);
         assertEquals(0,right.count);
-        p.run(true, null);
+        p.run(Boolean.TRUE, null);
         assertEquals(1,left.count);
         assertEquals(0,right.count);
-        p.run(false, null);
+        p.run(Boolean.FALSE, null);
         assertEquals(1,left.count);
         assertEquals(1,right.count);
-        p.run(true, null);
+        p.run(Boolean.TRUE, null);
         assertEquals(2,left.count);
         assertEquals(1,right.count);
     }

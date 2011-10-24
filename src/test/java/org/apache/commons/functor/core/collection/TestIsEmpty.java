@@ -117,7 +117,7 @@ public class TestIsEmpty extends BaseFunctorTest {
         assertEquals(p,p);
         assertObjectsAreEqual(p,new IsEmpty());
         assertObjectsAreEqual(p,IsEmpty.instance());
-        assertObjectsAreNotEqual(p,new Constant(true));
+        assertObjectsAreNotEqual(p,new Constant(Boolean.TRUE));
     }
 
 }

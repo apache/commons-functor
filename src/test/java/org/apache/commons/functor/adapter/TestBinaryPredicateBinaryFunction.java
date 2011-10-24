@@ -43,13 +43,13 @@ public class TestBinaryPredicateBinaryFunction extends BaseFunctorTest {
     @Test
     public void testTestWhenTrue() throws Exception {
         BinaryFunction<Object, Object, Boolean> f = new BinaryPredicateBinaryFunction<Object, Object>(Constant.TRUE);
-        assertTrue(f.evaluate(null,null));
+        assertEquals(Boolean.TRUE, f.evaluate(null,null));
     }
 
     @Test
     public void testTestWhenFalse() throws Exception {
         BinaryFunction<Object, Object, Boolean> f = new BinaryPredicateBinaryFunction<Object, Object>(Constant.FALSE);
-        assertFalse(f.evaluate(null,null));
+        assertEquals(Boolean.FALSE, f.evaluate(null,null));
     }
 
     @Test

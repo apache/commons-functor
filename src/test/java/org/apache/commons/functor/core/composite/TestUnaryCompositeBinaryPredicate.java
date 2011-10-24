@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
@@ -52,8 +53,8 @@ public class TestUnaryCompositeBinaryPredicate extends BaseFunctorTest {
                 RightIdentity.PREDICATE,
                 Constant.FALSE,
                 new Identity<Boolean>());
-        assertEquals(true,f.test(Boolean.TRUE,Boolean.TRUE));
-        assertEquals(true,f.test(null,Boolean.TRUE));
+        assertTrue(f.test(Boolean.TRUE,Boolean.TRUE));
+        assertTrue(f.test(null,Boolean.TRUE));
     }
 
     @Test
