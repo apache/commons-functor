@@ -45,13 +45,13 @@ public class TestBinaryFunctionUnaryFunction extends BaseFunctorTest {
     @Test
     public void testTestWhenTrue() throws Exception {
         UnaryFunction<Object, Boolean> f = new BinaryFunctionUnaryFunction<Object, Boolean>(BinaryPredicateBinaryFunction.adapt(IsSame.INSTANCE));
-        assertTrue(f.evaluate(null));
+        assertEquals(Boolean.TRUE, f.evaluate(null));
     }
 
     @Test
     public void testTestWhenFalse() throws Exception {
         UnaryFunction<Object, Boolean> f = new BinaryFunctionUnaryFunction<Object, Boolean>(BinaryPredicateBinaryFunction.adapt(IsNotSame.INSTANCE));
-        assertFalse(f.evaluate(null));
+        assertEquals(Boolean.FALSE, f.evaluate(null));
     }
 
     @Test
