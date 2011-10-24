@@ -37,7 +37,6 @@ import org.junit.Test;
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-@SuppressWarnings("unchecked")
 public class TestIsEmpty extends BaseFunctorTest {
 
     // Functor Testing Framework
@@ -45,7 +44,7 @@ public class TestIsEmpty extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new IsEmpty();
+        return new IsEmpty<Object>();
     }
 
     // Tests
@@ -56,13 +55,13 @@ public class TestIsEmpty extends BaseFunctorTest {
         assertTrue(IsEmpty.instance().test(Collections.EMPTY_LIST));
         assertTrue(IsEmpty.instance().test(Collections.EMPTY_SET));
         {
-            List list = new ArrayList();
+            List<String> list = new ArrayList<String>();
             assertTrue(IsEmpty.instance().test(list));
             list.add("Xyzzy");
             assertTrue(!IsEmpty.instance().test(list));
         }
         {
-            Set set = new HashSet();
+            Set<String> set = new HashSet<String>();
             assertTrue(IsEmpty.instance().test(set));
             set.add("Xyzzy");
             assertTrue(!IsEmpty.instance().test(set));
@@ -105,7 +104,7 @@ public class TestIsEmpty extends BaseFunctorTest {
 
     @Test
     public void testTestMap() throws Exception {
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         assertTrue(IsEmpty.instance().test(map));
         map.put("x","y");
         assertTrue(! IsEmpty.instance().test(map));
@@ -113,11 +112,11 @@ public class TestIsEmpty extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryPredicate p = new IsEmpty();
+        UnaryPredicate<String> p = new IsEmpty<String>();
         assertEquals(p,p);
-        assertObjectsAreEqual(p,new IsEmpty());
+        assertObjectsAreEqual(p,new IsEmpty<Long>());
         assertObjectsAreEqual(p,IsEmpty.instance());
-        assertObjectsAreNotEqual(p,new Constant(Boolean.TRUE));
+        assertObjectsAreNotEqual(p,new Constant<Boolean>(Boolean.TRUE));
     }
 
 }

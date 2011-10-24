@@ -36,14 +36,14 @@ import org.junit.Test;
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-@SuppressWarnings("unchecked")
 public class TestSize extends BaseFunctorTest {
 
     // Functor Testing Framework
     // ------------------------------------------------------------------------
 
+    @Override
     protected Object makeFunctor() {
-        return new Size();
+        return new Size<Object>();
     }
 
     // Tests
@@ -54,7 +54,7 @@ public class TestSize extends BaseFunctorTest {
         assertEquals(new Integer(0),Size.instance().evaluate(Collections.EMPTY_LIST));
         assertEquals(new Integer(0),Size.instance().evaluate(Collections.EMPTY_SET));
         {
-            List list = new ArrayList();
+            List<Integer> list = new ArrayList<Integer>();
             assertEquals(new Integer(0),Size.instance().evaluate(list));
             for (int i=0;i<2;i++) {
                 assertEquals(new Integer(i),Size.instance().evaluate(list));
@@ -63,7 +63,7 @@ public class TestSize extends BaseFunctorTest {
             }
         }
         {
-            Set set = new HashSet();
+            Set<Integer> set = new HashSet<Integer>();
             assertEquals(new Integer(0),Size.instance().evaluate(set));
             for (int i=0;i<2;i++) {
                 assertEquals(new Integer(i),Size.instance().evaluate(set));
@@ -106,13 +106,13 @@ public class TestSize extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryFunction f = new Size();
+        UnaryFunction<Object, Integer> f = new Size<Object>();
         assertEquals(f,f);
-        assertObjectsAreEqual(f,new Size());
+        assertObjectsAreEqual(f,new Size<Object>());
         assertObjectsAreEqual(f,Size.instance());
         assertSame(Size.instance(),Size.instance());
-        assertObjectsAreNotEqual(f,new Constant(null));
-        assertTrue(! f.equals((Size) null) );
+        assertObjectsAreNotEqual(f,new Constant<Object>(null));
+        assertTrue(! f.equals((Size<?>) null) );
     }
 
 }
