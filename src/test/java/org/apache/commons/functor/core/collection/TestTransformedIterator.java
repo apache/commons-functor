@@ -39,14 +39,13 @@ import org.junit.Test;
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
-@SuppressWarnings("unchecked")
 public class TestTransformedIterator extends BaseFunctorTest {
 
     @Override
     public Object makeFunctor() {
-        List list = new ArrayList();
-        list.add("xyzzy");
-        return TransformedIterator.transform(list.iterator(),Identity.instance());
+        List<String> list1 = new ArrayList<String>();
+        list1.add("xyzzy");
+        return TransformedIterator.transform(list1.iterator(),Identity.instance());
     }
 
     // Lifecycle
@@ -54,8 +53,8 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Before
     public void setUp() throws Exception {
-        list = new ArrayList();
-        negatives = new ArrayList();
+        list = new ArrayList<Integer>();
+        negatives = new ArrayList<Integer>();
         for (int i=0;i<10;i++) {
             list.add(new Integer(i));
             negatives.add(new Integer(i*-1));
@@ -73,8 +72,8 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testBasicTransform() {
-        Iterator expected = negatives.iterator();
-        Iterator testing = new TransformedIterator(list.iterator(),negate);
+        Iterator<Integer> expected = negatives.iterator();
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(list.iterator(),negate);
         while(expected.hasNext()) {
             assertTrue(testing.hasNext());
             assertEquals(expected.next(),testing.next());
@@ -84,14 +83,14 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testEmptyList() {
-        Iterator testing = new TransformedIterator(Collections.EMPTY_LIST.iterator(),negate);
+        Iterator<?> testing = new TransformedIterator<Integer, Integer>(Collections.<Integer>emptyList().iterator(),negate);
         assertTrue(!testing.hasNext());
     }
 
     @Test
     public void testNextWithoutHasNext() {
-        Iterator testing = new TransformedIterator(list.iterator(),negate);
-        Iterator expected = negatives.iterator();
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(list.iterator(),negate);
+        Iterator<Integer> expected = negatives.iterator();
         while(expected.hasNext()) {
             assertEquals(expected.next(),testing.next());
         }
@@ -100,8 +99,8 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testNextAfterEndOfList() {
-        Iterator testing = new TransformedIterator(list.iterator(),negate);
-        Iterator expected = negatives.iterator();
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(list.iterator(),negate);
+        Iterator<Integer> expected = negatives.iterator();
         while(expected.hasNext()) {
             assertEquals(expected.next(),testing.next());
         }
@@ -115,7 +114,7 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testNextOnEmptyList() {
-        Iterator testing = new TransformedIterator(Collections.EMPTY_LIST.iterator(),negate);
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(Collections.<Integer>emptyList().iterator(),negate);
         try {
             testing.next();
             fail("ExpectedNoSuchElementException");
@@ -126,7 +125,7 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testRemoveBeforeNext() {
-        Iterator testing = new TransformedIterator(list.iterator(),negate);
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(list.iterator(),negate);
         try {
             testing.remove();
             fail("IllegalStateException");
@@ -137,7 +136,7 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testRemoveAfterNext() {
-        Iterator testing = new TransformedIterator(list.iterator(),negate);
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(list.iterator(),negate);
         testing.next();
         testing.remove();
         try {
@@ -150,7 +149,7 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testRemoveAll() {
-        Iterator testing = new TransformedIterator(list.iterator(),negate);
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(list.iterator(),negate);
         while(testing.hasNext()) {
             testing.next();
             testing.remove();
@@ -160,7 +159,7 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testRemoveWithoutHasNext() {
-        Iterator testing = new TransformedIterator(list.iterator(),negate);
+        Iterator<Integer> testing = new TransformedIterator<Integer, Integer>(list.iterator(),negate);
         for (int i=0,m = list.size();i<m;i++) {
             testing.next();
             testing.remove();
@@ -175,26 +174,26 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     @Test
     public void testTransformWithNullPredicateReturnsIdentity() {
-        Iterator iter = list.iterator();
+        Iterator<Integer> iter = list.iterator();
         assertSame(iter,TransformedIterator.maybeTransform(iter,null));
     }
 
     @Test
     public void testConstructorProhibitsNull() {
         try {
-            new TransformedIterator(null,null);
+            new TransformedIterator<Integer, Integer>(null,null);
             fail("ExpectedNullPointerException");
         } catch(IllegalArgumentException e) {
             // expected
         }
         try {
-            new TransformedIterator(null,negate);
+            new TransformedIterator<Integer, Integer>(null,negate);
             fail("ExpectedNullPointerException");
         } catch(IllegalArgumentException e) {
             // expected
         }
         try {
-            new TransformedIterator(list.iterator(),null);
+            new TransformedIterator<Integer, Integer>(list.iterator(),null);
             fail("ExpectedNullPointerException");
         } catch(IllegalArgumentException e) {
             // expected
@@ -204,11 +203,11 @@ public class TestTransformedIterator extends BaseFunctorTest {
 
     // Attributes
     // ------------------------------------------------------------------------
-    private List list = null;
-    private List negatives = null;
-    private UnaryFunction negate = new UnaryFunction() {
-        public Object evaluate(Object obj) {
-            return new Integer(((Number) obj).intValue() * -1);
+    private List<Integer> list = null;
+    private List<Integer> negatives = null;
+    private UnaryFunction<Number, Integer> negate = new UnaryFunction<Number, Integer>() {
+        public Integer evaluate(Number obj) {
+            return new Integer(obj.intValue() * -1);
         }
     };
 
