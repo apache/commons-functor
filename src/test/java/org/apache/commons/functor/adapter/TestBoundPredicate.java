@@ -17,8 +17,10 @@
 package org.apache.commons.functor.adapter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
@@ -47,11 +49,11 @@ public class TestBoundPredicate extends BaseFunctorTest {
     public void testTest() throws Exception {
         {
             Predicate p = new BoundPredicate(new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean>instance()),Boolean.TRUE);
-            assertEquals(true,p.test());
+            assertTrue(p.test());
         }
         {
             Predicate p = new BoundPredicate(new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean>instance()),Boolean.FALSE);
-            assertEquals(false,p.test());
+            assertFalse(p.test());
         }
     }
 

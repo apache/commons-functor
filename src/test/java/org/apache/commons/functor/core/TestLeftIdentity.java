@@ -77,7 +77,7 @@ public class TestLeftIdentity extends BaseFunctorTest {
         assertObjectsAreEqual(f,LeftIdentity.FUNCTION);
         assertObjectsAreNotEqual(f,RightIdentity.FUNCTION);
         assertObjectsAreNotEqual(f,Constant.of("abcde"));
-        assertObjectsAreNotEqual(f,Constant.of(true));
+        assertObjectsAreNotEqual(f,Constant.of(Boolean.TRUE));
     }
 
     @Test

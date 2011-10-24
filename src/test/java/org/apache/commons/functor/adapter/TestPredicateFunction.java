@@ -36,7 +36,7 @@ public class TestPredicateFunction extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new PredicateFunction(Constant.of(true));
+        return new PredicateFunction(Constant.of(Boolean.TRUE));
     }
 
     // Tests

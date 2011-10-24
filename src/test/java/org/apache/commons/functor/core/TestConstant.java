@@ -65,7 +65,7 @@ public class TestConstant extends BaseFunctorTest {
 
     @Test
     public void testConstantTrue() throws Exception {
-        Constant<Object> truePred = new Constant<Object>(true);
+        Constant<Object> truePred = new Constant<Object>(Boolean.TRUE);
         assertTrue(truePred.test());
         assertTrue(truePred.test(null));
         assertTrue(truePred.test(null,null));
@@ -77,7 +77,7 @@ public class TestConstant extends BaseFunctorTest {
 
     @Test
     public void testConstantFalse() throws Exception {
-        Constant<Object> falsePred = new Constant<Object>(false);
+        Constant<Object> falsePred = new Constant<Object>(Boolean.FALSE);
         assertTrue(!falsePred.test());
         assertTrue(!falsePred.test(null));
         assertTrue(!falsePred.test(null,null));

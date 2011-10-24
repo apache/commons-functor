@@ -17,8 +17,10 @@
 package org.apache.commons.functor.adapter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
@@ -47,8 +49,8 @@ public class TestRightBoundPredicate extends BaseFunctorTest {
     public void testTest() throws Exception {
         UnaryPredicate<Boolean> f = new RightBoundPredicate<Boolean>(
                 new BinaryFunctionBinaryPredicate<Boolean, Object>(LeftIdentity.<Boolean, Object> function()), "foo");
-        assertEquals(true, f.test(Boolean.TRUE));
-        assertEquals(false, f.test(Boolean.FALSE));
+        assertTrue(f.test(Boolean.TRUE));
+        assertFalse(f.test(Boolean.FALSE));
     }
 
     @Test

@@ -17,8 +17,10 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
@@ -48,8 +50,8 @@ public class TestTransposedPredicate extends BaseFunctorTest {
     public void testEvaluate() throws Exception {
         BinaryPredicate<Boolean, Boolean> p = new TransposedPredicate<Boolean, Boolean>(BinaryFunctionBinaryPredicate
                 .adapt(LeftIdentity.<Boolean, Boolean> function()));
-        assertEquals(true,p.test(Boolean.FALSE,Boolean.TRUE));
-        assertEquals(false,p.test(Boolean.TRUE,Boolean.FALSE));
+        assertTrue(p.test(Boolean.FALSE,Boolean.TRUE));
+        assertFalse(p.test(Boolean.TRUE,Boolean.FALSE));
     }
 
     @Test
