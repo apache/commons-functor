@@ -23,6 +23,9 @@
   </properties>
   <body>
     <release version="1.0" date="2011-??-??" description="First release.">
+      <action dev="simonetripodi" issue="FUNCTOR-5">
+        Complete the javadoc description of Limit (Contributed by Bruno P. Kinoshita)
+      </action>
       <action dev="simonetripodi" issue="FUNCTOR-2">
         Improve Functor web page, removing Ant from building (Contributed by Bruno P. Kinoshita)
       </action>

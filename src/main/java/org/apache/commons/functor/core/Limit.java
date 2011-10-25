@@ -1,4 +1,5 @@
 /*
+
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -22,7 +23,8 @@ import org.apache.commons.functor.UnaryPredicate;
 
 /**
  * A predicate that returns <code>true</code>
- * the first <i>n</i> times it is invoked.
+ * the first <i>n</i> times it is invoked, and
+ * <code>false</code> thereafter.
  *
  * @since 1.0
  * @version $Revision$ $Date$
