@@ -15,7 +15,6 @@
 package org.apache.commons.functor.generator.util;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -42,13 +41,13 @@ public final class EachElement {
     }
 
     /**
-     * Get a Generator for each element of a Collection.
-     * @param <E> the type of elements held in the input collection.
-     * @param collection to iterate
+     * Get a Generator for each element of an Iterable.
+     * @param <E> the type of elements held in the input iterable.
+     * @param iterable to iterate
      * @return Generator<E>
      */
-    public static <E> Generator<E> from(Collection<? extends E> collection) {
-        return collection == null ? null : EachElement.from(collection.iterator());
+    public static <E> Generator<E> from(Iterable<? extends E> iterable) {
+        return iterable == null ? null : EachElement.from(iterable.iterator());
     }
 
     /**
@@ -69,7 +68,7 @@ public final class EachElement {
      * @param array to iterate
      * @return Generator
      */
-    public static <E> Generator<E> from(E[] array) {
+    public static <E> Generator<E> from(E... array) {
         return array == null ? null : EachElement.from(Arrays.asList(array).iterator());
     }
 
