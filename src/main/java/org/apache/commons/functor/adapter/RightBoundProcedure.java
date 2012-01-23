@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -57,10 +58,9 @@ public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializ
      */
     @SuppressWarnings("unchecked")
     public <R> RightBoundProcedure(BinaryProcedure<? super A, ? super R> procedure, R arg) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("BinaryProcedure argument was null");
-        }
-        this.procedure = (BinaryProcedure<? super A, Object>) procedure;
+        this.procedure =
+            (BinaryProcedure<? super A, Object>) Validate.notNull(procedure,
+                "BinaryProcedure argument was null");
         this.param = arg;
     }
 

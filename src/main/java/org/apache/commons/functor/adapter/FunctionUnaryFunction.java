@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -53,10 +54,7 @@ public final class FunctionUnaryFunction<A, T> implements UnaryFunction<A, T>, S
      * @param function to adapt
      */
     public FunctionUnaryFunction(Function<? extends T> function) {
-        if (function == null) {
-            throw new IllegalArgumentException("Function argument was null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "Function argument was null");
     }
 
     /**

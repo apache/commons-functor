@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -54,10 +55,7 @@ public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunct
      * @param procedure to adapt as a BinaryFunction
      */
     public BinaryProcedureBinaryFunction(BinaryProcedure<? super L, ? super R> procedure) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("BinaryProcedure argument was null");
-        }
-        this.procedure = procedure;
+        this.procedure = Validate.notNull(procedure, "BinaryProcedure argument was null");
     }
 
     /**

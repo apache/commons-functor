@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link UnaryFunction UnaryFunction}
@@ -75,16 +76,10 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
      * @param elseFunc else
      */
     public ConditionalUnaryFunction(UnaryPredicate<? super A> ifPred, UnaryFunction<? super A, ? extends T> thenFunc,
-            UnaryFunction<? super A, ? extends T> elseFunc) {
-        if (ifPred == null) {
-            throw new IllegalArgumentException("UnaryPredicate argument was null");
-        }
-        this.ifPred = ifPred;
-        if (thenFunc == null || elseFunc == null) {
-            throw new IllegalArgumentException("One or more UnaryFunction arguments was null");
-        }
-        this.thenFunc = thenFunc;
-        this.elseFunc = elseFunc;
+        UnaryFunction<? super A, ? extends T> elseFunc) {
+        this.ifPred = Validate.notNull(ifPred, "UnaryPredicate argument was null");
+        this.thenFunc = Validate.notNull(thenFunc, "'then' UnaryFunction argument was null");
+        this.elseFunc = Validate.notNull(elseFunc, "'else' UnaryFunction argument was null");
     }
 
     // predicate interface

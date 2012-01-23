@@ -178,28 +178,20 @@ public class TestTransformedIterator extends BaseFunctorTest {
         assertSame(iter,TransformedIterator.maybeTransform(iter,null));
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testConstructorProhibitsNull() {
-        try {
-            new TransformedIterator<Integer, Integer>(null,null);
-            fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
-        try {
-            new TransformedIterator<Integer, Integer>(null,negate);
-            fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
-        try {
-            new TransformedIterator<Integer, Integer>(list.iterator(),null);
-            fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
+        new TransformedIterator<Integer, Integer>(null, null);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testConstructorProhibitsNull2() {
+        new TransformedIterator<Integer, Integer>(null, negate);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testConstructorProhibitsNull3() {
+        new TransformedIterator<Integer, Integer>(list.iterator(), null);
+    }
 
     // Attributes
     // ------------------------------------------------------------------------

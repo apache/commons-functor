@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryFunction BinaryFunction} composed of
@@ -117,13 +118,11 @@ public class UnaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, 
      */
     public <G, H> UnaryCompositeBinaryFunction(BinaryFunction<? super G, ? super H, ? extends T> f,
             UnaryFunction<? super L, ? extends G> g, UnaryFunction<? super R, ? extends H> h) {
-        if (f == null) {
-            throw new IllegalArgumentException("BinaryFunction must not be null");
-        }
-        if (g == null || h == null) {
-            throw new IllegalArgumentException("Left and right UnaryFunctions may not be null");
-        }
-        this.helper = new Helper<G, H, L, R, T>(f, g, h);
+        this.helper = new Helper<G, H, L, R, T>(
+                Validate.notNull(f, "BinaryFunction must not be null"),
+                Validate.notNull(g, "left UnaryFunction must not be null"),
+                Validate.notNull(h, "right UnaryFunction must not be null")
+        );
     }
 
     // function interface

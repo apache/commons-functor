@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -61,10 +62,9 @@ public final class FullyBoundPredicate implements Predicate, Serializable {
      */
     @SuppressWarnings("unchecked")
     public <L, R> FullyBoundPredicate(BinaryPredicate<? super L, ? super R> predicate, L left, R right) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("BinaryPredicate argument was null");
-        }
-        this.predicate = (BinaryPredicate<Object, Object>) predicate;
+        this.predicate =
+            (BinaryPredicate<Object, Object>) Validate.notNull(predicate,
+                "BinaryPredicate argument was null");
         this.left = left;
         this.right = right;
     }

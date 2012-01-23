@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryFunction BinaryFunction}
@@ -78,15 +79,9 @@ public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<
     public ConditionalBinaryFunction(BinaryPredicate<? super L, ? super R> ifPred,
             BinaryFunction<? super L, ? super R, ? extends T> thenFunc,
             BinaryFunction<? super L, ? super R, ? extends T> elseFunc) {
-        if (ifPred == null) {
-            throw new IllegalArgumentException("BinaryPredicate argument was null");
-        }
-        if (thenFunc == null || elseFunc == null) {
-            throw new IllegalArgumentException("One or more BinaryFunction arguments was null");
-        }
-        this.ifPred = ifPred;
-        this.thenFunc = thenFunc;
-        this.elseFunc = elseFunc;
+        this.ifPred = Validate.notNull(ifPred, "BinaryPredicate argument was null");
+        this.thenFunc = Validate.notNull(thenFunc, "'then' BinaryFunction argument was null");
+        this.elseFunc = Validate.notNull(elseFunc, "'else' BinaryFunction argument was null");
     }
 
     // predicate interface

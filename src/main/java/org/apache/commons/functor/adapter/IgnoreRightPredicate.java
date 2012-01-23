@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -53,10 +54,7 @@ public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, 
      * @param predicate left
      */
     public IgnoreRightPredicate(UnaryPredicate<? super L> predicate) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("UnaryPredicate argument was null");
-        }
-        this.predicate = predicate;
+        this.predicate = Validate.notNull(predicate, "UnaryPredicate argument was null");
     }
 
     /**

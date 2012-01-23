@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -58,10 +59,9 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
      */
     @SuppressWarnings("unchecked")
     public <L> LeftBoundPredicate(BinaryPredicate<? super L, ? super A> predicate, L arg) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("BinaryPredicate argument was null");
-        }
-        this.predicate = (BinaryPredicate<Object, ? super A>) predicate;
+        this.predicate =
+            (BinaryPredicate<Object, ? super A>) Validate.notNull(predicate,
+                "BinaryPredicate argument was null");
         this.param = arg;
     }
 

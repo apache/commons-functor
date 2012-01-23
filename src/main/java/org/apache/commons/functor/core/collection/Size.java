@@ -21,6 +21,7 @@ import java.lang.reflect.Array;
 import java.util.Collection;
 
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Returns the size of the specified Collection, or the length
@@ -52,17 +53,15 @@ public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
      * {@inheritDoc}
      */
     public Integer evaluate(Object obj) {
+        Validate.notNull(obj, "Argument must not be null");
         if (obj instanceof Collection<?>) {
             return evaluate((Collection<?>) obj);
         }
         if (obj instanceof String) {
             return evaluate((String) obj);
         }
-        if (null != obj && obj.getClass().isArray()) {
+        if (obj.getClass().isArray()) {
             return evaluateArray(obj);
-        }
-        if (null == obj) {
-            throw new IllegalArgumentException("Argument must not be null");
         }
         throw new IllegalArgumentException("Expected Collection, String or Array, found " + obj);
     }

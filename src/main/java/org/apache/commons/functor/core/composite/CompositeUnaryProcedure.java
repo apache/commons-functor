@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.adapter.UnaryProcedureUnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link UnaryProcedure UnaryProcedure}
@@ -65,10 +66,10 @@ public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Seri
      * @param procedure final UnaryProcedure to run
      */
     public CompositeUnaryProcedure(UnaryProcedure<? super A> procedure) {
-        if (null == procedure) {
-            throw new IllegalArgumentException("procedure must not be null");
-        }
-        this.function = new CompositeUnaryFunction<A, Object>(new UnaryProcedureUnaryFunction<A, Object>(procedure));
+        this.function =
+            new CompositeUnaryFunction<A, Object>(
+                new UnaryProcedureUnaryFunction<A, Object>(Validate.notNull(
+                    procedure, "procedure must not be null")));
     }
 
     /**

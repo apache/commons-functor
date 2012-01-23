@@ -68,14 +68,9 @@ public class TestIsEmpty extends BaseFunctorTest {
         }
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testTestNull() throws Exception {
-        try {
-            IsEmpty.instance().test(null);
-            fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
+        IsEmpty.instance().test(null);
     }
 
     @Test

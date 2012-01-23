@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link UnaryPredicate UnaryPredicate}
@@ -74,12 +75,9 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
      */
     public ConditionalUnaryPredicate(UnaryPredicate<? super A> ifPred, UnaryPredicate<? super A> thenPred,
             UnaryPredicate<? super A> elsePred) {
-        if (ifPred == null || thenPred == null || elsePred == null) {
-            throw new IllegalArgumentException("One or more UnaryPredicate arguments was null");
-        }
-        this.ifPred = ifPred;
-        this.thenPred = thenPred;
-        this.elsePred = elsePred;
+        this.ifPred = Validate.notNull(ifPred, "'if' UnaryPredicate argument was null");
+        this.thenPred = Validate.notNull(thenPred, "'then' UnaryPredicate argument was null");
+        this.elsePred = Validate.notNull(elsePred, "'else' UnaryPredicate argument was null");
     }
 
     // predicate interface

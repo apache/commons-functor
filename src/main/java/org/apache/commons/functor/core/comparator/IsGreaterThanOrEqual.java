@@ -22,6 +22,7 @@ import java.util.Comparator;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryPredicate BinaryPredicate} that {@link #test tests}
@@ -70,10 +71,7 @@ public final class IsGreaterThanOrEqual<T> implements BinaryPredicate<T, T>, Ser
      *        be used.
      */
     public IsGreaterThanOrEqual(Comparator<? super T> comparator) {
-        if (comparator == null) {
-            throw new IllegalArgumentException("Comparator argument must not be null");
-        }
-        this.comparator = comparator;
+        this.comparator = Validate.notNull(comparator, "Comparator argument must not be null");
     }
 
     /**

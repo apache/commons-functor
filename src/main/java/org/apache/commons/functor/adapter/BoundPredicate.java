@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -56,10 +57,9 @@ public final class BoundPredicate implements Predicate, Serializable {
      */
     @SuppressWarnings("unchecked")
     public <A> BoundPredicate(UnaryPredicate<? super A> predicate, A arg) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("UnaryPredicate argument was null");
-        }
-        this.predicate = (UnaryPredicate<Object>) predicate;
+        this.predicate =
+            (UnaryPredicate<Object>) Validate.notNull(predicate,
+                "UnaryPredicate argument was null");
         this.param = arg;
     }
 

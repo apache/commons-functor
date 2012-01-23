@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -58,10 +59,9 @@ public final class LeftBoundFunction<A, T> implements UnaryFunction<A, T>, Seria
      */
     @SuppressWarnings("unchecked")
     public <L> LeftBoundFunction(BinaryFunction<? super L, ? super A, ? extends T> function, L arg) {
-        if (function == null) {
-            throw new IllegalArgumentException("BinaryFunction argument was null");
-        }
-        this.function = (BinaryFunction<Object, ? super A, ? extends T>) function;
+        this.function =
+            (BinaryFunction<Object, ? super A, ? extends T>) Validate.notNull(
+                function, "BinaryFunction argument was null");
         this.param = arg;
     }
 

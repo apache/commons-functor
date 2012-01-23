@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -51,10 +52,7 @@ public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Bo
      * @param predicate to adapt
      */
     public UnaryPredicateUnaryFunction(UnaryPredicate<? super A> predicate) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("UnaryPredicate argument was null");
-        }
-        this.predicate = predicate;
+        this.predicate = Validate.notNull(predicate, "UnaryPredicate argument was null");
     }
 
     /**

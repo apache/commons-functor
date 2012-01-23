@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryPredicate BinaryPredicate}
@@ -75,12 +76,9 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
      */
     public ConditionalBinaryPredicate(BinaryPredicate<? super L, ? super R> ifPred,
             BinaryPredicate<? super L, ? super R> thenPred, BinaryPredicate<? super L, ? super R> elsePred) {
-        if (ifPred == null || thenPred == null || elsePred == null) {
-            throw new IllegalArgumentException("One or more BinaryPredicate arguments was null");
-        }
-        this.ifPred = ifPred;
-        this.thenPred = thenPred;
-        this.elsePred = elsePred;
+        this.ifPred = Validate.notNull(ifPred, "'if' BinaryPredicate argument was null");
+        this.thenPred = Validate.notNull(thenPred, "'then' BinaryPredicate argument was null");
+        this.elsePred = Validate.notNull(elsePred, "'else' BinaryPredicate argument was null");
     }
 
     // predicate interface

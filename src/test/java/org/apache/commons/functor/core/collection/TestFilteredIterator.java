@@ -218,28 +218,20 @@ public class TestFilteredIterator extends BaseFunctorTest {
         assertSame(iter,FilteredIterator.filter(iter,null));
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testConstructorProhibitsNull() {
-        try {
-            new FilteredIterator(null,null);
-            fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
-        try {
-            new FilteredIterator(null,Constant.truePredicate());
-            fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
-        try {
-            new FilteredIterator(list.iterator(),null);
-            fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
+        new FilteredIterator(null,null);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testConstructorProhibitsNull2() {
+        new FilteredIterator(null,Constant.truePredicate());
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testConstructorProhibitsNull3() {
+        new FilteredIterator(list.iterator(),null);
+    }
 
     // Attributes
     // ------------------------------------------------------------------------

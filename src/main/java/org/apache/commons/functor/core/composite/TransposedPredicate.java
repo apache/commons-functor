@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Transposes (swaps) the arguments to some other
@@ -60,10 +61,7 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
      * @param predicate the BinaryPredicate to transpose
      */
     public TransposedPredicate(BinaryPredicate<? super R, ? super L> predicate) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("BinaryPredicate argument must not be null");
-        }
-        this.predicate = predicate;
+        this.predicate = Validate.notNull(predicate, "BinaryPredicate argument must not be null");
     }
 
     // functor interface

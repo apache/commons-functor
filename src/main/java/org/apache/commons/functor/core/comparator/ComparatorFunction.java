@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a {@link Comparator Comparator} to the
@@ -51,10 +52,7 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
      * @param comparator to wrap
      */
     public ComparatorFunction(Comparator<? super T> comparator) {
-        if (comparator == null) {
-            throw new IllegalArgumentException("Comparator must not be null");
-        }
-        this.comparator = comparator;
+        this.comparator = Validate.notNull(comparator, "Comparator argument must not be null");
     }
 
     /**

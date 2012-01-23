@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Abstract base class for {@link BinaryPredicate BinaryPredicates}
@@ -116,10 +117,7 @@ abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, S
      * @param p BinaryPredicate to add
      */
     protected void addBinaryPredicate(BinaryPredicate<? super L, ? super R> p) {
-        if (p == null) {
-            throw new IllegalArgumentException("Cannot add null BinaryPredicate");
-        }
-        list.add(p);
+        list.add(Validate.notNull(p, "Cannot add null BinaryPredicate"));
     }
 
     // protected

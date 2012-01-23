@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a <code>Boolean</code>-valued {@link BinaryFunction BinaryFunction} to
@@ -47,10 +48,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * @param function the {@link BinaryFunction BinaryFunction} to wrap
      */
     public BinaryFunctionBinaryPredicate(final BinaryFunction<? super L, ? super R, Boolean> function) {
-        if (function == null) {
-            throw new IllegalArgumentException("BinaryFunction argument must not be null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "BinaryFunction argument must not be null");
     }
 
     /**

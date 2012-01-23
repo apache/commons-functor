@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * {@link #test Tests} to the logical inverse
@@ -54,10 +55,7 @@ public final class Not implements Predicate, Serializable {
      * @param predicate Predicate to negate
      */
     public Not(Predicate predicate) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("Predicate argument was null");
-        }
-        this.predicate = predicate;
+        this.predicate = Validate.notNull(predicate, "Predicate argument was null");
     }
 
     // predicate interface

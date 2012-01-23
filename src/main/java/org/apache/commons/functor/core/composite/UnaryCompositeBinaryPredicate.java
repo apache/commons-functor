@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryPredicate BinaryPredicate} composed of
@@ -116,13 +117,11 @@ public class UnaryCompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R
      */
     public <G, H> UnaryCompositeBinaryPredicate(final BinaryPredicate<? super G, ? super H> f,
             final UnaryFunction<? super L, ? extends G> g, final UnaryFunction<? super R, ? extends H> h) {
-        if (f == null) {
-            throw new IllegalArgumentException("BinaryPredicate must not be null");
-        }
-        if (g == null || h == null) {
-            throw new IllegalArgumentException("Left and right UnaryFunctions may not be null");
-        }
-        helper = new Helper<G, H, L, R>(f, g, h);
+        helper = new Helper<G, H, L, R>(
+                Validate.notNull(f, "BinaryPredicate must not be null"),
+                Validate.notNull(g, "left UnaryFunction must not be null"),
+                Validate.notNull(h, "right UnaryFunction must not be null")
+        );
     }
 
     // function interface

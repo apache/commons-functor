@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.NoOp;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link UnaryProcedure UnaryProcedure}
@@ -85,15 +86,9 @@ public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Se
     public ConditionalUnaryProcedure(UnaryPredicate<? super A> ifPred,
             UnaryProcedure<? super A> thenProc,
             UnaryProcedure<? super A> elseProc) {
-        if (ifPred == null) {
-            throw new IllegalArgumentException("UnaryPredicate argument was null");
-        }
-        this.ifPred = ifPred;
-        if (thenProc == null || elseProc == null) {
-            throw new IllegalArgumentException("One or more UnaryProcedure arguments was null");
-        }
-        this.thenProc = thenProc;
-        this.elseProc = elseProc;
+        this.ifPred = Validate.notNull(ifPred, "UnaryPredicate argument was null");
+        this.thenProc = Validate.notNull(thenProc, "'then' UnaryProcedure argument was null");
+        this.elseProc = Validate.notNull(elseProc, "'else' UnaryProcedure argument was null");
     }
 
     // predicate interface

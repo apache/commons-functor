@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.Procedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -60,10 +61,9 @@ public final class FullyBoundProcedure implements Procedure, Serializable {
      */
     @SuppressWarnings("unchecked")
     public <L, R> FullyBoundProcedure(BinaryProcedure<? super L, ? super R> procedure, L left, R right) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("BinaryProcedure argument was null");
-        }
-        this.procedure = (BinaryProcedure<Object, Object>) procedure;
+        this.procedure =
+            (BinaryProcedure<Object, Object>) Validate.notNull(procedure,
+                "BinaryProcedure argument was null");
         this.left = left;
         this.right = right;
     }

@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -57,10 +58,9 @@ public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializa
      */
     @SuppressWarnings("unchecked")
     public <L> LeftBoundProcedure(BinaryProcedure<? super L, ? super A> procedure, L arg) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("BinaryProcedure argument was null");
-        }
-        this.procedure = (BinaryProcedure<Object, ? super A>) procedure;
+        this.procedure =
+            (BinaryProcedure<Object, ? super A>) Validate.notNull(procedure,
+                "BinaryProcedure argument was null");
         this.param = arg;
     }
 

@@ -15,6 +15,7 @@
 package org.apache.commons.functor.generator;
 
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 import java.util.Iterator;
 
@@ -43,10 +44,7 @@ public final class IteratorToGeneratorAdapter<E> extends BaseGenerator<E> {
      * @param iter Iterator to adapt
      */
     public IteratorToGeneratorAdapter(Iterator<? extends E> iter) {
-        if (null == iter) {
-            throw new IllegalArgumentException("Iterator argument was null");
-        }
-        this.iter = iter;
+        this.iter = Validate.notNull(iter, "Iterator argument was null");
     }
 
     // instance methods

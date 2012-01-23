@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -57,10 +58,9 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
      */
     @SuppressWarnings("unchecked")
     public <R> RightBoundFunction(BinaryFunction<? super A, ? super R, ? extends T> function, R arg) {
-        if (function == null) {
-            throw new IllegalArgumentException("left-hand BinaryFunction argument was null");
-        }
-        this.function = (BinaryFunction<? super A, Object, ? extends T>) function;
+        this.function =
+            (BinaryFunction<? super A, Object, ? extends T>) Validate.notNull(
+                function, "left-hand BinaryFunction argument was null");
         this.param = arg;
     }
 

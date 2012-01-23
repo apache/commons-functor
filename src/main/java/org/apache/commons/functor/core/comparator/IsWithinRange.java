@@ -18,6 +18,7 @@ package org.apache.commons.functor.core.comparator;
 
 import java.io.Serializable;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link UnaryPredicate} that tests whether a {@link Comparable} object is
@@ -61,9 +62,8 @@ public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>
      * @param max Comparable
      */
     public IsWithinRange(A min, A max) {
-        if (min == null || max == null) {
-            throw new IllegalArgumentException("min and max must not be null");
-        }
+        Validate.notNull(min, "min must not be null");
+        Validate.notNull(max, "max must not be null");
         if (min.compareTo(max) > 0) {
             throw new IllegalArgumentException("min must be <= max");
         }

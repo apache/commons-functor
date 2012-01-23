@@ -18,6 +18,7 @@ package org.apache.commons.functor.adapter;
 
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a BinaryPredicate as a UnaryPredicate by sending the same argument to both sides of the BinaryPredicate.
@@ -36,10 +37,7 @@ public final class BinaryPredicateUnaryPredicate<A> implements UnaryPredicate<A>
      * @param predicate to adapt
      */
     public BinaryPredicateUnaryPredicate(BinaryPredicate<? super A, ? super A> predicate) {
-        if (null == predicate) {
-            throw new IllegalArgumentException("BinaryPredicate argument was null");
-        }
-        this.predicate = predicate;
+        this.predicate = Validate.notNull(predicate, "BinaryPredicate argument was null");
     }
 
     /**

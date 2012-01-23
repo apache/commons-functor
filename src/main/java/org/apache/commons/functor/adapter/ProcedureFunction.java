@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Procedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -52,10 +53,7 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
      * @param procedure to adapt
      */
     public ProcedureFunction(Procedure procedure) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("Procedure argument was null");
-        }
-        this.procedure = procedure;
+        this.procedure = Validate.notNull(procedure, "Procedure argument was null");
     }
 
     /**

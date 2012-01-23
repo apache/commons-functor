@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -56,10 +57,9 @@ public final class BoundProcedure implements Procedure, Serializable {
      */
     @SuppressWarnings("unchecked")
     public <A> BoundProcedure(UnaryProcedure<? super A> procedure, A arg) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("UnaryProcedure argument was null");
-        }
-        this.procedure = (UnaryProcedure<Object>) procedure;
+        this.procedure =
+            (UnaryProcedure<Object>) Validate.notNull(procedure,
+                "UnaryProcedure argument was null");
         this.param = arg;
     }
 

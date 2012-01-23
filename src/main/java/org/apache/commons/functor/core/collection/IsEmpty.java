@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * @param <A> the predicate argument type.
@@ -57,6 +58,7 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
      * {@inheritDoc}
      */
     public boolean test(A obj) {
+        Validate.notNull(obj, "Argument must not be null");
         if (obj instanceof Collection<?>) {
             return testCollection((Collection<?>) obj);
         }
@@ -66,11 +68,8 @@ public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
         if (obj instanceof String) {
             return testString((String) obj);
         }
-        if (null != obj && obj.getClass().isArray()) {
+        if (obj.getClass().isArray()) {
             return testArray(obj);
-        }
-        if (null == obj) {
-            throw new IllegalArgumentException("Argument must not be null");
         }
         throw new IllegalArgumentException("Expected Collection, Map, String or Array, found " + obj.getClass());
     }

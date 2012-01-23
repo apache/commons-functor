@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.Function;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -61,10 +62,9 @@ public final class FullyBoundFunction<T> implements Function<T>, Serializable {
      */
     @SuppressWarnings("unchecked")
     public <L, R> FullyBoundFunction(BinaryFunction<? super L, ? super R, ? extends T> function, L left, R right) {
-        if (function == null) {
-            throw new IllegalArgumentException("BinaryFunction argument was null");
-        }
-        this.function = (BinaryFunction<Object, Object, T>) function;
+        this.function =
+            (BinaryFunction<Object, Object, T>) Validate.notNull(function,
+                "BinaryFunction argument was null");
         this.left = left;
         this.right = right;
     }

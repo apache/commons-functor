@@ -23,6 +23,7 @@ import java.util.Collection;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryPredicate} that checks to see if the
@@ -63,14 +64,12 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
      * {@inheritDoc}
      */
     public boolean test(L obj, R col) {
+        Validate.notNull(col, "Right side argument must not be null.");
         if (col instanceof Collection<?>) {
             return testCollection(obj, (Collection<?>) col);
         }
-        if (null != col && col.getClass().isArray()) {
+        if (col.getClass().isArray()) {
             return testArray(obj, col);
-        }
-        if (null == col) {
-            throw new IllegalArgumentException("Right side argument must not be null.");
         }
         throw new IllegalArgumentException("Expected Collection or Array, found " + col.getClass());
     }

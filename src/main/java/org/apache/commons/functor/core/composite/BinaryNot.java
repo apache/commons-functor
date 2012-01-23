@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * {@link #test Tests} to the logical inverse
@@ -55,10 +56,7 @@ public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializabl
      * @param predicate BinaryPredicate to negate
      */
     public BinaryNot(BinaryPredicate<? super L, ? super R> predicate) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("BinaryPredicate argument was null");
-        }
-        this.predicate = predicate;
+        this.predicate = Validate.notNull(predicate, "BinaryPredicate argument was null");
     }
 
     // predicate interface

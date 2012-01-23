@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link Function Function}
@@ -74,15 +75,9 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
      * @param elseFunc else
      */
     public ConditionalFunction(Predicate ifPred, Function<? extends T> thenFunc, Function<? extends T> elseFunc) {
-        if (ifPred == null) {
-            throw new IllegalArgumentException("Predicate argument was null");
-        }
-        this.ifPred = ifPred;
-        if (thenFunc == null || elseFunc == null) {
-            throw new IllegalArgumentException("One or more Function arguments was null");
-        }
-        this.thenFunc = thenFunc;
-        this.elseFunc = elseFunc;
+        this.ifPred = Validate.notNull(ifPred, "Predicate argument was null");
+        this.thenFunc = Validate.notNull(thenFunc, "'then' Function argument was null");
+        this.elseFunc = Validate.notNull(elseFunc, "'else' Function argument was null");
     }
 
     // predicate interface

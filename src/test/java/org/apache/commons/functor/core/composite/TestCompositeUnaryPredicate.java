@@ -49,21 +49,15 @@ public class TestCompositeUnaryPredicate extends BaseFunctorTest {
         assertFalse(Composite.predicate(Constant.FALSE, Constant.of(4)).test("xyzzy"));
     }
 
-    @Test
-    @SuppressWarnings("unchecked")
+    @Test(expected = NullPointerException.class)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void testNullNotAllowed() throws Exception {
-        try {
-            new CompositeUnaryPredicate(null);
-            fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
-        try {
-            Composite.function(Constant.TRUE, null);
-            fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
+        new CompositeUnaryPredicate(null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testNullNotAllowed2() throws Exception {
+        Composite.function(Constant.TRUE, null);
     }
 
     @Test

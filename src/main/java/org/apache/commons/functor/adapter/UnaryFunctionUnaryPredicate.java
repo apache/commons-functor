@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a <code>Boolean</code>-valued
@@ -52,10 +53,7 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
      * @param function the {@link UnaryFunction UnaryFunction} to wrap
      */
     public UnaryFunctionUnaryPredicate(UnaryFunction<? super A, Boolean> function) {
-        if (function == null) {
-            throw new IllegalArgumentException("UnaryFunction argument was null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "UnaryFunction argument was null");
     }
 
     /**

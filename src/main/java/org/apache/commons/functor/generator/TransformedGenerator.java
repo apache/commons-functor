@@ -18,6 +18,7 @@ package org.apache.commons.functor.generator;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Generator that transforms the elements of another Generator.
@@ -39,14 +40,8 @@ public class TransformedGenerator<I, E> extends BaseGenerator<E> {
      * @param func UnaryFunction to apply to each element
      */
     public TransformedGenerator(Generator<? extends I> wrapped, UnaryFunction<? super I, ? extends E> func) {
-        super(wrapped);
-        if (wrapped == null) {
-            throw new IllegalArgumentException("Generator argument was null");
-        }
-        if (func == null) {
-            throw new IllegalArgumentException("UnaryFunction argument was null");
-        }
-        this.func = func;
+        super(Validate.notNull(wrapped, "Generator argument was null"));
+        this.func = Validate.notNull(func, "UnaryFunction argument was null");
     }
 
     /**

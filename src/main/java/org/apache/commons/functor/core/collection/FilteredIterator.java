@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Iterator that filters another Iterator by only passing through those elements
@@ -63,14 +64,8 @@ public final class FilteredIterator<T> implements Iterator<T> {
      * @param predicate to apply
      */
     public FilteredIterator(Iterator<? extends T> iterator, UnaryPredicate<? super T> predicate) {
-        if (null == iterator) {
-            throw new IllegalArgumentException("Iterator argument was null");
-        }
-        if (null == predicate) {
-            throw new IllegalArgumentException("filtering UnaryPredicate argument was null");
-        }
-        this.predicate = predicate;
-        this.iterator = iterator;
+        this.iterator = Validate.notNull(iterator, "Iterator argument was null");
+        this.predicate = Validate.notNull(predicate, "filtering UnaryPredicate argument was null");
     }
 
     // iterator methods

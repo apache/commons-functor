@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.collection;
 import java.util.Iterator;
 
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Iterator that transforms another Iterator by applying a UnaryFunction to each returned element.
@@ -50,14 +51,8 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
      * @param function to apply
      */
     public TransformedIterator(Iterator<? extends E> iterator, UnaryFunction<? super E, ? extends T> function) {
-        if (null == iterator) {
-            throw new IllegalArgumentException("Iterator argument was null");
-        }
-        if (null == function) {
-            throw new IllegalArgumentException("filtering UnaryFunction argument was null");
-        }
-        this.function = function;
-        this.iterator = iterator;
+        this.function = Validate.notNull(function, "filtering UnaryFunction argument was null");
+        this.iterator = Validate.notNull(iterator, "Iterator argument was null");
     }
 
     // iterator methods

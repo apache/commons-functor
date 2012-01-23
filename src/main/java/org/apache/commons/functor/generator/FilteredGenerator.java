@@ -19,6 +19,7 @@ package org.apache.commons.functor.generator;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.composite.ConditionalUnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Generator that filters another Generator by only passing through those elements
@@ -40,14 +41,8 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
      * @param pred filtering UnaryPredicate
      */
     public FilteredGenerator(Generator<? extends E> wrapped, UnaryPredicate<? super E> pred) {
-        super(wrapped);
-        if (wrapped == null) {
-            throw new IllegalArgumentException("Generator argument was null");
-        }
-        if (pred == null) {
-            throw new IllegalArgumentException("UnaryPredicate argument was null");
-        }
-        this.pred = pred;
+        super(Validate.notNull(wrapped, "Generator argument was null"));
+        this.pred = Validate.notNull(pred, "UnaryPredicate argument was null");
     }
 
     /**

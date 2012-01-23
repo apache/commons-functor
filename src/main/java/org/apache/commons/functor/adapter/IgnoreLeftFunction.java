@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -54,10 +55,7 @@ public final class IgnoreLeftFunction<L, R, T> implements BinaryFunction<L, R, T
      * @param function UnaryFunction for right argument
      */
     public IgnoreLeftFunction(UnaryFunction<? super R, ? extends T> function) {
-        if (function == null) {
-            throw new IllegalArgumentException("UnaryFunction argument was null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "UnaryFunction argument was null");
     }
 
     /**

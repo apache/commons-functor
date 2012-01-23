@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -57,10 +58,9 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
      */
     @SuppressWarnings("unchecked")
     public <R> RightBoundPredicate(BinaryPredicate<? super A, ? super R> predicate, R arg) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("BinaryPredicate argument was null");
-        }
-        this.predicate = (BinaryPredicate<? super A, Object>) predicate;
+        this.predicate =
+            (BinaryPredicate<? super A, Object>) Validate.notNull(predicate,
+                "BinaryPredicate argument was null");
         this.param = arg;
     }
 

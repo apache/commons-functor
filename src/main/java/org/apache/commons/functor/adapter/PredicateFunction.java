@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -50,10 +51,7 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
      * @param predicate to adapt
      */
     public PredicateFunction(Predicate predicate) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("Predicate argument was null");
-        }
-        this.predicate = predicate;
+        this.predicate = Validate.notNull(predicate, "Predicate argument was null");
     }
 
     /**

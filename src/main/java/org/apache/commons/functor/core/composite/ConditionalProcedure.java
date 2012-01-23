@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.NoOp;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link Procedure Procedure}
@@ -83,15 +84,9 @@ public final class ConditionalProcedure implements Procedure, Serializable {
      * @param elseProc else
      */
     public ConditionalProcedure(Predicate ifPred, Procedure thenProc, Procedure elseProc) {
-        if (ifPred == null) {
-            throw new IllegalArgumentException("Predicate argument was null");
-        }
-        this.ifPred = ifPred;
-        if (thenProc == null || elseProc == null) {
-            throw new IllegalArgumentException("Procedure argument was null");
-        }
-        this.thenProc = thenProc;
-        this.elseProc = elseProc;
+        this.ifPred = Validate.notNull(ifPred, "Predicate argument was null");
+        this.thenProc = Validate.notNull(thenProc, "'then' Procedure argument was null");
+        this.elseProc = Validate.notNull(elseProc, "'else' Procedure argument was null");
     }
 
     // predicate interface

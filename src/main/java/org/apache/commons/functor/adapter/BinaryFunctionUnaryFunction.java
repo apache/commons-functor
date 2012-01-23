@@ -18,6 +18,7 @@ package org.apache.commons.functor.adapter;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a BinaryFunction as a UnaryFunction by sending the same argument to both sides of the BinaryFunction.
@@ -38,10 +39,7 @@ public final class BinaryFunctionUnaryFunction<A, T> implements UnaryFunction<A,
      * @param function to adapt
      */
     public BinaryFunctionUnaryFunction(BinaryFunction<? super A, ? super A, ? extends T> function) {
-        if (null == function) {
-            throw new IllegalArgumentException("BinaryFunction argument was null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "BinaryFunction argument was null");
     }
 
     /**

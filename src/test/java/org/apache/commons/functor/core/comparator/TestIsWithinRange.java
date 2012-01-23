@@ -56,25 +56,14 @@ public class TestIsWithinRange extends BaseFunctorTest {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidRange() {
-        try {
-            new IsWithinRange<Integer>(new Integer(5), new Integer(4));
-            fail("should have thrown IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-            // good
-        } catch (Exception e) {
-            fail("should have thrown IllegalArgumentException, not " + e);
-        }
+        new IsWithinRange<Integer>(new Integer(5), new Integer(4));
+    }
 
-        try {
-            new IsWithinRange<Integer>(new Integer(5), null);
-            fail("should have thrown IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-            // good
-        } catch (Exception e) {
-            fail("should have thrown IllegalArgumentException, not " + e);
-        }
+    @Test(expected = NullPointerException.class)
+    public void testInvalidRange2() {
+        new IsWithinRange<Integer>(new Integer(5), null);
     }
 
     @Test

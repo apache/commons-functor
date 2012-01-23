@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -53,10 +54,7 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
      * @param procedure to adapt
      */
     public IgnoreLeftProcedure(UnaryProcedure<? super R> procedure) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("UnaryProcedure argument was null");
-        }
-        this.procedure = procedure;
+        this.procedure = Validate.notNull(procedure, "UnaryProcedure argument was null");
     }
 
     /**

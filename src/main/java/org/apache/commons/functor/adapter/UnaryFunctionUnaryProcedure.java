@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a {@link UnaryFunction UnaryFunction}
@@ -53,10 +54,7 @@ public final class UnaryFunctionUnaryProcedure<A> implements UnaryProcedure<A>, 
      * @param function the {@link UnaryFunction UnaryFunction} to wrap
      */
     public UnaryFunctionUnaryProcedure(UnaryFunction<? super A, ?> function) {
-        if (function == null) {
-            throw new IllegalArgumentException("UnaryFunction argument was null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "UnaryFunction argument was null");
     }
 
     /**

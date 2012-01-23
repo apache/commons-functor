@@ -18,6 +18,7 @@ package org.apache.commons.functor.adapter;
 
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a BinaryProcedure as a UnaryProcedure by sending the same argument to both sides of the BinaryProcedure.
@@ -36,10 +37,7 @@ public final class BinaryProcedureUnaryProcedure<A> implements UnaryProcedure<A>
      * @param procedure to adapt
      */
     public BinaryProcedureUnaryProcedure(BinaryProcedure<? super A, ? super A> procedure) {
-        if (null == procedure) {
-            throw new IllegalArgumentException("BinaryProcedure argument was null");
-        }
-        this.procedure = procedure;
+        this.procedure = Validate.notNull(procedure, "BinaryProcedure argument was null");
     }
 
     /**

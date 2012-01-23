@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.NoOp;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryProcedure BinaryProcedure}
@@ -88,15 +89,9 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
      */
     public ConditionalBinaryProcedure(BinaryPredicate<? super L, ? super R> ifPred,
             BinaryProcedure<? super L, ? super R> thenProc, BinaryProcedure<? super L, ? super R> elseProc) {
-        if (ifPred == null) {
-            throw new IllegalArgumentException("BinaryPredicate argument was null");
-        }
-        this.ifPred = ifPred;
-        if (thenProc == null || elseProc == null) {
-            throw new IllegalArgumentException("One or more BinaryProcedure arguments was null");
-        }
-        this.thenProc = thenProc;
-        this.elseProc = elseProc;
+        this.ifPred = Validate.notNull(ifPred, "BinaryPredicate argument was null");
+        this.thenProc = Validate.notNull(thenProc, "'then' BinaryProcedure argument was null");
+        this.elseProc = Validate.notNull(elseProc, "'else' BinaryProcedure argument was null");
     }
 
     // predicate interface

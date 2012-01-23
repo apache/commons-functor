@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link BinaryFunction BinaryFunction} composed of
@@ -113,10 +114,11 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      */
     public <G, H> BinaryCompositeBinaryFunction(BinaryFunction<? super G, ? super H, ? extends T> f,
             BinaryFunction<? super L, ? super R, ? extends G> g, BinaryFunction<? super L, ? super R, ? extends H> h) {
-        if (f == null || g == null || h == null) {
-            throw new IllegalArgumentException("BinaryFunction arguments may not be null");
-        }
-        this.helper = new Helper<G, H, L, R, T>(f, g, h);
+        this.helper = new Helper<G, H, L, R, T>(
+                Validate.notNull(f, "final BinaryFunction argument must not be null"),
+                Validate.notNull(g, "left preceding BinaryFunction argument must not be null"),
+                Validate.notNull(h, "right preceding BinaryFunction argument must not be null")
+        );
     }
 
     // function interface

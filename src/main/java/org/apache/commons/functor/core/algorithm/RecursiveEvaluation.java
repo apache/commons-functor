@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.algorithm;
 import java.io.Serializable;
 
 import org.apache.commons.functor.Function;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Tail recursion for {@link Function functions}. If the {@link Function}
@@ -55,14 +56,12 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
      * @param functionType as long as result is an instance, keep processing.
      */
     public RecursiveEvaluation(Function<?> function, Class<?> functionType) {
-        if (function == null) {
-            throw new IllegalArgumentException("Function argument was null");
-        }
-        if (functionType == null || !Function.class.isAssignableFrom(functionType)) {
+        Validate.notNull(function, "Function argument was null");
+        if (!Function.class.isAssignableFrom(functionType)) {
             throw new IllegalArgumentException(Function.class + " is not assignable from " + functionType);
         }
         this.function = function;
-        this.functionType = functionType;
+        this.functionType = Validate.notNull(functionType, "FunctionType argument was null");
     }
 
     /**

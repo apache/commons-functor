@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Transposes (swaps) the arguments to some other
@@ -60,10 +61,7 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
      * @param procedure BinaryProcedure to transpose
      */
     public TransposedProcedure(BinaryProcedure<? super R, ? super L> procedure) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("BinaryProcedure argument was null");
-        }
-        this.procedure = procedure;
+        this.procedure = Validate.notNull(procedure, "BinaryProcedure argument was null");
     }
 
     // functor interface

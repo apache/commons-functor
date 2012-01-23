@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.adapter.UnaryPredicateUnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link UnaryPredicate UnaryPredicate}
@@ -65,10 +66,10 @@ public final class CompositeUnaryPredicate<A> implements UnaryPredicate<A>, Seri
      * @param predicate UnaryPredicate against which the composite functions' output will be tested
      */
     public CompositeUnaryPredicate(UnaryPredicate<? super A> predicate) {
-        if (null == predicate) {
-            throw new IllegalArgumentException("predicate must not be null");
-        }
-        this.function = new CompositeUnaryFunction<A, Boolean>(new UnaryPredicateUnaryFunction<A>(predicate));
+        this.function =
+            new CompositeUnaryFunction<A, Boolean>(
+                new UnaryPredicateUnaryFunction<A>(Validate.notNull(predicate,
+                    "predicate must not be null")));
     }
 
     /**

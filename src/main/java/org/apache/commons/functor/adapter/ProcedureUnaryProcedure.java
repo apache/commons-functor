@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -52,10 +53,7 @@ public final class ProcedureUnaryProcedure<A> implements UnaryProcedure<A>, Seri
      * @param procedure to adapt
      */
     public ProcedureUnaryProcedure(Procedure procedure) {
-        if (procedure == null) {
-            throw new IllegalArgumentException("Procedure argument was null");
-        }
-        this.procedure = procedure;
+        this.procedure = Validate.notNull(procedure, "Procedure argument was null");
     }
 
     /**

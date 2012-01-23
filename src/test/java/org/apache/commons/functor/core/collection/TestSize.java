@@ -73,14 +73,9 @@ public class TestSize extends BaseFunctorTest {
         }
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testEvaluateNull() throws Exception {
-        try {
-            Size.instance().evaluate(null);
-            fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
+        Size.instance().evaluate(null);
     }
 
     @Test

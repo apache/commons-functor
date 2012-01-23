@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Transposes (swaps) the arguments to some other
@@ -62,10 +63,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
      * @param function BinaryFunction to transpose.
      */
     public TransposedFunction(BinaryFunction<? super R, ? super L, ? extends T> function) {
-        if (function == null) {
-            throw new IllegalArgumentException("BinaryFunction argument was null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "BinaryFunction argument was null");
     }
 
     // functor interface

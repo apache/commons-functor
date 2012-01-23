@@ -18,6 +18,7 @@ package org.apache.commons.functor.generator;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Wrap another {@link Generator} such that {@link #run(UnaryProcedure)} terminates once
@@ -39,14 +40,8 @@ public class GenerateUntil<E> extends BaseGenerator<E> {
      * @param test {@link UnaryPredicate}
      */
     public GenerateUntil(Generator<? extends E> wrapped, UnaryPredicate<? super E> test) {
-        super(wrapped);
-        if (wrapped == null) {
-            throw new IllegalArgumentException("Generator argument was null");
-        }
-        if (test == null) {
-            throw new IllegalArgumentException("UnaryPredicate argument was null");
-        }
-        this.test = test;
+        super(Validate.notNull(wrapped, "Generator argument was null"));
+        this.test = Validate.notNull(test, "UnaryPredicate argument was null");
     }
 
     /**

@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link Predicate Predicate}
@@ -72,12 +73,9 @@ public final class ConditionalPredicate implements Predicate, Serializable {
      * @param elsePred else
      */
     public ConditionalPredicate(Predicate ifPred, Predicate thenPred, Predicate elsePred) {
-        if (ifPred == null || thenPred == null || elsePred == null) {
-            throw new IllegalArgumentException("One or more Predicate arguments was null");
-        }
-        this.ifPred = ifPred;
-        this.thenPred = thenPred;
-        this.elsePred = elsePred;
+        this.ifPred = Validate.notNull(ifPred, "'if' Predicate argument was null");
+        this.thenPred = Validate.notNull(thenPred, "'then' Predicate argument was null");
+        this.elsePred = Validate.notNull(elsePred, "'else' Predicate argument was null");
     }
 
     // predicate interface

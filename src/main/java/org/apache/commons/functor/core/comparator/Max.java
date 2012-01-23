@@ -22,6 +22,7 @@ import java.util.Comparator;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.adapter.RightBoundFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a {@link Comparator Comparator} to the
@@ -61,10 +62,7 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
      * @param comparator Comparator to use
      */
     public Max(Comparator<T> comparator) {
-        if (comparator == null) {
-            throw new IllegalArgumentException("Comparator argument must not be null");
-        }
-        this.comparator = comparator;
+        this.comparator = Validate.notNull(comparator, "Comparator argument must not be null");
     }
 
     /**

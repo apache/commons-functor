@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
@@ -57,10 +58,9 @@ public final class BoundFunction<T> implements Function<T>, Serializable {
      */
     @SuppressWarnings("unchecked")
     public <A> BoundFunction(UnaryFunction<? super A, ? extends T> function, A arg) {
-        if (function == null) {
-            throw new IllegalArgumentException("UnaryFunction argument was null");
-        }
-        this.function = (UnaryFunction<Object, ? extends T>) function;
+        this.function =
+            (UnaryFunction<Object, ? extends T>) Validate.notNull(function,
+                "UnaryFunction argument was null");
         this.arg = arg;
     }
 

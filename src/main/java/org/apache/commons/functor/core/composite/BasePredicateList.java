@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Abstract base class for {@link Predicate Predicates}
@@ -112,10 +113,7 @@ abstract class BasePredicateList implements Predicate, Serializable {
      * @param p Predicate to add
      */
     protected void addPredicate(Predicate p) {
-        if (p == null) {
-            throw new IllegalArgumentException("Cannot add null Predicate");
-        }
-        list.add(p);
+        list.add(Validate.notNull(p, "Cannot add null Predicate"));
     }
 
     // protected

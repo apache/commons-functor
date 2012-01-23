@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A {@link UnaryFunction UnaryFunction}
@@ -148,10 +149,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      * @param function UnaryFunction to call
      */
     public CompositeUnaryFunction(UnaryFunction<? super A, ? extends T> function) {
-        if (function == null) {
-            throw new IllegalArgumentException("function must not be null");
-        }
-        this.function = function;
+        this.function = Validate.notNull(function, "function must not be null");
     }
 
     /**
@@ -180,9 +178,7 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
      * @return CompositeUnaryFunction<P, T>
      */
     public final <P> CompositeUnaryFunction<P, T> of(UnaryFunction<? super P, ? extends A> preceding) {
-        if (preceding == null) {
-            throw new IllegalArgumentException("preceding function was null");
-        }
+        Validate.notNull(preceding, "preceding function was null");
         return new CompositeUnaryFunction<P, T>(function, preceding);
     }
 

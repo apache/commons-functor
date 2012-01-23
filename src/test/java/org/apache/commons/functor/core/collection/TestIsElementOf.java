@@ -103,14 +103,9 @@ public class TestIsElementOf extends BaseFunctorTest {
         }
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testTestNull() {
-        try {
-            IsElementOf.instance().test(new Integer(5),null);
-            fail("expected IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-            // expected
-        }
+        IsElementOf.instance().test(new Integer(5),null);
     }
 
     @Test

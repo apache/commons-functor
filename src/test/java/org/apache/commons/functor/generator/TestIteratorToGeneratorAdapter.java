@@ -84,14 +84,9 @@ public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
         assertEquals(list,list2);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testConstructNull() {
-        try {
-            new IteratorToGeneratorAdapter(null);
-            fail("Expected NullPointerException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
+        new IteratorToGeneratorAdapter(null);
     }
 
     @Test
