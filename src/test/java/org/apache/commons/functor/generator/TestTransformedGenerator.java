@@ -56,19 +56,19 @@ public class TestTransformedGenerator
         try {
             new TransformedGenerator<Integer, Integer>(null, sumsTwo);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new TransformedGenerator<Integer, Integer>(wrappedGenerator, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new TransformedGenerator<Integer, Integer>(null, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
     }

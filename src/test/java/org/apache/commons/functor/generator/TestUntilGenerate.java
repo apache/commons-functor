@@ -38,13 +38,13 @@ import org.junit.Test;
  */
 public class TestUntilGenerate
 {
-    
+
     @Before
     public void setUp() throws Exception {
         wrappedGenerator = new IntegerRange(1, 10);
         untilGenerate = new UntilGenerate<Integer>(isLessThanFive, wrappedGenerator);
     }
-    
+
     @After
     public void tearDown() {
         wrappedGenerator = null;
@@ -54,36 +54,36 @@ public class TestUntilGenerate
 
     // Tests
     // ------------------------------------------------------------------------
-    
+
     @Test
     public void testConstructorProhibitsNull() {
         try {
             new UntilGenerate<Integer>(null, untilGenerate);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new UntilGenerate<Integer>(isLessThanFive, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new UntilGenerate<Integer>(null, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
     }
-    
+
     @Test
     public void testEquals() {
         Generator<Integer> anotherGenerate = new UntilGenerate<Integer>(isLessThanFive, new IntegerRange(1, 10));
         assertEquals(untilGenerate, untilGenerate);
         assertEquals(untilGenerate, anotherGenerate);
         assertTrue(!untilGenerate.equals((UntilGenerate<Integer>)null));
-        
+
 		Generator<Integer> aGenerateWithADifferentPredicate = new UntilGenerate<Integer>(
 			new UnaryPredicate<Integer>() {
 				public boolean test(Integer obj) {
@@ -91,11 +91,11 @@ public class TestUntilGenerate
 				}
 			}, new IntegerRange(1, 10));
         assertTrue(!untilGenerate.equals(aGenerateWithADifferentPredicate));
-        
+
         Generator<Integer> aGenerateWithADifferentWrapped = new UntilGenerate<Integer>(isLessThanFive, new IntegerRange(1,2));
         assertTrue(!untilGenerate.equals(aGenerateWithADifferentWrapped));
     }
-    
+
     @Test
     public void testHashcode() {
         assertEquals(untilGenerate.hashCode(), untilGenerate.hashCode());
@@ -108,7 +108,7 @@ public class TestUntilGenerate
             }
         }.hashCode());
     }
-    
+
     @Test
     public void testGenerate() {
         final List<Integer> numbersGreaterThanFive = new ArrayList<Integer>();
@@ -118,7 +118,7 @@ public class TestUntilGenerate
             }
         });
         assertEquals(5, numbersGreaterThanFive.size());
-        
+
         final List<Integer> expected = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(expected, numbersGreaterThanFive);
     }
@@ -126,7 +126,7 @@ public class TestUntilGenerate
     // Attributes
     // ------------------------------------------------------------------------
     private static final Integer FIVE = new Integer(5);
-    
+
     private Generator<Integer> wrappedGenerator = null;
     private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
         public boolean test( Integer obj ) {

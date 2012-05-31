@@ -38,13 +38,13 @@ import org.junit.Test;
  */
 public class TestFilteredGenerator
 {
-    
+
     @Before
     public void setUp() throws Exception {
         wrappedGenerator = new IntegerRange(1, 10);
         filteredGenerator = new FilteredGenerator<Integer>(wrappedGenerator, isEven);
     }
-    
+
     @After
     public void tearDown() {
         wrappedGenerator = null;
@@ -54,49 +54,49 @@ public class TestFilteredGenerator
 
     // Tests
     // ------------------------------------------------------------------------
-    
+
     @Test
     public void testConstructorProhibitsNull() {
         try {
             new FilteredGenerator<Integer>(filteredGenerator, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new FilteredGenerator<Integer>(null, isEven);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new FilteredGenerator<Integer>(null, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
     }
-    
+
     @Test
     public void testEquals() {
         Generator<Integer> anotherGenerate = new FilteredGenerator<Integer>(new IntegerRange(1, 10), isEven);
         assertEquals(filteredGenerator, filteredGenerator);
         assertEquals(filteredGenerator, anotherGenerate);
         assertTrue(!filteredGenerator.equals((FilteredGenerator<Integer>)null));
-        
+
 		Generator<Integer> aGenerateWithADifferentPredicate = new FilteredGenerator<Integer>(
 			new IntegerRange(1, 10), new UnaryPredicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj % 2 == 0;
 				}
 			});
-		
+
         assertTrue(!filteredGenerator.equals(aGenerateWithADifferentPredicate));
-        
+
         Generator<Integer> aGenerateWithADifferentWrapped = new FilteredGenerator<Integer>(new IntegerRange(1,11), isEven);
         assertTrue(!filteredGenerator.equals(aGenerateWithADifferentWrapped));
     }
-    
+
     @Test
     public void testHashcode() {
         assertEquals(filteredGenerator.hashCode(), filteredGenerator.hashCode());
@@ -108,7 +108,7 @@ public class TestFilteredGenerator
             }
         }.hashCode());
     }
-    
+
     @Test
     public void testGenerate() {
     	final List<Integer> evenNumbers = new ArrayList<Integer>();
@@ -118,7 +118,7 @@ public class TestFilteredGenerator
     		}
 		});
     	assertEquals(4, evenNumbers.size());
-    	
+
     	List<Integer> expected = Arrays.asList(2, 4, 6, 8);
     	assertEquals(expected, evenNumbers);
     }
@@ -133,5 +133,5 @@ public class TestFilteredGenerator
         }
     };
     private Generator<Integer> filteredGenerator = null;
-    
+
 }

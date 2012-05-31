@@ -37,52 +37,52 @@ import org.junit.Test;
  * @author Bruno P. Kinoshita (brunodepaulak@yahoo.com.br)
  */
 public class TestWhileGenerate {
-	
+
     @Before
     public void setUp() throws Exception {
         wrappedGenerator = new IntegerRange(1, 10);
         whileGenerate = new WhileGenerate<Integer>(isLessThanFive, wrappedGenerator);
     }
-    
+
     @After
     public void tearDown() {
         wrappedGenerator = null;
         isLessThanFive = null;
         whileGenerate = null;
     }
-    
+
     // Tests
     // ------------------------------------------------------------------------
-    
+
     @Test
     public void testConstructorProhibitsNull() {
         try {
             new WhileGenerate<Integer>(null, whileGenerate);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new WhileGenerate<Integer>(isLessThanFive, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
         try {
             new WhileGenerate<Integer>(null, null);
             fail("ExpectedNullPointerException");
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException e) {
             // expected
         }
     }
-    
+
     @Test
     public void testEquals() {
         Generator<Integer> anotherGenerate = new WhileGenerate<Integer>(isLessThanFive, new IntegerRange(1, 10));
         assertEquals(whileGenerate, whileGenerate);
         assertEquals(whileGenerate, anotherGenerate);
         assertTrue(!whileGenerate.equals((WhileGenerate<Integer>)null));
-        
+
 		Generator<Integer> aGenerateWithADifferentPredicate = new WhileGenerate<Integer>(
 			new UnaryPredicate<Integer>() {
 				public boolean test(Integer obj) {
@@ -90,11 +90,11 @@ public class TestWhileGenerate {
 				}
 			}, new IntegerRange(1, 10));
         assertTrue(!whileGenerate.equals(aGenerateWithADifferentPredicate));
-        
+
         Generator<Integer> aGenerateWithADifferentWrapped = new WhileGenerate<Integer>(isLessThanFive, new IntegerRange(1,11));
         assertTrue(!whileGenerate.equals(aGenerateWithADifferentWrapped));
     }
-    
+
     @Test
     public void testHashcode() {
         assertEquals(whileGenerate.hashCode(), whileGenerate.hashCode());
@@ -106,7 +106,7 @@ public class TestWhileGenerate {
             }
         }.hashCode());
     }
-    
+
     @Test
     public void testGenerate() {
         final List<Integer> numbersMinorThanFive = new ArrayList<Integer>();
@@ -124,7 +124,7 @@ public class TestWhileGenerate {
     // Attributes
     // ------------------------------------------------------------------------
 	private static final Integer FIVE = new Integer(5);
-	
+
     private Generator<Integer> wrappedGenerator = null;
     private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
         public boolean test( Integer obj ) {
