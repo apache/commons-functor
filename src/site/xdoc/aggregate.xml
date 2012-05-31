@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<document>
+  <properties>
+    <title>Aggregator</title>
+    <author email="me@liviutudor.com">Aggregator</author>
+  </properties>
+  <body>
+
+    <section name="Overview">
+      <p>
+        The <a href="apidocs/org/apache/commons/functor/aggregate/package-summary.html">aggregator package</a> 
+        provides a component which can be "fed" data from various sources and apply various 
+        computations to this data to "aggregate" it. The design allows for a pluggable 
+        implementation to be used for the purpose of aggregation and also provides flexibility
+        with regards to storing the data being fed to this component.
+        <br/>
+        There are 2 implementations as far as storage is concerned : <i>nostore</i> and 
+        <code>ArrayList</code>-backed store. The former should be used when the aggregation 
+        formula is simple enough to be applied on-the-fly without having to traverse a series 
+        of data -- e.g. summarizing / adding the data (TODO need more explanation). 
+      </p>
+    </section>  
+    
+    <section name="Storage">
+      <p>The <code>ArrayList</code>-backed store implementation stores the whole data series in a
+      growing <code>ArrayList</code> such that when data is aggregated one can traverse the
+      series and apply complex formulas (find the <a href="http://en.wikipedia.org/wiki/Median"
+      target="_blank">median</a> of a set of numeric values for instance).
+      </p>
+      
+      <p>While the <i>store</i> implementation stores the data in a list, the <i>nostore</i> one
+      stores just a single object -- every time data is fed into the <code>Aggregator</code>, 
+      the data stored in this object and the data 
+      <a href="apidocs/org/apache/commons/functor/aggregate/Aggregator.html#add(T)">passed in</a> 
+      are "aggregated" there and then using the supplied formula and the result of this operation
+      is stored back in the object this implementation uses to store data.
+      <br/>
+      This has the implication that unlike the list-backed storage implementation (where the
+      result of aggregating the data is not known until <a href="apidocs/org/apache/commons/functor/aggregate/Aggregator.html#evaluate()">evaluate()</a>
+      is called) with the <i>nostore</i> implementation the result is known (and saved back) at
+      any moment. This arguably makes this class "faster", however this comes at the cost of a
+      slower <a href="apidocs/org/apache/commons/functor/aggregate/Aggregator.html#add(T)">add()</a>
+      operation, as the aggregation formula is applied. Also, let's remind ourselves that not all
+      formulas can be implemented using the <i>nostore</i> implementation (see above).
+      </p>
+    </section>
+    
+    <section name="Flushing Data">
+      <p>
+      	The data an aggregator handles can be "reset" at any point -- in the case of the
+      	<i>store</i> implementation this means emptying the <code>ArrayList</code>; in the case
+      	of <i>nostore</i> this means setting the "start value" to a "neutral" value -- for
+      	instance 0 for implementations which involve additions (<code>Y + 0 = Y</code>), 1 for 
+      	multiplication (<code>Y * 1 = Y</code>) etc. This operation ultimately resets the
+      	aggregator to the initial state it was in when created in the first place. This feature 
+      	allows for a caller to schedule regular resets to free up resources etc.
+      </p>
+    </section>
+    
+    <section name="Timers">
+      <p>
+      	Retrieving the data and regular intervals then flush/reset the aggregator was an
+      	envisaged scenario for the aggregator -- so the base class 
+      	<a href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html">AbstractTimedAggregator</a>
+      	offers support to start a timer internally to do that. The class offers a <i>listener</i> 
+      	mechanism where classes can register to receive <a href="apidocs/org/apache/commons/functor/aggregate/TimedAggregatorListener">timer notifications</a> (if timer support was configured) and after all listeners have been 
+      	notified the aggregator is <a href="apidocs/org/apache/commons/functor/aggregate/Aggregator.html#reset()">reset</a>.
+      	The result of 
+      	<a href="apidocs/org/apache/commons/functor/aggregate/Aggregator.html#evaluate()">evaluate()</a>
+      	(the result of aggregating data) is passed in to the listeners. This allows for an object 
+      	to simply register itself as a timer listener to the aggregator and only react to the
+      	timer notifications (e.g. write the result to a file for offline analysis etc) while the
+      	aggregator itself manages all the internals.
+      </p>
+      
+      <p>
+      	There are 2 ways the 
+      	<a href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html">AbstractTimedAggregator</a> 
+      	can be configured with timer support:
+      </p>
+      	<ul>
+      		<li><b>Using a per-instance timer</b> : by default, when using the 
+      		<a href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html#AbstractTimedAggregator(long)">1
+      		parameter constructor</a> with a value &gt; 0, the aggregator will create a 
+      		<code>Timer</code> object internally and schedule the regular task of resetting the 
+      		aggregator under this <code>Timer</code>. While this helps preventing memory leaks 
+      		(both <code>Aggregator</code> and <code>Timer</code> will be recycled together) it
+      		does increase the threading level in the system with each aggregator object created.
+      		If your system creates a lot of <code>AbstractTimedAggregator</code> instances with
+      		timer support, you might want to consider using the shared timer (see below).</li>
+      		<li><b>Using a shared timer</b> : the <a
+      		href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html">AbstractTimedAggregator</a>
+      		class creates a <a
+      		href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html#MAIN_TIMER">static 
+      		timer instance</a> which can be shared amongst all instances of this class, if using 
+      		<a
+      		href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html#AbstractTimedAggregator(long, boolean)">the 
+      		constructor with 2 params</a>. When doing so, each such instance will schedule its
+      		regular reset task against this timer. While this reduces the memory footprint and
+      		threading on the system, it can lead to memory leaks if this is not handled correctly.
+      		Therefore please make sure you invoke <a
+      		href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html#stop()">stop()</a>
+      		on such aggregators when finished working with them.</li>
+      	</ul>
+      <p>
+		It is recommended you always invoke <a
+      	href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html#stop()">stop()</a>
+      	at the end of the lifecycle of an aggregator -- regardless of timer support (shared / 
+      	per instance) or not -- in particular calling <code>stop()</code> on an aggregator with
+      	no timer support has no effect, however doing so ensures code uniformity and cleanliness.
+      </p>
+    </section>
+    
+    <section name="Examples">
+      <p>An example of usage for this component (though not necessarily the only one) could be in
+      a highly transactional system where, for instance, the average transaction time can be an
+      indication of the system health. While a fully-fledged monitoring system can say monitor
+      the system load, file system etc., you might also want your monitoring system to keep an
+      eye on the average transaction time. One way to do so is have an <a
+      href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html">AbstractTimedAggregator</a> 
+      which is capturing each transaction execution time and every say 5 seconds it computes
+      the arithmetic mean (average) and writes that to a log file (which then your monitoring
+      system can tail). To do so you would use a piece of code like this:
+      </p>
+      
+      <source>
+public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; {
+    Aggregator&lt;Double&gt; agg;
+
+    public AggregatorTesting() {
+        AbstractTimedAggregator&lt;Double&gt; aggregator = new ArrayListBackedAggregator&lt;Double&gt;(new DoubleMeanValueAggregatorFunction(),
+                5000L);
+        aggregator.addTimerListener(this);
+        this.agg = aggregator;
+    }
+
+    @Override
+    public void onTimer(AbstractTimedAggregator&lt;Double&gt; aggregator) {
+        double aggregated = aggregator.evaluate();
+        /* log the value etc. */
+    }
+
+    private void add(double d) {
+        agg.add(d);
+    }
+
+    public static void main(String[] args) {
+        AggregatorTesting t = new AggregatorTesting();
+        /* add data */
+        t.add( 1.0 );
+        t.add( 2.0 );
+        /* .. */
+    }
+}      
+      </source>
+      
+      <p>Now let's assume that you occasionally see the odd spike in transaction times -- which,
+      for the purpose of this example, we'll assume is normal. As such you are not concerned with
+      these spikes, so you want a formula to exclude them. Chances are an arithmetic median
+      would be more appropriate in this case; in which case the code above can suffer just a
+      small change:
+      </p>
+      
+      <source>
+      ...
+        AbstractTimedAggregator&lt;Double&gt; aggregator = new ArrayListBackedAggregator&lt;Double&gt;(new DoubleMedianValueAggregatorFunction(),
+                5000L);
+       ...
+      </source>
+
+      <p>Or maybe you want to be more precise and ensure that lets say 95% of your transactions
+      take less than a certain execution time, so you replace the median formula with a 
+      percentile one:
+      </p>
+      
+      <source>
+      ...
+        AbstractTimedAggregator&lt;Double&gt; aggregator = new ArrayListBackedAggregator&lt;Double&gt;(new DoublePercentileAggregatorFunction(95),
+                5000L);
+       ...
+      </source>
+      
+      <p>Or maybe your health indicator is the number of transactions going through the system
+      every 5 seconds. In this case you can use a <i>nostore</i> aggregator with a sum formula 
+      like this:
+      </p>
+
+      <source>
+public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; {
+    Aggregator&lt;Double&gt; agg;
+
+    public AggregatorTesting() {
+        AbstractTimedAggregator&lt;Double&gt; aggregator = new AbstractNoStoreAggregator&lt;Double&gt;(
+                new DoubleSumAggregatorFunction2(), 5000L) {
+            @Override
+            protected Double initialValue() {
+                return 0.0;
+            }
+        };
+        aggregator.addTimerListener(this);
+        this.agg = aggregator;
+    }
+
+    @Override
+    public void onTimer(AbstractTimedAggregator&lt;Double&gt; aggregator) {
+        double aggregated = aggregator.evaluate();
+        /* log the value etc. */
+    }
+
+    private void add(double d) {
+        agg.add(d);
+    }
+
+    public static void main(String[] args) {
+        AggregatorTesting t = new AggregatorTesting();
+        /* add data */
+        t.add(1.0);
+        t.add(2.0);
+        /* .. */
+    }
+}
+      </source>
+      
+      <p>(Bear in mind that there is also a <a href="apidocs/org/apache/commons/functor/aggregate/functions/IntCountAggregatorFunction2.html">IntCountAggregatorFunction2</a> too!)
+      </p>
+      
+      <p>This has the advantage of a lower memory footprint as well (see above). If your healthcheck
+      indicator is based on the maximum transaction time over a 5 seconds interval, then you simply
+      replace the <a href="apidocs/org/apache/commons/functor/aggregate/AbstractNoStoreAggregator.html#getAggregationFunction()">aggregation function</a> with a max value implementation:
+      </p>
+      
+      <source>
+      ...
+        AbstractTimedAggregator&lt;Double&gt; aggregator = new AbstractNoStoreAggregator&lt;Double&gt;(
+                new DoubleMaxAggregatorFunction2(), 5000L) {
+      ...
+      </source>
+      
+	  <p>Or you can simply roll out your own code -- if using the <i>nostore</i> implementation,
+	  all you need to do is implement a 
+	  <a href="apidocs/org/apache/commons/functor/BinaryFunction.html">BinaryFunction</a> and pass
+	  it to the <a href="apidocs/org/apache/commons/functor/aggregate/AbstractNoStoreAggregator.html#AbstractNoStoreAggregator(org.apache.commons.functor.BinaryFunction)">Aggregator constructor</a>. This function will receive the already-stored
+	  aggregated value as the first parameter, and data just passed in (via <a
+	  href="apidocs/org/apache/commons/functor/aggregate/Aggregator.html#add(T)">add()</a>) as the
+	  second parameter; the result of this function will be stored back in the aggregator.
+	  <br/>
+	  For the list-based aggregators, use an instance of <a href="apidocs/org/apache/commons/functor/aggregate/AbstractListBackedAggregator.html">AbstractListBackedAggregator</a> and pass in an instance of <a href="apidocs/org/apache/commons/functor/UnaryFunction.html">UnaryFunction</a>
+	  which accepts a <code>List</code> and returns a single object.
+	  <br/>
+	  Have a look at the 
+	  <a href="apidocs/org/apache/commons/functor/aggregate/functions/package-summary.html">org.apache.commons.functor.aggregate.functions package</a> which includes a set of functions to achieve 
+	  various of these tasks already.
+	  </p>
+	  
+	  <p><b>Note on class naming</b> : You will notice in the <a href="apidocs/org/apache/commons/functor/aggregate/functions/package-summary.html">org.apache.commons.functor.aggregate.functions package</a> there are functions with similar names -- e.g.
+	  <a href="apidocs/org/apache/commons/functor/aggregate/functions/DoubleSumAggregatorFunction.html">DoubleSumAggregatorFunction</a> and <a href="apidocs/org/apache/commons/functor/aggregate/functions/DoubleSumAggregatorFunction2.html">DoubleSumAggregatorFunction2</a>. The naming convention is that if the function takes 2
+	  parameters (i.e. it is an instance of <a href="apidocs/org/apache/commons/functor/BinaryFunction.html">BinaryFunction</a> then the
+	  name of the class in this package will end in <code>2</code>, otherwise, if it is an instance
+	  of <a href="apidocs/org/apache/commons/functor/UnaryFunction.html">UnaryFunction</a> then the
+	  name will not end in a <code>2</code>.<br/>
+	  The reason behind it is that instances of <code>BinaryFunction</code> can be used with
+	  <a href="apidocs/org/apache/commons/functor/aggregate/AbstractNoStoreAggregator.html">AbstractNoStoreAggregator</a> whereas the instances of <code>UnaryFunction</code> can be used
+	  with <a href="apidocs/org/apache/commons/functor/aggregate/AbstractTimedAggregator.html">AbstractTimedAggregator</a>.
+	  </p>
+    </section>
+  </body>
+</document>

@@ -20,6 +20,7 @@
     <title>Examples</title>
     <author email="dev@commons.apache.org">Apache Commons Development Team</author>
     <author email="rwaldhoff@apache.org">Rodney Waldhoff</author>
+    <author email="me@liviutudor.com">Liviu Tudor</author>
   </properties>
 
   <body>
@@ -115,7 +116,27 @@
           The <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/lines/">lines</a>
           package demonstrates a functional approach to IO using Generators and the Algorithms class.
         </p>
-      </subsection>      
+      </subsection>   
+      
+      <subsection name="Aggregators">
+        <p>
+            There are some code snippets / examples for the <code>org.apache.commons.functor.aggregator</code> package
+            available on <a href="aggregator.html">this page</a>. Also, to exemplify the usage of the <code>Aggregator</code>
+            classes, there are code examples in the test section.
+            <br/>
+            First such set of example involves the usage of the <i>nostore</i> <code>Aggregator</code>. Code can be found in
+            <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/aggregator/nostore/">org.apache.commons.functor.example.aggregator.nostore</a>.
+            This shows how can you use an aggregator which doesn't store the data series and processes them on the fly.
+            Also, there are examples provided which show how can you implement your own aggregation function
+            to be used with this <code>Aggregator</code> type.
+            <br/>   
+            For using an <code>Aggregator</code> which stores the data series in a list, examples are in
+            <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/aggregator/list/">org.apache.commons.functor.example.aggregator.list</a>.
+            This shows how can you use the <code>ArrayList</code>-backed aggregator or provide your own <code>List</code>-based implementation.
+            Also, there are examples provided which show how can you implement your own aggregation function
+            to be used with this <code>Aggregator</code> type.
+        </p>
+      </subsection>   
       
       <subsection name="Reuse Through Composition">
          <p>

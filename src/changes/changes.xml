@@ -29,6 +29,9 @@
       <action dev="simonetripodi" issue="FUNCTOR-2">
         Improve Functor web page, removing Ant from building (Contributed by Bruno P. Kinoshita)
       </action>
+      <action dev="simonetripodi" issue="FUNCTOR-1" due-to="Liviu Tudor">
+        New components: summarize and aggregate
+      </action>
     </release>
   </body>
 </document>
