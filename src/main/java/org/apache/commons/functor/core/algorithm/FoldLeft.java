@@ -157,4 +157,12 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
         return "FoldLeft".hashCode() << 2 ^ function.hashCode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "FoldLeft<" + function + ">";
+    }
+
 }

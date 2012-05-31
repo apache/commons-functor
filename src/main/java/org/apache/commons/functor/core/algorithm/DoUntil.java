@@ -48,4 +48,12 @@ public class DoUntil extends PredicatedLoop {
             getBody().run();
         } while (!getTest().test());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "DoUntil<" + getBody() + "," + getTest() + ">";
+    }
 }

@@ -48,4 +48,12 @@ public class UntilDo extends PredicatedLoop {
             getBody().run();
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "UntilDo<" + getTest() + "," + getBody() + ">";
+    }
 }

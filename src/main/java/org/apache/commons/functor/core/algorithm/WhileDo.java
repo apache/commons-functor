@@ -48,4 +48,12 @@ public class WhileDo extends PredicatedLoop {
             getBody().run();
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "WhileDo<" + getTest() + "," + getBody() + ">";
+    }
 }

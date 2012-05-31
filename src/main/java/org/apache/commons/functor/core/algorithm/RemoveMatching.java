@@ -69,6 +69,14 @@ public final class RemoveMatching<T>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "RemoveMatching";
+    }
+
+    /**
      * Get a static {@link RemoveMatching} instance.
      * @return {@link RemoveMatching}
      */

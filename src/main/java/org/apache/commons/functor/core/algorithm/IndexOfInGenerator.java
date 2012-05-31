@@ -115,6 +115,14 @@ public final class IndexOfInGenerator<T>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "IndexOfInGenerator";
+    }
+
+    /**
      * Get a static {@link IndexOfInGenerator} instance.
      * @return {@link IndexOfInGenerator}
      */

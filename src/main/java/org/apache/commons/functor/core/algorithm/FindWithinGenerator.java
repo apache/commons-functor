@@ -157,6 +157,14 @@ public final class FindWithinGenerator<E>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "FindWithinGenerator<" + ifNone + "," + useIfNone + ">";
+    }
+
+    /**
      * Get a static {@link FindWithinGenerator} instance.
      * @return {@link FindWithinGenerator}
      */

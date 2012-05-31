@@ -70,6 +70,14 @@ public final class RetainMatching<T>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "RetainMatching";
+    }
+
+    /**
      * Get a static {@link RetainMatching} instance.
      * @return {@link RetainMatching}
      */

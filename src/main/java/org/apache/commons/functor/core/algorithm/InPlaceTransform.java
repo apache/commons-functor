@@ -67,6 +67,14 @@ public final class InPlaceTransform<T>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "InPlaceTransform";
+    }
+
+    /**
      * Get an {@link InPlaceTransform} instance.
      * @return InPlaceTransform
      */

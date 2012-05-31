@@ -48,4 +48,12 @@ public class DoWhile extends PredicatedLoop {
             getBody().run();
         } while (getTest().test());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "DoWhile<" + getBody() + "," + getTest() + ">";
+    }
 }

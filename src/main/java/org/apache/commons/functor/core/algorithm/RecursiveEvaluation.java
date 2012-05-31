@@ -106,6 +106,14 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "RecursiveEvaluation<" + functionType + "," + function + ">";
+    }
+
+    /**
      * Get the class of the specified object, or <code>null</code> if <code>o</code> is <code>null</code>.
      * @param f Object to check
      * @return Class found

@@ -168,4 +168,12 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
         return "FoldRight".hashCode() << 2 ^ function.hashCode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "FoldRight<" + function + ">";
+    }
+
 }

@@ -26,6 +26,9 @@
       <action dev="simonetripodi" issue="FUNCTOR-16" due-to="Bruno P. Kinoshita">
         Fix checkstyle errors
       </action>
+      <action dev="simonetripodi" issue="FUNCTOR-15" due-to="Bruno P. Kinoshita">
+        Distribute tests from TestAlgorithms into several test classes under algorithm test package
+      </action>
       <action dev="simonetripodi" issue="FUNCTOR-9" due-to="Bruno P. Kinoshita">
         Make Limit and Offset Serializable
       </action>

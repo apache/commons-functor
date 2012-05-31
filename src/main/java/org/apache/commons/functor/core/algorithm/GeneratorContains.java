@@ -100,6 +100,14 @@ public final class GeneratorContains<T> implements BinaryPredicate<Generator<? e
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "GeneratorContains";
+    }
+
+    /**
      * Get a static {@link GeneratorContains} instance.
      * @return {@link GeneratorContains}
      */
