@@ -26,6 +26,9 @@
       <action dev="simonetripodi" issue="FUNCTOR-16" due-to="Bruno P. Kinoshita">
         Fix checkstyle errors
       </action>
+      <action dev="simonetripodi" issue="FUNCTOR-9" due-to="Bruno P. Kinoshita">
+        Make Limit and Offset Serializable
+      </action>
       <action dev="simonetripodi" issue="FUNCTOR-8" due-to="Bruno P. Kinoshita">
         Possible NPE in TransformedGenerator if getWrappedGenerator() is overridden to return null
       </action>

@@ -17,6 +17,8 @@
  */
 package org.apache.commons.functor.core;
 
+import java.io.Serializable;
+
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.UnaryPredicate;
@@ -32,8 +34,14 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 
-public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object> {
-    // instance variables
+public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
+	// static attributes
+    // ------------------------------------------------------------------------
+    /**
+	 * serialVersionUID declaration.
+	 */
+	private static final long serialVersionUID = 8974528922587619067L;
+	// instance variables
     //---------------------------------------------------------------
     /**
      * The max number of times the predicate can be invoked.
@@ -81,6 +89,32 @@ public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPre
         return test();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+    	if(obj == this) {
+    		return true;
+    	}
+    	if(!(obj instanceof Limit)) {
+    		return false;
+    	}
+    	Limit other = (Limit)obj;
+    	return other.max == max;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+    	int result = "Limit".hashCode();
+    	result <<= 2;
+    	result ^= max;
+    	return result;
+    }
+    
     /**
      * {@inheritDoc}
      */

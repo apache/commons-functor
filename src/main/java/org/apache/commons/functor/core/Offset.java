@@ -16,6 +16,8 @@
  */
 package org.apache.commons.functor.core;
 
+import java.io.Serializable;
+
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.UnaryPredicate;
@@ -31,8 +33,15 @@ import org.apache.commons.functor.UnaryPredicate;
  * @author Rodney Waldhoff
  */
 
-public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object> {
-    // instance variables
+public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
+	// static attributes
+    // ------------------------------------------------------------------------
+    /**
+	 * serialVersionUID declaration.
+	 */
+	private static final long serialVersionUID = 5800706757874735854L;
+	
+	// instance variables
     //---------------------------------------------------------------
     /**
      * The number of times the predicate must return {@code false}.
@@ -80,6 +89,32 @@ public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPr
         return test();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+    	if(obj == this) {
+    		return true;
+    	}
+    	if(!(obj instanceof Offset)) {
+    		return false;
+    	}
+    	Offset other = (Offset)obj;
+    	return other.min == min;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+    	int result = "Offset".hashCode();
+    	result <<= 2;
+    	result ^= min;
+    	return result;
+    }
+    
     /**
      * {@inheritDoc}
      */
