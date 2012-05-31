@@ -120,7 +120,8 @@ public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunct
      *         {@link BinaryFunction BinaryFunction}, or <code>null</code>
      *         if the given <code>BinaryFunction</code> is <code>null</code>
      */
-    public static <L, R, T> BinaryProcedureBinaryFunction<L, R, T> adapt(BinaryProcedure<? super L, ? super R> procedure) {
+    public static <L, R, T> BinaryProcedureBinaryFunction<L, R, T> adapt(
+            BinaryProcedure<? super L, ? super R> procedure) {
         return null == procedure ? null : new BinaryProcedureBinaryFunction<L, R, T>(procedure);
     }
 

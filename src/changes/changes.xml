@@ -23,6 +23,9 @@
   </properties>
   <body>
     <release version="1.0" date="2012-??-??" description="First release.">
+      <action dev="simonetripodi" issue="FUNCTOR-16" due-to="Bruno P. Kinoshita">
+        Fix checkstyle errors
+      </action>
       <action dev="simonetripodi" issue="FUNCTOR-8" due-to="Bruno P. Kinoshita">
         Possible NPE in TransformedGenerator if getWrappedGenerator() is overridden to return null
       </action>

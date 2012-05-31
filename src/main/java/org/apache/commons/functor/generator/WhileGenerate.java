@@ -41,7 +41,7 @@ public class WhileGenerate<E> extends BaseGenerator<E> {
      */
     public WhileGenerate(UnaryPredicate<? super E> test, Generator<? extends E> wrapped) {
         super(Validate.notNull(wrapped, "Generator argument was null"));
-        this.test = Validate.notNull(test,"UnaryPredicate argument was null");
+        this.test = Validate.notNull(test, "UnaryPredicate argument was null");
     }
 
     /**

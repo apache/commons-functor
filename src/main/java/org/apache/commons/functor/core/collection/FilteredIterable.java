@@ -76,7 +76,7 @@ public class FilteredIterable<T> implements Iterable<T> {
      * Create a new FilteredIterable.
      * @param iterable wrapped
      */
-    private FilteredIterable(Iterable<? extends T> iterable) {
+    protected FilteredIterable(Iterable<? extends T> iterable) {
         super();
         this.iterable = iterable;
     }
@@ -85,11 +85,11 @@ public class FilteredIterable<T> implements Iterable<T> {
      * {@inheritDoc}
      */
     public Iterator<T> iterator() {
-        UnaryPredicate<T> _predicate;
+        UnaryPredicate<T> predicateReference;
         synchronized (this) {
-            _predicate = predicate;
+            predicateReference = predicate;
         }
-        return FilteredIterator.filter(iterable.iterator(), _predicate);
+        return FilteredIterator.filter(iterable.iterator(), predicateReference);
     }
 
     /**
