@@ -23,6 +23,9 @@
   </properties>
   <body>
     <release version="1.0" date="2012-??-??" description="First release.">
+      <action dev="simonetripodi" issue="FUNCTOR-8" due-to="Bruno P. Kinoshita">
+        Possible NPE in TransformedGenerator if getWrappedGenerator() is overridden to return null
+      </action>
       <action dev="simonetripodi" issue="FUNCTOR-7" due-to="Bruno P. Kinoshita">
         Tests for generators
       </action>

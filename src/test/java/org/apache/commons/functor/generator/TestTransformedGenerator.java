@@ -1,10 +1,7 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,6 +14,7 @@
 package org.apache.commons.functor.generator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -33,7 +31,6 @@ import org.junit.Test;
 
 /**
  * Tests the Transformed Generator class.
- * @author Bruno P. Kinoshita (brunodepaulak@yahoo.com.br)
  */
 public class TestTransformedGenerator
 {
@@ -43,7 +40,7 @@ public class TestTransformedGenerator
         wrappedGenerator = new IntegerRange(1, 10);
         sumsTwoGenerator = new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo);
     }
-    
+
     @After
     public void tearDown() {
         wrappedGenerator = null;
@@ -53,7 +50,7 @@ public class TestTransformedGenerator
 
     // Tests
     // ------------------------------------------------------------------------
-    
+
     @Test
     public void testConstructorProhibitsNull() {
         try {
@@ -75,10 +72,10 @@ public class TestTransformedGenerator
             // expected
         }
     }
-    
+
     @Test
     public void testEquals() {
-        TransformedGenerator<Integer, Integer> anotherTransformedGenerator = 
+        TransformedGenerator<Integer, Integer> anotherTransformedGenerator =
                         new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo);
         assertEquals(sumsTwoGenerator, sumsTwoGenerator);
         assertEquals(sumsTwoGenerator, anotherTransformedGenerator);
@@ -91,18 +88,24 @@ public class TestTransformedGenerator
                 }
             });
         assertTrue( !sumsTwoGenerator.equals(aGenerateWithADifferentFunction));
-        
-        TransformedGenerator<Integer, Integer> aTransformedGeneratorWithADifferentWrapped = 
+
+        TransformedGenerator<Integer, Integer> aTransformedGeneratorWithADifferentWrapped =
         		new TransformedGenerator<Integer, Integer>(new IntegerRange(1,2), sumsTwo);
         assertTrue(!sumsTwoGenerator.equals(aTransformedGeneratorWithADifferentWrapped));
     }
-    
+
     @Test
     public void testHashcode() {
         assertEquals(sumsTwoGenerator.hashCode(), sumsTwoGenerator.hashCode());
         assertEquals(sumsTwoGenerator.hashCode(), new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo).hashCode());
+        assertFalse(sumsTwoGenerator.hashCode() == new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo) {
+            @Override
+            protected Generator<? extends Integer> getWrappedGenerator() {
+                return null;
+            }
+        }.hashCode());
     }
-    
+
     @Test
     public void testGenerate() {
         final List<Integer> doubledValues = new ArrayList<Integer>();
@@ -111,9 +114,9 @@ public class TestTransformedGenerator
                 doubledValues.add(obj);
             }
         });
-        
+
         final List<Integer> expected = Arrays.asList(3, 4, 5, 6, 7, 8, 9, 10 , 11);
-        
+
         assertEquals(9, doubledValues.size());
         assertEquals(expected, doubledValues);
     }
@@ -121,7 +124,7 @@ public class TestTransformedGenerator
     // Attributes
     // ------------------------------------------------------------------------
     private static final Integer TWO = new Integer(2);
-    
+
     private Generator<Integer> wrappedGenerator = null;
     private UnaryFunction<Integer, Integer> sumsTwo = new UnaryFunction<Integer, Integer>() {
         public Integer evaluate( Integer obj ) {
@@ -129,5 +132,5 @@ public class TestTransformedGenerator
         }
     };
     private TransformedGenerator<Integer, Integer> sumsTwoGenerator = null;
-    
+
 }

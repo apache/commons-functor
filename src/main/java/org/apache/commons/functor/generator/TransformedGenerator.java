@@ -86,7 +86,8 @@ public class TransformedGenerator<I, E> extends BaseGenerator<E> {
     public int hashCode() {
         int result = "TransformedGenerator".hashCode();
         result <<= 2;
-        result ^= getWrappedGenerator().hashCode();
+        Generator<?> gen = getWrappedGenerator();
+        result ^= gen == null ? 0 : gen.hashCode();
         result <<= 2;
         result ^= func.hashCode();
         return result;
