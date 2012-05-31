@@ -26,82 +26,245 @@
   <body>
     <section name="Examples">
       <p>
-         We've begun to develop some example code that demonstrates the use and
-         utility of the Functor component.
+         This page contains basic examples using <a href="apidocs/org/apache/commons/functor/Predicate.html">Predicates</a>, 
+         <a href="apidocs/org/apache/commons/functor/Function.html">Functions</a>, 
+         <a href="apidocs/org/apache/commons/functor/Procedure.html">Procedures</a> and 
+         <a href="apidocs/org/apache/commons/functor/generator/Generator.html">Generators</a>. 
+         There are also examples using composition and more practical examples 
+         at the bottom of this page.
       </p>
-      <p>
-         In order to keep the examples in sync with the rest of the code,         
-         each example is written as a <a href="http://junit.org/">JUnit</a> 
-         <code>TestCase</code>.  The example programs are executed along with 
-         all the other unit tests, and can be invoked via <code>mvn test</code> 
-         once you've set up Maven as described in the 
-         <a href="building.html">build instructions</a>.
-      </p>
-      <p>
-         If you're not familiar with JUnit, don't worry. An understanding of 
-         JUnit isn't important for an understanding of these examples, and 
-         we'll walk you through the relevant bits anyway.
-      </p>
-      <p>
-         Two things you'll want to know about JUnit are (a) all the methods
-         annotated with "@Test" will be executed automatically by the 
-         test runner and (b) there are various "assert" methods present in 
-         org.junit.Assert that can be used to make assertions about the Objects 
-         being tested.  If any assertion fails, the JUnit framework will count 
-         (and report) this as a test failure.
-      </p>
-      <p>You can run a specific test case or sub-suite in Maven by invoking</p>
-      <pre>mvn -e -X -Dtest==&lt;fully-specified-test-case-name&gt; test</pre>
-      <p>For example, to run the Quicksort example, invoke</p>
-      <pre>mvn -e -X -Dtest=org.apache.commons.functor.example.QuicksortExample test</pre>
-      <p>To run all the examples, invoke:</p>
-      <pre>mvn -e -X -Dtest==&lt;fully-specified-package-name.*&gt; test</pre>    
-      <p>
-         Each example is has descriptive prose mixed right in with the source, as 
-         <code>/* C++ style */</code> comments.
-      </p>
-      <subsection name="Code Katas">        
-        <p>
-          "Pragmatic" Dave Thomas has been 
-          <a href="http://pragprog.com/pragdave/">blogging</a> 
-          a series of programming exercises he calls 
-          <a href="http://pragprog.com/pragdave/Practices/Kata">Code Katas</a>.
-          These exercises are intended to provide "practice sessions" that allow
-          programmers to hone their craft.  The notion is borrowed from the 
-          practice of Karate, where, in Dave's words 
-          "a kata is an exercise where you repeat a form many, many times, 
-          making little improvements in each".
-        </p>
-        <p>
-          Here we use several of Dave's Code Katas to explore the
-          Commons-Functor library.
-        </p>
-        <dl>
-          <dt><a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/one/">Kata One: Supermarket Pricing</a></dt>
-          <dd>
-            Dave's <a href="http://pragprog.com/pragdave/Practices/Kata/KataOne.rdoc,v">Kata One</a> asks how
-            one might implement supermarket pricing rules, like "three for a dollar" or "buy two get one free".
-            By encapsulating tiny bits of logic, functors provide a useful solution to this problem, as 
-            illustrated in the 
-            <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/one/SupermarketPricingExample.java">SupermarketPricingExample</a>.
-          </dd>
 
-          <dt><a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/two/">Kata Two: Binary Chop</a></dt>
-          <dd>
-            <a href="http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v">Kata Two</a> asks us
-            to create several different implementations of the binary search algorithm, which once you
-            get past three or four implementations, is more difficult that it sounds.            
-            <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/two/TestBinaryChop.java">TestBinaryChop</a>
-            presents several implementations, with functor and non-functor variations.
-          </dd>
+    <subsection name="Predicates">
+      <p>
+         <em>Predicates</em> are <em>functors</em> that return a boolean value. The following 
+         snippet of code shows how to use a <em>Predicate</em> that says whether a 
+         number is even or not.
+      </p>
+<source>
+List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4);
 
+UnaryPredicate&lt;Integer&gt; isEven = new UnaryPredicate&lt;Integer&gt;() {
+    public boolean test(Integer obj) {
+        return obj % 2 == 0;
+    }
+};
 
-          <dt><a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/four/">Kata Four: Data Munging</a></dt>
-          <dd>
-            <a href="http://pragprog.com/pragdave/Practices/Kata/KataFour.doc,v">Kata Four</a> asks us
-            to explore extreme reuse.  Our
-            <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/four/DataMunger.java">DataMunger</a>
-            allows for very small implementations of the 
+for( Integer number : numbers ) {
+    if (isEven.test(number)) {
+        System.out.print(number + " ");
+    }
+}
+</source>
+      <p>The code above produces the following output: <code>2 4 </code></p>
+    </subsection>
+
+    <subsection name="Functions">
+      <p>
+         <em>Functions</em> are functors that return an Object value. The following 
+         snippet of code shows how to use a <em>Function</em> that doubles a value.
+      </p>
+<source>
+List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4);
+        
+UnaryFunction&lt;Integer, Integer&gt; doubler = new UnaryFunction&lt;Integer, Integer&gt;() {
+    public Integer evaluate(Integer obj) {
+        return obj * 2;
+    }
+};
+
+for( Integer number : numbers ) {
+    Integer value = doubler.evaluate(number);
+    System.out.print(value + " ");
+}
+</source>
+      <p>The code above produces the following output: <code>2 4 6 8 </code></p>
+    </subsection>
+
+    <subsection name="Procedures">
+      <p>
+         <em>Procedures</em> are <em>functors</em> that do not return anything. In the snippet of 
+         code below you can find an example that prints the value passed to the 
+         <em>Procedure</em>.
+      </p>
+<source>
+List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4);
+
+UnaryProcedure&lt;Integer&gt; print = new UnaryProcedure&lt;Integer&gt;() {
+    public void run(Integer obj) {
+        System.out.print(obj + " ");
+    }
+};
+
+for( Integer number : numbers ) {
+    print.run(number);
+}
+</source>
+    <p>
+       The code above produces the following output: <code>1 2 3 4 </code>.
+    </p>
+    </subsection>
+
+    <subsection name="Reuse Through Composition">
+       <p>
+          The <em>Functor</em> package, and more generally, a functional approach
+          to program design, supports a powerful technique for balancing
+          behavior specialization and code reuse.
+       </p>
+       <p>
+          Traditional Object Oriented design suggests inheritence as a
+          mechanism code reuse, and method overloading as a mechanism for
+          specialization.  For example, one defines a general purpose, perhaps
+          even abstract class, say <i>AbstractList</i>, and then extend or 
+          specialize this parent via subclasses, inheriting some behaviors 
+          and overloading others.
+       </p>
+       <p>
+          <em>Functors</em> encourage another, complementary approach to code reuse
+          and behavior specialiazation: composition.  Following a compositional
+          design, we create a number of simple objects and then combine them to
+          create more complex behaviors.  For example, the
+          <a href="http://commons.apache.org/pool/">Commons Pool</a>
+          component defines an <code>ObjectPool</code> type that maintains
+          a collection of pooled objects, but delegates to a
+          <code>PoolableObjectFactory</code> to create, validate and destroy
+          the objects to be pooled.  Arbitrary <code>ObjectPool</code>
+          implementations can be composed with arbitrary
+          <code>PoolableObjectFactory</code>
+          implementations in order to create new types of pools.
+       </p>
+       <p>Let's see an example that combines the three functors seen here so
+       far. In this example, we will use the functors that we created so that
+       for each <em>even</em> number found, it will <em>double</em> its value
+       and will <em>print</em> the new value.</p>
+<source>
+List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4);
+
+UnaryPredicate&lt;Integer&gt; isEven = new UnaryPredicate&lt;Integer&gt;() {
+    public boolean test(Integer obj) {
+        return obj % 2 == 0;
+    }
+};
+
+UnaryFunction&lt;Integer, Integer&gt; doubler = new UnaryFunction&lt;Integer, Integer&gt;() {
+    public Integer evaluate(Integer obj) {
+        return obj * 2;
+    }
+};
+
+UnaryProcedure&lt;Integer&gt; print = new UnaryProcedure&lt;Integer&gt;() {
+    public void run(Integer obj) {
+        System.out.print(obj + " ");
+    }
+};
+
+for( Integer number : numbers ) {
+    if(isEven.test(number)) {
+        print.run(doubler.evaluate(number));
+    }
+}
+</source>
+       <p>
+         The code above produces the following output: <code>4 8 </code>
+       </p>
+       <p>
+          The 
+          <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/FlexiMapExample.java">FlexiMap example</a>
+          applies this design to <code>java.util.Map</code>, demonstrating how
+          "pluggable" functors can be applied to a generic <code>Map</code> structure in order
+          to introduce new behaviors. The <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/map">map</a>
+          package is a more complete example of this, implementing a number of the Commons-Collections Maps
+          derived from a base 
+          <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/map/FunctoredMap.java">FunctoredMap</a>.
+       </p>
+    </subsection>
+
+    <subsection name="Generators">
+       <p>
+         Apache Functor includes other objects that you can can use to code in
+         a less imperative way, like <em>Generators</em>. In the following
+         example, we create an <em>Integer Generator</em> that generates
+         integers from 1 to 4 (the right argument is non-inclusive). The
+         generator is wrapped within a <em>Filtered Generator</em> that applies
+         the isEven predicate to each integer generated by the former generator.
+         Finally, we execute a <em>Composite Unary Procedure</em> that uses
+         a function to double the value of the integer before printing it.
+       </p>
+<source>
+Generator&lt;Integer&gt; integerGenerator = new IntegerRange(1, 5); // inclusive, exclusive
+    
+UnaryPredicate&lt;Integer&gt; isEven = new UnaryPredicate&lt;Integer&gt;() {
+    public boolean test(Integer obj) {
+        return obj % 2 == 0;
+    }
+};
+
+FilteredGenerator&lt;Integer&gt; filteredGenerator = 
+        new FilteredGenerator&lt;Integer&gt;(integerGenerator, isEven);
+
+UnaryFunction&lt;Integer, Integer&gt; doubler = new UnaryFunction&lt;Integer, Integer&gt;() {
+    public Integer evaluate(Integer obj) {
+        return obj * 2;
+    }
+};
+
+UnaryProcedure&lt;Integer&gt; print = new UnaryProcedure&lt;Integer&gt;() {
+    public void run(Integer obj) {
+        System.out.print(obj + " ");
+    }
+};
+
+CompositeUnaryProcedure&lt;Integer&gt; compositeProcedure =
+        new CompositeUnaryProcedure&lt;Integer&gt;(print);
+
+filteredGenerator.run(compositeProcedure.of(doubler));
+</source>
+       <p>
+         The <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/lines/">lines</a>
+         package demonstrates a functional approach to IO using Generators and the Algorithms class.
+       </p>
+    </subsection> 
+
+    <subsection name="Code Katas">
+      <p>
+        "Pragmatic" Dave Thomas has been
+        <a href="http://pragprog.com/pragdave/">blogging</a> 
+        a series of programming exercises he calls
+        <a href="http://pragprog.com/pragdave/Practices/Kata">Code Katas</a>.
+        These exercises are intended to provide "practice sessions" that allow
+        programmers to hone their craft.  The notion is borrowed from the
+        practice of Karate, where, in Dave's words
+        "a kata is an exercise where you repeat a form many, many times,
+        making little improvements in each".
+      </p>
+      <p>
+        Here we use several of Dave's Code Katas to explore the
+        Commons-Functor library.
+      </p>
+      <dl>
+        <dt><a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/one/">Kata One: Supermarket Pricing</a></dt>
+        <dd>
+          Dave's <a href="http://pragprog.com/pragdave/Practices/Kata/KataOne.rdoc,v">Kata One</a> asks how
+          one might implement supermarket pricing rules, like "three for a dollar" or "buy two get one free".
+          By encapsulating tiny bits of logic, functors provide a useful solution to this problem, as 
+          illustrated in the 
+          <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/one/SupermarketPricingExample.java">SupermarketPricingExample</a>.
+        </dd>
+
+        <dt><a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/two/">Kata Two: Binary Chop</a></dt>
+        <dd>
+          <a href="http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v">Kata Two</a> asks us
+          to create several different implementations of the binary search algorithm, which once you
+          get past three or four implementations, is more difficult that it sounds.            
+          <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/two/TestBinaryChop.java">TestBinaryChop</a>
+          presents several implementations, with functor and non-functor variations.
+        </dd>
+
+        <dt><a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/four/">Kata Four: Data Munging</a></dt>
+        <dd>
+          <a href="http://pragprog.com/pragdave/Practices/Kata/KataFour.doc,v">Kata Four</a> asks us
+          to explore extreme reuse.  Our
+          <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/four/DataMunger.java">DataMunger</a>
+          allosubsubsectionws for very small implementations of the 
             <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/four/TestWeather.java">weather</a>
             and
             <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/four/TestSoccer.java">soccer (football)</a>
@@ -109,15 +272,15 @@
           </dd>
 
         </dl>
-      </subsection>      
-      
-      <subsection name="Generators">        
+      </subsection>
+
+      <subsection name="Generators">
         <p>
           The <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/lines/">lines</a>
           package demonstrates a functional approach to IO using Generators and the Algorithms class.
         </p>
-      </subsection>   
-      
+      </subsection>
+
       <subsection name="Aggregators">
         <p>
             There are some code snippets / examples for the <code>org.apache.commons.functor.aggregator</code> package
@@ -129,65 +292,65 @@
             This shows how can you use an aggregator which doesn't store the data series and processes them on the fly.
             Also, there are examples provided which show how can you implement your own aggregation function
             to be used with this <code>Aggregator</code> type.
-            <br/>   
+            <br/>
             For using an <code>Aggregator</code> which stores the data series in a list, examples are in
             <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/aggregator/list/">org.apache.commons.functor.example.aggregator.list</a>.
             This shows how can you use the <code>ArrayList</code>-backed aggregator or provide your own <code>List</code>-based implementation.
             Also, there are examples provided which show how can you implement your own aggregation function
             to be used with this <code>Aggregator</code> type.
         </p>
-      </subsection>   
-      
+      </subsection>
+
       <subsection name="Reuse Through Composition">
          <p>
             The Functor package, and more generally, a functional approach
-            to program design, supports a powerful technique for balancing 
+            to program design, supports a powerful technique for balancing
             behavior specialization and code reuse.
          </p>
          <p>
             Traditional Object Oriented design suggests inheritence as a
             mechanism code reuse, and method overloading as a mechanism for
             specialization.  For example, one defines a general purpose, perhaps
-            even abstract class, say <i>AbstractList</i>, and then extend or 
-            specialize this parent via subclasses, inheriting some behaviors 
+            even abstract class, say <i>AbstractList</i>, and then extend or
+            specialize this parent via subclasses, inheriting some behaviors
             and overloading others.
          </p>
          <p>
             Functors encourage another, complementary approach to code reuse
             and behavior specialiazation: composition.  Following a compositional
-            design, we create a number of simple objects and then combine them to 
-            create more complex behaviors.  For example, the 
-            <a href="http://commons.apache.org/pool/">Commons Pool</a> 
+            design, we create a number of simple objects and then combine them to
+            create more complex behaviors.  For example, the
+            <a href="http://commons.apache.org/pool/">Commons Pool</a>
             component defines an <code>ObjectPool</code> type that maintains
-            a collection of pooled objects, but delegates to a 
-            <code>PoolableObjectFactory</code> to create, validate and destroy 
-            the objects to be pooled.  Arbitrary <code>ObjectPool</code> 
-            implementations can be composed with arbitrary 
+            a collection of pooled objects, but delegates to a
+            <code>PoolableObjectFactory</code> to create, validate and destroy
+            the objects to be pooled.  Arbitrary <code>ObjectPool</code>
+            implementations can be composed with arbitrary
             <code>PoolableObjectFactory</code>
             implementations in order to create new types of pools.
          </p>
          <p>
-            The 
+            The
             <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/FlexiMapExample.java">FlexiMap example</a> 
             applies this design to <code>java.util.Map</code>, demonstrating how 
             "pluggable" functors can be applied to a generic <code>Map</code> structure in order
             to introduce new behaviors.           
          </p>
          <p>
-            The 
+            The
             <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/map">map</a>
             package is a more complete example of this, implementing a number of the Commons-Collections Maps
             derived from a base 
             <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/map/FunctoredMap.java">FunctoredMap</a>.
          </p>
-      </subsection>      
-      <subsection name="A Quicksort Implementation">        
+      </subsection>
+      <subsection name="A Quicksort Implementation">
         <p>
           The <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/QuicksortExample.java">Quicksort example</a>
           presents an implementation of the Quicksort sorting algorithm written in a functional programming
           style using Commons Functor.
         </p>
-      </subsection>      
+      </subsection>
     </section>
   </body>
 </document>

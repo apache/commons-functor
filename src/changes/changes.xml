@@ -35,6 +35,9 @@
       <action dev="simonetripodi" issue="FUNCTOR-5" due-to="Bruno P. Kinoshita">
         Complete the javadoc description of Limit
       </action>
+      <action dev="simonetripodi" issue="FUNCTOR-4" due-to="Bruno P. Kinoshita">
+        Add easily accessible, user-friendly examples
+      </action>
       <action dev="simonetripodi" issue="FUNCTOR-2" due-to="Bruno P. Kinoshita">
         Improve Functor web page, removing Ant from building
       </action>
