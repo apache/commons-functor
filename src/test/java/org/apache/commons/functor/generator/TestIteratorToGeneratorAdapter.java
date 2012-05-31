@@ -31,6 +31,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Tests the Iterator to Generator Adapter class.
  * @version $Revision$ $Date$
  * @author Rodney Waldhoff
  */
