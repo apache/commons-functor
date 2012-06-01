@@ -31,7 +31,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public class TestBinaryPredicateUnaryPredicate extends BaseFunctorTest {
 

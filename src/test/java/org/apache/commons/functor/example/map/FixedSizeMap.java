@@ -28,7 +28,6 @@ import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class FixedSizeMap extends FunctoredMap {

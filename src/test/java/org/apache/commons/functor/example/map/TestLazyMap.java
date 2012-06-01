@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.collection.Size;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class TestLazyMap extends TestCase {

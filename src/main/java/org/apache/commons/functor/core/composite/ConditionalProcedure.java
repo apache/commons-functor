@@ -40,7 +40,6 @@ import org.apache.commons.lang3.Validate;
  * <code>Serializable</code> will result in an exception.
  * </p>
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class ConditionalProcedure implements Procedure, Serializable {
     /**

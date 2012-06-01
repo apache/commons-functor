@@ -34,7 +34,6 @@ import org.apache.commons.functor.BinaryPredicate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class BinaryAnd<L, R> extends BaseBinaryPredicateList<L, R> {
 

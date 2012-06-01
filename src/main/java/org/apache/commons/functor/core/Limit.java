@@ -30,10 +30,7 @@ import org.apache.commons.functor.UnaryPredicate;
  *
  * @since 1.0
  * @version $Revision$ $Date$
- * @author Jason Horman (jason@jhorman.org)
- * @author Rodney Waldhoff
  */
-
 public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
 	// static attributes
     // ------------------------------------------------------------------------
@@ -103,7 +100,7 @@ public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPre
     	Limit other = (Limit)obj;
     	return other.max == max;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -114,7 +111,7 @@ public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPre
     	result ^= max;
     	return result;
     }
-    
+
     /**
      * {@inheritDoc}
      */

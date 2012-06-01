@@ -28,7 +28,6 @@ import org.apache.commons.functor.UnaryProcedure;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
     /**

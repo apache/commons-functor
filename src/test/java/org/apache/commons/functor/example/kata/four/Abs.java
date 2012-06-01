@@ -23,7 +23,6 @@ import org.apache.commons.functor.UnaryFunction;
  * input parameter.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class Abs implements UnaryFunction<Number, Integer> {
 

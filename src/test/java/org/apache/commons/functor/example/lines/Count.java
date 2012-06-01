@@ -20,7 +20,6 @@ import org.apache.commons.functor.Procedure;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Count implements Procedure {
     public void run() {

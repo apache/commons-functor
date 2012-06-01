@@ -24,7 +24,6 @@ import org.apache.commons.lang3.Validate;
  * Adapts a BinaryPredicate as a UnaryPredicate by sending the same argument to both sides of the BinaryPredicate.
  * @param <A> the argument type.
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public final class BinaryPredicateUnaryPredicate<A> implements UnaryPredicate<A> {
     /**

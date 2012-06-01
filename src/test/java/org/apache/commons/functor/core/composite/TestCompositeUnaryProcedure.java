@@ -26,7 +26,6 @@ import org.apache.commons.functor.core.NoOp;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TestCompositeUnaryProcedure extends BaseFunctorTest {
 

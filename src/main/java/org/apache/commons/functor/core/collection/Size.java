@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <A> the function argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
 

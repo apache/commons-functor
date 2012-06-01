@@ -23,7 +23,6 @@ import org.apache.commons.functor.UnaryPredicate;
  * an Integer by {@link ToInteger}.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class IsInteger implements UnaryPredicate<String> {
     public boolean test(String obj) {

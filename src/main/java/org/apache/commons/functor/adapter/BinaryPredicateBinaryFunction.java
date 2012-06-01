@@ -37,7 +37,6 @@ import org.apache.commons.functor.BinaryPredicate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class BinaryPredicateBinaryFunction<L, R> implements BinaryFunction<L, R, Boolean>, Serializable {
     /**

@@ -40,7 +40,6 @@ import org.apache.commons.functor.UnaryPredicate;
  * </p>
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>, BinaryFunction<Object, Object, T>,
         Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {

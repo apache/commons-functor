@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <T> the {@link Iterator} generic type
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class FilteredIterator<T> implements Iterator<T> {
     // attributes

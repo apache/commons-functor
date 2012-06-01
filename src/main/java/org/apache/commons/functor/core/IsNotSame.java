@@ -28,7 +28,6 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public final class IsNotSame<L, R> implements BinaryPredicate<L, R>, Serializable {
     // static attributes

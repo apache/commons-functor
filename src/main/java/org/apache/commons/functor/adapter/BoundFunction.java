@@ -38,7 +38,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class BoundFunction<T> implements Function<T>, Serializable {
     /**

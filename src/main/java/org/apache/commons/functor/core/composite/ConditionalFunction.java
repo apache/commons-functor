@@ -41,7 +41,6 @@ import org.apache.commons.lang3.Validate;
  * </p>
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class ConditionalFunction<T> implements Function<T>, Serializable {
     /**

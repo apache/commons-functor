@@ -37,7 +37,6 @@ import org.apache.commons.functor.BinaryProcedure;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
 

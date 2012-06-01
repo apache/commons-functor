@@ -40,7 +40,6 @@ import org.apache.commons.functor.core.NoOp;
  * You only need to set the parts of the loop you want to use.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class EiffelStyleLoop implements Procedure {
     public EiffelStyleLoop from(Procedure procedure) {

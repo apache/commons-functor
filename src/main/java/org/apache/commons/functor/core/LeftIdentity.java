@@ -26,8 +26,6 @@ import org.apache.commons.functor.adapter.IgnoreRightFunction;
  * <code>BinaryPredicate</code> (tests whether left <code>Boolean</code> argument equals <code>Boolean.TRUE</code>).
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
- * @author Matt Benson
  */
 public final class LeftIdentity {
 

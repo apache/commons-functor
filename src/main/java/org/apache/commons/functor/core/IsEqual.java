@@ -37,7 +37,6 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class IsEqual<L, R> implements BinaryPredicate<L, R>, Serializable {
     // static attributes

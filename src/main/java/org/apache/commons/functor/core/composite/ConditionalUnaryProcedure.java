@@ -41,7 +41,6 @@ import org.apache.commons.lang3.Validate;
  * </p>
  * @param <A> the argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class ConditionalUnaryProcedure<A> implements UnaryProcedure<A>, Serializable {
     /**

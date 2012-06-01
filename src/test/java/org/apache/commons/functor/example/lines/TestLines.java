@@ -35,7 +35,6 @@ import org.apache.commons.functor.generator.TransformedGenerator;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TestLines extends TestCase {
 

@@ -36,7 +36,6 @@ import org.apache.commons.lang3.Validate;
  * </p>
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializable {
 

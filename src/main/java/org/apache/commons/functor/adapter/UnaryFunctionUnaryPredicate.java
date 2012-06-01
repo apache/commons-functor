@@ -37,7 +37,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <A> the argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, Serializable {
     /**

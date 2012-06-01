@@ -26,8 +26,6 @@ import java.io.Serializable;
  * used to implement loop procedures.
  * <p>
  * @version $Revision$ $Date$
- * @author Herve Quiroz
- * @author Rodney Waldhoff
  */
 public abstract class AbstractLoopProcedure implements Procedure, Serializable {
     /**

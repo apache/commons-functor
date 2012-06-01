@@ -25,7 +25,6 @@ import org.junit.Test;
  * for more information on this Kata.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TestSoccer {
 

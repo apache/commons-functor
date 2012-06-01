@@ -39,7 +39,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class IgnoreRightProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
     /**

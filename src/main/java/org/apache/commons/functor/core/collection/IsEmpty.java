@@ -27,7 +27,6 @@ import org.apache.commons.lang3.Validate;
 /**
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class IsEmpty<A> implements UnaryPredicate<A>, Serializable {
 

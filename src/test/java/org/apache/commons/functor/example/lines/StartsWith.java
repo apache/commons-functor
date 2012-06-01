@@ -21,7 +21,6 @@ import org.apache.commons.functor.UnaryPredicate;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class StartsWith<T> implements UnaryPredicate<T> {
     public StartsWith(String prefix) {

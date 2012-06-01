@@ -21,7 +21,6 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Mod extends ArithmeticOperation {
     public Number evaluate(Number left, Number right) {

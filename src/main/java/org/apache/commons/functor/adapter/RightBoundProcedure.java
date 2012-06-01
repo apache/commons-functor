@@ -38,7 +38,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <A> the argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializable {
     /**

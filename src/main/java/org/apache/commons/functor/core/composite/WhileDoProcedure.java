@@ -33,8 +33,6 @@ import org.apache.commons.functor.Procedure;
  * <code>Serializable</code> will result in an exception.
  * </p>
  * @version $Revision$ $Date$
- * @author Herve Quiroz
- * @author Rodney Waldhoff
  */
 public class WhileDoProcedure extends AbstractLoopProcedure {
     /**

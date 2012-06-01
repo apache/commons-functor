@@ -21,7 +21,6 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Divide extends ArithmeticOperation {
 

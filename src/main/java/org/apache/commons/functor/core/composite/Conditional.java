@@ -29,7 +29,6 @@ import org.apache.commons.functor.UnaryProcedure;
 /**
  * Utility methods for creating conditional functors.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class Conditional {
 

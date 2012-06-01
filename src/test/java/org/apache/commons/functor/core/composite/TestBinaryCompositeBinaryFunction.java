@@ -28,7 +28,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
 
@@ -68,7 +67,7 @@ public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
         assertNull("right",f.evaluate("left",null));
         assertEquals("right",f.evaluate(null,"right"));
     }
-    
+
     @Test
     public void testEvaluateObject() throws Exception {
         BinaryFunction<Object, Object, Object> f = new BinaryCompositeBinaryFunction<Object, Object, Object>(

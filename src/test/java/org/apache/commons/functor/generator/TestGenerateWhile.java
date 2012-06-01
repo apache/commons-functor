@@ -29,7 +29,6 @@ import org.junit.Test;
 
 /**
  * Tests the Generate While class.
- * @author Bruno P. Kinoshita (brunodepaulak@yahoo.com.br)
  */
 public class TestGenerateWhile
 {

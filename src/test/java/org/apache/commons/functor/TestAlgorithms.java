@@ -43,7 +43,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class TestAlgorithms {
@@ -81,7 +80,7 @@ public class TestAlgorithms {
     // Tests
     // ------------------------------------------------------------------------
 
-    
+
 
     @Test
     public void testRun() {

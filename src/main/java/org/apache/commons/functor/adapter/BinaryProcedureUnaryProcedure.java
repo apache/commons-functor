@@ -24,7 +24,6 @@ import org.apache.commons.lang3.Validate;
  * Adapts a BinaryProcedure as a UnaryProcedure by sending the same argument to both sides of the BinaryProcedure.
  * @param <A> the argument type.
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public final class BinaryProcedureUnaryProcedure<A> implements UnaryProcedure<A> {
     /**

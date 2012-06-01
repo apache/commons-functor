@@ -33,7 +33,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <T> the binary predicate input types
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serializable {
 

@@ -25,7 +25,6 @@ package org.apache.commons.functor;
  *
  * @since 1.0
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public interface Predicate extends NullaryFunctor {
     /**

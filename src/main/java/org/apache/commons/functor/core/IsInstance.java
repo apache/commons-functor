@@ -30,7 +30,6 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  *
  * @param <T> the object instance has to be tested against the input class.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serializable {
     /**

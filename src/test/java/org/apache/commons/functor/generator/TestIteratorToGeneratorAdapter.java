@@ -33,7 +33,6 @@ import org.junit.Test;
 /**
  * Tests the Iterator to Generator Adapter class.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {

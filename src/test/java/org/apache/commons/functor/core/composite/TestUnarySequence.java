@@ -28,7 +28,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class TestUnarySequence extends BaseFunctorTest {

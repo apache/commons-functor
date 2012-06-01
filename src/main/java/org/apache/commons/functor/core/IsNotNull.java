@@ -30,7 +30,6 @@ import org.apache.commons.functor.adapter.IgnoreRightPredicate;
  *
  * @param <T> the argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class IsNotNull<T> implements UnaryPredicate<T>, Serializable {
 

@@ -34,7 +34,6 @@ import org.junit.Test;
 
 /**
  * Tests the Filtered Generator class.
- * @author Bruno P. Kinoshita (brunodepaulak@yahoo.com.br)
  */
 public class TestFilteredGenerator
 {

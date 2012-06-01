@@ -24,8 +24,6 @@ import org.apache.commons.functor.UnaryProcedure;
  *
  * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
- * @author Jason Horman (jason@jhorman.org)
- * @author Rodney Waldhoff
  */
 public interface Generator<E> {
     /**

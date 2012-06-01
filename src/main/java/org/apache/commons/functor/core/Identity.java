@@ -32,7 +32,6 @@ import org.apache.commons.functor.UnaryPredicate;
  *
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class Identity<T> implements UnaryFunction<T, T>, UnaryPredicate<T>, Serializable {
     // static attributes

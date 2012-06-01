@@ -35,7 +35,6 @@ import org.apache.commons.lang3.Validate;
  * <code>Serializable</code> will result in an exception.
  * </p>
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 abstract class BasePredicateList implements Predicate, Serializable {
     /**

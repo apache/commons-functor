@@ -26,7 +26,6 @@ import org.apache.commons.functor.generator.util.CollectionTransformer;
  * @param <E> the type of elements held in this generator.
  * @since 1.0
  * @version $Revision$ $Date$
- * @author  Jason Horman (jason@jhorman.org)
  */
 public abstract class BaseGenerator<E> implements Generator<E> {
 

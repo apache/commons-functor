@@ -21,7 +21,6 @@ import org.apache.commons.functor.adapter.LeftBoundFunction;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Multiply extends ArithmeticOperation {
 

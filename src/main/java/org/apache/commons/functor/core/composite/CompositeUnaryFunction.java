@@ -48,8 +48,6 @@ import org.apache.commons.lang3.Validate;
  * @param <A> the argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
- * @author Matt Benson
  */
 public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serializable {
 

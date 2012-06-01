@@ -25,7 +25,6 @@ import junit.framework.TestSuite;
  * for more information on this Kata.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TestWeather extends TestCase {
     public TestWeather(String testName) {

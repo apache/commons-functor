@@ -28,7 +28,6 @@ import org.apache.commons.functor.core.composite.ConditionalBinaryFunction;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class PredicatedMap extends FunctoredMap {

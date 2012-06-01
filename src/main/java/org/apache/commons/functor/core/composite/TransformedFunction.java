@@ -26,7 +26,6 @@ import org.apache.commons.functor.UnaryFunction;
  *
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public class TransformedFunction<T> implements Function<T>, Serializable {
     /**

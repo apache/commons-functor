@@ -28,7 +28,6 @@ import org.apache.commons.functor.UnaryFunction;
  * @param <R> the right argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
     /**

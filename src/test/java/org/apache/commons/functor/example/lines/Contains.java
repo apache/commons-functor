@@ -21,7 +21,6 @@ import org.apache.commons.functor.UnaryPredicate;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Contains<T> implements UnaryPredicate<T> {
     public Contains(String str) {

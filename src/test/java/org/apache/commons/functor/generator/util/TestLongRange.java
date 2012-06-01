@@ -27,8 +27,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Jason Horman (jason@jhorman.org)
- * @author Rodney Waldhoff
  */
 public class TestLongRange extends BaseFunctorTest {
 

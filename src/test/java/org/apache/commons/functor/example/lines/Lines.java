@@ -27,7 +27,6 @@ import org.apache.commons.functor.generator.BaseGenerator;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Lines extends BaseGenerator<String> {
     public static Lines from(Reader reader) {
@@ -45,7 +44,7 @@ public class Lines extends BaseGenerator<String> {
             in = new BufferedReader(reader);
         }
     }
-    
+
     public void run(UnaryProcedure<? super String> proc) {
         try {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
@@ -73,7 +72,7 @@ public class Lines extends BaseGenerator<String> {
     }
 
     private BufferedReader in = null;
-    
+
     private class TunneledException extends RuntimeException {
         private Exception exception = null;
         TunneledException(Exception exception) {

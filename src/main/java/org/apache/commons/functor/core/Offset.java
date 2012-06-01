@@ -29,10 +29,7 @@ import org.apache.commons.functor.UnaryPredicate;
  *
  * @since 1.0
  * @version $Revision$ $Date$
- * @author Jason Horman (jason@jhorman.org)
- * @author Rodney Waldhoff
  */
-
 public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
 	// static attributes
     // ------------------------------------------------------------------------
@@ -40,7 +37,7 @@ public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPr
 	 * serialVersionUID declaration.
 	 */
 	private static final long serialVersionUID = 5800706757874735854L;
-	
+
 	// instance variables
     //---------------------------------------------------------------
     /**
@@ -103,7 +100,7 @@ public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPr
     	Offset other = (Offset)obj;
     	return other.min == min;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -114,7 +111,7 @@ public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPr
     	result ^= min;
     	return result;
     }
-    
+
     /**
      * {@inheritDoc}
      */

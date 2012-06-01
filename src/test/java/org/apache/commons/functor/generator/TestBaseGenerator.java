@@ -32,7 +32,6 @@ import org.junit.Test;
 
 /**
  * Tests the Base Generator class.
- * @author Jason Horman (jason@jhorman.org)
  */
 @SuppressWarnings("unchecked")
 public class TestBaseGenerator {

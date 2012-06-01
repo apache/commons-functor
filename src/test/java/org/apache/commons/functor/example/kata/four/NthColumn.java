@@ -25,7 +25,6 @@ import org.apache.commons.functor.UnaryFunction;
  * delmited column.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class NthColumn implements UnaryFunction<String, String> {
     public NthColumn(int n) {

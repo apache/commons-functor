@@ -37,7 +37,6 @@ import org.apache.commons.lang3.Validate;
  * <code>Serializable</code> will result in an exception.
  *
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public final class FullyBoundPredicate implements Predicate, Serializable {
 

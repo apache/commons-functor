@@ -34,7 +34,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TestSize extends BaseFunctorTest {
 

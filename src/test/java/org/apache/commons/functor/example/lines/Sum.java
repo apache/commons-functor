@@ -20,7 +20,6 @@ import org.apache.commons.functor.BinaryFunction;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Sum implements BinaryFunction<Number, Number, Integer> {
     public Integer evaluate(Number left, Number right) {

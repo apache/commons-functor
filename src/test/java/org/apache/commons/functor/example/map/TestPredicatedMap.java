@@ -28,7 +28,6 @@ import org.apache.commons.functor.core.IsInstance;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class TestPredicatedMap extends TestCase {

@@ -45,7 +45,6 @@ import org.apache.commons.lang3.Validate;
  * </p>
  * @param <A> the procedure argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class CompositeUnaryProcedure<A> implements UnaryProcedure<A>, Serializable {
     /**

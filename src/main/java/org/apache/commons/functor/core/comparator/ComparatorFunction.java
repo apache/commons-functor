@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <T> the binary function input types
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer>, Serializable {
 

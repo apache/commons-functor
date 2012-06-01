@@ -22,7 +22,6 @@ import org.apache.commons.functor.UnaryFunction;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class WordCount implements UnaryFunction<String, Integer> {
     public Integer evaluate(String obj) {

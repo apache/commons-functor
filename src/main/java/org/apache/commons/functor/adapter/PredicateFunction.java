@@ -36,7 +36,6 @@ import org.apache.commons.lang3.Validate;
  * <code>Serializable</code> will result in an exception.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class PredicateFunction implements Function<Boolean>, Serializable {
     /**

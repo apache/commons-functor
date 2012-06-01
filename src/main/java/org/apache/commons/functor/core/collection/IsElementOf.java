@@ -34,8 +34,6 @@ import org.apache.commons.lang3.Validate;
  * @param <R> the right argument type.
  * @since 1.0
  * @version $Revision$ $Date$
- * @author  Jason Horman (jason@jhorman.org)
- * @author  Rodney Waldhoff
  */
 public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializable {
     // static members

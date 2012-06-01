@@ -22,8 +22,6 @@ import org.apache.commons.functor.generator.BaseGenerator;
  *
  * @since 1.0
  * @version $Revision$ $Date$
- * @author Jason Horman (jason@jhorman.org)
- * @author Rodney Waldhoff
  */
 public final class LongRange extends BaseGenerator<Long> {
     // attributes

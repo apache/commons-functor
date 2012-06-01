@@ -24,7 +24,6 @@ import java.util.Comparator;
  * of this class.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 final class ComparableComparator implements Comparator, Serializable {

@@ -29,7 +29,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public class TestFullyBoundPredicate extends BaseFunctorTest {
 

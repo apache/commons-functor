@@ -37,7 +37,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, Serializable {
 

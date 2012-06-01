@@ -39,7 +39,6 @@ import org.apache.commons.functor.UnaryProcedure;
  * </p>
  * @param <A> the argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
 

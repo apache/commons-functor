@@ -38,7 +38,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public final class FullyBoundFunction<T> implements Function<T>, Serializable {
     /**

@@ -40,7 +40,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
     /**

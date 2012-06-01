@@ -21,7 +21,6 @@ import org.apache.commons.functor.UnaryFunction;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Product {
     public Product(String name, String sku, int cost) {

@@ -33,7 +33,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Herve Quiroz
  */
 public class TestWhileDoProcedure extends BaseFunctorTest {
 

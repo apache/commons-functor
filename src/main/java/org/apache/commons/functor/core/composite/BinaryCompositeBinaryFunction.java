@@ -38,7 +38,6 @@ import org.apache.commons.lang3.Validate;
  * @param <R> the function right argument type.
  * @param <T> the function returned value type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
 

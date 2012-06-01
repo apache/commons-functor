@@ -29,7 +29,6 @@ import org.apache.commons.functor.UnaryProcedure;
  * {@link UnaryProcedure}, and {@link BinaryProcedure}.
  * </p>
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProcedure<Object, Object>, Serializable {
     // static attributes

@@ -34,7 +34,6 @@ import org.apache.commons.lang3.Validate;
  * </p>
  * @param <A> the argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     /**

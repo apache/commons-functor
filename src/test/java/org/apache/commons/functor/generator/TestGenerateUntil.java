@@ -29,7 +29,6 @@ import org.junit.Test;
 
 /**
  * Tests the Generate Until class.
- * @author Bruno P. Kinoshita (brunodepaulak@yahoo.com.br)
  */
 public class TestGenerateUntil
 {

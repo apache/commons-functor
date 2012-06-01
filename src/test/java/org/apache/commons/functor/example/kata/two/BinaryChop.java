@@ -23,7 +23,6 @@ import java.util.List;
  * for more information on this Kata.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public interface BinaryChop {
     int find(int seeking, int[] in);

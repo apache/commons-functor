@@ -32,7 +32,6 @@ import org.apache.commons.functor.Predicate;
  * <code>Serializable</code> will result in an exception.
  * </p>
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class And extends BasePredicateList {
 

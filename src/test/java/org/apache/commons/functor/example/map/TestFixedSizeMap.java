@@ -26,7 +26,6 @@ import junit.framework.TestSuite;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 @SuppressWarnings("unchecked")
 public class TestFixedSizeMap extends TestCase {

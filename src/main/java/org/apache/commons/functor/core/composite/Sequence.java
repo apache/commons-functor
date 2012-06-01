@@ -38,7 +38,6 @@ import org.apache.commons.functor.Procedure;
  * <code>Serializable</code> will result in an exception.
  * </p>
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class Sequence implements Procedure, Serializable {
 

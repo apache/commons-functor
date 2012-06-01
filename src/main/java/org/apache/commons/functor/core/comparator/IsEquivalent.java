@@ -34,8 +34,6 @@ import org.apache.commons.lang3.Validate;
  * @see org.apache.commons.functor.core.IsEqual
  * @param <T> the binary predicate input types
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
- *
  */
 public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializable {
 

@@ -37,7 +37,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author Jason Horman (jason@jhorman.org)
  */
 public class TestEachElement extends BaseFunctorTest {
 

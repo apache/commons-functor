@@ -22,7 +22,6 @@ import junit.framework.TestSuite;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class TestAll extends TestCase {
     public TestAll(String testName) {

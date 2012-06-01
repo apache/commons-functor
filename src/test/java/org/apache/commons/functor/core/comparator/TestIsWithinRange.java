@@ -25,8 +25,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
- * @author Jason Horman
  */
 public class TestIsWithinRange extends BaseFunctorTest {
 

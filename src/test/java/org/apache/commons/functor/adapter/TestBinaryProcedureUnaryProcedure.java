@@ -27,7 +27,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Matt Benson
  */
 public class TestBinaryProcedureUnaryProcedure extends BaseFunctorTest {
 

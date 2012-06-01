@@ -21,7 +21,6 @@ import org.apache.commons.functor.core.composite.Composite;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public class ToMoney implements UnaryFunction<Number, Money> {
 

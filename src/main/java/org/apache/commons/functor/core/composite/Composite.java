@@ -25,7 +25,6 @@ import org.apache.commons.functor.UnaryProcedure;
 /**
  * Utility/fluent methods for creating composite functors.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class Composite {
     // constructor - for beanish apis

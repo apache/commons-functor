@@ -30,7 +30,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <T> the binary function arguments and return types.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
 

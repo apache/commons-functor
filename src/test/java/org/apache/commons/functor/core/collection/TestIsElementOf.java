@@ -29,8 +29,6 @@ import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
- * @author Jason Horman
  */
 @SuppressWarnings("unchecked")
 public class TestIsElementOf extends BaseFunctorTest {

@@ -26,7 +26,6 @@ import org.apache.commons.functor.UnaryFunction;
  * are ignored.
  *
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class ToInteger implements UnaryFunction<String, Integer> {
 

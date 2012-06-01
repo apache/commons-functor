@@ -27,9 +27,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
- * @author  Jason Horman (jason@jhorman.org)
  */
-
 public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>, Serializable {
     /**
      * serialVersionUID declaration.

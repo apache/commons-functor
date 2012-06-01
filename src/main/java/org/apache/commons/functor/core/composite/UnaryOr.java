@@ -33,7 +33,6 @@ import org.apache.commons.functor.UnaryPredicate;
  * </p>
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
- * @author Rodney Waldhoff
  */
 public final class UnaryOr<A> extends BaseUnaryPredicateList<A> {
 
