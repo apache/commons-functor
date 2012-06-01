@@ -222,7 +222,29 @@ filteredGenerator.run(compositeProcedure.of(doubler));
          The <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/lines/">lines</a>
          package demonstrates a functional approach to IO using Generators and the Algorithms class.
        </p>
-    </subsection> 
+    </subsection>
+
+    <subsection name="Aggregators">
+      <p>
+         There are some code snippets / examples for the <code>org.apache.commons.functor.aggregator</code> package
+         available on <a href="aggregator.html">this page</a>. Also, to exemplify the usage of the <code>Aggregator</code>
+         classes, there are code examples in the test section.
+      </p>
+      <p>
+         First such set of example involves the usage of the <i>nostore</i> <code>Aggregator</code>. Code can be found in
+         <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/aggregator/nostore/">org.apache.commons.functor.example.aggregator.nostore</a>.
+         This shows how can you use an aggregator which doesn't store the data series and processes them on the fly.
+         Also, there are examples provided which show how can you implement your own aggregation function
+         to be used with this <code>Aggregator</code> type.
+      </p>
+      <p>
+         For using an <code>Aggregator</code> which stores the data series in a list, examples are in
+         <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/aggregator/list/">org.apache.commons.functor.example.aggregator.list</a>.
+         This shows how can you use the <code>ArrayList</code>-backed aggregator or provide your own <code>List</code>-based implementation.
+         Also, there are examples provided which show how can you implement your own aggregation function
+         to be used with this <code>Aggregator</code> type.
+      </p>
+    </subsection>
 
     <subsection name="Code Katas">
       <p>
@@ -270,80 +292,9 @@ filteredGenerator.run(compositeProcedure.of(doubler));
             <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/kata/four/TestSoccer.java">soccer (football)</a>
             parsers.
           </dd>
-
         </dl>
       </subsection>
 
-      <subsection name="Generators">
-        <p>
-          The <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/lines/">lines</a>
-          package demonstrates a functional approach to IO using Generators and the Algorithms class.
-        </p>
-      </subsection>
-
-      <subsection name="Aggregators">
-        <p>
-            There are some code snippets / examples for the <code>org.apache.commons.functor.aggregator</code> package
-            available on <a href="aggregator.html">this page</a>. Also, to exemplify the usage of the <code>Aggregator</code>
-            classes, there are code examples in the test section.
-            <br/>
-            First such set of example involves the usage of the <i>nostore</i> <code>Aggregator</code>. Code can be found in
-            <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/aggregator/nostore/">org.apache.commons.functor.example.aggregator.nostore</a>.
-            This shows how can you use an aggregator which doesn't store the data series and processes them on the fly.
-            Also, there are examples provided which show how can you implement your own aggregation function
-            to be used with this <code>Aggregator</code> type.
-            <br/>
-            For using an <code>Aggregator</code> which stores the data series in a list, examples are in
-            <a href="http://svn.apache.org/viewvc/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/aggregator/list/">org.apache.commons.functor.example.aggregator.list</a>.
-            This shows how can you use the <code>ArrayList</code>-backed aggregator or provide your own <code>List</code>-based implementation.
-            Also, there are examples provided which show how can you implement your own aggregation function
-            to be used with this <code>Aggregator</code> type.
-        </p>
-      </subsection>
-
-      <subsection name="Reuse Through Composition">
-         <p>
-            The Functor package, and more generally, a functional approach
-            to program design, supports a powerful technique for balancing
-            behavior specialization and code reuse.
-         </p>
-         <p>
-            Traditional Object Oriented design suggests inheritence as a
-            mechanism code reuse, and method overloading as a mechanism for
-            specialization.  For example, one defines a general purpose, perhaps
-            even abstract class, say <i>AbstractList</i>, and then extend or
-            specialize this parent via subclasses, inheriting some behaviors
-            and overloading others.
-         </p>
-         <p>
-            Functors encourage another, complementary approach to code reuse
-            and behavior specialiazation: composition.  Following a compositional
-            design, we create a number of simple objects and then combine them to
-            create more complex behaviors.  For example, the
-            <a href="http://commons.apache.org/pool/">Commons Pool</a>
-            component defines an <code>ObjectPool</code> type that maintains
-            a collection of pooled objects, but delegates to a
-            <code>PoolableObjectFactory</code> to create, validate and destroy
-            the objects to be pooled.  Arbitrary <code>ObjectPool</code>
-            implementations can be composed with arbitrary
-            <code>PoolableObjectFactory</code>
-            implementations in order to create new types of pools.
-         </p>
-         <p>
-            The
-            <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/FlexiMapExample.java">FlexiMap example</a> 
-            applies this design to <code>java.util.Map</code>, demonstrating how 
-            "pluggable" functors can be applied to a generic <code>Map</code> structure in order
-            to introduce new behaviors.           
-         </p>
-         <p>
-            The
-            <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/map">map</a>
-            package is a more complete example of this, implementing a number of the Commons-Collections Maps
-            derived from a base 
-            <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/map/FunctoredMap.java">FunctoredMap</a>.
-         </p>
-      </subsection>
       <subsection name="A Quicksort Implementation">
         <p>
           The <a href="http://svn.apache.org/repos/asf/commons/proper/functor/trunk/src/test/java/org/apache/commons/functor/example/QuicksortExample.java">Quicksort example</a>

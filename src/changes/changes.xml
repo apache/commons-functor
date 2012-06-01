@@ -23,6 +23,9 @@
   </properties>
   <body>
     <release version="1.0" date="2012-??-??" description="First release.">
+      <action dev="simonetripodi" issue="FUNCTOR-18" due-to="Bruno P. Kinoshita">
+        Fix duplicated entries in examples page of [functor] website, and replace &lt;br/&gt; tags in aggregator.xml
+      </action>
       <action dev="simonetripodi" issue="FUNCTOR-17">
         Move developers from @author tags to pom.xml
       </action>
