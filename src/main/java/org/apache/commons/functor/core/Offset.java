@@ -31,14 +31,14 @@ import org.apache.commons.functor.UnaryPredicate;
  * @version $Revision$ $Date$
  */
 public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
-	// static attributes
+    // static attributes
     // ------------------------------------------------------------------------
     /**
-	 * serialVersionUID declaration.
-	 */
-	private static final long serialVersionUID = 5800706757874735854L;
+     * serialVersionUID declaration.
+     */
+    private static final long serialVersionUID = 5800706757874735854L;
 
-	// instance variables
+    // instance variables
     //---------------------------------------------------------------
     /**
      * The number of times the predicate must return {@code false}.
@@ -91,14 +91,14 @@ public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPr
      */
     @Override
     public boolean equals(Object obj) {
-    	if(obj == this) {
-    		return true;
-    	}
-    	if(!(obj instanceof Offset)) {
-    		return false;
-    	}
-    	Offset other = (Offset)obj;
-    	return other.min == min;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Offset)) {
+            return false;
+        }
+        Offset other = (Offset) obj;
+        return other.min == min;
     }
 
     /**
@@ -106,10 +106,10 @@ public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPr
      */
     @Override
     public int hashCode() {
-    	int result = "Offset".hashCode();
-    	result <<= 2;
-    	result ^= min;
-    	return result;
+        int result = "Offset".hashCode();
+        result <<= 2;
+        result ^= min;
+        return result;
     }
 
     /**
