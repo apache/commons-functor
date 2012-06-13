@@ -19,57 +19,18 @@ package org.apache.commons.functor;
 /**
  * Functor marker interface.  All provided functor interfaces extend this interface.
  * <p>
- * Implementors are encouraged but not required to make their functors
- * {@link java.io.Serializable Serializable}.
+ * While not strictly required,
+ * it is <em>encouraged</em> that functor implementations:
+ * <ul>
+ *   <li>Implement {@link java.io.Serializable Serializable}</li>
+ *   <li>Override {@link java.lang.Object#equals(java.lang.Object)}</li>
+ *   <li>Override {@link java.lang.Object#hashCode()}</li>
+ *   <li>Override {@link java.lang.Object#toString()}</li>
+ * </ul>
  * </p>
  *
  * @since 1.0
  * @version $Revision$ $Date$
  */
 public interface Functor {
-
-    /**
-     * Returns a human readable description of this functor.
-     * Implementators are strongly encouraged but not
-     * strictly required to override the default {@link Object}
-     * implementation of this method.
-     *
-     * @return a human readable description of this functor
-     */
-    String toString();
-
-    /**
-     * Returns a hash code for this functor adhering to the
-     * general {@link Object#hashCode Object.hashCode} contract.
-     * Implementators are strongly encouraged but not
-     * strictly required to override the default {@link Object}
-     * implementation of this method.
-     *
-     * @see #equals
-     * @return a hash code for this functor
-     */
-    int hashCode();
-
-    /**
-     * Indicates whether some other object is &quot;equal to&quot;
-     * this functor.  This method must adhere to
-     * general {@link Object#equals Object.equals} contract.
-     * Additionally, this method can return
-     * <tt>true</tt> <i>only</i> if the specified Object implements
-     * the same functor interface and is known to produce the same
-     * results and/or side-effects for the same arguments (if any).
-     * <p>
-     * While implementators are strongly encouraged to override
-     * the default Object implementation of this method,
-     * note that the default Object implementation
-     * does in fact adhere to the functor <code>equals</code> contract.
-     * </p>
-     * @param that the object to compare this functor to
-     * @see #hashCode
-     * @return <code>true</code> iff the given object implements
-     *         this functor interface, and is known to produce the same
-     *         results and/or side-effects for the same arguments
-     *         (if any).
-     */
-    boolean equals(Object that);
 }
