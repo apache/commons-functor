@@ -55,6 +55,8 @@ public abstract class BaseFunctorTest {
         } else {
             assertTrue("equals must be symmetric",! obj2.equals(obj));
         }
+        
+        assertTrue("a functor is not equal to an integer", ! obj.equals(new Integer(1)));
     }
 
     @Test

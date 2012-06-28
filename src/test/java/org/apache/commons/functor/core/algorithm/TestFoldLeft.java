@@ -17,45 +17,27 @@
 package org.apache.commons.functor.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.core.algorithm.FoldLeft;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.junit.Test;
 
 /**
  * Tests {@link FoldLeft} algorithm.
  */
-public class TestFoldLeft {
+public class TestFoldLeft extends BaseFunctorTest {
 
-    @Test
-    public final void testObjectEquals() throws Exception {
-        Object obj = new FoldLeft<Integer>(new BinaryFunction<Integer, Integer, Integer>() {
-            public Integer evaluate(Integer a, Integer b) {
-                return new Integer(a + b);
-            }
-        });
-        assertEquals("equals must be reflexive",obj,obj);
-        assertEquals("hashCode must be reflexive",obj.hashCode(),obj.hashCode());
-        assertTrue(! obj.equals(null) ); // should be able to compare to null
-
-        Object obj2 = new FoldLeft<Integer>(new BinaryFunction<Integer, Integer, Integer>() {
-            public Integer evaluate(Integer a, Integer b) {
-                return new Integer(a + b);
-            }
-        });
-        if (obj.equals(obj2)) {
-            assertEquals("equals implies hash equals",obj.hashCode(),obj2.hashCode());
-            assertEquals("equals must be symmetric",obj2,obj);
-        } else {
-            assertTrue("equals must be symmetric",! obj2.equals(obj));
-        }
+    @Override
+    protected Object makeFunctor() throws Exception {
+        return new FoldLeft<Integer>(new Sum());
     }
-
+    
     @Test
     public void testFoldLeft() {
         FoldLeft<Integer> foldLeft = new FoldLeft<Integer>(new BinaryFunction<Integer, Integer, Integer>() {
@@ -65,6 +47,7 @@ public class TestFoldLeft {
         });
         assertEquals(new Integer(sum), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator())));
         assertEquals(new Integer(sum), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()), new Integer(0)));
+        assertEquals(new Integer(0), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(new ArrayList<Integer>(0).iterator()), new Integer(0)), new Integer(0));
     }
 
     // Attributes
@@ -72,4 +55,28 @@ public class TestFoldLeft {
     private List<Integer> list = Arrays.asList(0,1,2);
     private int sum = 3;
 
+    // Classes
+    // ------------------------------------------------------------------------
+    
+    static class Sum implements BinaryFunction<Integer, Integer, Integer>, Serializable {
+        private static final long serialVersionUID = 1L;
+        
+        public Integer evaluate(Integer a, Integer b) {
+            return new Integer(a + b);
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if(this == obj) {
+                return true;
+            }
+            return obj != null && obj.getClass().equals(this.getClass());
+        }
+        
+        @Override
+        public int hashCode() {
+            return "Sum".hashCode();
+        }
+    }
+    
 }

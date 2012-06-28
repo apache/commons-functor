@@ -58,7 +58,7 @@ public class TestInPlaceTransform extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() throws Exception {
-        return new InPlaceTransform<Integer>();
+        return InPlaceTransform.instance();
     }
 
     @Test

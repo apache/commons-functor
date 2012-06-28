@@ -25,7 +25,6 @@ import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.adapter.LeftBoundPredicate;
 import org.apache.commons.functor.core.IsEqual;
-import org.apache.commons.functor.core.algorithm.IndexOfInGenerator;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.junit.Test;
 
@@ -36,7 +35,7 @@ public class TestIndexOfInGenerator extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() throws Exception {
-        return new IndexOfInGenerator<Integer>();
+        return IndexOfInGenerator.instance();
     }
 
     @Test

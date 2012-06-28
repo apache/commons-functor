@@ -17,31 +17,22 @@
 package org.apache.commons.functor.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import java.io.Serializable;
+
+import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
-import org.apache.commons.functor.core.algorithm.RecursiveEvaluation;
 import org.junit.Test;
 
 /**
  * Tests {@link RecursiveEvaluation} algorithm.
  */
-public class TestRecursiveEvaluation {
+public class TestRecursiveEvaluation extends BaseFunctorTest {
 
-    @Test
-    public final void testObjectEquals() throws Exception {
-        Object obj = new RecursiveEvaluation(new RecFunc(0, false));
-        assertEquals("equals must be reflexive",obj,obj);
-        assertEquals("hashCode must be reflexive",obj.hashCode(),obj.hashCode());
-        assertTrue(! obj.equals(null) ); // should be able to compare to null
-
-        Object obj2 = new RecursiveEvaluation(new RecFunc(0, false));
-        if (obj.equals(obj2)) {
-            assertEquals("equals implies hash equals",obj.hashCode(),obj2.hashCode());
-            assertEquals("equals must be symmetric",obj2,obj);
-        } else {
-            assertTrue("equals must be symmetric",! obj2.equals(obj));
-        }
+    @Override
+    protected Object makeFunctor() throws Exception {
+        return new RecursiveEvaluation(new RecFunc(0, false));
     }
 
     @Test
@@ -54,10 +45,28 @@ public class TestRecursiveEvaluation {
         Function<Object> func = (Function) new RecursiveEvaluation(new RecFunc(0, true)).evaluate();
         assertEquals(new Integer(5), func.evaluate());
     }
+    
+    @Test
+    public void testConstructors() {
+        try {
+            new RecursiveEvaluation(new RecFunc(0, false), java.lang.Integer.class);
+            fail("Not supposed to get here.");
+        } catch(IllegalArgumentException e) {}
+        try {
+            new RecursiveEvaluation(null);
+            fail("Not supposed to get here.");
+        } catch(NullPointerException e) {}
+    }
 
+    // Classes
+    // ------------------------------------------------------------------------
+    
     /** Recursive function for test. */
-    class RecFunc implements Function<Object> {
-        int times = 0; boolean returnFunc = false;
+    static class RecFunc implements Function<Object>, Serializable {
+        private static final long serialVersionUID = 1L;
+
+        int times = 0; 
+        boolean returnFunc = false;
 
         public RecFunc(int times, boolean returnFunc) {
             this.times = times;
@@ -69,16 +78,59 @@ public class TestRecursiveEvaluation {
                 return new RecFunc(++times, returnFunc);
             } else {
                 if (returnFunc) {
-                    return new Function<Object>() {
-                        public Object evaluate() {
-                            return new Integer(times);
-                        }
-                    };
+                    return new InnerFunction(times);
                 } else {
                     return new Integer(times);
                 }
             }
         }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if(this == obj) {
+                return true;
+            }
+            if(obj == null || obj.getClass() != this.getClass()) {
+                return false;
+            }
+            return this.times == ((RecFunc)obj).times && this.returnFunc == ((RecFunc)obj).returnFunc;
+        }
+        
+        @Override
+        public int hashCode() {
+            return "RecFunc".hashCode() << 2 ^ times;
+        }
     }
+    
+    /** Inner function called from recursive function */
+    static class InnerFunction implements Function<Object>, Serializable {
+        private static final long serialVersionUID = 1L;
+        
+        private int times;
+        
+        public InnerFunction(int times) {
+            this.times = times;
+        }
+        
+        public Object evaluate() {
+            return new Integer(times);
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if(this == obj) {
+                return true;
+            }
+            if(obj == null || ! (obj instanceof InnerFunction)) {
+                return false;
+            }
+            return this.times == ((InnerFunction)obj).times;
+        }
+        
+        @Override
+        public int hashCode() {
+            return "InnerFunction".hashCode() << 2 ^ times;
+        }
+    };
 
 }

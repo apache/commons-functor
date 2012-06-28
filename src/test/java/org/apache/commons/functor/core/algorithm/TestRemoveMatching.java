@@ -60,7 +60,7 @@ public class TestRemoveMatching extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() throws Exception {
-        return new RemoveMatching<Integer>();
+        return RemoveMatching.instance();
     }
 
     @Test

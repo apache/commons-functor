@@ -17,61 +17,67 @@
 package org.apache.commons.functor.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.core.algorithm.FoldRight;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.junit.Test;
 
 /**
  * Tests {@link FoldRight} algorithm.
  */
-public class TestFoldRight {
+public class TestFoldRight extends BaseFunctorTest {
 
-    @Test
-    public final void testObjectEquals() throws Exception {
-        Object obj = new FoldRight<Object>(new BinaryFunction<Object, Object, Object>() {
-            public Object evaluate(Object left, Object right) {
-                StringBuffer buf = left instanceof StringBuffer ? (StringBuffer) left : new StringBuffer().append(left);
-                return buf.append(right);
-            }
-        });
-        assertEquals("equals must be reflexive",obj,obj);
-        assertEquals("hashCode must be reflexive",obj.hashCode(),obj.hashCode());
-        assertTrue(! obj.equals(null) ); // should be able to compare to null
-
-        Object obj2 = new FoldRight<Object>(new BinaryFunction<Object, Object, Object>() {
-            public Object evaluate(Object left, Object right) {
-                StringBuffer buf = left instanceof StringBuffer ? (StringBuffer) left : new StringBuffer().append(left);
-                return buf.append(right);
-            }
-        });
-        if (obj.equals(obj2)) {
-            assertEquals("equals implies hash equals",obj.hashCode(),obj2.hashCode());
-            assertEquals("equals must be symmetric",obj2,obj);
-        } else {
-            assertTrue("equals must be symmetric",! obj2.equals(obj));
-        }
+    @Override
+    protected Object makeFunctor() throws Exception {
+        return new FoldRight<Object>(new StringConcatenator());
     }
-
+    
     @Test
     public void testFoldRight() {
         FoldRight<Object> foldRight = new FoldRight<Object>(new BinaryFunction<Object, Object, Object>() {
             public Object evaluate(Object left, Object right) {
-                StringBuffer buf = left instanceof StringBuffer ? (StringBuffer) left : new StringBuffer().append(left);
+                StringBuilder buf = left instanceof StringBuilder ? (StringBuilder) left : new StringBuilder().append(left);
                 return buf.append(right);
             }
         });
         assertEquals("0123456789", foldRight.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator())).toString());
         assertEquals("0123456789x", foldRight.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()), "x").toString());
+        assertEquals("x", foldRight.evaluate(IteratorToGeneratorAdapter.adapt(new ArrayList<Object>().iterator()), "x").toString());
     }
 
     // Attributes
     // ------------------------------------------------------------------------
     private List<Object> list = Arrays.<Object>asList(0,1,2,3,4,5,6,7,8,9);
 
+    // Classes
+    // ------------------------------------------------------------------------
+    
+    static class StringConcatenator implements BinaryFunction<Object, Object, Object>, Serializable {
+        private static final long serialVersionUID = 1L;
+
+        public Object evaluate(Object left, Object right) {
+            StringBuilder buf = left instanceof StringBuilder ? (StringBuilder) left : new StringBuilder().append(left);
+            return buf.append(right);
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if(this == obj) {
+                return true;
+            }
+            return obj != null && obj instanceof StringConcatenator;
+        }
+        
+        @Override
+        public int hashCode() {
+            return "StringConcatenator".hashCode();
+        }
+    }
+    
 }

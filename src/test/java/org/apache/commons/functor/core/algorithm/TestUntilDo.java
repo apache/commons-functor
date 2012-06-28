@@ -17,35 +17,28 @@
 package org.apache.commons.functor.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import java.io.Serializable;
+
+import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.Offset;
-import org.apache.commons.functor.core.algorithm.UntilDo;
 import org.junit.Test;
 
 /**
  * Tests {@link UntilDo} algorithm.
  */
-public class TestUntilDo {
+public class TestUntilDo extends BaseFunctorTest {
 
-    @Test
-    public final void testObjectEquals() throws Exception {
+    // Functor Testing Framework
+    // ------------------------------------------------------------------------
+
+    @Override
+    protected Object makeFunctor() throws Exception {
         Counter counter = new Counter();
-        Object obj = new UntilDo(new Offset(10), counter);
-        assertEquals("equals must be reflexive",obj,obj);
-        assertEquals("hashCode must be reflexive",obj.hashCode(),obj.hashCode());
-        assertTrue(! obj.equals(null) ); // should be able to compare to null
-
-        Object obj2 = new UntilDo(new Offset(10), counter);
-        if (obj.equals(obj2)) {
-            assertEquals("equals implies hash equals",obj.hashCode(),obj2.hashCode());
-            assertEquals("equals must be symmetric",obj2,obj);
-        } else {
-            assertTrue("equals must be symmetric",! obj2.equals(obj));
-        }
+        return new UntilDo(new Offset(10), counter);
     }
-
+    
     @Test
     public void testUntilDo() {
         for (int i=0;i<3;i++){
@@ -58,11 +51,32 @@ public class TestUntilDo {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Counter implements Procedure {
+    static class Counter implements Procedure, Serializable {
+        private static final long serialVersionUID = 1L;
         public void run() {
             count++;
         }
         public int count = 0;
+
+        @Override
+        public boolean equals(Object obj) {
+            if(this == obj) {
+                return true;
+            }
+            if (obj == null || !obj.getClass().equals(getClass())) {
+                return false;
+            }
+            Counter that = (Counter)obj;
+            return this.count == that.count;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = "Counter".hashCode();
+            hash <<= 2;
+            hash ^= this.count;
+            return hash;
+        }
     }
 
 }

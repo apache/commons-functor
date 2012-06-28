@@ -60,7 +60,7 @@ public class TestRetainMatching extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() throws Exception {
-        return new RetainMatching<Integer>();
+        return RetainMatching.instance();
     }
 
     @Test
