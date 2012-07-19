@@ -27,7 +27,6 @@ import junit.framework.TestSuite;
 /**
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
 public class TestFixedSizeMap extends TestCase {
 
     public TestFixedSizeMap(String testName) {
@@ -38,20 +37,20 @@ public class TestFixedSizeMap extends TestCase {
         return new TestSuite(TestFixedSizeMap.class);
     }
 
-    private Map baseMap = null;
-    private Map fixedMap = null;
+    private Map<Object, Object> baseMap = null;
+    private Map<Object, Object> fixedMap = null;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        baseMap = new HashMap();
+        baseMap = new HashMap<Object, Object>();
         baseMap.put(new Integer(1),"one");
         baseMap.put(new Integer(2),"two");
         baseMap.put(new Integer(3),"three");
         baseMap.put(new Integer(4),"four");
         baseMap.put(new Integer(5),"five");
 
-        fixedMap = new FixedSizeMap(baseMap);
+        fixedMap = new FixedSizeMap<Object, Object>(baseMap);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class TestFixedSizeMap extends TestCase {
     }
 
     public void testCantPutNewPairViaPutAll() {
-        Map map = new HashMap();
+        Map<Object, Object> map = new HashMap<Object, Object>();
         map.put(new Integer(1),"uno");
         map.put("xyzzy","xyzzy");
         map.put(new Integer(2),"dos");
@@ -115,7 +114,7 @@ public class TestFixedSizeMap extends TestCase {
     }
 
     public void testCanAssociateNewValueWithOldKeyViaPutAll() {
-        Map map = new HashMap();
+        Map<Object, Object> map = new HashMap<Object, Object>();
         map.put(new Integer(1),"uno");
         map.put(new Integer(2),"dos");
 

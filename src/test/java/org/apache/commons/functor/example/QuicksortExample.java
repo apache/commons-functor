@@ -82,8 +82,8 @@ public class QuicksortExample {
 
     @Test
     public void testSortEmpty() {
-        List empty = Collections.EMPTY_LIST;
-        List result = quicksort(empty);
+        List<Object> empty = Collections.EMPTY_LIST;
+        List<?> result = quicksort(empty);
         assertTrue("Sorting an empty list should produce an empty list.", result.isEmpty());
     }
 
@@ -94,10 +94,10 @@ public class QuicksortExample {
 
     @Test
     public void testSortSingleElementList() {
-        List list = new ArrayList();
+        List<Object> list = new ArrayList<Object>();
         list.add("element");
 
-        List sorted = quicksort(list);
+        List<?> sorted = quicksort(list);
 
         assertTrue(
             "The quicksort() method should return a distinct list.",
@@ -116,11 +116,11 @@ public class QuicksortExample {
 
     @Test
     public void testSortSingleValueList() {
-        List list = new ArrayList();
+        List<Object> list = new ArrayList<Object>();
         for (int i = 0; i < 10; i++) {
             list.add("element");
         }
-        List sorted = quicksort(list);
+        List<?> sorted = quicksort(list);
 
         assertTrue(
             "The quicksort() method should return a distinct list.",
@@ -138,12 +138,12 @@ public class QuicksortExample {
  */
     @Test
     public void testSortSorted() {
-        List list = new ArrayList();
+        List<Object> list = new ArrayList<Object>();
         for (int i = 0; i < 10; i++) {
             list.add(new Integer(i));
         }
 
-        List sorted = quicksort(list);
+        List<?> sorted = quicksort(list);
 
         assertTrue(
             "The quicksort() method should return a distinct list.",
@@ -161,8 +161,8 @@ public class QuicksortExample {
  */
     @Test
     public void testSortReversed() {
-        List expected = new ArrayList();
-        List tosort = new ArrayList();
+        List<Object> expected = new ArrayList<Object>();
+        List<Object> tosort = new ArrayList<Object>();
         for (int i = 0; i < 10; i++) {
             /*
              * The "expected" list contains the integers in order.
@@ -182,11 +182,11 @@ public class QuicksortExample {
  */
     @Test
     public void testSortShuffled() {
-        List expected = new ArrayList();
+        List<Object> expected = new ArrayList<Object>();
         for (int i = 0; i < 10; i++) {
             expected.add(new Integer(i));
         }
-        List tosort = new ArrayList(expected);
+        List<Object> tosort = new ArrayList<Object>(expected);
         Collections.shuffle(tosort);
 
         assertEquals(expected, quicksort(tosort));
@@ -201,7 +201,7 @@ public class QuicksortExample {
         /*
          * populate a list with random integers
          */
-        List tosort = new ArrayList();
+        List<Integer> tosort = new ArrayList<Integer>();
         for (int i = 0; i < 10; i++) {
             tosort.add(new Integer(random.nextInt(10)));
         }
@@ -209,7 +209,7 @@ public class QuicksortExample {
          * and use java.util.Collections.sort to
          * give us a sorted version to compare to
          */
-        List expected = new ArrayList(tosort);
+        List<Integer> expected = new ArrayList<Integer>(tosort);
         Collections.sort(expected);
 
         assertEquals(expected, quicksort(tosort));
@@ -230,6 +230,7 @@ public class QuicksortExample {
         /*
          * We'll need the total elapsed time:
          */
+        @SuppressWarnings("unused")
         long elapsed = 0L;
 
         /*
@@ -245,7 +246,7 @@ public class QuicksortExample {
              * Create a List of size SIZE, and
              * populate it with random integers:
              */
-            List tosort = new ArrayList(SIZE);
+            List<Object> tosort = new ArrayList<Object>(SIZE);
             for (int j = 0; j < SIZE; j++) {
                 tosort.add(new Integer(random.nextInt(SIZE)));
             }
@@ -309,8 +310,8 @@ public class QuicksortExample {
  * quicksort:
  */
 
-    public List quicksort(List list) {
-        return (List)(quicksort.evaluate(list));
+    public List<?> quicksort(List<?> list) {
+        return (List<?>)(quicksort.evaluate(list));
     }
 
 /*
@@ -336,24 +337,24 @@ public class QuicksortExample {
  * to transalate this description directly into code:
  */
 
-    private UnaryFunction quicksort = new ConditionalUnaryFunction(
+    private UnaryFunction<Object, Object> quicksort = new ConditionalUnaryFunction<Object, Object>(
         /* if the list is empty... */
         IsEmpty.instance(),
         /* ...then return an empty list... */
-        new Constant(Collections.EMPTY_LIST),
+        new Constant<Object>(Collections.EMPTY_LIST),
         /* ...else, apply the following function... */
         new ListFunction() {
             @Override
-            public Object evaluate(List list) {
+            public Object evaluate(List<?> list) {
                 /* Create a list to contain the results. */
-                List result = new ArrayList(list.size());
+                List<Object> result = new ArrayList<Object>(list.size());
                 /*
                  * Recursively apply quicksort the the elements in the
                  * tail less than the head, adding the result to the
                  * sorted list we're generating.
                  */
                 result.addAll(
-                    (List) quicksort.evaluate(
+                    (List<?>) quicksort.evaluate(
                         lesserTail.evaluate(
                             head.evaluate(list),
                             tail.evaluate(list))));
@@ -367,7 +368,7 @@ public class QuicksortExample {
                  * sorted list we're generating.
                  */
                 result.addAll(
-                    (List) quicksort.evaluate(
+                    (List<?>) quicksort.evaluate(
                         greaterTail.evaluate(
                             head.evaluate(list),
                             tail.evaluate(list))));
@@ -388,12 +389,12 @@ public class QuicksortExample {
  * Let ListFunction be a UnaryFunction that operates on Lists:
  */
 
-    public abstract class ListFunction implements UnaryFunction {
-        public abstract Object evaluate(List list);
+    public abstract class ListFunction implements UnaryFunction<Object, Object> {
+        public abstract Object evaluate(List<?> list);
 
         public Object evaluate(Object obj) {
             if (obj instanceof List) {
-                return evaluate((List) obj);
+                return evaluate((List<?>) obj);
             } else if (null == obj) {
                 throw new NullPointerException("The argument must not be null.");
             } else {
@@ -409,12 +410,12 @@ public class QuicksortExample {
  * an Object, List pair:
  */
 
-    public abstract class ObjectListFunction implements BinaryFunction {
-        public abstract Object evaluate(Object head, List tail);
+    public abstract class ObjectListFunction implements BinaryFunction<Object, Object, Object> {
+        public abstract Object evaluate(Object head, List<Object> tail);
 
         public Object evaluate(Object left, Object right) {
             if (left != null && right instanceof List) {
-                return evaluate(left, (List) right);
+                return evaluate(left, (List<?>) right);
             } else if (null == left) {
                 throw new NullPointerException("The left argument must not be null.");
             } else if (null == right) {
@@ -433,9 +434,9 @@ public class QuicksortExample {
  * Given a List, we need to be able to break it into its head:
  */
 
-    private UnaryFunction head = new ListFunction() {
+    private UnaryFunction<Object, Object> head = new ListFunction() {
         @Override
-        public Object evaluate(List list) {
+        public Object evaluate(List<?> list) {
             return list.get(0);
         }
     };
@@ -443,9 +444,9 @@ public class QuicksortExample {
 /*
  * and its tail:
  */
-    private UnaryFunction tail = new ListFunction() {
+    private UnaryFunction<Object, Object> tail = new ListFunction() {
         @Override
-        public Object evaluate(List list) {
+        public Object evaluate(List<?> list) {
             return list.size() < 2 ?
                 Collections.EMPTY_LIST :
                 list.subList(1, list.size());
@@ -458,12 +459,13 @@ public class QuicksortExample {
  * We can simply apply the select algorithm here, using
  * a predicate identifying elements less than the head.
  */
-    private BinaryFunction lesserTail = new ObjectListFunction() {
+    @SuppressWarnings("rawtypes")
+    private BinaryFunction<Object, Object, Object> lesserTail = new ObjectListFunction() {
         @Override
-        public Object evaluate(Object head, List tail) {
+        public Object evaluate(Object head, List<Object> tail) {
             return new FilteredGenerator(
                     IteratorToGeneratorAdapter.adapt(tail.iterator()),
-                IsLessThan.instance((Comparable) head)).toCollection();
+                    IsLessThan.instance((Comparable<?>) head)).toCollection();
         }
     };
 
@@ -472,12 +474,13 @@ public class QuicksortExample {
  * the tail greater than (or equal to) the head. This
  * is similar to the lesserTail approach.
  */
+    @SuppressWarnings("rawtypes")
     private BinaryFunction greaterTail = new ObjectListFunction() {
         @Override
-        public Object evaluate(Object head, List tail) {
+        public Object evaluate(Object head, List<Object> tail) {
             return new FilteredGenerator(
                     IteratorToGeneratorAdapter.adapt(tail.iterator()),
-                IsGreaterThanOrEqual.instance((Comparable) head)).toCollection();
+                 IsGreaterThanOrEqual.instance((Comparable<?>) head)).toCollection();
         }
     };
 
@@ -487,7 +490,7 @@ public class QuicksortExample {
  */
 
     public void testHeadFunction() {
-        List list = new ArrayList();
+        List<String> list = new ArrayList<String>();
         try {
             head.evaluate(list);
             fail("Expected IndexOutOfBoundsException when evaluating head of an empty list");
@@ -504,25 +507,25 @@ public class QuicksortExample {
     }
 
     public void testTailFunction() {
-        List list = new ArrayList();
+        List<String> list = new ArrayList<String>();
         {
-            List result = (List)(tail.evaluate(list));
+            List<String> result = (List<String>)(tail.evaluate(list));
             assertTrue("Tail of an empty list is empty.",result.isEmpty());
         }
         list.add("First");
         {
-            List result = (List)(tail.evaluate(list));
+            List<String> result = (List<String>)(tail.evaluate(list));
             assertTrue("Tail of a one element list is empty.",result.isEmpty());
         }
         list.add("Second");
         {
-            List result = (List)(tail.evaluate(list));
+            List<String> result = (List<String>)(tail.evaluate(list));
             assertEquals("Tail of a two element list has one element.",1,result.size());
             assertEquals("Second",result.get(0));
         }
         list.add("Third");
         {
-            List result = (List)(tail.evaluate(list));
+            List<String> result = (List<String>)(tail.evaluate(list));
             assertEquals("Tail of a three element list has two elements.",2,result.size());
             assertEquals("Second",result.get(0));
             assertEquals("Third",result.get(1));
@@ -530,13 +533,13 @@ public class QuicksortExample {
     }
 
     public void testLesserTail() {
-        List list = new ArrayList();
+        List<Integer> list = new ArrayList<Integer>();
         for (int i=0;i<10;i++) {
             list.add(new Integer(i));
         }
         for (int i=0;i<10;i++) {
             Integer val = new Integer(i);
-            List lesser = (List) lesserTail.evaluate(val,list);
+            List<Integer> lesser = (List<Integer>) lesserTail.evaluate(val,list);
             assertEquals(i,lesser.size());
             for (int j=0;j<i;j++) {
                 assertEquals(new Integer(j),lesser.get(j));
@@ -545,13 +548,13 @@ public class QuicksortExample {
     }
 
     public void testGreaterTail() {
-        List list = new ArrayList();
+        List<Integer> list = new ArrayList<Integer>();
         for (int i=0;i<10;i++) {
             list.add(new Integer(i));
         }
         for (int i=0;i<10;i++) {
             Integer val = new Integer(i);
-            List greater = (List) greaterTail.evaluate(val,list);
+            List<Integer> greater = (List<Integer>) greaterTail.evaluate(val,list);
             assertEquals(10-i,greater.size());
             for (int j=i;j<10;j++) {
                 assertEquals(new Integer(j),greater.get(j-i));

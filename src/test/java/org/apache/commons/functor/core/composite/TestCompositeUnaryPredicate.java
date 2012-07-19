@@ -19,7 +19,6 @@ package org.apache.commons.functor.core.composite;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
@@ -49,9 +48,8 @@ public class TestCompositeUnaryPredicate extends BaseFunctorTest {
     }
 
     @Test(expected = NullPointerException.class)
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void testNullNotAllowed() throws Exception {
-        new CompositeUnaryPredicate(null);
+        new CompositeUnaryPredicate<Object>(null);
     }
 
     @Test(expected = NullPointerException.class)

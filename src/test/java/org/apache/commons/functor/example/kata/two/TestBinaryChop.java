@@ -71,7 +71,6 @@ import org.junit.Test;
  *
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
 public class TestBinaryChop {
 
     /**
@@ -103,7 +102,7 @@ public class TestBinaryChop {
         assertEquals(-1, chopper.find(6, new int[] { 1, 3, 5, 7 }));
         assertEquals(-1, chopper.find(8, new int[] { 1, 3, 5, 7 }));
 
-        List largeList = (List) (new IntegerRange(0, 100001).toCollection());
+        List<Integer> largeList = (List<Integer>) (new IntegerRange(0, 100001).toCollection());
         assertEquals(-1, chopper.find(new Integer(-5), largeList));
         assertEquals(100000, chopper.find(new Integer(100000), largeList));
         assertEquals(0, chopper.find(new Integer(0), largeList));
@@ -120,8 +119,7 @@ public class TestBinaryChop {
     @Test
     public void testBuiltIn() {
         chopTest(new BaseBinaryChop() {
-            @Override
-            public int find(Object seeking, List list) {
+            public int find(Integer seeking, List<Integer> list) {
                 int result = Collections.binarySearch(list,seeking);
                 //
                 // Collections.binarySearch is a bit smarter than our
@@ -151,8 +149,7 @@ public class TestBinaryChop {
     @Test
     public void testIterative() {
         chopTest(new BaseBinaryChop() {
-            @Override
-            public int find(Object seeking, List list) {
+            public int find(Integer seeking, List<Integer> list) {
                 int high = list.size();
                 int low = 0;
                 while (high - low > 1) {
@@ -260,7 +257,7 @@ public class TestBinaryChop {
      * the loop, so let's add a Function implementation as well,
      * as a way of retrieving that result:
      */
-    interface Loop extends Predicate, Procedure, Function {
+    interface Loop extends Predicate, Procedure, Function<Object> {
         /** The terminating condition. */
         boolean test();
         /** The loop body. */
@@ -277,8 +274,7 @@ public class TestBinaryChop {
     public void testIterativeWithInvariants() {
         chopTest(new BaseBinaryChop() {
 
-            @Override
-            public int find(final Object seeking, final List list) {
+            public int find(final Integer seeking, final List<Integer> list) {
                 Loop loop = new Loop() {
                     int high = list.size();
                     int low = 0;
@@ -341,7 +337,7 @@ public class TestBinaryChop {
      * We can do that too, using EiffelStyleLoop.
      */
     class BinarySearchLoop extends EiffelStyleLoop {
-        BinarySearchLoop(Object aSeeking, List aList) {
+        BinarySearchLoop(Integer aSeeking, List<Integer> aList) {
             seeking = aSeeking;
             list = aList;
 
@@ -358,7 +354,7 @@ public class TestBinaryChop {
                 }
             });
 
-            variant(new Function() {
+            variant(new Function<Object>() {
                 public Object evaluate() {
                     return new Integer(high - low);
                 }
@@ -388,15 +384,14 @@ public class TestBinaryChop {
 
         private int high;
         private int low;
-        private final Object seeking;
-        private final List list;
+        private final Integer seeking;
+        private final List<Integer> list;
     }
 
     @Test
     public void testIterativeWithInvariantsAndAssertions() {
         chopTest(new BaseBinaryChop() {
-            @Override
-            public int find(Object seeking, List list) {
+            public int find(Integer seeking, List<Integer> list) {
                 BinarySearchLoop loop = new BinarySearchLoop(seeking,list);
                 loop.run();
                 return loop.getResult();
@@ -411,12 +406,11 @@ public class TestBinaryChop {
     @Test
     public void testRecursive() {
         chopTest(new BaseBinaryChop() {
-            @Override
-            public int find(Object seeking, List list) {
+            public int find(Integer seeking, List<Integer> list) {
                 return find(seeking, list, 0, list.size());
             }
 
-            private int find(Object seeking, List list, int low, int high) {
+            private int find(Integer seeking, List<Integer> list, int low, int high) {
                 if (high - low > 1) {
                     int mid = (high + low) / 2;
                     if (greaterThan(list,mid,seeking)) {
@@ -446,9 +440,8 @@ public class TestBinaryChop {
     @Test
     public void testTailRecursive() {
         chopTest(new BaseBinaryChop() {
-            @Override
-            public int find(final Object seeking, final List list) {
-                return ((Number) new RecursiveEvaluation(new Function() {
+            public int find(final Integer seeking, final List<Integer> list) {
+                return ((Number) new RecursiveEvaluation(new Function<Object>() {
                     public Object evaluate() {
                         if (high - low > 1) {
                             int mid = (high + low) / 2;
@@ -493,12 +486,11 @@ public class TestBinaryChop {
     @Test
     public void testRecursive2() {
         chopTest(new BaseBinaryChop() {
-            @Override
-            public int find(Object seeking, List list) {
+            public int find(Integer seeking, List<Integer> list) {
                 return find(seeking,list,0);
             }
 
-            private int find(Object seeking, List list, int offset) {
+            private int find(Integer seeking, List<Integer> list, int offset) {
                 if (list.isEmpty()) {
                     return -1;
                 } if (list.size() == 1) {
@@ -524,9 +516,8 @@ public class TestBinaryChop {
     @Test
     public void testTailRecursive2() {
         chopTest(new BaseBinaryChop() {
-            @Override
-            public int find(final Object seeking, final List list) {
-                return ((Number) new RecursiveEvaluation(new Function() {
+            public int find(final Integer seeking, final List<Integer> list) {
+                return ((Number) new RecursiveEvaluation(new Function<Object>() {
                     public Object evaluate() {
                         if (sublist.isEmpty()) {
                             return BaseBinaryChop.NEGATIVE_ONE;
@@ -546,7 +537,7 @@ public class TestBinaryChop {
                         }
                     }
                     int offset = 0;
-                    List sublist = list;
+                    List<Integer> sublist = list;
                 }).evaluate()).intValue();
             }
         });

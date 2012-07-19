@@ -30,7 +30,6 @@ import org.apache.commons.functor.core.collection.Size;
 /**
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
 public class TestLazyMap extends TestCase {
 
     public TestLazyMap(String testName) {
@@ -41,22 +40,22 @@ public class TestLazyMap extends TestCase {
         return new TestSuite(TestLazyMap.class);
     }
 
-    private Map baseMap = null;
-    private Map lazyMap = null;
-    private Map expectedMap = null;
+    private Map<Object, Integer> baseMap = null;
+    private Map<Object, Integer> lazyMap = null;
+    private Map<Object, Integer> expectedMap = null;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        expectedMap = new HashMap();
+        expectedMap = new HashMap<Object, Integer>();
         expectedMap.put("one",new Integer(3));
         expectedMap.put("two",new Integer(3));
         expectedMap.put("three", new Integer(5));
         expectedMap.put("four", new Integer(4));
         expectedMap.put("five", new Integer(4));
 
-        baseMap = new HashMap();
-        lazyMap = new LazyMap(baseMap,Size.instance());
+        baseMap = new HashMap<Object, Integer>();
+        lazyMap = new LazyMap<Object, Integer>(baseMap,Size.instance());
     }
 
     @Override
@@ -70,7 +69,7 @@ public class TestLazyMap extends TestCase {
     // tests
 
     public void test() {
-        for (Iterator iter = expectedMap.keySet().iterator(); iter.hasNext();) {
+        for (Iterator<Object> iter = expectedMap.keySet().iterator(); iter.hasNext();) {
             Object key = iter.next();
             assertFalse(baseMap.containsKey(key));
             assertFalse(lazyMap.containsKey(key));
@@ -82,7 +81,7 @@ public class TestLazyMap extends TestCase {
         assertEquals(expectedMap,lazyMap);
         assertEquals(expectedMap,baseMap);
         baseMap.clear();
-        for (Iterator iter = expectedMap.keySet().iterator(); iter.hasNext();) {
+        for (Iterator<Object> iter = expectedMap.keySet().iterator(); iter.hasNext();) {
             Object key = iter.next();
             assertFalse(baseMap.containsKey(key));
             assertFalse(lazyMap.containsKey(key));
@@ -98,8 +97,8 @@ public class TestLazyMap extends TestCase {
 
     public void testBaseMapOverrides() {
         assertEquals(new Integer(5),lazyMap.get("xyzzy"));
-        baseMap.put("xyzzy","xyzzy");
-        assertEquals("xyzzy",lazyMap.get("xyzzy"));
+        baseMap.put("xyzzy",new Integer(3));
+        assertEquals(Integer.valueOf(3),lazyMap.get("xyzzy"));
     }
 
 }

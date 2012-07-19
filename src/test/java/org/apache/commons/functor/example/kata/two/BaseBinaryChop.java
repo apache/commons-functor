@@ -25,33 +25,31 @@ import java.util.List;
  *
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
 public abstract class BaseBinaryChop implements BinaryChop {
     public int find(int seeking, int[] in) {
-        Object[] In = new Object[in.length];
+        Integer[] In = new Integer[in.length];
         for (int i=0;i<in.length;i++) {
             In[i] = new Integer(in[i]);
         }
         return find(new Integer(seeking), In);
     }
 
-    public int find(Object seeking, Object[] in) {
+    public int find(Integer seeking, Integer[] in) {
         return find(seeking, Arrays.asList(in));
     }
 
-    protected static int compare(List list, int index, Object obj) {
-        return ((Comparable) list.get(index)).compareTo(obj);
+    protected static int compare(List<Integer> list, int index, Integer obj) {
+        return ((Comparable<Integer>) list.get(index)).compareTo(obj);
     }
 
-    protected static boolean greaterThan(List list, int index, Object obj) {
+    protected static boolean greaterThan(List<Integer> list, int index, Integer obj) {
         return compare(list,index,obj) > 0;
     }
 
-    protected static boolean equals(List list, int index, Object obj) {
+    protected static boolean equals(List<Integer> list, int index, Integer obj) {
         return compare(list,index,obj) == 0;
     }
 
     protected static final Integer NEGATIVE_ONE = new Integer(-1);
 
-    public abstract int find(Object seeking, List in);
 }

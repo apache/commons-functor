@@ -19,9 +19,9 @@ package org.apache.commons.functor.generator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,19 +39,19 @@ public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
 
     @Override
     public Object makeFunctor() {
-        List list = new ArrayList();
+        List<String> list = new ArrayList<String>();
         list.add("1");
-        return new IteratorToGeneratorAdapter(list.iterator());
+        return new IteratorToGeneratorAdapter<String>(list.iterator());
     }
 
     // Lifecycle
     // ------------------------------------------------------------------------
 
-    private List list = null;
+    private List<String> list = null;
 
     @Before
     public void setUp() throws Exception {
-        list = new ArrayList();
+        list = new ArrayList<String>();
         list.add("1");
         list.add("two");
         list.add("c");
@@ -77,23 +77,23 @@ public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
 
     @Test
     public void testGenerate() {
-        Iterator iter = list.iterator();
-        Generator gen = new IteratorToGeneratorAdapter(iter);
-        List list2 = new ArrayList();
-        list2.addAll(gen.toCollection());
+        Iterator<String> iter = list.iterator();
+        Generator<String> gen = new IteratorToGeneratorAdapter<String>(iter);
+        List<String> list2 = new ArrayList<String>();
+        list2.addAll((Collection<String>)gen.toCollection());
         assertEquals(list,list2);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructNull() {
-        new IteratorToGeneratorAdapter(null);
+        new IteratorToGeneratorAdapter<Object>(null);
     }
 
     @Test
     public void testEquals() {
-        Iterator iter = list.iterator();
-        Generator gen = new IteratorToGeneratorAdapter(iter);
+        Iterator<String> iter = list.iterator();
+        Generator<String> gen = new IteratorToGeneratorAdapter<String>(iter);
         assertObjectsAreEqual(gen,gen);
-        assertObjectsAreEqual(gen,new IteratorToGeneratorAdapter(iter));
+        assertObjectsAreEqual(gen,new IteratorToGeneratorAdapter<String>(iter));
     }
 }

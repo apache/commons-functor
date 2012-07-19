@@ -26,6 +26,6 @@ import java.util.List;
  */
 public interface BinaryChop {
     int find(int seeking, int[] in);
-    int find(Object seeking, Object[] in);
-    int find(Object seeking, List in);
+    int find(Integer seeking, Integer[] in);
+    int find(Integer seeking, List<Integer> in);
 }

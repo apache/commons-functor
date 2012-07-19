@@ -27,6 +27,7 @@ import org.junit.Test;
 /**
  * @version $Revision$ $Date$
  */
+@SuppressWarnings("unchecked")
 public class TestBinaryAnd extends BaseFunctorTest {
 
     // Functor Testing Framework

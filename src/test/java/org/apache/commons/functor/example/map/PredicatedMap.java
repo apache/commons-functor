@@ -29,26 +29,24 @@ import org.apache.commons.functor.core.composite.ConditionalBinaryFunction;
 /**
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
-public class PredicatedMap extends FunctoredMap {
-    public PredicatedMap(Map map, final UnaryPredicate keyPredicate, final UnaryPredicate valuePredicate) {
+public class PredicatedMap<K, V> extends FunctoredMap<K, V> {
+    public PredicatedMap(Map<K, V> map, final UnaryPredicate<K> keyPredicate, final UnaryPredicate<V> valuePredicate) {
         super(map);
-        setOnPut(new ConditionalBinaryFunction(
-            new BinaryPredicate() {
-                public boolean test(Object a, Object b) {
-                    return keyPredicate.test(Array.get(b,0)) &&
-                        valuePredicate.test(Array.get(b,1));
+        setOnPut(new ConditionalBinaryFunction<Map<K,V>, Object[], V>(
+            new BinaryPredicate<Map<K, V>, Object[]>() {
+                @SuppressWarnings("unchecked")
+                public boolean test(Map<K, V> a, Object[] b) {
+                    return keyPredicate.test((K)Array.get(b,0)) &&
+                        valuePredicate.test((V)Array.get(b,1));
                 }
             },
             DEFAULT_ON_PUT,
-            BinaryProcedureBinaryFunction.adapt(new Throw(new IllegalArgumentException()))));
+            BinaryProcedureBinaryFunction.<Map<K,V>, Object[], V>adapt(new Throw<Map<K,V>, Object>(new IllegalArgumentException()))));
 
-        setOnPutAll(new BinaryProcedure() {
-            public void run(Object d, Object s) {
-                Map dest = (Map) d;
-                Map src = (Map) s;
-                for (Iterator iter = src.entrySet().iterator(); iter.hasNext(); ) {
-                    Map.Entry pair = (Map.Entry) iter.next();
+        setOnPutAll(new BinaryProcedure<Map<K, V>, Map<K, V>>() {
+            public void run(Map<K, V> dest, Map<K, V> src) {
+                for (Iterator<Map.Entry<K, V>> iter = src.entrySet().iterator(); iter.hasNext(); ) {
+                    Map.Entry<K, V> pair = iter.next();
                     if (keyPredicate.test(pair.getKey()) &&
                         valuePredicate.test(pair.getValue())) {
                         dest.put(pair.getKey(),pair.getValue());

@@ -28,6 +28,7 @@ import org.junit.Test;
 /**
  * @version $Revision$ $Date$
  */
+@SuppressWarnings("unchecked")
 public class TestUnaryAnd extends BaseFunctorTest {
 
     // Functor Testing Framework

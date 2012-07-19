@@ -44,10 +44,9 @@ public class TestCompositeUnaryProcedure extends BaseFunctorTest {
         Composite.procedure(NoOp.instance(), Identity.instance()).run(null);
     }
 
-    @SuppressWarnings("unchecked")
     public void testNullNotAllowed() throws Exception {
         try {
-            new CompositeUnaryProcedure(null);
+            new CompositeUnaryProcedure<Object>(null);
             fail("Expected IllegalArgumentException");
         } catch(IllegalArgumentException e) {
             // expected

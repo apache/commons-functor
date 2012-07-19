@@ -21,6 +21,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
@@ -30,7 +32,6 @@ import org.junit.Test;
 /**
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
 public class TestIsElementOf extends BaseFunctorTest {
 
     // Functor Testing Framework
@@ -38,7 +39,7 @@ public class TestIsElementOf extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new IsElementOf();
+        return new IsElementOf<Integer, Collection<Integer>>();
     }
 
     // Tests
@@ -46,12 +47,12 @@ public class TestIsElementOf extends BaseFunctorTest {
 
     @Test
     public void testTestCollection() throws Exception {
-        ArrayList list = new ArrayList();
+        List<Integer> list = new ArrayList<Integer>();
         list.add(new Integer(5));
         list.add(new Integer(10));
         list.add(new Integer(15));
 
-        UnaryPredicate p = IsElementOf.instance(list);
+        UnaryPredicate<Integer> p = IsElementOf.instance(list);
         assertTrue(p.test(new Integer(5)));
         assertTrue(p.test(new Integer(10)));
         assertTrue(p.test(new Integer(15)));
@@ -65,7 +66,7 @@ public class TestIsElementOf extends BaseFunctorTest {
     public void testTestArray() throws Exception {
         int[] list = new int[] { 5, 10, 15 };
 
-        UnaryPredicate p = IsElementOf.instance(list);
+        UnaryPredicate<Integer> p = IsElementOf.instance(list);
         assertTrue(p.test(new Integer(5)));
         assertTrue(p.test(new Integer(10)));
         assertTrue(p.test(new Integer(15)));
@@ -118,9 +119,9 @@ public class TestIsElementOf extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        IsElementOf p1 = new IsElementOf();
+        IsElementOf<Integer, Collection<Integer>> p1 = new IsElementOf<Integer, Collection<Integer>>();
         assertObjectsAreEqual(p1, p1);
-        assertObjectsAreEqual(p1, new IsElementOf());
+        assertObjectsAreEqual(p1, new IsElementOf<Integer, Collection<Integer>>());
         assertObjectsAreEqual(p1, IsElementOf.instance());
         assertSame(IsElementOf.instance(), IsElementOf.instance());
         assertObjectsAreNotEqual(p1, Constant.falsePredicate());

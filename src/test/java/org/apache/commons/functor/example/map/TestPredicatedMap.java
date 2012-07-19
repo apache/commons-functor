@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.IsInstance;
 /**
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
 public class TestPredicatedMap extends TestCase {
 
     public TestPredicatedMap(String testName) {
@@ -40,13 +39,13 @@ public class TestPredicatedMap extends TestCase {
         return new TestSuite(TestPredicatedMap.class);
     }
 
-    private Map baseMap = null;
-    private Map predicatedMap = null;
+    private Map<Object, Object> baseMap = null;
+    private Map<Object, Object> predicatedMap = null;
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        baseMap = new HashMap();
-        predicatedMap = new PredicatedMap(baseMap,IsInstance.of(String.class),IsInstance.of(Integer.class));
+        baseMap = new HashMap<Object, Object>();
+        predicatedMap = new PredicatedMap<Object, Object>(baseMap,IsInstance.of(String.class),IsInstance.of(Integer.class));
     }
 
     @Override
@@ -80,7 +79,7 @@ public class TestPredicatedMap extends TestCase {
     }
 
     public void testOnlyValidPairsAreAddedInPutAll() {
-        HashMap map = new HashMap();
+        HashMap<Object, Object> map = new HashMap<Object, Object>();
         map.put("one", new Integer(17));
         map.put("two", "rejected");
         map.put(new Integer(17), "xyzzy");

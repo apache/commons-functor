@@ -74,6 +74,7 @@ public class Lines extends BaseGenerator<String> {
     private BufferedReader in = null;
 
     private class TunneledException extends RuntimeException {
+        private static final long serialVersionUID = 1L;
         private Exception exception = null;
         TunneledException(Exception exception) {
             super(exception.toString());

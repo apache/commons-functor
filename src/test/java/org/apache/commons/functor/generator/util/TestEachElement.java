@@ -95,11 +95,12 @@ public class TestEachElement extends BaseFunctorTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testWithMap() {
         List<?> col = (List<?>) EachElement.from(map).toCollection();
         int i = 0;
         for (;i<col.size();i++) {
-            Map.Entry entry = (Map.Entry) col.get(i);
+            Map.Entry<String, String> entry = (Map.Entry<String, String>) col.get(i);
             if (entry.getKey().equals("1")) {
                 assertEquals("1-1", entry.getValue());
             } else if (entry.getKey().equals("2")) {

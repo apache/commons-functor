@@ -24,17 +24,15 @@ import org.apache.commons.functor.UnaryFunction;
 /**
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
-public class LazyMap extends FunctoredMap {
-    public LazyMap(Map map, final UnaryFunction factory) {
+public class LazyMap<K, V> extends FunctoredMap<K, V> {
+    public LazyMap(Map<K, V> map, final UnaryFunction<K, V> factory) {
         super(map);
-        setOnGet(new BinaryFunction() {
-            public Object evaluate(Object m, Object key) {
-                Map map = (Map) m;
+        setOnGet(new BinaryFunction<Map<K,V>, K, V>() {
+            public V evaluate(Map<K, V> map, K key) {
                 if (map.containsKey(key)) {
                     return map.get(key);
                 } else {
-                    Object value = factory.evaluate(key);
+                    V value = factory.evaluate(key);
                     map.put(key,value);
                     return value;
                 }

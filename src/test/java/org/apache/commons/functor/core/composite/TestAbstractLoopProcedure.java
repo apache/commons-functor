@@ -55,6 +55,7 @@ public class TestAbstractLoopProcedure extends BaseFunctorTest {
 }
 
 class MockLoopProcedure extends AbstractLoopProcedure {
+    private static final long serialVersionUID = 1L;
     public MockLoopProcedure(Predicate condition, Procedure action) {
         super(condition,action);
     }

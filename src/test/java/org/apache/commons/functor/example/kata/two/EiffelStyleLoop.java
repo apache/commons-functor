@@ -58,18 +58,18 @@ public class EiffelStyleLoop implements Procedure {
     }
 
     @SuppressWarnings("unchecked")
-    public EiffelStyleLoop variant(final Function function) {
+    public EiffelStyleLoop variant(final Function<Object> function) {
         return variant(new Predicate() {
             public boolean test() {
                 boolean result = true;
-                Comparable next = (Comparable)(function.evaluate());
+                Comparable<Object> next = (Comparable<Object>)(function.evaluate());
                 if (null != last) {
                     result = last.compareTo(next) > 0;
                 }
                 last = next;
                 return result;
             }
-            private Comparable last = null;
+            private Comparable<Object> last = null;
         });
     }
 

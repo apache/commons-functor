@@ -29,7 +29,6 @@ import org.junit.Test;
 /**
  * @version $Revision$ $Date$
  */
-@SuppressWarnings("unchecked")
 public class TestSequence extends BaseFunctorTest {
 
     // Functor Testing Framework
@@ -71,7 +70,7 @@ public class TestSequence extends BaseFunctorTest {
 
     @Test
     public void testThen() throws Exception {
-        List list = new ArrayList();
+        List<RunCounter> list = new ArrayList<RunCounter>();
         Sequence seq = new Sequence();
         seq.run();
         for (int i=0;i<10;i++) {

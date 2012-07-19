@@ -46,9 +46,8 @@ public class TestBinaryCompositeBinaryFunction extends BaseFunctorTest {
     // ------------------------------------------------------------------------
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testEvaluateRaw() throws Exception {
-        BinaryFunction f = new BinaryCompositeBinaryFunction(
+        BinaryFunction<Object, Object, Object> f = new BinaryCompositeBinaryFunction<Object, Object, Object>(
                 RightIdentity.FUNCTION,
                 Constant.of("K"),
                 RightIdentity.FUNCTION);

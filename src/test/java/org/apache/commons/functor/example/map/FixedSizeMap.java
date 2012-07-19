@@ -30,14 +30,13 @@ import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
  * @version $Revision$ $Date$
  */
 @SuppressWarnings("unchecked")
-public class FixedSizeMap extends FunctoredMap {
-    public FixedSizeMap(Map map) {
+public class FixedSizeMap<K, V> extends FunctoredMap<K, V> {
+    public FixedSizeMap(Map<K, V> map) {
         super(map);
-        setOnPut(new BinaryFunction() {
-            public Object evaluate(Object a, Object b) {
-                Map map = (Map) a;
-                Object key = Array.get(b,0);
-                Object value = Array.get(b,1);
+        setOnPut(new BinaryFunction<Map<K,V>, Object[], V>() {
+            public V evaluate(Map<K,V> map, Object[] b) {
+                K key = (K)Array.get(b,0);
+                V value = (V)Array.get(b,1);
                 if (map.containsKey(key)) {
                     return map.put(key,value);
                 } else {
@@ -46,10 +45,10 @@ public class FixedSizeMap extends FunctoredMap {
             }
         });
 
-        setOnPutAll(new BinaryProcedure() {
-            public void run(Object a, Object b) {
-                Map dest = (Map) a;
-                Map src = (Map) b;
+        setOnPutAll(new BinaryProcedure<Map<K,V>, Map<K,V>>() {
+            public void run(Map<K,V> a, Map<K,V> b) {
+                Map<K,V> dest = a;
+                Map<K,V> src = b;
 
                 if (GeneratorContains.instance().test(IteratorToGeneratorAdapter.adapt(src.keySet().iterator()),UnaryNot.not(new ContainsKey(dest)))) {
                     throw new IllegalArgumentException();
@@ -59,7 +58,7 @@ public class FixedSizeMap extends FunctoredMap {
             }
         });
 
-        setOnRemove(new BinaryProcedureBinaryFunction(new Throw(new UnsupportedOperationException())));
-        setOnClear(new Throw(new UnsupportedOperationException()));
+        setOnRemove(new BinaryProcedureBinaryFunction<Map<K, V>, K, V>((BinaryProcedure<? super Map<K, V>, ? super K>) new Throw<K, V>(new UnsupportedOperationException())));
+        setOnClear(new Throw<K, V>(new UnsupportedOperationException()));
     }
 }

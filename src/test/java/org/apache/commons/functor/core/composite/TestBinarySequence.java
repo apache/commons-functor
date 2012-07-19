@@ -37,7 +37,7 @@ public class TestBinarySequence extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new BinarySequence(new NoOp(),new NoOp());
+        return new BinarySequence<String, String>(new NoOp(),new NoOp());
     }
 
     // Tests
@@ -45,7 +45,7 @@ public class TestBinarySequence extends BaseFunctorTest {
 
     @Test
     public void testRunZero() throws Exception {
-        BinarySequence seq = new BinarySequence();
+        BinarySequence<String, String> seq = new BinarySequence<String, String>();
         seq.run(null,null);
         seq.run("xyzzy","xyzzy");
     }
@@ -53,7 +53,7 @@ public class TestBinarySequence extends BaseFunctorTest {
     @Test
     public void testRunOne() throws Exception {
         RunCounter counter = new RunCounter();
-        BinarySequence seq = new BinarySequence(counter);
+        BinarySequence<String, String> seq = new BinarySequence<String, String>(counter);
         assertEquals(0,counter.count);
         seq.run(null,null);
         assertEquals(1,counter.count);
@@ -64,7 +64,7 @@ public class TestBinarySequence extends BaseFunctorTest {
     @Test
     public void testRunTwo() throws Exception {
         RunCounter[] counter = { new RunCounter(), new RunCounter() };
-        BinarySequence seq = new BinarySequence(counter[0],counter[1]);
+        BinarySequence<String, String> seq = new BinarySequence<String, String>(counter[0],counter[1]);
         assertEquals(0,counter[0].count);
         assertEquals(0,counter[1].count);
         seq.run(null,null);
@@ -77,8 +77,8 @@ public class TestBinarySequence extends BaseFunctorTest {
 
     @Test
     public void testThen() throws Exception {
-        List list = new ArrayList();
-        BinarySequence seq = new BinarySequence();
+        List<RunCounter> list = new ArrayList<RunCounter>();
+        BinarySequence<String, String> seq = new BinarySequence<String, String>();
         seq.run(null,null);
         for (int i=0;i<10;i++) {
             RunCounter counter = new RunCounter();
@@ -93,9 +93,9 @@ public class TestBinarySequence extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        BinarySequence p = new BinarySequence();
+        BinarySequence<String, String> p = new BinarySequence<String, String>();
         assertEquals(p,p);
-        BinarySequence q = new BinarySequence();
+        BinarySequence<String, String> q = new BinarySequence<String, String>();
         assertObjectsAreEqual(p,q);
 
         for (int i=0;i<3;i++) {
@@ -103,9 +103,9 @@ public class TestBinarySequence extends BaseFunctorTest {
             assertObjectsAreNotEqual(p,q);
             q.then(new NoOp());
             assertObjectsAreEqual(p,q);
-            p.then(new BinarySequence(new NoOp(),new NoOp()));
+            p.then(new BinarySequence<String, String>(new NoOp(),new NoOp()));
             assertObjectsAreNotEqual(p,q);
-            q.then(new BinarySequence(new NoOp(),new NoOp()));
+            q.then(new BinarySequence<String, String>(new NoOp(),new NoOp()));
             assertObjectsAreEqual(p,q);
         }
 
@@ -115,8 +115,8 @@ public class TestBinarySequence extends BaseFunctorTest {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class RunCounter implements BinaryProcedure {
-        public void run(Object a, Object b) {
+    static class RunCounter implements BinaryProcedure<String, String> {
+        public void run(String a, String b) {
             count++;
         }
         public int count = 0;

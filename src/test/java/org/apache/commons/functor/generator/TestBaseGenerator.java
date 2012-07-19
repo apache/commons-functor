@@ -36,15 +36,15 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class TestBaseGenerator {
 
-    private Generator simpleGenerator = null;
+    private Generator<Integer> simpleGenerator = null;
 
     // Lifecycle
     // ------------------------------------------------------------------------
 
     @Before
     public void setUp() throws Exception {
-        simpleGenerator = new BaseGenerator() {
-            public void run(UnaryProcedure proc) {
+        simpleGenerator = new BaseGenerator<Integer>() {
+            public void run(UnaryProcedure<? super Integer> proc) {
                 for (int i=0;i<5;i++) {
                     proc.run(new Integer(i));
                     if (isStopped()) {
@@ -54,10 +54,10 @@ public class TestBaseGenerator {
             }
         };
 
-        list = new ArrayList();
-        evens = new ArrayList();
-        doubled = new ArrayList();
-        listWithDuplicates = new ArrayList();
+        list = new ArrayList<Integer>();
+        evens = new ArrayList<Integer>();
+        doubled = new ArrayList<Integer>();
+        listWithDuplicates = new ArrayList<Integer>();
         sum = 0;
         for (int i=0;i<10;i++) {
             list.add(new Integer(i));
@@ -86,8 +86,8 @@ public class TestBaseGenerator {
     @Test
     public void testSimpleGenerator() {
         final StringBuffer result = new StringBuffer();
-        simpleGenerator.run(new UnaryProcedure() {
-            public void run(Object obj) {
+        simpleGenerator.run(new UnaryProcedure<Integer>() {
+            public void run(Integer obj) {
                 result.append(obj);
             }
         });
@@ -98,9 +98,9 @@ public class TestBaseGenerator {
     @Test
     public void testStop() {
         final StringBuffer result = new StringBuffer();
-        simpleGenerator.run(new UnaryProcedure() {
+        simpleGenerator.run(new UnaryProcedure<Integer>() {
             int i=0;
-            public void run(Object obj) {
+            public void run(Integer obj) {
                 result.append(obj);
                 if (i++ > 1) {
                     simpleGenerator.stop();
@@ -114,20 +114,20 @@ public class TestBaseGenerator {
     @Test
     public void testWrappingGenerator() {
         final StringBuffer result = new StringBuffer();
-        final Generator gen = new BaseGenerator(simpleGenerator) {
-            public void run(final UnaryProcedure proc) {
-                Generator wrapped = getWrappedGenerator();
+        final Generator<Integer> gen = new BaseGenerator<Integer>(simpleGenerator) {
+            public void run(final UnaryProcedure<? super Integer> proc) {
+                Generator<Integer> wrapped = (Generator<Integer>)getWrappedGenerator();
                 assertSame(simpleGenerator, wrapped);
-                wrapped.run(new UnaryProcedure() {
-                    public void run(Object obj) {
-                        proc.run(new Integer(((Integer) obj).intValue() + 1));
+                wrapped.run(new UnaryProcedure<Integer>() {
+                    public void run(Integer obj) {
+                        proc.run(new Integer(obj.intValue() + 1));
                     }
                 });
             }
         };
 
-        gen.run(new UnaryProcedure() {
-            public void run(Object obj) {
+        gen.run(new UnaryProcedure<Integer>() {
+            public void run(Integer obj) {
                 result.append(obj);
             }
         });
@@ -136,9 +136,9 @@ public class TestBaseGenerator {
 
         // try to stop the wrapped generator
         final StringBuffer result2 = new StringBuffer();
-        gen.run(new UnaryProcedure() {
+        gen.run(new UnaryProcedure<Integer>() {
             int i=0;
-            public void run(Object obj) {
+            public void run(Integer obj) {
                 result2.append(obj);
                 if (i++ > 1) {
                     gen.stop();
@@ -154,30 +154,31 @@ public class TestBaseGenerator {
 
     @Test
     public void testTo() {
-        Collection col = (Collection) simpleGenerator.to(new CollectionTransformer());
+        Collection<Integer> col = (Collection<Integer>)simpleGenerator.to(new CollectionTransformer<Integer>());
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
-        Collection fillThis = new LinkedList();
-        col = (Collection) simpleGenerator.to(new CollectionTransformer(fillThis));
+        Collection<Integer> fillThis = new LinkedList<Integer>();
+        col = (Collection<Integer>) simpleGenerator.to(new CollectionTransformer<Integer>(fillThis));
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
-        col = simpleGenerator.toCollection();
+        col = (Collection<Integer>)simpleGenerator.toCollection();
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
-        fillThis = new LinkedList();
-        col = simpleGenerator.to(fillThis);
+        fillThis = new LinkedList<Integer>();
+        col = (Collection<Integer>)simpleGenerator.to(fillThis);
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
     }
 
     // Attributes
     // ------------------------------------------------------------------------
-    private List list = null;
-    private List doubled = null;
-    private List evens = null;
-    private List listWithDuplicates = null;
+    private List<Integer> list = null;
+    private List<Integer> doubled = null;
+    private List<Integer> evens = null;
+    private List<Integer> listWithDuplicates = null;
+    @SuppressWarnings("unused")
     private int sum = 0;
 //    private UnaryPredicate equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
 //    private UnaryPredicate equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
@@ -195,9 +196,9 @@ public class TestBaseGenerator {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Summer implements UnaryProcedure {
-        public void run(Object that) {
-            sum += ((Number) that).intValue();
+    static class Summer implements UnaryProcedure<Number> {
+        public void run(Number that) {
+            sum += (that).intValue();
         }
         public int sum = 0;
     }

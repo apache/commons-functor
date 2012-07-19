@@ -105,6 +105,7 @@ public class TestLines extends TestCase {
         assertEquals("Expected 5 lines",5,matches.size());
     }
 
+    @SuppressWarnings("unchecked")
     public void testFindMatchingFromTail() throws Exception {
         Collection<String> matches = new FilteredGenerator<String>(Lines.from(reader), new UnaryAnd<String>(new Offset(
                 8), new Contains<String>("lo"))).toCollection();
