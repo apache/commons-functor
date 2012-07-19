@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,26 @@ public class TestUnarySequence extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
+    public void testConstructors() throws Exception {
+        UnarySequence<Object> seq1 = new UnarySequence<Object>((UnaryProcedure<? super Object>)null);
+        UnarySequence<Object> seq2 = new UnarySequence<Object>();
+        assertObjectsAreEqual(seq1, seq2);
+        
+        RunCounter p1 = new RunCounter();
+        RunCounter p2 = new RunCounter();
+        List<UnaryProcedure<? super Object>> iterable = new ArrayList<UnaryProcedure<? super Object>>();
+        iterable.add(p1);
+        iterable.add(p2);
+        UnarySequence<Object> seq3 = new UnarySequence<Object>(iterable);
+        UnarySequence<Object> seq4 = new UnarySequence<Object>(p1, p2);
+        assertObjectsAreEqual(seq3, seq4);
+        
+        UnarySequence<Object> seq5 = new UnarySequence<Object>((Iterable<UnaryProcedure<? super Object>>)null);
+        UnarySequence<Object> seq6 = new UnarySequence<Object>((UnaryProcedure<? super Object>[])null);
+        assertObjectsAreEqual(seq5, seq6);
+    }
+    
     @Test
     public void testRunZero() throws Exception {
         UnarySequence<String> seq = new UnarySequence<String>();
@@ -110,6 +131,7 @@ public class TestUnarySequence extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,new NoOp());
+        assertFalse(p.equals(null));
     }
 
     // Classes

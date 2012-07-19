@@ -98,7 +98,9 @@ public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
      * @return this
      */
     public UnarySequence<A> then(UnaryProcedure<? super A> p) {
-        list.add(p);
+        if (p != null) {
+            list.add(p);
+        }
         return this;
     }
 
