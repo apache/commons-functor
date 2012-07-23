@@ -20,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
@@ -56,17 +55,12 @@ public class TestRightIdentity extends BaseFunctorTest {
         assertSame(obj,f.evaluate(obj,obj));
     }
 
-    @Test
+    @Test(expected=NullPointerException.class)
     public void testTest() throws Exception {
         BinaryPredicate<Object, Boolean> p = RightIdentity.PREDICATE;
         assertTrue(p.test(null,Boolean.TRUE));
         assertTrue(!p.test(null,Boolean.FALSE));
-        try {
-            p.test(null,null);
-            fail("Expected NullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
+        p.test(null,null);
     }
 
     @Test

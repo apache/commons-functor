@@ -24,6 +24,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.functor.UnaryPredicate;
 import org.junit.Test;
 
 /**
@@ -74,5 +75,13 @@ public class TestIsNotSame extends BaseFunctorTest {
         assertEquals(IsNotSame.instance(), IsNotSame.instance());
         assertNotSame(IsNotSame.instance(), IsNotSame.instance());
         assertSame(IsNotSame.INSTANCE, IsNotSame.INSTANCE);
+    }
+
+    @Test
+    public void testAsUnaryPredicate() {
+        Integer one = new Integer(1);
+        UnaryPredicate<Integer> isNotSame = IsNotSame.as(one);
+        assertTrue(isNotSame.test(new Integer(2)));
+        assertFalse(isNotSame.test(one));
     }
 }

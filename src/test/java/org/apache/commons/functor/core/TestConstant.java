@@ -94,6 +94,8 @@ public class TestConstant extends BaseFunctorTest {
         assertObjectsAreEqual(f,new Constant<Object>("xyzzy"));
         assertObjectsAreNotEqual(f,new Constant<Object>("abcde"));
         assertObjectsAreNotEqual(f,new Constant<Object>(null));
+        assertObjectsAreEqual(new Constant<Object>(null),new Constant<Object>(null));
+        assertTrue(!f.equals(null));
     }
 
     @Test

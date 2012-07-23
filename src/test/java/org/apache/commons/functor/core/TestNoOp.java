@@ -68,5 +68,9 @@ public class TestNoOp extends BaseFunctorTest {
     public void testConstant() throws Exception {
         assertEquals(NoOp.instance(),NoOp.instance());
         assertSame(NoOp.instance(),NoOp.instance());
+        assertEquals(NoOp.unaryInstance(),NoOp.unaryInstance());
+        assertSame(NoOp.unaryInstance(),NoOp.unaryInstance());
+        assertEquals(NoOp.binaryInstance(),NoOp.binaryInstance());
+        assertSame(NoOp.binaryInstance(),NoOp.binaryInstance());
     }
 }

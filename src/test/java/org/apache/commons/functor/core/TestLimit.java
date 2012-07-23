@@ -86,4 +86,12 @@ public class TestLimit extends BaseFunctorTest {
         assertTrue(p.test(null,null));
         assertTrue(! p.test(null,null));
     }
+
+    @Test
+    public void testEquals() {
+        Limit limit = new Limit(1);
+        assertObjectsAreEqual(new Limit(1), limit);
+        assertObjectsAreNotEqual(new Limit(2), limit);
+        assertTrue(!limit.equals(null));
+    }
 }

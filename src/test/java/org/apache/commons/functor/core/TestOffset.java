@@ -88,4 +88,12 @@ public class TestOffset extends BaseFunctorTest {
         assertTrue(!p.test(null,null));
         assertTrue(p.test(null,null));
     }
+
+    @Test
+    public void testEquals() {
+        Offset offset = new Offset(1);
+        assertObjectsAreEqual(new Offset(1), offset);
+        assertObjectsAreNotEqual(new Offset(2), offset);
+        assertTrue(!offset.equals(null));
+    }
 }
