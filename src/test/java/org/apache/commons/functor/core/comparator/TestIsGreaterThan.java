@@ -56,13 +56,12 @@ public class TestIsGreaterThan extends BaseComparisonPredicateTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testEquals() throws Exception {
         IsGreaterThan<Comparable<?>> p = new IsGreaterThan<Comparable<?>>();
         assertEquals(p,p);
 
         assertObjectsAreEqual(p,new IsGreaterThan<Comparable<?>>());
-        assertObjectsAreEqual(p,new IsGreaterThan<Comparable<?>>(new ComparableComparator()));
+        assertObjectsAreEqual(p,new IsGreaterThan<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreEqual(p,IsGreaterThan.instance());
         assertObjectsAreNotEqual(p,Constant.FALSE);
     }

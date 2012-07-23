@@ -56,12 +56,11 @@ public class TestMin extends BaseFunctorTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testEquals() {
         Min<Comparable<?>> f = Min.instance();
         assertObjectsAreEqual(f,f);
         assertObjectsAreEqual(f,Min.instance());
-        assertObjectsAreEqual(f,new Min<Comparable<?>>(ComparableComparator.INSTANCE));
+        assertObjectsAreEqual(f,new Min<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreNotEqual(f,new Min<Comparable<?>>(Collections.<Comparable<?>>reverseOrder()));
     }
 }

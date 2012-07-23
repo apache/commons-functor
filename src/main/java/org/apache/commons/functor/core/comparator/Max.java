@@ -53,7 +53,7 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
      */
     @SuppressWarnings("unchecked")
     public Max() {
-        this(ComparableComparator.instance());
+        this((Comparator<T>) ComparableComparator.INSTANCE);
     }
 
     /**

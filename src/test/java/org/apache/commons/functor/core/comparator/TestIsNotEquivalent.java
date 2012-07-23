@@ -55,12 +55,11 @@ public class TestIsNotEquivalent extends BaseComparisonPredicateTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testEquals() throws Exception {
         IsNotEquivalent<Comparable<?>> p = new IsNotEquivalent<Comparable<?>>();
         assertEquals(p,p);
 
-        assertObjectsAreEqual(p,new IsNotEquivalent<Comparable<?>>(new ComparableComparator()));
+        assertObjectsAreEqual(p,new IsNotEquivalent<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreEqual(p,IsNotEquivalent.instance());
         assertObjectsAreNotEqual(p,Constant.FALSE);
     }

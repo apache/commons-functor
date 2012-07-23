@@ -41,7 +41,7 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 9190170976707323848L;
+    private static final long serialVersionUID = -3538911698805767997L;
 
     /**
      * The wrapped comparator.
@@ -53,7 +53,7 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
      */
     @SuppressWarnings("unchecked")
     public Min() {
-        this(ComparableComparator.instance());
+        this((Comparator<T>) ComparableComparator.INSTANCE);
     }
 
     /**

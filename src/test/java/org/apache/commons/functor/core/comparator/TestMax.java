@@ -56,12 +56,11 @@ public class TestMax extends BaseFunctorTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testEquals() {
         Max<Comparable<?>> f = Max.instance();
         assertObjectsAreEqual(f,f);
         assertObjectsAreEqual(f,Max.instance());
-        assertObjectsAreEqual(f,new Max<Comparable<?>>(ComparableComparator.INSTANCE));
+        assertObjectsAreEqual(f,new Max<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreNotEqual(f,new Max<Comparable<?>>(Collections.<Comparable<?>>reverseOrder()));
     }
 }

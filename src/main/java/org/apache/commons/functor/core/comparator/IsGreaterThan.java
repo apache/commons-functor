@@ -44,7 +44,7 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -8592932496891910273L;
+    private static final long serialVersionUID = 377027098765821021L;
 
     /**
      * The wrapped comparator.
@@ -57,7 +57,7 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
      */
     @SuppressWarnings("unchecked")
     public IsGreaterThan() {
-        this(ComparableComparator.INSTANCE);
+        this((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 
     /**

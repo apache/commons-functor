@@ -20,33 +20,37 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 /**
- * See Commons-Collections for a public version
- * of this class.
+ * A {@link Comparator Comparator} that compares {@link Comparable Comparable}
+ * objects.
+ * <p>
+ * This class was created based on commons-collection's ComparableComparator.
  *
+ * @param <E> the comparable type
  * @version $Revision$ $Date$
  */
-@SuppressWarnings({ "unchecked", "rawtypes" })
-final class ComparableComparator implements Comparator, Serializable {
+final class ComparableComparator<E extends Comparable<? super E>> implements Comparator<E>, Serializable {
 
     /** Singleton. */
-    public static final ComparableComparator INSTANCE = new ComparableComparator();
+    @SuppressWarnings("rawtypes")
+    public static final ComparableComparator<?> INSTANCE = new ComparableComparator();
 
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -5849476573719561212L;
+    private static final long serialVersionUID = 9098756963321230038L;
 
     /**
      * Create a new ComparableComparator.
      */
     public ComparableComparator() {
+        super();
     }
 
     /**
      * {@inheritDoc}
      */
-    public int compare(Object o1, Object o2) {
-        return ((Comparable) o1).compareTo(o2);
+    public int compare(E o1, E o2) {
+        return o1.compareTo(o2);
     }
 
     /**
@@ -75,10 +79,12 @@ final class ComparableComparator implements Comparator, Serializable {
 
     /**
      * Get a ComparableComparator instance.
+     * @param <E> the comparable type
      * @return ComparableComparator
      */
-    public static ComparableComparator instance() {
-        return INSTANCE;
+    @SuppressWarnings("unchecked")
+    public static <E extends Comparable<? super E>> ComparableComparator<E> instance() {
+        return (ComparableComparator<E>) INSTANCE;
     }
 
 }

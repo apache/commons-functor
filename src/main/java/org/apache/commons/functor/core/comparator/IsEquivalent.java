@@ -45,7 +45,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -6392784113015793664L;
+    private static final long serialVersionUID = 1884411899682486777L;
 
     /**
      * The wrapped comparator.
@@ -57,7 +57,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
      */
     @SuppressWarnings("unchecked")
     public IsEquivalent() {
-        this(ComparableComparator.INSTANCE);
+        this((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 
     /**
@@ -132,7 +132,7 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
      */
     @SuppressWarnings("unchecked")
     public static <T extends Comparable<?>> IsEquivalent<T> instance() {
-        return new IsEquivalent<T>(ComparableComparator.INSTANCE);
+        return new IsEquivalent<T>((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 
     /**

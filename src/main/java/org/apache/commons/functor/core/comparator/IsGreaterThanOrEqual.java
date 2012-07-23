@@ -45,7 +45,7 @@ public final class IsGreaterThanOrEqual<T> implements BinaryPredicate<T, T>, Ser
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 5262405026444050167L;
+    private static final long serialVersionUID = 1550544203070228570L;
 
     /**
      * The wrapped comparator.
@@ -58,7 +58,7 @@ public final class IsGreaterThanOrEqual<T> implements BinaryPredicate<T, T>, Ser
      */
     @SuppressWarnings("unchecked")
     public IsGreaterThanOrEqual() {
-        this(ComparableComparator.INSTANCE);
+        this((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 
     /**

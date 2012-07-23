@@ -57,7 +57,7 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
      */
     @SuppressWarnings("unchecked")
     public IsNotEquivalent() {
-        this(ComparableComparator.INSTANCE);
+        this((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 
     /**
@@ -132,7 +132,7 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
      */
     @SuppressWarnings("unchecked")
     public static <T extends Comparable<?>> IsNotEquivalent<T> instance() {
-        return new IsNotEquivalent<T>(ComparableComparator.INSTANCE);
+        return new IsNotEquivalent<T>((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 
     /**

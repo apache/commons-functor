@@ -102,6 +102,6 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
      */
     @SuppressWarnings("unchecked")
     public static <T> ComparatorFunction<T> instance() {
-        return new ComparatorFunction<T>(ComparableComparator.INSTANCE);
+        return new ComparatorFunction<T>((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 }

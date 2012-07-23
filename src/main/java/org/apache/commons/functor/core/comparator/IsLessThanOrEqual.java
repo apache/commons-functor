@@ -44,7 +44,7 @@ public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serial
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -7270189005780457145L;
+    private static final long serialVersionUID = -5791636848361450563L;
 
     /**
      * The wrapped comparator.
@@ -57,7 +57,7 @@ public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serial
      */
     @SuppressWarnings("unchecked")
     public IsLessThanOrEqual() {
-        this(ComparableComparator.INSTANCE);
+        this((Comparator<? super T>) ComparableComparator.INSTANCE);
     }
 
     /**

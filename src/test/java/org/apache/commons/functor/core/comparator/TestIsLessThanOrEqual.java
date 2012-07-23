@@ -56,13 +56,12 @@ public class TestIsLessThanOrEqual extends BaseComparisonPredicateTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testEquals() throws Exception {
         IsLessThanOrEqual<Comparable<?>> p = new IsLessThanOrEqual<Comparable<?>>();
         assertEquals(p,p);
 
         assertObjectsAreEqual(p,new IsLessThanOrEqual<Comparable<?>>());
-        assertObjectsAreEqual(p,new IsLessThanOrEqual<Comparable<?>>(new ComparableComparator()));
+        assertObjectsAreEqual(p,new IsLessThanOrEqual<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreEqual(p,IsLessThanOrEqual.instance());
         assertObjectsAreNotEqual(p,Constant.FALSE);
     }

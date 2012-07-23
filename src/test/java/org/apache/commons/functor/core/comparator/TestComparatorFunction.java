@@ -75,11 +75,10 @@ public class TestComparatorFunction extends BaseFunctorTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testEquals() {
         ComparatorFunction<Comparable<?>> f = ComparatorFunction.instance();
         assertObjectsAreEqual(f,f);
-        assertObjectsAreEqual(f,new ComparatorFunction<Comparable<?>>(ComparableComparator.INSTANCE));
+        assertObjectsAreEqual(f,new ComparatorFunction<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreNotEqual(f,new ComparatorFunction<Boolean>(Collections.reverseOrder()));
     }
 }
