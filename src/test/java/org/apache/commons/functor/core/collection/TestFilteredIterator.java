@@ -20,9 +20,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -122,54 +122,34 @@ public class TestFilteredIterator extends BaseFunctorTest {
         assertTrue(!(testing.hasNext()));
     }
 
-    @Test
+    @Test(expected=NoSuchElementException.class)
     public void testNextAfterEndOfList() {
         Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
         Iterator<Integer> expected = evens.iterator();
         while(expected.hasNext()) {
             assertEquals(expected.next(),testing.next());
         }
-        try {
-            testing.next();
-            fail("ExpectedNoSuchElementException");
-        } catch(NoSuchElementException e) {
-            // expected
-        }
+        testing.next();
     }
 
-    @Test
+    @Test(expected=NoSuchElementException.class)
     public void testNextOnEmptyList() {
         Iterator<Integer> testing = new FilteredIterator<Integer>(new ArrayList<Integer>().iterator(),isEven);
-        try {
-            testing.next();
-            fail("ExpectedNoSuchElementException");
-        } catch(NoSuchElementException e) {
-            // expected
-        }
+        testing.next();
     }
 
-    @Test
+    @Test(expected=IllegalStateException.class)
     public void testRemoveBeforeNext() {
         Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
-        try {
-            testing.remove();
-            fail("IllegalStateException");
-        } catch(IllegalStateException e) {
-            // expected
-        }
+        testing.remove();
     }
 
-    @Test
+    @Test(expected=IllegalStateException.class)
     public void testRemoveAfterNext() {
         Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
         testing.next();
         testing.remove();
-        try {
-            testing.remove();
-            fail("IllegalStateException");
-        } catch(IllegalStateException e) {
-            // expected
-        }
+        testing.remove();
     }
 
     @Test
@@ -228,6 +208,26 @@ public class TestFilteredIterator extends BaseFunctorTest {
     @Test(expected = NullPointerException.class)
     public void testConstructorProhibitsNull3() {
         new FilteredIterator<Integer>(list.iterator(),null);
+    }
+    
+    @Test
+    public void testEquals() {
+        Iterator<Integer> iter = list.iterator();
+        FilteredIterator<Integer> t = new FilteredIterator<Integer>(iter, isEven);
+        UnaryPredicate<Integer> isOdd = new UnaryPredicate<Integer>() {
+            public boolean test(Integer obj) {
+                return obj.intValue() % 2 != 0;
+            }
+        };
+        UnaryPredicate<Float> isOddFloat = new UnaryPredicate<Float>() {
+            public boolean test(Float obj) {
+                return obj.intValue() % 2 != 0;
+            }
+        };
+        assertEquals(t,new FilteredIterator<Integer>(iter, isEven));
+        assertTrue(!t.equals(new FilteredIterator<Integer>(list.iterator(), isOdd)));
+        assertTrue(!t.equals(new FilteredIterator<Float>(Arrays.asList(0.0f, 0.1f).iterator(), isOddFloat)));
+        assertTrue(!t.equals(null));
     }
 
     // Attributes

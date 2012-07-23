@@ -20,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -90,11 +89,14 @@ public class TestFilteredIterable extends BaseFunctorTest {
     public void testSomePass() {
         Iterator<Integer> expected = evens.iterator();
 
-        for (Integer i : FilteredIterable.of(list).retain(isEven)) {
+        FilteredIterable<Integer> filter = FilteredIterable.of(list);
+
+        for (Integer i : filter.retain(isEven)) {
             assertTrue(expected.hasNext());
             assertEquals(expected.next(), i);
         }
         assertFalse(expected.hasNext());
+        assertEquals(filter,filter.retain(isEven));
     }
 
     @Test
@@ -120,7 +122,11 @@ public class TestFilteredIterable extends BaseFunctorTest {
 
     @Test
     public void testEmptyFilteredIterable() {
-        assertFalse(FilteredIterable.empty().iterator().hasNext());
+        FilteredIterable<Integer> emptyFilter = FilteredIterable.empty();
+        assertFalse(emptyFilter.iterator().hasNext());
+        assertEquals(emptyFilter,emptyFilter.retain(isEven));
+        assertEquals(emptyFilter,emptyFilter.retain(Integer.class));
+        assertEquals(emptyFilter,emptyFilter.retain(Integer.class,Number.class));
     }
 
     @Test
@@ -143,53 +149,33 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(testing.hasNext());
     }
 
-    @Test
+    @Test(expected=NoSuchElementException.class)
     public void testNextAfterEndOfList() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
         Iterator<Integer> expected = evens.iterator();
         while (expected.hasNext()) {
             assertEquals(expected.next(), testing.next());
         }
-        try {
-            testing.next();
-            fail("Expected NoSuchElementException");
-        } catch (NoSuchElementException e) {
-            // expected
-        }
+        testing.next();
     }
 
-    @Test
+    @Test(expected=NoSuchElementException.class)
     public void testNextOnEmptyList() {
-        try {
-            FilteredIterable.empty().iterator().next();
-            fail("Expected NoSuchElementException");
-        } catch (NoSuchElementException e) {
-            // expected
-        }
+        FilteredIterable.empty().iterator().next();
     }
 
-    @Test
+    @Test(expected=IllegalStateException.class)
     public void testRemoveBeforeNext() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
-        try {
-            testing.remove();
-            fail("Expected IllegalStateException");
-        } catch (IllegalStateException e) {
-            // expected
-        }
+        testing.remove();
     }
 
-    @Test
+    @Test(expected=IllegalStateException.class)
     public void testRemoveAfterNext() {
         Iterator<Integer> testing = FilteredIterable.of(list).retain(isEven).iterator();
         testing.next();
         testing.remove();
-        try {
-            testing.remove();
-            fail("Expected IllegalStateException");
-        } catch (IllegalStateException e) {
-            // expected
-        }
+        testing.remove();
     }
 
     @Test
@@ -225,6 +211,12 @@ public class TestFilteredIterable extends BaseFunctorTest {
     @Test
     public void testFilterWithNullIteratorReturnsNull() {
         assertNull(FilteredIterable.of(null));
+    }
+
+    @Test
+    public void testFilterWithFilteredIterableReturnsItself() {
+        FilteredIterable<Integer> filter = FilteredIterable.of(list);
+        assertEquals(filter,FilteredIterable.of(filter));
     }
 
     @Test
@@ -271,33 +263,18 @@ public class TestFilteredIterable extends BaseFunctorTest {
         assertFalse(iterator.hasNext());
     }
 
-    @Test
+    @Test(expected=NullPointerException.class)
     public void testRetainNullType() {
-        try {
-            FilteredIterable.of(Collections.singleton("foo")).retain((Class<?>) null);
-            fail("Expected NullPointerException");
-        } catch (NullPointerException e) {
-            // okay
-        }
+        FilteredIterable.of(Collections.singleton("foo")).retain((Class<?>) null);
     }
 
-    @Test
+    @Test(expected=NullPointerException.class)
     public void testRetainNullTypes() {
-        try {
-            FilteredIterable.of(Collections.singleton("foo")).retain((Class<?>[]) null);
-            fail("Expected NullPointerException");
-        } catch (NullPointerException e) {
-            // okay
-        }
+        FilteredIterable.of(Collections.singleton("foo")).retain((Class<?>[]) null);
     }
 
-    @Test
+    @Test(expected=NullPointerException.class)
     public void testRetainNullPredicate() {
-        try {
-            FilteredIterable.of(Collections.singleton("foo")).retain((UnaryPredicate<String>) null);
-            fail("Expected NullPointerException");
-        } catch (NullPointerException e) {
-            // okay
-        }
+        FilteredIterable.of(Collections.singleton("foo")).retain((UnaryPredicate<String>) null);
     }
 }
