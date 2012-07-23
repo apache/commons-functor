@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.comparator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.core.Constant;
@@ -59,9 +60,10 @@ public class TestIsEquivalent extends BaseComparisonPredicateTest {
         IsEquivalent<Comparable<?>> p = IsEquivalent.INSTANCE;
         assertEquals(p,p);
 
-        assertObjectsAreEqual(p,IsEquivalent.instance());
+        assertObjectsAreEqual(p,new IsEquivalent<Comparable<?>>());
         assertObjectsAreEqual(p,new IsEquivalent<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertFalse(p.equals(null));
     }
 
 }

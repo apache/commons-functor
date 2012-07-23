@@ -64,6 +64,7 @@ public class TestIsLessThan extends BaseComparisonPredicateTest {
         assertObjectsAreEqual(p,new IsLessThan<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreEqual(p,IsLessThan.instance());
         assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertFalse(p.equals(null));
     }
 
 }

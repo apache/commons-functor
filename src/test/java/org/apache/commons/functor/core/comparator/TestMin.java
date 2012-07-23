@@ -17,10 +17,12 @@
 package org.apache.commons.functor.core.comparator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.Collections;
 
 import org.apache.commons.functor.BaseFunctorTest;
+import org.apache.commons.functor.UnaryFunction;
 import org.junit.Test;
 
 /**
@@ -62,5 +64,12 @@ public class TestMin extends BaseFunctorTest {
         assertObjectsAreEqual(f,Min.instance());
         assertObjectsAreEqual(f,new Min<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreNotEqual(f,new Min<Comparable<?>>(Collections.<Comparable<?>>reverseOrder()));
+        assertFalse(f.equals(null));
+    }
+
+    @Test
+    public void testUnaryFunctionMin() {
+        UnaryFunction<Integer, Integer> unaryMin = Min.instance(ONE);
+        assertEquals(ZERO,unaryMin.evaluate(ZERO));
     }
 }
