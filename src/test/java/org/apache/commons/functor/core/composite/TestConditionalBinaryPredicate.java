@@ -80,5 +80,10 @@ public class TestConditionalBinaryPredicate extends BaseFunctorTest {
             Constant.TRUE,
             Constant.TRUE,
             Constant.TRUE));
+        assertObjectsAreNotEqual(p,new ConditionalBinaryPredicate<Object, Object>(
+            Constant.FALSE,
+            Constant.TRUE,
+            Constant.FALSE));
+        assertTrue(!p.equals(null));
     }
 }

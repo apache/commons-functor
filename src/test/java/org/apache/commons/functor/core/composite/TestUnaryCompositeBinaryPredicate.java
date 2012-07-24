@@ -73,8 +73,17 @@ public class TestUnaryCompositeBinaryPredicate extends BaseFunctorTest {
                 Constant.FALSE));
         assertObjectsAreNotEqual(f,new UnaryCompositeBinaryPredicate<Boolean, Boolean>(
                 LeftIdentity.PREDICATE,
+                Constant.FALSE,
+                Constant.FALSE));
+        assertObjectsAreNotEqual(f,new UnaryCompositeBinaryPredicate<Boolean, Boolean>(
+                LeftIdentity.PREDICATE,
                 new Identity<Boolean>(),
                 Constant.TRUE));
+        assertObjectsAreNotEqual(f,new UnaryCompositeBinaryPredicate<Boolean, Boolean>(
+                LeftIdentity.PREDICATE,
+                Constant.TRUE,
+                new Identity<Boolean>()));
+        assertTrue(!((UnaryCompositeBinaryPredicate<?,?>)f).equals(null));
     }
 
 }

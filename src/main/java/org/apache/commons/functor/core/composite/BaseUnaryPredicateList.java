@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.lang3.Validate;
 
 /**
  * Abstract base class for {@link UnaryPredicate UnaryPredicates}
@@ -114,7 +113,9 @@ abstract class BaseUnaryPredicateList<A> implements UnaryPredicate<A>, Serializa
      * @param p UnaryPredicate to add
      */
     protected void addUnaryPredicate(UnaryPredicate<? super A> p) {
-        list.add(Validate.notNull(p, "Cannot add null UnaryPredicate"));
+        if (p != null) {
+            list.add(p);
+        }
     }
 
     // protected

@@ -89,7 +89,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
      * @return boolean
      */
     public final boolean equals(TransposedFunction<?, ?, ?> that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -98,9 +98,7 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
     @Override
     public int hashCode() {
         int hash = "TransposedFunction".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

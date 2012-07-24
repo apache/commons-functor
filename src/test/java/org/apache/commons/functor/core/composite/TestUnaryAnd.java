@@ -102,6 +102,7 @@ public class TestUnaryAnd extends BaseFunctorTest {
         }
     }
 
+    @SuppressWarnings("rawtypes")
     @Test
     public void testEquals() throws Exception {
         UnaryAnd<Object> p = new UnaryAnd<Object>();
@@ -121,6 +122,14 @@ public class TestUnaryAnd extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,Constant.truePredicate());
+        UnaryAnd<Object> r = new UnaryAnd<Object>();
+        r.and(Constant.truePredicate());
+        r.and(new UnaryAnd<Object>(Constant.truePredicate(),Constant.falsePredicate()));
+        assertObjectsAreEqual(r, new UnaryAnd<Object>(r.getUnaryPredicateList()));
+        assertObjectsAreNotEqual(p, new UnaryAnd((Iterable<UnaryPredicate<Object>>)null));
+        assertObjectsAreNotEqual(p, new UnaryAnd((UnaryPredicate<Object>[])null));
+        assertObjectsAreNotEqual(p, new UnaryAnd((UnaryPredicate<Object>)null));
+        assertTrue(!p.equals(null));
     }
 
 }

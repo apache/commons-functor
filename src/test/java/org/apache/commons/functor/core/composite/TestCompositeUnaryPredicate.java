@@ -86,6 +86,7 @@ public class TestCompositeUnaryPredicate extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(f,Constant.FALSE);
+        assertTrue(!f.equals(null));
     }
 
 }

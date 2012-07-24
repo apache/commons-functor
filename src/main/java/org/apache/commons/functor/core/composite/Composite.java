@@ -149,7 +149,7 @@ public final class Composite {
      * @param <R> the output predicate right argument type.
      * @param <G> the input functions left argument type.
      * @param <H> the input functions right argument type.
- *   * @param <T> the function returned value type.
+     * @param <T> the function returned value type.
      * @param f BinaryFunction to apply to <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
      * @param g left UnaryFunction
      * @param h right UnaryFunction
@@ -167,7 +167,7 @@ public final class Composite {
      * @param <R> the output predicate right argument type.
      * @param <G> the input functions left argument type.
      * @param <H> the input functions right argument type.
- *   * @param <T> the function returned value type.
+     * @param <T> the function returned value type.
      * @param f BinaryFunction to apply to <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
      * @param g left BinaryFunction
      * @param h right BinaryFunction

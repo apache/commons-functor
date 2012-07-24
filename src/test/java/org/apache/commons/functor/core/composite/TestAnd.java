@@ -19,6 +19,8 @@ package org.apache.commons.functor.core.composite;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
@@ -119,6 +121,20 @@ public class TestAnd extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,Constant.TRUE);
+        Iterable<Predicate> iterable = Arrays.<Predicate>asList(
+            Constant.TRUE,
+            new And(Constant.TRUE, Constant.FALSE),
+            Constant.TRUE,
+            new And(Constant.TRUE, Constant.FALSE),
+            Constant.TRUE,
+            new And(Constant.TRUE, Constant.FALSE));
+        assertObjectsAreEqual(p,new And(iterable));
+
+        assertObjectsAreNotEqual(p,new And((Iterable<Predicate>)null));
+        assertObjectsAreNotEqual(p,new And((Predicate[])null));
+        assertObjectsAreNotEqual(p,new And((Predicate)null));
+
+        assertTrue(!p.equals(null));
     }
 
 }

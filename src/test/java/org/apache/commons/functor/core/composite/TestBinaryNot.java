@@ -44,10 +44,9 @@ public class TestBinaryNot extends BaseFunctorTest {
 
     @Test
     public void testTest() throws Exception {
-        BinaryPredicate<Object, Object> truePred = new BinaryNot<Object, Object>(Constant.FALSE);
-        assertTrue(truePred.test(null,null));
-        assertTrue(truePred.test("xyzzy","abcde"));
-        assertTrue(truePred.test("xyzzy",new Integer(3)));
+        BinaryPredicate<Integer, Integer> p = new BinaryNot<Integer, Integer>(new IsSumGreaterThanTen());
+        assertTrue(!p.test(9, 2));
+        assertTrue(p.test(9, 1));
     }
 
     @Test
@@ -58,6 +57,7 @@ public class TestBinaryNot extends BaseFunctorTest {
         assertObjectsAreEqual(p,BinaryNot.not(Constant.TRUE));
         assertObjectsAreNotEqual(p,new BinaryNot<Object, Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.TRUE);
+        assertTrue(!p.equals(null));
     }
 
     @Test
@@ -68,5 +68,15 @@ public class TestBinaryNot extends BaseFunctorTest {
     @Test
     public void testNotNotNull() throws Exception {
         assertNotNull(BinaryNot.not(Constant.truePredicate()));
+    }
+
+    // Classes
+    // ------------------------------------------------------------------------
+    
+    class IsSumGreaterThanTen implements BinaryPredicate<Integer, Integer> {
+        public boolean test(Integer left, Integer right) {
+            return left+right > 10;
+        }
+        
     }
 }

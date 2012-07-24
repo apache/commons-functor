@@ -110,9 +110,9 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
      */
     public boolean equals(ConditionalUnaryFunction<?, ?> that) {
         return null != that
-                && (null == ifPred ? null == that.ifPred : ifPred.equals(that.ifPred))
-                && (null == thenFunc ? null == that.thenFunc : thenFunc.equals(that.thenFunc))
-                && (null == elseFunc ? null == that.elseFunc : elseFunc.equals(that.elseFunc));
+                && ifPred.equals(that.ifPred)
+                && thenFunc.equals(that.thenFunc)
+                && elseFunc.equals(that.elseFunc);
     }
 
     /**
@@ -121,18 +121,12 @@ public final class ConditionalUnaryFunction<A, T> implements UnaryFunction<A, T>
     @Override
     public int hashCode() {
         int hash = "ConditionalUnaryFunction".hashCode();
-        if (null != ifPred) {
-            hash <<= HASH_SHIFT;
-            hash ^= ifPred.hashCode();
-        }
-        if (null != thenFunc) {
-            hash <<= HASH_SHIFT;
-            hash ^= thenFunc.hashCode();
-        }
-        if (null != elseFunc) {
-            hash <<= HASH_SHIFT;
-            hash ^= elseFunc.hashCode();
-        }
+        hash <<= HASH_SHIFT;
+        hash ^= ifPred.hashCode();
+        hash <<= HASH_SHIFT;
+        hash ^= thenFunc.hashCode();
+        hash <<= HASH_SHIFT;
+        hash ^= elseFunc.hashCode();
         return hash;
     }
 

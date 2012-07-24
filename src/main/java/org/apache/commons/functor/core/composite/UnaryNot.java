@@ -80,7 +80,7 @@ public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
      * @return boolean
      */
     public boolean equals(UnaryNot<?> that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate));
+        return null != that && predicate.equals(that.predicate);
     }
 
     /**
@@ -89,9 +89,7 @@ public final class UnaryNot<A> implements UnaryPredicate<A>, Serializable {
     @Override
     public int hashCode() {
         int hash = "UnaryNot".hashCode();
-        if (null != predicate) {
-            hash ^= predicate.hashCode();
-        }
+        hash ^= predicate.hashCode();
         return hash;
     }
 

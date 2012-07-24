@@ -39,8 +39,11 @@ public class TestComposite {
 
     @Test
     public void testUnaryMethods() {
+        assertNotNull(Composite.procedure(NoOp.instance()));
         assertNotNull(Composite.procedure(NoOp.instance(),Identity.instance()));
+        assertNotNull(Composite.predicate(Identity.instance()));
         assertNotNull(Composite.predicate(Identity.instance(),Identity.instance()));
+        assertNotNull(Composite.function(Identity.instance()));
         assertNotNull(Composite.function(Identity.instance(),Identity.instance()));
     }
 

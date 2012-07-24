@@ -97,7 +97,9 @@ public class Sequence implements Procedure, Serializable {
      * @return this
      */
     public final Sequence then(Procedure p) {
-        list.add(p);
+        if (p != null) {
+            list.add(p);
+        }
         return this;
     }
 

@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A BinaryProcedure composed of a BinaryFunction whose result is then run through a UnaryProcedure.
@@ -61,8 +62,8 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
          */
         private Helper(BinaryFunction<? super L, ? super R, ? extends X> function,
                 UnaryProcedure<? super X> procedure) {
-            this.function = function;
-            this.procedure = procedure;
+            this.function = Validate.notNull(function, "BinaryFunction argument was null");
+            this.procedure = Validate.notNull(procedure, "UnaryProcedure argument was null");
         }
 
         /**

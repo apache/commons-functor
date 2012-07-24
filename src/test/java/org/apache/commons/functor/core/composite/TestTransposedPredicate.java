@@ -61,6 +61,7 @@ public class TestTransposedPredicate extends BaseFunctorTest {
         assertObjectsAreEqual(p,TransposedPredicate.transpose(Constant.TRUE));
         assertObjectsAreNotEqual(p,new TransposedPredicate<Object, Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.TRUE);
+        assertTrue(!p.equals((TransposedPredicate<?, ?>)null));
     }
 
     @Test

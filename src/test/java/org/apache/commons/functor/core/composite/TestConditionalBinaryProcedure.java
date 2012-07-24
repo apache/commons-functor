@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
@@ -80,6 +81,18 @@ public class TestConditionalBinaryProcedure extends BaseFunctorTest {
             Constant.TRUE,
             NoOp.instance(),
             NoOp.instance()));
+        assertObjectsAreNotEqual(p,new ConditionalBinaryProcedure<Boolean, Object>(
+            LeftIdentity.PREDICATE,
+            new RunCounter(),
+            NoOp.instance()));
+        assertObjectsAreNotEqual(p,new ConditionalBinaryProcedure<Boolean, Object>(
+                LeftIdentity.PREDICATE,
+            NoOp.instance(),
+            new RunCounter()));
+        assertObjectsAreNotEqual(p,new ConditionalBinaryProcedure<Boolean, Object>(
+            Constant.TRUE,
+            NoOp.instance()));
+        assertTrue(!p.equals(null));
     }
 
     // Classes

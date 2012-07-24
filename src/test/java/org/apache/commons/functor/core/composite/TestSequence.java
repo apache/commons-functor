@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,26 @@ public class TestSequence extends BaseFunctorTest {
 
     // Tests
     // ------------------------------------------------------------------------
+
+    @Test
+    public void testConstructors() throws Exception {
+        Sequence seq1 = new Sequence((Procedure)null);
+        Sequence seq2 = new Sequence();
+        assertObjectsAreEqual(seq1, seq2);
+        
+        RunCounter p1 = new RunCounter();
+        RunCounter p2 = new RunCounter();
+        List<Procedure> iterable = new ArrayList<Procedure>();
+        iterable.add(p1);
+        iterable.add(p2);
+        Sequence seq3 = new Sequence(iterable);
+        Sequence seq4 = new Sequence(p1, p2);
+        assertObjectsAreEqual(seq3, seq4);
+        
+        Sequence seq5 = new Sequence((Iterable<Procedure>)null);
+        Sequence seq6 = new Sequence((Procedure[])null);
+        assertObjectsAreEqual(seq5, seq6);
+    }
 
     @Test
     public void testRunZero() throws Exception {
@@ -103,6 +124,7 @@ public class TestSequence extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,new NoOp());
+        assertTrue(!p.equals(null));
     }
 
     // Classes

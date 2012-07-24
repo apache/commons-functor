@@ -17,10 +17,12 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.core.Constant;
+import org.apache.commons.functor.core.Identity;
 import org.junit.Test;
 
 /**
@@ -82,6 +84,9 @@ public class TestCompositeUnaryFunction extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(f, Constant.of("y"));
+        assertObjectsAreNotEqual(Constant.of("y"), f);
+        assertObjectsAreNotEqual(f, Identity.instance());
+        assertTrue(!f.equals(null));
     }
 
 }

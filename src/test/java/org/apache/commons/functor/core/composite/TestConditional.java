@@ -18,8 +18,10 @@ package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
+import org.apache.commons.functor.core.IsEqual;
 import org.apache.commons.functor.core.IsNull;
 import org.apache.commons.functor.core.NoOp;
 import org.apache.commons.functor.core.comparator.IsGreaterThan;
@@ -41,8 +43,14 @@ public class TestConditional {
 
     @Test
     public void testUnaryMethods() {
+        assertNotNull(Conditional.procedure(new Not(Constant.TRUE),new Sequence()));
+        assertNotNull(Conditional.procedure(new Not(Constant.TRUE),new Sequence(),new Sequence()));
+        assertNotNull(Conditional.procedure(IsNull.instance(),NoOp.instance()));
         assertNotNull(Conditional.procedure(IsNull.instance(),NoOp.instance(),NoOp.instance()));
+        assertNotNull(Conditional.procedure(new IsEqual<Object, Object>(),NoOp.INSTANCE));
         assertNotNull(Conditional.function(IsNull.instance(),Identity.instance(),Identity.instance()));
+        assertNotNull(Conditional.function(new Not(Constant.TRUE),Constant.FALSE,Constant.FALSE));
+        assertNotNull(Conditional.predicate((Predicate)Constant.truePredicate(),Constant.truePredicate(),Constant.truePredicate()));
         assertNotNull(Conditional.predicate(IsNull.instance(),Constant.truePredicate(),Constant.truePredicate()));
     }
 

@@ -79,5 +79,10 @@ public class TestConditionalPredicate extends BaseFunctorTest {
             Constant.TRUE,
             Constant.TRUE,
             Constant.TRUE));
+        assertObjectsAreNotEqual(p,new ConditionalPredicate(
+            Constant.FALSE,
+            Constant.TRUE,
+            Constant.FALSE));
+        assertTrue(!p.equals(null));
     }
 }

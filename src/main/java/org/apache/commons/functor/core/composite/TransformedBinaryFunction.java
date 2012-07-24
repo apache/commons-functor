@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A BinaryFunction whose result is then run through a UnaryFunction.
@@ -61,8 +62,8 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
          */
         private Helper(BinaryFunction<? super L, ? super R, ? extends X> preceding,
                 UnaryFunction<? super X, ? extends T> following) {
-            this.preceding = preceding;
-            this.following = following;
+            this.preceding = Validate.notNull(preceding, "BinaryFunction argument was null");
+            this.following = Validate.notNull(following, "UnaryFunction argument was null");
         }
 
         /**

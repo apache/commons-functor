@@ -19,6 +19,8 @@ package org.apache.commons.functor.core.composite;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.core.Constant;
@@ -101,6 +103,7 @@ public class TestBinaryOr extends BaseFunctorTest {
         }
     }
 
+    @SuppressWarnings("rawtypes")
     @Test
     public void testEquals() throws Exception {
         BinaryOr<Object, Object> p = new BinaryOr<Object, Object>();
@@ -129,6 +132,13 @@ public class TestBinaryOr extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,Constant.TRUE);
+        Iterable<BinaryPredicate<Object, Object>> iterable = Arrays.<BinaryPredicate<Object, Object>>asList(
+            (BinaryPredicate<Object, Object>)Constant.truePredicate());
+        assertObjectsAreNotEqual(p,new BinaryOr(iterable));
+        assertObjectsAreNotEqual(p,new BinaryOr((Iterable<BinaryPredicate<Object, Object>>)null));
+        assertObjectsAreNotEqual(p,new BinaryOr((BinaryPredicate<Object, Object>[])null));
+        assertObjectsAreNotEqual(p,new BinaryOr((BinaryPredicate<Object, Object>)null));
+        assertTrue(!p.equals(null));
     }
 
 }

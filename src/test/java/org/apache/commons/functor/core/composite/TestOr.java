@@ -20,6 +20,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
@@ -40,6 +42,18 @@ public class TestOr extends BaseFunctorTest {
 
     // Tests
     // ------------------------------------------------------------------------
+
+    @Test
+    public void testConstructors() {
+        Or or = new Or(Constant.FALSE);
+        assertEquals(Boolean.FALSE, or.test());
+        Or or2 = new Or((Iterable<Predicate>)Arrays.asList((Predicate)Constant.truePredicate()));
+        assertEquals(Boolean.TRUE, or2.test());
+        Or or3 = new Or((Predicate)null);
+        assertEquals(Boolean.FALSE, or3.test());
+        Or or4 = new Or((Iterable<Predicate>)null);
+        assertEquals(Boolean.FALSE, or4.test());
+    }
 
     @Test
     public void testTrue() throws Exception {
@@ -129,6 +143,12 @@ public class TestOr extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,Constant.TRUE);
+
+        assertObjectsAreNotEqual(p,new Or((Iterable<Predicate>)null));
+        assertObjectsAreNotEqual(p,new Or((Predicate[])null));
+        assertObjectsAreNotEqual(p,new Or((Predicate)null));
+
+        assertTrue(!p.equals(null));
     }
 
 }

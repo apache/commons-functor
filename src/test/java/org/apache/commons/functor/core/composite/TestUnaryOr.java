@@ -129,6 +129,10 @@ public class TestUnaryOr extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,Constant.truePredicate());
+        UnaryOr<Object> s = new UnaryOr<Object>();
+        s.or(Constant.truePredicate());
+        s.or(new UnaryOr<Object>(Constant.truePredicate(),Constant.falsePredicate()));
+        assertObjectsAreEqual(s, new UnaryOr<Object>(s.getUnaryPredicateList()));
     }
 
 }

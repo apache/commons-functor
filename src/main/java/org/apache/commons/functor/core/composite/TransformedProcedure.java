@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A Procedure composed of a Function whose result is then run through a UnaryProcedure.
@@ -59,8 +60,8 @@ public class TransformedProcedure implements Procedure, Serializable {
          * @param procedure UnaryFunction
          */
         private Helper(Function<? extends X> function, UnaryProcedure<? super X> procedure) {
-            this.function = function;
-            this.procedure = procedure;
+            this.function = Validate.notNull(function, "Function argument must not be null");
+            this.procedure = Validate.notNull(procedure, "UnaryProcedure argument must not be null");
         }
 
         /**

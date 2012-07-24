@@ -72,5 +72,10 @@ public class TestConditionalUnaryPredicate extends BaseFunctorTest {
             Constant.TRUE,
             Constant.TRUE,
             Constant.TRUE));
+        assertObjectsAreNotEqual(p,new ConditionalUnaryPredicate<Object>(
+            Identity.INSTANCE,
+            Constant.TRUE,
+            Constant.FALSE));
+        assertTrue(!p.equals(null));
     }
 }

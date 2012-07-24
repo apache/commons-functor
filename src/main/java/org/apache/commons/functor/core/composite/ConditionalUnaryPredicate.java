@@ -104,9 +104,9 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
      */
     public boolean equals(ConditionalUnaryPredicate<?> that) {
         return null != that
-                && (null == ifPred ? null == that.ifPred : ifPred.equals(that.ifPred))
-                && (null == thenPred ? null == that.thenPred : thenPred.equals(that.thenPred))
-                && (null == elsePred ? null == that.elsePred : elsePred.equals(that.elsePred));
+                && ifPred.equals(that.ifPred)
+                && thenPred.equals(that.thenPred)
+                && elsePred.equals(that.elsePred);
     }
 
     /**
@@ -115,18 +115,12 @@ public final class ConditionalUnaryPredicate<A> implements UnaryPredicate<A>, Se
     @Override
     public int hashCode() {
         int hash = "ConditionalUnaryPredicate".hashCode();
-        if (null != ifPred) {
-            hash <<= HASH_SHIFT;
-            hash ^= ifPred.hashCode();
-        }
-        if (null != thenPred) {
-            hash <<= HASH_SHIFT;
-            hash ^= thenPred.hashCode();
-        }
-        if (null != elsePred) {
-            hash <<= HASH_SHIFT;
-            hash ^= elsePred.hashCode();
-        }
+        hash <<= HASH_SHIFT;
+        hash ^= ifPred.hashCode();
+        hash <<= HASH_SHIFT;
+        hash ^= thenPred.hashCode();
+        hash <<= HASH_SHIFT;
+        hash ^= elsePred.hashCode();
         return hash;
     }
 

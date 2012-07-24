@@ -17,8 +17,10 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
@@ -91,6 +93,7 @@ public class TestBinarySequence extends BaseFunctorTest {
         }
     }
 
+    @SuppressWarnings("rawtypes")
     @Test
     public void testEquals() throws Exception {
         BinarySequence<String, String> p = new BinarySequence<String, String>();
@@ -110,6 +113,15 @@ public class TestBinarySequence extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(p,new NoOp());
+        assertObjectsAreNotEqual(p,new BinarySequence<String, String>((BinaryProcedure<String, String>[])null));
+        assertObjectsAreNotEqual(p,new BinarySequence<String, String>((BinaryProcedure<String, String>)null));
+        assertObjectsAreNotEqual(p,new BinarySequence((Iterable<BinaryProcedure>)null));
+        Iterable<BinaryProcedure> iterable = Arrays.<BinaryProcedure>asList(
+            new NoOp(), new BinarySequence<String, String>(new NoOp(),new NoOp()),
+            new NoOp(), new BinarySequence<String, String>(new NoOp(),new NoOp()),
+            new NoOp(), new BinarySequence<String, String>(new NoOp(),new NoOp()));
+        assertObjectsAreEqual(p,new BinarySequence(iterable));
+        assertTrue(!p.equals(null));
     }
 
     // Classes

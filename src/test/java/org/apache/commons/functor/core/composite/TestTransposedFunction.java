@@ -19,6 +19,7 @@ package org.apache.commons.functor.core.composite;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
@@ -57,6 +58,7 @@ public class TestTransposedFunction extends BaseFunctorTest {
         assertObjectsAreEqual(f,new TransposedFunction<Object, Object, Object>(LeftIdentity.FUNCTION));
         assertObjectsAreNotEqual(f,new TransposedFunction<Object, Object, Object>(RightIdentity.FUNCTION));
         assertObjectsAreNotEqual(f,Constant.of("y"));
+        assertTrue(!f.equals((TransposedFunction<?, ?, ?>)null));
     }
 
     @Test

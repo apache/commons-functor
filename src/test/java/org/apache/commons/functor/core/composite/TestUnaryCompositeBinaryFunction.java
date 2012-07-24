@@ -18,6 +18,7 @@ package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
@@ -80,6 +81,7 @@ public class TestUnaryCompositeBinaryFunction extends BaseFunctorTest {
                 LeftIdentity.FUNCTION,
                 Constant.of("left"),
                 Identity.instance()));
+        assertTrue(!((UnaryCompositeBinaryFunction<?,?,?>)f).equals(null));
     }
 
 }

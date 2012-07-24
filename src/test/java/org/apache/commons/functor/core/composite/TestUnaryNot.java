@@ -58,6 +58,7 @@ public class TestUnaryNot extends BaseFunctorTest {
         assertObjectsAreEqual(p,UnaryNot.not(Constant.TRUE));
         assertObjectsAreNotEqual(p,new UnaryNot<Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.TRUE);
+        assertTrue(!p.equals(null));
     }
 
     @Test

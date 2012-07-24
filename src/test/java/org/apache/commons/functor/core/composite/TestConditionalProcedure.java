@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
@@ -100,6 +101,22 @@ public class TestConditionalProcedure extends BaseFunctorTest {
             Constant.TRUE,
             NoOp.INSTANCE,
             NoOp.INSTANCE));
+        assertObjectsAreNotEqual(p,new ConditionalProcedure(
+            Constant.TRUE,
+            NoOp.INSTANCE,
+            NoOp.INSTANCE));
+        assertObjectsAreNotEqual(p,new ConditionalProcedure(
+            Constant.FALSE,
+            new RunCounter(),
+            NoOp.INSTANCE));
+        assertObjectsAreNotEqual(p,new ConditionalProcedure(
+            Constant.FALSE,
+            NoOp.INSTANCE,
+            new RunCounter()));
+        assertObjectsAreNotEqual(p,new ConditionalProcedure(
+            Constant.TRUE,
+            NoOp.INSTANCE));
+        assertTrue(!p.equals(null));
     }
 
     // Classes

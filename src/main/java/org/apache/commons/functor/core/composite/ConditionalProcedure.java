@@ -116,9 +116,9 @@ public final class ConditionalProcedure implements Procedure, Serializable {
      */
     public boolean equals(ConditionalProcedure that) {
         return null != that
-                && (null == ifPred ? null == that.ifPred : ifPred.equals(that.ifPred))
-                && (null == thenProc ? null == that.thenProc : thenProc.equals(that.thenProc))
-                && (null == elseProc ? null == that.elseProc : elseProc.equals(that.elseProc));
+                && ifPred.equals(that.ifPred)
+                && thenProc.equals(that.thenProc)
+                && elseProc.equals(that.elseProc);
     }
 
     /**
@@ -127,18 +127,12 @@ public final class ConditionalProcedure implements Procedure, Serializable {
     @Override
     public int hashCode() {
         int hash = "ConditionalProcedure".hashCode();
-        if (null != ifPred) {
-            hash <<= HASH_SHIFT;
-            hash ^= ifPred.hashCode();
-        }
-        if (null != thenProc) {
-            hash <<= HASH_SHIFT;
-            hash ^= thenProc.hashCode();
-        }
-        if (null != elseProc) {
-            hash <<= HASH_SHIFT;
-            hash ^= elseProc.hashCode();
-        }
+        hash <<= HASH_SHIFT;
+        hash ^= ifPred.hashCode();
+        hash <<= HASH_SHIFT;
+        hash ^= thenProc.hashCode();
+        hash <<= HASH_SHIFT;
+        hash ^= elseProc.hashCode();
         return hash;
     }
 

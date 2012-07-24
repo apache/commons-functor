@@ -86,7 +86,7 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
      * @return boolean
      */
     public boolean equals(TransposedProcedure<?, ?> that) {
-        return null != that && (null == procedure ? null == that.procedure : procedure.equals(that.procedure));
+        return null != that && procedure.equals(that.procedure);
     }
 
     /**
@@ -95,9 +95,7 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
     @Override
     public int hashCode() {
         int hash = "TransposedProcedure".hashCode();
-        if (null != procedure) {
-            hash ^= procedure.hashCode();
-        }
+        hash ^= procedure.hashCode();
         return hash;
     }
 

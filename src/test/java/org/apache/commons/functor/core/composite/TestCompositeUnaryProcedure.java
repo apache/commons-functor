@@ -17,12 +17,13 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
+import org.junit.Test;
 
 /**
  * @version $Revision$ $Date$
@@ -40,28 +41,27 @@ public class TestCompositeUnaryProcedure extends BaseFunctorTest {
     // Tests
     // ------------------------------------------------------------------------
 
+    @Test
     public void testRun() throws Exception {
         Composite.procedure(NoOp.instance(), Identity.instance()).run(null);
     }
 
-    public void testNullNotAllowed() throws Exception {
-        try {
-            new CompositeUnaryProcedure<Object>(null);
-            fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
-        try {
-            new CompositeUnaryProcedure<Object>(NoOp.instance()).of(null);
-            fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
-            // expected
-        }
+    @Test(expected=NullPointerException.class)
+    public void testNullUnaryProcedureNotAllowed() throws Exception {
+        new CompositeUnaryProcedure<Object>(null);
     }
+
+    @Test(expected=NullPointerException.class)
+    public void testNullUnaryProcedureNotAllowed2() throws Exception {
+        new CompositeUnaryProcedure<Object>(NoOp.instance()).of(null);
+    }
+
+    @Test
     public void testOf() throws Exception {
         Composite.procedure(NoOp.instance()).of(Identity.instance()).run(null);
     }
 
+    @Test
     public void testEquals() throws Exception {
         CompositeUnaryProcedure<Object> f = Composite.procedure(NoOp.instance());
         assertEquals(f,f);
@@ -80,6 +80,7 @@ public class TestCompositeUnaryProcedure extends BaseFunctorTest {
         }
 
         assertObjectsAreNotEqual(f,Constant.FALSE);
+        assertTrue(!f.equals(null));
     }
 
 }

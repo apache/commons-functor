@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A Function whose result is then run through a UnaryFunction.
@@ -58,8 +59,8 @@ public class TransformedFunction<T> implements Function<T>, Serializable {
          * @param following UnaryFunction
          */
         private Helper(Function<? extends X> preceding, UnaryFunction<? super X, ? extends T> following) {
-            this.preceding = preceding;
-            this.following = following;
+            this.preceding = Validate.notNull(preceding, "Function argument was null");
+            this.following = Validate.notNull(following, "UnaryFunction argument was null");
         }
 
         /**

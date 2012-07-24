@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -46,6 +47,8 @@ public class TestNot extends BaseFunctorTest {
     public void testTest() throws Exception {
         Predicate truePred = new Not(Constant.FALSE);
         assertTrue(truePred.test());
+        Predicate falsePred = new Not(Constant.TRUE);
+        assertFalse(falsePred.test());
     }
 
     @Test
@@ -56,6 +59,7 @@ public class TestNot extends BaseFunctorTest {
         assertObjectsAreEqual(p,Not.not(Constant.TRUE));
         assertObjectsAreNotEqual(p,new Not(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.TRUE);
+        assertTrue(!p.equals(null));
     }
 
     @Test

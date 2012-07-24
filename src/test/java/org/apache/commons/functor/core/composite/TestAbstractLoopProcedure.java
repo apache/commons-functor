@@ -17,9 +17,6 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
@@ -40,18 +37,18 @@ public class TestAbstractLoopProcedure extends BaseFunctorTest {
     protected Object makeFunctor() {
         return new MockLoopProcedure(Constant.FALSE, NoOp.INSTANCE);
     }
-
-    // tests
+    
+    // Tests
     // ------------------------------------------------------------------------
-    @Test
-    public void testEqualsAndHashCodeWithNullArgs() {
-        Procedure p = new MockLoopProcedure(null,null);
-        assertNotNull(p.toString());
-        assertFalse(p.equals(null));
-        assertTrue(p.equals(p));
-        assertEquals(p.hashCode(),p.hashCode());
-    }
 
+    @Test
+    public void testEquals() {
+        MockLoopProcedure p = new MockLoopProcedure(Constant.FALSE, NoOp.INSTANCE);
+        assertEquals(p,p);
+        assertObjectsAreEqual(p,new MockLoopProcedure(Constant.FALSE, NoOp.INSTANCE));
+        assertObjectsAreNotEqual(p,new MockLoopProcedure(Constant.TRUE, NoOp.INSTANCE));
+        assertObjectsAreNotEqual(p,new MockLoopProcedure(Constant.FALSE, new Sequence()));
+    }
 }
 
 class MockLoopProcedure extends AbstractLoopProcedure {

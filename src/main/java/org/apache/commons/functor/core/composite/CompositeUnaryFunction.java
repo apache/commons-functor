@@ -86,8 +86,8 @@ public class CompositeUnaryFunction<A, T> implements UnaryFunction<A, T>, Serial
          */
         public Helper(UnaryFunction<? super X, ? extends T> following,
                 UnaryFunction<? super A, ? extends X> preceding) {
-            this.following = following;
-            this.preceding = preceding;
+            this.following = Validate.notNull(following, "UnaryFunction argument must not be null");
+            this.preceding = Validate.notNull(preceding, "UnaryFunction argument must not be null");
         }
 
         /**

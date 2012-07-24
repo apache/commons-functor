@@ -81,7 +81,7 @@ public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializabl
      * @return boolean
      */
     public boolean equals(BinaryNot<?, ?> that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate));
+        return null != that && predicate.equals(that.predicate);
     }
 
     /**
@@ -90,9 +90,7 @@ public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializabl
     @Override
     public int hashCode() {
         int hash = "BinaryNot".hashCode();
-        if (null != predicate) {
-            hash ^= predicate.hashCode();
-        }
+        hash ^= predicate.hashCode();
         return hash;
     }
 

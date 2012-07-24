@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
@@ -71,5 +72,10 @@ public class TestConditionalUnaryFunction extends BaseFunctorTest {
             Constant.TRUE,
             Constant.of("left"),
             Constant.of("right")));
+        assertObjectsAreNotEqual(f,new ConditionalUnaryFunction<Object, Object>(
+            Identity.INSTANCE,
+            Constant.of("left"),
+            Constant.of(null)));
+        assertTrue(!f.equals(null));
     }
 }

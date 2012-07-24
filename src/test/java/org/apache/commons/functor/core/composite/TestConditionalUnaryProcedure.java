@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryProcedure;
@@ -80,6 +81,18 @@ public class TestConditionalUnaryProcedure extends BaseFunctorTest {
             Constant.TRUE,
             NoOp.INSTANCE,
             NoOp.INSTANCE));
+        assertObjectsAreNotEqual(p,new ConditionalUnaryProcedure<Object>(
+            Identity.INSTANCE,
+            new RunCounter(),
+            NoOp.INSTANCE));
+        assertObjectsAreNotEqual(p,new ConditionalUnaryProcedure<Object>(
+            Identity.INSTANCE,
+            NoOp.INSTANCE,
+            new RunCounter()));
+        assertObjectsAreNotEqual(p, new ConditionalUnaryProcedure<Object>(
+            Constant.TRUE,
+            new RunCounter()));
+        assertTrue(!p.equals(null));
     }
 
     // Classes

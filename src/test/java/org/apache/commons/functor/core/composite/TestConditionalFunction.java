@@ -17,6 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
@@ -78,5 +79,10 @@ public class TestConditionalFunction extends BaseFunctorTest {
             Constant.TRUE,
             Constant.of("left"),
             Constant.of(null)));
+        assertObjectsAreNotEqual(f,new ConditionalFunction<Object>(
+            Constant.FALSE,
+            Constant.of("left"),
+            Constant.of("right")));
+        assertTrue(!f.equals(null));
     }
 }
