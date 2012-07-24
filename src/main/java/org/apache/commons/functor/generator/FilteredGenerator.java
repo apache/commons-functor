@@ -84,9 +84,9 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
         int result = "FilteredGenerator".hashCode();
         result <<= 2;
         Generator<?> gen = getWrappedGenerator();
-        result ^= gen == null ? 0 : gen.hashCode();
+        result ^= gen.hashCode();
         result <<= 2;
-        result ^= pred == null ? 0 : pred.hashCode();
+        result ^= pred.hashCode();
         return result;
     }
 }

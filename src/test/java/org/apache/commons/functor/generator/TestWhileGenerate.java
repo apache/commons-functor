@@ -17,9 +17,7 @@
 package org.apache.commons.functor.generator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +32,7 @@ import org.junit.Test;
 
 /**
  * Tests the While Generate class.
+ * @version $Revision$ $Date$
  */
 public class TestWhileGenerate {
 
@@ -53,26 +52,19 @@ public class TestWhileGenerate {
     // Tests
     // ------------------------------------------------------------------------
 
-    @Test
-    public void testConstructorProhibitsNull() {
-        try {
-            new WhileGenerate<Integer>(null, whileGenerate);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new WhileGenerate<Integer>(isLessThanFive, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new WhileGenerate<Integer>(null, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicate() {
+        new WhileGenerate<Integer>(null, whileGenerate);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullWrappedGenerator() {
+        new WhileGenerate<Integer>(isLessThanFive, null);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicateOrNullWrappedGenerator() {
+        new WhileGenerate<Integer>(null, null);
     }
 
     @Test
@@ -98,12 +90,6 @@ public class TestWhileGenerate {
     public void testHashcode() {
         assertEquals(whileGenerate.hashCode(), whileGenerate.hashCode());
         assertEquals(whileGenerate.hashCode(), new WhileGenerate<Integer>(isLessThanFive, wrappedGenerator).hashCode());
-        assertFalse(whileGenerate.hashCode() == new WhileGenerate<Integer>(isLessThanFive, wrappedGenerator) {
-            @Override
-            protected Generator<? extends Integer> getWrappedGenerator() {
-                return null;
-            }
-        }.hashCode());
     }
 
     @Test

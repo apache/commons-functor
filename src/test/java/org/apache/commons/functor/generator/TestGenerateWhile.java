@@ -17,9 +17,7 @@
 package org.apache.commons.functor.generator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.generator.util.IntegerRange;
@@ -29,6 +27,7 @@ import org.junit.Test;
 
 /**
  * Tests the Generate While class.
+ * @version $Revision$ $Date$
  */
 public class TestGenerateWhile
 {
@@ -49,26 +48,19 @@ public class TestGenerateWhile
     // Tests
     // ------------------------------------------------------------------------
 
-    @Test
-    public void testConstructorProhibitsNull() {
-        try {
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicate() {
             new GenerateWhile<Integer>(generateWhile, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullWrappedGenerator() {
             new GenerateWhile<Integer>(null, isLessThanFive);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicateOrNullWrappedGenerator() {
             new GenerateWhile<Integer>(null, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
     }
 
     @Test
@@ -95,12 +87,6 @@ public class TestGenerateWhile
     public void testHashcode() {
         assertEquals(generateWhile.hashCode(), generateWhile.hashCode());
         assertEquals(generateWhile.hashCode(), new GenerateWhile<Integer>(wrappedGenerator, isLessThanFive).hashCode());
-        assertFalse(generateWhile.hashCode() == new GenerateWhile<Integer>(wrappedGenerator, isLessThanFive) {
-            @Override
-            protected Generator<? extends Integer> getWrappedGenerator() {
-                return null;
-            }
-        }.hashCode());
     }
 
     // Attributes

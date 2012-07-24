@@ -146,6 +146,9 @@ public class TestIntegerRange extends BaseFunctorTest {
         assertObjectsAreEqual(range, new IntegerRange(1, 5, 1));
         assertObjectsAreEqual(range, new IntegerRange(new Long(1), new Long(5)));
         assertObjectsAreEqual(range, new IntegerRange(new Long(1), new Long(5), new Long(1)));
+        assertObjectsAreNotEqual(range, new IntegerRange(2, 5));
+        assertObjectsAreNotEqual(range, new IntegerRange(1, 6));
+        assertObjectsAreNotEqual(range, new IntegerRange(1, 5, 2));
     }
 
 }

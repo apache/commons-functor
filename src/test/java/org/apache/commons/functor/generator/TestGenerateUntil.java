@@ -17,9 +17,7 @@
 package org.apache.commons.functor.generator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.generator.util.IntegerRange;
@@ -29,6 +27,7 @@ import org.junit.Test;
 
 /**
  * Tests the Generate Until class.
+ * @version $Revision$ $Date$
  */
 public class TestGenerateUntil
 {
@@ -49,26 +48,19 @@ public class TestGenerateUntil
     // Tests
     // ------------------------------------------------------------------------
 
-    @Test
-    public void testConstructorProhibitsNull() {
-        try {
-            new GenerateUntil<Integer>(generateUntil, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new GenerateUntil<Integer>(null, isMoreThanFive);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new GenerateUntil<Integer>(null, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullWrappedPredicate() {
+        new GenerateUntil<Integer>(generateUntil, null);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullGenerator() {
+        new GenerateUntil<Integer>(null, isMoreThanFive);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullGeneratorOrNullWrappedPredicate() {
+        new GenerateUntil<Integer>(null, null);
     }
 
     @Test
@@ -95,13 +87,6 @@ public class TestGenerateUntil
     public void testHashcode() {
         assertEquals(generateUntil.hashCode(), generateUntil.hashCode());
         assertEquals(generateUntil.hashCode(), new GenerateUntil<Integer>(wrappedGenerator, isMoreThanFive).hashCode());
-        assertFalse(generateUntil.hashCode() == new GenerateUntil<Integer>(wrappedGenerator, isMoreThanFive) {
-            @Override
-            protected Generator<? extends Integer> getWrappedGenerator()
-            {
-                return null;
-            }
-        }.hashCode());
     }
 
     // Attributes

@@ -17,9 +17,7 @@
 package org.apache.commons.functor.generator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +32,7 @@ import org.junit.Test;
 
 /**
  * Tests the Filtered Generator class.
+ * @version $Revision$ $Date$
  */
 public class TestFilteredGenerator
 {
@@ -54,26 +53,19 @@ public class TestFilteredGenerator
     // Tests
     // ------------------------------------------------------------------------
 
-    @Test
-    public void testConstructorProhibitsNull() {
-        try {
-            new FilteredGenerator<Integer>(filteredGenerator, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new FilteredGenerator<Integer>(null, isEven);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new FilteredGenerator<Integer>(null, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicate() {
+        new FilteredGenerator<Integer>(filteredGenerator, null);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullWrappedGenerator() {
+        new FilteredGenerator<Integer>(null, isEven);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicateOrNullWrappedGenerator() {
+        new FilteredGenerator<Integer>(null, null);
     }
 
     @Test
@@ -100,12 +92,6 @@ public class TestFilteredGenerator
     public void testHashcode() {
         assertEquals(filteredGenerator.hashCode(), filteredGenerator.hashCode());
         assertEquals(filteredGenerator.hashCode(), new FilteredGenerator<Integer>(wrappedGenerator, isEven).hashCode());
-        assertFalse(filteredGenerator.hashCode() == new FilteredGenerator<Integer>(wrappedGenerator, isEven) {
-            @Override
-            protected Generator<? extends Integer> getWrappedGenerator() {
-                return null;
-            }
-        }.hashCode());
     }
 
     @Test

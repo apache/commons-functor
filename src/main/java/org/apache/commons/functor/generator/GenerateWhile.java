@@ -90,9 +90,9 @@ public class GenerateWhile<E> extends BaseGenerator<E> {
         int result = "GenerateWhile".hashCode();
         result <<= 2;
         Generator<?> gen = getWrappedGenerator();
-        result ^= gen == null ? 0 : gen.hashCode();
+        result ^= gen.hashCode();
         result <<= 2;
-        result ^= test == null ? 0 : test.hashCode();
+        result ^= test.hashCode();
         return result;
     }
 }

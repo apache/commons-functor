@@ -17,9 +17,7 @@
 package org.apache.commons.functor.generator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +32,7 @@ import org.junit.Test;
 
 /**
  * Tests the Until Generate class.
+ * @version $Revision$ $Date$
  */
 public class TestUntilGenerate
 {
@@ -54,26 +53,19 @@ public class TestUntilGenerate
     // Tests
     // ------------------------------------------------------------------------
 
-    @Test
-    public void testConstructorProhibitsNull() {
-        try {
-            new UntilGenerate<Integer>(null, untilGenerate);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new UntilGenerate<Integer>(isLessThanFive, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new UntilGenerate<Integer>(null, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicate() {
+        new UntilGenerate<Integer>(null, untilGenerate);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullWrappedGenerator() {
+        new UntilGenerate<Integer>(isLessThanFive, null);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryPredicateOrNullWrappedGenerator() {
+        new UntilGenerate<Integer>(null, null);
     }
 
     @Test
@@ -99,13 +91,6 @@ public class TestUntilGenerate
     public void testHashcode() {
         assertEquals(untilGenerate.hashCode(), untilGenerate.hashCode());
         assertEquals(untilGenerate.hashCode(), new UntilGenerate<Integer>(isLessThanFive, wrappedGenerator).hashCode());
-        assertFalse(untilGenerate.hashCode() == new UntilGenerate<Integer>(isLessThanFive, wrappedGenerator) {
-            @Override
-            protected Generator<? extends Integer> getWrappedGenerator()
-            {
-                return null;
-            }
-        }.hashCode());
     }
 
     @Test

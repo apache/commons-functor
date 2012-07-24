@@ -14,9 +14,7 @@
 package org.apache.commons.functor.generator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +29,7 @@ import org.junit.Test;
 
 /**
  * Tests the Transformed Generator class.
+ * @version $Revision$ $Date$
  */
 public class TestTransformedGenerator
 {
@@ -51,26 +50,19 @@ public class TestTransformedGenerator
     // Tests
     // ------------------------------------------------------------------------
 
-    @Test
-    public void testConstructorProhibitsNull() {
-        try {
-            new TransformedGenerator<Integer, Integer>(null, sumsTwo);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new TransformedGenerator<Integer, Integer>(wrappedGenerator, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
-        try {
-            new TransformedGenerator<Integer, Integer>(null, null);
-            fail("ExpectedNullPointerException");
-        } catch(NullPointerException e) {
-            // expected
-        }
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullWrappedGenerator() {
+        new TransformedGenerator<Integer, Integer>(null, sumsTwo);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullUnaryFunction() {
+        new TransformedGenerator<Integer, Integer>(wrappedGenerator, null);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructorProhibitsNullWrappedGeneratorOrNullUnaryFunction() {
+        new TransformedGenerator<Integer, Integer>(null, null);
     }
 
     @Test
@@ -98,12 +90,6 @@ public class TestTransformedGenerator
     public void testHashcode() {
         assertEquals(sumsTwoGenerator.hashCode(), sumsTwoGenerator.hashCode());
         assertEquals(sumsTwoGenerator.hashCode(), new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo).hashCode());
-        assertFalse(sumsTwoGenerator.hashCode() == new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo) {
-            @Override
-            protected Generator<? extends Integer> getWrappedGenerator() {
-                return null;
-            }
-        }.hashCode());
     }
 
     @Test
