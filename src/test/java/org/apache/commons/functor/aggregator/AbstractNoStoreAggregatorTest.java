@@ -117,6 +117,11 @@ public class AbstractNoStoreAggregatorTest extends BaseFunctorTest {
         }
     }
 
+    @Test
+    public void testDataSize() {
+        assertEquals(0, new TestNoStoreAggregator<Object>(new Object()).retrieveDataSize());
+    }
+
     /**
      * Dummy binary function which always returns the first parameter.
      */

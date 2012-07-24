@@ -19,6 +19,7 @@ package org.apache.commons.functor.aggregator;
 import java.util.List;
 
 import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.lang3.Validate;
 
 /**
  * An aggregator which stores the data series in a List. Every call to
@@ -99,10 +100,7 @@ public abstract class AbstractListBackedAggregator<T> extends AbstractTimedAggre
     public AbstractListBackedAggregator(UnaryFunction<List<T>, T> aggregationFunction, long interval,
             boolean useSharedTimer) {
         super(interval, useSharedTimer);
-        if (aggregationFunction == null) {
-            throw new NullPointerException("no function specified for aggregation");
-        }
-        this.aggregationFunction = aggregationFunction;
+        this.aggregationFunction = Validate.notNull(aggregationFunction, "UnaryFunction argument must not be null");
         this.series = createList();
     }
 
