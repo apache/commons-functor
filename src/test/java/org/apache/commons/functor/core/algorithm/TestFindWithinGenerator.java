@@ -19,7 +19,6 @@ package org.apache.commons.functor.core.algorithm;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +28,6 @@ import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.adapter.LeftBoundPredicate;
 import org.apache.commons.functor.core.IsEqual;
-import org.apache.commons.functor.core.algorithm.FindWithinGenerator;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.junit.Test;
 
@@ -76,14 +74,19 @@ public class TestFindWithinGenerator extends BaseFunctorTest {
     }
 
     @Test
+    public void testEquals() {
+        FindWithinGenerator<Object> f = new FindWithinGenerator<Object>();
+        assertEquals(f,f);
+
+        assertObjectsAreEqual(f,new FindWithinGenerator<Object>());
+        assertObjectsAreEqual(new FindWithinGenerator<Object>(new Double(0)),new FindWithinGenerator<Object>(new Double(0)));
+        assertObjectsAreNotEqual(f, new FindWithinGenerator<Object>(new Integer(0)));
+    }
+
+    @Test(expected=NoSuchElementException.class)
     public void testDetect() {
         assertEquals(new Integer(3),new FindWithinGenerator<Integer>().evaluate(IteratorToGeneratorAdapter.adapt(numbers.iterator()),equalsThree));
-        try {
-            new FindWithinGenerator<Integer>().evaluate(IteratorToGeneratorAdapter.adapt(numbers.iterator()),equalsTwentyThree);
-            fail("Expected NoSuchElementException");
-        } catch(NoSuchElementException e) {
-            // expected
-        }
+        new FindWithinGenerator<Integer>().evaluate(IteratorToGeneratorAdapter.adapt(numbers.iterator()),equalsTwentyThree);
     }
 
     @Test
