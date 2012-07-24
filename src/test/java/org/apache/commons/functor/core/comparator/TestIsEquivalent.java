@@ -57,7 +57,7 @@ public class TestIsEquivalent extends BaseComparisonPredicateTest {
 
     @Test
     public void testEquals() throws Exception {
-        IsEquivalent<Comparable<?>> p = IsEquivalent.INSTANCE;
+        IsEquivalent<Comparable<Integer>> p = IsEquivalent.instance();
         assertEquals(p,p);
 
         assertObjectsAreEqual(p,new IsEquivalent<Comparable<?>>());

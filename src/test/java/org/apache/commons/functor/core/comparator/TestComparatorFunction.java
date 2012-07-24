@@ -80,5 +80,6 @@ public class TestComparatorFunction extends BaseFunctorTest {
         assertObjectsAreEqual(f,f);
         assertObjectsAreEqual(f,new ComparatorFunction<Integer>(ComparableComparator.<Integer>instance()));
         assertObjectsAreNotEqual(f,new ComparatorFunction<Boolean>(Collections.reverseOrder()));
+        assertTrue(!f.equals(null));
     }
 }

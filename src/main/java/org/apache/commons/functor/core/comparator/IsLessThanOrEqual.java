@@ -97,9 +97,6 @@ public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serial
      */
     public boolean equals(IsLessThanOrEqual<?> that) {
         if (null != that) {
-            if (null == comparator) {
-                return null == that.comparator;
-            }
             return comparator.equals(that.comparator);
         }
         return false;

@@ -98,9 +98,6 @@ public final class IsGreaterThanOrEqual<T> implements BinaryPredicate<T, T>, Ser
      */
     public boolean equals(IsGreaterThanOrEqual<?> that) {
         if (null != that) {
-            if (null == comparator) {
-                return null == that.comparator;
-            }
             return comparator.equals(that.comparator);
         }
         return false;

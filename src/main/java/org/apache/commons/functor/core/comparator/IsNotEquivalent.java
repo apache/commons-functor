@@ -97,9 +97,6 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
      */
     public boolean equals(IsNotEquivalent<?> that) {
         if (null != that) {
-            if (null == comparator) {
-                return null == that.comparator;
-            }
             return comparator.equals(that.comparator);
         }
         return false;

@@ -97,9 +97,6 @@ public final class IsLessThan<T> implements BinaryPredicate<T, T>, Serializable 
      */
     public boolean equals(IsLessThan<?> that) {
         if (null != that) {
-            if (null == comparator) {
-                return null == that.comparator;
-            }
             return comparator.equals(that.comparator);
         }
         return false;
