@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a {@link BinaryFunction BinaryFunction}
@@ -53,7 +54,7 @@ public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedur
      * @param function the {@link BinaryFunction BinaryFunction} to wrap
      */
     public BinaryFunctionBinaryProcedure(BinaryFunction<? super L, ? super R, ?> function) {
-        this.function = function;
+        this.function = Validate.notNull(function, "BinaryFunction argument was null");
     }
 
     /**
@@ -81,7 +82,7 @@ public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedur
      * @return boolean
      */
     public boolean equals(BinaryFunctionBinaryProcedure<?, ?> that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -90,9 +91,7 @@ public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedur
     @Override
     public int hashCode() {
         int hash = "BinaryFunctionBinaryProcedure".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

@@ -84,7 +84,7 @@ public final class BoundProcedure implements Procedure, Serializable {
      */
     public boolean equals(BoundProcedure that) {
         return null != that
-                && (null == procedure ? null == that.procedure : procedure.equals(that.procedure))
+                && procedure.equals(that.procedure)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 
@@ -94,10 +94,8 @@ public final class BoundProcedure implements Procedure, Serializable {
     @Override
     public int hashCode() {
         int hash = "BoundProcedure".hashCode();
-        if (null != procedure) {
-            hash <<= 2;
-            hash ^= procedure.hashCode();
-        }
+        hash <<= 2;
+        hash ^= procedure.hashCode();
         if (null != param) {
             hash <<= 2;
             hash ^= param.hashCode();

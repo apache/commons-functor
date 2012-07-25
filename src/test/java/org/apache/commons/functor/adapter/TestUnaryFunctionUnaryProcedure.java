@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
@@ -65,6 +66,7 @@ public class TestUnaryFunctionUnaryProcedure extends BaseFunctorTest {
         assertObjectsAreEqual(p,new UnaryFunctionUnaryProcedure<Object>(Constant.of("K")));
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
         assertObjectsAreNotEqual(p,new UnaryFunctionUnaryProcedure<Object>(Constant.of("J")));
+        assertTrue(!p.equals(null));
     }
 
     @Test

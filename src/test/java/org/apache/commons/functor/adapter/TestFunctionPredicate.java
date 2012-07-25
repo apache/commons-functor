@@ -61,6 +61,7 @@ public class TestFunctionPredicate extends BaseFunctorTest {
         assertObjectsAreEqual(p,new FunctionPredicate(Constant.TRUE));
         assertObjectsAreNotEqual(p,Constant.TRUE);
         assertObjectsAreNotEqual(p,new FunctionPredicate(Constant.FALSE));
+        assertTrue(!p.equals(null));
     }
 
     @Test

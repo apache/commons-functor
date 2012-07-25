@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
@@ -57,6 +58,9 @@ public class TestRightBoundFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of("xyzzy"));
         assertObjectsAreNotEqual(f,new RightBoundFunction<Object, Object>(RightIdentity.FUNCTION,"xyzzy"));
         assertObjectsAreNotEqual(f,new RightBoundFunction<Object, Object>(LeftIdentity.FUNCTION,"bar"));
+        assertObjectsAreNotEqual(f,new RightBoundFunction<Object, Object>(LeftIdentity.FUNCTION,null));
+        assertObjectsAreEqual(new RightBoundFunction<Object, Object>(LeftIdentity.FUNCTION,null),new RightBoundFunction<Object, Object>(LeftIdentity.FUNCTION,null));
+        assertTrue(!f.equals(null));
     }
 
     @Test

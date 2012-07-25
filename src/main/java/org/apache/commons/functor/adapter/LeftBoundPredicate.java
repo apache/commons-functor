@@ -86,7 +86,7 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
      */
     public boolean equals(LeftBoundPredicate<?> that) {
         return null != that
-                && (null == predicate ? null == that.predicate : predicate.equals(that.predicate))
+                && predicate.equals(that.predicate)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 
@@ -96,10 +96,8 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
     @Override
     public int hashCode() {
         int hash = "LeftBoundPredicate".hashCode();
-        if (null != predicate) {
-            hash <<= 2;
-            hash ^= predicate.hashCode();
-        }
+        hash <<= 2;
+        hash ^= predicate.hashCode();
         if (null != param) {
             hash <<= 2;
             hash ^= param.hashCode();

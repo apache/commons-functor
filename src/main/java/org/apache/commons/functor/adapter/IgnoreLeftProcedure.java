@@ -77,7 +77,7 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
      * @return boolean
      */
     public boolean equals(IgnoreLeftProcedure<?, ?> that) {
-        return null != that && (null == procedure ? null == that.procedure : procedure.equals(that.procedure));
+        return null != that && procedure.equals(that.procedure);
     }
 
     /**
@@ -86,9 +86,7 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
     @Override
     public int hashCode() {
         int hash = "IgnoreLeftProcedure".hashCode();
-        if (null != procedure) {
-            hash ^= procedure.hashCode();
-        }
+        hash ^= procedure.hashCode();
         return hash;
     }
 

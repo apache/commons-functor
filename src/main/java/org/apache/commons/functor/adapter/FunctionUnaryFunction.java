@@ -78,7 +78,7 @@ public final class FunctionUnaryFunction<A, T> implements UnaryFunction<A, T>, S
      * @return boolean
      */
     public boolean equals(FunctionUnaryFunction<?, ?> that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -87,9 +87,7 @@ public final class FunctionUnaryFunction<A, T> implements UnaryFunction<A, T>, S
     @Override
     public int hashCode() {
         int hash = "FunctionUnaryFunction".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

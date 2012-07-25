@@ -89,7 +89,7 @@ public final class FullyBoundFunction<T> implements Function<T>, Serializable {
      * @return boolean
      */
     public boolean equals(FullyBoundFunction<?> that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function))
+        return null != that && function.equals(that.function)
                 && (null == left ? null == that.left : left.equals(that.left))
                 && (null == right ? null == that.right : right.equals(that.right));
     }
@@ -100,10 +100,8 @@ public final class FullyBoundFunction<T> implements Function<T>, Serializable {
     @Override
     public int hashCode() {
         int hash = "FullyBoundFunction".hashCode();
-        if (null != function) {
-            hash <<= 2;
-            hash ^= function.hashCode();
-        }
+        hash <<= 2;
+        hash ^= function.hashCode();
         hash <<= 2;
         if (null != left) {
             hash ^= left.hashCode();

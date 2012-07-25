@@ -79,7 +79,7 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
      * @return boolean
      */
     public boolean equals(PredicateFunction that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate));
+        return null != that && predicate.equals(that.predicate);
     }
 
     /**
@@ -88,9 +88,7 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
     @Override
     public int hashCode() {
         int hash = "PredicateFunction".hashCode();
-        if (null != predicate) {
-            hash ^= predicate.hashCode();
-        }
+        hash ^= predicate.hashCode();
         return hash;
     }
 

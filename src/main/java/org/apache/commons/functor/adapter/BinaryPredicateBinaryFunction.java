@@ -82,7 +82,7 @@ public final class BinaryPredicateBinaryFunction<L, R> implements BinaryFunction
      * @return boolean
      */
     public boolean equals(BinaryPredicateBinaryFunction<?, ?> that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate));
+        return null != that && predicate.equals(that.predicate);
     }
 
     /**
@@ -91,9 +91,7 @@ public final class BinaryPredicateBinaryFunction<L, R> implements BinaryFunction
     @Override
     public int hashCode() {
         int hash = "BinaryPredicateBinaryFunction".hashCode();
-        if (null != predicate) {
-            hash ^= predicate.hashCode();
-        }
+        hash ^= predicate.hashCode();
         return hash;
     }
 

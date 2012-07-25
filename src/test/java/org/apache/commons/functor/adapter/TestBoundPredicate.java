@@ -65,6 +65,8 @@ public class TestBoundPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,new BoundPredicate(Constant.TRUE,"foo"));
         assertObjectsAreNotEqual(f,new BoundPredicate(Constant.FALSE,"xyzzy"));
         assertObjectsAreNotEqual(f,new BoundPredicate(Constant.TRUE,null));
+        assertObjectsAreEqual(new BoundPredicate(Constant.TRUE,null),new BoundPredicate(Constant.TRUE,null));
+        assertTrue(!f.equals(null));
     }
 
     @Test

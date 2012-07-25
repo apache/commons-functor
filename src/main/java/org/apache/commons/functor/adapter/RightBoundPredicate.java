@@ -85,7 +85,7 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
      */
     public boolean equals(RightBoundPredicate<?> that) {
         return null != that
-                && (null == predicate ? null == that.predicate : predicate.equals(that.predicate))
+                && predicate.equals(that.predicate)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 
@@ -95,10 +95,8 @@ public final class RightBoundPredicate<A> implements UnaryPredicate<A>, Serializ
     @Override
     public int hashCode() {
         int hash = "RightBoundPredicate".hashCode();
-        if (null != predicate) {
-            hash <<= 2;
-            hash ^= predicate.hashCode();
-        }
+        hash <<= 2;
+        hash ^= predicate.hashCode();
         if (null != param) {
             hash <<= 2;
             hash ^= param.hashCode();

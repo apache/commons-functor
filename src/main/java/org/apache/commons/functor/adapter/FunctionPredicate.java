@@ -77,7 +77,7 @@ public final class FunctionPredicate implements Predicate, Serializable {
      * @return boolean
      */
     public boolean equals(FunctionPredicate that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -86,9 +86,7 @@ public final class FunctionPredicate implements Predicate, Serializable {
     @Override
     public int hashCode() {
         int hash = "FunctionPredicate".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

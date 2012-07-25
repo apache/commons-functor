@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
@@ -57,11 +58,12 @@ public class TestProcedureFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of("x"));
         assertObjectsAreNotEqual(f,new ProcedureFunction<Object>(new Procedure() { public void run() { } }));
         assertObjectsAreNotEqual(f,Constant.of(null));
+        assertTrue(!f.equals(null));
     }
 
     @Test
     public void testAdaptNull() throws Exception {
-        assertNull(FunctionProcedure.adapt(null));
+        assertNull(ProcedureFunction.adapt(null));
     }
 
     @Test

@@ -79,7 +79,7 @@ public final class UnaryProcedureUnaryFunction<A, T> implements UnaryFunction<A,
      * @return boolean
      */
     public boolean equals(UnaryProcedureUnaryFunction<?, ?> that) {
-        return null != that && (null == procedure ? null == that.procedure : procedure.equals(that.procedure));
+        return null != that && procedure.equals(that.procedure);
     }
 
     /**
@@ -88,9 +88,7 @@ public final class UnaryProcedureUnaryFunction<A, T> implements UnaryFunction<A,
     @Override
     public int hashCode() {
         int hash = "UnaryProcedureUnaryFunction".hashCode();
-        if (null != procedure) {
-            hash ^= procedure.hashCode();
-        }
+        hash ^= procedure.hashCode();
         return hash;
     }
 

@@ -77,7 +77,7 @@ public final class PredicateUnaryPredicate<A> implements UnaryPredicate<A>, Seri
      * @return boolean
      */
     public boolean equals(PredicateUnaryPredicate<?> that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate));
+        return null != that && predicate.equals(that.predicate);
     }
 
     /**
@@ -86,9 +86,7 @@ public final class PredicateUnaryPredicate<A> implements UnaryPredicate<A>, Seri
     @Override
     public int hashCode() {
         int hash = "PredicateUnaryPredicate".hashCode();
-        if (null != predicate) {
-            hash ^= predicate.hashCode();
-        }
+        hash ^= predicate.hashCode();
         return hash;
     }
 

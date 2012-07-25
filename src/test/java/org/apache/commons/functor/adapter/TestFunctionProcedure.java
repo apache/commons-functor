@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
@@ -65,6 +66,7 @@ public class TestFunctionProcedure extends BaseFunctorTest {
         assertObjectsAreEqual(p,new FunctionProcedure(Constant.of("K")));
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
         assertObjectsAreNotEqual(p,new FunctionProcedure(Constant.of("J")));
+        assertTrue(!p.equals(null));
     }
 
     @Test

@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
@@ -54,9 +55,18 @@ public class TestFullyBoundFunction extends BaseFunctorTest {
         Function<Object> f = new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "xyzzy");
         assertEquals(f, f);
         assertObjectsAreEqual(f, new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "xyzzy"));
+        assertObjectsAreEqual(new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "bar", "xyzzy"),
+                              new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "bar", "xyzzy"));
+        assertObjectsAreEqual(new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "bar", null),
+                              new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "bar", null));
         assertObjectsAreNotEqual(f, Constant.of("xyzzy"));
         assertObjectsAreNotEqual(f, new FullyBoundFunction<Object>(LeftIdentity.FUNCTION, null, "xyzzy"));
+        assertObjectsAreNotEqual(f, new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "bar", "xyzzy"));
         assertObjectsAreNotEqual(f, new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "bar"));
+        assertObjectsAreNotEqual(f, new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, null));
+        assertObjectsAreNotEqual(new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "xyzzy", "bar"), new FullyBoundFunction<Object>(RightIdentity.FUNCTION, null, "bar"));
+        assertObjectsAreNotEqual(new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "xyzzy", "bar"), new FullyBoundFunction<Object>(RightIdentity.FUNCTION, "bar", "bar"));
+        assertTrue(!f.equals(null));
     }
 
     @Test

@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
@@ -59,6 +60,8 @@ public class TestIgnoreRightFunction extends BaseFunctorTest {
         assertObjectsAreNotEqual(f,Constant.of("x"));
         assertObjectsAreNotEqual(f,new IgnoreRightFunction<String, String, String>(Constant.<String>of(null)));
         assertObjectsAreNotEqual(f,Constant.of(null));
+        assertObjectsAreEqual(new IgnoreRightFunction<String, String, String>(Constant.<String>of(null)),new IgnoreRightFunction<String, String, String>(Constant.<String>of(null)));
+        assertTrue(!f.equals(null));
     }
 
     @Test

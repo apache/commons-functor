@@ -77,7 +77,7 @@ public final class ProcedureUnaryProcedure<A> implements UnaryProcedure<A>, Seri
      * @return boolean
      */
     public boolean equals(ProcedureUnaryProcedure<?> that) {
-        return null != that && (null == procedure ? null == that.procedure : procedure.equals(that.procedure));
+        return null != that && procedure.equals(that.procedure);
     }
 
     /**
@@ -86,9 +86,7 @@ public final class ProcedureUnaryProcedure<A> implements UnaryProcedure<A>, Seri
     @Override
     public int hashCode() {
         int hash = "ProcedureUnaryProcedure".hashCode();
-        if (null != procedure) {
-            hash ^= procedure.hashCode();
-        }
+        hash ^= procedure.hashCode();
         return hash;
     }
 

@@ -86,7 +86,7 @@ public final class LeftBoundFunction<A, T> implements UnaryFunction<A, T>, Seria
      */
     public boolean equals(LeftBoundFunction<?, ?> that) {
         return null != that
-                && (null == function ? null == that.function : function.equals(that.function))
+                && function.equals(that.function)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 
@@ -96,10 +96,8 @@ public final class LeftBoundFunction<A, T> implements UnaryFunction<A, T>, Seria
     @Override
     public int hashCode() {
         int hash = "LeftBoundFunction".hashCode();
-        if (null != function) {
-            hash <<= 2;
-            hash ^= function.hashCode();
-        }
+        hash <<= 2;
+        hash ^= function.hashCode();
         if (null != param) {
             hash <<= 2;
             hash ^= param.hashCode();

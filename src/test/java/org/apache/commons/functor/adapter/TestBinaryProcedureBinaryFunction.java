@@ -16,7 +16,9 @@
  */
 package org.apache.commons.functor.adapter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
@@ -63,7 +65,7 @@ public class TestBinaryProcedureBinaryFunction extends BaseFunctorTest {
 
     @Test
     public void testAdaptNull() throws Exception {
-        assertNull(BinaryFunctionBinaryProcedure.adapt(null));
+        assertNull(BinaryProcedureBinaryFunction.adapt(null));
     }
 
     @Test

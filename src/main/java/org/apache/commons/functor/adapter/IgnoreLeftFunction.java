@@ -79,7 +79,7 @@ public final class IgnoreLeftFunction<L, R, T> implements BinaryFunction<L, R, T
      * @return boolean
      */
     public boolean equals(IgnoreLeftFunction<?, ?, ?> that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -88,9 +88,7 @@ public final class IgnoreLeftFunction<L, R, T> implements BinaryFunction<L, R, T
     @Override
     public int hashCode() {
         int hash = "IgnoreLeftFunction".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

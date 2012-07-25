@@ -85,7 +85,7 @@ public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializ
      */
     public boolean equals(RightBoundProcedure<?> that) {
         return null != that
-                && (null == procedure ? null == that.procedure : procedure.equals(that.procedure))
+                && procedure.equals(that.procedure)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 
@@ -95,10 +95,8 @@ public final class RightBoundProcedure<A> implements UnaryProcedure<A>, Serializ
     @Override
     public int hashCode() {
         int hash = "RightBoundProcedure".hashCode();
-        if (null != procedure) {
-            hash <<= 2;
-            hash ^= procedure.hashCode();
-        }
+        hash <<= 2;
+        hash ^= procedure.hashCode();
         if (null != param) {
             hash <<= 2;
             hash ^= param.hashCode();

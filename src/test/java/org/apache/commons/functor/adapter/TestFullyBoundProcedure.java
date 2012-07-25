@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
@@ -58,7 +59,13 @@ public class TestFullyBoundProcedure extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, new FullyBoundProcedure(
                 new BinaryFunctionBinaryProcedure<Object, Object>(RightIdentity.FUNCTION), "xyzzy", null));
         assertObjectsAreNotEqual(f, new FullyBoundProcedure(NoOp.INSTANCE, "foo", null));
+        assertObjectsAreNotEqual(f, new FullyBoundProcedure(NoOp.INSTANCE, "xyzzy", "yzzyx"));
+        assertObjectsAreNotEqual(new FullyBoundProcedure(NoOp.INSTANCE, "xyzzy", "yzzyx"), new FullyBoundProcedure(NoOp.INSTANCE, "xyzzy", null));
         assertObjectsAreNotEqual(f, new FullyBoundProcedure(NoOp.INSTANCE, null, null));
+        assertObjectsAreEqual(new FullyBoundProcedure(NoOp.INSTANCE, null, null), new FullyBoundProcedure(NoOp.INSTANCE, null, null));
+        assertObjectsAreEqual(new FullyBoundProcedure(NoOp.INSTANCE, "foo", null), new FullyBoundProcedure(NoOp.INSTANCE, "foo", null));
+        assertObjectsAreEqual(new FullyBoundProcedure(NoOp.INSTANCE, "foo", "xyzzy"), new FullyBoundProcedure(NoOp.INSTANCE, "foo", "xyzzy"));
+        assertTrue(!f.equals(null));
     }
 
     @Test

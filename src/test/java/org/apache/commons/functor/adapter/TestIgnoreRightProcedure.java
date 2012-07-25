@@ -19,9 +19,11 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
 import org.junit.Test;
@@ -55,6 +57,12 @@ public class TestIgnoreRightProcedure extends BaseFunctorTest {
         assertEquals(p,p);
         assertObjectsAreEqual(p,new IgnoreRightProcedure<Object, Object>(NoOp.INSTANCE));
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
+        assertObjectsAreNotEqual(p,new IgnoreRightProcedure<Object, Object>(new UnaryProcedure<Object>() {
+            public void run(Object obj) {
+                // Do nothing
+            }
+        }));
+        assertTrue(!p.equals(null));
     }
 
     @Test

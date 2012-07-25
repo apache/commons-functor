@@ -80,7 +80,7 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
      * @return boolean
      */
     public boolean equals(UnaryFunctionUnaryPredicate<?> that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -89,9 +89,7 @@ public final class UnaryFunctionUnaryPredicate<A> implements UnaryPredicate<A>, 
     @Override
     public int hashCode() {
         int hash = "UnaryFunctionUnaryPredicate".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

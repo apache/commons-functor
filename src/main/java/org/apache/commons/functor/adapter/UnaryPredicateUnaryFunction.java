@@ -81,7 +81,7 @@ public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Bo
      * @return boolean
      */
     public boolean equals(UnaryPredicateUnaryFunction<?> that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate));
+        return null != that && predicate.equals(that.predicate);
     }
 
     /**
@@ -90,9 +90,7 @@ public final class UnaryPredicateUnaryFunction<A> implements UnaryFunction<A, Bo
     @Override
     public int hashCode() {
         int hash = "UnaryPredicateUnaryFunction".hashCode();
-        if (null != predicate) {
-            hash ^= predicate.hashCode();
-        }
+        hash ^= predicate.hashCode();
         return hash;
     }
 

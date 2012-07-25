@@ -81,7 +81,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
      * @return boolean
      */
     public boolean equals(final BinaryFunctionBinaryPredicate<?, ?> that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -90,9 +90,7 @@ public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicat
     @Override
     public int hashCode() {
         int hash = "BinaryFunctionBinaryPredicate".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

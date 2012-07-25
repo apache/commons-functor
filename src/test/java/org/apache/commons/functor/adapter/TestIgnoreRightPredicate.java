@@ -61,6 +61,7 @@ public class TestIgnoreRightPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.TRUE);
         assertObjectsAreNotEqual(p,new IgnoreRightPredicate<Boolean, Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertTrue(!p.equals(null));
     }
 
     @Test

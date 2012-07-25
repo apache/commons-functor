@@ -78,7 +78,7 @@ public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, 
      * @return boolean
      */
     public boolean equals(IgnoreRightPredicate<?, ?> that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate));
+        return null != that &&  predicate.equals(that.predicate);
     }
 
     /**
@@ -87,9 +87,7 @@ public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, 
     @Override
     public int hashCode() {
         int hash = "IgnoreRightPredicate".hashCode();
-        if (null != predicate) {
-            hash ^= predicate.hashCode();
-        }
+        hash ^= predicate.hashCode();
         return hash;
     }
 

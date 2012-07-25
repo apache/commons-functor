@@ -61,6 +61,8 @@ public class TestLeftBoundPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,new LeftBoundPredicate<Boolean>(Constant.FALSE,"xyzzy"));
         assertObjectsAreNotEqual(p,new LeftBoundPredicate<Boolean>(Constant.TRUE,"foo"));
         assertObjectsAreNotEqual(p,new LeftBoundPredicate<Boolean>(Constant.TRUE,null));
+        assertObjectsAreEqual(new LeftBoundPredicate<Boolean>(Constant.TRUE,null),new LeftBoundPredicate<Boolean>(Constant.TRUE,null));
+        assertTrue(!p.equals(null));
     }
 
     @Test

@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryProcedure;
@@ -60,6 +61,8 @@ public class TestLeftBoundProcedure extends BaseFunctorTest {
                 new BinaryFunctionBinaryProcedure<Object, Object>(RightIdentity.FUNCTION), "xyzzy"));
         assertObjectsAreNotEqual(f, new LeftBoundProcedure<Object>(NoOp.INSTANCE, "foo"));
         assertObjectsAreNotEqual(f, new LeftBoundProcedure<Object>(NoOp.INSTANCE, null));
+        assertObjectsAreEqual(new LeftBoundProcedure<Object>(NoOp.INSTANCE, null), new LeftBoundProcedure<Object>(NoOp.INSTANCE, null));
+        assertTrue(!f.equals(null));
     }
 
     @Test

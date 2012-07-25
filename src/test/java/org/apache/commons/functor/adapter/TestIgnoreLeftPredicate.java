@@ -61,6 +61,9 @@ public class TestIgnoreLeftPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.TRUE);
         assertObjectsAreNotEqual(p,new IgnoreLeftPredicate<Object, Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertObjectsAreNotEqual(p,new IgnoreLeftPredicate<Object, Object>(Constant.of(null)));
+        assertObjectsAreEqual(new IgnoreLeftPredicate<Object, Object>(Constant.of(null)),new IgnoreLeftPredicate<Object, Object>(Constant.of(null)));
+        assertTrue(!p.equals(null));
     }
 
     @Test

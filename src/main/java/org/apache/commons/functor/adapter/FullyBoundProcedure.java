@@ -88,7 +88,7 @@ public final class FullyBoundProcedure implements Procedure, Serializable {
      * @return boolean
      */
     public boolean equals(FullyBoundProcedure that) {
-        return null != that && (null == procedure ? null == that.procedure : procedure.equals(that.procedure))
+        return null != that && procedure.equals(that.procedure)
                 && (null == left ? null == that.left : left.equals(that.left))
                 && (null == right ? null == that.right : right.equals(that.right));
     }
@@ -99,10 +99,8 @@ public final class FullyBoundProcedure implements Procedure, Serializable {
     @Override
     public int hashCode() {
         int hash = "FullyBoundProcedure".hashCode();
-        if (null != procedure) {
-            hash <<= 2;
-            hash ^= procedure.hashCode();
-        }
+        hash <<= 2;
+        hash ^= procedure.hashCode();
         hash <<= 2;
         if (null != left) {
             hash ^= left.hashCode();

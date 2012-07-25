@@ -19,6 +19,7 @@ package org.apache.commons.functor.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Function;
@@ -60,11 +61,12 @@ public class TestPredicateFunction extends BaseFunctorTest {
         assertObjectsAreEqual(f,new PredicateFunction(Constant.TRUE));
         assertObjectsAreNotEqual(f,Constant.of("x"));
         assertObjectsAreNotEqual(f,new PredicateFunction(Constant.FALSE));
+        assertTrue(!f.equals(null));
     }
 
     @Test
     public void testAdaptNull() throws Exception {
-        assertNull(FunctionPredicate.adapt(null));
+        assertNull(PredicateFunction.adapt(null));
     }
 
     @Test

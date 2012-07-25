@@ -77,7 +77,7 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
      * @return boolean
      */
     public boolean equals(ProcedureFunction<?> that) {
-        return null != that && (null == procedure ? null == that.procedure : procedure.equals(that.procedure));
+        return null != that && procedure.equals(that.procedure);
     }
 
     /**
@@ -86,9 +86,7 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
     @Override
     public int hashCode() {
         int hash = "ProcedureFunction".hashCode();
-        if (null != procedure) {
-            hash ^= procedure.hashCode();
-        }
+        hash ^= procedure.hashCode();
         return hash;
     }
 

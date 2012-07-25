@@ -84,7 +84,7 @@ public final class BoundPredicate implements Predicate, Serializable {
      */
     public boolean equals(BoundPredicate that) {
         return null != that
-                && (null == predicate ? null == that.predicate : predicate.equals(that.predicate))
+                && predicate.equals(that.predicate)
                 && (null == param ? null == that.param : param.equals(that.param));
 
     }
@@ -95,10 +95,8 @@ public final class BoundPredicate implements Predicate, Serializable {
     @Override
     public int hashCode() {
         int hash = "BoundPredicate".hashCode();
-        if (null != predicate) {
-            hash <<= 2;
-            hash ^= predicate.hashCode();
-        }
+        hash <<= 2;
+        hash ^= predicate.hashCode();
         if (null != param) {
             hash <<= 2;
             hash ^= param.hashCode();

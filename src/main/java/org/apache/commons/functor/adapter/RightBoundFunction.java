@@ -85,7 +85,7 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
      */
     public boolean equals(RightBoundFunction<?, ?> that) {
         return null != that
-                && (null == function ? null == that.function : function.equals(that.function))
+                && function.equals(that.function)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 
@@ -95,10 +95,8 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
     @Override
     public int hashCode() {
         int hash = "RightBoundFunction".hashCode();
-        if (null != function) {
-            hash <<= 2;
-            hash ^= function.hashCode();
-        }
+        hash <<= 2;
+        hash ^= function.hashCode();
         if (null != param) {
             hash <<= 2;
             hash ^= param.hashCode();

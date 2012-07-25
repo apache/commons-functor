@@ -80,7 +80,7 @@ public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunct
      * @return boolean
      */
     public boolean equals(BinaryProcedureBinaryFunction<?, ?, ?> that) {
-        return null != that && (null == procedure ? null == that.procedure : procedure.equals(that.procedure));
+        return null != that && procedure.equals(that.procedure);
     }
 
     /**
@@ -89,9 +89,7 @@ public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunct
     @Override
     public int hashCode() {
         int hash = "BinaryProcedureBinaryFunction".hashCode();
-        if (null != procedure) {
-            hash ^= procedure.hashCode();
-        }
+        hash ^= procedure.hashCode();
         return hash;
     }
 

@@ -56,6 +56,7 @@ public class TestPredicateUnaryPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p,Constant.TRUE);
         assertObjectsAreNotEqual(p,new PredicateUnaryPredicate<Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertTrue(!p.equals(null));
     }
 
     @Test

@@ -61,6 +61,8 @@ public class TestRightBoundPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(f, new RightBoundPredicate<Boolean>(Constant.FALSE, "xyzzy"));
         assertObjectsAreNotEqual(f, new RightBoundPredicate<Boolean>(Constant.TRUE, "foo"));
         assertObjectsAreNotEqual(f, new RightBoundPredicate<Boolean>(Constant.TRUE, null));
+        assertObjectsAreEqual(new RightBoundPredicate<Boolean>(Constant.TRUE, null), new RightBoundPredicate<Boolean>(Constant.TRUE, null));
+        assertTrue(!f.equals(null));
     }
 
     @Test

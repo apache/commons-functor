@@ -89,7 +89,7 @@ public final class FullyBoundPredicate implements Predicate, Serializable {
      * @return boolean
      */
     public boolean equals(FullyBoundPredicate that) {
-        return null != that && (null == predicate ? null == that.predicate : predicate.equals(that.predicate))
+        return null != that && predicate.equals(that.predicate)
                 && (null == left ? null == that.left : left.equals(that.left))
                 && (null == right ? null == that.right : right.equals(that.right));
     }
@@ -100,10 +100,8 @@ public final class FullyBoundPredicate implements Predicate, Serializable {
     @Override
     public int hashCode() {
         int hash = "FullyBoundPredicate".hashCode();
-        if (null != predicate) {
-            hash <<= 2;
-            hash ^= predicate.hashCode();
-        }
+        hash <<= 2;
+        hash ^= predicate.hashCode();
         hash <<= 2;
         if (null != left) {
             hash ^= left.hashCode();

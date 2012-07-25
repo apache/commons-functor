@@ -60,6 +60,9 @@ public class TestFullyBoundPredicate extends BaseFunctorTest {
         assertObjectsAreNotEqual(p, new FullyBoundPredicate(Constant.FALSE, "xyzzy", null));
         assertObjectsAreNotEqual(p, new FullyBoundPredicate(Constant.TRUE, "foo", null));
         assertObjectsAreNotEqual(p, new FullyBoundPredicate(Constant.TRUE, null, "xyzzy"));
+        assertObjectsAreNotEqual(new FullyBoundPredicate(Constant.TRUE, null, "xyzzy"), new FullyBoundPredicate(Constant.TRUE, null, null));
+        assertObjectsAreEqual(new FullyBoundPredicate(Constant.TRUE, "foo", "xyzzy"), new FullyBoundPredicate(Constant.TRUE, "foo", "xyzzy"));
+        assertTrue(!p.equals(null));
     }
 
     @Test

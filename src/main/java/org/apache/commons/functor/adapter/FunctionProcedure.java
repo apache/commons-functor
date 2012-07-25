@@ -77,7 +77,7 @@ public final class FunctionProcedure implements Procedure, Serializable {
      * @return boolean
      */
     public boolean equals(FunctionProcedure that) {
-        return null != that && (null == function ? null == that.function : function.equals(that.function));
+        return null != that && function.equals(that.function);
     }
 
     /**
@@ -86,9 +86,7 @@ public final class FunctionProcedure implements Procedure, Serializable {
     @Override
     public int hashCode() {
         int hash = "FunctionProcedure".hashCode();
-        if (null != function) {
-            hash ^= function.hashCode();
-        }
+        hash ^= function.hashCode();
         return hash;
     }
 

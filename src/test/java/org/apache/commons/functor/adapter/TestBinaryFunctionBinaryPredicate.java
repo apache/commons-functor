@@ -62,6 +62,7 @@ public class TestBinaryFunctionBinaryPredicate extends BaseFunctorTest {
         assertObjectsAreEqual(p,new BinaryFunctionBinaryPredicate<Object, Object>(Constant.TRUE));
         assertObjectsAreNotEqual(p,Constant.truePredicate());
         assertObjectsAreNotEqual(p,new BinaryFunctionBinaryPredicate<Object, Object>(Constant.FALSE));
+        assertTrue(!p.equals(null));
     }
 
     @Test
