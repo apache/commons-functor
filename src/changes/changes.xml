@@ -26,9 +26,6 @@
       <action dev="kinow" issue="FUNCTOR-22">
         Generify ComparableComparator.
       </action>
-      <action dev="kinow" issue="FUNCTOR-3">
-        Reduce the use of raw types in test classes.
-      </action>
       <action dev="kinow" issue="FUNCTOR-21">
         Fix NPE in UnarySequence.
       </action>
@@ -61,6 +58,9 @@
       </action>
       <action dev="simonetripodi" issue="FUNCTOR-4" due-to="Bruno P. Kinoshita">
         Add easily accessible, user-friendly examples
+      </action>
+      <action dev="kinow" issue="FUNCTOR-3">
+        Reduce the use of raw types in test classes.
       </action>
       <action dev="simonetripodi" issue="FUNCTOR-2" due-to="Bruno P. Kinoshita">
         Improve Functor web page, removing Ant from building
