@@ -23,52 +23,52 @@
   </properties>
   <body>
     <release version="1.0" date="2012-??-??" description="First release.">
-      <action dev="simonetripodi" issue="FUNCTOR-23" due-to="Liviu Tudor">
+      <action issue="FUNCTOR-23" dev="simonetripodi" due-to="Liviu Tudor">
         aggregator.xml generates broken JavaDoc links
       </action>
-      <action dev="kinow" issue="FUNCTOR-22">
+      <action issue="FUNCTOR-22" dev="kinow">
         Generify ComparableComparator.
       </action>
-      <action dev="kinow" issue="FUNCTOR-21">
+      <action issue="FUNCTOR-21" dev="kinow">
         Fix NPE in UnarySequence.
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-19" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-19" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Fix checkstyle warnings
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-18" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-18" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Fix duplicated entries in examples page of [functor] website, and replace &lt;br/&gt; tags in aggregator.xml
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-17">
+      <action issue="FUNCTOR-17" dev="simonetripodi">
         Move developers from @author tags to pom.xml
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-16" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-16" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Fix checkstyle errors
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-15" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-15" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Distribute tests from TestAlgorithms into several test classes under algorithm test package
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-9" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-9" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Make Limit and Offset Serializable
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-8" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-8" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Possible NPE in TransformedGenerator if getWrappedGenerator() is overridden to return null
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-7" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-7" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Tests for generators
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-5" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-5" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Complete the javadoc description of Limit
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-4" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-4" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Add easily accessible, user-friendly examples
       </action>
-      <action dev="kinow" issue="FUNCTOR-3">
+      <action issue="FUNCTOR-3" dev="kinow">
         Reduce the use of raw types in test classes.
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-2" due-to="Bruno P. Kinoshita">
+      <action issue="FUNCTOR-2" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Improve Functor web page, removing Ant from building
       </action>
-      <action dev="simonetripodi" issue="FUNCTOR-1" due-to="Liviu Tudor">
+      <action issue="FUNCTOR-1" dev="simonetripodi" due-to="Liviu Tudor">
         New components: summarize and aggregate
       </action>
     </release>
