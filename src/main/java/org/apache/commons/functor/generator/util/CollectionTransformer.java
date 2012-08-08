@@ -20,6 +20,7 @@ import java.util.Collection;
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.generator.Generator;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Transforms a generator into a collection. If a collection is not passed into
@@ -29,7 +30,7 @@ import org.apache.commons.functor.generator.Generator;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public class CollectionTransformer<E> implements UnaryFunction<Generator<? extends E>, Collection<? super E>> {
+public class CollectionTransformer<E, C extends Collection<? super E>> implements UnaryFunction<Generator<? extends E>, C> {
     /*
      * TODO revisit this class... it could stand a more-descriptive name.  Also, it's a little
      * hard to say whether, for an instance constructed without a specific target collection,
@@ -43,29 +44,16 @@ public class CollectionTransformer<E> implements UnaryFunction<Generator<? exten
     /**
      * The adapted collection has to be filled.
      */
-    private final Collection<? super E> toFill;
+    private final C toFill;
 
     // constructors
     //---------------------------------------------------
     /**
      * Create a new CollectionTransformer.
-     */
-    public CollectionTransformer() {
-        this(null);
-    }
-
-    /**
-     * Create a new CollectionTransformer.
      * @param toFill Collection to fill
      */
-    public CollectionTransformer(Collection<? super E> toFill) {
-        Collection<? super E> coll;
-        if (toFill == null) {
-            coll = new ArrayList<E>();
-        } else {
-            coll = toFill;
-        }
-        this.toFill = coll;
+    public CollectionTransformer(C toFill) {
+        this.toFill = Validate.notNull(toFill, "toFill");
     }
 
     // instance methods
@@ -73,13 +61,20 @@ public class CollectionTransformer<E> implements UnaryFunction<Generator<? exten
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
-    public Collection<E> evaluate(Generator<? extends E> generator) {
+    public C evaluate(Generator<? extends E> generator) {
         generator.run(new UnaryProcedure<E>() {
             public void run(E obj) {
                 toFill.add(obj);
             }
         });
-        return (Collection<E>) toFill;
+        return toFill;
+    }
+
+    /**
+     * Get a {@link CollectionTransformer} instance that simply returns any {@link Collection}.
+     * @return {@link CollectionTransformer}
+     */
+    public static <E> CollectionTransformer<E, Collection<E>> toCollection() {
+        return new CollectionTransformer<E, Collection<E>>(new ArrayList<E>());
     }
 }

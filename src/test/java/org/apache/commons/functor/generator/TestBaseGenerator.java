@@ -154,11 +154,11 @@ public class TestBaseGenerator {
 
     @Test
     public void testTo() {
-        Collection<Integer> col = (Collection<Integer>)simpleGenerator.to(new CollectionTransformer<Integer>());
+        Collection<Integer> col = simpleGenerator.to(CollectionTransformer.<Integer> toCollection());
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
         Collection<Integer> fillThis = new LinkedList<Integer>();
-        col = (Collection<Integer>) simpleGenerator.to(new CollectionTransformer<Integer>(fillThis));
+        col = simpleGenerator.to(new CollectionTransformer<Integer, Collection<Integer>>(fillThis));
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 

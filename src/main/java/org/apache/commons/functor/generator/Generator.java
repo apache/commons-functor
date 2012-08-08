@@ -58,7 +58,7 @@ public interface Generator<E> {
      * @param collection Collection to which my elements should be added
      * @return <code>collection</code>
      */
-    Collection<? super E> to(Collection<? super E> collection);
+    <C extends Collection<? super E>> C to(C collection);
 
     /**
      * Same as to(new CollectionTransformer()).

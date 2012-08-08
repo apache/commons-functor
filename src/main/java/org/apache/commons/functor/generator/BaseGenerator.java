@@ -91,16 +91,15 @@ public abstract class BaseGenerator<E> implements Generator<E> {
      * {@inheritDoc}
      * Same as to(new CollectionTransformer(collection)).
      */
-    public final Collection<? super E> to(Collection<? super E> collection) {
-        return to(new CollectionTransformer<E>(collection));
+    public final <C extends Collection<? super E>> C to(C collection) {
+        return to(new CollectionTransformer<E, C>(collection));
     }
 
     /**
      * {@inheritDoc}
      * Same as to(new CollectionTransformer()).
      */
-    @SuppressWarnings("unchecked")
     public final Collection<E> toCollection() {
-        return (Collection<E>) to(new CollectionTransformer<E>());
+        return to(CollectionTransformer.<E> toCollection());
     }
 }
