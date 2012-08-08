@@ -16,6 +16,9 @@
  */
 package org.apache.commons.functor.example.aggregator.list;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +26,6 @@ import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.aggregator.AbstractListBackedAggregator;
 import org.apache.commons.functor.aggregator.functions.IntegerSumAggregatorFunction;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Class which shows how to provide a custom List implementation with an
@@ -34,11 +36,10 @@ public class OwnListImplementationSample {
     @Test
     public void sampleCreateOwnList() {
         CustomListAggregator<Integer> agg = new CustomListAggregator<Integer>(new IntegerSumAggregatorFunction());
-        int eval = agg.evaluate();
-        assertEquals(eval, 0);
+        assertNull(agg.evaluate());
         agg.add(2);
         agg.add(3);
-        eval = agg.evaluate();
+        int eval = agg.evaluate();
         assertEquals(eval, 5);
         assertEquals(agg.getDataSize(), 2); // 2 items added
     }
