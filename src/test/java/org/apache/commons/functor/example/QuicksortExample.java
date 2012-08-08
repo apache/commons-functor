@@ -411,7 +411,7 @@ public class QuicksortExample {
  */
 
     public abstract class ObjectListFunction implements BinaryFunction<Object, Object, Object> {
-        public abstract Object evaluate(Object head, List<Object> tail);
+        public abstract Object evaluate(Object head, List<?> tail);
 
         public Object evaluate(Object left, Object right) {
             if (left != null && right instanceof List) {
@@ -462,7 +462,7 @@ public class QuicksortExample {
     @SuppressWarnings("rawtypes")
     private BinaryFunction<Object, Object, Object> lesserTail = new ObjectListFunction() {
         @Override
-        public Object evaluate(Object head, List<Object> tail) {
+        public Object evaluate(Object head, List<?> tail) {
             return new FilteredGenerator(
                     IteratorToGeneratorAdapter.adapt(tail.iterator()),
                     IsLessThan.instance((Comparable<?>) head)).toCollection();
@@ -477,7 +477,7 @@ public class QuicksortExample {
     @SuppressWarnings("rawtypes")
     private BinaryFunction greaterTail = new ObjectListFunction() {
         @Override
-        public Object evaluate(Object head, List<Object> tail) {
+        public Object evaluate(Object head, List<?> tail) {
             return new FilteredGenerator(
                     IteratorToGeneratorAdapter.adapt(tail.iterator()),
                  IsGreaterThanOrEqual.instance((Comparable<?>) head)).toCollection();
