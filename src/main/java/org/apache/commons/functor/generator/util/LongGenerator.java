@@ -23,7 +23,7 @@ import org.apache.commons.functor.generator.BaseGenerator;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class LongRange extends BaseGenerator<Long> {
+public final class LongGenerator extends BaseGenerator<Long> {
     // attributes
     //---------------------------------------------------------------
 
@@ -49,7 +49,7 @@ public final class LongRange extends BaseGenerator<Long> {
      * @param from start
      * @param to end
      */
-    public LongRange(Number from, Number to) {
+    public LongGenerator(Number from, Number to) {
         this(from.longValue(), to.longValue());
     }
 
@@ -59,7 +59,7 @@ public final class LongRange extends BaseGenerator<Long> {
      * @param to end
      * @param step increment
      */
-    public LongRange(Number from, Number to, Number step) {
+    public LongGenerator(Number from, Number to, Number step) {
         this(from.longValue(), to.longValue(), step.longValue());
     }
 
@@ -68,7 +68,7 @@ public final class LongRange extends BaseGenerator<Long> {
      * @param from start
      * @param to end
      */
-    public LongRange(long from, long to) {
+    public LongGenerator(long from, long to) {
         this(from, to, defaultStep(from, to));
     }
 
@@ -78,7 +78,7 @@ public final class LongRange extends BaseGenerator<Long> {
      * @param to end
      * @param step increment
      */
-    public LongRange(long from, long to, long step) {
+    public LongGenerator(long from, long to, long step) {
         if (from != to && signOf(step) != signOf(to - from)) {
             throw new IllegalArgumentException("Will never reach " + to + " from " + from + " using step " + step);
         }
@@ -120,10 +120,10 @@ public final class LongRange extends BaseGenerator<Long> {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LongRange)) {
+        if (!(obj instanceof LongGenerator)) {
             return false;
         }
-        LongRange that = (LongRange) obj;
+        LongGenerator that = (LongGenerator) obj;
         return this.from == that.from && this.to == that.to && this.step == that.step;
     }
 

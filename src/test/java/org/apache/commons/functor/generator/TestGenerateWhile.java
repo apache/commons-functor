@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.generator.util.IntegerRange;
+import org.apache.commons.functor.generator.util.IntegerGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class TestGenerateWhile
 
     @Before
     public void setUp() throws Exception {
-        wrappedGenerator = new IntegerRange(1, 10);
+        wrappedGenerator = new IntegerGenerator(1, 10);
         generateWhile = new GenerateWhile<Integer>(wrappedGenerator, isLessThanFive);
     }
 
@@ -65,13 +65,13 @@ public class TestGenerateWhile
 
     @Test
     public void testEquals() {
-        Generator<Integer> anotherGenerate = new GenerateWhile<Integer>(new IntegerRange(1, 10), isLessThanFive);
+        Generator<Integer> anotherGenerate = new GenerateWhile<Integer>(new IntegerGenerator(1, 10), isLessThanFive);
         assertEquals(generateWhile, generateWhile);
         assertEquals(generateWhile, anotherGenerate);
         assertTrue(!generateWhile.equals((GenerateWhile<Integer>)null));
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new GenerateWhile<Integer>(
-			new IntegerRange(1, 10), new UnaryPredicate<Integer>() {
+			new IntegerGenerator(1, 10), new UnaryPredicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj < FIVE;
 				}
@@ -79,7 +79,7 @@ public class TestGenerateWhile
 
         assertTrue(!generateWhile.equals(aGenerateWithADifferentPredicate));
 
-        Generator<Integer> aGenerateWithADifferentWrapped = new GenerateWhile<Integer>(new IntegerRange(1,11), isLessThanFive);
+        Generator<Integer> aGenerateWithADifferentWrapped = new GenerateWhile<Integer>(new IntegerGenerator(1,11), isLessThanFive);
         assertTrue(!generateWhile.equals(aGenerateWithADifferentWrapped));
     }
 

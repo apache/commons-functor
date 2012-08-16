@@ -34,7 +34,7 @@ import org.apache.commons.functor.generator.FilteredGenerator;
 import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.apache.commons.functor.generator.TransformedGenerator;
-import org.apache.commons.functor.generator.util.IntegerRange;
+import org.apache.commons.functor.generator.util.IntegerGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -116,7 +116,7 @@ public class TestAlgorithms {
 
     @Test
     public void testApplyToGenerator() {
-        Generator<Integer> gen = new IntegerRange(1,5);
+        Generator<Integer> gen = new IntegerGenerator(1,5);
         Summer summer = new Summer();
 
         new TransformedGenerator<Integer, Integer>(gen, new Doubler()).run(summer);

@@ -24,7 +24,7 @@ import org.apache.commons.functor.generator.BaseGenerator;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class IntegerRange extends BaseGenerator<Integer> {
+public final class IntegerGenerator extends BaseGenerator<Integer> {
     // attributes
     //---------------------------------------------------------------
 
@@ -50,7 +50,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
      * @param from start
      * @param to end
      */
-    public IntegerRange(Number from, Number to) {
+    public IntegerGenerator(Number from, Number to) {
         this(from.intValue(), to.intValue());
     }
 
@@ -60,7 +60,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
      * @param to end
      * @param step increment
      */
-    public IntegerRange(Number from, Number to, Number step) {
+    public IntegerGenerator(Number from, Number to, Number step) {
         this(from.intValue(), to.intValue(), step.intValue());
     }
 
@@ -69,7 +69,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
      * @param from start
      * @param to end
      */
-    public IntegerRange(int from, int to) {
+    public IntegerGenerator(int from, int to) {
         this(from, to, defaultStep(from, to));
     }
 
@@ -79,7 +79,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
      * @param to end
      * @param step increment
      */
-    public IntegerRange(int from, int to, int step) {
+    public IntegerGenerator(int from, int to, int step) {
         if (from != to && signOf(step) != signOf(to - from)) {
             throw new IllegalArgumentException("Will never reach " + to + " from " + from + " using step " + step);
         }
@@ -121,10 +121,10 @@ public final class IntegerRange extends BaseGenerator<Integer> {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof IntegerRange)) {
+        if (!(obj instanceof IntegerGenerator)) {
             return false;
         }
-        IntegerRange that = (IntegerRange) obj;
+        IntegerGenerator that = (IntegerGenerator) obj;
         return this.from == that.from && this.to == that.to && this.step == that.step;
     }
 
