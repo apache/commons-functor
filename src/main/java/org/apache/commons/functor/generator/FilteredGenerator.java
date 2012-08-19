@@ -33,6 +33,11 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
     /**
      * The wrapped generator.
      */
+    private final Generator<? extends E> wrappedGenerator;
+
+    /**
+     * The predicate used for filtering.
+     */
     private final UnaryPredicate<? super E> pred;
 
     /**
@@ -41,7 +46,7 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
      * @param pred filtering UnaryPredicate
      */
     public FilteredGenerator(Generator<? extends E> wrapped, UnaryPredicate<? super E> pred) {
-        super(Validate.notNull(wrapped, "Generator argument was null"));
+        this.wrappedGenerator = Validate.notNull(wrapped, "Generator argument was null");
         this.pred = Validate.notNull(pred, "UnaryPredicate argument was null");
     }
 
@@ -49,16 +54,7 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
      * {@inheritDoc}
      */
     public void run(UnaryProcedure<? super E> proc) {
-        getWrappedGenerator().run(new ConditionalUnaryProcedure<E>(pred, proc));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected Generator<? extends E> getWrappedGenerator() {
-        return (Generator<? extends E>) super.getWrappedGenerator();
+        this.wrappedGenerator.run(new ConditionalUnaryProcedure<E>(pred, proc));
     }
 
     /**
@@ -73,7 +69,7 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
             return false;
         }
         FilteredGenerator<?> other = (FilteredGenerator<?>) obj;
-        return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.pred.equals(pred);
+        return other.wrappedGenerator.equals(this.wrappedGenerator) && other.pred.equals(pred);
     }
 
     /**
@@ -83,7 +79,7 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
     public int hashCode() {
         int result = "FilteredGenerator".hashCode();
         result <<= 2;
-        Generator<?> gen = getWrappedGenerator();
+        Generator<?> gen = this.wrappedGenerator;
         result ^= gen.hashCode();
         result <<= 2;
         result ^= pred.hashCode();

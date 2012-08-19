@@ -25,7 +25,8 @@ import java.util.List;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.util.IntegerGenerator;
+import org.apache.commons.functor.generator.loop.UntilGenerate;
+import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class TestUntilGenerate
 
     @Before
     public void setUp() throws Exception {
-        wrappedGenerator = new IntegerGenerator(1, 10);
+        wrappedGenerator = new IntegerRange(1, 10);
         untilGenerate = new UntilGenerate<Integer>(isLessThanFive, wrappedGenerator);
     }
 
@@ -70,7 +71,7 @@ public class TestUntilGenerate
 
     @Test
     public void testEquals() {
-        Generator<Integer> anotherGenerate = new UntilGenerate<Integer>(isLessThanFive, new IntegerGenerator(1, 10));
+        Generator<Integer> anotherGenerate = new UntilGenerate<Integer>(isLessThanFive, new IntegerRange(1, 10));
         assertEquals(untilGenerate, untilGenerate);
         assertEquals(untilGenerate, anotherGenerate);
         assertTrue(!untilGenerate.equals((UntilGenerate<Integer>)null));
@@ -80,10 +81,10 @@ public class TestUntilGenerate
 				public boolean test(Integer obj) {
 					return obj < FIVE;
 				}
-			}, new IntegerGenerator(1, 10));
+			}, new IntegerRange(1, 10));
         assertTrue(!untilGenerate.equals(aGenerateWithADifferentPredicate));
 
-        Generator<Integer> aGenerateWithADifferentWrapped = new UntilGenerate<Integer>(isLessThanFive, new IntegerGenerator(1,2));
+        Generator<Integer> aGenerateWithADifferentWrapped = new UntilGenerate<Integer>(isLessThanFive, new IntegerRange(1,2));
         assertTrue(!untilGenerate.equals(aGenerateWithADifferentWrapped));
     }
 

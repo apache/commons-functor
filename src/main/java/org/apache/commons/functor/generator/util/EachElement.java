@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.functor.generator.Generator;
-import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 
 /**
  * Generator factory for each element of a "collection".
