@@ -49,7 +49,7 @@ public final class IndexOfInGenerator<T>
         /**
          * The wrapped generator.
          */
-        private final LoopGenerator<? extends T> generator;
+        private final Generator<? extends T> generator;
         /**
          * The wrapped predicate.
          */
@@ -70,7 +70,7 @@ public final class IndexOfInGenerator<T>
          * @param generator The wrapped generator
          * @param pred The wrapped predicate
          */
-        IndexProcedure(LoopGenerator<? extends T> generator, UnaryPredicate<? super T> pred) {
+        IndexProcedure(Generator<? extends T> generator, UnaryPredicate<? super T> pred) {
             this.generator = generator;
             this.pred = pred;
         }
@@ -92,7 +92,7 @@ public final class IndexOfInGenerator<T>
      * @param left Generator
      * @param right UnaryPredicate
      */
-    public Number evaluate(LoopGenerator<? extends T> left, UnaryPredicate<? super T> right) {
+    public Number evaluate(Generator<? extends T> left, UnaryPredicate<? super T> right) {
         IndexProcedure<T> findProcedure = new IndexProcedure<T>(left, right);
         left.run(findProcedure);
         return Long.valueOf(findProcedure.index);

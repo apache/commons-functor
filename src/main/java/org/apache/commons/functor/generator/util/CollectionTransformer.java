@@ -72,7 +72,6 @@ public class CollectionTransformer<E, C extends Collection<? super E>> implement
 
     /**
      * Get a {@link CollectionTransformer} instance that simply returns any {@link Collection}.
-     * @param <E> the type of elements of the collection.
      * @return {@link CollectionTransformer}
      */
     public static <E> CollectionTransformer<E, Collection<E>> toCollection() {

@@ -47,6 +47,9 @@ public class TestBaseGenerator {
             public void run(UnaryProcedure<? super Integer> proc) {
                 for (int i=0;i<5;i++) {
                     proc.run(new Integer(i));
+                    if (isStopped()) {
+                        break;
+                    }
                 }
             }
         };
@@ -90,6 +93,60 @@ public class TestBaseGenerator {
         });
 
         assertEquals("01234", result.toString());
+    }
+
+    @Test
+    public void testStop() {
+        final StringBuffer result = new StringBuffer();
+        simpleGenerator.run(new UnaryProcedure<Integer>() {
+            int i=0;
+            public void run(Integer obj) {
+                result.append(obj);
+                if (i++ > 1) {
+                    simpleGenerator.stop();
+                }
+            }
+        });
+
+        assertEquals("012", result.toString());
+    }
+
+    @Test
+    public void testWrappingGenerator() {
+        final StringBuffer result = new StringBuffer();
+        final Generator<Integer> gen = new BaseGenerator<Integer>(simpleGenerator) {
+            public void run(final UnaryProcedure<? super Integer> proc) {
+                Generator<Integer> wrapped = (Generator<Integer>)getWrappedGenerator();
+                assertSame(simpleGenerator, wrapped);
+                wrapped.run(new UnaryProcedure<Integer>() {
+                    public void run(Integer obj) {
+                        proc.run(new Integer(obj.intValue() + 1));
+                    }
+                });
+            }
+        };
+
+        gen.run(new UnaryProcedure<Integer>() {
+            public void run(Integer obj) {
+                result.append(obj);
+            }
+        });
+
+        assertEquals("12345", result.toString());
+
+        // try to stop the wrapped generator
+        final StringBuffer result2 = new StringBuffer();
+        gen.run(new UnaryProcedure<Integer>() {
+            int i=0;
+            public void run(Integer obj) {
+                result2.append(obj);
+                if (i++ > 1) {
+                    gen.stop();
+                }
+            }
+        });
+
+        assertEquals("123", result2.toString());
     }
 
     // Tests

@@ -16,40 +16,43 @@
  */
 package org.apache.commons.functor.generator;
 
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.core.composite.ConditionalUnaryProcedure;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Generator that filters another Generator by only passing through those elements
- * that are matched by a specified UnaryPredicate.
+ * Generator that transforms the elements of another Generator.
  *
+ * @param <I> the type of elements held in the wrapped generator.
  * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
-public class FilteredGenerator<E> extends BaseGenerator<E> {
+public class TransformedGenerator<I, E> extends BaseGenerator<E> {
 
     /**
-     * The wrapped generator.
+     * The UnaryFunction to apply to each element.
      */
-    private final UnaryPredicate<? super E> pred;
+    private final UnaryFunction<? super I, ? extends E> func;
 
     /**
-     * Create a new FilteredGenerator.
-     * @param wrapped Generator to wrap
-     * @param pred filtering UnaryPredicate
+     * Create a new TransformedGenerator.
+     * @param wrapped Generator to transform
+     * @param func UnaryFunction to apply to each element
      */
-    public FilteredGenerator(Generator<? extends E> wrapped, UnaryPredicate<? super E> pred) {
+    public TransformedGenerator(Generator<? extends I> wrapped, UnaryFunction<? super I, ? extends E> func) {
         super(Validate.notNull(wrapped, "Generator argument was null"));
-        this.pred = Validate.notNull(pred, "UnaryPredicate argument was null");
+        this.func = Validate.notNull(func, "UnaryFunction argument was null");
     }
 
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super E> proc) {
-        getWrappedGenerator().run(new ConditionalUnaryProcedure<E>(pred, proc));
+    public void run(final UnaryProcedure<? super E> proc) {
+        getWrappedGenerator().run(new UnaryProcedure<I>() {
+            public void run(I obj) {
+                proc.run(func.evaluate(obj));
+            }
+        });
     }
 
     /**
@@ -57,8 +60,8 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
      */
     @SuppressWarnings("unchecked")
     @Override
-    protected Generator<? extends E> getWrappedGenerator() {
-        return (Generator<? extends E>) super.getWrappedGenerator();
+    protected Generator<? extends I> getWrappedGenerator() {
+        return (Generator<? extends I>) super.getWrappedGenerator();
     }
 
     /**
@@ -69,11 +72,11 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof FilteredGenerator<?>)) {
+        if (!(obj instanceof TransformedGenerator<?, ?>)) {
             return false;
         }
-        FilteredGenerator<?> other = (FilteredGenerator<?>) obj;
-        return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.pred.equals(pred);
+        TransformedGenerator<?, ?> other = (TransformedGenerator<?, ?>) obj;
+        return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.func == func;
     }
 
     /**
@@ -81,12 +84,12 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
      */
     @Override
     public int hashCode() {
-        int result = "FilteredGenerator".hashCode();
+        int result = "TransformedGenerator".hashCode();
         result <<= 2;
         Generator<?> gen = getWrappedGenerator();
         result ^= gen.hashCode();
         result <<= 2;
-        result ^= pred.hashCode();
+        result ^= func.hashCode();
         return result;
     }
 }

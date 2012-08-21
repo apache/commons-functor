@@ -27,7 +27,7 @@ import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.adapter.LeftBoundPredicate;
 import org.apache.commons.functor.core.IsEqual;
 import org.apache.commons.functor.core.algorithm.GeneratorContains;
-import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
+import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.junit.Test;
 
 /**

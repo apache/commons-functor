@@ -18,38 +18,44 @@ package org.apache.commons.functor.generator;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.core.composite.ConditionalUnaryProcedure;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Generator that filters another Generator by only passing through those elements
- * that are matched by a specified UnaryPredicate.
+ * Wrap another {@link Generator} such that {@link #run(UnaryProcedure)} terminates once
+ * a condition has been satisfied (test after).
  *
  * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
-public class FilteredGenerator<E> extends BaseGenerator<E> {
+public class GenerateUntil<E> extends BaseGenerator<E> {
 
     /**
-     * The wrapped generator.
+     * The condition has to verified in order to execute the generation.
      */
-    private final UnaryPredicate<? super E> pred;
+    private final UnaryPredicate<? super E> test;
 
     /**
-     * Create a new FilteredGenerator.
-     * @param wrapped Generator to wrap
-     * @param pred filtering UnaryPredicate
+     * Create a new GenerateUntil.
+     * @param wrapped {@link Generator}
+     * @param test {@link UnaryPredicate}
      */
-    public FilteredGenerator(Generator<? extends E> wrapped, UnaryPredicate<? super E> pred) {
+    public GenerateUntil(Generator<? extends E> wrapped, UnaryPredicate<? super E> test) {
         super(Validate.notNull(wrapped, "Generator argument was null"));
-        this.pred = Validate.notNull(pred, "UnaryPredicate argument was null");
+        this.test = Validate.notNull(test, "UnaryPredicate argument was null");
     }
 
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super E> proc) {
-        getWrappedGenerator().run(new ConditionalUnaryProcedure<E>(pred, proc));
+    public void run(final UnaryProcedure<? super E> proc) {
+        getWrappedGenerator().run(new UnaryProcedure<E>() {
+            public void run(E obj) {
+                proc.run(obj);
+                if (test.test(obj)) {
+                    getWrappedGenerator().stop();
+                }
+            }
+        });
     }
 
     /**
@@ -69,11 +75,11 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof FilteredGenerator<?>)) {
+        if (!(obj instanceof GenerateUntil<?>)) {
             return false;
         }
-        FilteredGenerator<?> other = (FilteredGenerator<?>) obj;
-        return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.pred.equals(pred);
+        GenerateUntil<?> other = (GenerateUntil<?>) obj;
+        return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.test.equals(test);
     }
 
     /**
@@ -81,12 +87,12 @@ public class FilteredGenerator<E> extends BaseGenerator<E> {
      */
     @Override
     public int hashCode() {
-        int result = "FilteredGenerator".hashCode();
+        int result = "GenerateUntil".hashCode();
         result <<= 2;
         Generator<?> gen = getWrappedGenerator();
         result ^= gen.hashCode();
         result <<= 2;
-        result ^= pred.hashCode();
+        result ^= test.hashCode();
         return result;
     }
 }

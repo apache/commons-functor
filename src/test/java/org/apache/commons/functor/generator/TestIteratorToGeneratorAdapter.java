@@ -26,7 +26,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

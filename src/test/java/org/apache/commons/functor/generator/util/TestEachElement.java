@@ -30,10 +30,10 @@ import java.util.Map;
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Limit;
 import org.apache.commons.functor.core.Offset;
-import org.apache.commons.functor.generator.loop.GenerateUntil;
-import org.apache.commons.functor.generator.loop.GenerateWhile;
-import org.apache.commons.functor.generator.loop.UntilGenerate;
-import org.apache.commons.functor.generator.loop.WhileGenerate;
+import org.apache.commons.functor.generator.GenerateUntil;
+import org.apache.commons.functor.generator.GenerateWhile;
+import org.apache.commons.functor.generator.UntilGenerate;
+import org.apache.commons.functor.generator.WhileGenerate;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.Test;
 
 /**
@@ -33,7 +32,7 @@ public class TestIntegerRange extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() throws Exception {
-        return new IntegerRange(10, 20);
+        return new IntegerGenerator(10, 20);
     }
 
     // Tests
@@ -43,7 +42,7 @@ public class TestIntegerRange extends BaseFunctorTest {
     public void testGenerateListExample() {
         // generates a collection of Integers from 0 (inclusive) to 10 (exclusive)
         {
-            List<? super Integer> list = (List<? super Integer>)(new IntegerRange(0,10).to(new ArrayList<Integer>()));
+            List<? super Integer> list = (List<? super Integer>)(new IntegerGenerator(0,10).to(new ArrayList<Integer>()));
             for (int i=0;i<10;i++) {
                 assertEquals(new Integer(i),list.get(i));
             }
@@ -51,7 +50,7 @@ public class TestIntegerRange extends BaseFunctorTest {
 
         // generates a collection of Integers from 10 (inclusive) to 0 (exclusive)
         {
-            List<? super Integer> list = (List<? super Integer>)(new IntegerRange(10,0).to(new ArrayList<Integer>()));
+            List<? super Integer> list = (List<? super Integer>)(new IntegerGenerator(10,0).to(new ArrayList<Integer>()));
             for (int i=10;i>0;i--) {
                 assertEquals(new Integer(i),list.get(10-i));
             }
@@ -61,34 +60,34 @@ public class TestIntegerRange extends BaseFunctorTest {
     @Test
     public void testStepChecking() {
         {
-            new IntegerRange(2, 2, 0); // step of 0 is ok when range is empty
+            new IntegerGenerator(2, 2, 0); // step of 0 is ok when range is empty
         }
         {
-            new IntegerRange(2, 2, 1); // positive step is ok when range is empty
+            new IntegerGenerator(2, 2, 1); // positive step is ok when range is empty
         }
         {
-            new IntegerRange(2, 2, -1); // negative step is ok when range is empty
+            new IntegerGenerator(2, 2, -1); // negative step is ok when range is empty
         }
         {
-            new IntegerRange(0, 1, 10); // big steps are ok
+            new IntegerGenerator(0, 1, 10); // big steps are ok
         }
         {
-            new IntegerRange(1, 0, -10); // big steps are ok
+            new IntegerGenerator(1, 0, -10); // big steps are ok
         }
         try {
-            new IntegerRange(0, 1, 0);
+            new IntegerGenerator(0, 1, 0);
             fail("Expected IllegalArgumentException");
         } catch(IllegalArgumentException e) {
             // expected
         }
         try {
-            new IntegerRange(0, 1, -1);
+            new IntegerGenerator(0, 1, -1);
             fail("Expected IllegalArgumentException");
         } catch(IllegalArgumentException e) {
             // expected
         }
         try {
-            new IntegerRange(0, -1, 1);
+            new IntegerGenerator(0, -1, 1);
             fail("Expected IllegalArgumentException");
         } catch(IllegalArgumentException e) {
             // expected
@@ -97,59 +96,59 @@ public class TestIntegerRange extends BaseFunctorTest {
 
     @Test
     public void testObjectConstructor() {
-        IntegerRange range = new IntegerRange(new Integer(0), new Integer(5));
+        IntegerGenerator range = new IntegerGenerator(new Integer(0), new Integer(5));
         assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
-        range = new IntegerRange(new Integer(0), new Integer(5), new Integer(1));
+        range = new IntegerGenerator(new Integer(0), new Integer(5), new Integer(1));
         assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
     }
 
 
     @Test
     public void testReverseStep() {
-        IntegerRange range = new IntegerRange(10, 0, -2);
+        IntegerGenerator range = new IntegerGenerator(10, 0, -2);
         assertEquals("[10, 8, 6, 4, 2]", range.toCollection().toString());
         assertEquals("[10, 8, 6, 4, 2]", range.toCollection().toString());
     }
 
     @Test
     public void testStep() {
-        IntegerRange range = new IntegerRange(0, 10, 2);
+        IntegerGenerator range = new IntegerGenerator(0, 10, 2);
         assertEquals("[0, 2, 4, 6, 8]", range.toCollection().toString());
         assertEquals("[0, 2, 4, 6, 8]", range.toCollection().toString());
     }
 
     @Test
     public void testForwardRange() {
-        IntegerRange range = new IntegerRange(0, 5);
+        IntegerGenerator range = new IntegerGenerator(0, 5);
         assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
         assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
     }
 
     @Test
     public void testReverseRange() {
-        IntegerRange range = new IntegerRange(5, 0);
+        IntegerGenerator range = new IntegerGenerator(5, 0);
         assertEquals("[5, 4, 3, 2, 1]", range.toCollection().toString());
         assertEquals("[5, 4, 3, 2, 1]", range.toCollection().toString());
     }
 
     @Test
     public void testEdgeCase() {
-        IntegerRange range = new IntegerRange(Integer.MAX_VALUE - 3, Integer.MAX_VALUE);
+        IntegerGenerator range = new IntegerGenerator(Integer.MAX_VALUE - 3, Integer.MAX_VALUE);
         assertEquals("[2147483644, 2147483645, 2147483646]", range.toCollection().toString());
         assertEquals("[2147483644, 2147483645, 2147483646]", range.toCollection().toString());
     }
 
     @Test
     public void testEquals() {
-        IntegerRange range = new IntegerRange(1, 5);
+        IntegerGenerator range = new IntegerGenerator(1, 5);
         assertObjectsAreEqual(range, range);
-        assertObjectsAreEqual(range, new IntegerRange(1, 5));
-        assertObjectsAreEqual(range, new IntegerRange(1, 5, 1));
-        assertObjectsAreEqual(range, new IntegerRange(new Long(1), new Long(5)));
-        assertObjectsAreEqual(range, new IntegerRange(new Long(1), new Long(5), new Long(1)));
-        assertObjectsAreNotEqual(range, new IntegerRange(2, 5));
-        assertObjectsAreNotEqual(range, new IntegerRange(1, 6));
-        assertObjectsAreNotEqual(range, new IntegerRange(1, 5, 2));
+        assertObjectsAreEqual(range, new IntegerGenerator(1, 5));
+        assertObjectsAreEqual(range, new IntegerGenerator(1, 5, 1));
+        assertObjectsAreEqual(range, new IntegerGenerator(new Long(1), new Long(5)));
+        assertObjectsAreEqual(range, new IntegerGenerator(new Long(1), new Long(5), new Long(1)));
+        assertObjectsAreNotEqual(range, new IntegerGenerator(2, 5));
+        assertObjectsAreNotEqual(range, new IntegerGenerator(1, 6));
+        assertObjectsAreNotEqual(range, new IntegerGenerator(1, 5, 2));
     }
 
 }
