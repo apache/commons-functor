@@ -27,10 +27,12 @@ import org.apache.commons.lang3.Validate;
  * the constructor an ArrayList will be returned from the transform method.
  *
  * @param <E> the type of elements held in the adapted collection.
+ * @param <C> the type of collection to be filled.
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public class CollectionTransformer<E, C extends Collection<? super E>> implements UnaryFunction<Generator<? extends E>, C> {
+public class CollectionTransformer<E, C extends Collection<? super E>>
+                        implements UnaryFunction<Generator<? extends E>, C> {
     /*
      * TODO revisit this class... it could stand a more-descriptive name.  Also, it's a little
      * hard to say whether, for an instance constructed without a specific target collection,
@@ -72,6 +74,7 @@ public class CollectionTransformer<E, C extends Collection<? super E>> implement
 
     /**
      * Get a {@link CollectionTransformer} instance that simply returns any {@link Collection}.
+     * @param <E> the returned collection type.
      * @return {@link CollectionTransformer}
      */
     public static <E> CollectionTransformer<E, Collection<E>> toCollection() {

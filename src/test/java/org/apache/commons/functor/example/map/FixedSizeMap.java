@@ -24,7 +24,7 @@ import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.adapter.BinaryProcedureBinaryFunction;
 import org.apache.commons.functor.core.algorithm.GeneratorContains;
 import org.apache.commons.functor.core.composite.UnaryNot;
-import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 
 /**
  * @version $Revision$ $Date$

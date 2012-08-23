@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.util;
+package org.apache.commons.functor.generator.range;
 
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.BaseGenerator;
+import org.apache.commons.functor.generator.loop.LoopGenerator;
 
 /**
  * A generator for the range <i>from</i> (inclusive) to <i>to</i> (exclusive).
@@ -23,7 +23,7 @@ import org.apache.commons.functor.generator.BaseGenerator;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class LongGenerator extends BaseGenerator<Long> {
+public final class LongRange extends LoopGenerator<Long> {
     // attributes
     //---------------------------------------------------------------
 
@@ -49,7 +49,7 @@ public final class LongGenerator extends BaseGenerator<Long> {
      * @param from start
      * @param to end
      */
-    public LongGenerator(Number from, Number to) {
+    public LongRange(Number from, Number to) {
         this(from.longValue(), to.longValue());
     }
 
@@ -59,7 +59,7 @@ public final class LongGenerator extends BaseGenerator<Long> {
      * @param to end
      * @param step increment
      */
-    public LongGenerator(Number from, Number to, Number step) {
+    public LongRange(Number from, Number to, Number step) {
         this(from.longValue(), to.longValue(), step.longValue());
     }
 
@@ -68,7 +68,7 @@ public final class LongGenerator extends BaseGenerator<Long> {
      * @param from start
      * @param to end
      */
-    public LongGenerator(long from, long to) {
+    public LongRange(long from, long to) {
         this(from, to, defaultStep(from, to));
     }
 
@@ -78,7 +78,7 @@ public final class LongGenerator extends BaseGenerator<Long> {
      * @param to end
      * @param step increment
      */
-    public LongGenerator(long from, long to, long step) {
+    public LongRange(long from, long to, long step) {
         if (from != to && signOf(step) != signOf(to - from)) {
             throw new IllegalArgumentException("Will never reach " + to + " from " + from + " using step " + step);
         }
@@ -120,10 +120,10 @@ public final class LongGenerator extends BaseGenerator<Long> {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LongGenerator)) {
+        if (!(obj instanceof LongRange)) {
             return false;
         }
-        LongGenerator that = (LongGenerator) obj;
+        LongRange that = (LongRange) obj;
         return this.from == that.from && this.to == that.to && this.step == that.step;
     }
 

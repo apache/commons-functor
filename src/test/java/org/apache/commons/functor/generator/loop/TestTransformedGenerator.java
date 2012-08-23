@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator;
+package org.apache.commons.functor.generator.loop;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.util.IntegerGenerator;
+import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class TestTransformedGenerator
 
     @Before
     public void setUp() throws Exception {
-        wrappedGenerator = new IntegerGenerator(1, 10);
+        wrappedGenerator = new IntegerRange(1, 10);
         sumsTwoGenerator = new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo);
     }
 
@@ -82,7 +82,7 @@ public class TestTransformedGenerator
         assertTrue( !sumsTwoGenerator.equals(aGenerateWithADifferentFunction));
 
         TransformedGenerator<Integer, Integer> aTransformedGeneratorWithADifferentWrapped =
-        		new TransformedGenerator<Integer, Integer>(new IntegerGenerator(1,2), sumsTwo);
+        		new TransformedGenerator<Integer, Integer>(new IntegerRange(1,2), sumsTwo);
         assertTrue(!sumsTwoGenerator.equals(aTransformedGeneratorWithADifferentWrapped));
     }
 
@@ -111,7 +111,7 @@ public class TestTransformedGenerator
     // ------------------------------------------------------------------------
     private static final Integer TWO = new Integer(2);
 
-    private Generator<Integer> wrappedGenerator = null;
+    private LoopGenerator<Integer> wrappedGenerator = null;
     private UnaryFunction<Integer, Integer> sumsTwo = new UnaryFunction<Integer, Integer>() {
         public Integer evaluate( Integer obj ) {
             return obj += TWO;
