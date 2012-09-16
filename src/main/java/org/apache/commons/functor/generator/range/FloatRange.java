@@ -22,87 +22,86 @@ import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.lang3.Validate;
 
 /**
- * A range of integers.
+ * A generator for a range of float.
  *
  * @since 1.0
- * @version $Revision$ $Date$
+ * @version $Revision: $ $Date: $
  */
-public class IntegerRange extends NumericRange<Integer> {
+public class FloatRange extends NumericRange<Float> {
 
     // attributes
     // ---------------------------------------------------------------
     /**
      * Left limit.
      */
-    private final Endpoint<Integer> leftEndpoint;
+    private final Endpoint<Float> leftEndpoint;
 
     /**
      * Right limit.
      */
-    private final Endpoint<Integer> rightEndpoint;
+    private final Endpoint<Float> rightEndpoint;
 
     /**
      * Increment step.
      */
-    private final int step;
+    private final float step;
 
     /**
      * Calculate default step.
      */
-    public static final BinaryFunction<Integer, Integer, Integer> DEFAULT_STEP =
-            new BinaryFunction<Integer, Integer, Integer>() {
+    public static final BinaryFunction<Float, Float, Float> DEFAULT_STEP = new BinaryFunction<Float, Float, Float>() {
 
-        public Integer evaluate(Integer left, Integer right) {
-            return left > right ? -1 : 1;
+        public Float evaluate(Float left, Float right) {
+            return left > right ? -1.0f : 1.0f;
         }
     };
 
     // constructors
     // ---------------------------------------------------------------
     /**
-     * Create a new IntegerRange.
+     * Create a new FloatRange.
      *
      * @param from start
      * @param to end
      */
-    public IntegerRange(Number from, Number to) {
-        this(from.intValue(), to.intValue());
+    public FloatRange(Number from, Number to) {
+        this(from.floatValue(), to.floatValue());
     }
 
     /**
-     * Create a new IntegerRange.
+     * Create a new FloatRange.
      *
      * @param from start
      * @param to end
      * @param step increment
      */
-    public IntegerRange(Number from, Number to, Number step) {
-        this(from.intValue(), to.intValue(), step.intValue());
+    public FloatRange(Number from, Number to, Number step) {
+        this(from.floatValue(), to.floatValue(), step.floatValue());
     }
 
     /**
-     * Create a new IntegerRange.
+     * Create a new FloatRange.
      *
      * @param from start
      * @param to end
      */
-    public IntegerRange(int from, int to) {
-        this(from, to, DEFAULT_STEP.evaluate(from, to).intValue());
+    public FloatRange(float from, float to) {
+        this(from, to, DEFAULT_STEP.evaluate(from, to).floatValue());
     }
 
     /**
-     * Create a new IntegerRange.
+     * Create a new FloatRange.
      *
      * @param from start
      * @param to end
      * @param step increment
      */
-    public IntegerRange(int from, int to, int step) {
+    public FloatRange(float from, float to, float step) {
         this(from, DEFAULT_LEFT_BOUND_TYPE, to, DEFAULT_RIGHT_BOUND_TYPE, step);
     }
 
     /**
-     * Create a new IntegerRange.
+     * Create a new FloatRange.
      *
      * @param from start
      * @param leftBoundType type of left bound
@@ -110,16 +109,16 @@ public class IntegerRange extends NumericRange<Integer> {
      * @param rightBoundType type of right bound
      * @param step increment
      */
-    public IntegerRange(int from, BoundType leftBoundType, int to,
-                        BoundType rightBoundType, int step) {
+    public FloatRange(float from, BoundType leftBoundType, float to,
+                      BoundType rightBoundType, float step) {
         this.leftEndpoint = Validate
-            .notNull(new Endpoint<Integer>(from, leftBoundType),
+            .notNull(new Endpoint<Float>(from, leftBoundType),
                      "Left Endpoint argument must not be null");
         this.rightEndpoint = Validate
-            .notNull(new Endpoint<Integer>(to, rightBoundType),
+            .notNull(new Endpoint<Float>(to, rightBoundType),
                      "Right Endpoint argument must not be null");
         this.step = step;
-        if (from != to && Integer.signum(step) != Integer.signum(to - from)) {
+        if (from != to && Math.signum(step) != Math.signum(to - from)) {
             throw new IllegalArgumentException("Will never reach " + to
                                                + " from " + from
                                                + " using step " + step);
@@ -127,21 +126,21 @@ public class IntegerRange extends NumericRange<Integer> {
     }
 
     /**
-     * Create a new IntegerRange.
+     * Create a new FloatRange.
      *
      * @param from start
      * @param to end
      * @param step increment
      */
-    public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, int step) {
+    public FloatRange(Endpoint<Float> from, Endpoint<Float> to, float step) {
         this.leftEndpoint = Validate
             .notNull(from, "Left Endpoint argument must not be null");
         this.rightEndpoint = Validate
             .notNull(to, "Right Endpoint argument must not be null");
         this.step = step;
         if (from != to
-            && Integer.signum(step) != Integer.signum(to.getValue()
-                                                   - from.getValue())) {
+            && Math.signum(step) != Math.signum(to.getValue().doubleValue()
+                                             - from.getValue().doubleValue())) {
             throw new IllegalArgumentException("Will never reach " + to
                                                + " from " + from
                                                + " using step " + step);
@@ -153,54 +152,54 @@ public class IntegerRange extends NumericRange<Integer> {
     /**
      * {@inheritDoc}
      */
-    public Endpoint<Integer> getLeftEndpoint() {
+    public Endpoint<Float> getLeftEndpoint() {
         return this.leftEndpoint;
     }
 
     /**
      * {@inheritDoc}
      */
-    public Endpoint<Integer> getRightEndpoint() {
+    public Endpoint<Float> getRightEndpoint() {
         return this.rightEndpoint;
     }
 
     /**
      * {@inheritDoc}
      */
-    public Integer getStep() {
+    public Float getStep() {
         return this.step;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super Integer> proc) {
-        final int step = this.getStep();
+    public void run(UnaryProcedure<? super Float> proc) {
+        final float step = this.getStep();
         final boolean includeLeftValue = this.getLeftEndpoint()
             .getBoundType() == BoundType.CLOSED;
         final boolean includeRightValue = this.getRightEndpoint()
             .getBoundType() == BoundType.CLOSED;
-        final int leftValue = this.getLeftEndpoint().getValue();
-        final int rightValue = this.getRightEndpoint().getValue();
+        final float leftValue = this.getLeftEndpoint().getValue();
+        final float rightValue = this.getRightEndpoint().getValue();
         if (step < 0) {
-            final int from = includeLeftValue ? leftValue : leftValue + step;
+            final float from = includeLeftValue ? leftValue : leftValue + step;
             if (includeRightValue) {
-                for (int i = from; i >= rightValue; i += step) {
+                for (float i = from; i >= rightValue; i += step) {
                     proc.run(i);
                 }
             } else {
-                for (int i = from; i > rightValue; i += step) {
+                for (float i = from; i > rightValue; i += step) {
                     proc.run(i);
                 }
             }
         } else {
-            final int from = includeLeftValue ? leftValue : leftValue + step;
+            final float from = includeLeftValue ? leftValue : leftValue + step;
             if (includeRightValue) {
-                for (int i = from; i <= rightValue; i += step) {
+                for (float i = from; i <= rightValue; i += step) {
                     proc.run(i);
                 }
             } else {
-                for (int i = from; i < rightValue; i += step) {
+                for (float i = from; i < rightValue; i += step) {
                     proc.run(i);
                 }
             }
@@ -212,9 +211,8 @@ public class IntegerRange extends NumericRange<Integer> {
      */
     @Override
     public String toString() {
-        return "IntegerRange<" + this.leftEndpoint.toLeftString()
-                + ", " + this.rightEndpoint.toRightString()
-                + ", " + this.step + ">";
+        return "FloatRange<" + this.leftEndpoint.toLeftString() + ", "
+                + this.rightEndpoint.toRightString() + ", " + this.step + ">";
     }
 
     /**
@@ -225,10 +223,10 @@ public class IntegerRange extends NumericRange<Integer> {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof IntegerRange)) {
+        if (!(obj instanceof FloatRange)) {
             return false;
         }
-        IntegerRange that = (IntegerRange) obj;
+        FloatRange that = (FloatRange) obj;
         return this.leftEndpoint.equals(that.leftEndpoint)
                 && this.rightEndpoint.equals(that.rightEndpoint)
                 && this.step == that.step;
@@ -239,13 +237,14 @@ public class IntegerRange extends NumericRange<Integer> {
      */
     @Override
     public int hashCode() {
-        int hash = "IntegerRange".hashCode();
+        int hash = "FloatRange".hashCode();
         hash <<= 2;
-        hash ^= this.leftEndpoint.getValue();
+        hash ^= this.leftEndpoint.getValue().hashCode();
         hash <<= 2;
-        hash ^= this.rightEndpoint.getValue();
+        hash ^= this.rightEndpoint.getValue().hashCode();
         hash <<= 2;
-        hash ^= this.step;
+        hash ^= Float.valueOf(this.step).hashCode();
         return hash;
     }
+
 }

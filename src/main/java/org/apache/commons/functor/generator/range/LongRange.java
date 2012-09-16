@@ -14,38 +14,50 @@
 
 package org.apache.commons.functor.generator.range;
 
+import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.loop.LoopGenerator;
+import org.apache.commons.lang3.Validate;
 
 /**
- * A generator for the range <i>from</i> (inclusive) to <i>to</i> (exclusive).
+ * A range of longs.
  *
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class LongRange extends LoopGenerator<Long> {
+public final class LongRange extends NumericRange<Long> {
     // attributes
     //---------------------------------------------------------------
 
     /**
-     * The start index.
+     * Left limit.
      */
-    private final long from;
+    private final Endpoint<Long> leftEndpoint;
 
     /**
-     * The end index.
+     * Right limit.
      */
-    private final long to;
+    private final Endpoint<Long> rightEndpoint;
 
     /**
-     * The increment counter.
+     * Increment step.
      */
     private final long step;
 
+    /**
+     * Calculate default step.
+     */
+    public static final BinaryFunction<Long, Long, Long> DEFAULT_STEP = new BinaryFunction<Long, Long, Long>() {
+
+        public Long evaluate(Long left, Long right) {
+            return left > right ? -1L : 1L;
+        }
+    };
+
     // constructors
-    //---------------------------------------------------------------
+    // ---------------------------------------------------------------
     /**
      * Create a new LongRange.
+     *
      * @param from start
      * @param to end
      */
@@ -55,6 +67,7 @@ public final class LongRange extends LoopGenerator<Long> {
 
     /**
      * Create a new LongRange.
+     *
      * @param from start
      * @param to end
      * @param step increment
@@ -65,26 +78,69 @@ public final class LongRange extends LoopGenerator<Long> {
 
     /**
      * Create a new LongRange.
+     *
      * @param from start
      * @param to end
      */
     public LongRange(long from, long to) {
-        this(from, to, defaultStep(from, to));
+        this(from, to, DEFAULT_STEP.evaluate(from, to).longValue());
     }
 
     /**
      * Create a new LongRange.
+     *
      * @param from start
      * @param to end
      * @param step increment
      */
     public LongRange(long from, long to, long step) {
-        if (from != to && signOf(step) != signOf(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to + " from " + from + " using step " + step);
-        }
-        this.from = from;
-        this.to = to;
+        this(from, DEFAULT_LEFT_BOUND_TYPE, to, DEFAULT_RIGHT_BOUND_TYPE, step);
+    }
+
+    /**
+     * Create a new LongRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     * @param step increment
+     */
+    public LongRange(long from, BoundType leftBoundType, long to,
+                     BoundType rightBoundType, long step) {
+        this.leftEndpoint = Validate
+            .notNull(new Endpoint<Long>(from, leftBoundType),
+                     "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate
+            .notNull(new Endpoint<Long>(to, rightBoundType),
+                     "Right Endpoint argument must not be null");
         this.step = step;
+        if (from != to && Long.signum(step) != Long.signum(to - from)) {
+            throw new IllegalArgumentException("Will never reach " + to
+                                               + " from " + from
+                                               + " using step " + step);
+        }
+    }
+
+    /**
+     * Create a new LongRange.
+     *
+     * @param from start
+     * @param to end
+     * @param step increment
+     */
+    public LongRange(Endpoint<Long> from, Endpoint<Long> to, long step) {
+        this.leftEndpoint = Validate
+            .notNull(from, "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate
+            .notNull(to, "Right Endpoint argument must not be null");
+        this.step = step;
+        if (from.equals(to) == Boolean.FALSE
+            && Long.signum(step) != Long.signum(to.getValue() - from.getValue())) {
+            throw new IllegalArgumentException("Will never reach " + to
+                                               + " from " + from
+                                               + " using step " + step);
+        }
     }
 
     // methods
@@ -93,13 +149,34 @@ public final class LongRange extends LoopGenerator<Long> {
      * {@inheritDoc}
      */
     public void run(UnaryProcedure<? super Long> proc) {
-        if (signOf(step) == -1L) {
-            for (long i = from; i > to; i += step) {
-                proc.run(Long.valueOf(i));
+        final long step = this.getStep();
+        final boolean includeLeftValue = this.getLeftEndpoint()
+            .getBoundType() == BoundType.CLOSED;
+        final boolean includeRightValue = this.getRightEndpoint()
+            .getBoundType() == BoundType.CLOSED;
+        final long leftValue = this.getLeftEndpoint().getValue();
+        final long rightValue = this.getRightEndpoint().getValue();
+        if (step < 0) {
+            final long from = includeLeftValue ? leftValue : leftValue + step;
+            if (includeRightValue) {
+                for (long i = from; i >= rightValue; i += step) {
+                    proc.run(i);
+                }
+            } else {
+                for (long i = from; i > rightValue; i += step) {
+                    proc.run(i);
+                }
             }
         } else {
-            for (long i = from; i < to; i += step) {
-                proc.run(Long.valueOf(i));
+            final long from = includeLeftValue ? leftValue : leftValue + step;
+            if (includeRightValue) {
+                for (long i = from; i <= rightValue; i += step) {
+                    proc.run(i);
+                }
+            } else {
+                for (long i = from; i < rightValue; i += step) {
+                    proc.run(i);
+                }
             }
         }
     }
@@ -107,9 +184,31 @@ public final class LongRange extends LoopGenerator<Long> {
     /**
      * {@inheritDoc}
      */
+    public Endpoint<Long> getLeftEndpoint() {
+        return this.leftEndpoint;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Endpoint<Long> getRightEndpoint() {
+        return this.rightEndpoint;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Long getStep() {
+        return this.step;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "LongRange<" + from + "," + to + "," + step + ">";
+        return "LongRange<" + this.leftEndpoint.toLeftString() + ", "
+                + this.rightEndpoint.toRightString() + ", " + step + ">";
     }
 
     /**
@@ -124,7 +223,9 @@ public final class LongRange extends LoopGenerator<Long> {
             return false;
         }
         LongRange that = (LongRange) obj;
-        return this.from == that.from && this.to == that.to && this.step == that.step;
+        return this.leftEndpoint.equals(that.leftEndpoint)
+                && this.rightEndpoint.equals(that.rightEndpoint)
+                && this.step == that.step;
     }
 
     /**
@@ -134,33 +235,12 @@ public final class LongRange extends LoopGenerator<Long> {
     public int hashCode() {
         int hash = "LongRange".hashCode();
         hash <<= 2;
-        hash ^= from;
+        hash ^= this.leftEndpoint.getValue();
         hash <<= 2;
-        hash ^= to;
+        hash ^= this.rightEndpoint.getValue();
         hash <<= 2;
-        hash ^= step;
+        hash ^= this.step;
         return hash;
-    }
-
-    // private methods
-    //---------------------------------------------------------------
-    /**
-     * Get <code>value/|value|</code> (0L when value == 0L).
-     * @param value to test
-     * @return long
-     */
-    private static long signOf(long value) {
-        return value < 0L ? -1L : value > 0L ? 1L : 0L;
-    }
-
-    /**
-     * Calculate default step to get from <code>from</code> to <code>to</code>.
-     * @param from start
-     * @param to end
-     * @return long
-     */
-    private static long defaultStep(long from, long to) {
-        return from > to ? -1L : 1L;
     }
 
 }
