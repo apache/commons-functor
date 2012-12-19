@@ -15,10 +15,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<!--
-See https://jira.codehaus.org/browse/MSITE-646, the links to JavaDoc methods have to 
-have the hash URL-escaped.  
--->
 <document>
   <properties>
     <title>Aggregator</title>
@@ -52,7 +48,7 @@ have the hash URL-escaped.
       </p>
       <p>
         The framework allows for any <code>List</code>-based implementation to be plugged in, by
-        implementing <a href="apidocs/org/apache/commons/functor/aggregator/AbstractListBackedAggregator.html%23createList()">createList()</a>,
+        implementing <a href="apidocs/org/apache/commons/functor/aggregator/AbstractListBackedAggregator.html#createList()">createList()</a>,
         however, there is also an <code>ArrayList</code>-based implementation provided in 
         <a href="apidocs/org/apache/commons/functor/aggregator/ArrayListBackedAggregator.html">ArrayListBackedAggregator</a>
         which can be used out-of-the-box.
@@ -61,17 +57,17 @@ have the hash URL-escaped.
         While the <i>store</i> implementation stores the data in a list, the <i>nostore</i> one
         stores just a single object -- every time data is fed into the <code>Aggregator</code>, 
         the data stored in this object and the data 
-        <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html%23add(T)">passed in</a> 
+        <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html#add(T)">passed in</a> 
         are "aggregated" there and then using the supplied 
         <a href="apidocs/org/apache/commons/functor/BinaryFunction.html">formula</a> and the result of this operation
         is stored back in the object this implementation uses to store data.
       </p>
       <p>
         This has the implication that unlike the list-backed storage implementation (where the
-        result of aggregating the data is not known until <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html%23evaluate()">evaluate()</a>
+        result of aggregating the data is not known until <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html#evaluate()">evaluate()</a>
         is called), with the <i>nostore</i> implementation the result is known (and saved back) at
         any moment. This arguably makes this class "faster", however this comes at the cost of a
-        slower <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html%23add(T)">add()</a>
+        slower <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html#add(T)">add()</a>
         operation, as the aggregation formula is applied. Also, let's remind ourselves that not all
         formulas can be implemented using the <i>nostore</i> implementation (see above).
       </p>
@@ -96,9 +92,9 @@ have the hash URL-escaped.
           <a href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html">AbstractTimedAggregator</a>
           offers support to start a timer internally to do that. The class offers a <i>listener</i> 
           mechanism where classes can register to receive <a href="apidocs/org/apache/commons/functor/aggregator/TimedAggregatorListener.html">timer notifications</a> (if timer support was configured) and after all listeners have been 
-          notified the aggregator is <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html%23reset()">reset</a>.
+          notified the aggregator is <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html#reset()">reset</a>.
           The result of 
-          <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html%23evaluate()">evaluate()</a>
+          <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html#evaluate()">evaluate()</a>
           (the result of aggregating data) is passed in to the listeners. This allows for an object 
           to simply register itself as a timer listener to the aggregator and only react to the
           timer notifications (e.g. write the result to a file for offline analysis etc) while the
@@ -108,7 +104,7 @@ have the hash URL-escaped.
         When the data is being flushed/reset, a 
         <a href="apidocs/org/apache/commons/functor/aggregator/TimedAggregatorListener.html">TimedAggregatorListener</a>
         can be registered to receive a notification. The notification is sent <b>after</b> the data is reset.
-        Prior to resetting the data, <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html%23evaluate()">evaluate()</a>
+        Prior to resetting the data, <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html#evaluate()">evaluate()</a>
         is called, and the result of the evaluation is sent to the listener.
       </p>
       <p>
@@ -123,7 +119,7 @@ have the hash URL-escaped.
       <p>
           <ul>
               <li><b>Using a per-instance timer</b> : by default, when using the 
-              <a href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html%23AbstractTimedAggregator(long)">1
+              <a href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html#AbstractTimedAggregator(long)">1
               parameter constructor</a> with a value &gt; 0, the aggregator will create a 
               <code>Timer</code> object internally and schedule the regular task of resetting the 
               aggregator under this <code>Timer</code>. While this helps preventing memory leaks 
@@ -137,18 +133,18 @@ have the hash URL-escaped.
               href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html#MAIN_TIMER">static 
               timer instance</a> which can be shared amongst all instances of this class, if using 
               <a
-              href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html%23AbstractTimedAggregator(long, boolean)">the 
+              href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html#AbstractTimedAggregator(long, boolean)">the 
               constructor with 2 params</a>. When doing so, each such instance will schedule its
               regular reset task against this timer. While this reduces the memory footprint and
               threading on the system, it can lead to memory leaks if this is not handled correctly.
               Therefore please make sure you invoke <a
-              href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html%23stop()">stop()</a>
+              href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html#stop()">stop()</a>
               on such aggregators when finished working with them.</li>
           </ul>
       </p>
       <p>
         It is recommended you always invoke <a
-          href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html%23stop()">stop()</a>
+          href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html#stop()">stop()</a>
           at the end of the lifecycle of an aggregator -- regardless of timer support (shared / 
           per instance) or not -- in particular calling <code>stop()</code> on an aggregator with
           no timer support has no effect, however doing so ensures code uniformity and cleanliness.
@@ -272,7 +268,7 @@ public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; 
 
       <p>This has the advantage of a lower memory footprint as well (see above). If your healthcheck
       indicator is based on the maximum transaction time over a 5 seconds interval, then you simply
-      replace the <a href="apidocs/org/apache/commons/functor/aggregator/AbstractNoStoreAggregator.html%23getAggregationFunction()">aggregation 
+      replace the <a href="apidocs/org/apache/commons/functor/aggregator/AbstractNoStoreAggregator.html#getAggregationFunction()">aggregation 
       function</a> with a max value implementation:
       </p>
 
@@ -286,10 +282,10 @@ public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; 
       <p>Or you can simply roll out your own code -- if using the <i>nostore</i> implementation,
       all you need to do is implement a 
       <a href="apidocs/org/apache/commons/functor/BinaryFunction.html">BinaryFunction</a> and pass
-      it to the <a href="apidocs/org/apache/commons/functor/aggregator/AbstractNoStoreAggregator.html%23AbstractNoStoreAggregator(org.apache.commons.functor.BinaryFunction)">Aggregator 
+      it to the <a href="apidocs/org/apache/commons/functor/aggregator/AbstractNoStoreAggregator.html#AbstractNoStoreAggregator(org.apache.commons.functor.BinaryFunction)">Aggregator 
       constructor</a>. This function will receive the already-stored
       aggregated value as the first parameter, and data just passed in (via <a
-      href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html%23add(T)">add()</a>) as the
+      href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html#add(T)">add()</a>) as the
       second parameter; the result of this function will be stored back in the aggregator.
       </p>
       <p>
