@@ -28,8 +28,9 @@
       <p>
          This page contains basic examples using <a href="apidocs/org/apache/commons/functor/Predicate.html">Predicates</a>, 
          <a href="apidocs/org/apache/commons/functor/Function.html">Functions</a>, 
-         <a href="apidocs/org/apache/commons/functor/Procedure.html">Procedures</a> and 
-         <a href="apidocs/org/apache/commons/functor/generator/Generator.html">Generators</a>. 
+         <a href="apidocs/org/apache/commons/functor/Procedure.html">Procedures</a>, 
+         <a href="apidocs/org/apache/commons/functor/generator/Generator.html">Generators</a> and 
+         <a href="apidocs/org/apache/commons/functor/aggregator/Aggregator.html">Aggregators</a>. 
          There are also examples using composition and more practical examples 
          at the bottom of this page.
       </p>
