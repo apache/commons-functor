@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +16,17 @@
    limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-parent</artifactId>
-    <version>25</version>
+    <version>27</version>
   </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>commons-functor</artifactId>
+  <artifactId>commons-functor-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
   <name>Commons Functor</name>
   <inceptionYear>2003</inceptionYear>
   <description>
@@ -31,6 +34,7 @@
     The Apache Commons Functor library defines common functor and functor-related interfaces,
     implementations, and utilities.
   </description>
+
   <url>http://commons.apache.org/functor/</url>
 
   <issueManagement>
@@ -46,14 +50,13 @@
 
   <developers>
     <developer>
+      <name>Bruno P. Kinoshita</name>
+      <email>kinow AT apache DOT org</email>
+    </developer>
+    <developer>
       <name>Dennis Lundberg</name>
       <id>dennisl</id>
       <email>dennisl AT apache DOT org</email>
-    </developer>
-    <developer>
-      <name>Rodney Waldhoff</name>
-      <id>rwaldhoff</id>
-      <email>rwaldhoff AT apache DOT org</email>
     </developer>
     <developer>
       <name>Matt Benson</name>
@@ -64,6 +67,11 @@
       <name>Niall Pemberton</name>
       <id>niallp</id>
       <email>niallp AT apache DOT org</email>
+    </developer>
+    <developer>
+      <name>Rodney Waldhoff</name>
+      <id>rwaldhoff</id>
+      <email>rwaldhoff AT apache DOT org</email>
     </developer>
     <developer>
       <name>Simone Tripodi</name>
@@ -82,31 +90,35 @@
      <email>herve DOT quiroz AT esil DOT univ DASH mrs DOT fr</email>
    </contributor>
    <contributor>
-     <name>Bruno P. Kinoshita</name>
-     <email>brunodepaulak at yahoo dot com dot br</email>
-   </contributor>
-   <contributor>
      <name>Liviu Tudor</name>
      <email>me AT liviutudor DOT com</email>
    </contributor>
   </contributors>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <!-- if upgrading, be sure to check shaded jar relocations! -->
-      <version>3.1</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.10</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-functor-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <!-- if upgrading, be sure to check shaded jar relocations! -->
+        <version>3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.10</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compile.source>1.5</maven.compile.source>
     <maven.compile.target>1.5</maven.compile.target>
     <commons.componentid>functor</commons.componentid>
@@ -117,17 +129,7 @@
   </properties>
 
   <build>
-    <testResources>
-      <testResource>
-        <directory>${basedir}/src/test/resources</directory>
-      </testResource>
-    </testResources>
-
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-      </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -152,62 +154,14 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <!-- v1.7 is somehow not compatible with commons-parent 25; see
-             http://svn.apache.org/viewvc?diff_format=h&view=revision&revision=1350822 -->
-        <version>1.6</version>
-        <configuration>
-          <minimizeJar>true</minimizeJar>
-          <createDependencyReducedPom>true</createDependencyReducedPom>
-          <createSourcesJar>true</createSourcesJar>
-          <artifactSet>
-            <includes>
-              <include>org.apache.commons:commons-lang3</include>
-            </includes>
-          </artifactSet>
-          <relocations>
-            <relocation>
-              <pattern>org.apache.commons.lang3.builder.</pattern>
-              <shadedPattern>org.apache.commons.functor._lang3.builder.__</shadedPattern>
-            </relocation>
-            <relocation>
-              <pattern>org.apache.commons.lang3.exception.</pattern>
-              <shadedPattern>org.apache.commons.functor._lang3.exception.__</shadedPattern>
-            </relocation>
-            <relocation>
-              <pattern>org.apache.commons.lang3.mutable.</pattern>
-              <shadedPattern>org.apache.commons.functor._lang3.mutable.__</shadedPattern>
-            </relocation>
-            <relocation>
-              <pattern>org.apache.commons.lang3.tuple.</pattern>
-              <shadedPattern>org.apache.commons.functor._lang3.tuple.__</shadedPattern>
-            </relocation>
-            <relocation>
-              <pattern>org.apache.commons.lang3.</pattern>
-              <shadedPattern>org.apache.commons.functor._lang3.__</shadedPattern>
-            </relocation>
-          </relocations>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>commons-functor-build-tools</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
 
@@ -222,56 +176,6 @@
         <version>1.0</version>
       </extension>
     </extensions>
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>
-                      org.apache.maven.plugins
-                    </groupId>
-                    <artifactId>
-                      maven-antrun-plugin
-                    </artifactId>
-                    <versionRange>[1.6,)</versionRange>
-                    <goals>
-                      <goal>run</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>
-                      maven-bundle-plugin
-                    </artifactId>
-                    <versionRange>
-                      [2.3.5,)
-                    </versionRange>
-                    <goals>
-                      <goal>manifest</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
   <reporting>
     <plugins>
@@ -312,9 +216,10 @@
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>2.6</version>
         <configuration>
-          <configLocation>${basedir}/checkstyle.xml</configLocation>
-          <suppressionsLocation>${basedir}/checkstyle-suppressions.xml</suppressionsLocation>
-          <suppressionsFileExpression>${basedir}/checkstyle-suppressions.xml</suppressionsFileExpression>
+          <configLocation>org/apache/commons/functor/checkstyle.xml</configLocation>
+          <headerLocation>org/apache/commons/functor/license-header.txt</headerLocation>
+          <suppressionsLocation>org/apache/commons/functor/checkstyle-suppressions.xml</suppressionsLocation>
+          <suppressionsFileExpression>org/apache/commons/functor/checkstyle-suppressions.xml</suppressionsFileExpression>
         </configuration>
       </plugin>
       <plugin>
@@ -348,25 +253,10 @@
         </site>
       </distributionManagement>
     </profile>
-    <profile>
-      <id>with-examples</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <includes>
-                <include>**/Test*.java</include>
-                <include>**/*Test.java</include>
-                <include>**/*TestCase.java</include>
-                <include>**/*Example.java</include>
-                <include>**/*Sample.java</include>
-              </includes>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
   </profiles>
+  <modules>
+    <module>build-tools</module>
+    <module>api</module>
+    <module>core</module>
+  </modules>
 </project>
