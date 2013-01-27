@@ -209,9 +209,9 @@ public class TestDoubleRange extends BaseFunctorTest {
     @Test
     public void testBoundaries() {
         DoubleRange range = Ranges.doubleRange(0.0d, 10.0d);
-        assertEquals(new Endpoint<Comparable<?>>(0.0d, BoundType.CLOSED),
+        assertEquals(new Endpoint<Double>(0.0d, BoundType.CLOSED),
                      range.getLeftEndpoint());
-        assertEquals(new Endpoint<Comparable<?>>(10.0d, BoundType.OPEN),
+        assertEquals(new Endpoint<Double>(10.0d, BoundType.OPEN),
                      range.getRightEndpoint());
     }
 

@@ -174,9 +174,9 @@ public class TestIntegerRange extends BaseFunctorTest {
     @Test
     public void testBoundaries() {
         IntegerRange range = Ranges.integerRange(0, 10);
-        assertEquals(new Endpoint<Comparable<?>>(0, BoundType.CLOSED),
+        assertEquals(new Endpoint<Integer>(0, BoundType.CLOSED),
                      range.getLeftEndpoint());
-        assertEquals(new Endpoint<Comparable<?>>(10, BoundType.OPEN),
+        assertEquals(new Endpoint<Integer>(10, BoundType.OPEN),
                      range.getRightEndpoint());
     }
 

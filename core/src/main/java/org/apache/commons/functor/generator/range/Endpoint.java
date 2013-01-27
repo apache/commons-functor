@@ -26,7 +26,7 @@ package org.apache.commons.functor.generator.range;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public class Endpoint<T extends Comparable<?>> {
+public class Endpoint<T extends Comparable<T>> {
 
     /**
      * The endpoint value.

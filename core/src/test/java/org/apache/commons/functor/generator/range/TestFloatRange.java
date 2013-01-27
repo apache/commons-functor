@@ -413,9 +413,9 @@ public class TestFloatRange extends BaseFunctorTest {
     @Test
     public void testBoundaries() {
         FloatRange range = Ranges.floatRange(0.0f, 10.0f);
-        assertEquals(new Endpoint<Comparable<?>>(0.0f, BoundType.CLOSED),
+        assertEquals(new Endpoint<Float>(0.0f, BoundType.CLOSED),
                      range.getLeftEndpoint());
-        assertEquals(new Endpoint<Comparable<?>>(10.0f, BoundType.OPEN),
+        assertEquals(new Endpoint<Float>(10.0f, BoundType.OPEN),
                      range.getRightEndpoint());
     }
 

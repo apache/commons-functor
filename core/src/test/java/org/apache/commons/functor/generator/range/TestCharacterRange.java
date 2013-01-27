@@ -166,9 +166,9 @@ public class TestCharacterRange extends BaseFunctorTest {
     @Test
     public void testBoundaries() {
         CharacterRange range = Ranges.characterRange('b', 'l');
-        assertEquals(new Endpoint<Comparable<?>>('b', BoundType.CLOSED),
+        assertEquals(new Endpoint<Character>('b', BoundType.CLOSED),
                      range.getLeftEndpoint());
-        assertEquals(new Endpoint<Comparable<?>>('l', BoundType.CLOSED),
+        assertEquals(new Endpoint<Character>('l', BoundType.CLOSED),
                      range.getRightEndpoint());
     }
 

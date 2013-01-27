@@ -396,9 +396,9 @@ public class TestLongRange extends BaseFunctorTest {
     @Test
     public void testBoundaries() {
         LongRange range = Ranges.longRange(0L, 10L);
-        assertEquals(new Endpoint<Comparable<?>>(0L, BoundType.CLOSED),
+        assertEquals(new Endpoint<Long>(0L, BoundType.CLOSED),
                      range.getLeftEndpoint());
-        assertEquals(new Endpoint<Comparable<?>>(10L, BoundType.OPEN),
+        assertEquals(new Endpoint<Long>(10L, BoundType.OPEN),
                      range.getRightEndpoint());
     }
 
