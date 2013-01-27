@@ -46,7 +46,7 @@ public abstract class NumericRange<T extends Number & Comparable<?>> extends Loo
         boolean closedRight = this.getRightEndpoint().getBoundType() == BoundType.CLOSED;
         if (!closedLeft && !closedRight
              && this.getLeftEndpoint().equals(this.getRightEndpoint())) {
-            return Boolean.TRUE;
+            return true;
         }
         double step = this.getStep().doubleValue();
         if (step > 0.0) {
@@ -65,7 +65,7 @@ public abstract class NumericRange<T extends Number & Comparable<?>> extends Loo
      */
     public boolean contains(T obj) {
         if (obj == null) {
-            return Boolean.FALSE;
+            return false;
         }
         double leftValue = this.getLeftEndpoint().getValue().doubleValue();
         double rightValue = this.getRightEndpoint().getValue().doubleValue();
@@ -81,7 +81,7 @@ public abstract class NumericRange<T extends Number & Comparable<?>> extends Loo
             firstValue = includeLeft ? leftValue : leftValue + step;
             lastValue = includeRight ? rightValue : Math.nextUp(rightValue);
             if (value > firstValue || value < lastValue) {
-                return Boolean.FALSE;
+                return false;
             }
         } else {
             firstValue = includeLeft ? leftValue : leftValue + step;
@@ -89,7 +89,7 @@ public abstract class NumericRange<T extends Number & Comparable<?>> extends Loo
                                                     - (rightValue - Math
                                                         .nextUp(rightValue));
             if (value < firstValue || value > lastValue) {
-                return Boolean.FALSE;
+                return false;
             }
         }
         return ((value - firstValue) / step + 1) % 1.0 == 0.0;
@@ -100,16 +100,14 @@ public abstract class NumericRange<T extends Number & Comparable<?>> extends Loo
      */
     public boolean containsAll(Collection<T> col) {
         if (col == null || col.size() == 0) {
-            return Boolean.FALSE;
+            return false;
         }
-        boolean r = Boolean.TRUE;
         for (T t : col) {
             if (!this.contains(t)) {
-                r = Boolean.FALSE;
-                break;
+                return false;
             }
         }
-        return r;
+        return true;
     }
 
 }

@@ -273,7 +273,7 @@ public final class CharacterRange extends LoopGenerator<Character> implements Ra
      */
     public boolean contains(Character obj) {
         if (obj == null) {
-            return Boolean.FALSE;
+            return false;
         }
         char leftValue = this.getLeftEndpoint().getValue().charValue();
         char rightValue = this.getRightEndpoint().getValue().charValue();
@@ -289,13 +289,13 @@ public final class CharacterRange extends LoopGenerator<Character> implements Ra
             firstValue = includeLeft ? leftValue : leftValue + step;
             lastValue = includeRight ? rightValue : rightValue + 1;
             if (value > firstValue || value < lastValue) {
-                return Boolean.FALSE;
+                return false;
             }
         } else {
             firstValue = includeLeft ? leftValue : leftValue + step;
             lastValue = includeRight ? rightValue : rightValue - 1;
             if (value < firstValue || value > lastValue) {
-                return Boolean.FALSE;
+                return false;
             }
         }
         return ((double) (value - firstValue) / step + 1) % 1.0 == 0.0;
@@ -306,16 +306,14 @@ public final class CharacterRange extends LoopGenerator<Character> implements Ra
      */
     public boolean containsAll(Collection<Character> col) {
         if (col == null || col.size() == 0) {
-            return Boolean.FALSE;
+            return false;
         }
-        boolean r = Boolean.TRUE;
         for (Character t : col) {
             if (!this.contains(t)) {
-                r = Boolean.FALSE;
-                break;
+                return false;
             }
         }
-        return r;
+        return true;
     }
 
 }
