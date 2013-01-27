@@ -31,8 +31,19 @@ import org.junit.Test;
  * Tests the Transformed Generator class.
  * @version $Revision$ $Date$
  */
-public class TestTransformedGenerator
-{
+public class TestTransformedGenerator {
+    // Attributes
+    // ------------------------------------------------------------------------
+    private static final Integer TWO = new Integer(2);
+
+    private LoopGenerator<Integer> wrappedGenerator = null;
+    private UnaryFunction<Integer, Integer> sumsTwo = new UnaryFunction<Integer, Integer>() {
+        public Integer evaluate( Integer obj ) {
+            return obj += TWO;
+        }
+    };
+    private TransformedGenerator<Integer, Integer> sumsTwoGenerator = null;
+
 
     @Before
     public void setUp() throws Exception {
@@ -106,17 +117,4 @@ public class TestTransformedGenerator
         assertEquals(9, doubledValues.size());
         assertEquals(expected, doubledValues);
     }
-
-    // Attributes
-    // ------------------------------------------------------------------------
-    private static final Integer TWO = new Integer(2);
-
-    private LoopGenerator<Integer> wrappedGenerator = null;
-    private UnaryFunction<Integer, Integer> sumsTwo = new UnaryFunction<Integer, Integer>() {
-        public Integer evaluate( Integer obj ) {
-            return obj += TWO;
-        }
-    };
-    private TransformedGenerator<Integer, Integer> sumsTwoGenerator = null;
-
 }

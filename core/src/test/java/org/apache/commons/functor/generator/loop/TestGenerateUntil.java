@@ -30,8 +30,18 @@ import org.junit.Test;
  * Tests the Generate Until class.
  * @version $Revision$ $Date$
  */
-public class TestGenerateUntil
-{
+public class TestGenerateUntil {
+    // Attributes
+    // ------------------------------------------------------------------------
+    private static final Integer FIVE = new Integer(5);
+
+    private LoopGenerator<Integer> wrappedGenerator = null;
+    private UnaryPredicate<Integer> isMoreThanFive = new UnaryPredicate<Integer>() {
+        public boolean test( Integer obj ) {
+            return obj > FIVE;
+        }
+    };
+    private LoopGenerator<Integer> generateUntil = null;
 
     @Before
     public void setUp() throws Exception {
@@ -89,16 +99,4 @@ public class TestGenerateUntil
         assertEquals(generateUntil.hashCode(), generateUntil.hashCode());
         assertEquals(generateUntil.hashCode(), new GenerateUntil<Integer>(wrappedGenerator, isMoreThanFive).hashCode());
     }
-
-    // Attributes
-    // ------------------------------------------------------------------------
-    private static final Integer FIVE = new Integer(5);
-
-    private LoopGenerator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isMoreThanFive = new UnaryPredicate<Integer>() {
-        public boolean test( Integer obj ) {
-            return obj > FIVE;
-        }
-    };
-    private LoopGenerator<Integer> generateUntil = null;
 }

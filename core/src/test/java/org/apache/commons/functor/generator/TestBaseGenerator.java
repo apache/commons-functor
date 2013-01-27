@@ -35,6 +35,36 @@ import org.junit.Test;
  */
 @SuppressWarnings("unchecked")
 public class TestBaseGenerator {
+    // Attributes
+    // ------------------------------------------------------------------------
+    private List<Integer> list = null;
+    private List<Integer> doubled = null;
+    private List<Integer> evens = null;
+    private List<Integer> listWithDuplicates = null;
+    @SuppressWarnings("unused")
+    private int sum = 0;
+//    private UnaryPredicate equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
+//    private UnaryPredicate equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
+//    private UnaryPredicate isEven = new UnaryPredicate() {
+//        public boolean test(Object obj) {
+//            return ((Number) obj).intValue() % 2 == 0;
+//        }
+//    };
+//    private UnaryPredicate isOdd = new UnaryPredicate() {
+//        public boolean test(Object obj) {
+//            return ((Number) obj).intValue() % 2 != 0;
+//        }
+//    };
+
+    // Classes
+    // ------------------------------------------------------------------------
+
+    static class Summer implements UnaryProcedure<Number> {
+        public void run(Number that) {
+            sum += (that).intValue();
+        }
+        public int sum = 0;
+    }
 
     private Generator<Integer> simpleGenerator = null;
 
@@ -113,36 +143,5 @@ public class TestBaseGenerator {
         col = (Collection<Integer>)simpleGenerator.to(fillThis);
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
-    }
-
-    // Attributes
-    // ------------------------------------------------------------------------
-    private List<Integer> list = null;
-    private List<Integer> doubled = null;
-    private List<Integer> evens = null;
-    private List<Integer> listWithDuplicates = null;
-    @SuppressWarnings("unused")
-    private int sum = 0;
-//    private UnaryPredicate equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
-//    private UnaryPredicate equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
-//    private UnaryPredicate isEven = new UnaryPredicate() {
-//        public boolean test(Object obj) {
-//            return ((Number) obj).intValue() % 2 == 0;
-//        }
-//    };
-//    private UnaryPredicate isOdd = new UnaryPredicate() {
-//        public boolean test(Object obj) {
-//            return ((Number) obj).intValue() % 2 != 0;
-//        }
-//    };
-
-    // Classes
-    // ------------------------------------------------------------------------
-
-    static class Summer implements UnaryProcedure<Number> {
-        public void run(Number that) {
-            sum += (that).intValue();
-        }
-        public int sum = 0;
     }
 }

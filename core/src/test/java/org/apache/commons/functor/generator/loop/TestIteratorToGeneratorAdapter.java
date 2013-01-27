@@ -39,18 +39,18 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
 
+    // Lifecycle
+    // ------------------------------------------------------------------------
+
+    private List<String> list = null;
+
     @Override
     public Object makeFunctor() {
         List<String> list = new ArrayList<String>();
         list.add("1");
         return new IteratorToGeneratorAdapter<String>(list.iterator());
     }
-
-    // Lifecycle
-    // ------------------------------------------------------------------------
-
-    private List<String> list = null;
-
+    
     @Before
     public void setUp() throws Exception {
         list = new ArrayList<String>();

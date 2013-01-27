@@ -30,8 +30,18 @@ import org.junit.Test;
  * Tests the Generate While class.
  * @version $Revision$ $Date$
  */
-public class TestGenerateWhile
-{
+public class TestGenerateWhile {
+    // Attributes
+    // ------------------------------------------------------------------------
+    private static final Integer FIVE = new Integer(5);
+
+    private LoopGenerator<Integer> wrappedGenerator = null;
+    private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
+        public boolean test( Integer obj ) {
+            return obj < FIVE;
+        }
+    };
+    private LoopGenerator<Integer> generateWhile = null;
 
     @Before
     public void setUp() throws Exception {
@@ -89,18 +99,5 @@ public class TestGenerateWhile
         assertEquals(generateWhile.hashCode(), generateWhile.hashCode());
         assertEquals(generateWhile.hashCode(), new GenerateWhile<Integer>(wrappedGenerator, isLessThanFive).hashCode());
     }
-
-    // Attributes
-    // ------------------------------------------------------------------------
-    private static final Integer FIVE = new Integer(5);
-
-    private LoopGenerator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>()
-    {
-        public boolean test( Integer obj ) {
-            return obj < FIVE;
-        }
-    };
-    private LoopGenerator<Integer> generateWhile = null;
 
 }

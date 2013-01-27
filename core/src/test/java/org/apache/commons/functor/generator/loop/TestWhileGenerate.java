@@ -38,6 +38,18 @@ import org.junit.Test;
  */
 public class TestWhileGenerate {
 
+    // Attributes
+    // ------------------------------------------------------------------------
+    private static final Integer FIVE = new Integer(5);
+
+    private LoopGenerator<Integer> wrappedGenerator = null;
+    private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
+        public boolean test( Integer obj ) {
+            return obj < FIVE;
+        }
+    };
+    private LoopGenerator<Integer> whileGenerate = null;
+
     @Before
     public void setUp() throws Exception {
         wrappedGenerator = new IntegerRange(1, 10);
@@ -107,16 +119,4 @@ public class TestWhileGenerate {
         List<Integer> expected = Arrays.asList(1, 2, 3, 4);
         assertEquals(expected, numbersMinorThanFive);
     }
-
-    // Attributes
-    // ------------------------------------------------------------------------
-	private static final Integer FIVE = new Integer(5);
-
-    private LoopGenerator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
-        public boolean test( Integer obj ) {
-            return obj < FIVE;
-        }
-    };
-    private LoopGenerator<Integer> whileGenerate = null;
 }

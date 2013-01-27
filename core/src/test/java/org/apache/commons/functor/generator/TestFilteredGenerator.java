@@ -34,8 +34,17 @@ import org.junit.Test;
  * Tests the Filtered Generator class.
  * @version $Revision$ $Date$
  */
-public class TestFilteredGenerator
-{
+public class TestFilteredGenerator {
+    // Attributes
+    // ------------------------------------------------------------------------
+    private Generator<Integer> wrappedGenerator = null;
+    private UnaryPredicate<Integer> isEven = new UnaryPredicate<Integer>() {
+        public boolean test( Integer obj ) {
+            return obj % 2 == 0;
+        }
+    };
+    private Generator<Integer> filteredGenerator = null;
+
 
     @Before
     public void setUp() throws Exception {
@@ -107,16 +116,4 @@ public class TestFilteredGenerator
     	List<Integer> expected = Arrays.asList(2, 4, 6, 8);
     	assertEquals(expected, evenNumbers);
     }
-
-    // Attributes
-    // ------------------------------------------------------------------------
-    private Generator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isEven = new UnaryPredicate<Integer>()
-    {
-        public boolean test( Integer obj ) {
-            return obj % 2 == 0;
-        }
-    };
-    private Generator<Integer> filteredGenerator = null;
-
 }
