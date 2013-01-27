@@ -34,7 +34,7 @@ import org.apache.commons.functor.generator.loop.LoopGenerator;
  * @since 0.1
  * @version $Revision: $ $Date: $
  */
-public abstract class NumericRange<T extends Number & Comparable<?>> extends LoopGenerator<T> implements Range<T, T> {
+public abstract class NumericRange<T extends Number & Comparable<T>> extends LoopGenerator<T> implements Range<T, T> {
 
     /**
      * {@inheritDoc}
