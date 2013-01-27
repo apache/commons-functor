@@ -16,7 +16,6 @@ package org.apache.commons.functor.generator.range;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.lang3.Validate;
 
 /**
  * A range of longs.
@@ -25,24 +24,6 @@ import org.apache.commons.lang3.Validate;
  * @version $Revision$ $Date$
  */
 public final class LongRange extends NumericRange<Long> {
-    // attributes
-    //---------------------------------------------------------------
-
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Long> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Long> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final long step;
-
     /**
      * Calculate default step.
      */
@@ -106,20 +87,9 @@ public final class LongRange extends NumericRange<Long> {
      * @param rightBoundType type of right bound
      * @param step increment
      */
-    public LongRange(long from, BoundType leftBoundType, long to,
-                     BoundType rightBoundType, long step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Long>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Long>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Long.signum(step) != Long.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
+    public LongRange(long from, BoundType leftBoundType, long to, BoundType rightBoundType, long step) {
+        this(new Endpoint<Long>(Long.valueOf(from), leftBoundType),
+            new Endpoint<Long>(Long.valueOf(to), rightBoundType), Long.valueOf(step));
     }
 
     /**
@@ -129,18 +99,8 @@ public final class LongRange extends NumericRange<Long> {
      * @param to end
      * @param step increment
      */
-    public LongRange(Endpoint<Long> from, Endpoint<Long> to, long step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from.equals(to) == Boolean.FALSE
-            && Long.signum(step) != Long.signum(to.getValue() - from.getValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
+    public LongRange(Endpoint<Long> from, Endpoint<Long> to, Long step) {
+        super(from, to, step);
     }
 
     // methods
@@ -179,68 +139,6 @@ public final class LongRange extends NumericRange<Long> {
                 }
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Long> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Long> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Long getStep() {
-        return this.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "LongRange<" + this.leftEndpoint.toLeftString() + ", "
-                + this.rightEndpoint.toRightString() + ", " + step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof LongRange)) {
-            return false;
-        }
-        LongRange that = (LongRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "LongRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.step;
-        return hash;
     }
 
 }

@@ -84,8 +84,7 @@ public class Endpoint<T extends Comparable<T>> {
             return false;
         }
         Endpoint<?> that = (Endpoint<?>) obj;
-        return this.boundType == that.boundType
-                && this.value.equals(that.value);
+        return this.boundType == that.boundType && this.value.equals(that.value);
     }
 
     /**

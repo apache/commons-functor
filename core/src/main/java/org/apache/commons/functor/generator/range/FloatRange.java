@@ -19,7 +19,6 @@ package org.apache.commons.functor.generator.range;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.lang3.Validate;
 
 /**
  * A generator for a range of float.
@@ -28,23 +27,6 @@ import org.apache.commons.lang3.Validate;
  * @version $Revision: $ $Date: $
  */
 public class FloatRange extends NumericRange<Float> {
-
-    // attributes
-    // ---------------------------------------------------------------
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Float> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Float> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final float step;
 
     /**
      * Calculate default step.
@@ -109,20 +91,9 @@ public class FloatRange extends NumericRange<Float> {
      * @param rightBoundType type of right bound
      * @param step increment
      */
-    public FloatRange(float from, BoundType leftBoundType, float to,
-                      BoundType rightBoundType, float step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Float>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Float>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Math.signum(step) != Math.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
+    public FloatRange(float from, BoundType leftBoundType, float to, BoundType rightBoundType, float step) {
+        this(new Endpoint<Float>(Float.valueOf(from), leftBoundType), new Endpoint<Float>(Float.valueOf(to),
+            rightBoundType), Float.valueOf(step));
     }
 
     /**
@@ -132,44 +103,12 @@ public class FloatRange extends NumericRange<Float> {
      * @param to end
      * @param step increment
      */
-    public FloatRange(Endpoint<Float> from, Endpoint<Float> to, float step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to
-            && Math.signum(step) != Math.signum(to.getValue().doubleValue()
-                                             - from.getValue().doubleValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
+    public FloatRange(Endpoint<Float> from, Endpoint<Float> to, Float step) {
+        super(from, to, step);
     }
 
     // methods
     // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Float> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Float> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Float getStep() {
-        return this.step;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -204,47 +143,6 @@ public class FloatRange extends NumericRange<Float> {
                 }
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "FloatRange<" + this.leftEndpoint.toLeftString() + ", "
-                + this.rightEndpoint.toRightString() + ", " + this.step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof FloatRange)) {
-            return false;
-        }
-        FloatRange that = (FloatRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "FloatRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= Float.valueOf(this.step).hashCode();
-        return hash;
     }
 
 }

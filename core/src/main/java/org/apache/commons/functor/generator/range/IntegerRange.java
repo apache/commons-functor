@@ -19,7 +19,6 @@ package org.apache.commons.functor.generator.range;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.lang3.Validate;
 
 /**
  * A range of integers.
@@ -28,23 +27,6 @@ import org.apache.commons.lang3.Validate;
  * @version $Revision$ $Date$
  */
 public class IntegerRange extends NumericRange<Integer> {
-
-    // attributes
-    // ---------------------------------------------------------------
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Integer> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Integer> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final int step;
 
     /**
      * Calculate default step.
@@ -110,20 +92,9 @@ public class IntegerRange extends NumericRange<Integer> {
      * @param rightBoundType type of right bound
      * @param step increment
      */
-    public IntegerRange(int from, BoundType leftBoundType, int to,
-                        BoundType rightBoundType, int step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Integer>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Integer>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Integer.signum(step) != Integer.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
+    public IntegerRange(int from, BoundType leftBoundType, int to, BoundType rightBoundType, int step) {
+        this(new Endpoint<Integer>(Integer.valueOf(from), leftBoundType), new Endpoint<Integer>(Integer.valueOf(to),
+            rightBoundType), Integer.valueOf(step));
     }
 
     /**
@@ -133,43 +104,12 @@ public class IntegerRange extends NumericRange<Integer> {
      * @param to end
      * @param step increment
      */
-    public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, int step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to
-            && Integer.signum(step) != Integer.signum(to.getValue()
-                                                   - from.getValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
-    }
+    public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, Integer step) {
+        super(from, to, step);
+   }
 
     // methods
     // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Integer> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Integer> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Integer getStep() {
-        return this.step;
-    }
 
     /**
      * {@inheritDoc}
@@ -207,45 +147,4 @@ public class IntegerRange extends NumericRange<Integer> {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "IntegerRange<" + this.leftEndpoint.toLeftString()
-                + ", " + this.rightEndpoint.toRightString()
-                + ", " + this.step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof IntegerRange)) {
-            return false;
-        }
-        IntegerRange that = (IntegerRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "IntegerRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.step;
-        return hash;
-    }
 }

@@ -20,6 +20,7 @@ package org.apache.commons.functor.generator.range;
 import java.util.Collection;
 
 import org.apache.commons.functor.generator.loop.LoopGenerator;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A base class for numeric ranges. The elements within this range must be a
@@ -35,6 +36,57 @@ import org.apache.commons.functor.generator.loop.LoopGenerator;
  * @version $Revision: $ $Date: $
  */
 public abstract class NumericRange<T extends Number & Comparable<T>> extends LoopGenerator<T> implements Range<T, T> {
+    // attributes
+    // ---------------------------------------------------------------
+    /**
+     * Left limit.
+     */
+    protected final Endpoint<T> leftEndpoint;
+
+    /**
+     * Right limit.
+     */
+    protected final Endpoint<T> rightEndpoint;
+    
+    protected final T step;
+
+    /**
+     * Create a new NumericRange instance.
+     * @param from left endpoint
+     * @param to right endpoint
+     * @param step
+     */
+    protected NumericRange(Endpoint<T> from, Endpoint<T> to, T step) {
+        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
+        this.step = Validate.notNull(step, "step argument must not be null");
+        final int cmp = to.getValue().compareTo(from.getValue());
+        if (cmp != 0 && Double.valueOf(Math.signum(step.doubleValue())).intValue() != cmp) {
+            throw new IllegalArgumentException(String.format("Will never reach %s from %s using step %s", to, from,
+                step));
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Endpoint<T> getLeftEndpoint() {
+        return leftEndpoint;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Endpoint<T> getRightEndpoint() {
+        return rightEndpoint;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public T getStep() {
+        return step;
+    }
 
     /**
      * {@inheritDoc}
@@ -110,4 +162,43 @@ public abstract class NumericRange<T extends Number & Comparable<T>> extends Loo
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return String.format("%s<%s, %s, %s>", getClass().getSimpleName(), this.leftEndpoint.toLeftString(),
+            rightEndpoint.toRightString(), this.step);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NumericRange<?>)) {
+            return false;
+        }
+        NumericRange<?> that = (NumericRange<?>) obj;
+        return this.leftEndpoint.equals(that.leftEndpoint) && this.rightEndpoint.equals(that.rightEndpoint)
+            && this.step.equals(that.step);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        int hash = getClass().getSimpleName().hashCode();
+        hash <<= 2;
+        hash ^= this.leftEndpoint.getValue().hashCode();
+        hash <<= 2;
+        hash ^= this.rightEndpoint.getValue().hashCode();
+        hash <<= 2;
+        hash ^= this.step.hashCode();
+        return hash;
+    }
 }

@@ -19,7 +19,6 @@ package org.apache.commons.functor.generator.range;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.lang3.Validate;
 
 /**
  * A generator for a range of doubles.
@@ -28,23 +27,6 @@ import org.apache.commons.lang3.Validate;
  * @version $Revision: $ $Date: $
  */
 public class DoubleRange extends NumericRange<Double> {
-
-    // attributes
-    // ---------------------------------------------------------------
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Double> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Double> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final double step;
 
     /**
      * Calculate default step.
@@ -110,20 +92,9 @@ public class DoubleRange extends NumericRange<Double> {
      * @param rightBoundType type of right bound
      * @param step increment
      */
-    public DoubleRange(double from, BoundType leftBoundType, double to,
-                       BoundType rightBoundType, double step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Double>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Double>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Math.signum(step) != Math.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
+    public DoubleRange(double from, BoundType leftBoundType, double to, BoundType rightBoundType, double step) {
+        this(new Endpoint<Double>(Double.valueOf(from), leftBoundType), new Endpoint<Double>(Double.valueOf(to),
+            rightBoundType), Double.valueOf(step));
     }
 
     /**
@@ -133,44 +104,12 @@ public class DoubleRange extends NumericRange<Double> {
      * @param to end
      * @param step increment
      */
-    public DoubleRange(Endpoint<Double> from, Endpoint<Double> to, double step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to
-            && Math.signum(step) != Math.signum(to.getValue().doubleValue()
-                                             - from.getValue().doubleValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
+    public DoubleRange(Endpoint<Double> from, Endpoint<Double> to, Double step) {
+        super(from, to, step);
     }
 
     // methods
     // ---------------------------------------------------------------
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Double> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Double> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Double getStep() {
-        return this.step;
-    }
 
     /**
      * {@inheritDoc}
@@ -206,47 +145,6 @@ public class DoubleRange extends NumericRange<Double> {
                 }
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "DoubleRange<" + this.leftEndpoint.toLeftString() + ", "
-                + this.rightEndpoint.toRightString() + ", " + this.step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof DoubleRange)) {
-            return false;
-        }
-        DoubleRange that = (DoubleRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "DoubleRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= Double.valueOf(this.step).hashCode();
-        return hash;
     }
 
 }
