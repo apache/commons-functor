@@ -26,7 +26,7 @@ import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.algorithm.RecursiveEvaluation;
 import org.apache.commons.functor.core.algorithm.UntilDo;
-import org.apache.commons.functor.generator.util.IntegerRange;
+import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.Test;
 
 /**

@@ -47,6 +47,9 @@
       <action issue="FUNCTOR-15" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Distribute tests from TestAlgorithms into several test classes under algorithm test package
       </action>
+      <action issue="FUNCTOR-14" dev="kinow">
+        Enhancements on the Generator API
+      </action>
       <action issue="FUNCTOR-9" dev="simonetripodi" due-to="Bruno P. Kinoshita">
         Make Limit and Offset Serializable
       </action>

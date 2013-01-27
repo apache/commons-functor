@@ -14,20 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator;
+package org.apache.commons.functor.generator.loop;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Wrap another {@link Generator} such that {@link #run(UnaryProcedure)} continues
- * as long as a condition is true (test after).
+ * as long as a condition is true (test before).
  *
  * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
-public class GenerateWhile<E> extends BaseGenerator<E> {
+public class WhileGenerate<E> extends LoopGenerator<E> {
 
     /**
      * The condition has to verified in order to execute the generation.
@@ -35,11 +36,11 @@ public class GenerateWhile<E> extends BaseGenerator<E> {
     private final UnaryPredicate<? super E> test;
 
     /**
-     * Create a new GenerateWhile.
-     * @param wrapped {@link Generator}
+     * Create a new WhileGenerate.
      * @param test {@link UnaryPredicate}
+     * @param wrapped {@link Generator}
      */
-    public GenerateWhile(Generator<? extends E> wrapped, UnaryPredicate<? super E> test) {
+    public WhileGenerate(UnaryPredicate<? super E> test, Generator<? extends E> wrapped) {
         super(Validate.notNull(wrapped, "Generator argument was null"));
         this.test = Validate.notNull(test, "UnaryPredicate argument was null");
     }
@@ -50,21 +51,13 @@ public class GenerateWhile<E> extends BaseGenerator<E> {
     public void run(final UnaryProcedure<? super E> proc) {
         getWrappedGenerator().run(new UnaryProcedure<E>() {
             public void run(E obj) {
-                proc.run(obj);
                 if (!test.test(obj)) {
-                    getWrappedGenerator().stop();
+                    WhileGenerate.this.stop();
+                } else {
+                    proc.run(obj);
                 }
             }
         });
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected Generator<? extends E> getWrappedGenerator() {
-        return (Generator<? extends E>) super.getWrappedGenerator();
     }
 
     /**
@@ -75,10 +68,10 @@ public class GenerateWhile<E> extends BaseGenerator<E> {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof GenerateWhile<?>)) {
+        if (!(obj instanceof WhileGenerate<?>)) {
             return false;
         }
-        GenerateWhile<?> other = (GenerateWhile<?>) obj;
+        WhileGenerate<?> other = (WhileGenerate<?>) obj;
         return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.test.equals(test);
     }
 
@@ -87,7 +80,7 @@ public class GenerateWhile<E> extends BaseGenerator<E> {
      */
     @Override
     public int hashCode() {
-        int result = "GenerateWhile".hashCode();
+        int result = "WhileGenerate".hashCode();
         result <<= 2;
         Generator<?> gen = getWrappedGenerator();
         result ^= gen.hashCode();

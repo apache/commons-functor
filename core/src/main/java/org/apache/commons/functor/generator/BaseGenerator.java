@@ -29,52 +29,9 @@ import org.apache.commons.functor.generator.util.CollectionTransformer;
  */
 public abstract class BaseGenerator<E> implements Generator<E> {
 
-    /** A generator can wrap another generator. */
-    private final Generator<?> wrappedGenerator;
-
-    /** Set to true when the generator is {@link #stop stopped}. */
-    private boolean stopped = false;
-
     /** Create a new generator. */
     public BaseGenerator() {
-        this(null);
-    }
-
-    /**
-     * A generator can wrap another generator. When wrapping generators you
-     * should use probably this constructor since doing so will cause the
-     * {@link #stop} method to stop the wrapped generator as well.
-     * @param generator Generator to wrap
-     */
-    public BaseGenerator(Generator<?> generator) {
-        this.wrappedGenerator = generator;
-    }
-
-    /**
-     * Get the generator that is being wrapped.
-     * @return Generator
-     */
-    protected Generator<?> getWrappedGenerator() {
-        return wrappedGenerator;
-    }
-
-    /**
-     * {@inheritDoc}
-     * Stop the generator. Will stop the wrapped generator if one was set.
-     */
-    public void stop() {
-        if (wrappedGenerator != null) {
-            wrappedGenerator.stop();
-        }
-        stopped = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     * Check if the generator is stopped.
-     */
-    public boolean isStopped() {
-        return stopped;
+        super();
     }
 
     /**

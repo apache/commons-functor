@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator;
+package org.apache.commons.functor.generator.loop;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -31,22 +31,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests the Base Generator class.
+ * Tests the Loop Generator class.
  */
 @SuppressWarnings("unchecked")
-public class TestBaseGenerator {
+public class TestLoopGenerator {
 
-    private Generator<Integer> simpleGenerator = null;
+    private LoopGenerator<Integer> simpleGenerator = null;
 
     // Lifecycle
     // ------------------------------------------------------------------------
 
     @Before
     public void setUp() throws Exception {
-        simpleGenerator = new BaseGenerator<Integer>() {
+        simpleGenerator = new LoopGenerator<Integer>() {
             public void run(UnaryProcedure<? super Integer> proc) {
                 for (int i=0;i<5;i++) {
                     proc.run(new Integer(i));
+                    if (isStopped()) {
+                        break;
+                    }
                 }
             }
         };
@@ -90,6 +93,60 @@ public class TestBaseGenerator {
         });
 
         assertEquals("01234", result.toString());
+    }
+
+    @Test
+    public void testStop() {
+        final StringBuffer result = new StringBuffer();
+        simpleGenerator.run(new UnaryProcedure<Integer>() {
+            int i=0;
+            public void run(Integer obj) {
+                result.append(obj);
+                if (i++ > 1) {
+                    simpleGenerator.stop();
+                }
+            }
+        });
+
+        assertEquals("012", result.toString());
+    }
+
+    @Test
+    public void testWrappingGenerator() {
+        final StringBuffer result = new StringBuffer();
+        final LoopGenerator<Integer> gen = new LoopGenerator<Integer>(simpleGenerator) {
+            public void run(final UnaryProcedure<? super Integer> proc) {
+                LoopGenerator<Integer> wrapped = (LoopGenerator<Integer>)getWrappedGenerator();
+                assertSame(simpleGenerator, wrapped);
+                wrapped.run(new UnaryProcedure<Integer>() {
+                    public void run(Integer obj) {
+                        proc.run(new Integer(obj.intValue() + 1));
+                    }
+                });
+            }
+        };
+
+        gen.run(new UnaryProcedure<Integer>() {
+            public void run(Integer obj) {
+                result.append(obj);
+            }
+        });
+
+        assertEquals("12345", result.toString());
+
+        // try to stop the wrapped generator
+        final StringBuffer result2 = new StringBuffer();
+        gen.run(new UnaryProcedure<Integer>() {
+            int i=0;
+            public void run(Integer obj) {
+                result2.append(obj);
+                if (i++ > 1) {
+                    gen.stop();
+                }
+            }
+        });
+
+        assertEquals("123", result2.toString());
     }
 
     // Tests

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator;
+package org.apache.commons.functor.generator.loop;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -25,7 +25,9 @@ import java.util.List;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.util.IntegerRange;
+import org.apache.commons.functor.generator.Generator;
+import org.apache.commons.functor.generator.loop.WhileGenerate;
+import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -110,11 +112,11 @@ public class TestWhileGenerate {
     // ------------------------------------------------------------------------
 	private static final Integer FIVE = new Integer(5);
 
-    private Generator<Integer> wrappedGenerator = null;
+    private LoopGenerator<Integer> wrappedGenerator = null;
     private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
         public boolean test( Integer obj ) {
             return obj < FIVE;
         }
     };
-    private Generator<Integer> whileGenerate = null;
+    private LoopGenerator<Integer> whileGenerate = null;
 }
