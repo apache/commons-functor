@@ -21,17 +21,19 @@ import java.io.Serializable;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.loop.LoopGenerator;
+import org.apache.commons.functor.generator.Generator;
+import org.apache.commons.functor.generator.loop.PredicatedGenerator;
+import org.apache.commons.functor.generator.loop.UntilGenerate;
 
 /**
- * Return the index of the first Object in a {@link LoopGenerator} matching a
+ * Return the index of the first Object in a {@link PredicatedGenerator} matching a
  * {@link UnaryPredicate}, or -1 if not found.
  *
  * @param <T> the procedure argument types
  * @version $Revision$ $Date$
  */
 public final class IndexOfInGenerator<T>
-    implements BinaryFunction<LoopGenerator<? extends T>, UnaryPredicate<? super T>, Number>, Serializable {
+    implements BinaryFunction<Generator<? extends T>, UnaryPredicate<? super T>, Number>, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -48,42 +50,14 @@ public final class IndexOfInGenerator<T>
      */
     private static class IndexProcedure<T> implements UnaryProcedure<T> {
         /**
-         * The wrapped generator.
-         */
-        private final LoopGenerator<? extends T> generator;
-        /**
-         * The wrapped predicate.
-         */
-        private final UnaryPredicate<? super T> pred;
-        /**
-         * The number of iterations needed before the wrapped predicate found the target,
-         * {@code -1} means the target was not found.
-         */
-        private long index = -1L;
-        /**
          * A local accumulator to increment the number of attempts.
          */
         private long current = 0L;
 
         /**
-         * Create a new IndexProcedure.
-         *
-         * @param generator The wrapped generator
-         * @param pred The wrapped predicate
-         */
-        IndexProcedure(LoopGenerator<? extends T> generator, UnaryPredicate<? super T> pred) {
-            this.generator = generator;
-            this.pred = pred;
-        }
-
-        /**
          * {@inheritDoc}
          */
         public void run(T obj) {
-            if (index < 0 && pred.test(obj)) {
-                index = current;
-                generator.stop();
-            }
             current++;
         }
     }
@@ -93,10 +67,10 @@ public final class IndexOfInGenerator<T>
      * @param left Generator
      * @param right UnaryPredicate
      */
-    public Number evaluate(LoopGenerator<? extends T> left, UnaryPredicate<? super T> right) {
-        IndexProcedure<T> findProcedure = new IndexProcedure<T>(left, right);
-        left.run(findProcedure);
-        return Long.valueOf(findProcedure.index);
+    public Number evaluate(Generator<? extends T> left, UnaryPredicate<? super T> right) {
+        final IndexProcedure<T> findProcedure = new IndexProcedure<T>();
+        new UntilGenerate<T>(right, left).run(findProcedure);
+        return Long.valueOf(findProcedure.current);
     }
 
     /**

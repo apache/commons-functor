@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
@@ -36,7 +37,7 @@ public class TestTransformedGenerator {
     // ------------------------------------------------------------------------
     private static final Integer TWO = new Integer(2);
 
-    private LoopGenerator<Integer> wrappedGenerator = null;
+    private Generator<Integer> wrappedGenerator = null;
     private UnaryFunction<Integer, Integer> sumsTwo = new UnaryFunction<Integer, Integer>() {
         public Integer evaluate( Integer obj ) {
             return obj += TWO;

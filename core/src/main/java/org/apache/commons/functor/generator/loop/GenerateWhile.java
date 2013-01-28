@@ -28,12 +28,7 @@ import org.apache.commons.lang3.Validate;
  * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
-public class GenerateWhile<E> extends LoopGenerator<E> {
-
-    /**
-     * The condition has to verified in order to execute the generation.
-     */
-    private final UnaryPredicate<? super E> test;
+public class GenerateWhile<E> extends PredicatedGenerator<E> {
 
     /**
      * Create a new GenerateWhile.
@@ -41,53 +36,8 @@ public class GenerateWhile<E> extends LoopGenerator<E> {
      * @param test {@link UnaryPredicate}
      */
     public GenerateWhile(Generator<? extends E> wrapped, UnaryPredicate<? super E> test) {
-        super(Validate.notNull(wrapped, "Generator argument was null"));
-        this.test = Validate.notNull(test, "UnaryPredicate argument was null");
+        super(Validate.notNull(wrapped, "Generator argument was null"),
+        Validate.notNull(test, "UnaryPredicate argument was null"), Behavior.TEST_AFTER);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void run(final UnaryProcedure<? super E> proc) {
-        getWrappedGenerator().run(new UnaryProcedure<E>() {
-            public void run(E obj) {
-                if (isStopped()) {
-                    return;
-                }
-                proc.run(obj);
-                if (!test.test(obj)) {
-                    stop();
-                }
-            }
-        });
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof GenerateWhile<?>)) {
-            return false;
-        }
-        GenerateWhile<?> other = (GenerateWhile<?>) obj;
-        return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.test.equals(test);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int result = "GenerateWhile".hashCode();
-        result <<= 2;
-        Generator<?> gen = getWrappedGenerator();
-        result ^= gen.hashCode();
-        result <<= 2;
-        result ^= test.hashCode();
-        return result;
-    }
 }

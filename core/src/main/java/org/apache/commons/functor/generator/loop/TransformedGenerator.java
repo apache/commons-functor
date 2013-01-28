@@ -18,6 +18,7 @@ package org.apache.commons.functor.generator.loop;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.generator.BaseGenerator;
 import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.lang3.Validate;
 
@@ -28,34 +29,34 @@ import org.apache.commons.lang3.Validate;
  * @param <E> the type of elements held in this generator.
  * @version $Revision$ $Date$
  */
-public class TransformedGenerator<I, E> extends LoopGenerator<E> {
+public class TransformedGenerator<I, E> extends BaseGenerator<E> {
+
+    /**
+     * The wrapped/<em>I</em>nput generator.
+     */
+    private final Generator<? extends I> wrappedGenerator;
 
     /**
      * The UnaryFunction to apply to each element.
      */
     private final UnaryFunction<? super I, ? extends E> func;
 
-    // This is a special generator, that wraps a generator, but returns another one.
-    // So it breaks the interface contract, and we suppress the warnings when we cast
-    // the wrapped generator. This class has been marked as final, to avoid bogus
-    // specializations.
     /**
      * Create a new TransformedGenerator.
      * @param wrapped Generator to transform
      * @param func UnaryFunction to apply to each element
      */
-    @SuppressWarnings("unchecked")
     public TransformedGenerator(Generator<? extends I> wrapped, UnaryFunction<? super I, ? extends E> func) {
-        super((Generator<? extends E>) Validate.notNull(wrapped, "Generator argument was null"));
+        this.wrappedGenerator =
+        Validate.notNull(wrapped, "Generator argument was null");
         this.func = Validate.notNull(func, "UnaryFunction argument was null");
     }
 
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     public void run(final UnaryProcedure<? super E> proc) {
-        ((Generator<? extends I>) getWrappedGenerator()).run(new UnaryProcedure<I>() {
+        wrappedGenerator.run(new UnaryProcedure<I>() {
             public void run(I obj) {
                 proc.run(func.evaluate(obj));
             }
@@ -74,7 +75,7 @@ public class TransformedGenerator<I, E> extends LoopGenerator<E> {
             return false;
         }
         TransformedGenerator<?, ?> other = (TransformedGenerator<?, ?>) obj;
-        return other.getWrappedGenerator().equals(getWrappedGenerator()) && other.func == func;
+        return other.wrappedGenerator.equals(wrappedGenerator) && other.func.equals(func);
     }
 
     /**
@@ -84,7 +85,7 @@ public class TransformedGenerator<I, E> extends LoopGenerator<E> {
     public int hashCode() {
         int result = "TransformedGenerator".hashCode();
         result <<= 2;
-        Generator<?> gen = getWrappedGenerator();
+        Generator<?> gen = wrappedGenerator;
         result ^= gen.hashCode();
         result <<= 2;
         result ^= func.hashCode();

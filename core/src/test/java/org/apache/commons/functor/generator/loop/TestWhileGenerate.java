@@ -42,13 +42,13 @@ public class TestWhileGenerate {
     // ------------------------------------------------------------------------
     private static final Integer FIVE = new Integer(5);
 
-    private LoopGenerator<Integer> wrappedGenerator = null;
+    private Generator<Integer> wrappedGenerator = null;
     private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
         public boolean test( Integer obj ) {
             return obj < FIVE;
         }
     };
-    private LoopGenerator<Integer> whileGenerate = null;
+    private PredicatedGenerator<Integer> whileGenerate = null;
 
     @Before
     public void setUp() throws Exception {

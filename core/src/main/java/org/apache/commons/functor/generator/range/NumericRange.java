@@ -19,7 +19,7 @@ package org.apache.commons.functor.generator.range;
 
 import java.util.Collection;
 
-import org.apache.commons.functor.generator.loop.LoopGenerator;
+import org.apache.commons.functor.generator.BaseGenerator;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -35,7 +35,7 @@ import org.apache.commons.lang3.Validate;
  * @since 0.1
  * @version $Revision$ $Date$
  */
-public abstract class NumericRange<T extends Number & Comparable<T>> extends LoopGenerator<T> implements Range<T, T> {
+public abstract class NumericRange<T extends Number & Comparable<T>> extends BaseGenerator<T> implements Range<T, T> {
     // attributes
     // ---------------------------------------------------------------
     /**

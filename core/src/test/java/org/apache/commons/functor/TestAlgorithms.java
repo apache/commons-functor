@@ -31,8 +31,8 @@ import java.util.Set;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.composite.UnaryNot;
 import org.apache.commons.functor.generator.FilteredGenerator;
+import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
-import org.apache.commons.functor.generator.loop.LoopGenerator;
 import org.apache.commons.functor.generator.loop.TransformedGenerator;
 import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.After;
@@ -116,7 +116,7 @@ public class TestAlgorithms {
 
     @Test
     public void testApplyToGenerator() {
-        LoopGenerator<Integer> gen = new IntegerRange(1,5);
+        Generator<Integer> gen = new IntegerRange(1,5);
         Summer summer = new Summer();
 
         new TransformedGenerator<Integer, Integer>(gen, new Doubler()).run(summer);

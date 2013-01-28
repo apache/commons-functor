@@ -21,7 +21,7 @@ import java.util.Collection;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.loop.LoopGenerator;
+import org.apache.commons.functor.generator.BaseGenerator;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -30,7 +30,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class CharacterRange extends LoopGenerator<Character> implements Range<Character, Integer> {
+public final class CharacterRange extends BaseGenerator<Character> implements Range<Character, Integer> {
 
     // attributes
     // ---------------------------------------------------------------

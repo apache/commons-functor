@@ -23,12 +23,12 @@ import java.io.FileReader;
 import java.io.Reader;
 
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.loop.LoopGenerator;
+import org.apache.commons.functor.generator.BaseGenerator;
 
 /**
  * @version $Revision$ $Date$
  */
-public class Lines extends LoopGenerator<String> {
+public class Lines extends BaseGenerator<String> {
     public static Lines from(Reader reader) {
         return new Lines(reader);
     }
@@ -55,19 +55,13 @@ public class Lines extends LoopGenerator<String> {
         } catch(Exception e) {
             throw new TunneledException(e);
         } finally {
-            stop();
-        }
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
-        try {
-            in.close();
-        } catch(RuntimeException e) {
-            throw e;
-        } catch(Exception e) {
-            throw new TunneledException(e);
+            try {
+                in.close();
+            } catch(RuntimeException e) {
+                throw e;
+            } catch(Exception e) {
+                throw new TunneledException(e);
+            }
         }
     }
 

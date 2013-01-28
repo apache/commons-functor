@@ -29,8 +29,10 @@ import org.apache.commons.functor.generator.util.CollectionTransformer;
  */
 public abstract class BaseGenerator<E> implements Generator<E> {
 
-    /** Create a new generator. */
-    public BaseGenerator() {
+    /**
+     * Create a new BaseGenerator instance.
+     */
+    protected BaseGenerator() {
         super();
     }
 
