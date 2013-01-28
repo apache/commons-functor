@@ -17,7 +17,7 @@ package org.apache.commons.functor.generator.range;
  * Range factory.
  *
  * @since 1.0
- * @version $Revision: $ $Date: $
+ * @version $Revision$ $Date$
  */
 public final class Ranges {
 

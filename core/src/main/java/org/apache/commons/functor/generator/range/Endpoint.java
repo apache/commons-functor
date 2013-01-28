@@ -24,7 +24,7 @@ package org.apache.commons.functor.generator.range;
  *
  * @param <T> type of the value held by this endpoint
  * @since 1.0
- * @version $Revision: $ $Date: $
+ * @version $Revision$ $Date$
  */
 public class Endpoint<T extends Comparable<T>> {
 

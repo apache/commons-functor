@@ -28,7 +28,7 @@ import org.apache.commons.lang3.Validate;
  * A generator for a range of characters.
  *
  * @since 1.0
- * @version $Revision: $ $Date: $
+ * @version $Revision$ $Date$
  */
 public final class CharacterRange extends LoopGenerator<Character> implements Range<Character, Integer> {
 

@@ -23,7 +23,7 @@ package org.apache.commons.functor.generator.range;
  * @see org.apache.commons.functor.generator.range.Range
  * @see org.apache.commons.functor.generator.range.Endpoint
  * @since 1.0
- * @version $Revision: $ $Date: $
+ * @version $Revision$ $Date$
  */
 public enum BoundType {
     // values

@@ -24,7 +24,7 @@ import org.apache.commons.functor.UnaryProcedure;
  * A generator for a range of doubles.
  *
  * @since 1.0
- * @version $Revision: $ $Date: $
+ * @version $Revision$ $Date$
  */
 public class DoubleRange extends NumericRange<Double> {
 

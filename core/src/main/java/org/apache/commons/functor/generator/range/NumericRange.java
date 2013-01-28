@@ -33,7 +33,7 @@ import org.apache.commons.lang3.Validate;
  * @see org.apache.commons.functor.generator.range.DoubleRange
  * @see org.apache.commons.functor.generator.range.CharacterRange
  * @since 0.1
- * @version $Revision: $ $Date: $
+ * @version $Revision$ $Date$
  */
 public abstract class NumericRange<T extends Number & Comparable<T>> extends LoopGenerator<T> implements Range<T, T> {
     // attributes

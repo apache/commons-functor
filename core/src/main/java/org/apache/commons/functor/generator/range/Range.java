@@ -30,7 +30,7 @@ import java.util.Collection;
  * @param <S> the type of the step of this range.
  * @see org.apache.commons.functor.generator.range.Endpoint
  * @since 1.0
- * @version $Revision: $ $Date: $
+ * @version $Revision$ $Date$
  */
 public interface Range<T extends Comparable<T>, S extends Comparable<?>> {
 
