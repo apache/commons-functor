@@ -51,8 +51,11 @@ public class WhileGenerate<E> extends LoopGenerator<E> {
     public void run(final UnaryProcedure<? super E> proc) {
         getWrappedGenerator().run(new UnaryProcedure<E>() {
             public void run(E obj) {
+                if (isStopped()) {
+                    return;
+                }
                 if (!test.test(obj)) {
-                    WhileGenerate.this.stop();
+                    stop();
                 } else {
                     proc.run(obj);
                 }

@@ -19,7 +19,12 @@ package org.apache.commons.functor.generator.loop;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.functor.generator.range.IntegerRange;
 import org.junit.After;
@@ -98,5 +103,19 @@ public class TestGenerateUntil {
     public void testHashcode() {
         assertEquals(generateUntil.hashCode(), generateUntil.hashCode());
         assertEquals(generateUntil.hashCode(), new GenerateUntil<Integer>(wrappedGenerator, isMoreThanFive).hashCode());
+    }
+    
+    @Test
+    public void testGenerate() {
+        final List<Integer> numbersLESix = new ArrayList<Integer>();
+        generateUntil.run(new UnaryProcedure<Integer>() {
+            public void run( Integer obj ) {
+                numbersLESix.add(obj);
+            }
+        });
+        assertEquals(6, numbersLESix.size());
+
+        final List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertEquals(expected, numbersLESix);
     }
 }

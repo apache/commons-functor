@@ -51,8 +51,11 @@ public class UntilGenerate<E> extends LoopGenerator<E> {
     public void run(final UnaryProcedure<? super E> proc) {
         getWrappedGenerator().run(new UnaryProcedure<E>() {
             public void run(E obj) {
+                if (isStopped()) {
+                    return;
+                }
                 if (test.test(obj)) {
-                    UntilGenerate.this.stop();
+                    stop();
                 } else {
                     proc.run(obj);
                 }
