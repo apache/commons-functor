@@ -20,8 +20,7 @@ import java.util.Collection;
  * Represent an interval of elements that varies from the <b>left limit</b>
  * to the <b>right limit</b>. Each limit in this range is an {@link Endpoint
  * Endpoint}. The left and the right limits can be <b>inclusive</b>
- * (<b>bounded</b>, <b>closed</b>) or <b>exclusive</b> (<b>unbounded</b>,
- * <b>open</b>).
+ * (<b>closed</b>) or <b>exclusive</b> (<b>open</b>).
  * <p>
  * The difference between each element within this range is called <b>step</b>.
  * The step can be positive or negative, displaying whether the range elements
