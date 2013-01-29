@@ -14,17 +14,14 @@
 
 package org.apache.commons.functor.generator.loop;
 
-import java.util.Collection;
 import java.util.Iterator;
 
-import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.generator.BaseGenerator;
-import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Adapts an {@link Iterator} to the {@link PredicatedGenerator} interface.
+ * Adapts an {@link Iterator} to the {@link Generator} interface.
  *
  * @param <E> the type of elements held in this generator.
  * @since 1.0
