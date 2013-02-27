@@ -128,7 +128,7 @@
     <commons.jira.id>FUNCTOR</commons.jira.id>
     <commons.jira.pid>12312520</commons.jira.pid>
 
-    <commons.scmPubUrl>https://svn.apache.org/repos/infra/websites/production/commons/content/proper/functor</commons.scmPubUrl>
+    <commons.scmPubUrl>https://svn.apache.org/repos/infra/websites/production/commons/content/proper/commons-functor</commons.scmPubUrl>
   </properties>
 
   <build>
