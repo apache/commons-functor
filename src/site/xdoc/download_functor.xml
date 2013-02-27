@@ -50,6 +50,9 @@ limitations under the License.
   </properties>
   <body>
     <section name="Download Commons Functor">
+      <p>Coming soon (or not)</p>
+    </section>
+    <!--
     <subsection name="Using a Mirror">
       <p>
         We recommend you use a mirror to download our release
@@ -134,5 +137,6 @@ limitations under the License.
           <li><a href="http://archive.apache.org/dist/commons/functor/">archives...</a></li>
         </ul>
     </section>
+    -->
   </body>
 </document>
