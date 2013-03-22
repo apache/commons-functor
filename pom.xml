@@ -36,7 +36,7 @@
     implementations, and utilities.
   </description>
 
-  <url>http://commons.apache.org/functor/</url>
+  <url>http://commons.apache.org/proper/commons-functor/</url>
 
   <issueManagement>
     <system>jira</system>
