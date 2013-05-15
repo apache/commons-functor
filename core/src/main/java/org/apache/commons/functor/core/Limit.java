@@ -121,4 +121,17 @@ public final class Limit implements Predicate, UnaryPredicate<Object>, BinaryPre
     }
 
     //default == equals/hashCode due to statefulness
+
+    // static methods
+    // ------------------------------------------------------------------------
+
+    /**
+     * Get a Limit instance for the specified value.
+     * @param count limit
+     * @return Limit
+     */
+    public static Limit of(int count) {
+        return new Limit(count);
+    }
+
 }

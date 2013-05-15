@@ -23,6 +23,9 @@
   </properties>
   <body>
     <release version="1.0" date="2012-??-??" description="First release.">
+      <action issue="FUNCTOR-27" dev="kinow">
+        Add static Limit#of method to create new Limit's.
+      </action>
       <action issue="FUNCTOR-23" dev="simonetripodi" due-to="Liviu Tudor">
         aggregator.xml generates broken JavaDoc links
       </action>

@@ -16,6 +16,7 @@
  */
 package org.apache.commons.functor.core;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -93,5 +94,14 @@ public class TestLimit extends BaseFunctorTest {
         assertObjectsAreEqual(new Limit(1), limit);
         assertObjectsAreNotEqual(new Limit(2), limit);
         assertTrue(!limit.equals(null));
+    }
+
+    @Test
+    public void testLimits() {
+        Limit limit = new Limit(1);
+        assertEquals(Limit.of(1), limit);
+        
+        assertObjectsAreEqual(Limit.of(1), limit);
+        assertObjectsAreNotEqual(Limit.of(3), limit);
     }
 }
