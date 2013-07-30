@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Collection;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -30,7 +30,7 @@ import org.apache.commons.lang3.Validate;
  * @param <A> the function argument type.
  * @version $Revision$ $Date$
  */
-public final class Size<A> implements UnaryFunction<A, Integer>, Serializable {
+public final class Size<A> implements Function<A, Integer>, Serializable {
 
     /**
      * serialVersionUID declaration.

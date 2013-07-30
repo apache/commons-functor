@@ -23,8 +23,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Predicate;
 import org.junit.Test;
 
 /**
@@ -45,7 +45,7 @@ public class TestIdentity extends BaseFunctorTest {
 
     @Test
     public void testEvaluate() throws Exception {
-        UnaryFunction<Object, Object> f = new Identity<Object>();
+        Function<Object, Object> f = new Identity<Object>();
         assertNull(f.evaluate(null));
         assertEquals("xyzzy",f.evaluate("xyzzy"));
         assertEquals(new Integer(3),f.evaluate(new Integer(3)));
@@ -55,7 +55,7 @@ public class TestIdentity extends BaseFunctorTest {
 
     @Test
     public void testTest() throws Exception {
-        UnaryPredicate<Object> p = new Identity<Object>();
+        Predicate<Object> p = new Identity<Object>();
         assertTrue(p.test(Boolean.TRUE));
         assertTrue(!p.test(Boolean.FALSE));
         try {
@@ -74,7 +74,7 @@ public class TestIdentity extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryFunction<Object, Object> f = new Identity<Object>();
+        Function<Object, Object> f = new Identity<Object>();
         assertEquals(f,f);
         assertObjectsAreEqual(f,new Identity<Object>());
         assertObjectsAreEqual(f,Identity.instance());

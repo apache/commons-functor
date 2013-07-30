@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.junit.Test;
 
 
@@ -48,7 +48,7 @@ public class TestTransformedBinaryFunction extends BaseFunctorTest {
         }
     }
 
-    private static class AddOne implements UnaryFunction<Integer, Integer>, Serializable {
+    private static class AddOne implements Function<Integer, Integer>, Serializable {
         private static final long serialVersionUID = 8759620198239402369L;
         public Integer evaluate(Integer obj) {
             return obj + 1;
@@ -82,7 +82,7 @@ public class TestTransformedBinaryFunction extends BaseFunctorTest {
                 return left-right;
             }
         };
-        UnaryFunction<Integer, Integer> p = new UnaryFunction<Integer, Integer>() {
+        Function<Integer, Integer> p = new Function<Integer, Integer>() {
             public Integer evaluate(Integer obj) {
                 return obj-1;
             }

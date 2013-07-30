@@ -23,7 +23,7 @@ import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.junit.Test;
 
 /**
@@ -53,7 +53,7 @@ public class TestIsInstance extends BaseFunctorTest {
 
     @Test
     public void testBoundTest() throws Exception {
-        UnaryPredicate<Object> p = IsInstance.of(Number.class);
+        Predicate<Object> p = IsInstance.of(Number.class);
         assertFalse(p.test(null));
         assertFalse(p.test("foo"));
         assertTrue(p.test(3));
@@ -81,7 +81,7 @@ public class TestIsInstance extends BaseFunctorTest {
 
     @Test
     public void testBoundEquals() throws Exception {
-        UnaryPredicate<Object> p = IsInstance.of(Object.class);
+        Predicate<Object> p = IsInstance.of(Object.class);
         assertEquals(p,p);
         assertObjectsAreEqual(p,IsInstance.of(Object.class));
         assertObjectsAreNotEqual(p,Constant.truePredicate());

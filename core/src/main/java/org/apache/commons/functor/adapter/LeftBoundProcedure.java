@@ -19,14 +19,14 @@ package org.apache.commons.functor.adapter;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
  * {@link BinaryProcedure BinaryProcedure}
  * to the
- * {@link UnaryProcedure UnaryProcedure} interface
+ * {@link Procedure Procedure} interface
  * using a constant left-side argument.
  * <p/>
  * Note that although this class implements
@@ -39,7 +39,7 @@ import org.apache.commons.lang3.Validate;
  * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializable {
+public final class LeftBoundProcedure<A> implements Procedure<A>, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -113,7 +113,7 @@ public final class LeftBoundProcedure<A> implements UnaryProcedure<A>, Serializa
     }
 
     /**
-     * Get a UnaryProcedure from <code>procedure</code>.
+     * Get a Procedure from <code>procedure</code>.
      * @param <L> left type
      * @param <R> right type
      * @param procedure to adapt

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.aggregator.ArrayListBackedAggregator;
 import org.junit.Test;
 
@@ -35,7 +35,7 @@ import org.junit.Test;
 public class ArrayListBackedAggregatorTest extends BaseFunctorTest {
     @Override
     protected Object makeFunctor() throws Exception {
-        return new ArrayListBackedAggregator<Object>(new SelectFirstUnaryFunction<Object>());
+        return new ArrayListBackedAggregator<Object>(new SelectFirstFunction<Object>());
     }
 
     @Test
@@ -47,18 +47,18 @@ public class ArrayListBackedAggregatorTest extends BaseFunctorTest {
         assertEquals(fct.getSeries().size(), 0);
         // NOTE: would be good to be able to check the ArrayList capacity!
         int initialSize = 31; // nearly 10 pies
-        fct = new ArrayListBackedAggregator<Object>(new SelectFirstUnaryFunction<Object>(), initialSize);
+        fct = new ArrayListBackedAggregator<Object>(new SelectFirstFunction<Object>(), initialSize);
         assertNotNull(fct.getSeries());
         assertTrue(fct.getSeries() instanceof ArrayList);
         assertEquals(fct.getSeries().size(), 0);
     }
 
     /**
-     * Dummy UnaryFunction which counts the number of calls to
+     * Dummy Function which counts the number of calls to
      * {@link #evaluate(List)} and always selects the first item in the given
      * list or null if list is null or empty.
      */
-    class SelectFirstUnaryFunction<T> implements UnaryFunction<List<T>, T> {
+    class SelectFirstFunction<T> implements Function<List<T>, T> {
         int     calls     = 0;
         boolean exception = false; // when set to true, evaluate will throw an
                                    // exception

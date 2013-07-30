@@ -16,13 +16,13 @@
  */
 package org.apache.commons.functor.example.kata.one;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.composite.Composite;
 
 /**
  * @version $Revision$ $Date$
  */
-public class ToMoney implements UnaryFunction<Number, Money> {
+public class ToMoney implements Function<Number, Money> {
 
     public Money evaluate(Number cents) {
         return new Money(cents.intValue());
@@ -32,7 +32,7 @@ public class ToMoney implements UnaryFunction<Number, Money> {
         return INSTANCE;
     }
 
-    public static <X> UnaryFunction<X, Money> from(UnaryFunction<? super X, ? extends Number> fn) {
+    public static <X> Function<X, Money> from(Function<? super X, ? extends Number> fn) {
         return Composite.function(INSTANCE, fn);
     }
 

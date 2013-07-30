@@ -19,14 +19,14 @@ package org.apache.commons.functor.adapter;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
  * {@link BinaryPredicate BinaryPredicate}
  * to the
- * {@link UnaryPredicate UnaryPredicate} interface
+ * {@link Predicate Predicate} interface
  * using a constant left-side argument.
  * <p/>
  * Note that although this class implements
@@ -39,7 +39,7 @@ import org.apache.commons.lang3.Validate;
  * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializable {
+public final class LeftBoundPredicate<A> implements Predicate<A>, Serializable {
 
     /**
      * serialVersionUID declaration.
@@ -114,7 +114,7 @@ public final class LeftBoundPredicate<A> implements UnaryPredicate<A>, Serializa
     }
 
     /**
-     * Adapt a BinaryPredicate to the UnaryPredicate interface.
+     * Adapt a BinaryPredicate to the Predicate interface.
      * @param <L> the left argument type.
      * @param <R> the right argument type.
      * @param predicate to adapt

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 /**
  * Aggregator function to be used with subclasses of
@@ -31,7 +31,7 @@ import org.apache.commons.functor.UnaryFunction;
  * using formula: <code>n = round((P / 100) * N + 0.5)</code> where N is the
  * number of items in a list.
  */
-public class IntegerPercentileAggregatorFunction implements UnaryFunction<List<Integer>, Integer> {
+public class IntegerPercentileAggregatorFunction implements Function<List<Integer>, Integer> {
     /** A percentile goes from 0 to 100% and that's it. */
     private static final double MAX_PERCENTAGE = 100.0;
     /**

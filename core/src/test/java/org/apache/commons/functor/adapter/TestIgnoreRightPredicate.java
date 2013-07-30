@@ -46,7 +46,7 @@ public class TestIgnoreRightPredicate extends BaseFunctorTest {
     @Test
     public void testEvaluate() throws Exception {
         BinaryPredicate<Boolean, Object> p = new IgnoreRightPredicate<Boolean, Object>(
-                new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean> instance()));
+                new FunctionPredicate<Boolean>(Identity.<Boolean> instance()));
         assertTrue(p.test(Boolean.TRUE,null));
         assertTrue(!p.test(Boolean.FALSE,null));
     }
@@ -54,10 +54,10 @@ public class TestIgnoreRightPredicate extends BaseFunctorTest {
     @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Boolean, Object> p = new IgnoreRightPredicate<Boolean, Object>(
-                new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean> instance()));
+                new FunctionPredicate<Boolean>(Identity.<Boolean> instance()));
         assertEquals(p,p);
         assertObjectsAreEqual(p,new IgnoreRightPredicate<Boolean, Object>(
-                new UnaryFunctionUnaryPredicate<Boolean>(Identity.<Boolean> instance())));
+                new FunctionPredicate<Boolean>(Identity.<Boolean> instance())));
         assertObjectsAreNotEqual(p,Constant.TRUE);
         assertObjectsAreNotEqual(p,new IgnoreRightPredicate<Boolean, Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.FALSE);

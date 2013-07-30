@@ -25,11 +25,11 @@ import org.apache.commons.lang3.Validate;
  * A {@link Predicate Predicate}
  * similiar to Java's "ternary"
  * or "conditional" operator (<code>&#x3F; &#x3A;</code>).
- * Given three {@link Predicate predicates}
+ * Given three {@link Predicate predicate}
  * <i>p</i>, <i>q</i>, <i>r</i>,
  * {@link #test tests}
  * to
- * <code>p.test() ? q.test() : r.test()</code>.
+ * <code>p.test(x) ? q.test(x) : r.test(x)</code>.
  * <p>
  * Note that although this class implements
  * {@link Serializable}, a given instance will
@@ -38,13 +38,14 @@ import org.apache.commons.lang3.Validate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public final class ConditionalPredicate implements Predicate, Serializable {
+public final class ConditionalPredicate<A> implements Predicate<A>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 7333505000745854098L;
+    private static final long serialVersionUID = 1214714029872180155L;
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
@@ -53,15 +54,15 @@ public final class ConditionalPredicate implements Predicate, Serializable {
     /**
      * the condition to be evaluated.
      */
-    private final Predicate ifPred;
+    private final Predicate<? super A> ifPred;
     /**
      * the predicate executed if the condition is satisfied.
      */
-    private final Predicate thenPred;
+    private final Predicate<? super A> thenPred;
     /**
      * the predicate executed if the condition is not satisfied.
      */
-    private final Predicate elsePred;
+    private final Predicate<? super A> elsePred;
 
     // constructor
     // ------------------------------------------------------------------------
@@ -71,7 +72,8 @@ public final class ConditionalPredicate implements Predicate, Serializable {
      * @param thenPred then
      * @param elsePred else
      */
-    public ConditionalPredicate(Predicate ifPred, Predicate thenPred, Predicate elsePred) {
+    public ConditionalPredicate(Predicate<? super A> ifPred, Predicate<? super A> thenPred,
+            Predicate<? super A> elsePred) {
         this.ifPred = Validate.notNull(ifPred, "'if' Predicate argument was null");
         this.thenPred = Validate.notNull(thenPred, "'then' Predicate argument was null");
         this.elsePred = Validate.notNull(elsePred, "'else' Predicate argument was null");
@@ -82,8 +84,8 @@ public final class ConditionalPredicate implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
-    public boolean test() {
-        return ifPred.test() ? thenPred.test() : elsePred.test();
+    public boolean test(A obj) {
+        return ifPred.test(obj) ? thenPred.test(obj) : elsePred.test(obj);
     }
 
     /**
@@ -91,7 +93,8 @@ public final class ConditionalPredicate implements Predicate, Serializable {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalPredicate && equals((ConditionalPredicate) that));
+        return that == this || (that instanceof ConditionalPredicate<?>
+                                    && equals((ConditionalPredicate<?>) that));
     }
 
     /**
@@ -99,7 +102,7 @@ public final class ConditionalPredicate implements Predicate, Serializable {
      * @param that ConditionalPredicate to test
      * @return boolean
      */
-    public boolean equals(ConditionalPredicate that) {
+    public boolean equals(ConditionalPredicate<?> that) {
         return null != that
                 && ifPred.equals(that.ifPred)
                 && thenPred.equals(that.thenPred)

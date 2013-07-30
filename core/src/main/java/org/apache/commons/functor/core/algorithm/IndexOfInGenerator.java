@@ -19,18 +19,18 @@ package org.apache.commons.functor.core.algorithm;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Predicate;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.Generator;
 
 /**
- * Return the index of the first Object in a {@link Generator} matching a {@link UnaryPredicate}, or -1 if not found.
+ * Return the index of the first Object in a {@link Generator} matching a {@link Predicate}, or -1 if not found.
  *
  * @param <T> the procedure argument types
  * @version $Revision$ $Date$
  */
 public final class IndexOfInGenerator<T>
-    implements BinaryFunction<Generator<? extends T>, UnaryPredicate<? super T>, Number>, Serializable {
+    implements BinaryFunction<Generator<? extends T>, Predicate<? super T>, Number>, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -45,7 +45,7 @@ public final class IndexOfInGenerator<T>
      *
      * @param <T> the procedure argument type
      */
-    private static class IndexProcedure<T> implements UnaryProcedure<T> {
+    private static class IndexProcedure<T> implements Procedure<T> {
         /**
          * The wrapped generator.
          */
@@ -53,7 +53,7 @@ public final class IndexOfInGenerator<T>
         /**
          * The wrapped predicate.
          */
-        private final UnaryPredicate<? super T> pred;
+        private final Predicate<? super T> pred;
         /**
          * The number of iterations needed before the wrapped predicate found the target,
          * {@code -1} means the target was not found.
@@ -70,7 +70,7 @@ public final class IndexOfInGenerator<T>
          * @param generator The wrapped generator
          * @param pred The wrapped predicate
          */
-        IndexProcedure(Generator<? extends T> generator, UnaryPredicate<? super T> pred) {
+        IndexProcedure(Generator<? extends T> generator, Predicate<? super T> pred) {
             this.generator = generator;
             this.pred = pred;
         }
@@ -90,9 +90,9 @@ public final class IndexOfInGenerator<T>
     /**
      * {@inheritDoc}
      * @param left Generator
-     * @param right UnaryPredicate
+     * @param right Predicate
      */
-    public Number evaluate(Generator<? extends T> left, UnaryPredicate<? super T> right) {
+    public Number evaluate(Generator<? extends T> left, Predicate<? super T> right) {
         IndexProcedure<T> findProcedure = new IndexProcedure<T>(left, right);
         left.run(findProcedure);
         return Long.valueOf(findProcedure.index);

@@ -21,7 +21,7 @@ import java.lang.reflect.Array;
 import java.util.Collection;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
 import org.apache.commons.lang3.Validate;
 
@@ -136,13 +136,13 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializa
     }
 
     /**
-     * Get an IsElementOf(collection|array) UnaryPredicate.
+     * Get an IsElementOf(collection|array) Predicate.
      *
-     * @param <A> the UnaryPredicate argument generic type
+     * @param <A> the Predicate argument generic type
      * @param obj collection/array to search
-     * @return UnaryPredicate
+     * @return Predicate
      */
-    public static <A> UnaryPredicate<A> instance(Object obj) {
+    public static <A> Predicate<A> instance(Object obj) {
         if (null == obj) {
             throw new NullPointerException("Argument must not be null");
         } else if (obj instanceof Collection<?>) {

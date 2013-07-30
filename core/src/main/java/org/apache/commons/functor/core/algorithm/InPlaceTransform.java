@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.ListIterator;
 
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 /**
  * Implements an in-place transformation of a ListIterator's contents.
@@ -29,7 +29,7 @@ import org.apache.commons.functor.UnaryFunction;
  * @version $Revision$ $Date$
  */
 public final class InPlaceTransform<T>
-    implements BinaryProcedure<ListIterator<T>, UnaryFunction<? super T, ? extends T>>, Serializable {
+    implements BinaryProcedure<ListIterator<T>, Function<? super T, ? extends T>>, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -42,9 +42,9 @@ public final class InPlaceTransform<T>
     /**
      * {@inheritDoc}
      * @param left {@link ListIterator}
-     * @param right {@link UnaryFunction}
+     * @param right {@link Function}
      */
-    public void run(ListIterator<T> left, UnaryFunction<? super T, ? extends T> right) {
+    public void run(ListIterator<T> left, Function<? super T, ? extends T> right) {
         while (left.hasNext()) {
             left.set(right.evaluate(left.next()));
         }

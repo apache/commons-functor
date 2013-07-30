@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.util.CollectionTransformer;
 import org.junit.After;
 import org.junit.Before;
@@ -44,7 +44,7 @@ public class TestBaseGenerator {
     @Before
     public void setUp() throws Exception {
         simpleGenerator = new BaseGenerator<Integer>() {
-            public void run(UnaryProcedure<? super Integer> proc) {
+            public void run(Procedure<? super Integer> proc) {
                 for (int i=0;i<5;i++) {
                     proc.run(new Integer(i));
                     if (isStopped()) {
@@ -86,7 +86,7 @@ public class TestBaseGenerator {
     @Test
     public void testSimpleGenerator() {
         final StringBuffer result = new StringBuffer();
-        simpleGenerator.run(new UnaryProcedure<Integer>() {
+        simpleGenerator.run(new Procedure<Integer>() {
             public void run(Integer obj) {
                 result.append(obj);
             }
@@ -98,7 +98,7 @@ public class TestBaseGenerator {
     @Test
     public void testStop() {
         final StringBuffer result = new StringBuffer();
-        simpleGenerator.run(new UnaryProcedure<Integer>() {
+        simpleGenerator.run(new Procedure<Integer>() {
             int i=0;
             public void run(Integer obj) {
                 result.append(obj);
@@ -115,10 +115,10 @@ public class TestBaseGenerator {
     public void testWrappingGenerator() {
         final StringBuffer result = new StringBuffer();
         final Generator<Integer> gen = new BaseGenerator<Integer>(simpleGenerator) {
-            public void run(final UnaryProcedure<? super Integer> proc) {
+            public void run(final Procedure<? super Integer> proc) {
                 Generator<Integer> wrapped = (Generator<Integer>)getWrappedGenerator();
                 assertSame(simpleGenerator, wrapped);
-                wrapped.run(new UnaryProcedure<Integer>() {
+                wrapped.run(new Procedure<Integer>() {
                     public void run(Integer obj) {
                         proc.run(new Integer(obj.intValue() + 1));
                     }
@@ -126,7 +126,7 @@ public class TestBaseGenerator {
             }
         };
 
-        gen.run(new UnaryProcedure<Integer>() {
+        gen.run(new Procedure<Integer>() {
             public void run(Integer obj) {
                 result.append(obj);
             }
@@ -136,7 +136,7 @@ public class TestBaseGenerator {
 
         // try to stop the wrapped generator
         final StringBuffer result2 = new StringBuffer();
-        gen.run(new UnaryProcedure<Integer>() {
+        gen.run(new Procedure<Integer>() {
             int i=0;
             public void run(Integer obj) {
                 result2.append(obj);
@@ -180,14 +180,14 @@ public class TestBaseGenerator {
     private List<Integer> listWithDuplicates = null;
     @SuppressWarnings("unused")
     private int sum = 0;
-//    private UnaryPredicate equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
-//    private UnaryPredicate equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
-//    private UnaryPredicate isEven = new UnaryPredicate() {
+//    private Predicate equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
+//    private Predicate equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
+//    private Predicate isEven = new Predicate() {
 //        public boolean test(Object obj) {
 //            return ((Number) obj).intValue() % 2 == 0;
 //        }
 //    };
-//    private UnaryPredicate isOdd = new UnaryPredicate() {
+//    private Predicate isOdd = new Predicate() {
 //        public boolean test(Object obj) {
 //            return ((Number) obj).intValue() % 2 != 0;
 //        }
@@ -196,7 +196,7 @@ public class TestBaseGenerator {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Summer implements UnaryProcedure<Number> {
+    static class Summer implements Procedure<Number> {
         public void run(Number that) {
             sum += (that).intValue();
         }

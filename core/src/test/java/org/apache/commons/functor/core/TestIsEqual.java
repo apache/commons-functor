@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.junit.Test;
 
 /**
@@ -78,8 +78,8 @@ public class TestIsEqual extends BaseFunctorTest {
     }
 
     @Test
-    public void testToUnaryPredicate() {
-       UnaryPredicate<Integer> isEqual = IsEqual.to(new Integer(1));
+    public void testToPredicate() {
+       Predicate<Integer> isEqual = IsEqual.to(new Integer(1));
        assertTrue(isEqual.test(new Integer(1)));
        assertFalse(isEqual.test(new Integer(2)));
     }

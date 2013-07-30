@@ -17,22 +17,20 @@
 package org.apache.commons.functor;
 
 /**
- * A functor that takes no arguments and returns no value.
- * <p>
- * Note that this functor implements the
- * {@link Runnable Runnable}
- * interface, making all <code>Procedure</code>s
- * immediately usable in a number of contexts (Swing, Jelly, etc.).
- * </p>
+ * A functor that takes one argument and returns no value.
  * <p>
  * Implementors are encouraged but not required to make their functors
  * {@link java.io.Serializable Serializable}.
  * </p>
  *
+ * @param <A> the argument type.
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public interface Procedure extends NullaryFunctor, Runnable {
-    /** Execute this procedure. */
-    void run();
+public interface Procedure<A> extends UnaryFunctor<A> {
+    /**
+     * Execute this procedure.
+     * @param obj an A parameter to this execution
+     */
+    void run(A obj);
 }

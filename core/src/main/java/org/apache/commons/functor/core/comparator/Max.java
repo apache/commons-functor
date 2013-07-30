@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.adapter.RightBoundFunction;
 import org.apache.commons.lang3.Validate;
 
@@ -115,13 +115,13 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
     }
 
     /**
-     * Get a Max UnaryFunction.
+     * Get a Max Function.
      *
      * @param <T> the binary function arguments and return types.
      * @param right the right side argument of the Max function
-     * @return UnaryFunction<T, T>
+     * @return Function<T, T>
      */
-    public static <T extends Comparable<?>> UnaryFunction<T, T> instance(T right) {
+    public static <T extends Comparable<?>> Function<T, T> instance(T right) {
         return RightBoundFunction.bind(new Max<T>(), right);
     }
 

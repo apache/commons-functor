@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.Identity;
 import org.junit.After;
 import org.junit.Before;
@@ -188,7 +188,7 @@ public class TestTransformedIterator extends BaseFunctorTest {
     public void testEquals() {
         Iterator<Integer> iter = list.iterator();
         TransformedIterator<Integer, Integer> t = new TransformedIterator<Integer, Integer>(iter, negate);
-        UnaryFunction<Number, Double> negateDouble = new UnaryFunction<Number, Double>() {
+        Function<Number, Double> negateDouble = new Function<Number, Double>() {
             public Double evaluate(Number obj) {
                 return new Double(obj.intValue() * -1);
             }  
@@ -203,7 +203,7 @@ public class TestTransformedIterator extends BaseFunctorTest {
     // ------------------------------------------------------------------------
     private List<Integer> list = null;
     private List<Integer> negatives = null;
-    private UnaryFunction<Number, Integer> negate = new UnaryFunction<Number, Integer>() {
+    private Function<Number, Integer> negate = new Function<Number, Integer>() {
         public Integer evaluate(Number obj) {
             return new Integer(obj.intValue() * -1);
         }

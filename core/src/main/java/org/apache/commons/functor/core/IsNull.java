@@ -19,7 +19,7 @@ package org.apache.commons.functor.core;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.IgnoreLeftPredicate;
 import org.apache.commons.functor.adapter.IgnoreRightPredicate;
 
@@ -31,7 +31,7 @@ import org.apache.commons.functor.adapter.IgnoreRightPredicate;
  * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class IsNull<A> implements UnaryPredicate<A>, Serializable {
+public final class IsNull<A> implements Predicate<A>, Serializable {
 
     // static attributes
     // ------------------------------------------------------------------------

@@ -19,12 +19,12 @@ package org.apache.commons.functor.core.collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Iterator that filters another Iterator by only passing through those elements
- * that are matched by a specified UnaryPredicate.
+ * that are matched by a specified Predicate.
  *
  * @param <T> the {@link Iterator} generic type
  * @version $Revision$ $Date$
@@ -36,7 +36,7 @@ public final class FilteredIterator<T> implements Iterator<T> {
     /**
      * The predicate used to test this Iterator elements.
      */
-    private final UnaryPredicate<? super T> predicate;
+    private final Predicate<? super T> predicate;
     /**
      * The wrapped iterator.
      */
@@ -62,9 +62,9 @@ public final class FilteredIterator<T> implements Iterator<T> {
      * @param iterator to filter
      * @param predicate to apply
      */
-    public FilteredIterator(Iterator<? extends T> iterator, UnaryPredicate<? super T> predicate) {
+    public FilteredIterator(Iterator<? extends T> iterator, Predicate<? super T> predicate) {
         this.iterator = Validate.notNull(iterator, "Iterator argument was null");
-        this.predicate = Validate.notNull(predicate, "filtering UnaryPredicate argument was null");
+        this.predicate = Validate.notNull(predicate, "filtering Predicate argument was null");
     }
 
     // iterator methods
@@ -148,7 +148,7 @@ public final class FilteredIterator<T> implements Iterator<T> {
      * @return Iterator
      */
     @SuppressWarnings("unchecked")
-    public static <T> Iterator<T> filter(Iterator<? extends T> iter, UnaryPredicate<? super T> pred) {
+    public static <T> Iterator<T> filter(Iterator<? extends T> iter, Predicate<? super T> pred) {
         return null == pred ? (Iterator<T>) iter : (null == iter ? null : new FilteredIterator<T>(iter, pred));
     }
 

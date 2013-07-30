@@ -19,8 +19,8 @@ package org.apache.commons.functor.core;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.UnaryPredicate;
 
 /**
  * A predicate that returns <code>false</code>
@@ -30,7 +30,8 @@ import org.apache.commons.functor.UnaryPredicate;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class Offset implements Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
+public final class Offset implements NullaryPredicate, Predicate<Object>,
+        BinaryPredicate<Object, Object>, Serializable {
     // static attributes
     // ------------------------------------------------------------------------
     /**

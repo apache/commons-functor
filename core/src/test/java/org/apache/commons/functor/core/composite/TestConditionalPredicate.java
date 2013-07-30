@@ -21,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.core.Constant;
+import org.apache.commons.functor.core.Identity;
 import org.junit.Test;
 
 /**
@@ -33,7 +34,7 @@ public class TestConditionalPredicate extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new ConditionalPredicate(
+        return new ConditionalPredicate<Object>(
             Constant.TRUE,
             Constant.FALSE,
             Constant.TRUE);
@@ -44,43 +45,35 @@ public class TestConditionalPredicate extends BaseFunctorTest {
 
     @Test
     public void testTest() throws Exception {
-        {
-            ConditionalPredicate p = new ConditionalPredicate(
-                Constant.TRUE,
-                Constant.TRUE,
-                Constant.FALSE);
-            assertTrue(p.test());
-        }
-        {
-            ConditionalPredicate p = new ConditionalPredicate(
-                Constant.FALSE,
-                Constant.TRUE,
-                Constant.FALSE);
-            assertTrue(!p.test());
-        }
+        ConditionalPredicate<Object> p = new ConditionalPredicate<Object>(
+            Identity.INSTANCE,
+            Constant.TRUE,
+            Constant.FALSE);
+        assertTrue(p.test(Boolean.TRUE));
+        assertTrue(!p.test(Boolean.FALSE));
     }
 
     @Test
     public void testEquals() throws Exception {
-        ConditionalPredicate p = new ConditionalPredicate(
+        ConditionalPredicate<Object> p = new ConditionalPredicate<Object>(
+            Identity.INSTANCE,
             Constant.TRUE,
-            Constant.TRUE,
-            Constant.FALSE);
+            Constant.TRUE);
         assertEquals(p,p);
-        assertObjectsAreEqual(p,new ConditionalPredicate(
-            Constant.TRUE,
-            Constant.TRUE,
-            Constant.FALSE));
-        assertObjectsAreNotEqual(p,new ConditionalPredicate(
-            Constant.TRUE,
-            Constant.FALSE,
-            Constant.TRUE));
-        assertObjectsAreNotEqual(p,new ConditionalPredicate(
-            Constant.TRUE,
+        assertObjectsAreEqual(p,new ConditionalPredicate<Object>(
+            Identity.INSTANCE,
             Constant.TRUE,
             Constant.TRUE));
-        assertObjectsAreNotEqual(p,new ConditionalPredicate(
+        assertObjectsAreNotEqual(p,new ConditionalPredicate<Object>(
+            Identity.INSTANCE,
             Constant.FALSE,
+            Constant.TRUE));
+        assertObjectsAreNotEqual(p,new ConditionalPredicate<Object>(
+            Constant.TRUE,
+            Constant.TRUE,
+            Constant.TRUE));
+        assertObjectsAreNotEqual(p,new ConditionalPredicate<Object>(
+            Identity.INSTANCE,
             Constant.TRUE,
             Constant.FALSE));
         assertTrue(!p.equals(null));

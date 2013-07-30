@@ -19,14 +19,14 @@ package org.apache.commons.functor.adapter;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
  * {@link BinaryFunction BinaryFunction}
  * to the
- * {@link UnaryFunction UnaryFunction} interface
+ * {@link Function Function} interface
  * using a constant right-side argument.
  * <p/>
  * Note that although this class implements
@@ -40,7 +40,7 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Serializable {
+public final class RightBoundFunction<A, T> implements Function<A, T>, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -113,7 +113,7 @@ public final class RightBoundFunction<A, T> implements UnaryFunction<A, T>, Seri
     }
 
     /**
-     * Adapt a BinaryFunction to the UnaryFunction interface.
+     * Adapt a BinaryFunction to the Function interface.
      * @param <L> the left argument type.
      * @param <R> the right argument type.
      * @param <T> the returned value type.

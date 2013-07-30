@@ -30,10 +30,10 @@ import java.util.Set;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.functor.NullaryFunction;
+import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Procedure;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.adapter.IgnoreLeftFunction;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.Identity;
@@ -550,8 +550,8 @@ public class FlexiMapExample {
      */
 
     private abstract class UniversalFunctor implements
-        Procedure, UnaryProcedure<Object>, BinaryProcedure<Object, Object>,
-        Function<Object>, UnaryFunction<Object, Object>, BinaryFunction<Object, Object, Object> {
+        NullaryProcedure, Procedure<Object>, BinaryProcedure<Object, Object>,
+        NullaryFunction<Object>, Function<Object, Object>, BinaryFunction<Object, Object, Object> {
         public abstract void run();
 
         public void run(Object obj) {

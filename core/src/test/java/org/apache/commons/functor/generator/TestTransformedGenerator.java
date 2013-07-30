@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.util.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
@@ -56,12 +56,12 @@ public class TestTransformedGenerator
     }
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullUnaryFunction() {
+    public void testConstructorProhibitsNullFunction() {
         new TransformedGenerator<Integer, Integer>(wrappedGenerator, null);
     }
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullWrappedGeneratorOrNullUnaryFunction() {
+    public void testConstructorProhibitsNullWrappedGeneratorOrNullFunction() {
         new TransformedGenerator<Integer, Integer>(null, null);
     }
 
@@ -74,7 +74,7 @@ public class TestTransformedGenerator
         assertTrue(!sumsTwoGenerator.equals((TransformedGenerator<Integer, Integer>)null));
 
         TransformedGenerator<Integer, Integer> aGenerateWithADifferentFunction =
-            new TransformedGenerator<Integer, Integer>(wrappedGenerator, new UnaryFunction<Integer, Integer>() {
+            new TransformedGenerator<Integer, Integer>(wrappedGenerator, new Function<Integer, Integer>() {
                 public Integer evaluate( Integer obj ) {
                     return obj;
                 }
@@ -95,7 +95,7 @@ public class TestTransformedGenerator
     @Test
     public void testGenerate() {
         final List<Integer> doubledValues = new ArrayList<Integer>();
-        sumsTwoGenerator.run(new UnaryProcedure<Integer>() {
+        sumsTwoGenerator.run(new Procedure<Integer>() {
             public void run( Integer obj ) {
                 doubledValues.add(obj);
             }
@@ -112,7 +112,7 @@ public class TestTransformedGenerator
     private static final Integer TWO = new Integer(2);
 
     private Generator<Integer> wrappedGenerator = null;
-    private UnaryFunction<Integer, Integer> sumsTwo = new UnaryFunction<Integer, Integer>() {
+    private Function<Integer, Integer> sumsTwo = new Function<Integer, Integer>() {
         public Integer evaluate( Integer obj ) {
             return obj += TWO;
         }

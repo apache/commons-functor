@@ -31,14 +31,15 @@ import org.apache.commons.functor.Predicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public final class Or extends BasePredicateList {
+public final class Or<A> extends BasePredicateList<A> {
 
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -1636233158061690073L;
+    private static final long serialVersionUID = -4072936447932983645L;
 
     // constructor
     // ------------------------------------------------------------------------
@@ -52,27 +53,29 @@ public final class Or extends BasePredicateList {
     /**
      * Create a new Or instance.
      *
-     * @param predicates predicates have to be put in or condition.
+     * @param predicates the predicates to put in or.
      */
-    public Or(Iterable<Predicate> predicates) {
+    public Or(Iterable<Predicate<? super A>> predicates) {
         super(predicates);
     }
 
     /**
      * Create a new Or instance.
      *
-     * @param predicates predicates have to be put in or condition.
+     * @param predicates the predicates to put in or.
      */
-    public Or(Predicate... predicates) {
+    public Or(Predicate<? super A>... predicates) {
         super(predicates);
     }
 
+    // modifiers
+    // ------------------------------------------------------------------------
     /**
      * Fluently add a Predicate.
      * @param p Predicate to add
      * @return this
      */
-    public Or or(Predicate p) {
+    public Or<A> or(Predicate<? super A> p) {
         super.addPredicate(p);
         return this;
     }
@@ -82,9 +85,9 @@ public final class Or extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
-    public boolean test() {
-        for (Predicate p : getPredicateList()) {
-            if (p.test()) {
+    public boolean test(A a) {
+        for (Predicate<? super A> p : getPredicateList()) {
+            if (p.test(a)) {
                 return true;
             }
         }
@@ -96,7 +99,7 @@ public final class Or extends BasePredicateList {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof Or && equals((Or) that));
+        return that == this || (that instanceof Or<?> && equals((Or<?>) that));
     }
 
     /**
@@ -104,7 +107,7 @@ public final class Or extends BasePredicateList {
      * @param that Or to test
      * @return boolean
      */
-    public boolean equals(Or that) {
+    public boolean equals(Or<?> that) {
         return getPredicateListEquals(that);
     }
 

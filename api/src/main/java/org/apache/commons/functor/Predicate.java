@@ -17,19 +17,22 @@
 package org.apache.commons.functor;
 
 /**
- * A functor that takes no arguments and returns a <code>boolean</code> value.
+ * A functor that takes one argument and returns a <code>boolean</code> value.
  * <p>
  * Implementors are encouraged but not required to make their functors
  * {@link java.io.Serializable Serializable}.
  * </p>
  *
+ * @param <A> the argument type.
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public interface Predicate extends NullaryFunctor {
+public interface Predicate<A> extends UnaryFunctor<A> {
     /**
      * Evaluate this predicate.
+     *
+     * @param obj the A object to test
      * @return the result of this test
      */
-    boolean test();
+    boolean test(A obj);
 }

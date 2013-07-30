@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.Constant;
 import org.junit.Test;
 
@@ -100,7 +100,7 @@ public class TestSize extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryFunction<Object, Integer> f = new Size<Object>();
+        Function<Object, Integer> f = new Size<Object>();
         assertEquals(f,f);
         assertObjectsAreEqual(f,new Size<Object>());
         assertObjectsAreEqual(f,Size.instance());

@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
 import org.junit.Test;
@@ -47,7 +47,7 @@ public class TestIgnoreRightProcedure extends BaseFunctorTest {
     @Test
     public void testEvaluate() throws Exception {
         BinaryProcedure<Object, Object> p = new IgnoreRightProcedure<Object, Object>(
-                new UnaryFunctionUnaryProcedure<Object>(Identity.INSTANCE));
+                new FunctionProcedure<Object>(Identity.INSTANCE));
         p.run(Boolean.TRUE,null);
     }
 
@@ -57,7 +57,7 @@ public class TestIgnoreRightProcedure extends BaseFunctorTest {
         assertEquals(p,p);
         assertObjectsAreEqual(p,new IgnoreRightProcedure<Object, Object>(NoOp.INSTANCE));
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
-        assertObjectsAreNotEqual(p,new IgnoreRightProcedure<Object, Object>(new UnaryProcedure<Object>() {
+        assertObjectsAreNotEqual(p,new IgnoreRightProcedure<Object, Object>(new Procedure<Object>() {
             public void run(Object obj) {
                 // Do nothing
             }

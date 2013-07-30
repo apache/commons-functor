@@ -18,9 +18,9 @@ package org.apache.commons.functor.core.composite;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Predicate;
+import org.apache.commons.functor.Procedure;
 
 /**
  * Utility/fluent methods for creating composite functors.
@@ -40,49 +40,49 @@ public final class Composite {
     public Composite() { }
 
     /**
-     * Create a composite UnaryProcedure.
+     * Create a composite Procedure.
      * @param <A> the procedure argument type.
-     * @param procedure UnaryProcedure to execute against output of <code>f</code>
-     * @return CompositeUnaryProcedure<A>
+     * @param procedure Procedure to execute against output of <code>f</code>
+     * @return CompositeProcedure<A>
      */
-    public static <A> CompositeUnaryProcedure<A> procedure(UnaryProcedure<? super A> procedure) {
-        return new CompositeUnaryProcedure<A>(procedure);
+    public static <A> CompositeProcedure<A> procedure(Procedure<? super A> procedure) {
+        return new CompositeProcedure<A>(procedure);
     }
 
     /**
-     * Create a composite UnaryProcedure.
+     * Create a composite Procedure.
      * @param <A> the function argument type.
      * @param <T> the the procedure argument type and function returned value type.
-     * @param procedure UnaryProcedure to execute against output of <code>f</code>
-     * @param function UnaryFunction to apply
-     * @return CompositeUnaryProcedure<A>
+     * @param procedure Procedure to execute against output of <code>f</code>
+     * @param function Function to apply
+     * @return CompositeProcedure<A>
      */
-    public static <A, T> CompositeUnaryProcedure<A> procedure(UnaryProcedure<? super T> procedure,
-            UnaryFunction<? super A, ? extends T> function) {
-        return new CompositeUnaryProcedure<T>(procedure).of(function);
+    public static <A, T> CompositeProcedure<A> procedure(Procedure<? super T> procedure,
+            Function<? super A, ? extends T> function) {
+        return new CompositeProcedure<T>(procedure).of(function);
     }
 
     /**
-     * Create a composite UnaryPredicate.
+     * Create a composite Predicate.
      * @param <A> the predicate argument type.
-     * @param pred UnaryPredicate to test the output of <code>f</code>
-     * @return CompositeUnaryPredicate<A>
+     * @param pred Predicate to test the output of <code>f</code>
+     * @return CompositePredicate<A>
      */
-    public static <A> CompositeUnaryPredicate<A> predicate(UnaryPredicate<? super A> pred) {
-        return new CompositeUnaryPredicate<A>(pred);
+    public static <A> CompositePredicate<A> predicate(Predicate<? super A> pred) {
+        return new CompositePredicate<A>(pred);
     }
 
     /**
-     * Create a composite UnaryPredicate.
+     * Create a composite Predicate.
      * @param <A> the function argument type.
      * @param <T> the predicate argument type and the function returned value type.
-     * @param predicate UnaryPredicate to test the output of <code>f</code>
-     * @param function UnaryFunction to apply
-     * @return CompositeUnaryPredicate<A>
+     * @param predicate Predicate to test the output of <code>f</code>
+     * @param function Function to apply
+     * @return CompositePredicate<A>
      */
-    public static <A, T> CompositeUnaryPredicate<A> predicate(UnaryPredicate<? super T> predicate,
-            UnaryFunction<? super A, ? extends T> function) {
-        return new CompositeUnaryPredicate<T>(predicate).of(function);
+    public static <A, T> CompositePredicate<A> predicate(Predicate<? super T> predicate,
+            Function<? super A, ? extends T> function) {
+        return new CompositePredicate<T>(predicate).of(function);
     }
 
     /**
@@ -92,73 +92,73 @@ public final class Composite {
      * @param <G> the input functions left argument type.
      * @param <H> the input functions right argument type.
      * @param p BinaryPredicate to test <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
-     * @param g left UnaryFunction
-     * @param h right UnaryFunction
+     * @param g left Function
+     * @param h right Function
      * @return BinaryPredicate
      */
-    public static <L, R, G, H> UnaryCompositeBinaryPredicate<L, R> predicate(
-            BinaryPredicate<? super G, ? super H> p, UnaryFunction<? super L, ? extends G> g,
-            UnaryFunction<? super R, ? extends H> h) {
-        return new UnaryCompositeBinaryPredicate<L, R>(p, g, h);
+    public static <L, R, G, H> CompositeBinaryPredicate<L, R> predicate(
+            BinaryPredicate<? super G, ? super H> p, Function<? super L, ? extends G> g,
+            Function<? super R, ? extends H> h) {
+        return new CompositeBinaryPredicate<L, R>(p, g, h);
     }
 
     /**
-     * Create a composite UnaryFunction.
+     * Create a composite Function.
      * @param <A> the function argument type.
      * @param <T> the function returned value type.
-     * @param f UnaryFunction to apply to the output of <code>g</code>
-     * @return UnaryFunction
+     * @param f Function to apply to the output of <code>g</code>
+     * @return Function
      */
-    public static <A, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super A, ? extends T> f) {
-        return new CompositeUnaryFunction<A, T>(f);
+    public static <A, T> CompositeFunction<A, T> function(Function<? super A, ? extends T> f) {
+        return new CompositeFunction<A, T>(f);
     }
 
     /**
-     * Create a composite UnaryFunction.
+     * Create a composite Function.
      * @param <A> the function argument type.
      * @param <X> the function argument type.
      * @param <T> the function returned value type.
-     * @param f UnaryFunction to apply to the output of <code>g</code>
-     * @param g UnaryFunction to apply first
-     * @return UnaryFunction
+     * @param f Function to apply to the output of <code>g</code>
+     * @param g Function to apply first
+     * @return Function
      */
-    public static <A, X, T> CompositeUnaryFunction<A, T> function(UnaryFunction<? super X, ? extends T> f,
-            UnaryFunction<? super A, ? extends X> g) {
-        return new CompositeUnaryFunction<X, T>(f).of(g);
+    public static <A, X, T> CompositeFunction<A, T> function(Function<? super X, ? extends T> f,
+            Function<? super A, ? extends X> g) {
+        return new CompositeFunction<X, T>(f).of(g);
     }
 
 //    /**
-//     * Chain a BinaryFunction to a UnaryFunction.
+//     * Chain a BinaryFunction to a Function.
 //     * @param <L>
 //     * @param <R>
 //     * @param <X>
 //     * @param <T>
-//     * @param f UnaryFunction to apply to the output of <code>g</code>
+//     * @param f Function to apply to the output of <code>g</code>
 //     * @param g BinaryFunction to apply first
 //     * @return BinaryFunction<L, R, T>
 //     */
-//    public static <L, R, X, T> BinaryFunction<L, R, T> function(UnaryFunction<? super X, ? extends T> f,
+//    public static <L, R, X, T> BinaryFunction<L, R, T> function(Function<? super X, ? extends T> f,
 //             BinaryFunction<? super L,
 //             ? super R, ? extends X> g) {
-//        return new CompositeUnaryFunction<X, T>(f).of(g);
+//        return new CompositeFunction<X, T>(f).of(g);
 //    }
 
     /**
-     * Create a composite<UnaryFunction> BinaryFunction.
+     * Create a composite<Function> BinaryFunction.
      * @param <L> the output predicate left argument type.
      * @param <R> the output predicate right argument type.
      * @param <G> the input functions left argument type.
      * @param <H> the input functions right argument type.
      * @param <T> the function returned value type.
      * @param f BinaryFunction to apply to <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>
-     * @param g left UnaryFunction
-     * @param h right UnaryFunction
+     * @param g left Function
+     * @param h right Function
      * @return BinaryFunction
      */
-    public static <L, R, G, H, T> UnaryCompositeBinaryFunction<L, R, T> function(
-            BinaryFunction<? super G, ? super H, ? extends T> f, UnaryFunction<? super L, ? extends G> g,
-            UnaryFunction<? super R, ? extends H> h) {
-        return new UnaryCompositeBinaryFunction<L, R, T>(f, g, h);
+    public static <L, R, G, H, T> CompositeBinaryFunction<L, R, T> function(
+            BinaryFunction<? super G, ? super H, ? extends T> f, Function<? super L, ? extends G> g,
+            Function<? super R, ? extends H> h) {
+        return new CompositeBinaryFunction<L, R, T>(f, g, h);
     }
 
     /**

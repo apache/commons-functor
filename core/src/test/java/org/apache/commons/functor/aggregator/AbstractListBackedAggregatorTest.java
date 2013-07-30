@@ -26,7 +26,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.aggregator.AbstractListBackedAggregator;
 import org.junit.Test;
 
@@ -85,7 +85,7 @@ public class AbstractListBackedAggregatorTest extends BaseFunctorTest {
     public void testEvaluate() throws Exception {
         @SuppressWarnings("unchecked")
         TestListBackedAggregator<Object> fct = (TestListBackedAggregator<Object>) makeFunctor();
-        TestUnaryFunction<Object> agg = (TestUnaryFunction<Object>) fct.getAggregationFunction();
+        TestFunction<Object> agg = (TestFunction<Object>) fct.getAggregationFunction();
         int calls = 31; // nearly 10 pies :)
         // test first without throwing an exception
         for (int i = 1; i <= calls; i++) {
@@ -123,7 +123,7 @@ public class AbstractListBackedAggregatorTest extends BaseFunctorTest {
     public void testAddEvaluateReset() throws Exception {
         @SuppressWarnings("unchecked")
         TestListBackedAggregator<Object> fct = (TestListBackedAggregator<Object>) makeFunctor();
-        TestUnaryFunction<Object> agg = (TestUnaryFunction<Object>) fct.getAggregationFunction();
+        TestFunction<Object> agg = (TestFunction<Object>) fct.getAggregationFunction();
         int callsAdd = 31; // nearly 10 pies :)
         int callsEvaluate = 2; // circumference (i.e. 2 pies)
         int callsReset = 17;
@@ -166,10 +166,10 @@ public class AbstractListBackedAggregatorTest extends BaseFunctorTest {
     }
 
     /**
-     * Dummy UnaryFunction which counts the number of calls to
+     * Dummy Function which counts the number of calls to
      * {@link #evaluate(List)}.
      */
-    class TestUnaryFunction<T> implements UnaryFunction<List<T>, T> {
+    class TestFunction<T> implements Function<List<T>, T> {
         int     calls     = 0;
         boolean exception = false; // when set to true, evaluate will throw an
                                    // exception
@@ -189,7 +189,7 @@ public class AbstractListBackedAggregatorTest extends BaseFunctorTest {
         int callsCreateList;
 
         public TestListBackedAggregator() {
-            super(new TestUnaryFunction<T>());
+            super(new TestFunction<T>());
             resetUsage();
         }
 
@@ -199,7 +199,7 @@ public class AbstractListBackedAggregatorTest extends BaseFunctorTest {
          */
         public void resetUsage() {
             callsCreateList = 0;
-            TestUnaryFunction<T> fct = (TestUnaryFunction<T>) getAggregationFunction();
+            TestFunction<T> fct = (TestFunction<T>) getAggregationFunction();
             fct.calls = 0;
         }
 

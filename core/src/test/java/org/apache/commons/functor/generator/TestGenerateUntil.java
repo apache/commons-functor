@@ -19,7 +19,7 @@ package org.apache.commons.functor.generator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.generator.util.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
@@ -72,7 +72,7 @@ public class TestGenerateUntil
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new GenerateUntil<Integer>(
 				new IntegerRange(1, 10),
-				new UnaryPredicate<Integer>() {
+				new Predicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj > FIVE;
 				}
@@ -94,7 +94,7 @@ public class TestGenerateUntil
     private static final Integer FIVE = new Integer(5);
 
     private Generator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isMoreThanFive = new UnaryPredicate<Integer>() {
+    private Predicate<Integer> isMoreThanFive = new Predicate<Integer>() {
         public boolean test( Integer obj ) {
             return obj > FIVE;
         }

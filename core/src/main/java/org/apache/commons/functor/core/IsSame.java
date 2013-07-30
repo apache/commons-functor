@@ -19,7 +19,7 @@ package org.apache.commons.functor.core;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
 
 /**
@@ -95,13 +95,13 @@ public final class IsSame<L, R> implements BinaryPredicate<L, R>, Serializable {
     }
 
     /**
-     * Get an IsSame UnaryPredicate.
+     * Get an IsSame Predicate.
      * @param <L> the left argument type.
      * @param <R> the right argument type.
      * @param object bound comparison object
-     * @return UnaryPredicate<L>
+     * @return Predicate<L>
      */
-    public static <L, R> UnaryPredicate<L> as(R object) {
+    public static <L, R> Predicate<L> as(R object) {
         return new RightBoundPredicate<L>(new IsSame<L, R>(), object);
     }
 }

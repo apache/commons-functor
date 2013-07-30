@@ -175,8 +175,7 @@ public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; 
         this.agg = aggregator;
     }
 
-    @Override
-    public void onTimer(AbstractTimedAggregator&lt;Double&gt; aggregator) {
+    public void onTimer(AbstractTimedAggregator&lt;Double&gt; aggregator, Double evaluation) {
         double aggregated = aggregator.evaluate();
         /* log the value etc. */
     }
@@ -242,8 +241,7 @@ public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; 
         this.agg = aggregator;
     }
 
-    @Override
-    public void onTimer(AbstractTimedAggregator&lt;Double&gt; aggregator) {
+    public void onTimer(AbstractTimedAggregator&lt;Double&gt; aggregator, Double evaluation) {
         double aggregated = aggregator.evaluate();
         /* log the value etc. */
     }
@@ -291,7 +289,7 @@ public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; 
       <p>
       For the list-based aggregators, use an instance of 
       <a href="apidocs/org/apache/commons/functor/aggregator/AbstractListBackedAggregator.html">AbstractListBackedAggregator</a> 
-      and pass in an instance of <a href="apidocs/org/apache/commons/functor/UnaryFunction.html">UnaryFunction</a>
+      and pass in an instance of <a href="apidocs/org/apache/commons/functor/Function.html">Function</a>
       which accepts a <code>List</code> and returns a single object.
       </p>
       <p>
@@ -308,13 +306,13 @@ public class AggregatorTesting implements TimedAggregatorListener&lt;Double&gt; 
       The naming convention is that if the function takes 2
       parameters (i.e. it is an instance of <a href="apidocs/org/apache/commons/functor/BinaryFunction.html">BinaryFunction</a> then the
       name of the class in this package will contain <code>BinaryFunction</code>, otherwise, if it is an instance
-      of <a href="apidocs/org/apache/commons/functor/UnaryFunction.html">UnaryFunction</a> then the
+      of <a href="apidocs/org/apache/commons/functor/Function.html">Function</a> then the
       name will only contain <code>Function</code>.
       </p>
       <p>
       The reason behind it is that instances of <code>BinaryFunction</code> can be used with
       <a href="apidocs/org/apache/commons/functor/aggregator/AbstractNoStoreAggregator.html">AbstractNoStoreAggregator</a> 
-      whereas the instances of <code>UnaryFunction</code> can be used
+      whereas the instances of <code>Function</code> can be used
       with <a href="apidocs/org/apache/commons/functor/aggregator/AbstractTimedAggregator.html">AbstractTimedAggregator</a>.
       </p>
     </section>

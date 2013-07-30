@@ -16,13 +16,13 @@
  */
 package org.apache.commons.functor.example.lines;
 
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 
 
 /**
  * @version $Revision$ $Date$
  */
-public class Contains<T> implements UnaryPredicate<T> {
+public class Contains<T> implements Predicate<T> {
     public Contains(String str) {
         this.str = str;
     }

@@ -22,7 +22,7 @@ import static org.junit.Assert.fail;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.Function;
+import org.apache.commons.functor.NullaryFunction;
 import org.junit.Test;
 
 /**
@@ -42,7 +42,7 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
         // this version will return a function. since it is not the same type
         // as RecFunc recursion will end.
         @SuppressWarnings({ "unchecked", "rawtypes" })
-        Function<Object> func = (Function) new RecursiveEvaluation(new RecFunc(0, true)).evaluate();
+        NullaryFunction<Object> func = (NullaryFunction) new RecursiveEvaluation(new RecFunc(0, true)).evaluate();
         assertEquals(new Integer(5), func.evaluate());
     }
     
@@ -62,7 +62,7 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
     // ------------------------------------------------------------------------
     
     /** Recursive function for test. */
-    static class RecFunc implements Function<Object>, Serializable {
+    static class RecFunc implements NullaryFunction<Object>, Serializable {
         private static final long serialVersionUID = 1L;
 
         int times = 0; 
@@ -78,7 +78,7 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
                 return new RecFunc(++times, returnFunc);
             } else {
                 if (returnFunc) {
-                    return new InnerFunction(times);
+                    return new InnerNullaryFunction(times);
                 } else {
                     return new Integer(times);
                 }
@@ -103,12 +103,12 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
     }
     
     /** Inner function called from recursive function */
-    static class InnerFunction implements Function<Object>, Serializable {
+    static class InnerNullaryFunction implements NullaryFunction<Object>, Serializable {
         private static final long serialVersionUID = 1L;
         
         private int times;
         
-        public InnerFunction(int times) {
+        public InnerNullaryFunction(int times) {
             this.times = times;
         }
         
@@ -121,15 +121,15 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
             if(this == obj) {
                 return true;
             }
-            if(obj == null || ! (obj instanceof InnerFunction)) {
+            if(obj == null || ! (obj instanceof InnerNullaryFunction)) {
                 return false;
             }
-            return this.times == ((InnerFunction)obj).times;
+            return this.times == ((InnerNullaryFunction)obj).times;
         }
         
         @Override
         public int hashCode() {
-            return "InnerFunction".hashCode() << 2 ^ times;
+            return "InnerNullaryFunction".hashCode() << 2 ^ times;
         }
     };
 

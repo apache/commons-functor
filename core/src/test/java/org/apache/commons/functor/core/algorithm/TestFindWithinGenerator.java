@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.LeftBoundPredicate;
 import org.apache.commons.functor.core.IsEqual;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
@@ -105,8 +105,8 @@ public class TestFindWithinGenerator extends BaseFunctorTest {
 
     private List<Integer> numbers = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
     private List<String> strings = Arrays.asList("Zyx", "xxyZ");
-    private UnaryPredicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
-    private UnaryPredicate<Integer> equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
-    private UnaryPredicate<String> equalsXyZ = LeftBoundPredicate.bind(IsEqual.instance(),"xyZ");
+    private Predicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
+    private Predicate<Integer> equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
+    private Predicate<String> equalsXyZ = LeftBoundPredicate.bind(IsEqual.instance(),"xyZ");
 
 }

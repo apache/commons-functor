@@ -16,7 +16,7 @@
  */
 package org.apache.commons.functor.example.kata.one;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.adapter.LeftBoundFunction;
 
 /**
@@ -31,7 +31,7 @@ public class Subtract extends ArithmeticOperation {
         return INSTANCE;
     }
 
-    public static UnaryFunction<Number, Number> from(int factor) {
+    public static Function<Number, Number> from(int factor) {
         return LeftBoundFunction.bind(INSTANCE, factor);
     }
 

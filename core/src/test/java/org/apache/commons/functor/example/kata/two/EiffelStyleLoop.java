@@ -16,9 +16,9 @@
  */
 package org.apache.commons.functor.example.kata.two;
 
-import org.apache.commons.functor.Function;
-import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.NullaryFunction;
+import org.apache.commons.functor.NullaryPredicate;
+import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.NoOp;
 
@@ -26,13 +26,13 @@ import org.apache.commons.functor.core.NoOp;
  * Supports an Eiffel style loop construct.
  * <pre>
  * new EiffelStyleLoop()
- *   .from(new Procedure() { public void run() {} }) // init code
- *   .invariant(new Predicate() { public boolean test() {} }) // invariants
- *   .variant(new Procedure() { public Object evaluate() {} }) // diminishing comparable value
+ *   .from(new NullaryProcedure() { public void run() {} }) // init code
+ *   .invariant(new NullaryPredicate() { public boolean test() {} }) // invariants
+ *   .variant(new NullaryProcedure() { public Object evaluate() {} }) // diminishing comparable value
  *   // or
- *   // .variant(new Predicate() { public boolean test() {} }) // more invariants
- *   .until(new Predicate() { public boolean test() {} }) // terminating condition
- *   .loop(new Procedure() { public void run() {} }) // the acutal loop
+ *   // .variant(new NullaryPredicate() { public boolean test() {} }) // more invariants
+ *   .until(new NullaryPredicate() { public boolean test() {} }) // terminating condition
+ *   .loop(new NullaryProcedure() { public void run() {} }) // the acutal loop
  *   .run();
  * </pre>
  *
@@ -41,25 +41,25 @@ import org.apache.commons.functor.core.NoOp;
  *
  * @version $Revision$ $Date$
  */
-public class EiffelStyleLoop implements Procedure {
-    public EiffelStyleLoop from(Procedure procedure) {
+public class EiffelStyleLoop implements NullaryProcedure {
+    public EiffelStyleLoop from(NullaryProcedure procedure) {
         from = procedure;
         return this;
     }
 
-    public EiffelStyleLoop invariant(Predicate predicate) {
+    public EiffelStyleLoop invariant(NullaryPredicate predicate) {
         invariant = predicate;
         return this;
     }
 
-    public EiffelStyleLoop variant(Predicate predicate) {
+    public EiffelStyleLoop variant(NullaryPredicate predicate) {
         variant = predicate;
         return this;
     }
 
     @SuppressWarnings("unchecked")
-    public EiffelStyleLoop variant(final Function<Object> function) {
-        return variant(new Predicate() {
+    public EiffelStyleLoop variant(final NullaryFunction<Object> function) {
+        return variant(new NullaryPredicate() {
             public boolean test() {
                 boolean result = true;
                 Comparable<Object> next = (Comparable<Object>)(function.evaluate());
@@ -73,12 +73,12 @@ public class EiffelStyleLoop implements Procedure {
         });
     }
 
-    public EiffelStyleLoop until(Predicate predicate) {
+    public EiffelStyleLoop until(NullaryPredicate predicate) {
         until = predicate;
         return this;
     }
 
-    public EiffelStyleLoop loop(Procedure procedure) {
+    public EiffelStyleLoop loop(NullaryProcedure procedure) {
         loop = procedure;
         return this;
     }
@@ -109,10 +109,10 @@ public class EiffelStyleLoop implements Procedure {
         }
     }
 
-    private Procedure from = NoOp.instance();
-    private Predicate invariant = Constant.truePredicate();
-    private Predicate variant = Constant.truePredicate();
-    private Predicate until = Constant.falsePredicate();
-    private Procedure loop = NoOp.instance();
+    private NullaryProcedure from = NoOp.instance();
+    private NullaryPredicate invariant = Constant.truePredicate();
+    private NullaryPredicate variant = Constant.truePredicate();
+    private NullaryPredicate until = Constant.falsePredicate();
+    private NullaryProcedure loop = NoOp.instance();
 
 }

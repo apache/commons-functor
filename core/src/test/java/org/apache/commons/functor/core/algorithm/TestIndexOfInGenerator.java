@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.LeftBoundPredicate;
 import org.apache.commons.functor.core.IsEqual;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
@@ -47,6 +47,6 @@ public class TestIndexOfInGenerator extends BaseFunctorTest {
     // ------------------------------------------------------------------------
 
     private List<Integer> list = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
-    private UnaryPredicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
+    private Predicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
 
 }

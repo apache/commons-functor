@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
 import org.apache.commons.lang3.Validate;
 
@@ -133,13 +133,13 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
     }
 
     /**
-     * Get an IsNotEquivalent UnaryPredicate.
+     * Get an IsNotEquivalent Predicate.
      *
      * @param <T> the binary predicate input types
-     * @param right Comparable against which UnaryPredicate arguments will be compared.
-     * @return UnaryPredicate
+     * @param right Comparable against which Predicate arguments will be compared.
+     * @return Predicate
      */
-    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> Predicate<T> instance(T right) {
         return RightBoundPredicate.bind(instance(), right);
     }
 

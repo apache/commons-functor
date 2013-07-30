@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.IsEqual;
 import org.junit.After;
@@ -48,7 +48,7 @@ public class TestFilteredIterable extends BaseFunctorTest {
     private List<Integer> list = null;
     private List<Integer> evens = null;
 
-    private UnaryPredicate<Integer> isEven = new UnaryPredicate<Integer>() {
+    private Predicate<Integer> isEven = new Predicate<Integer>() {
         public boolean test(Integer obj) {
             return obj != null && obj % 2 == 0;
         }
@@ -275,6 +275,6 @@ public class TestFilteredIterable extends BaseFunctorTest {
 
     @Test(expected=NullPointerException.class)
     public void testRetainNullPredicate() {
-        FilteredIterable.of(Collections.singleton("foo")).retain((UnaryPredicate<String>) null);
+        FilteredIterable.of(Collections.singleton("foo")).retain((Predicate<String>) null);
     }
 }

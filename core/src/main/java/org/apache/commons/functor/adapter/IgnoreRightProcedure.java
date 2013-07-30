@@ -19,12 +19,12 @@ package org.apache.commons.functor.adapter;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
- * {@link UnaryProcedure UnaryProcedure}
+ * {@link Procedure Procedure}
  * to the
  * {@link BinaryProcedure BinaryProcedure} interface
  * by ignoring the second binary argument.
@@ -45,15 +45,15 @@ public final class IgnoreRightProcedure<L, R> implements BinaryProcedure<L, R>, 
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7374293905310619206L;
-    /** The {@link UnaryProcedure UnaryProcedure} I'm wrapping. */
-    private final UnaryProcedure<? super L> procedure;
+    /** The {@link Procedure Procedure} I'm wrapping. */
+    private final Procedure<? super L> procedure;
 
     /**
      * Create a new IgnoreRightProcedure.
-     * @param procedure UnaryProcedure to adapt
+     * @param procedure Procedure to adapt
      */
-    public IgnoreRightProcedure(UnaryProcedure<? super L> procedure) {
-        this.procedure = Validate.notNull(procedure, "UnaryProcedure argument was null");
+    public IgnoreRightProcedure(Procedure<? super L> procedure) {
+        this.procedure = Validate.notNull(procedure, "Procedure argument was null");
     }
 
     /**
@@ -100,13 +100,13 @@ public final class IgnoreRightProcedure<L, R> implements BinaryProcedure<L, R>, 
     }
 
     /**
-     * Adapt a UnaryProcedure to the BinaryProcedure interface.
+     * Adapt a Procedure to the BinaryProcedure interface.
      * @param <L> left type
      * @param <R> right type
-     * @param procedure UnaryProcedure to adapt
+     * @param procedure Procedure to adapt
      * @return IgnoreRightProcedure
      */
-    public static <L, R> IgnoreRightProcedure<L, R> adapt(UnaryProcedure<? super L> procedure) {
+    public static <L, R> IgnoreRightProcedure<L, R> adapt(Procedure<? super L> procedure) {
         return null == procedure ? null : new IgnoreRightProcedure<L, R>(procedure);
     }
 

@@ -36,7 +36,7 @@ public class TestPredicateFunction extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new PredicateFunction(Constant.of(Boolean.TRUE));
+        return new PredicateFunction<Object>(Constant.TRUE);
     }
 
     // Tests
@@ -44,23 +44,23 @@ public class TestPredicateFunction extends BaseFunctorTest {
 
     @Test
     public void testTestWhenTrue() throws Exception {
-        Function<Boolean> f = new PredicateFunction(Constant.TRUE);
-        assertEquals(Boolean.TRUE,f.evaluate());
+        Function<Object, Boolean> f = new PredicateFunction<Object>(Constant.TRUE);
+        assertEquals(Boolean.TRUE,f.evaluate(null));
     }
 
     @Test
     public void testTestWhenFalse() throws Exception {
-        Function<Boolean> f = new PredicateFunction(Constant.FALSE);
-        assertEquals(Boolean.FALSE,f.evaluate());
+        Function<Object, Boolean> f = new PredicateFunction<Object>(Constant.FALSE);
+        assertEquals(Boolean.FALSE,f.evaluate(null));
     }
 
     @Test
     public void testEquals() throws Exception {
-        Function<Boolean> f = new PredicateFunction(Constant.TRUE);
+        Function<Object, Boolean> f = new PredicateFunction<Object>(Constant.TRUE);
         assertEquals(f,f);
-        assertObjectsAreEqual(f,new PredicateFunction(Constant.TRUE));
+        assertObjectsAreEqual(f,new PredicateFunction<Object>(Constant.TRUE));
         assertObjectsAreNotEqual(f,Constant.of("x"));
-        assertObjectsAreNotEqual(f,new PredicateFunction(Constant.FALSE));
+        assertObjectsAreNotEqual(f,new PredicateFunction<Object>(Constant.FALSE));
         assertTrue(!f.equals(null));
     }
 

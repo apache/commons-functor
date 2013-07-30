@@ -18,7 +18,7 @@ package org.apache.commons.functor.aggregator;
 
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -28,7 +28,7 @@ import org.apache.commons.lang3.Validate;
  * List implementation they need to used -- and the abstract factory
  * {@link #createList()} is provided for this.
  * <p>This implementation also allows for various "aggregations" of the list to be
- * used by providing a {@link UnaryFunction UnaryFunction<List<T>, T>} in the
+ * used by providing a {@link Function Function<List<T>, T>} in the
  * constructor.</p>
  * <p>
  * <b>Thread safety</b> : Note that due to the fact that
@@ -52,24 +52,24 @@ public abstract class AbstractListBackedAggregator<T> extends AbstractTimedAggre
      * Used to actually aggregate the data when {@link #evaluate()} is called.
      * This is set in {@link #AbstractListBackedAggregator() the constructor}.
      */
-    private UnaryFunction<List<T>, T> aggregationFunction;
+    private Function<List<T>, T> aggregationFunction;
 
     /**
      * Default constructor. Similar to
-     * {@link #AbstractListBackedAggregator(UnaryFunction, long)
+     * {@link #AbstractListBackedAggregator(Function, long)
      * AbstractListBackedAggregator(aggregationFunction,0L}.
      *
      * @param aggregationFunction
      *            Aggregation function to use in {@link #evaluate()}. Throws
      *            <code>NullPointerException</code> if this is <code>null</code>
      */
-    public AbstractListBackedAggregator(UnaryFunction<List<T>, T> aggregationFunction) {
+    public AbstractListBackedAggregator(Function<List<T>, T> aggregationFunction) {
         this(aggregationFunction, 0L);
     }
 
     /**
      * Similar to
-     * {@link #AbstractListBackedAggregator(UnaryFunction, long, boolean)
+     * {@link #AbstractListBackedAggregator(Function, long, boolean)
      * AbstractListBackedAggregator(aggregationFunction,interval,false}.
      *
      * @param aggregationFunction
@@ -78,7 +78,7 @@ public abstract class AbstractListBackedAggregator<T> extends AbstractTimedAggre
      * @param interval
      *            interval in miliseconds to reset this aggregator
      */
-    public AbstractListBackedAggregator(UnaryFunction<List<T>, T> aggregationFunction, long interval) {
+    public AbstractListBackedAggregator(Function<List<T>, T> aggregationFunction, long interval) {
         this(aggregationFunction, interval, false);
     }
 
@@ -97,10 +97,10 @@ public abstract class AbstractListBackedAggregator<T> extends AbstractTimedAggre
      *            ; otherwise if it's false it will use its own timer instance
      * @see AbstractTimedAggregator#AbstractTimedAggregator(long, boolean)
      */
-    public AbstractListBackedAggregator(UnaryFunction<List<T>, T> aggregationFunction, long interval,
+    public AbstractListBackedAggregator(Function<List<T>, T> aggregationFunction, long interval,
             boolean useSharedTimer) {
         super(interval, useSharedTimer);
-        this.aggregationFunction = Validate.notNull(aggregationFunction, "UnaryFunction argument must not be null");
+        this.aggregationFunction = Validate.notNull(aggregationFunction, "Function argument must not be null");
         this.series = createList();
     }
 
@@ -173,7 +173,7 @@ public abstract class AbstractListBackedAggregator<T> extends AbstractTimedAggre
      *
      * @return Current value of {@link #aggregationFunction}
      */
-    final UnaryFunction<List<T>, T> getAggregationFunction() {
+    final Function<List<T>, T> getAggregationFunction() {
         return aggregationFunction;
     }
 

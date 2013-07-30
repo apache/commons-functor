@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.functor.core.Identity;
-import org.apache.commons.functor.core.composite.UnaryNot;
+import org.apache.commons.functor.core.composite.Not;
 import org.apache.commons.functor.generator.FilteredGenerator;
 import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
@@ -102,7 +102,7 @@ public class TestAlgorithms {
 
     @Test
     public void testReject1() {
-        Collection<Integer> result = new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),new UnaryNot<Integer>(isOdd)).toCollection();
+        Collection<Integer> result = new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),new Not<Integer>(isOdd)).toCollection();
         assertNotNull(result);
         assertEquals(evens,result);
     }
@@ -110,7 +110,7 @@ public class TestAlgorithms {
     @Test
     public void testReject2() {
         List<Object> result = new ArrayList<Object>();
-        assertSame(result,new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),new UnaryNot<Integer>(isOdd)).to(result));
+        assertSame(result,new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),new Not<Integer>(isOdd)).to(result));
         assertEquals(evens,result);
     }
 
@@ -161,12 +161,12 @@ public class TestAlgorithms {
     private List<Integer> evens = null;
     private List<Integer> listWithDuplicates = null;
     private int sum = 0;
-    private UnaryPredicate<Integer> isEven = new UnaryPredicate<Integer>() {
+    private Predicate<Integer> isEven = new Predicate<Integer>() {
         public boolean test(Integer obj) {
             return obj.intValue() % 2 == 0;
         }
     };
-    private UnaryPredicate<Integer> isOdd = new UnaryPredicate<Integer>() {
+    private Predicate<Integer> isOdd = new Predicate<Integer>() {
         public boolean test(Integer obj) {
             return obj.intValue() % 2 != 0;
         }
@@ -175,21 +175,21 @@ public class TestAlgorithms {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Counter implements Procedure {
+    static class Counter implements NullaryProcedure {
         public void run() {
             count++;
         }
         public int count = 0;
     }
 
-    static class Summer implements UnaryProcedure<Integer> {
+    static class Summer implements Procedure<Integer> {
         public void run(Integer that) {
             sum += that.intValue();
         }
         public int sum = 0;
     }
 
-    static class Doubler implements UnaryFunction<Integer, Integer> {
+    static class Doubler implements Function<Integer, Integer> {
         public Integer evaluate(Integer obj) {
             return new Integer(2* obj.intValue());
         }

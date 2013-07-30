@@ -21,8 +21,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.adapter.BinaryFunctionUnaryFunction;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.adapter.BinaryFunctionFunction;
 import org.apache.commons.functor.core.IsNull;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.RightIdentity;
@@ -81,14 +81,14 @@ public class DataMunger {
     }
 
     /**
-     * A UnaryFunction that returns the absolute value of the difference
+     * A Function that returns the absolute value of the difference
      * between the Integers stored in the <i>col1</i> and <i>col2</i>th
      * whitespace delimited columns of the input line (a String).
      */
-    private static UnaryFunction<String, Integer> absSpread(final int col1, final int col2) {
+    private static Function<String, Integer> absSpread(final int col1, final int col2) {
         return Composite.function(
             Abs.instance(),
-            new BinaryFunctionUnaryFunction<String, Number>(
+            new BinaryFunctionFunction<String, Number>(
                 Composite.function(
                     Subtract.instance(),
                     Composite.function(ToInteger.instance(),NthColumn.instance(col1)),

@@ -19,7 +19,7 @@ package org.apache.commons.functor.aggregator;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 /**
  * Implementation of an aggregator which stores the data series in an
@@ -30,20 +30,20 @@ import org.apache.commons.functor.UnaryFunction;
  */
 public class ArrayListBackedAggregator<T> extends AbstractListBackedAggregator<T> {
     /**
-     * Similar to {@link #ArrayListBackedAggregator(UnaryFunction, long)
+     * Similar to {@link #ArrayListBackedAggregator(Function, long)
      * ArrayListBackedAggregator(aggregationFunction, 0L)}.
      *
      * @param aggregationFunction
      *            Aggregation function to use in {@link #evaluate()}. Throws
      *            <code>NullPointerException</code> if this is <code>null</code>
      */
-    public ArrayListBackedAggregator(UnaryFunction<List<T>, T> aggregationFunction) {
+    public ArrayListBackedAggregator(Function<List<T>, T> aggregationFunction) {
         this(aggregationFunction, 0L);
     }
 
     /**
      * Similar to
-     * {@link #ArrayListBackedAggregator(UnaryFunction, long, boolean)
+     * {@link #ArrayListBackedAggregator(Function, long, boolean)
      * ArrayListBackedAggregator(aggregationFunction,interval,false)}.
      *
      * @param aggregationFunction
@@ -52,7 +52,7 @@ public class ArrayListBackedAggregator<T> extends AbstractListBackedAggregator<T
      * @param interval
      *            interval in miliseconds to reset this aggregator
      */
-    public ArrayListBackedAggregator(UnaryFunction<List<T>, T> aggregationFunction, long interval) {
+    public ArrayListBackedAggregator(Function<List<T>, T> aggregationFunction, long interval) {
         this(aggregationFunction, interval, false);
     }
 
@@ -70,7 +70,7 @@ public class ArrayListBackedAggregator<T> extends AbstractListBackedAggregator<T
      *            {@link AbstractTimedAggregator#AbstractTimedAggregator(long,boolean)}
      *            , otherwise this instance will use its private timer
      */
-    public ArrayListBackedAggregator(UnaryFunction<List<T>, T> aggregationFunction, long interval,
+    public ArrayListBackedAggregator(Function<List<T>, T> aggregationFunction, long interval,
             boolean useSharedTimer) {
         super(aggregationFunction, interval, useSharedTimer);
     }

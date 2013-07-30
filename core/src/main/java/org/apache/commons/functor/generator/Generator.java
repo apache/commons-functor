@@ -15,11 +15,11 @@ package org.apache.commons.functor.generator;
 
 import java.util.Collection;
 
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Procedure;
 
 /**
- * The Generator interface defines a number of useful actions applying UnaryFunctors
+ * The Generator interface defines a number of useful actions applying Procedures
  * to each in a series of argument Objects.
  *
  * @param <E> the type of elements held in this generator.
@@ -28,9 +28,9 @@ import org.apache.commons.functor.UnaryProcedure;
 public interface Generator<E> {
     /**
      * Generators must implement this method.
-     * @param proc UnaryProcedure to run
+     * @param proc Procedure to run
      */
-    void run(UnaryProcedure<? super E> proc);
+    void run(Procedure<? super E> proc);
 
     /**
      * Stop the generator. Will stop the wrapped generator if one was set.
@@ -47,11 +47,11 @@ public interface Generator<E> {
      * Transforms this generator using the passed in
      * transformer. An example transformer might turn the contents of the
      * generator into a {@link Collection} of elements.
-     * @param <Z> the returned value type of the input {@link UnaryFunction}.
-     * @param transformer UnaryFunction to apply to this
+     * @param <Z> the returned value type of the input {@link Function}.
+     * @param transformer Function to apply to this
      * @return transformation result
      */
-    <Z> Z to(UnaryFunction<Generator<? extends E>, ? extends Z> transformer);
+    <Z> Z to(Function<Generator<? extends E>, ? extends Z> transformer);
 
     /**
      * Same as to(new CollectionTransformer(collection)).

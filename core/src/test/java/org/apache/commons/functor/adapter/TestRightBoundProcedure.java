@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.NoOp;
 import org.apache.commons.functor.core.composite.BinarySequence;
@@ -46,7 +46,7 @@ public class TestRightBoundProcedure extends BaseFunctorTest {
 
     @Test
     public void testRun() throws Exception {
-        UnaryProcedure<Object> p = new RightBoundProcedure<Object>(
+        Procedure<Object> p = new RightBoundProcedure<Object>(
                 new BinaryFunctionBinaryProcedure<Object, Object>(LeftIdentity.FUNCTION), "foo");
         p.run(Boolean.TRUE);
         p.run(Boolean.FALSE);
@@ -54,7 +54,7 @@ public class TestRightBoundProcedure extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryProcedure<Object> f = new RightBoundProcedure<Object>(NoOp.INSTANCE,"xyzzy");
+        Procedure<Object> f = new RightBoundProcedure<Object>(NoOp.INSTANCE,"xyzzy");
         assertEquals(f,f);
         assertObjectsAreEqual(f,new RightBoundProcedure<Object>(NoOp.INSTANCE,"xyzzy"));
         assertObjectsAreNotEqual(f,NoOp.INSTANCE);

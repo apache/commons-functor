@@ -19,12 +19,12 @@ package org.apache.commons.functor.adapter;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
- * {@link UnaryFunction UnaryFunction}
+ * {@link Function Function}
  * to the
  * {@link BinaryFunction BinaryFunction} interface
  * by ignoring the second binary argument.
@@ -46,15 +46,15 @@ public final class IgnoreRightFunction<L, R, T> implements BinaryFunction<L, R, 
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -1564814716024791395L;
-    /** The {@link UnaryFunction UnaryFunction} I'm wrapping. */
-    private final UnaryFunction<? super L, ? extends T> function;
+    /** The {@link Function Function} I'm wrapping. */
+    private final Function<? super L, ? extends T> function;
 
     /**
      * Create a new IgnoreRightFunction.
-     * @param function UnaryFunction to wrap
+     * @param function Function to wrap
      */
-    public IgnoreRightFunction(UnaryFunction<? super L, ? extends T> function) {
-        this.function = Validate.notNull(function, "UnaryFunction argument was null");
+    public IgnoreRightFunction(Function<? super L, ? extends T> function) {
+        this.function = Validate.notNull(function, "Function argument was null");
     }
 
     /**
@@ -101,14 +101,14 @@ public final class IgnoreRightFunction<L, R, T> implements BinaryFunction<L, R, 
     }
 
     /**
-     * Adapt a UnaryFunction to the BinaryFunction interface.
+     * Adapt a Function to the BinaryFunction interface.
      * @param <L> left type
      * @param <R> right type
      * @param <T> result type
-     * @param function UnaryFunction to adapt
+     * @param function Function to adapt
      * @return IgnoreRightFunction
      */
-    public static <L, R, T> IgnoreRightFunction<L, R, T> adapt(UnaryFunction<? super L, ? extends T> function) {
+    public static <L, R, T> IgnoreRightFunction<L, R, T> adapt(Function<? super L, ? extends T> function) {
         return null == function ? null : new IgnoreRightFunction<L, R, T>(function);
     }
 

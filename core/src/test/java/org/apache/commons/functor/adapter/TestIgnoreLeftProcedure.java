@@ -25,7 +25,7 @@ import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
-import org.apache.commons.functor.core.composite.UnarySequence;
+import org.apache.commons.functor.core.composite.Sequence;
 import org.junit.Test;
 
 /**
@@ -47,7 +47,7 @@ public class TestIgnoreLeftProcedure extends BaseFunctorTest {
     @Test
     public void testEvaluate() throws Exception {
         BinaryProcedure<Object, Object> p = new IgnoreLeftProcedure<Object, Object>(
-                new UnaryFunctionUnaryProcedure<Object>(Identity.INSTANCE));
+                new FunctionProcedure<Object>(Identity.INSTANCE));
         p.run(null,Boolean.TRUE);
     }
 
@@ -57,7 +57,7 @@ public class TestIgnoreLeftProcedure extends BaseFunctorTest {
         assertEquals(p,p);
         assertObjectsAreEqual(p,new IgnoreLeftProcedure<Object, Object>(NoOp.INSTANCE));
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
-        assertObjectsAreNotEqual(p,new IgnoreLeftProcedure<Object, Object>(new UnarySequence<Object>()));
+        assertObjectsAreNotEqual(p,new IgnoreLeftProcedure<Object, Object>(new Sequence<Object>()));
         assertTrue(!p.equals(null));
     }
 

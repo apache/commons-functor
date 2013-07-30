@@ -16,7 +16,7 @@
  */
 package org.apache.commons.functor.example.kata.one;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 
 /**
@@ -27,7 +27,7 @@ public class Product {
         this(name,sku,ToMoney.from(Multiply.by(cost)));
     }
 
-    public Product(String name, String sku, UnaryFunction<? super Integer, Money> price) {
+    public Product(String name, String sku, Function<? super Integer, Money> price) {
         this.name = name;
         this.sku = sku;
         this.priceFunction = price;
@@ -37,7 +37,7 @@ public class Product {
         return name;
     }
 
-    public UnaryFunction<? super Integer, Money> getPriceFunction() {
+    public Function<? super Integer, Money> getPriceFunction() {
         return priceFunction;
     }
 
@@ -49,7 +49,7 @@ public class Product {
         name = string;
     }
 
-    public void setPriceFunction(UnaryFunction<? super Integer, Money> function) {
+    public void setPriceFunction(Function<? super Integer, Money> function) {
         priceFunction = function;
     }
 
@@ -63,5 +63,5 @@ public class Product {
 
     private String name;
     private String sku;
-    private UnaryFunction<? super Integer, Money> priceFunction;
+    private Function<? super Integer, Money> priceFunction;
 }

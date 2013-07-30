@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Predicate;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.util.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
@@ -53,7 +53,7 @@ public class TestWhileGenerate {
     // ------------------------------------------------------------------------
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullUnaryPredicate() {
+    public void testConstructorProhibitsNullPredicate() {
         new WhileGenerate<Integer>(null, whileGenerate);
     }
 
@@ -63,7 +63,7 @@ public class TestWhileGenerate {
     }
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullUnaryPredicateOrNullWrappedGenerator() {
+    public void testConstructorProhibitsNullPredicateOrNullWrappedGenerator() {
         new WhileGenerate<Integer>(null, null);
     }
 
@@ -75,7 +75,7 @@ public class TestWhileGenerate {
         assertTrue(!whileGenerate.equals((WhileGenerate<Integer>)null));
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new WhileGenerate<Integer>(
-			new UnaryPredicate<Integer>() {
+			new Predicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj < FIVE;
 				}
@@ -95,7 +95,7 @@ public class TestWhileGenerate {
     @Test
     public void testGenerate() {
         final List<Integer> numbersMinorThanFive = new ArrayList<Integer>();
-        whileGenerate.run(new UnaryProcedure<Integer>() {
+        whileGenerate.run(new Procedure<Integer>() {
             public void run( Integer obj ) {
                 numbersMinorThanFive.add(obj);
             }
@@ -111,7 +111,7 @@ public class TestWhileGenerate {
 	private static final Integer FIVE = new Integer(5);
 
     private Generator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>() {
+    private Predicate<Integer> isLessThanFive = new Predicate<Integer>() {
         public boolean test( Integer obj ) {
             return obj < FIVE;
         }

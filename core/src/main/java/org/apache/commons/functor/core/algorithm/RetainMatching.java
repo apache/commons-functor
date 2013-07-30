@@ -20,17 +20,17 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.core.composite.UnaryNot;
+import org.apache.commons.functor.Predicate;
+import org.apache.commons.functor.core.composite.Not;
 
 /**
- * Retain elements in left Iterator that match right UnaryPredicate.
+ * Retain elements in left Iterator that match right Predicate.
  *
  * @param <T> the procedure argument type
  * @version $Revision$ $Date$
  */
 public final class RetainMatching<T>
-    implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
+    implements BinaryProcedure<Iterator<? extends T>, Predicate<? super T>>, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -47,10 +47,10 @@ public final class RetainMatching<T>
     /**
      * {@inheritDoc}
      * @param left {@link Iterator}
-     * @param right {@link UnaryPredicate}
+     * @param right {@link Predicate}
      */
-    public void run(Iterator<? extends T> left, UnaryPredicate<? super T> right) {
-        removeMatching.run(left, UnaryNot.not(right));
+    public void run(Iterator<? extends T> left, Predicate<? super T> right) {
+        removeMatching.run(left, Not.not(right));
     }
 
     /**

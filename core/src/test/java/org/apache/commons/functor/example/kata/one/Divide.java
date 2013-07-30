@@ -16,7 +16,7 @@
  */
 package org.apache.commons.functor.example.kata.one;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.adapter.RightBoundFunction;
 
 /**
@@ -32,7 +32,7 @@ public class Divide extends ArithmeticOperation {
         return INSTANCE;
     }
 
-    public static UnaryFunction<Number, Number> by(int factor) {
+    public static Function<Number, Number> by(int factor) {
         return RightBoundFunction.bind(INSTANCE, factor);
     }
 

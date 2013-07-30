@@ -18,14 +18,14 @@ package org.apache.commons.functor.aggregator.functions;
 
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 /**
  * Aggregator function to be used with subclasses of
  * {@link org.apache.commons.functor.aggregator.AbstractListBackedAggregator}
  * which sums up all the numbers in the list.
  */
-public final class IntegerSumAggregatorFunction implements UnaryFunction<List<Integer>, Integer> {
+public final class IntegerSumAggregatorFunction implements Function<List<Integer>, Integer> {
     /**
      * Does the actual adding and returns the result. Please note that caller is
      * responsible for synchronizing access to the list.

@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.core.Offset;
 import org.junit.Test;
 
@@ -51,7 +51,7 @@ public class TestUntilDo extends BaseFunctorTest {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Counter implements Procedure, Serializable {
+    static class Counter implements NullaryProcedure, Serializable {
         private static final long serialVersionUID = 1L;
         public void run() {
             count++;

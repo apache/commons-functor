@@ -16,7 +16,7 @@ package org.apache.commons.functor.generator;
 
 import java.util.Collection;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.generator.util.CollectionTransformer;
 
 /**
@@ -80,10 +80,10 @@ public abstract class BaseGenerator<E> implements Generator<E> {
     /**
      * {@inheritDoc}
      * Transforms this generator using the passed in
-     * UnaryFunction. An example function might turn the contents of the
+     * Function. An example function might turn the contents of the
      * generator into a {@link Collection} of elements.
      */
-    public final <T> T to(UnaryFunction<Generator<? extends E>, ? extends T> transformer) {
+    public final <T> T to(Function<Generator<? extends E>, ? extends T> transformer) {
         return transformer.evaluate(this);
     }
 

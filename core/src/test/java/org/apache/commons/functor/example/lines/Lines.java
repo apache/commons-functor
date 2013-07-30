@@ -22,7 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.BaseGenerator;
 
 /**
@@ -45,7 +45,7 @@ public class Lines extends BaseGenerator<String> {
         }
     }
 
-    public void run(UnaryProcedure<? super String> proc) {
+    public void run(Procedure<? super String> proc) {
         try {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 proc.run(line);

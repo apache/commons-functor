@@ -22,7 +22,7 @@ import static org.junit.Assert.assertFalse;
 import java.util.Collections;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.junit.Test;
 
 /**
@@ -68,8 +68,8 @@ public class TestMin extends BaseFunctorTest {
     }
 
     @Test
-    public void testUnaryFunctionMin() {
-        UnaryFunction<Integer, Integer> unaryMin = Min.instance(ONE);
-        assertEquals(ZERO,unaryMin.evaluate(ZERO));
+    public void testFunctionMin() {
+        Function<Integer, Integer> min = Min.instance(ONE);
+        assertEquals(ZERO,min.evaluate(ZERO));
     }
 }

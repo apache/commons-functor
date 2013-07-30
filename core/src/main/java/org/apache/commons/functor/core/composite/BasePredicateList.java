@@ -33,24 +33,26 @@ import org.apache.commons.functor.Predicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-abstract class BasePredicateList implements Predicate, Serializable {
+abstract class BasePredicateList<A> implements Predicate<A>, Serializable {
+
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 7860902316994888181L;
+    private static final long serialVersionUID = 1467575113401282954L;
     // attributes
     // ------------------------------------------------------------------------
     /**
      * A list where storing the adapted predicates.
      */
-    private final List<Predicate> list = new ArrayList<Predicate>();
+    private final List<Predicate<? super A>> list = new ArrayList<Predicate<? super A>>();
 
     // constructor
     // ------------------------------------------------------------------------
     /**
-     * Create a new BasePredicateList instance.
+     * Create a new BasePredicateList.
      */
     protected BasePredicateList() {
         super();
@@ -61,10 +63,10 @@ abstract class BasePredicateList implements Predicate, Serializable {
      *
      * @param predicates to add
      */
-    protected BasePredicateList(Predicate... predicates) {
+    protected BasePredicateList(Predicate<? super A>... predicates) {
         this();
         if (predicates != null) {
-            for (Predicate p : predicates) {
+            for (Predicate<? super A> p : predicates) {
                 addPredicate(p);
             }
         }
@@ -75,10 +77,10 @@ abstract class BasePredicateList implements Predicate, Serializable {
      *
      * @param predicates to add
      */
-    protected BasePredicateList(Iterable<Predicate> predicates) {
+    protected BasePredicateList(Iterable<Predicate<? super A>> predicates) {
         this();
         if (predicates != null) {
-            for (Predicate p : predicates) {
+            for (Predicate<? super A> p : predicates) {
                 addPredicate(p);
             }
         }
@@ -110,7 +112,7 @@ abstract class BasePredicateList implements Predicate, Serializable {
      * Add a Predicate to the list.
      * @param p Predicate to add
      */
-    protected void addPredicate(Predicate p) {
+    protected void addPredicate(Predicate<? super A> p) {
         if (p != null) {
             list.add(p);
         }
@@ -120,24 +122,24 @@ abstract class BasePredicateList implements Predicate, Serializable {
     // ------------------------------------------------------------------------
 
     /**
-     * Get the "live" list of {@link Predicate}s.
-     * @return List<Predicate>
+     * Get the "live" list of contained {@link Predicate}s.
+     * @return List
      */
-    protected List<Predicate> getPredicateList() {
+    protected List<Predicate<? super A>> getPredicateList() {
         return list;
     }
 
     /**
-     * Learn whether the list of another BasePredicateList is equal to my list.
-     * @param that BasePredicateList to test
+     * Learn whether another BasePredicateList has content equal to this.
+     * @param that the BasePredicateList to test
      * @return boolean
      */
-    protected boolean getPredicateListEquals(BasePredicateList that) {
+    protected boolean getPredicateListEquals(BasePredicateList<?> that) {
         return (null != that && this.list.equals(that.list));
     }
 
     /**
-     * Get a hashCode for my list.
+     * Get a hashCode for the list.
      * @return int
      */
     protected int getPredicateListHashCode() {
@@ -145,7 +147,7 @@ abstract class BasePredicateList implements Predicate, Serializable {
     }
 
     /**
-     * Get a toString for my list.
+     * Get a toString for the list.
      * @return String
      */
     protected String getPredicateListToString() {

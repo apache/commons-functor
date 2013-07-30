@@ -14,7 +14,7 @@
 
 package org.apache.commons.functor.generator.util;
 
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.BaseGenerator;
 
 /**
@@ -92,7 +92,7 @@ public final class LongRange extends BaseGenerator<Long> {
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super Long> proc) {
+    public void run(Procedure<? super Long> proc) {
         if (signOf(step) == -1L) {
             for (long i = from; i > to; i += step) {
                 proc.run(Long.valueOf(i));

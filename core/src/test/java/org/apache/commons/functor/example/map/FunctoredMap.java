@@ -23,9 +23,9 @@ import java.util.Set;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.functor.NullaryProcedure;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
 
 /**
  * @version $Revision$ $Date$
@@ -101,7 +101,7 @@ public class FunctoredMap<K, V> implements Map<K, V> {
 
     // protected
 
-    protected void setOnClear(UnaryProcedure<Map<K, V>> procedure) {
+    protected void setOnClear(Procedure<Map<K, V>> procedure) {
         onclear = procedure;
     }
 
@@ -161,19 +161,19 @@ public class FunctoredMap<K, V> implements Map<K, V> {
 
     private BinaryFunction<Map<K, V>, K, V> onremove = DEFAULT_ON_REMOVE;
 
-    protected UnaryProcedure<Map<K, V>> DEFAULT_ON_CLEAR = new UnaryProcedure<Map<K, V>>() {
+    protected Procedure<Map<K, V>> DEFAULT_ON_CLEAR = new Procedure<Map<K, V>>() {
         public void run(Map<K, V> map) {
             map.clear();
         }
     };
 
-    private UnaryProcedure<Map<K, V>> onclear = DEFAULT_ON_CLEAR;
+    private Procedure<Map<K, V>> onclear = DEFAULT_ON_CLEAR;
 
     private Map<K, V> map = null;
 
     // inner classes
 
-    protected static class ContainsKey implements UnaryPredicate<Object> {
+    protected static class ContainsKey implements Predicate<Object> {
         ContainsKey(Map<?, ?> map) {
             this.map = map;
         }
@@ -185,7 +185,7 @@ public class FunctoredMap<K, V> implements Map<K, V> {
         private Map<?, ?> map = null;
     }
 
-    protected static class Throw<K, V> implements Procedure, UnaryProcedure<Map<K, V>>, BinaryProcedure<K, V> {
+    protected static class Throw<K, V> implements NullaryProcedure, Procedure<Map<K, V>>, BinaryProcedure<K, V> {
         Throw(RuntimeException e) {
             this.klass = e.getClass();
         }

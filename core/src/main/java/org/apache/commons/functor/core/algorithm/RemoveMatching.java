@@ -20,16 +20,16 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 
 /**
- * Remove elements from left Iterator that match right UnaryPredicate.
+ * Remove elements from left Iterator that match right Predicate.
  *
  * @param <T> the procedure argument type.
  * @version $Revision$ $Date$
  */
 public final class RemoveMatching<T>
-    implements BinaryProcedure<Iterator<? extends T>, UnaryPredicate<? super T>>, Serializable {
+    implements BinaryProcedure<Iterator<? extends T>, Predicate<? super T>>, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -42,9 +42,9 @@ public final class RemoveMatching<T>
     /**
      * {@inheritDoc}
      * @param left {@link Iterator}
-     * @param right {@link UnaryPredicate}
+     * @param right {@link Predicate}
      */
-    public void run(Iterator<? extends T> left, UnaryPredicate<? super T> right) {
+    public void run(Iterator<? extends T> left, Predicate<? super T> right) {
         while (left.hasNext()) {
             if (right.test(left.next())) {
                 left.remove();

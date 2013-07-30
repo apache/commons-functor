@@ -18,7 +18,7 @@ package org.apache.commons.functor.example.kata.four;
 
 import java.util.StringTokenizer;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 /**
  * Evaluates the input String to extrace the nth whitespace
@@ -26,7 +26,7 @@ import org.apache.commons.functor.UnaryFunction;
  *
  * @version $Revision$ $Date$
  */
-public final class NthColumn implements UnaryFunction<String, String> {
+public final class NthColumn implements Function<String, String> {
     public NthColumn(int n) {
         this.n = n;
     }

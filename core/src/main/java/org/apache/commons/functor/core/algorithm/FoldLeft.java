@@ -19,8 +19,8 @@ package org.apache.commons.functor.core.algorithm;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.Generator;
 
 /**
@@ -32,7 +32,7 @@ import org.apache.commons.functor.generator.Generator;
  * @param <T> the returned evaluation type.
  * @version $Revision$ $Date$
  */
-public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
+public class FoldLeft<T> implements Function<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
 
     /**
      * serialVersionUID declaration.
@@ -44,7 +44,7 @@ public class FoldLeft<T> implements UnaryFunction<Generator<T>, T>, BinaryFuncti
      *
      * @param <T> the returned evaluation type.
      */
-    private static class FoldLeftHelper<T> implements UnaryProcedure<T> {
+    private static class FoldLeftHelper<T> implements Procedure<T> {
         /**
          * The wrapped function.
          */

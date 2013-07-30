@@ -14,7 +14,7 @@
 
 package org.apache.commons.functor.generator.util;
 
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.BaseGenerator;
 
 
@@ -93,7 +93,7 @@ public final class IntegerRange extends BaseGenerator<Integer> {
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super Integer> proc) {
+    public void run(Procedure<? super Integer> proc) {
         if (signOf(step) == -1) {
             for (int i = from; i > to; i += step) {
                 proc.run(Integer.valueOf(i));

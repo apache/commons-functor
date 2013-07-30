@@ -16,13 +16,13 @@
  */
 package org.apache.commons.functor.example.lines;
 
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 
 
 /**
  * @version $Revision$ $Date$
  */
-public class StartsWith<T> implements UnaryPredicate<T> {
+public class StartsWith<T> implements Predicate<T> {
     public StartsWith(String prefix) {
         this.prefix = prefix;
     }

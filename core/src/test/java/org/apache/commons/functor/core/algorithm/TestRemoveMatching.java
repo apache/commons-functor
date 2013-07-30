@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.algorithm.RemoveMatching;
 import org.junit.After;
 import org.junit.Before;
@@ -73,7 +73,7 @@ public class TestRemoveMatching extends BaseFunctorTest {
     // ------------------------------------------------------------------------
     private List<Integer> list = null;
     private List<Integer> evens = null;
-    private UnaryPredicate<Integer> isOdd = new UnaryPredicate<Integer>() {
+    private Predicate<Integer> isOdd = new Predicate<Integer>() {
         public boolean test(Integer obj) {
             return obj % 2 != 0;
         }
@@ -82,7 +82,7 @@ public class TestRemoveMatching extends BaseFunctorTest {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Doubler implements UnaryFunction<Integer, Integer> {
+    static class Doubler implements Function<Integer, Integer> {
         public Integer evaluate(Integer obj) {
             return new Integer(2*obj);
         }

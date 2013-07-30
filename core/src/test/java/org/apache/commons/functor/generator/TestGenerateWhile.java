@@ -19,7 +19,7 @@ package org.apache.commons.functor.generator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.generator.util.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
@@ -49,7 +49,7 @@ public class TestGenerateWhile
     // ------------------------------------------------------------------------
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullUnaryPredicate() {
+    public void testConstructorProhibitsNullPredicate() {
             new GenerateWhile<Integer>(generateWhile, null);
     }
 
@@ -59,7 +59,7 @@ public class TestGenerateWhile
     }
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullUnaryPredicateOrNullWrappedGenerator() {
+    public void testConstructorProhibitsNullPredicateOrNullWrappedGenerator() {
             new GenerateWhile<Integer>(null, null);
     }
 
@@ -71,7 +71,7 @@ public class TestGenerateWhile
         assertTrue(!generateWhile.equals((GenerateWhile<Integer>)null));
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new GenerateWhile<Integer>(
-			new IntegerRange(1, 10), new UnaryPredicate<Integer>() {
+			new IntegerRange(1, 10), new Predicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj < FIVE;
 				}
@@ -94,7 +94,7 @@ public class TestGenerateWhile
     private static final Integer FIVE = new Integer(5);
 
     private Generator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isLessThanFive = new UnaryPredicate<Integer>()
+    private Predicate<Integer> isLessThanFive = new Predicate<Integer>()
     {
         public boolean test( Integer obj ) {
             return obj < FIVE;

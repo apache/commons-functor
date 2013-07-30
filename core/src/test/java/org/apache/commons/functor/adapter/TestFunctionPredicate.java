@@ -36,7 +36,7 @@ public class TestFunctionPredicate extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new FunctionPredicate(Constant.TRUE);
+        return new FunctionPredicate<Object>(Constant.TRUE);
     }
 
     // Tests
@@ -44,23 +44,23 @@ public class TestFunctionPredicate extends BaseFunctorTest {
 
     @Test
     public void testTestWhenTrue() throws Exception {
-        Predicate p = new FunctionPredicate(Constant.TRUE);
-        assertTrue(p.test());
+        Predicate<Object> p = new FunctionPredicate<Object>(Constant.TRUE);
+        assertTrue(p.test(null));
     }
 
     @Test
     public void testTestWhenFalse() throws Exception {
-        Predicate p = new FunctionPredicate(Constant.FALSE);
-        assertTrue(!p.test());
+        Predicate<Object> p = new FunctionPredicate<Object>(Constant.FALSE);
+        assertTrue(!p.test(null));
     }
 
     @Test
     public void testEquals() throws Exception {
-        Predicate p = new FunctionPredicate(Constant.TRUE);
+        Predicate<Object> p = new FunctionPredicate<Object>(Constant.TRUE);
         assertEquals(p,p);
-        assertObjectsAreEqual(p,new FunctionPredicate(Constant.TRUE));
+        assertObjectsAreEqual(p,new FunctionPredicate<Object>(Constant.TRUE));
         assertObjectsAreNotEqual(p,Constant.TRUE);
-        assertObjectsAreNotEqual(p,new FunctionPredicate(Constant.FALSE));
+        assertObjectsAreNotEqual(p,new FunctionPredicate<Object>(Constant.FALSE));
         assertTrue(!p.equals(null));
     }
 

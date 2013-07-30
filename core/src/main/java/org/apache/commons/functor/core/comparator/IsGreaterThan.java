@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
 import org.apache.commons.lang3.Validate;
 
@@ -132,13 +132,13 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
     }
 
     /**
-     * Get an IsGreaterThan UnaryPredicate.
+     * Get an IsGreaterThan Predicate.
      *
      * @param <T> the binary predicate input types
      * @param right the right side object of the IsGreaterThan comparison
-     * @return UnaryPredicate<T>
+     * @return Predicate<T>
      */
-    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> Predicate<T> instance(T right) {
         return RightBoundPredicate.bind(new IsGreaterThan<T>(), right);
     }
 

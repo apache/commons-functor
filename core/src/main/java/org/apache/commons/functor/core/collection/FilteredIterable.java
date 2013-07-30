@@ -19,10 +19,10 @@ package org.apache.commons.functor.core.collection;
 import java.util.Collections;
 import java.util.Iterator;
 
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.IsInstance;
-import org.apache.commons.functor.core.composite.UnaryAnd;
+import org.apache.commons.functor.core.composite.And;
 
 /**
  * Adds a fluent filtering API to any {@link Iterable}.
@@ -50,7 +50,7 @@ public class FilteredIterable<T> implements Iterable<T> {
          * {@inheritDoc}
          */
         @Override
-        public FilteredIterable retain(UnaryPredicate predicate) {
+        public FilteredIterable retain(Predicate predicate) {
             return this;
         }
 
@@ -70,7 +70,7 @@ public class FilteredIterable<T> implements Iterable<T> {
     /**
      * The predicate used to test input {@link Iterable} elements.
      */
-    private UnaryAnd<T> predicate;
+    private And<T> predicate;
 
     /**
      * Create a new FilteredIterable.
@@ -85,7 +85,7 @@ public class FilteredIterable<T> implements Iterable<T> {
      * {@inheritDoc}
      */
     public Iterator<T> iterator() {
-        UnaryPredicate<T> predicateReference;
+        Predicate<T> predicateReference;
         synchronized (this) {
             predicateReference = predicate;
         }
@@ -105,13 +105,13 @@ public class FilteredIterable<T> implements Iterable<T> {
      * @param filter filter predicate, non-<code>null</code>
      * @return <code>this</code>, fluently
      */
-    public FilteredIterable<T> retain(UnaryPredicate<? super T> filter) {
+    public FilteredIterable<T> retain(Predicate<? super T> filter) {
         if (filter == null) {
             throw new NullPointerException("filtering predicate was null");
         }
         synchronized (this) {
             if (this.predicate == null) {
-                this.predicate = new UnaryAnd<T>();
+                this.predicate = new And<T>();
             }
             this.predicate.and(filter);
         }
@@ -134,7 +134,7 @@ public class FilteredIterable<T> implements Iterable<T> {
             public Iterator<U> iterator() {
                 return TransformedIterator.transform(
                         FilteredIterator.filter(FilteredIterable.this.iterator(), IsInstance.of(type)),
-                        new UnaryFunction<T, U>() {
+                        new Function<T, U>() {
 
                             @SuppressWarnings("unchecked")
                             // this is okay because of the isinstance check
@@ -156,7 +156,7 @@ public class FilteredIterable<T> implements Iterable<T> {
         if (ofType == null) {
             throw new NullPointerException("array of filtered types was null");
         }
-        return retain(new UnaryPredicate<T>() {
+        return retain(new Predicate<T>() {
 
             public boolean test(T obj) {
                 for (Class<?> type : ofType) {

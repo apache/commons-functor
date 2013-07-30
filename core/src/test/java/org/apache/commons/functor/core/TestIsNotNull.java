@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.junit.Test;
 
 /**
@@ -41,7 +41,7 @@ public class TestIsNotNull extends BaseFunctorTest {
 
     @Test
     public void testTest() throws Exception {
-        UnaryPredicate<Object> p = new IsNotNull<Object>();
+        Predicate<Object> p = new IsNotNull<Object>();
         assertTrue(!p.test(null));
         assertTrue(p.test("foo"));
         assertTrue(p.test(new Integer(3)));
@@ -49,7 +49,7 @@ public class TestIsNotNull extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryPredicate<Object> p = new IsNotNull<Object>();
+        Predicate<Object> p = new IsNotNull<Object>();
         assertEquals(p,p);
         assertObjectsAreEqual(p,new IsNotNull<Object>());
         assertObjectsAreEqual(p,IsNotNull.instance());

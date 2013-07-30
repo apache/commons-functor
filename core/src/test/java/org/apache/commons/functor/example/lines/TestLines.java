@@ -24,12 +24,12 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.commons.functor.adapter.ProcedureUnaryProcedure;
+import org.apache.commons.functor.adapter.NullaryProcedureProcedure;
 import org.apache.commons.functor.core.Offset;
 import org.apache.commons.functor.core.algorithm.FoldLeft;
 import org.apache.commons.functor.core.collection.Size;
-import org.apache.commons.functor.core.composite.UnaryAnd;
-import org.apache.commons.functor.core.composite.UnaryNot;
+import org.apache.commons.functor.core.composite.And;
+import org.apache.commons.functor.core.composite.Not;
 import org.apache.commons.functor.generator.FilteredGenerator;
 import org.apache.commons.functor.generator.TransformedGenerator;
 
@@ -78,14 +78,14 @@ public class TestLines extends TestCase {
         Count count = new Count();
         Lines
             .from(reader)
-                .run(ProcedureUnaryProcedure.adapt(count));
+                .run(NullaryProcedureProcedure.adapt(count));
 
         assertEquals("Expected 16 lines",16,count.getCount());
     }
 
     public void testCountWordsExcludingComments() throws Exception {
         Object result = new FoldLeft<Integer>(Sum.instance()).evaluate(new TransformedGenerator<String, Integer>(
-                new FilteredGenerator<String>(Lines.from(reader), UnaryNot.not(new StartsWith<String>("#"))), WordCount
+                new FilteredGenerator<String>(Lines.from(reader), Not.not(new StartsWith<String>("#"))), WordCount
                         .instance()));
 
         assertEquals("Expected 90 words",new Integer(90),result);
@@ -94,7 +94,7 @@ public class TestLines extends TestCase {
     public void testCountCommentLines() throws Exception {
         Count count = new Count();
         new FilteredGenerator<String>(Lines.from(reader), new StartsWith<String>("#"))
-                    .run(ProcedureUnaryProcedure.<String>adapt(count));
+                    .run(NullaryProcedureProcedure.<String>adapt(count));
 
         assertEquals("Expected 6 lines",6,count.getCount());
     }
@@ -107,7 +107,7 @@ public class TestLines extends TestCase {
 
     @SuppressWarnings("unchecked")
     public void testFindMatchingFromTail() throws Exception {
-        Collection<String> matches = new FilteredGenerator<String>(Lines.from(reader), new UnaryAnd<String>(new Offset(
+        Collection<String> matches = new FilteredGenerator<String>(Lines.from(reader), new And<String>(new Offset(
                 8), new Contains<String>("lo"))).toCollection();
         assertEquals("Expected 2 lines",2,matches.size());
     }

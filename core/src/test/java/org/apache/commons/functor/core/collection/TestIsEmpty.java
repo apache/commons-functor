@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.junit.Test;
 
@@ -106,7 +106,7 @@ public class TestIsEmpty extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryPredicate<String> p = new IsEmpty<String>();
+        Predicate<String> p = new IsEmpty<String>();
         assertEquals(p,p);
         assertObjectsAreEqual(p,new IsEmpty<Long>());
         assertObjectsAreEqual(p,IsEmpty.instance());

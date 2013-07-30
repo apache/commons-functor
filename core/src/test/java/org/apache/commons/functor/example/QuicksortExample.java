@@ -26,12 +26,12 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.collection.IsEmpty;
 import org.apache.commons.functor.core.comparator.IsGreaterThanOrEqual;
 import org.apache.commons.functor.core.comparator.IsLessThan;
-import org.apache.commons.functor.core.composite.ConditionalUnaryFunction;
+import org.apache.commons.functor.core.composite.ConditionalFunction;
 import org.apache.commons.functor.generator.FilteredGenerator;
 import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
 import org.junit.Test;
@@ -306,7 +306,7 @@ public class QuicksortExample {
  */
 
 /*
- * Our quicksort method will invoke a UnaryFunction named
+ * Our quicksort method will invoke a Function named
  * quicksort:
  */
 
@@ -337,7 +337,7 @@ public class QuicksortExample {
  * to transalate this description directly into code:
  */
 
-    private UnaryFunction<Object, Object> quicksort = new ConditionalUnaryFunction<Object, Object>(
+    private Function<Object, Object> quicksort = new ConditionalFunction<Object, Object>(
         /* if the list is empty... */
         IsEmpty.instance(),
         /* ...then return an empty list... */
@@ -386,10 +386,10 @@ public class QuicksortExample {
  * First, let's save ourselves some casting and error handling by
  * definining some functor sub-types.
  *
- * Let ListFunction be a UnaryFunction that operates on Lists:
+ * Let ListFunction be a Function that operates on Lists:
  */
 
-    public abstract class ListFunction implements UnaryFunction<Object, Object> {
+    public abstract class ListFunction implements Function<Object, Object> {
         public abstract Object evaluate(List<?> list);
 
         public Object evaluate(Object obj) {
@@ -434,7 +434,7 @@ public class QuicksortExample {
  * Given a List, we need to be able to break it into its head:
  */
 
-    private UnaryFunction<Object, Object> head = new ListFunction() {
+    private Function<Object, Object> head = new ListFunction() {
         @Override
         public Object evaluate(List<?> list) {
             return list.get(0);
@@ -444,7 +444,7 @@ public class QuicksortExample {
 /*
  * and its tail:
  */
-    private UnaryFunction<Object, Object> tail = new ListFunction() {
+    private Function<Object, Object> tail = new ListFunction() {
         @Override
         public Object evaluate(List<?> list) {
             return list.size() < 2 ?

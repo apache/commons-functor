@@ -35,32 +35,34 @@ import org.apache.commons.lang3.Validate;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  *
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class FunctionProcedure implements Procedure, Serializable {
+public final class FunctionProcedure<A> implements Procedure<A>, Serializable {
+
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -7300031015086684901L;
+    private static final long serialVersionUID = -3578673875995684811L;
     /** The {@link Function Function} I'm wrapping. */
-    private final Function<?> function;
+    private final Function<? super A, ?> function;
 
     /**
      * Create an {@link Procedure Procedure} wrapping
      * the given {@link Function Function}.
      * @param function the {@link Function Function} to wrap
      */
-    public FunctionProcedure(Function<?> function) {
+    public FunctionProcedure(Function<? super A, ?> function) {
         this.function = Validate.notNull(function, "Function argument was null");
     }
 
     /**
+     * {@link Function#evaluate Evaluate} my function, but
+     * ignore its returned value.
      * {@inheritDoc}
-     * {@link Function#evaluate Evaluate} my function,
-     * but ignore its returned value.
      */
-    public void run() {
-        function.evaluate();
+    public void run(A obj) {
+        function.evaluate(obj);
     }
 
     /**
@@ -68,15 +70,16 @@ public final class FunctionProcedure implements Procedure, Serializable {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof FunctionProcedure && equals((FunctionProcedure) that));
+        return that == this
+                || (that instanceof FunctionProcedure<?> && equals((FunctionProcedure<?>) that));
     }
 
     /**
-     * Learn whether another FunctionProcedure is equal to this.
-     * @param that FunctionProcedure to test
+     * Learn whether a specified FunctionPredicate is equal to this.
+     * @param that the FunctionPredicate to test
      * @return boolean
      */
-    public boolean equals(FunctionProcedure that) {
+    public boolean equals(FunctionProcedure<?> that) {
         return null != that && function.equals(that.function);
     }
 
@@ -105,14 +108,15 @@ public final class FunctionProcedure implements Procedure, Serializable {
      * When the given <code>Function</code> is <code>null</code>,
      * returns <code>null</code>.
      *
+     * @param <A> the argument type.
      * @param function the possibly-<code>null</code>
      *        {@link Function Function} to adapt
      * @return a {@link Procedure Procedure} wrapping the given
      *         {@link Function Function}, or <code>null</code>
      *         if the given <code>Function</code> is <code>null</code>
      */
-    public static FunctionProcedure adapt(Function<?> function) {
-        return null == function ? null : new FunctionProcedure(function);
+    public static <A> FunctionProcedure<A> adapt(Function<? super A, ?> function) {
+        return null == function ? null : new FunctionProcedure<A>(function);
     }
 
 }

@@ -32,20 +32,20 @@ import org.apache.commons.lang3.Validate;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class Not implements Predicate, Serializable {
-
+public final class Not<A> implements Predicate<A>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 8268713706856765874L;
+    private static final long serialVersionUID = -97785102566566058L;
     // attributes
     // ------------------------------------------------------------------------
     /**
-     * The adapted predicate has to be negated.
+     * The adapted predicate.
      */
-    private final Predicate predicate;
+    private final Predicate<? super A> predicate;
 
     // constructor
     // ------------------------------------------------------------------------
@@ -53,7 +53,7 @@ public final class Not implements Predicate, Serializable {
      * Create a new Not.
      * @param predicate Predicate to negate
      */
-    public Not(Predicate predicate) {
+    public Not(Predicate<? super A> predicate) {
         this.predicate = Validate.notNull(predicate, "Predicate argument was null");
     }
 
@@ -62,8 +62,8 @@ public final class Not implements Predicate, Serializable {
     /**
      * {@inheritDoc}
      */
-    public boolean test() {
-        return !(predicate.test());
+    public boolean test(A obj) {
+        return !(predicate.test(obj));
     }
 
     /**
@@ -71,15 +71,15 @@ public final class Not implements Predicate, Serializable {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof Not && equals((Not) that));
+        return that == this || (that instanceof Not<?> && equals((Not<?>) that));
     }
 
     /**
      * Learn whether another Not is equal to this.
-     * @param that the Not to test
+     * @param that Not to test
      * @return boolean
      */
-    public boolean equals(Not that) {
+    public boolean equals(Not<?> that) {
         return null != that && predicate.equals(that.predicate);
     }
 
@@ -104,11 +104,13 @@ public final class Not implements Predicate, Serializable {
     // static
     // ------------------------------------------------------------------------
     /**
-     * Get a Not instance for <code>that</code>.
-     * @param that Predicate to negate
-     * @return Not
+     * Invert a Predicate.
+     * @param <A> the argument type.
+     * @param pred Predicate to invert
+     * @return Predicate<A>
      */
-    public static Predicate not(Predicate that) {
-        return null == that ? null : new Not(that);
+    public static <A> Predicate<A> not(Predicate<? super A> pred) {
+        return null == pred ? null : new Not<A>(pred);
     }
+
 }

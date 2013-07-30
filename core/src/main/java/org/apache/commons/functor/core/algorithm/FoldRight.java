@@ -20,8 +20,8 @@ import java.io.Serializable;
 import java.util.Stack;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.Generator;
 
 /**
@@ -33,7 +33,7 @@ import org.apache.commons.functor.generator.Generator;
  * @param <T> the returned evaluation type.
  * @version $Revision$ $Date$
  */
-public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
+public class FoldRight<T> implements Function<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
 
     /**
      * serialVersionUID declaration.
@@ -45,7 +45,7 @@ public class FoldRight<T> implements UnaryFunction<Generator<T>, T>, BinaryFunct
      *
      * @param <T> the returned evaluation type.
      */
-    private static class FoldRightHelper<T> implements UnaryProcedure<T> {
+    private static class FoldRightHelper<T> implements Procedure<T> {
         /**
          * The stack where storing the wrapped function evaluations.
          */

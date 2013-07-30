@@ -31,18 +31,18 @@ import org.apache.commons.functor.Predicate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public final class And extends BasePredicateList {
-
-    // constructor
-    // ------------------------------------------------------------------------
+public final class And<A> extends BasePredicateList<A> {
 
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -6053343095016685571L;
+    private static final long serialVersionUID = 8324861737107307302L;
 
+    // constructor
+    // ------------------------------------------------------------------------
     /**
      * Create a new And.
      */
@@ -53,29 +53,29 @@ public final class And extends BasePredicateList {
     /**
      * Create a new And instance.
      *
-     * @param predicates the predicates to add
+     * @param predicates the predicates to put in and.
      */
-    public And(Iterable<Predicate> predicates) {
+    public And(Iterable<Predicate<? super A>> predicates) {
         super(predicates);
     }
 
     /**
      * Create a new And instance.
      *
-     * @param predicates the predicates to add
+     * @param predicates the predicates to put in and.
      */
-    public And(Predicate... predicates) {
+    public And(Predicate<? super A>... predicates) {
         super(predicates);
     }
 
     // modifiers
     // ------------------------------------------------------------------------
     /**
-     * Add a Predicate.
+     * Fluently add a Predicate.
      * @param p Predicate to add
      * @return this
      */
-    public And and(Predicate p) {
+    public And<A> and(Predicate<? super A> p) {
         super.addPredicate(p);
         return this;
     }
@@ -85,9 +85,9 @@ public final class And extends BasePredicateList {
     /**
      * {@inheritDoc}
      */
-    public boolean test() {
-        for (Predicate p : getPredicateList()) {
-            if (!p.test()) {
+    public boolean test(A obj) {
+        for (Predicate<? super A> p : getPredicateList()) {
+            if (!p.test(obj)) {
                 return false;
             }
         }
@@ -99,15 +99,15 @@ public final class And extends BasePredicateList {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof And && equals((And) that));
+        return that == this || (that instanceof And<?> && equals((And<?>) that));
     }
 
     /**
-     * Learn whether a given And is equal to this.
-     * @param that the And to test
+     * Learn whether another And is equal to this.
+     * @param that And to test
      * @return boolean
      */
-    public boolean equals(And that) {
+    public boolean equals(And<?> that) {
         return getPredicateListEquals(that);
     }
 

@@ -23,6 +23,9 @@
   </properties>
   <body>
     <release version="1.0" date="2012-??-??" description="First release.">
+      <action issue="FUNCTOR-24" dev="kinow">
+      	Change default arity of Function, Procedure and Predicate
+      </action>
       <action issue="FUNCTOR-27" dev="kinow">
         Add static Limit#of method to create new Limit's.
       </action>

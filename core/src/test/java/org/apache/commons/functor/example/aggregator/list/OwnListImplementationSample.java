@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNull;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.aggregator.AbstractListBackedAggregator;
 import org.apache.commons.functor.aggregator.functions.IntegerSumAggregatorFunction;
 import org.junit.Test;
@@ -51,15 +51,15 @@ public class OwnListImplementationSample {
      *            type of parameter stored.
      */
     static class CustomListAggregator<T> extends AbstractListBackedAggregator<T> {
-        public CustomListAggregator(UnaryFunction<List<T>, T> aggregationFunction) {
+        public CustomListAggregator(Function<List<T>, T> aggregationFunction) {
             super(aggregationFunction);
         }
 
-        public CustomListAggregator(UnaryFunction<List<T>, T> aggregationFunction, long interval) {
+        public CustomListAggregator(Function<List<T>, T> aggregationFunction, long interval) {
             super(aggregationFunction, interval);
         }
 
-        public CustomListAggregator(UnaryFunction<List<T>, T> aggregationFunction, long interval,
+        public CustomListAggregator(Function<List<T>, T> aggregationFunction, long interval,
                 boolean useSharedTimer) {
             super(aggregationFunction, interval, useSharedTimer);
         }

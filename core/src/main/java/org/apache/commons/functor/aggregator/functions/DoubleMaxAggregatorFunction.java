@@ -18,7 +18,7 @@ package org.apache.commons.functor.aggregator.functions;
 
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 /**
  * Aggregator function to be used with subclasses of
@@ -26,7 +26,7 @@ import org.apache.commons.functor.UnaryFunction;
  * which finds the maximum number in a list. It does this by traversing the list
  * (once) -- so the complexity of this will be <i>O(n)</i>.
  */
-public class DoubleMaxAggregatorFunction implements UnaryFunction<List<Double>, Double> {
+public class DoubleMaxAggregatorFunction implements Function<List<Double>, Double> {
     /**
      * Does the actual traversal of the list and finds the maximum value then
      * returns the result. Please note that caller is responsible for

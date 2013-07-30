@@ -30,7 +30,7 @@ import org.apache.commons.lang3.Validate;
  * Given a {@link Predicate predicate}
  * <i>p</i> and {@link Procedure procedures}
  * <i>q</i> and <i>r</i>, {@link #run runs}
- * <code>if (p.test()) { q.run(); } else { r.run(); }</code>.
+ * <code>if (p.test(x)) { q.run(x); } else { r.run(x); }</code>.
  * <p>
  * Note that although this class implements
  * {@link Serializable}, a given instance will
@@ -39,31 +39,31 @@ import org.apache.commons.lang3.Validate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class ConditionalProcedure implements Procedure, Serializable {
+public final class ConditionalProcedure<A> implements Procedure<A>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -4228632798836328605L;
+    private static final long serialVersionUID = -895833369740247391L;
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
-
     // attributes
     // ------------------------------------------------------------------------
     /**
      * the condition to be evaluated.
      */
-    private final Predicate ifPred;
+    private final Predicate<? super A> ifPred;
     /**
      * the procedure executed if the condition is satisfied.
      */
-    private final Procedure thenProc;
+    private final Procedure<? super A> thenProc;
     /**
      * the procedure executed if the condition is not satisfied.
      */
-    private final Procedure elseProc;
+    private final Procedure<? super A> elseProc;
 
     // constructor
     // ------------------------------------------------------------------------
@@ -72,7 +72,7 @@ public final class ConditionalProcedure implements Procedure, Serializable {
      * @param ifPred if
      * @param thenProc then
      */
-    public ConditionalProcedure(Predicate ifPred, Procedure thenProc) {
+    public ConditionalProcedure(Predicate<? super A> ifPred, Procedure<? super A> thenProc) {
         this(ifPred, thenProc, NoOp.instance());
     }
 
@@ -82,7 +82,9 @@ public final class ConditionalProcedure implements Procedure, Serializable {
      * @param thenProc then
      * @param elseProc else
      */
-    public ConditionalProcedure(Predicate ifPred, Procedure thenProc, Procedure elseProc) {
+    public ConditionalProcedure(Predicate<? super A> ifPred,
+            Procedure<? super A> thenProc,
+            Procedure<? super A> elseProc) {
         this.ifPred = Validate.notNull(ifPred, "Predicate argument was null");
         this.thenProc = Validate.notNull(thenProc, "'then' Procedure argument was null");
         this.elseProc = Validate.notNull(elseProc, "'else' Procedure argument was null");
@@ -93,11 +95,11 @@ public final class ConditionalProcedure implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public void run() {
-        if (ifPred.test()) {
-            thenProc.run();
+    public void run(A obj) {
+        if (ifPred.test(obj)) {
+            thenProc.run(obj);
         } else {
-            elseProc.run();
+            elseProc.run(obj);
         }
     }
 
@@ -106,15 +108,16 @@ public final class ConditionalProcedure implements Procedure, Serializable {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalProcedure && equals((ConditionalProcedure) that));
+        return that == this || (that instanceof ConditionalProcedure<?>
+                                    && equals((ConditionalProcedure<?>) that));
     }
 
     /**
-     * Learn whether another ConditionalProcecure is equal to this.
-     * @param that the ConditionalProcedure to test
+     * Learn whether another ConditionalProcedure is equal to this.
+     * @param that ConditionalProcedure to test
      * @return boolean
      */
-    public boolean equals(ConditionalProcedure that) {
+    public boolean equals(ConditionalProcedure<?> that) {
         return null != that
                 && ifPred.equals(that.ifPred)
                 && thenProc.equals(that.thenProc)

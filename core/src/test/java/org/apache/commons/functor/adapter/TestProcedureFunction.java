@@ -38,7 +38,7 @@ public class TestProcedureFunction extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new ProcedureFunction<Object>(NoOp.INSTANCE);
+        return new ProcedureFunction<Object, Object>(NoOp.INSTANCE);
     }
 
     // Tests
@@ -46,17 +46,20 @@ public class TestProcedureFunction extends BaseFunctorTest {
 
     @Test
     public void testEvaluate() throws Exception {
-        Function<Object> f = new ProcedureFunction<Object>(NoOp.INSTANCE);
-        assertNull(f.evaluate());
+        Function<Object, Object> f = new ProcedureFunction<Object, Object>(NoOp.INSTANCE);
+        assertNull(f.evaluate(null));
     }
 
     @Test
     public void testEquals() throws Exception {
-        Function<Object> f = new ProcedureFunction<Object>(NoOp.INSTANCE);
+        Function<Object, Object> f = new ProcedureFunction<Object, Object>(NoOp.INSTANCE);
         assertEquals(f,f);
-        assertObjectsAreEqual(f,new ProcedureFunction<Object>(NoOp.INSTANCE));
+        assertObjectsAreEqual(f,new ProcedureFunction<Object, Object>(NoOp.INSTANCE));
         assertObjectsAreNotEqual(f,Constant.of("x"));
-        assertObjectsAreNotEqual(f,new ProcedureFunction<Object>(new Procedure() { public void run() { } }));
+        assertObjectsAreNotEqual(f, new ProcedureFunction<Object, Object>(new Procedure<Object>() {
+            public void run(Object a) {
+            }
+        }));
         assertObjectsAreNotEqual(f,Constant.of(null));
         assertTrue(!f.equals(null));
     }

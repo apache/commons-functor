@@ -16,8 +16,8 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.NullaryPredicate;
+import org.apache.commons.functor.NullaryProcedure;
 
 /**
  * Do-while algorithm (test after).
@@ -36,7 +36,7 @@ public class DoWhile extends PredicatedLoop {
      * @param body to execute
      * @param test whether to keep going
      */
-    public DoWhile(Procedure body, Predicate test) {
+    public DoWhile(NullaryProcedure body, NullaryPredicate test) {
         super(body, test);
     }
 

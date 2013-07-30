@@ -14,7 +14,7 @@
 
 package org.apache.commons.functor.generator;
 
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Iterator;
@@ -50,7 +50,7 @@ public final class IteratorToGeneratorAdapter<E> extends BaseGenerator<E> {
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super E> proc) {
+    public void run(Procedure<? super E> proc) {
         while (iter.hasNext()) {
             proc.run(iter.next());
             if (isStopped()) {

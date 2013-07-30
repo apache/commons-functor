@@ -17,7 +17,6 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -37,7 +36,7 @@ public class TestNot extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new Not(Constant.TRUE);
+        return new Not<Object>(Constant.TRUE);
     }
 
     // Tests
@@ -45,19 +44,19 @@ public class TestNot extends BaseFunctorTest {
 
     @Test
     public void testTest() throws Exception {
-        Predicate truePred = new Not(Constant.FALSE);
-        assertTrue(truePred.test());
-        Predicate falsePred = new Not(Constant.TRUE);
-        assertFalse(falsePred.test());
+        Predicate<Object> truePred = new Not<Object>(Constant.FALSE);
+        assertTrue(truePred.test(null));
+        assertTrue(truePred.test("xyzzy"));
+        assertTrue(truePred.test(new Integer(3)));
     }
 
     @Test
     public void testEquals() throws Exception {
-        Not p = new Not(Constant.TRUE);
+        Not<Object> p = new Not<Object>(Constant.TRUE);
         assertEquals(p,p);
-        assertObjectsAreEqual(p,new Not(Constant.TRUE));
+        assertObjectsAreEqual(p,new Not<Object>(Constant.TRUE));
         assertObjectsAreEqual(p,Not.not(Constant.TRUE));
-        assertObjectsAreNotEqual(p,new Not(Constant.FALSE));
+        assertObjectsAreNotEqual(p,new Not<Object>(Constant.FALSE));
         assertObjectsAreNotEqual(p,Constant.TRUE);
         assertTrue(!p.equals(null));
     }
@@ -69,6 +68,6 @@ public class TestNot extends BaseFunctorTest {
 
     @Test
     public void testNotNotNull() throws Exception {
-        assertNotNull(Not.not(Constant.TRUE));
+        assertNotNull(Not.not(Constant.truePredicate()));
     }
 }

@@ -21,8 +21,8 @@ import static org.junit.Assert.assertSame;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Procedure;
-import org.apache.commons.functor.UnaryProcedure;
 import org.junit.Test;
 
 /**
@@ -59,8 +59,8 @@ public class TestNoOp extends BaseFunctorTest {
         assertEquals(p,p);
         assertObjectsAreEqual(p,new NoOp());
         assertObjectsAreEqual(p,NoOp.instance());
-        assertObjectsAreNotEqual(p,new Procedure() { public void run() { } });
-        assertObjectsAreNotEqual(p,new UnaryProcedure<Object>() { public void run(Object a) { } });
+        assertObjectsAreNotEqual(p,new NullaryProcedure() { public void run() { } });
+        assertObjectsAreNotEqual(p,new Procedure<Object>() { public void run(Object a) { } });
         assertObjectsAreNotEqual(p,new BinaryProcedure<Object, Object>() { public void run(Object a, Object b) { } });
     }
 

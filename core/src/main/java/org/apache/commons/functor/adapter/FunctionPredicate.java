@@ -24,43 +24,45 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a <code>Boolean</code>-valued
- * {@link Function Function} to the
- * {@link Predicate Predicate} interface.
+ * {@link Function Function}
+ * to the {@link Predicate Predicate}
+ * interface.
  * <p/>
  * Note that although this class implements
  * {@link Serializable}, a given instance will
  * only be truly <code>Serializable</code> if the
- * underlying functor is.  Attempts to serialize
+ * underlying function is.  Attempts to serialize
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  *
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class FunctionPredicate implements Predicate, Serializable {
-
+public final class FunctionPredicate<A> implements Predicate<A>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 6564796937660102222L;
+    private static final long serialVersionUID = -9211927278252224707L;
     /** The {@link Function Function} I'm wrapping. */
-    private final Function<Boolean> function;
+    private final Function<? super A, Boolean> function;
 
     /**
-     * Create a new FunctionPredicate.
-     * @param function to adapt
+     * Create an {@link Predicate Predicate} wrapping
+     * the given {@link Function Function}.
+     * @param function the {@link Function Function} to wrap
      */
-    public FunctionPredicate(Function<Boolean> function) {
+    public FunctionPredicate(Function<? super A, Boolean> function) {
         this.function = Validate.notNull(function, "Function argument was null");
     }
 
     /**
+     * {@inheritDoc}
      * Returns the <code>boolean</code> value of the non-<code>null</code>
      * <code>Boolean</code> returned by the {@link Function#evaluate evaluate}
      * method of my underlying function.
-     * {@inheritDoc}
      */
-    public boolean test() {
-        return function.evaluate().booleanValue();
+    public boolean test(A obj) {
+        return function.evaluate(obj).booleanValue();
     }
 
     /**
@@ -68,7 +70,8 @@ public final class FunctionPredicate implements Predicate, Serializable {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof FunctionPredicate && equals((FunctionPredicate) that));
+        return that == this
+                || (that instanceof FunctionPredicate<?> && equals((FunctionPredicate<?>) that));
     }
 
     /**
@@ -76,7 +79,7 @@ public final class FunctionPredicate implements Predicate, Serializable {
      * @param that FunctionPredicate to test
      * @return boolean
      */
-    public boolean equals(FunctionPredicate that) {
+    public boolean equals(FunctionPredicate<?> that) {
         return null != that && function.equals(that.function);
     }
 
@@ -99,11 +102,21 @@ public final class FunctionPredicate implements Predicate, Serializable {
     }
 
     /**
-     * Adapt a Function as a Predicate.
-     * @param function to adapt
-     * @return FunctionPredicate
+     * Adapt the given, possibly-<code>null</code>,
+     * {@link Function Function} to the
+     * {@link Predicate Predicate} interface.
+     * When the given <code>Function</code> is <code>null</code>,
+     * returns <code>null</code>.
+     *
+     * @param <A> the argument type.
+     * @param function the possibly-<code>null</code>
+     *        {@link Function Function} to adapt
+     * @return a {@link Predicate Predicate} wrapping the given
+     *         {@link Function Function}, or <code>null</code>
+     *         if the given <code>Function</code> is <code>null</code>
      */
-    public static FunctionPredicate adapt(Function<Boolean> function) {
-        return null == function ? null : new FunctionPredicate(function);
+    public static <A> FunctionPredicate<A> adapt(Function<? super A, Boolean> function) {
+        return null == function ? null : new FunctionPredicate<A>(function);
     }
+
 }

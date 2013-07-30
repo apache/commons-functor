@@ -20,11 +20,11 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
 
 /**
- * A BinaryProcedure composed of a BinaryFunction whose result is then run through a UnaryProcedure.
+ * A BinaryProcedure composed of a BinaryFunction whose result is then run through a Procedure.
  *
  * @param <L> the left argument type.
  * @param <R> the right argument type.
@@ -53,17 +53,17 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
         /**
          * The wrapped procedure.
          */
-        private UnaryProcedure<? super X> procedure;
+        private Procedure<? super X> procedure;
 
         /**
          * Create a new Helper.
          * @param function BinaryFunction
-         * @param procedure UnaryFunction
+         * @param procedure Function
          */
         private Helper(BinaryFunction<? super L, ? super R, ? extends X> function,
-                UnaryProcedure<? super X> procedure) {
+                Procedure<? super X> procedure) {
             this.function = Validate.notNull(function, "BinaryFunction argument was null");
-            this.procedure = Validate.notNull(procedure, "UnaryProcedure argument was null");
+            this.procedure = Validate.notNull(procedure, "Procedure argument was null");
         }
 
         /**
@@ -83,10 +83,10 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      * Create a new TransformedBinaryProcedure.
      * @param <X> the wrapped procedure argument.
      * @param function BinaryFunction
-     * @param procedure UnaryProcedure
+     * @param procedure Procedure
      */
     public <X> TransformedBinaryProcedure(BinaryFunction<? super L, ? super R, ? extends X> function,
-            UnaryProcedure<? super X> procedure) {
+            Procedure<? super X> procedure) {
         this.helper = new Helper<X, L, R>(function, procedure);
     }
 

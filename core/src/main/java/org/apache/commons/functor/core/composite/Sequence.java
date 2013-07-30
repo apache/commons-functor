@@ -37,20 +37,21 @@ import org.apache.commons.functor.Procedure;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public class Sequence implements Procedure, Serializable {
+public class Sequence<A> implements Procedure<A>, Serializable {
 
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 8041703589149547883L;
+    private static final long serialVersionUID = 9194268249717820246L;
     // attributes
     // ------------------------------------------------------------------------
     /**
-     * The data structure where storing procedures sequence.
+     * The data structure to store the procedure sequence.
      */
-    private List<Procedure> list = new ArrayList<Procedure>();
+    private final List<Procedure<? super A>> list = new ArrayList<Procedure<? super A>>();
 
     // constructor
     // ------------------------------------------------------------------------
@@ -66,10 +67,10 @@ public class Sequence implements Procedure, Serializable {
      *
      * @param procedures to run sequentially
      */
-    public Sequence(Procedure... procedures) {
+    public Sequence(Procedure<? super A>... procedures) {
         this();
         if (procedures != null) {
-            for (Procedure p : procedures) {
+            for (Procedure<? super A> p : procedures) {
                 then(p);
             }
         }
@@ -80,10 +81,10 @@ public class Sequence implements Procedure, Serializable {
      *
      * @param procedures to run sequentially
      */
-    public Sequence(Iterable<Procedure> procedures) {
+    public Sequence(Iterable<Procedure<? super A>> procedures) {
         this();
         if (procedures != null) {
-            for (Procedure p : procedures) {
+            for (Procedure<? super A> p : procedures) {
                 then(p);
             }
         }
@@ -92,11 +93,11 @@ public class Sequence implements Procedure, Serializable {
     // modifiers
     // ------------------------------------------------------------------------
     /**
-     * Fluently add a Procedure.
+     * Fluently add a Procedure to the sequence.
      * @param p Procedure to add
      * @return this
      */
-    public final Sequence then(Procedure p) {
+    public Sequence<A> then(Procedure<? super A> p) {
         if (p != null) {
             list.add(p);
         }
@@ -108,9 +109,9 @@ public class Sequence implements Procedure, Serializable {
     /**
      * {@inheritDoc}
      */
-    public final void run() {
-        for (Iterator<Procedure> iter = list.iterator(); iter.hasNext();) {
-            iter.next().run();
+    public void run(A obj) {
+        for (Iterator<Procedure<? super A>> iter = list.iterator(); iter.hasNext();) {
+            iter.next().run(obj);
         }
     }
 
@@ -118,16 +119,16 @@ public class Sequence implements Procedure, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public final boolean equals(Object that) {
-        return that == this || (that instanceof Sequence && equals((Sequence) that));
+    public boolean equals(Object that) {
+        return that == this || (that instanceof Sequence<?> && equals((Sequence<?>) that));
     }
 
     /**
-     * Learn whether a given Sequence is equal to this.
+     * Learn whether another Sequence is equal to this.
      * @param that Sequence to test
      * @return boolean
      */
-    public boolean equals(Sequence that) {
+    public boolean equals(Sequence<?> that) {
         // by construction, list is never null
         return null != that && list.equals(that.list);
     }

@@ -38,7 +38,7 @@ public class TestFunctionProcedure extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new FunctionProcedure(Constant.of("K"));
+        return new FunctionProcedure<Object>(Constant.of("K"));
     }
 
     // Tests
@@ -46,26 +46,26 @@ public class TestFunctionProcedure extends BaseFunctorTest {
 
     @Test
     public void testRun() throws Exception {
-        class EvaluateCounter implements Function<Integer> {
+        class EvaluateCounter implements Function<Object, Integer> {
             int count = 0;
-            public Integer evaluate() { return Integer.valueOf(count++); }
+            public Integer evaluate(Object a) { return Integer.valueOf(count++); }
         }
         EvaluateCounter counter = new EvaluateCounter();
-        Procedure p = new FunctionProcedure(counter);
+        Procedure<Object> p = new FunctionProcedure<Object>(counter);
         assertEquals(0,counter.count);
-        p.run();
+        p.run(null);
         assertEquals(1,counter.count);
-        p.run();
+        p.run("x");
         assertEquals(2,counter.count);
     }
 
     @Test
     public void testEquals() throws Exception {
-        Procedure p = new FunctionProcedure(Constant.of("K"));
+        Procedure<Object> p = new FunctionProcedure<Object>(Constant.of("K"));
         assertEquals(p,p);
-        assertObjectsAreEqual(p,new FunctionProcedure(Constant.of("K")));
+        assertObjectsAreEqual(p,new FunctionProcedure<Object>(Constant.of("K")));
         assertObjectsAreNotEqual(p,NoOp.INSTANCE);
-        assertObjectsAreNotEqual(p,new FunctionProcedure(Constant.of("J")));
+        assertObjectsAreNotEqual(p,new FunctionProcedure<Object>(Constant.of("J")));
         assertTrue(!p.equals(null));
     }
 

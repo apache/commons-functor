@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
 import org.apache.commons.lang3.Validate;
 
@@ -137,9 +137,9 @@ public final class IsEquivalent<T> implements BinaryPredicate<T, T>, Serializabl
      *
      * @param <T> the predicate input type
      * @param right argument
-     * @return UnaryPredicate
+     * @return Predicate
      */
-    public static <T extends Comparable<?>> UnaryPredicate<T> instance(T right) {
+    public static <T extends Comparable<?>> Predicate<T> instance(T right) {
         return RightBoundPredicate.bind(instance(), right);
     }
 

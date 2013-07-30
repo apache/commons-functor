@@ -16,7 +16,7 @@
  */
 package org.apache.commons.functor.aggregator;
 
-import org.apache.commons.functor.Function;
+import org.apache.commons.functor.NullaryFunction;
 
 /**
  * Interface which offers a means of "aggregating" data. It offers functions
@@ -36,7 +36,7 @@ import org.apache.commons.functor.Function;
  * @param <T>
  *            type of data to aggregate
  */
-public interface Aggregator<T> extends Function<T> {
+public interface Aggregator<T> extends NullaryFunction<T> {
     /**
      * Adds data to the series which will be aggregated. It doesn't enforce any
      * limitations on how much data can be stored (or in fact whether it should

@@ -17,7 +17,7 @@
 
 /**
  * <p>
- * This package contains <code>UnaryFunction</code>'s used by aggregators
+ * This package contains <code>Function</code>'s used by aggregators
  * defined in <code>org.apache.commons.functor.aggregator</code>.
  * </p>
  * <p>

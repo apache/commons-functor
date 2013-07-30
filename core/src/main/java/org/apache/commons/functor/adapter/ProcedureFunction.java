@@ -36,30 +36,31 @@ import org.apache.commons.lang3.Validate;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  *
+ * @param <A> the argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class ProcedureFunction<T> implements Function<T>, Serializable {
+public final class ProcedureFunction<A, T> implements Function<A, T>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -655207616317672341L;
+    private static final long serialVersionUID = 6153848695167906659L;
     /** The {@link Procedure Procedure} I'm wrapping. */
-    private final Procedure procedure;
+    private final Procedure<? super A> procedure;
 
     /**
      * Create a new ProcedureFunction.
      * @param procedure to adapt
      */
-    public ProcedureFunction(Procedure procedure) {
+    public ProcedureFunction(Procedure<? super A> procedure) {
         this.procedure = Validate.notNull(procedure, "Procedure argument was null");
     }
 
     /**
      * {@inheritDoc}
      */
-    public T evaluate() {
-        procedure.run();
+    public T evaluate(A obj) {
+        procedure.run(obj);
         return null;
     }
 
@@ -68,15 +69,16 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof ProcedureFunction<?> && equals((ProcedureFunction<?>) that));
+        return that == this || (that instanceof ProcedureFunction<?, ?>
+                                    && equals((ProcedureFunction<?, ?>) that));
     }
 
     /**
-     * Learn whether another ProcedureFunction is equal to this.
+     * Learn whether a given ProcedureFunction is equal to this.
      * @param that ProcedureFunction to test
      * @return boolean
      */
-    public boolean equals(ProcedureFunction<?> that) {
+    public boolean equals(ProcedureFunction<?, ?> that) {
         return null != that && procedure.equals(that.procedure);
     }
 
@@ -99,13 +101,14 @@ public final class ProcedureFunction<T> implements Function<T>, Serializable {
     }
 
     /**
-     * Adapt a Procedure as a Function.
+     * Adapt a Procedure to the Function interface.
+     * @param <A> the argument type.
      * @param <T> the returned value type.
      * @param procedure to adapt
-     * @return ProcedureFunction<T>
+     * @return ProcedureFunction
      */
-    public static <T> ProcedureFunction<T> adapt(Procedure procedure) {
-        return null == procedure ? null : new ProcedureFunction<T>(procedure);
+    public static <A, T> ProcedureFunction<A, T> adapt(Procedure<? super A> procedure) {
+        return null == procedure ? null : new ProcedureFunction<A, T>(procedure);
     }
 
 }

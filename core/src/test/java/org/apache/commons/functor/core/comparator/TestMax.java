@@ -22,7 +22,7 @@ import static org.junit.Assert.assertFalse;
 import java.util.Collections;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.junit.Test;
 
 /**
@@ -68,8 +68,8 @@ public class TestMax extends BaseFunctorTest {
     }
 
     @Test
-    public void testUnaryFunctionMin() {
-        UnaryFunction<Integer, Integer> unaryMax = Max.instance(ONE);
-        assertEquals(ONE,unaryMax.evaluate(ZERO));
+    public void testFunctionMin() {
+        Function<Integer, Integer> max = Max.instance(ONE);
+        assertEquals(ONE,max.evaluate(ZERO));
     }
 }

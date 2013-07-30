@@ -19,18 +19,18 @@ package org.apache.commons.functor.core;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Procedure;
-import org.apache.commons.functor.UnaryProcedure;
 
 /**
  * A procedure that does nothing at all.
  * <p>
  * Note that this class implements {@link Procedure},
- * {@link UnaryProcedure}, and {@link BinaryProcedure}.
+ * {@link Procedure}, and {@link BinaryProcedure}.
  * </p>
  * @version $Revision$ $Date$
  */
-public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProcedure<Object, Object>, Serializable {
+public final class NoOp implements NullaryProcedure, Procedure<Object>, BinaryProcedure<Object, Object>, Serializable {
     // static attributes
     // ------------------------------------------------------------------------
     /**
@@ -105,13 +105,13 @@ public final class NoOp implements Procedure, UnaryProcedure<Object>, BinaryProc
     }
 
     /**
-     * Get a typed NoOp {@link UnaryProcedure}.
+     * Get a typed NoOp {@link Procedure}.
      * @param <A> type
-     * @return <code>UnaryProcedure&lt;A&gt;</code>
+     * @return <code>Procedure&lt;A&gt;</code>
      */
     @SuppressWarnings("unchecked")
-    public static <A> UnaryProcedure<A> unaryInstance() {
-        return (UnaryProcedure<A>) INSTANCE;
+    public static <A> Procedure<A> unaryInstance() {
+        return (Procedure<A>) INSTANCE;
     }
 
     /**

@@ -17,7 +17,7 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ import org.junit.Test;
 /**
  * @version $Revision$ $Date$
  */
+@SuppressWarnings("unchecked")
 public class TestSequence extends BaseFunctorTest {
 
     // Functor Testing Framework
@@ -37,7 +38,7 @@ public class TestSequence extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new Sequence(new NoOp(),new NoOp());
+        return new Sequence<Object>(new NoOp(),new NoOp());
     }
 
     // Tests
@@ -45,71 +46,77 @@ public class TestSequence extends BaseFunctorTest {
 
     @Test
     public void testConstructors() throws Exception {
-        Sequence seq1 = new Sequence((Procedure)null);
-        Sequence seq2 = new Sequence();
+        Sequence<Object> seq1 = new Sequence<Object>((Procedure<? super Object>)null);
+        Sequence<Object> seq2 = new Sequence<Object>();
         assertObjectsAreEqual(seq1, seq2);
         
         RunCounter p1 = new RunCounter();
         RunCounter p2 = new RunCounter();
-        List<Procedure> iterable = new ArrayList<Procedure>();
+        List<Procedure<? super Object>> iterable = new ArrayList<Procedure<? super Object>>();
         iterable.add(p1);
         iterable.add(p2);
-        Sequence seq3 = new Sequence(iterable);
-        Sequence seq4 = new Sequence(p1, p2);
+        Sequence<Object> seq3 = new Sequence<Object>(iterable);
+        Sequence<Object> seq4 = new Sequence<Object>(p1, p2);
         assertObjectsAreEqual(seq3, seq4);
         
-        Sequence seq5 = new Sequence((Iterable<Procedure>)null);
-        Sequence seq6 = new Sequence((Procedure[])null);
+        Sequence<Object> seq5 = new Sequence<Object>((Iterable<Procedure<? super Object>>)null);
+        Sequence<Object> seq6 = new Sequence<Object>((Procedure<? super Object>[])null);
         assertObjectsAreEqual(seq5, seq6);
     }
-
+    
     @Test
     public void testRunZero() throws Exception {
-        Sequence seq = new Sequence();
-        seq.run();
+        Sequence<String> seq = new Sequence<String>();
+        seq.run(null);
+        seq.run("xyzzy");
     }
 
     @Test
     public void testRunOne() throws Exception {
         RunCounter counter = new RunCounter();
-        Sequence seq = new Sequence(counter);
+        Sequence<String> seq = new Sequence<String>(counter);
         assertEquals(0,counter.count);
-        seq.run();
+        seq.run(null);
         assertEquals(1,counter.count);
+        seq.run("xyzzy");
+        assertEquals(2,counter.count);
     }
 
     @Test
     public void testRunTwo() throws Exception {
         RunCounter[] counter = { new RunCounter(), new RunCounter() };
-        Sequence seq = new Sequence(counter[0],counter[1]);
+        Sequence<String> seq = new Sequence<String>(counter[0],counter[1]);
         assertEquals(0,counter[0].count);
         assertEquals(0,counter[1].count);
-        seq.run();
+        seq.run(null);
         assertEquals(1,counter[0].count);
         assertEquals(1,counter[1].count);
+        seq.run("xyzzy");
+        assertEquals(2,counter[0].count);
+        assertEquals(2,counter[1].count);
     }
 
     @Test
     public void testThen() throws Exception {
         List<RunCounter> list = new ArrayList<RunCounter>();
-        Sequence seq = new Sequence();
-        seq.run();
+        Sequence<String> seq = new Sequence<String>();
+        seq.run(null);
         for (int i=0;i<10;i++) {
             RunCounter counter = new RunCounter();
             seq.then(counter);
             list.add(counter);
-            seq.run();
+            seq.run("xyzzy");
             for (int j=0;j<list.size();j++) {
-                assertEquals(list.size()-j,(((RunCounter)(list.get(j))).count));
+                assertEquals(list.size()-j,((list.get(j)).count));
             }
         }
     }
 
     @Test
     public void testEquals() throws Exception {
-        Sequence p = new Sequence();
+        Sequence<?> p = new Sequence<Object>();
         assertEquals(p,p);
-        Sequence q = new Sequence();
+        Sequence<?> q = new Sequence<Object>();
         assertObjectsAreEqual(p,q);
 
         for (int i=0;i<3;i++) {
@@ -117,21 +124,21 @@ public class TestSequence extends BaseFunctorTest {
             assertObjectsAreNotEqual(p,q);
             q.then(new NoOp());
             assertObjectsAreEqual(p,q);
-            p.then(new Sequence(new NoOp(),new NoOp()));
+            p.then(new Sequence<Object>(new NoOp(),new NoOp()));
             assertObjectsAreNotEqual(p,q);
-            q.then(new Sequence(new NoOp(),new NoOp()));
+            q.then(new Sequence<Object>(new NoOp(),new NoOp()));
             assertObjectsAreEqual(p,q);
         }
 
         assertObjectsAreNotEqual(p,new NoOp());
-        assertTrue(!p.equals(null));
+        assertFalse(p.equals(null));
     }
 
     // Classes
     // ------------------------------------------------------------------------
 
-    static class RunCounter implements Procedure {
-        public void run() {
+    static class RunCounter implements Procedure<Object> {
+        public void run(Object that) {
             count++;
         }
         public int count = 0;

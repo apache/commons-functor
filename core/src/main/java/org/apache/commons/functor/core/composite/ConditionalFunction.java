@@ -28,9 +28,9 @@ import org.apache.commons.lang3.Validate;
  * or "conditional" operator (<code>&#x3F; &#x3A;</code>).
  * Given a {@link Predicate predicate}
  * <i>p</i> and {@link Function functions}
- * <i>f</i> and <i>g</i>, {@link #evaluate evaluates}
+ * <i>f</i> and <i>g</i>, {@link #evaluate evalautes}
  * to
- * <code>p.test() ? f.evaluate() : g.evaluate()</code>.
+ * <code>p.test(x) ? f.evaluate(x) : g.evaluate(x)</code>.
  * <p>
  * Note that although this class implements
  * {@link Serializable}, a given instance will
@@ -39,14 +39,15 @@ import org.apache.commons.lang3.Validate;
  * an instance whose delegates are not all
  * <code>Serializable</code> will result in an exception.
  * </p>
+ * @param <A> the argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class ConditionalFunction<T> implements Function<T>, Serializable {
+public final class ConditionalFunction<A, T> implements Function<A, T>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = 4214871352184887792L;
+    private static final long serialVersionUID = -8152490481969255068L;
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
@@ -55,15 +56,15 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
     /**
      * the condition to be evaluated.
      */
-    private final Predicate ifPred;
+    private final Predicate<? super A> ifPred;
     /**
      * the function executed if the condition is satisfied.
      */
-    private final Function<? extends T> thenFunc;
+    private final Function<? super A, ? extends T> thenFunc;
     /**
      * the function executed if the condition is not satisfied.
      */
-    private final Function<? extends T> elseFunc;
+    private final Function<? super A, ? extends T> elseFunc;
 
     // constructor
     // ------------------------------------------------------------------------
@@ -73,7 +74,8 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
      * @param thenFunc then
      * @param elseFunc else
      */
-    public ConditionalFunction(Predicate ifPred, Function<? extends T> thenFunc, Function<? extends T> elseFunc) {
+    public ConditionalFunction(Predicate<? super A> ifPred, Function<? super A, ? extends T> thenFunc,
+        Function<? super A, ? extends T> elseFunc) {
         this.ifPred = Validate.notNull(ifPred, "Predicate argument was null");
         this.thenFunc = Validate.notNull(thenFunc, "'then' Function argument was null");
         this.elseFunc = Validate.notNull(elseFunc, "'else' Function argument was null");
@@ -84,11 +86,11 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
     /**
      * {@inheritDoc}
      */
-    public T evaluate() {
-        if (ifPred.test()) {
-            return thenFunc.evaluate();
+    public T evaluate(A obj) {
+        if (ifPred.test(obj)) {
+            return thenFunc.evaluate(obj);
         } else {
-            return elseFunc.evaluate();
+            return elseFunc.evaluate(obj);
         }
     }
 
@@ -97,7 +99,8 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalFunction<?> && equals((ConditionalFunction<?>) that));
+        return that == this || (that instanceof ConditionalFunction<?, ?>
+                                    && equals((ConditionalFunction<?, ?>) that));
     }
 
     /**
@@ -105,7 +108,7 @@ public final class ConditionalFunction<T> implements Function<T>, Serializable {
      * @param that ConditionalFunction to test
      * @return boolean
      */
-    public boolean equals(ConditionalFunction<?> that) {
+    public boolean equals(ConditionalFunction<?, ?> that) {
         return null != that
                 && ifPred.equals(that.ifPred)
                 && thenFunc.equals(that.thenFunc)

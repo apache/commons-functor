@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.junit.Test;
 
 
@@ -48,7 +48,7 @@ public class TestTransformedBinaryProcedure extends BaseFunctorTest {
         }
     }
 
-    private static class Total implements UnaryProcedure<Integer>, Serializable {
+    private static class Total implements Procedure<Integer>, Serializable {
         private static final long serialVersionUID = 8532164308852418241L;
         private int total = 0;
         public void run(Integer obj) {
@@ -88,7 +88,7 @@ public class TestTransformedBinaryProcedure extends BaseFunctorTest {
                 return left-right;
             }
         };
-        UnaryProcedure<Integer> p = new UnaryProcedure<Integer>() {
+        Procedure<Integer> p = new Procedure<Integer>() {
             public void run(Integer obj) {
                 // Do nothing
             }

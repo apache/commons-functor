@@ -21,9 +21,9 @@ import java.io.Serializable;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Function;
+import org.apache.commons.functor.NullaryFunction;
+import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryPredicate;
 
 /**
  * {@link #evaluate Evaluates} to constant value.
@@ -41,8 +41,8 @@ import org.apache.commons.functor.UnaryPredicate;
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class Constant<T> implements Function<T>, UnaryFunction<Object, T>, BinaryFunction<Object, Object, T>,
-        Predicate, UnaryPredicate<Object>, BinaryPredicate<Object, Object>, Serializable {
+public final class Constant<T> implements NullaryFunction<T>, Function<Object, T>, BinaryFunction<Object, Object, T>,
+        NullaryPredicate, Predicate<Object>, BinaryPredicate<Object, Object>, Serializable {
 
     // static attributes
     // ------------------------------------------------------------------------

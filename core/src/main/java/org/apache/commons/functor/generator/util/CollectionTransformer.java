@@ -17,8 +17,8 @@ package org.apache.commons.functor.generator.util;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.lang3.Validate;
 
@@ -30,7 +30,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public class CollectionTransformer<E, C extends Collection<? super E>> implements UnaryFunction<Generator<? extends E>, C> {
+public class CollectionTransformer<E, C extends Collection<? super E>> implements Function<Generator<? extends E>, C> {
     /*
      * TODO revisit this class... it could stand a more-descriptive name.  Also, it's a little
      * hard to say whether, for an instance constructed without a specific target collection,
@@ -62,7 +62,7 @@ public class CollectionTransformer<E, C extends Collection<? super E>> implement
      * {@inheritDoc}
      */
     public C evaluate(Generator<? extends E> generator) {
-        generator.run(new UnaryProcedure<E>() {
+        generator.run(new Procedure<E>() {
             public void run(E obj) {
                 toFill.add(obj);
             }

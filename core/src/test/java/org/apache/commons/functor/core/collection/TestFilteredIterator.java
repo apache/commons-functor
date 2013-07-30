@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.junit.After;
 import org.junit.Before;
@@ -214,12 +214,12 @@ public class TestFilteredIterator extends BaseFunctorTest {
     public void testEquals() {
         Iterator<Integer> iter = list.iterator();
         FilteredIterator<Integer> t = new FilteredIterator<Integer>(iter, isEven);
-        UnaryPredicate<Integer> isOdd = new UnaryPredicate<Integer>() {
+        Predicate<Integer> isOdd = new Predicate<Integer>() {
             public boolean test(Integer obj) {
                 return obj.intValue() % 2 != 0;
             }
         };
-        UnaryPredicate<Float> isOddFloat = new UnaryPredicate<Float>() {
+        Predicate<Float> isOddFloat = new Predicate<Float>() {
             public boolean test(Float obj) {
                 return obj.intValue() % 2 != 0;
             }
@@ -234,7 +234,7 @@ public class TestFilteredIterator extends BaseFunctorTest {
     // ------------------------------------------------------------------------
     private List<Integer> list = null;
     private List<Integer> evens = null;
-    private UnaryPredicate<Integer> isEven = new UnaryPredicate<Integer>() {
+    private Predicate<Integer> isEven = new Predicate<Integer>() {
         public boolean test(Integer obj) {
             return obj.intValue() % 2 == 0;
         }

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.algorithm.InPlaceTransform;
 import org.junit.After;
 import org.junit.Before;
@@ -65,7 +65,7 @@ public class TestInPlaceTransform extends BaseFunctorTest {
     public void testTransform() {
         new InPlaceTransform<Integer>().run(
             list.listIterator(),
-            new UnaryFunction<Integer, Integer>() {
+            new Function<Integer, Integer>() {
                 public Integer evaluate(Integer obj) {
                     return new Integer(obj*2);
                 }
@@ -86,7 +86,7 @@ public class TestInPlaceTransform extends BaseFunctorTest {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Doubler implements UnaryFunction<Integer, Integer> {
+    static class Doubler implements Function<Integer, Integer> {
         public Integer evaluate(Integer obj) {
             return new Integer(2*obj);
         }

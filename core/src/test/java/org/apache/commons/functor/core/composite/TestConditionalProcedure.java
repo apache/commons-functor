@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.Constant;
+import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.NoOp;
 import org.junit.Test;
 
@@ -35,7 +36,7 @@ public class TestConditionalProcedure extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new ConditionalProcedure(
+        return new ConditionalProcedure<Object>(
             Constant.TRUE,
             NoOp.INSTANCE,
             NoOp.INSTANCE);
@@ -46,84 +47,59 @@ public class TestConditionalProcedure extends BaseFunctorTest {
 
     @Test
     public void testRun() throws Exception {
-        {
-            RunCounter left = new RunCounter();
-            RunCounter right = new RunCounter();
-            ConditionalProcedure p = new ConditionalProcedure(
-                Constant.TRUE,
-                left,
-                right);
-            assertEquals(0,left.count);
-            assertEquals(0,right.count);
-            p.run();
-            assertEquals(1,left.count);
-            assertEquals(0,right.count);
-            p.run();
-            assertEquals(2,left.count);
-            assertEquals(0,right.count);
-            p.run();
-            assertEquals(3,left.count);
-            assertEquals(0,right.count);
-        }
-        {
-            RunCounter left = new RunCounter();
-            RunCounter right = new RunCounter();
-            ConditionalProcedure p = new ConditionalProcedure(
-                Constant.FALSE,
-                left,
-                right);
-            assertEquals(0,left.count);
-            assertEquals(0,right.count);
-            p.run();
-            assertEquals(0,left.count);
-            assertEquals(1,right.count);
-            p.run();
-            assertEquals(0,left.count);
-            assertEquals(2,right.count);
-            p.run();
-            assertEquals(0,left.count);
-            assertEquals(3,right.count);
-        }
+        RunCounter left = new RunCounter();
+        RunCounter right = new RunCounter();
+        ConditionalProcedure<Object> p = new ConditionalProcedure<Object>(
+            Identity.INSTANCE,
+            left,
+            right);
+        assertEquals(0,left.count);
+        assertEquals(0,right.count);
+        p.run(Boolean.TRUE);
+        assertEquals(1,left.count);
+        assertEquals(0,right.count);
+        p.run(Boolean.FALSE);
+        assertEquals(1,left.count);
+        assertEquals(1,right.count);
+        p.run(Boolean.TRUE);
+        assertEquals(2,left.count);
+        assertEquals(1,right.count);
     }
 
     @Test
     public void testEquals() throws Exception {
-        ConditionalProcedure p = new ConditionalProcedure(
-            Constant.FALSE,
+        ConditionalProcedure<Object> p = new ConditionalProcedure<Object>(
+            Identity.INSTANCE,
             NoOp.INSTANCE,
             NoOp.INSTANCE);
         assertEquals(p,p);
-        assertObjectsAreEqual(p,new ConditionalProcedure(
-            Constant.FALSE,
+        assertObjectsAreEqual(p,new ConditionalProcedure<Object>(
+            Identity.INSTANCE,
             NoOp.INSTANCE,
             NoOp.INSTANCE));
-        assertObjectsAreNotEqual(p,new ConditionalProcedure(
+        assertObjectsAreNotEqual(p,new ConditionalProcedure<Object>(
             Constant.TRUE,
             NoOp.INSTANCE,
             NoOp.INSTANCE));
-        assertObjectsAreNotEqual(p,new ConditionalProcedure(
-            Constant.TRUE,
-            NoOp.INSTANCE,
-            NoOp.INSTANCE));
-        assertObjectsAreNotEqual(p,new ConditionalProcedure(
-            Constant.FALSE,
+        assertObjectsAreNotEqual(p,new ConditionalProcedure<Object>(
+            Identity.INSTANCE,
             new RunCounter(),
             NoOp.INSTANCE));
-        assertObjectsAreNotEqual(p,new ConditionalProcedure(
-            Constant.FALSE,
+        assertObjectsAreNotEqual(p,new ConditionalProcedure<Object>(
+            Identity.INSTANCE,
             NoOp.INSTANCE,
             new RunCounter()));
-        assertObjectsAreNotEqual(p,new ConditionalProcedure(
+        assertObjectsAreNotEqual(p, new ConditionalProcedure<Object>(
             Constant.TRUE,
-            NoOp.INSTANCE));
+            new RunCounter()));
         assertTrue(!p.equals(null));
     }
 
     // Classes
     // ------------------------------------------------------------------------
 
-    static class RunCounter implements Procedure {
-        public void run() {
+    static class RunCounter implements Procedure<Object> {
+        public void run(Object obj) {
             count++;
         }
         public int count = 0;

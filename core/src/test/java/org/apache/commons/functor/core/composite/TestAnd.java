@@ -17,9 +17,8 @@
 package org.apache.commons.functor.core.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Arrays;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
@@ -29,6 +28,7 @@ import org.junit.Test;
 /**
  * @version $Revision$ $Date$
  */
+@SuppressWarnings("unchecked")
 public class TestAnd extends BaseFunctorTest {
 
     // Functor Testing Framework
@@ -36,7 +36,7 @@ public class TestAnd extends BaseFunctorTest {
 
     @Override
     protected Object makeFunctor() {
-        return new And(Constant.TRUE, Constant.TRUE);
+        return new And<Object>(Constant.TRUE, Constant.TRUE);
     }
 
     // Tests
@@ -44,96 +44,91 @@ public class TestAnd extends BaseFunctorTest {
 
     @Test
     public void testTrue() throws Exception {
-        assertTrue((new And()).test());
-        assertTrue((new And(Constant.TRUE)).test());
-        assertTrue((new And(Constant.TRUE,Constant.TRUE)).test());
-        assertTrue((new And(Constant.TRUE,Constant.TRUE,Constant.TRUE)).test());
+        assertTrue((new And<Object>()).test("xyzzy"));
+        assertTrue((new And<Object>(Constant.TRUE)).test("xyzzy"));
+        assertTrue((new And<Object>(Constant.TRUE,Constant.TRUE)).test("xyzzy"));
+        assertTrue((new And<Object>(Constant.TRUE,Constant.TRUE,Constant.TRUE)).test("xyzzy"));
 
-        And p = new And(Constant.TRUE);
-        assertTrue(p.test());
+        And<Object> p = new And<Object>(Constant.TRUE);
+        assertTrue(p.test("xyzzy"));
         for (int i=0;i<10;i++) {
             p.and(Constant.TRUE);
-            assertTrue(p.test());
+            assertTrue(p.test("xyzzy"));
         }
 
-        And q = new And(Constant.TRUE);
-        assertTrue(q.test());
+        And<Object> q = new And<Object>(Constant.TRUE);
+        assertTrue(q.test("xyzzy"));
         for (int i=0;i<10;i++) {
             q.and(Constant.TRUE);
-            assertTrue(q.test());
+            assertTrue(q.test("xyzzy"));
         }
 
-        And r = new And(p,q);
-        assertTrue(r.test());
+        And<Object> r = new And<Object>(p,q);
+        assertTrue(r.test("xyzzy"));
     }
 
     @Test
     public void testFalse() throws Exception {
-        assertTrue(!(new And(Constant.FALSE)).test());
-        assertTrue(!(new And(Constant.TRUE,Constant.FALSE)).test());
-        assertTrue(!(new And(Constant.TRUE,Constant.TRUE,Constant.FALSE)).test());
+        assertFalse(new And<Object>(Constant.FALSE).test("xyzzy"));
+        assertFalse(new And<Object>(Constant.TRUE,Constant.FALSE).test("xyzzy"));
+        assertFalse(new And<Object>(Constant.TRUE,Constant.TRUE,Constant.FALSE).test("xyzzy"));
 
-        And p = new And(Constant.FALSE);
-        assertTrue(!p.test());
+        And<Object> p = new And<Object>(Constant.FALSE);
+        assertTrue(!p.test("xyzzy"));
         for (int i=0;i<10;i++) {
-            p.and(Constant.FALSE);
-            assertTrue(!p.test());
+            p.and(Constant.TRUE);
+            assertTrue(!p.test("xyzzy"));
         }
 
-        And q = new And(Constant.TRUE);
-        assertTrue(q.test());
+        And<Object> q = new And<Object>(Constant.TRUE);
+        assertTrue(q.test("xyzzy"));
         for (int i=0;i<10;i++) {
             q.and(Constant.TRUE);
-            assertTrue(q.test());
+            assertTrue(q.test("xyzzy"));
         }
 
-        And r = new And(p,q);
-        assertTrue(!r.test());
+        And<Object> r = new And<Object>(p,q);
+        assertTrue(!r.test("xyzzy"));
     }
 
     @Test
     public void testDuplicateAdd() throws Exception {
-        Predicate p = Constant.TRUE;
-        And q = new And(p,p);
-        assertTrue(q.test());
+        Predicate<Object> p = Constant.TRUE;
+        And<Object> q = new And<Object>(p,p);
+        assertTrue(q.test("xyzzy"));
         for (int i=0;i<10;i++) {
             q.and(p);
-            assertTrue(q.test());
+            assertTrue(q.test("xyzzy"));
         }
     }
 
+    @SuppressWarnings("rawtypes")
     @Test
     public void testEquals() throws Exception {
-        And p = new And();
+        And<Object> p = new And<Object>();
         assertEquals(p,p);
-        And q = new And();
+        And<Object> q = new And<Object>();
         assertObjectsAreEqual(p,q);
 
         for (int i=0;i<3;i++) {
-            p.and(Constant.TRUE);
+            p.and(Constant.truePredicate());
             assertObjectsAreNotEqual(p,q);
             q.and(Constant.truePredicate());
             assertObjectsAreEqual(p,q);
-            p.and(new And(Constant.TRUE,Constant.FALSE));
+            p.and(new And<Object>(Constant.truePredicate(),Constant.falsePredicate()));
             assertObjectsAreNotEqual(p,q);
-            q.and(new And(Constant.TRUE,Constant.FALSE));
+            q.and(new And<Object>(Constant.truePredicate(),Constant.falsePredicate()));
             assertObjectsAreEqual(p,q);
         }
 
-        assertObjectsAreNotEqual(p,Constant.TRUE);
-        Iterable<Predicate> iterable = Arrays.<Predicate>asList(
-            Constant.TRUE,
-            new And(Constant.TRUE, Constant.FALSE),
-            Constant.TRUE,
-            new And(Constant.TRUE, Constant.FALSE),
-            Constant.TRUE,
-            new And(Constant.TRUE, Constant.FALSE));
-        assertObjectsAreEqual(p,new And(iterable));
-
-        assertObjectsAreNotEqual(p,new And((Iterable<Predicate>)null));
-        assertObjectsAreNotEqual(p,new And((Predicate[])null));
-        assertObjectsAreNotEqual(p,new And((Predicate)null));
-
+        assertObjectsAreNotEqual(p,Constant.truePredicate());
+        And<Object> r = new And<Object>();
+        r.and(Constant.truePredicate());
+        r.and(new And<Object>(Constant.truePredicate(),Constant.falsePredicate()));
+        assertObjectsAreEqual(r, new And<Object>(r.getPredicateList()));
+        assertObjectsAreNotEqual(p, new And((Iterable<Predicate<Object>>)null));
+        assertObjectsAreNotEqual(p, new And((Predicate<Object>[])null));
+        assertObjectsAreNotEqual(p, new And((Predicate<Object>)null));
         assertTrue(!p.equals(null));
     }
 

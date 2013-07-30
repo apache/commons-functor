@@ -19,7 +19,7 @@ package org.apache.commons.functor.core;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
 
 /**
@@ -93,12 +93,12 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serial
     }
 
     /**
-     * Get an IsInstanceOf UnaryPredicate.
+     * Get an IsInstanceOf Predicate.
      * @param <T> the object instance has to be tested against the input class.
      * @param clazz bound right-side argument
-     * @return UnaryPredicate<T>
+     * @return Predicate<T>
      */
-    public static <T> UnaryPredicate<T> of(Class<?> clazz) {
+    public static <T> Predicate<T> of(Class<?> clazz) {
         return RightBoundPredicate.bind(new IsInstance<T>(), clazz);
     }
 }

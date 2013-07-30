@@ -18,11 +18,11 @@ package org.apache.commons.functor.core.collection;
 
 import java.util.Iterator;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Iterator that transforms another Iterator by applying a UnaryFunction to each returned element.
+ * Iterator that transforms another Iterator by applying a Function to each returned element.
  *
  * @param <E> the function argument type
  * @param <T> the iterator elements type
@@ -36,7 +36,7 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
     /**
      * The function to apply to each iterator element.
      */
-    private final UnaryFunction<? super E, ? extends T> function;
+    private final Function<? super E, ? extends T> function;
     /**
      * The wrapped iterator.
      */
@@ -49,8 +49,8 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
      * @param iterator Iterator to decorate
      * @param function to apply
      */
-    public TransformedIterator(Iterator<? extends E> iterator, UnaryFunction<? super E, ? extends T> function) {
-        this.function = Validate.notNull(function, "filtering UnaryFunction argument was null");
+    public TransformedIterator(Iterator<? extends E> iterator, Function<? super E, ? extends T> function) {
+        this.function = Validate.notNull(function, "filtering Function argument was null");
         this.iterator = Validate.notNull(iterator, "Iterator argument was null");
     }
 
@@ -128,7 +128,7 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
      * @param func transforming function, cannot be null
      * @return Iterator<T>
      */
-    public static <E, T> Iterator<T> transform(Iterator<? extends E> iter, UnaryFunction<? super E, ? extends T> func) {
+    public static <E, T> Iterator<T> transform(Iterator<? extends E> iter, Function<? super E, ? extends T> func) {
         if (null == iter) {
             return null;
         }
@@ -143,7 +143,7 @@ public final class TransformedIterator<E, T> implements Iterator<T> {
      * @param func transforming function, if null result is iter
      * @return Iterator<?>
      */
-    public static <E> Iterator<?> maybeTransform(Iterator<? extends E> iter, UnaryFunction<? super E, ?> func) {
+    public static <E> Iterator<?> maybeTransform(Iterator<? extends E> iter, Function<? super E, ?> func) {
         return null == func ? (null == iter ? null : iter) : new TransformedIterator<E, Object>(iter, func);
     }
 

@@ -17,18 +17,18 @@
 package org.apache.commons.functor.core.comparator;
 
 import java.io.Serializable;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
 
 /**
- * A {@link UnaryPredicate} that tests whether a {@link Comparable} object is
+ * A {@link Predicate} that tests whether a {@link Comparable} object is
  * within a range. The range is defined in the constructor.
  *
  * @since 1.0
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public class IsWithinRange<A extends Comparable<A>> implements UnaryPredicate<A>, Serializable {
+public class IsWithinRange<A extends Comparable<A>> implements Predicate<A>, Serializable {
     /**
      * serialVersionUID declaration.
      */

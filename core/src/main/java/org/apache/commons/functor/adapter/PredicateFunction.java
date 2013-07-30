@@ -35,21 +35,22 @@ import org.apache.commons.lang3.Validate;
  * an instance whose delegate is not
  * <code>Serializable</code> will result in an exception.
  *
+ * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class PredicateFunction implements Function<Boolean>, Serializable {
+public final class PredicateFunction<A> implements Function<A, Boolean>, Serializable {
     /**
      * serialVersionUID declaration.
      */
-    private static final long serialVersionUID = -8858981355549412629L;
+    private static final long serialVersionUID = 5660724725036398625L;
     /** The {@link Predicate Predicate} I'm wrapping. */
-    private final Predicate predicate;
+    private final Predicate<? super A> predicate;
 
     /**
      * Create a new PredicateFunction.
      * @param predicate to adapt
      */
-    public PredicateFunction(Predicate predicate) {
+    public PredicateFunction(Predicate<? super A> predicate) {
         this.predicate = Validate.notNull(predicate, "Predicate argument was null");
     }
 
@@ -61,8 +62,8 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
      *
      * @return a non-<code>null</code> <code>Boolean</code> instance
      */
-    public Boolean evaluate() {
-        return Boolean.valueOf(predicate.test());
+    public Boolean evaluate(A obj) {
+        return Boolean.valueOf(predicate.test(obj));
     }
 
     /**
@@ -70,7 +71,8 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
      */
     @Override
     public boolean equals(Object that) {
-        return that == this || (that instanceof PredicateFunction && equals((PredicateFunction) that));
+        return that == this
+                || (that instanceof PredicateFunction<?> && equals((PredicateFunction<?>) that));
     }
 
     /**
@@ -78,7 +80,7 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
      * @param that PredicateFunction to test
      * @return boolean
      */
-    public boolean equals(PredicateFunction that) {
+    public boolean equals(PredicateFunction<?> that) {
         return null != that && predicate.equals(that.predicate);
     }
 
@@ -102,11 +104,12 @@ public final class PredicateFunction implements Function<Boolean>, Serializable 
 
     /**
      * Adapt a Predicate to the Function interface.
+     * @param <A> the argument type.
      * @param predicate to adapt
      * @return PredicateFunction
      */
-    public static PredicateFunction adapt(Predicate predicate) {
-        return null == predicate ? null : new PredicateFunction(predicate);
+    public static <A> PredicateFunction<A> adapt(Predicate<? super A> predicate) {
+        return null == predicate ? null : new PredicateFunction<A>(predicate);
     }
 
 }

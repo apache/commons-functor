@@ -16,8 +16,8 @@
  */
 package org.apache.commons.functor.generator;
 
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -30,25 +30,25 @@ import org.apache.commons.lang3.Validate;
 public class TransformedGenerator<I, E> extends BaseGenerator<E> {
 
     /**
-     * The UnaryFunction to apply to each element.
+     * The Function to apply to each element.
      */
-    private final UnaryFunction<? super I, ? extends E> func;
+    private final Function<? super I, ? extends E> func;
 
     /**
      * Create a new TransformedGenerator.
      * @param wrapped Generator to transform
-     * @param func UnaryFunction to apply to each element
+     * @param func Function to apply to each element
      */
-    public TransformedGenerator(Generator<? extends I> wrapped, UnaryFunction<? super I, ? extends E> func) {
+    public TransformedGenerator(Generator<? extends I> wrapped, Function<? super I, ? extends E> func) {
         super(Validate.notNull(wrapped, "Generator argument was null"));
-        this.func = Validate.notNull(func, "UnaryFunction argument was null");
+        this.func = Validate.notNull(func, "Function argument was null");
     }
 
     /**
      * {@inheritDoc}
      */
-    public void run(final UnaryProcedure<? super E> proc) {
-        getWrappedGenerator().run(new UnaryProcedure<I>() {
+    public void run(final Procedure<? super E> proc) {
+        getWrappedGenerator().run(new Procedure<I>() {
             public void run(I obj) {
                 proc.run(func.evaluate(obj));
             }

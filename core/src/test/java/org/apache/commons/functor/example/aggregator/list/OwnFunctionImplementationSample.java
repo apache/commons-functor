@@ -18,7 +18,7 @@ package org.apache.commons.functor.example.aggregator.list;
 
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.aggregator.ArrayListBackedAggregator;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -63,7 +63,7 @@ public class OwnFunctionImplementationSample {
      * This function returns the index of the first occurrence in the list of
      * the given value.
      */
-    static class OwnFunction implements UnaryFunction<List<Integer>, Integer> {
+    static class OwnFunction implements Function<List<Integer>, Integer> {
         /** Value to find in the list. */
         private int valueToFind;
 

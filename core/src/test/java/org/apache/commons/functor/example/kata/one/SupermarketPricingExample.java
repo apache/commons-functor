@@ -18,13 +18,13 @@ package org.apache.commons.functor.example.kata.one;
 
 import static org.junit.Assert.assertEquals;
 
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.adapter.BinaryFunctionUnaryFunction;
+import org.apache.commons.functor.Function;
+import org.apache.commons.functor.adapter.BinaryFunctionFunction;
 import org.apache.commons.functor.core.Identity;
 import org.apache.commons.functor.core.comparator.IsGreaterThan;
 import org.apache.commons.functor.core.composite.Composite;
-import org.apache.commons.functor.core.composite.ConditionalUnaryFunction;
-import org.apache.commons.functor.core.composite.UnaryCompositeBinaryFunction;
+import org.apache.commons.functor.core.composite.ConditionalFunction;
+import org.apache.commons.functor.core.composite.CompositeBinaryFunction;
 import org.junit.Test;
 
 /**
@@ -121,7 +121,7 @@ public class SupermarketPricingExample {
             "Banana",
             "SKU-0002",
             ToMoney.from(
-                new ConditionalUnaryFunction<Integer, Number>(
+                new ConditionalFunction<Integer, Number>(
                     IsGreaterThan.instance(new Integer(3)),
                     Multiply.by(25),
                     Multiply.by(33))));
@@ -144,8 +144,8 @@ public class SupermarketPricingExample {
             "Banana",
             "SKU-0002",
             ToMoney.from(
-                new BinaryFunctionUnaryFunction<Integer, Number>(
-                    new UnaryCompositeBinaryFunction<Integer, Integer, Number>(
+                new BinaryFunctionFunction<Integer, Number>(
+                    new CompositeBinaryFunction<Integer, Integer, Number>(
                         Add.instance(),
                         Composite.function(
                             Multiply.by(100),
@@ -182,7 +182,7 @@ public class SupermarketPricingExample {
             "SKU-0003",
             ToMoney.from(
                     Composite.function(Multiply.by(40),
-                    BinaryFunctionUnaryFunction.adapt(new UnaryCompositeBinaryFunction<Number, Number, Number>(Subtract.instance(),
+                    BinaryFunctionFunction.adapt(new CompositeBinaryFunction<Number, Number, Number>(Subtract.instance(),
                             new Identity<Number>(),
                             Divide.by(3))))));
 
@@ -204,11 +204,11 @@ public class SupermarketPricingExample {
      * and we haven't even considered things
      * something like "buy 3, get 2 free", etc.
      *
-     * Perhaps a special UnaryFunction instance is in
+     * Perhaps a special Function instance is in
      * order:
      */
 
-    class BuyNGetMFree implements UnaryFunction<Number, Number> {
+    class BuyNGetMFree implements Function<Number, Number> {
        public BuyNGetMFree(int n, int m, int costPerUnit) {
            this.n = n;
            this.m = m;

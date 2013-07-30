@@ -19,12 +19,12 @@ package org.apache.commons.functor.adapter;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryProcedure;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
- * {@link UnaryProcedure UnaryProcedure}
+ * {@link Procedure Procedure}
  * to the
  * {@link BinaryProcedure BinaryProcedure} interface
  * by ignoring the first binary argument.
@@ -45,15 +45,15 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = 513435556181843298L;
-    /** The {@link UnaryProcedure UnaryProcedure} I'm wrapping. */
-    private final UnaryProcedure<? super R> procedure;
+    /** The {@link Procedure Procedure} I'm wrapping. */
+    private final Procedure<? super R> procedure;
 
     /**
      * Create a new IgnoreLeftProcedure.
      * @param procedure to adapt
      */
-    public IgnoreLeftProcedure(UnaryProcedure<? super R> procedure) {
-        this.procedure = Validate.notNull(procedure, "UnaryProcedure argument was null");
+    public IgnoreLeftProcedure(Procedure<? super R> procedure) {
+        this.procedure = Validate.notNull(procedure, "Procedure argument was null");
     }
 
     /**
@@ -99,13 +99,13 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
     }
 
     /**
-     * Adapt a UnaryProcedure to the BinaryProcedure interface.
+     * Adapt a Procedure to the BinaryProcedure interface.
      * @param <L> left type
      * @param <R> right type
      * @param procedure to adapt
      * @return IgnoreLeftProcedure<L, R>
      */
-    public static <L, R> IgnoreLeftProcedure<L, R> adapt(UnaryProcedure<? super R> procedure) {
+    public static <L, R> IgnoreLeftProcedure<L, R> adapt(Procedure<? super R> procedure) {
         return null == procedure ? null : new IgnoreLeftProcedure<L, R>(procedure);
     }
 

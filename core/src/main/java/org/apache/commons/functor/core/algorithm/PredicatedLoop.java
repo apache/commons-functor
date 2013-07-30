@@ -18,15 +18,15 @@ package org.apache.commons.functor.core.algorithm;
 
 import java.io.Serializable;
 
-import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.NullaryPredicate;
+import org.apache.commons.functor.NullaryProcedure;
 
 /**
  * Base class for predicated procedure algorithms.
  *
  * @version $Revision$ $Date$
  */
-abstract class PredicatedLoop implements Procedure, Serializable {
+abstract class PredicatedLoop implements NullaryProcedure, Serializable {
     /**
      * serialVersionUID declaration.
      */
@@ -34,35 +34,35 @@ abstract class PredicatedLoop implements Procedure, Serializable {
     /**
      * The procedure body to execute.
      */
-    private final Procedure body;
+    private final NullaryProcedure body;
     /**
      * The test wether to keep going.
      */
-    private final Predicate test;
+    private final NullaryPredicate test;
 
     /**
      * Create a new PredicatedLoop.
      * @param body to execute
      * @param test whether to keep going
      */
-    protected PredicatedLoop(Procedure body, Predicate test) {
+    protected PredicatedLoop(NullaryProcedure body, NullaryPredicate test) {
         this.body = body;
         this.test = test;
     }
 
     /**
      * Get the body of this loop.
-     * @return Procedure
+     * @return NullaryProcedure
      */
-    protected Procedure getBody() {
+    protected NullaryProcedure getBody() {
         return body;
     }
 
     /**
      * Get the test for this loop.
-     * @return Predicate
+     * @return NullaryPredicate
      */
-    protected Predicate getTest() {
+    protected NullaryPredicate getTest() {
         return test;
     }
 

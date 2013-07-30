@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.apache.commons.functor.core.RightIdentity;
@@ -46,13 +46,13 @@ public class TestLeftBoundFunction extends BaseFunctorTest {
 
     @Test
     public void testEvaluate() throws Exception {
-        UnaryFunction<Object, Object> f = new LeftBoundFunction<Object, Object>(RightIdentity.FUNCTION,"foo");
+        Function<Object, Object> f = new LeftBoundFunction<Object, Object>(RightIdentity.FUNCTION,"foo");
         assertEquals("xyzzy",f.evaluate("xyzzy"));
     }
 
     @Test
     public void testEquals() throws Exception {
-        UnaryFunction<Object, Object> f = new LeftBoundFunction<Object, Object>(RightIdentity.FUNCTION,"xyzzy");
+        Function<Object, Object> f = new LeftBoundFunction<Object, Object>(RightIdentity.FUNCTION,"xyzzy");
         assertEquals(f,f);
         assertObjectsAreEqual(f,new LeftBoundFunction<Object, Object>(RightIdentity.FUNCTION,"xyzzy"));
         assertObjectsAreNotEqual(f,Constant.of("xyzzy"));

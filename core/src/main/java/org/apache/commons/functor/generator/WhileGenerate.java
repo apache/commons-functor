@@ -16,12 +16,12 @@
  */
 package org.apache.commons.functor.generator;
 
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Predicate;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Wrap another {@link Generator} such that {@link #run(UnaryProcedure)} continues
+ * Wrap another {@link Generator} such that {@link #run(Procedure)} continues
  * as long as a condition is true (test before).
  *
  * @param <E> the type of elements held in this generator.
@@ -32,23 +32,23 @@ public class WhileGenerate<E> extends BaseGenerator<E> {
     /**
      * The condition has to verified in order to execute the generation.
      */
-    private final UnaryPredicate<? super E> test;
+    private final Predicate<? super E> test;
 
     /**
      * Create a new WhileGenerate.
-     * @param test {@link UnaryPredicate}
+     * @param test {@link Predicate}
      * @param wrapped {@link Generator}
      */
-    public WhileGenerate(UnaryPredicate<? super E> test, Generator<? extends E> wrapped) {
+    public WhileGenerate(Predicate<? super E> test, Generator<? extends E> wrapped) {
         super(Validate.notNull(wrapped, "Generator argument was null"));
-        this.test = Validate.notNull(test, "UnaryPredicate argument was null");
+        this.test = Validate.notNull(test, "Predicate argument was null");
     }
 
     /**
      * {@inheritDoc}
      */
-    public void run(final UnaryProcedure<? super E> proc) {
-        getWrappedGenerator().run(new UnaryProcedure<E>() {
+    public void run(final Procedure<? super E> proc) {
+        getWrappedGenerator().run(new Procedure<E>() {
             public void run(E obj) {
                 if (!test.test(obj)) {
                     getWrappedGenerator().stop();

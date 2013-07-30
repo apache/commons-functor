@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Predicate;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.util.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
@@ -54,7 +54,7 @@ public class TestFilteredGenerator
     // ------------------------------------------------------------------------
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullUnaryPredicate() {
+    public void testConstructorProhibitsNullPredicate() {
         new FilteredGenerator<Integer>(filteredGenerator, null);
     }
 
@@ -64,7 +64,7 @@ public class TestFilteredGenerator
     }
 
     @Test(expected=NullPointerException.class)
-    public void testConstructorProhibitsNullUnaryPredicateOrNullWrappedGenerator() {
+    public void testConstructorProhibitsNullPredicateOrNullWrappedGenerator() {
         new FilteredGenerator<Integer>(null, null);
     }
 
@@ -76,7 +76,7 @@ public class TestFilteredGenerator
         assertTrue(!filteredGenerator.equals((FilteredGenerator<Integer>)null));
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new FilteredGenerator<Integer>(
-			new IntegerRange(1, 10), new UnaryPredicate<Integer>() {
+			new IntegerRange(1, 10), new Predicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj % 2 == 0;
 				}
@@ -97,7 +97,7 @@ public class TestFilteredGenerator
     @Test
     public void testGenerate() {
     	final List<Integer> evenNumbers = new ArrayList<Integer>();
-    	filteredGenerator.run(new UnaryProcedure<Integer>() {
+    	filteredGenerator.run(new Procedure<Integer>() {
     		public void run(Integer obj) {
     			evenNumbers.add(obj);
     		}
@@ -111,7 +111,7 @@ public class TestFilteredGenerator
     // Attributes
     // ------------------------------------------------------------------------
     private Generator<Integer> wrappedGenerator = null;
-    private UnaryPredicate<Integer> isEven = new UnaryPredicate<Integer>()
+    private Predicate<Integer> isEven = new Predicate<Integer>()
     {
         public boolean test( Integer obj ) {
             return obj % 2 == 0;

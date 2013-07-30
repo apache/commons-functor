@@ -19,17 +19,17 @@ package org.apache.commons.functor.core.algorithm;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
+import org.apache.commons.functor.Predicate;
+import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.Generator;
 
 /**
- * Tests whether a {@link Generator} contains an element that matches a {@link UnaryPredicate}.
+ * Tests whether a {@link Generator} contains an element that matches a {@link Predicate}.
  *
  * @param <T> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public final class GeneratorContains<T> implements BinaryPredicate<Generator<? extends T>, UnaryPredicate<? super T>>,
+public final class GeneratorContains<T> implements BinaryPredicate<Generator<? extends T>, Predicate<? super T>>,
         Serializable {
     /**
      * serialVersionUID declaration.
@@ -45,11 +45,11 @@ public final class GeneratorContains<T> implements BinaryPredicate<Generator<? e
      *
      * @param <T> the predicate argument type.
      */
-    private static class ContainsProcedure<T> implements UnaryProcedure<T> {
+    private static class ContainsProcedure<T> implements Procedure<T> {
         /**
          * The wrapped predicate.
          */
-        private final UnaryPredicate<? super T> pred;
+        private final Predicate<? super T> pred;
         /**
          * Flag to mark if the wrapped predicate succeeded or not.
          */
@@ -60,7 +60,7 @@ public final class GeneratorContains<T> implements BinaryPredicate<Generator<? e
          *
          * @param pred The wrapped predicate
          */
-        public ContainsProcedure(UnaryPredicate<? super T> pred) {
+        public ContainsProcedure(Predicate<? super T> pred) {
             this.pred = pred;
         }
 
@@ -75,9 +75,9 @@ public final class GeneratorContains<T> implements BinaryPredicate<Generator<? e
     /**
      * {@inheritDoc}
      * @param left Generator
-     * @param right UnaryPredicate
+     * @param right Predicate
      */
-    public boolean test(Generator<? extends T> left, UnaryPredicate<? super T> right) {
+    public boolean test(Generator<? extends T> left, Predicate<? super T> right) {
         ContainsProcedure<T> findProcedure = new ContainsProcedure<T>(right);
         left.run(findProcedure);
         return findProcedure.found;

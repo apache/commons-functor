@@ -23,7 +23,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.apache.commons.functor.core.LeftIdentity;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class TestRightBoundPredicate extends BaseFunctorTest {
 
     @Test
     public void testTest() throws Exception {
-        UnaryPredicate<Boolean> f = new RightBoundPredicate<Boolean>(
+        Predicate<Boolean> f = new RightBoundPredicate<Boolean>(
                 new BinaryFunctionBinaryPredicate<Boolean, Object>(LeftIdentity.<Boolean, Object> function()), "foo");
         assertTrue(f.test(Boolean.TRUE));
         assertFalse(f.test(Boolean.FALSE));
@@ -54,7 +54,7 @@ public class TestRightBoundPredicate extends BaseFunctorTest {
 
     @Test
     public void testEquals() throws Exception {
-        UnaryPredicate<Boolean> f = new RightBoundPredicate<Boolean>(Constant.TRUE, "xyzzy");
+        Predicate<Boolean> f = new RightBoundPredicate<Boolean>(Constant.TRUE, "xyzzy");
         assertEquals(f, f);
         assertObjectsAreEqual(f, new RightBoundPredicate<Boolean>(Constant.TRUE, "xyzzy"));
         assertObjectsAreNotEqual(f, Constant.TRUE);

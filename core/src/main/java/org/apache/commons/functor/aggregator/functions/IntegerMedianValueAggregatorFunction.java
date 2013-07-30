@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 
 /**
  * Aggregator function to be used with subclasses of
@@ -28,7 +28,7 @@ import org.apache.commons.functor.UnaryFunction;
  * which computes the <a href="http://en.wikipedia.org/wiki/Median">median</a>
  * of all the numbers in the list.
  */
-public final class IntegerMedianValueAggregatorFunction implements UnaryFunction<List<Integer>, Integer> {
+public final class IntegerMedianValueAggregatorFunction implements Function<List<Integer>, Integer> {
     /**
      * Flag to indicate whether we are going to operate on a copy of the list
      * given or not. In order to compute the median, we need to sort the list

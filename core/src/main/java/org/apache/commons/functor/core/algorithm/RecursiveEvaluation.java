@@ -18,47 +18,47 @@ package org.apache.commons.functor.core.algorithm;
 
 import java.io.Serializable;
 
-import org.apache.commons.functor.Function;
+import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Tail recursion for {@link Function functions}. If the {@link Function}
+ * Tail recursion for {@link NullaryFunction functions}. If the {@link NullaryFunction}
  * returns another function of type <code>functionType</code>, that function
  * is executed. Functions are executed until a non function value or a
  * function of a type other than that expected is returned.
  */
-public class RecursiveEvaluation implements Function<Object>, Serializable {
+public class RecursiveEvaluation implements NullaryFunction<Object>, Serializable {
     /**
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -7992078213921938619L;
     /**
-     * The initial recursive Function type.
+     * The initial recursive NullaryFunction type.
      */
     private final Class<?> functionType;
     /**
-     * The initial, potentially recursive Function.
+     * The initial, potentially recursive NullaryFunction.
      */
-    private Function<?> function;
+    private NullaryFunction<?> function;
 
     /**
      * Create a new RecursiveEvaluation. Recursion will continue while the
      * returned value is of the same runtime class as <code>function</code>.
-     * @param function initial, potentially recursive Function
+     * @param function initial, potentially recursive NullaryFunction
      */
-    public RecursiveEvaluation(Function<?> function) {
+    public RecursiveEvaluation(NullaryFunction<?> function) {
         this(function, getClass(function));
     }
 
     /**
      * Create a new RecursiveEvaluation.
-     * @param function initial, potentially recursive Function
+     * @param function initial, potentially recursive NullaryFunction
      * @param functionType as long as result is an instance, keep processing.
      */
-    public RecursiveEvaluation(Function<?> function, Class<?> functionType) {
-        Validate.notNull(function, "Function argument was null");
-        if (!Function.class.isAssignableFrom(functionType)) {
-            throw new IllegalArgumentException(Function.class + " is not assignable from " + functionType);
+    public RecursiveEvaluation(NullaryFunction<?> function, Class<?> functionType) {
+        Validate.notNull(function, "NullaryFunction argument was null");
+        if (!NullaryFunction.class.isAssignableFrom(functionType)) {
+            throw new IllegalArgumentException(NullaryFunction.class + " is not assignable from " + functionType);
         }
         this.function = function;
         this.functionType = Validate.notNull(functionType, "FunctionType argument was null");
@@ -74,7 +74,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
         while (true) {
             result = function.evaluate();
             if (functionType.isInstance(result)) {
-                function = (Function<?>) result;
+                function = (NullaryFunction<?>) result;
                 continue;
             } else {
                 break;
@@ -118,7 +118,7 @@ public class RecursiveEvaluation implements Function<Object>, Serializable {
      * @param f Object to check
      * @return Class found
      */
-    private static Class<?> getClass(Function<?> f) {
+    private static Class<?> getClass(NullaryFunction<?> f) {
         return f == null ? null : f.getClass();
     }
 }

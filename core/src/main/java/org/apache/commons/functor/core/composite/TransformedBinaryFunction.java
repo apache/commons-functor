@@ -19,11 +19,11 @@ package org.apache.commons.functor.core.composite;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryFunction;
+import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
 
 /**
- * A BinaryFunction whose result is then run through a UnaryFunction.
+ * A BinaryFunction whose result is then run through a Function.
  *
  * @param <L> the left argument type.
  * @param <R> the right argument type.
@@ -53,17 +53,17 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
         /**
          * The following function.
          */
-        private UnaryFunction<? super X, ? extends T> following;
+        private Function<? super X, ? extends T> following;
 
         /**
          * Create a new Helper.
          * @param preceding BinaryFunction
-         * @param following UnaryFunction
+         * @param following Function
          */
         private Helper(BinaryFunction<? super L, ? super R, ? extends X> preceding,
-                UnaryFunction<? super X, ? extends T> following) {
+                Function<? super X, ? extends T> following) {
             this.preceding = Validate.notNull(preceding, "BinaryFunction argument was null");
-            this.following = Validate.notNull(following, "UnaryFunction argument was null");
+            this.following = Validate.notNull(following, "Function argument was null");
         }
 
         /**
@@ -83,10 +83,10 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      * Create a new TransformedBinaryFunction.
      * @param <X> the following function left argument.
      * @param preceding BinaryFunction
-     * @param following UnaryFunction
+     * @param following Function
      */
     public <X> TransformedBinaryFunction(BinaryFunction<? super L, ? super R, ? extends X> preceding,
-            UnaryFunction<? super X, ? extends T> following) {
+            Function<? super X, ? extends T> following) {
         this.helper = new Helper<X, L, R, T>(preceding, following);
     }
 

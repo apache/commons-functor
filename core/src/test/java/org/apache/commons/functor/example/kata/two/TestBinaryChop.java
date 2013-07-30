@@ -21,9 +21,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.functor.Function;
-import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.NullaryFunction;
+import org.apache.commons.functor.NullaryPredicate;
+import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.core.algorithm.RecursiveEvaluation;
 import org.apache.commons.functor.core.algorithm.UntilDo;
 import org.apache.commons.functor.generator.util.IntegerRange;
@@ -209,7 +209,7 @@ public class TestBinaryChop {
      * // the result index is between
      * // low (inclusive) and high (exclusive),
      * // or high is 0 (the list is empty)
-     * Predicate INV = new Predicate() {
+     * NullaryPredicate INV = new NullaryPredicate() {
      *   public boolean test() {
      *    return high == 0 ||
      *          (low <= result && result < high);
@@ -218,7 +218,7 @@ public class TestBinaryChop {
      *
      * is a valid invariant in our binary search, and that:
      *
-     * Predicate TERM = new Predicate() {
+     * NullaryPredicate TERM = new NullaryPredicate() {
      *   public boolean test() {
      *    return (high - low) <= 1;
      *   }
@@ -230,7 +230,7 @@ public class TestBinaryChop {
      * closer together, without violating
      * our invariant:
      *
-     * Procedure BODY = new Procedure() {
+     * NullaryProcedure BODY = new NullaryProcedure() {
      *   public void run() {
      *     int mid = (high + low) / 2;
      *     if (greaterThan(list,mid,seeking)) {
@@ -252,12 +252,12 @@ public class TestBinaryChop {
      *   Algorithms.untildo(BODY,TERM);
      *
      * Since we'll want to share state among the TERM and BODY,
-     * let's declare a single interface for the TERM Predicate and
-     * the BODY Procedure.  We'll be calculating a result within
-     * the loop, so let's add a Function implementation as well,
+     * let's declare a single interface for the TERM NullaryPredicate and
+     * the BODY NullaryProcedure.  We'll be calculating a result within
+     * the loop, so let's add a NullaryFunction implementation as well,
      * as a way of retrieving that result:
      */
-    interface Loop extends Predicate, Procedure, Function<Object> {
+    interface Loop extends NullaryPredicate, NullaryProcedure, NullaryFunction<Object> {
         /** The terminating condition. */
         boolean test();
         /** The loop body. */
@@ -341,32 +341,32 @@ public class TestBinaryChop {
             seeking = aSeeking;
             list = aList;
 
-            from(new Procedure() {
+            from(new NullaryProcedure() {
                 public void run() {
                     low = 0;
                     high = list.size();
                 }
             });
 
-            invariant(new Predicate() {
+            invariant(new NullaryPredicate() {
                 public boolean test() {
                     return high == 0 || low < high;
                 }
             });
 
-            variant(new Function<Object>() {
+            variant(new NullaryFunction<Object>() {
                 public Object evaluate() {
                     return new Integer(high - low);
                 }
             });
 
-            until(new Predicate() {
+            until(new NullaryPredicate() {
                 public boolean test() {
                     return high - low <= 1;
                 }
             });
 
-            loop(new Procedure() {
+            loop(new NullaryProcedure() {
                 public void run() {
                     int mid = (high + low) / 2;
                     if (BaseBinaryChop.greaterThan(list,mid,seeking)) {
@@ -429,7 +429,7 @@ public class TestBinaryChop {
      * We can use the Algorithms.recuse method
      * to implement that as tail recursion.
      *
-     * Here the anonymous Function implemenation
+     * Here the anonymous NullaryFunction implemenation
      * holds this itermediate state, rather than
      * the VM's call stack.
      *
@@ -441,7 +441,7 @@ public class TestBinaryChop {
     public void testTailRecursive() {
         chopTest(new BaseBinaryChop() {
             public int find(final Integer seeking, final List<Integer> list) {
-                return ((Number) new RecursiveEvaluation(new Function<Object>() {
+                return ((Number) new RecursiveEvaluation(new NullaryFunction<Object>() {
                     public Object evaluate() {
                         if (high - low > 1) {
                             int mid = (high + low) / 2;
@@ -510,14 +510,14 @@ public class TestBinaryChop {
     /**
      * We can do that using tail recursion as well.
      *
-     * Again, the anonymous Function implemenation
+     * Again, the anonymous NullaryFunction implemenation
      * holds the "continuation" state.
      */
     @Test
     public void testTailRecursive2() {
         chopTest(new BaseBinaryChop() {
             public int find(final Integer seeking, final List<Integer> list) {
-                return ((Number) new RecursiveEvaluation(new Function<Object>() {
+                return ((Number) new RecursiveEvaluation(new NullaryFunction<Object>() {
                     public Object evaluate() {
                         if (sublist.isEmpty()) {
                             return BaseBinaryChop.NEGATIVE_ONE;

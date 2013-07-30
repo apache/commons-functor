@@ -19,12 +19,12 @@ package org.apache.commons.functor.adapter;
 import java.io.Serializable;
 
 import org.apache.commons.functor.BinaryPredicate;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
- * {@link UnaryPredicate UnaryPredicate}
+ * {@link Predicate Predicate}
  * to the
  * {@link BinaryPredicate BinaryPredicate} interface
  * by ignoring the second binary argument.
@@ -45,15 +45,15 @@ public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, 
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -4236624667788627722L;
-    /** The {@link UnaryPredicate UnaryPredicate} I'm wrapping. */
-    private final UnaryPredicate<? super L> predicate;
+    /** The {@link Predicate Predicate} I'm wrapping. */
+    private final Predicate<? super L> predicate;
 
     /**
      * Create a new IgnoreRightPredicate.
      * @param predicate left
      */
-    public IgnoreRightPredicate(UnaryPredicate<? super L> predicate) {
-        this.predicate = Validate.notNull(predicate, "UnaryPredicate argument was null");
+    public IgnoreRightPredicate(Predicate<? super L> predicate) {
+        this.predicate = Validate.notNull(predicate, "Predicate argument was null");
     }
 
     /**
@@ -100,13 +100,13 @@ public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, 
     }
 
     /**
-     * Adapt a UnaryPredicate as an IgnoreRightPredicate.
+     * Adapt a Predicate as an IgnoreRightPredicate.
      * @param <L> left type
      * @param <R> right type
      * @param predicate to adapt
      * @return IgnoreRightPredicate<L, R>
      */
-    public static <L, R> IgnoreRightPredicate<L, R> adapt(UnaryPredicate<? super L> predicate) {
+    public static <L, R> IgnoreRightPredicate<L, R> adapt(Predicate<? super L> predicate) {
         return null == predicate ? null : new IgnoreRightPredicate<L, R>(predicate);
     }
 

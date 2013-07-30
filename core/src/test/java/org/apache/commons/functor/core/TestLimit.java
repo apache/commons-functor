@@ -22,8 +22,8 @@ import static org.junit.Assert.fail;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryPredicate;
+import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.UnaryPredicate;
 import org.junit.Test;
 
 /**
@@ -45,7 +45,7 @@ public class TestLimit extends BaseFunctorTest {
 
     @Test
     public void testZero() throws Exception {
-        Predicate p = new Limit(0);
+        NullaryPredicate p = new Limit(0);
         assertTrue(! p.test());
         assertTrue(! p.test());
         assertTrue(! p.test());
@@ -63,7 +63,7 @@ public class TestLimit extends BaseFunctorTest {
 
     @Test
     public void testTestNullary() throws Exception {
-        Predicate p = new Limit(3);
+        NullaryPredicate p = new Limit(3);
         assertTrue(p.test());
         assertTrue(p.test());
         assertTrue(p.test());
@@ -72,7 +72,7 @@ public class TestLimit extends BaseFunctorTest {
 
     @Test
     public void testTestUnary() throws Exception {
-        UnaryPredicate<Object> p = new Limit(3);
+        Predicate<Object> p = new Limit(3);
         assertTrue(p.test(null));
         assertTrue(p.test(null));
         assertTrue(p.test(null));

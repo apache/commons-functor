@@ -16,12 +16,12 @@
  */
 package org.apache.commons.functor.example.lines;
 
-import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.NullaryProcedure;
 
 /**
  * @version $Revision$ $Date$
  */
-public class Count implements Procedure {
+public class Count implements NullaryProcedure {
     public void run() {
         count++;
     }

@@ -25,7 +25,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
-import org.apache.commons.functor.UnaryPredicate;
+import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.core.Constant;
 import org.junit.Test;
 
@@ -52,7 +52,7 @@ public class TestIsElementOf extends BaseFunctorTest {
         list.add(new Integer(10));
         list.add(new Integer(15));
 
-        UnaryPredicate<Integer> p = IsElementOf.instance(list);
+        Predicate<Integer> p = IsElementOf.instance(list);
         assertTrue(p.test(new Integer(5)));
         assertTrue(p.test(new Integer(10)));
         assertTrue(p.test(new Integer(15)));
@@ -66,7 +66,7 @@ public class TestIsElementOf extends BaseFunctorTest {
     public void testTestArray() throws Exception {
         int[] list = new int[] { 5, 10, 15 };
 
-        UnaryPredicate<Integer> p = IsElementOf.instance(list);
+        Predicate<Integer> p = IsElementOf.instance(list);
         assertTrue(p.test(new Integer(5)));
         assertTrue(p.test(new Integer(10)));
         assertTrue(p.test(new Integer(15)));

@@ -19,12 +19,12 @@ package org.apache.commons.functor.core.composite;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.BinaryProcedure;
+import org.apache.commons.functor.NullaryFunction;
+import org.apache.commons.functor.NullaryPredicate;
+import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
-import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryPredicate;
-import org.apache.commons.functor.UnaryProcedure;
 
 /**
  * Utility methods for creating conditional functors.
@@ -48,100 +48,101 @@ public final class Conditional {
     // ------------------------------------------------------------------------
 
     /**
-     * Create a guarded Procedure.
+     * Create a guarded NullaryProcedure.
      * @param q if
      * @param r then
-     * @return Procedure
+     * @return NullaryProcedure
      */
-    public static Procedure procedure(Predicate q, Procedure r) {
-        return new ConditionalProcedure(q, r);
+    public static NullaryProcedure procedure(NullaryPredicate q, NullaryProcedure r) {
+        return new ConditionalNullaryProcedure(q, r);
     }
 
     /**
-     * Create a conditional Procedure.
+     * Create a conditional NullaryProcedure.
      * @param q if
      * @param r then
      * @param s else
-     * @return Procedure
+     * @return NullaryProcedure
      */
-    public static Procedure procedure(Predicate q, Procedure r, Procedure s) {
-        return new ConditionalProcedure(q, r, s);
+    public static NullaryProcedure procedure(NullaryPredicate q, NullaryProcedure r, NullaryProcedure s) {
+        return new ConditionalNullaryProcedure(q, r, s);
     }
 
     /**
-     * Create a conditional Function.
+     * Create a conditional NullaryFunction.
      * @param <T> the input functions parameter type
      * @param q if
      * @param r then
      * @param s else
-     * @return Function<T>
+     * @return NullaryFunction<T>
      */
-    public static <T> Function<T> function(Predicate q, Function<? extends T> r, Function<? extends T> s) {
-        return new ConditionalFunction<T>(q, r, s);
+    public static <T> NullaryFunction<T> function(NullaryPredicate q,
+            NullaryFunction<? extends T> r, NullaryFunction<? extends T> s) {
+        return new ConditionalNullaryFunction<T>(q, r, s);
     }
 
     /**
-     * Create a conditional Predicate.
+     * Create a conditional NullaryPredicate.
      * @param q if
      * @param r then
      * @param s else
-     * @return Predicate
+     * @return NullaryPredicate
      */
-    public static Predicate predicate(Predicate q, Predicate r, Predicate s) {
-        return new ConditionalPredicate(q, r, s);
+    public static NullaryPredicate predicate(NullaryPredicate q, NullaryPredicate r, NullaryPredicate s) {
+        return new ConditionalNullaryPredicate(q, r, s);
     }
 
     /**
-     * Create a guarded UnaryProcedure.
+     * Create a guarded Procedure.
      *
      * @param <A> the predicates argument type.
      * @param q if
      * @param r then
-     * @return UnaryProcedure<A>
+     * @return Procedure<A>
      */
-    public static <A> UnaryProcedure<A> procedure(UnaryPredicate<? super A> q, UnaryProcedure<? super A> r) {
-        return new ConditionalUnaryProcedure<A>(q, r);
+    public static <A> Procedure<A> procedure(Predicate<? super A> q, Procedure<? super A> r) {
+        return new ConditionalProcedure<A>(q, r);
     }
 
     /**
-     * Create a conditional UnaryProcedure.
+     * Create a conditional Procedure.
      *
      * @param <A> the predicates argument type.
      * @param q if
      * @param r then
      * @param s else
-     * @return UnaryProcedure<A>
+     * @return Procedure<A>
      */
-    public static <A> UnaryProcedure<A> procedure(UnaryPredicate<? super A> q, UnaryProcedure<? super A> r,
-            UnaryProcedure<? super A> s) {
-        return new ConditionalUnaryProcedure<A>(q, r, s);
+    public static <A> Procedure<A> procedure(Predicate<? super A> q, Procedure<? super A> r,
+            Procedure<? super A> s) {
+        return new ConditionalProcedure<A>(q, r, s);
     }
 
     /**
-     * Create a conditional UnaryFunction.
+     * Create a conditional Function.
      * @param <A> the predicates argument type.
      * @param <T> the output function returned value type.
      * @param q if
      * @param r then
      * @param s else
-     * @return UnaryFunction<A, T>
+     * @return Function<A, T>
      */
-    public static <A, T> UnaryFunction<A, T> function(UnaryPredicate<? super A> q,
-            UnaryFunction<? super A, ? extends T> r, UnaryFunction<? super A, ? extends T> s) {
-        return new ConditionalUnaryFunction<A, T>(q, r, s);
+    public static <A, T> Function<A, T> function(Predicate<? super A> q,
+            Function<? super A, ? extends T> r, Function<? super A, ? extends T> s) {
+        return new ConditionalFunction<A, T>(q, r, s);
     }
 
     /**
-     * Create a conditional UnaryPredicate.
+     * Create a conditional Predicate.
      * @param <A> the predicates argument type.
      * @param q if
      * @param r then
      * @param s else
-     * @return UnaryPredicate<A>
+     * @return Predicate<A>
      */
-    public static <A> UnaryPredicate<A> predicate(UnaryPredicate<? super A> q, UnaryPredicate<? super A> r,
-            UnaryPredicate<? super A> s) {
-        return new ConditionalUnaryPredicate<A>(q, r, s);
+    public static <A> Predicate<A> predicate(Predicate<? super A> q, Predicate<? super A> r,
+            Predicate<? super A> s) {
+        return new ConditionalPredicate<A>(q, r, s);
     }
 
     /**

@@ -16,8 +16,8 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.NullaryPredicate;
+import org.apache.commons.functor.NullaryProcedure;
 
 /**
  * Until-do algorithm (test before).
@@ -36,7 +36,7 @@ public class UntilDo extends PredicatedLoop {
      * @param test whether to keep going
      * @param body to execute
      */
-    public UntilDo(Predicate test, Procedure body) {
+    public UntilDo(NullaryPredicate test, NullaryProcedure body) {
         super(body, test);
     }
 
