@@ -27,6 +27,7 @@ import org.apache.commons.lang3.Validate;
  * the constructor an ArrayList will be returned from the transform method.
  *
  * @param <E> the type of elements held in the adapted collection.
+ * @param <C> the type of the adapted collection
  * @since 1.0
  * @version $Revision$ $Date$
  */
@@ -72,6 +73,7 @@ public class CollectionTransformer<E, C extends Collection<? super E>> implement
 
     /**
      * Get a {@link CollectionTransformer} instance that simply returns any {@link Collection}.
+     * @param <E> the collection type
      * @return {@link CollectionTransformer}
      */
     public static <E> CollectionTransformer<E, Collection<E>> toCollection() {
