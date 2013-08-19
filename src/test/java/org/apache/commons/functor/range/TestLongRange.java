@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -29,8 +29,8 @@ import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.generator.Generator;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -80,17 +80,17 @@ public class TestLongRange extends BaseFunctorTest {
     public void testGenerateListExample() {
         // generates a collection of Integers from 0 (inclusive) to 10 (exclusive)
         {
-            List<? super Long> list = (List<? super Long>)(Ranges.longRange(0,10).to(new ArrayList<Long>()));
+            LongRange range = Ranges.longRange(0, 10);
             for (int i=0;i<10;i++) {
-                assertEquals(new Long(i),list.get(i));
+                assertEquals(new Long(i), range.next());
             }
         }
 
         // generates a collection of Integers from 10 (inclusive) to 0 (exclusive)
         {
-            List<? super Long> list = (List<? super Long>)(Ranges.longRange(10,0).to(new ArrayList<Long>()));
+            LongRange range = Ranges.longRange(10, 0);
             for (int i=10;i>0;i--) {
-                assertEquals(new Long(i),list.get(10-i));
+                assertEquals(new Long(i), range.next());
             }
         }
     }
@@ -135,45 +135,40 @@ public class TestLongRange extends BaseFunctorTest {
     @Test
     public void testObjectConstructor() {
         LongRange range = Ranges.longRange(new Long(0), new Long(5));
-        assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
+        assertEquals("[0, 1, 2, 3, 4]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
         range = Ranges.longRange(new Integer(0), new Long(5), new Long(1));
-        assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
+        assertEquals("[0, 1, 2, 3, 4]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
 
     @Test
     public void testReverseStep() {
         LongRange range = Ranges.longRange(10, 0, -2);
-        assertEquals("[10, 8, 6, 4, 2]", range.toCollection().toString());
-        assertEquals("[10, 8, 6, 4, 2]", range.toCollection().toString());
+        assertEquals("[10, 8, 6, 4, 2]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testStep() {
         LongRange range = Ranges.longRange(0, 10, 2);
-        assertEquals("[0, 2, 4, 6, 8]", range.toCollection().toString());
-        assertEquals("[0, 2, 4, 6, 8]", range.toCollection().toString());
+        assertEquals("[0, 2, 4, 6, 8]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testForwardRange() {
         LongRange range = Ranges.longRange(0, 5);
-        assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
-        assertEquals("[0, 1, 2, 3, 4]", range.toCollection().toString());
+        assertEquals("[0, 1, 2, 3, 4]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testReverseRange() {
         LongRange range = Ranges.longRange(5, 0);
-        assertEquals("[5, 4, 3, 2, 1]", range.toCollection().toString());
-        assertEquals("[5, 4, 3, 2, 1]", range.toCollection().toString());
+        assertEquals("[5, 4, 3, 2, 1]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testEdgeCase() {
         LongRange range = Ranges.longRange(Long.MAX_VALUE - 3L, Long.MAX_VALUE);
-        assertEquals("[9223372036854775804, 9223372036854775805, 9223372036854775806]", range.toCollection().toString());
-        assertEquals("[9223372036854775804, 9223372036854775805, 9223372036854775806]", range.toCollection().toString());
+        assertEquals("[9223372036854775804, 9223372036854775805, 9223372036854775806]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
     
     @Test
@@ -183,7 +178,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.CLOSED, 3L);
         // [-5L, 5L], 3L = -5L, -2L, 1L, 4L
         List<Long> expected = Arrays.asList(-5L, -2L, 1L, 4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -194,7 +189,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.CLOSED, 3L);
         // (-5L, 5L], 3L = -2L, 1L, 4L
         List<Long> expected = Arrays.asList(-2L, 1L, 4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -205,7 +200,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.OPEN, 3L);
         // (-5L, 5L], 3L = -5L, -2L, 1L, 4L
         List<Long> expected = Arrays.asList(-5L, -2L, 1L, 4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -216,7 +211,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.OPEN, 3L);
         // (-5L, 5L), 3L = -2L, 1L, 4L
         List<Long> expected = Arrays.asList(-2L, 1L, 4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -227,7 +222,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.CLOSED, 1L);
         // (-2L, 2L], 1L = -1L, 0L, 1L, 2L
         List<Long> expected = Arrays.asList(-1L, 0L, 1L, 2L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -238,7 +233,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.CLOSED, -3L);
         // [5L, -5L], -3L = 5L, 2L, -1L, -4L
         List<Long> expected = Arrays.asList(5L, 2L, -1L, -4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -249,7 +244,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.CLOSED, -3L);
         // (5L, -5L], -3L = 2L, -1L, -4L
         List<Long> expected = Arrays.asList(2L, -1L, -4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -260,7 +255,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.OPEN, -3L);
         // [5L, -5L), -3L = 5L, 2L, -1L, -4L
         List<Long> expected = Arrays.asList(5L, 2L, -1L, -4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -271,7 +266,7 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.OPEN, -3L);
         // (5L, -5L), -3L = 2L, -1L, -4L
         List<Long> expected = Arrays.asList(2L, -1L, -4L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -282,46 +277,40 @@ public class TestLongRange extends BaseFunctorTest {
                                         BoundType.OPEN, -1L);
         // [2L, -2L), -1L = 2L, 1L, 0L, -1L
         List<Long> expected = Arrays.asList(2L, 1L, 0L, -1L);
-        Collection<Long> elements = range.toCollection();
+        Collection<Long> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
     @Test
     public void testAscending() {
         final List<Long> list = new ArrayList<Long>();
-        ascLongRange.run(new UnaryProcedure<Long>() {
-
-            public void run(Long obj) {
-                list.add(obj);
-            }
-        });
+        for (Long l : ascLongRange) {
+            list.add(l);
+        }
         assertTrue(expectedAsc.containsAll(list));
     }
 
     @Test
     public void testDescending() {
         final List<Long> list = new ArrayList<Long>();
-        descLongRange.run(new UnaryProcedure<Long>() {
-
-            public void run(Long obj) {
-                list.add(obj);
-            }
-        });
+        for (Long l : descLongRange) {
+            list.add(l);
+        }
         assertTrue(expectedDesc.containsAll(list));
     }
 
     @Test
     public void testToCollection() {
-        Collection<Long> ascCol = ascLongRange.toCollection();
+        Collection<Long> ascCol = IteratorToGeneratorAdapter.adapt(ascLongRange).toCollection();
         assertEquals("Different collections", expectedAsc, ascCol);
-        Collection<Long> descCol = descLongRange.toCollection();
+        Collection<Long> descCol = IteratorToGeneratorAdapter.adapt(descLongRange).toCollection();
         assertEquals("Different collections", expectedDesc, descCol);
     }
 
     @Test
     public void testTransformedGenerator() {
         long expected = 45L;
-        long total = ascLongRange
+        long total = IteratorToGeneratorAdapter.adapt(ascLongRange)
             .to(new UnaryFunction<Generator<? extends Long>, Long>() {
 
                 public Long evaluate(Generator<? extends Long> obj) {
@@ -334,7 +323,7 @@ public class TestLongRange extends BaseFunctorTest {
             });
         assertEquals(expected, total);
         expected = 55L;
-        total = descLongRange
+        total = IteratorToGeneratorAdapter.adapt(descLongRange)
             .to(new UnaryFunction<Generator<? extends Long>, Long>() {
 
                 public Long evaluate(Generator<? extends Long> obj) {

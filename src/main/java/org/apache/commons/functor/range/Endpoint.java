@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
 
 /**
  * Represent an endpoint of a range. This can be the left endpoint or the right

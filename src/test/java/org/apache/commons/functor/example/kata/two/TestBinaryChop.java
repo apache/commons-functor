@@ -26,7 +26,8 @@ import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.core.algorithm.RecursiveEvaluation;
 import org.apache.commons.functor.core.algorithm.UntilDo;
-import org.apache.commons.functor.generator.range.IntegerRange;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
+import org.apache.commons.functor.range.IntegerRange;
 import org.junit.Test;
 
 /**
@@ -102,7 +103,7 @@ public class TestBinaryChop {
         assertEquals(-1, chopper.find(6, new int[] { 1, 3, 5, 7 }));
         assertEquals(-1, chopper.find(8, new int[] { 1, 3, 5, 7 }));
 
-        List<Integer> largeList = (List<Integer>) (new IntegerRange(0, 100001).toCollection());
+        List<Integer> largeList = (List<Integer>) (IteratorToGeneratorAdapter.adapt(new IntegerRange(0, 100001)).toCollection());
         assertEquals(-1, chopper.find(new Integer(-5), largeList));
         assertEquals(100000, chopper.find(new Integer(100000), largeList));
         assertEquals(0, chopper.find(new Integer(0), largeList));

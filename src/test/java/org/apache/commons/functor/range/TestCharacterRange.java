@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -29,8 +29,8 @@ import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.generator.Generator;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -119,38 +119,34 @@ public class TestCharacterRange extends BaseFunctorTest {
     public void testObjectConstructor() {
         CharacterRange range = Ranges.characterRange(new Character('a'),
                                                      new Character('e'));
-        assertEquals("[a, b, c, d, e]", range.toCollection().toString());
+        assertEquals("[a, b, c, d, e]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
         range = Ranges.characterRange(new Character('a'), new Character('e'),
                                       new Integer(1));
-        assertEquals("[a, b, c, d, e]", range.toCollection().toString());
+        assertEquals("[a, b, c, d, e]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testReverseStep() {
         CharacterRange range = Ranges.characterRange('k', 'a', -2);
-        assertEquals("[k, i, g, e, c, a]", range.toCollection().toString());
-        assertEquals("[k, i, g, e, c, a]", range.toCollection().toString());
+        assertEquals("[k, i, g, e, c, a]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testStep() {
         CharacterRange range = Ranges.characterRange('a', 'k', 2);
-        assertEquals("[a, c, e, g, i, k]", range.toCollection().toString());
-        assertEquals("[a, c, e, g, i, k]", range.toCollection().toString());
+        assertEquals("[a, c, e, g, i, k]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testForwardRange() {
         CharacterRange range = Ranges.characterRange('a', 'e');
-        assertEquals("[a, b, c, d, e]", range.toCollection().toString());
-        assertEquals("[a, b, c, d, e]", range.toCollection().toString());
+        assertEquals("[a, b, c, d, e]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     @Test
     public void testReverseRange() {
         CharacterRange range = Ranges.characterRange('e', 'a');
-        assertEquals("[e, d, c, b, a]", range.toCollection().toString());
-        assertEquals("[e, d, c, b, a]", range.toCollection().toString());
+        assertEquals("[e, d, c, b, a]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 
     // @Test
@@ -158,9 +154,9 @@ public class TestCharacterRange extends BaseFunctorTest {
     // CharacterRange range = Ranges.characterRange(Character.MAX_VALUE-3,
     // Character.MAX_VALUE);
     // assertEquals("[2147483644, 2147483645, 2147483646]",
-    // range.toCollection().toString());
+    // IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     // assertEquals("[2147483644, 2147483645, 2147483646]",
-    // range.toCollection().toString());
+    // IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     // }
 
     @Test
@@ -178,7 +174,7 @@ public class TestCharacterRange extends BaseFunctorTest {
         CharacterRange range =  Ranges.characterRange('b', BoundType.CLOSED, 'l', BoundType.CLOSED, 3);
         // [b, l], 3 = b, e, h, k
         List<Character> expected = Arrays.asList('b', 'e', 'h', 'k');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -188,7 +184,7 @@ public class TestCharacterRange extends BaseFunctorTest {
         CharacterRange range =  Ranges.characterRange('b', BoundType.OPEN, 'l', BoundType.CLOSED, 3);
         // (b, l], 3 = e, h, k
         List<Character> expected = Arrays.asList('e', 'h', 'k');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -198,7 +194,7 @@ public class TestCharacterRange extends BaseFunctorTest {
         CharacterRange range =  Ranges.characterRange('b', BoundType.CLOSED, 'l', BoundType.OPEN, 3);
         // [b, l), 3 = b, e, h, k
         List<Character> expected = Arrays.asList('b', 'e', 'h', 'k');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -208,7 +204,7 @@ public class TestCharacterRange extends BaseFunctorTest {
         CharacterRange range =  Ranges.characterRange('b', BoundType.OPEN, 'l', BoundType.OPEN, 3);
         // (b, l), 3 = e, h, k
         List<Character> expected = Arrays.asList('e', 'h', 'k');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -218,7 +214,7 @@ public class TestCharacterRange extends BaseFunctorTest {
         CharacterRange range =  Ranges.characterRange('d', BoundType.OPEN, 'h', BoundType.CLOSED, 1);
         // (d, h], 1 = e, f, g, h
         List<Character> expected = Arrays.asList('e', 'f', 'g', 'h');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -229,7 +225,7 @@ public class TestCharacterRange extends BaseFunctorTest {
                                                   BoundType.CLOSED, -3);
         // [l, b], -3 = l, i, f, c
         List<Character> expected = Arrays.asList('l', 'i', 'f', 'c');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -240,7 +236,7 @@ public class TestCharacterRange extends BaseFunctorTest {
                                                   BoundType.CLOSED, -3);
         // (l, b], -3 = i, f, c
         List<Character> expected = Arrays.asList('i', 'f', 'c');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -251,7 +247,7 @@ public class TestCharacterRange extends BaseFunctorTest {
                                                   BoundType.OPEN, -3);
         // [l, b), -3 = l, i, f, c
         List<Character> expected = Arrays.asList('l', 'i', 'f', 'c');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -262,7 +258,7 @@ public class TestCharacterRange extends BaseFunctorTest {
                                                   BoundType.OPEN, -3);
         // (l, b), -3 = i, f, c
         List<Character> expected = Arrays.asList('i', 'f', 'c');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -273,46 +269,40 @@ public class TestCharacterRange extends BaseFunctorTest {
                                                   BoundType.OPEN, -1);
         // [h, d), -1 = h, g, f
         List<Character> expected = Arrays.asList('h', 'g', 'f');
-        Collection<Character> elements = range.toCollection();
+        Collection<Character> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
     @Test
     public void testAscending() {
         final List<Character> list = new ArrayList<Character>();
-        ascCharRange.run(new UnaryProcedure<Character>() {
-
-            public void run(Character obj) {
-                list.add(obj);
-            }
-        });
+        for (char c : ascCharRange) {
+            list.add(c);
+        }
         assertTrue(expectedAsc.containsAll(list));
     }
 
     @Test
     public void testDescending() {
         final List<Character> list = new ArrayList<Character>();
-        descCharRange.run(new UnaryProcedure<Character>() {
-
-            public void run(Character obj) {
-                list.add(obj);
-            }
-        });
+        for (char c : ascCharRange) {
+            list.add(c);
+        }
         assertTrue(expectedDesc.containsAll(list));
     }
 
     @Test
     public void testToCollection() {
-        Collection<Character> ascCol = ascCharRange.toCollection();
+        Collection<Character> ascCol = IteratorToGeneratorAdapter.adapt(ascCharRange).toCollection();
         assertEquals("Different collections", expectedAsc, ascCol);
-        Collection<Character> descCol = descCharRange.toCollection();
+        Collection<Character> descCol = IteratorToGeneratorAdapter.adapt(descCharRange).toCollection();
         assertEquals("Different collections", expectedDesc, descCol);
     }
 
     @Test
     public void testTransformedGenerator() {
         int expected = 10;
-        List<Character> list = ascCharRange
+        List<Character> list = IteratorToGeneratorAdapter.adapt(ascCharRange)
             .to(new UnaryFunction<Generator<? extends Character>, List<Character>>() {
 
                 public List<Character> evaluate(Generator<? extends Character> obj) {
@@ -325,7 +315,7 @@ public class TestCharacterRange extends BaseFunctorTest {
             });
         assertEquals(expected, list.size());
         expected = 10;
-        list = descCharRange
+        list = IteratorToGeneratorAdapter.adapt(descCharRange)
             .to(new UnaryFunction<Generator<? extends Character>, List<Character>>() {
 
                 public List<Character> evaluate(Generator<? extends Character> obj) {

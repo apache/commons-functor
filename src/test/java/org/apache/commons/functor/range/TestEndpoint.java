@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

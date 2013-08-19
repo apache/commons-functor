@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
+
+import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -27,7 +28,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public class DoubleRange extends NumericRange<Double> {
+public class DoubleRange extends NumericRange<Double> implements Iterable<Double>, Iterator<Double> {
 
     // attributes
     // ---------------------------------------------------------------
@@ -45,6 +46,11 @@ public class DoubleRange extends NumericRange<Double> {
      * Increment step.
      */
     private final double step;
+
+    /**
+     * Current value.
+     */
+    private double currentValue;
 
     /**
      * Calculate default step.
@@ -105,6 +111,41 @@ public class DoubleRange extends NumericRange<Double> {
      * Create a new DoubleRange.
      *
      * @param from start
+     * @param to end
+     */
+    public DoubleRange(Endpoint<Double> from, Endpoint<Double> to) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
+                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+    }
+
+    /**
+     * Create a new DoubleRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     */
+    public DoubleRange(double from, BoundType leftBoundType, double to,
+                        BoundType rightBoundType) {
+        this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
+    }
+
+    /**
+     * Create a new DoubleRange.
+     *
+     * @param from start
+     * @param to end
+     * @param step increment
+     */
+    public DoubleRange(Endpoint<Double> from, Endpoint<Double> to, double step) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+    }
+
+    /**
+     * Create a new DoubleRange.
+     *
+     * @param from start
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
@@ -124,33 +165,15 @@ public class DoubleRange extends NumericRange<Double> {
                                                + " from " + from
                                                + " using step " + step);
         }
-    }
-
-    /**
-     * Create a new DoubleRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
-     */
-    public DoubleRange(Endpoint<Double> from, Endpoint<Double> to, double step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to
-            && Math.signum(step) != Math.signum(to.getValue().doubleValue()
-                                             - from.getValue().doubleValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
+        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = this.leftEndpoint.getValue();
+        } else {
+            this.currentValue = this.leftEndpoint.getValue() + this.step;
         }
     }
 
-    // methods
+    // range methods
     // ---------------------------------------------------------------
-
     /**
      * {@inheritDoc}
      */
@@ -171,43 +194,54 @@ public class DoubleRange extends NumericRange<Double> {
     public Double getStep() {
         return this.step;
     }
-
+ // iterable, iterator methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super Double> proc) {
-        final double step = this.getStep();
-        final boolean includeLeftValue = this.getLeftEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final boolean includeRightValue = this.getRightEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final double leftValue = this.getLeftEndpoint().getValue();
-        final double rightValue = this.getRightEndpoint().getValue();
+    public boolean hasNext() {
+        final double to = this.rightEndpoint.getValue();
         if (step < 0) {
-            final double from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (double i = from; i >= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue >= to;
             } else {
-                for (double i = from; i > rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue > to;
             }
         } else {
-            final double from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (double i = from; i <= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue <= to;
             } else {
-                for (double i = from; i < rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue < to;
             }
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Double next() {
+        final double step = this.getStep();
+        final double r = this.currentValue;
+        this.currentValue += step;
+        return r;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Iterator<Double> iterator() {
+        return this;
+    }
+
+    // object methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */

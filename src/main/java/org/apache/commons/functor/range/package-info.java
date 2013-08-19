@@ -15,28 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
-
 /**
- * Determine the bound type of a range.
- *
- * @see org.apache.commons.functor.generator.range.Range
- * @see org.apache.commons.functor.generator.range.Endpoint
- * @since 1.0
- * @version $Revision: $ $Date: $
+ * <p>
+ * Contains code related to Ranges.
+ * </p>
  */
-public enum BoundType {
-    // values
-    // ---------------------------------------------------------------
-    /**
-     * Represents an <b>open</b> bound, which value <b>is not</b> included in
-     * the range.
-     */
-    OPEN,
-    /**
-     * Represents a <b>closed</b> bound, which value <b>is included</b> in the
-     * range.
-     */
-    CLOSED;
-
-}
+package org.apache.commons.functor.range;

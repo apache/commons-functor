@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
+
+import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -27,7 +28,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public class FloatRange extends NumericRange<Float> {
+public class FloatRange extends NumericRange<Float> implements Iterable<Float>, Iterator<Float> {
 
     // attributes
     // ---------------------------------------------------------------
@@ -45,6 +46,11 @@ public class FloatRange extends NumericRange<Float> {
      * Increment step.
      */
     private final float step;
+
+    /**
+     * Current value.
+     */
+    private float currentValue;
 
     /**
      * Calculate default step.
@@ -104,6 +110,41 @@ public class FloatRange extends NumericRange<Float> {
      * Create a new FloatRange.
      *
      * @param from start
+     * @param to end
+     */
+    public FloatRange(Endpoint<Float> from, Endpoint<Float> to) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
+                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+    }
+
+    /**
+     * Create a new FloatRange.
+     *
+     * @param from start
+     * @param to end
+     * @param step increment
+     */
+    public FloatRange(Endpoint<Float> from, Endpoint<Float> to, float step) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+    }
+
+    /**
+     * Create a new FloatRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     */
+    public FloatRange(float from, BoundType leftBoundType, float to,
+                        BoundType rightBoundType) {
+        this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
+    }
+
+    /**
+     * Create a new FloatRange.
+     *
+     * @param from start
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
@@ -123,31 +164,14 @@ public class FloatRange extends NumericRange<Float> {
                                                + " from " + from
                                                + " using step " + step);
         }
-    }
-
-    /**
-     * Create a new FloatRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
-     */
-    public FloatRange(Endpoint<Float> from, Endpoint<Float> to, float step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to
-            && Math.signum(step) != Math.signum(to.getValue().doubleValue()
-                                             - from.getValue().doubleValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
+        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = this.leftEndpoint.getValue();
+        } else {
+            this.currentValue = this.leftEndpoint.getValue() + this.step;
         }
     }
 
-    // methods
+    // range methods
     // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
@@ -170,42 +194,54 @@ public class FloatRange extends NumericRange<Float> {
         return this.step;
     }
 
+    // iterable, iterator methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super Float> proc) {
-        final float step = this.getStep();
-        final boolean includeLeftValue = this.getLeftEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final boolean includeRightValue = this.getRightEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final float leftValue = this.getLeftEndpoint().getValue();
-        final float rightValue = this.getRightEndpoint().getValue();
+    public boolean hasNext() {
+        final float to = this.rightEndpoint.getValue();
         if (step < 0) {
-            final float from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (float i = from; i >= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue >= to;
             } else {
-                for (float i = from; i > rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue > to;
             }
         } else {
-            final float from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (float i = from; i <= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue <= to;
             } else {
-                for (float i = from; i < rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue < to;
             }
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Float next() {
+        final float step = this.getStep();
+        final float r = this.currentValue;
+        this.currentValue += step;
+        return r;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Iterator<Float> iterator() {
+        return this;
+    }
+
+    // object methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */

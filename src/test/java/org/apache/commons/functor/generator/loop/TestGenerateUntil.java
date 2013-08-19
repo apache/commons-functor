@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.generator.Generator;
-import org.apache.commons.functor.generator.range.IntegerRange;
+import org.apache.commons.functor.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class TestGenerateUntil
 
     @Before
     public void setUp() throws Exception {
-        wrappedGenerator = new IntegerRange(1, 10);
+        wrappedGenerator = IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10));
         generateUntil = new GenerateUntil<Integer>(wrappedGenerator, isMoreThanFive);
     }
 
@@ -66,13 +66,14 @@ public class TestGenerateUntil
 
     @Test
     public void testEquals() {
-        Generator<Integer> anotherGenerate = new GenerateUntil<Integer>(new IntegerRange(1, 10), isMoreThanFive);
+        Generator<Integer> anotherGenerate = new GenerateUntil<Integer>(
+            IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10)), isMoreThanFive);
         assertEquals(generateUntil, generateUntil);
         assertEquals(generateUntil, anotherGenerate);
         assertTrue(!generateUntil.equals((GenerateUntil<Integer>)null));
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new GenerateUntil<Integer>(
-				new IntegerRange(1, 10),
+		        IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10)),
 				new UnaryPredicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj > FIVE;
@@ -80,7 +81,8 @@ public class TestGenerateUntil
 			});
         assertTrue(!generateUntil.equals(aGenerateWithADifferentPredicate));
 
-        Generator<Integer> aGenerateWithADifferentWrapped = new GenerateUntil<Integer>(new IntegerRange(1,2), isMoreThanFive);
+        Generator<Integer> aGenerateWithADifferentWrapped = new GenerateUntil<Integer>(
+            IteratorToGeneratorAdapter.adapt(new IntegerRange(1,2)), isMoreThanFive);
         assertTrue(!generateUntil.equals(aGenerateWithADifferentWrapped));
     }
 

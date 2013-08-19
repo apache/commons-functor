@@ -15,19 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
+
+import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.lang3.Validate;
 
 /**
  * A range of integers.
  *
  * @since 1.0
- * @version $Revision$ $Date$
+ * @version $Revision: 1385335 $ $Date: 2012-09-16 15:08:31 -0300 (Sun, 16 Sep 2012) $
  */
-public class IntegerRange extends NumericRange<Integer> {
+public class IntegerRange extends NumericRange<Integer> implements Iterable<Integer>, Iterator<Integer> {
 
     // attributes
     // ---------------------------------------------------------------
@@ -45,6 +46,11 @@ public class IntegerRange extends NumericRange<Integer> {
      * Increment step.
      */
     private final int step;
+
+    /**
+     * Current value.
+     */
+    private int currentValue;
 
     /**
      * Calculate default step.
@@ -105,6 +111,41 @@ public class IntegerRange extends NumericRange<Integer> {
      * Create a new IntegerRange.
      *
      * @param from start
+     * @param to end
+     */
+    public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
+                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+    }
+
+    /**
+     * Create a new IntegerRange.
+     *
+     * @param from start
+     * @param to end
+     * @param step increment
+     */
+    public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, int step) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+    }
+
+    /**
+     * Create a new IntegerRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     */
+    public IntegerRange(int from, BoundType leftBoundType, int to,
+                        BoundType rightBoundType) {
+        this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
+    }
+
+    /**
+     * Create a new IntegerRange.
+     *
+     * @param from start
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
@@ -124,31 +165,14 @@ public class IntegerRange extends NumericRange<Integer> {
                                                + " from " + from
                                                + " using step " + step);
         }
-    }
-
-    /**
-     * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
-     */
-    public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, int step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to
-            && Integer.signum(step) != Integer.signum(to.getValue()
-                                                   - from.getValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
+        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = this.leftEndpoint.getValue();
+        } else {
+            this.currentValue = this.leftEndpoint.getValue() + this.step;
         }
     }
 
-    // methods
+    // range methods
     // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
@@ -171,42 +195,54 @@ public class IntegerRange extends NumericRange<Integer> {
         return this.step;
     }
 
+    // iterable, iterator methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super Integer> proc) {
-        final int step = this.getStep();
-        final boolean includeLeftValue = this.getLeftEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final boolean includeRightValue = this.getRightEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final int leftValue = this.getLeftEndpoint().getValue();
-        final int rightValue = this.getRightEndpoint().getValue();
+    public boolean hasNext() {
+        final int to = this.rightEndpoint.getValue();
         if (step < 0) {
-            final int from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (int i = from; i >= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue >= to;
             } else {
-                for (int i = from; i > rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue > to;
             }
         } else {
-            final int from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (int i = from; i <= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue <= to;
             } else {
-                for (int i = from; i < rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue < to;
             }
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Integer next() {
+        final int step = this.getStep();
+        final int r = this.currentValue;
+        this.currentValue += step;
+        return r;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Iterator<Integer> iterator() {
+        return this;
+    }
+
+    // object methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
@@ -248,4 +284,5 @@ public class IntegerRange extends NumericRange<Integer> {
         hash ^= this.step;
         return hash;
     }
+
 }

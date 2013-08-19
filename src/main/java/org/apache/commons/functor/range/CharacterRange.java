@@ -15,13 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.loop.LoopGenerator;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -30,7 +29,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public final class CharacterRange extends LoopGenerator<Character> implements Range<Character, Integer> {
+public final class CharacterRange implements Range<Character, Integer>, Iterable<Character>, Iterator<Character> {
 
     // attributes
     // ---------------------------------------------------------------
@@ -58,6 +57,11 @@ public final class CharacterRange extends LoopGenerator<Character> implements Ra
      * Increment step.
      */
     private final int step;
+
+    /**
+     * Current value.
+     */
+    private char currentValue;
 
     /**
      * Calculate default step.
@@ -97,6 +101,41 @@ public final class CharacterRange extends LoopGenerator<Character> implements Ra
      * Create a new CharacterRange.
      *
      * @param from start
+     * @param to end
+     */
+    public CharacterRange(Endpoint<Character> from, Endpoint<Character> to) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
+                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+    }
+
+    /**
+     * Create a new CharacterRange.
+     *
+     * @param from start
+     * @param to end
+     * @param step increment
+     */
+    public CharacterRange(Endpoint<Character> from, Endpoint<Character> to, int step) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+    }
+
+    /**
+     * Create a new CharacterRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     */
+    public CharacterRange(char from, BoundType leftBoundType, char to,
+                        BoundType rightBoundType) {
+        this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
+    }
+
+    /**
+     * Create a new CharacterRange.
+     *
+     * @param from start
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
@@ -116,32 +155,14 @@ public final class CharacterRange extends LoopGenerator<Character> implements Ra
                                                + " from " + from
                                                + " using step " + step);
         }
-    }
-
-    /**
-     * Create a new CharacterRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
-     */
-    public CharacterRange(Endpoint<Character> from, Endpoint<Character> to,
-                          int step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to
-            && Integer.signum(step) != Integer.signum(to.getValue()
-                                                   - from.getValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
+        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = this.leftEndpoint.getValue();
+        } else {
+            this.currentValue = (char) (this.leftEndpoint.getValue() + this.step);
         }
     }
 
-    // methods
+    // range methods
     // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
@@ -164,45 +185,54 @@ public final class CharacterRange extends LoopGenerator<Character> implements Ra
         return this.step;
     }
 
+    // iterable, iterator methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
-    public void run(UnaryProcedure<? super Character> proc) {
-        final int step = this.getStep();
-        final boolean includeLeftValue = this.getLeftEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final boolean includeRightValue = this.getRightEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final char leftValue = this.getLeftEndpoint().getValue();
-        final char rightValue = this.getRightEndpoint().getValue();
+    public boolean hasNext() {
+        final int to = this.rightEndpoint.getValue();
         if (step < 0) {
-            final char from = (char) (includeLeftValue ? leftValue : leftValue
-                                                                     + step);
-            if (includeRightValue) {
-                for (char i = from; i >= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue >= to;
             } else {
-                for (char i = from; i > rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue > to;
             }
         } else {
-            final char from = (char) (includeLeftValue ? this
-                .getLeftEndpoint().getValue() : (this.getLeftEndpoint()
-                .getValue() + step));
-            if (includeRightValue) {
-                for (char i = from; i <= rightValue; i += step) {
-                    proc.run(i);
-                }
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue <= to;
             } else {
-                for (char i = from; i < rightValue; i += step) {
-                    proc.run(i);
-                }
+                return this.currentValue < to;
             }
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Character next() {
+        final int step = this.getStep();
+        final char r = this.currentValue;
+        this.currentValue += step;
+        return r;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Iterator<Character> iterator() {
+        return this;
+    }
+
+    // object methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */

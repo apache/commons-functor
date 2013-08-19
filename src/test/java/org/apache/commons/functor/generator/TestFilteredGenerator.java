@@ -25,7 +25,8 @@ import java.util.List;
 
 import org.apache.commons.functor.UnaryPredicate;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.range.IntegerRange;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
+import org.apache.commons.functor.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class TestFilteredGenerator
 
     @Before
     public void setUp() throws Exception {
-        wrappedGenerator = new IntegerRange(1, 10);
+        wrappedGenerator = IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10));
         filteredGenerator = new FilteredGenerator<Integer>(wrappedGenerator, isEven);
     }
 
@@ -70,13 +71,14 @@ public class TestFilteredGenerator
 
     @Test
     public void testEquals() {
-        Generator<Integer> anotherGenerate = new FilteredGenerator<Integer>(new IntegerRange(1, 10), isEven);
+        Generator<Integer> anotherGenerate = new FilteredGenerator<Integer>(
+                IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10)), isEven);
         assertEquals(filteredGenerator, filteredGenerator);
         assertEquals(filteredGenerator, anotherGenerate);
         assertTrue(!filteredGenerator.equals((FilteredGenerator<Integer>)null));
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new FilteredGenerator<Integer>(
-			new IntegerRange(1, 10), new UnaryPredicate<Integer>() {
+	        IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10)), new UnaryPredicate<Integer>() {
 				public boolean test(Integer obj) {
 					return obj % 2 == 0;
 				}
@@ -84,7 +86,8 @@ public class TestFilteredGenerator
 
         assertTrue(!filteredGenerator.equals(aGenerateWithADifferentPredicate));
 
-        Generator<Integer> aGenerateWithADifferentWrapped = new FilteredGenerator<Integer>(new IntegerRange(1,11), isEven);
+        Generator<Integer> aGenerateWithADifferentWrapped = new FilteredGenerator<Integer>(
+                IteratorToGeneratorAdapter.adapt(new IntegerRange(1,11)), isEven);
         assertTrue(!filteredGenerator.equals(aGenerateWithADifferentWrapped));
     }
 

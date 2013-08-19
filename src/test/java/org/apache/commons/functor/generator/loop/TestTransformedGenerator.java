@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.apache.commons.functor.UnaryFunction;
 import org.apache.commons.functor.UnaryProcedure;
-import org.apache.commons.functor.generator.range.IntegerRange;
+import org.apache.commons.functor.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class TestTransformedGenerator
 
     @Before
     public void setUp() throws Exception {
-        wrappedGenerator = new IntegerRange(1, 10);
+        wrappedGenerator = IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10));
         sumsTwoGenerator = new TransformedGenerator<Integer, Integer>(wrappedGenerator, sumsTwo);
     }
 
@@ -82,7 +82,8 @@ public class TestTransformedGenerator
         assertTrue( !sumsTwoGenerator.equals(aGenerateWithADifferentFunction));
 
         TransformedGenerator<Integer, Integer> aTransformedGeneratorWithADifferentWrapped =
-        		new TransformedGenerator<Integer, Integer>(new IntegerRange(1,2), sumsTwo);
+        		new TransformedGenerator<Integer, Integer>(
+    		        IteratorToGeneratorAdapter.adapt(new IntegerRange(1,2)), sumsTwo);
         assertTrue(!sumsTwoGenerator.equals(aTransformedGeneratorWithADifferentWrapped));
     }
 

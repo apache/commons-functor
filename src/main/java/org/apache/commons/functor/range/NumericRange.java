@@ -15,11 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
 
 import java.util.Collection;
-
-import org.apache.commons.functor.generator.loop.LoopGenerator;
 
 /**
  * A base class for numeric ranges. The elements within this range must be a
@@ -34,7 +32,7 @@ import org.apache.commons.functor.generator.loop.LoopGenerator;
  * @since 0.1
  * @version $Revision: $ $Date: $
  */
-public abstract class NumericRange<T extends Number & Comparable<?>> extends LoopGenerator<T> implements Range<T, T> {
+public abstract class NumericRange<T extends Number & Comparable<?>> implements Range<T, T> {
 
     /**
      * {@inheritDoc}

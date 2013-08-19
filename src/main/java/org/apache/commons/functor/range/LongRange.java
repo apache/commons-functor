@@ -12,19 +12,20 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
+
+import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.lang3.Validate;
 
 /**
  * A range of longs.
  *
  * @since 1.0
- * @version $Revision$ $Date$
+ * @version $Revision: 1385335 $ $Date: 2012-09-16 15:08:31 -0300 (Sun, 16 Sep 2012) $
  */
-public final class LongRange extends NumericRange<Long> {
+public final class LongRange extends NumericRange<Long> implements Iterable<Long>, Iterator<Long> {
     // attributes
     //---------------------------------------------------------------
 
@@ -42,6 +43,11 @@ public final class LongRange extends NumericRange<Long> {
      * Increment step.
      */
     private final long step;
+
+    /**
+     * Current value.
+     */
+    private long currentValue;
 
     /**
      * Calculate default step.
@@ -101,6 +107,53 @@ public final class LongRange extends NumericRange<Long> {
      * Create a new LongRange.
      *
      * @param from start
+     * @param to end
+     */
+    public LongRange(Endpoint<Long> from, Endpoint<Long> to) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
+                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+    }
+
+    /**
+     * Create a new LongRange.
+     *
+     * @param from start
+     * @param to end
+     * @param step increment
+     */
+    public LongRange(Endpoint<Long> from, Endpoint<Long> to, int step) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+    }
+
+
+    /**
+     * Create a new LongRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     */
+    public LongRange(long from, BoundType leftBoundType, long to,
+                        BoundType rightBoundType) {
+        this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
+    }
+
+    /**
+     * Create a new LongRange.
+     *
+     * @param from start
+     * @param to end
+     * @param step increment
+     */
+    public LongRange(Endpoint<Long> from, Endpoint<Long> to, long step) {
+        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+    }
+
+    /**
+     * Create a new LongRange.
+     *
+     * @param from start
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
@@ -120,67 +173,15 @@ public final class LongRange extends NumericRange<Long> {
                                                + " from " + from
                                                + " using step " + step);
         }
-    }
-
-    /**
-     * Create a new LongRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
-     */
-    public LongRange(Endpoint<Long> from, Endpoint<Long> to, long step) {
-        this.leftEndpoint = Validate
-            .notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from.equals(to) == Boolean.FALSE
-            && Long.signum(step) != Long.signum(to.getValue() - from.getValue())) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
-    }
-
-    // methods
-    //---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public void run(UnaryProcedure<? super Long> proc) {
-        final long step = this.getStep();
-        final boolean includeLeftValue = this.getLeftEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final boolean includeRightValue = this.getRightEndpoint()
-            .getBoundType() == BoundType.CLOSED;
-        final long leftValue = this.getLeftEndpoint().getValue();
-        final long rightValue = this.getRightEndpoint().getValue();
-        if (step < 0) {
-            final long from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (long i = from; i >= rightValue; i += step) {
-                    proc.run(i);
-                }
-            } else {
-                for (long i = from; i > rightValue; i += step) {
-                    proc.run(i);
-                }
-            }
+        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = this.leftEndpoint.getValue();
         } else {
-            final long from = includeLeftValue ? leftValue : leftValue + step;
-            if (includeRightValue) {
-                for (long i = from; i <= rightValue; i += step) {
-                    proc.run(i);
-                }
-            } else {
-                for (long i = from; i < rightValue; i += step) {
-                    proc.run(i);
-                }
-            }
+            this.currentValue = this.leftEndpoint.getValue() + this.step;
         }
     }
 
+    // range methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
@@ -202,6 +203,54 @@ public final class LongRange extends NumericRange<Long> {
         return this.step;
     }
 
+    // iterable, iterator methods
+    // ---------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    public boolean hasNext() {
+        final long to = this.rightEndpoint.getValue();
+        if (step < 0) {
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue >= to;
+            } else {
+                return this.currentValue > to;
+            }
+        } else {
+            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
+                return this.currentValue <= to;
+            } else {
+                return this.currentValue < to;
+            }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Long next() {
+        final long step = this.getStep();
+        final long r = this.currentValue;
+        this.currentValue += step;
+        return r;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Iterator<Long> iterator() {
+        return this;
+    }
+
+    // object methods
+    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */

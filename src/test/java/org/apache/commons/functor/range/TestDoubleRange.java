@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.commons.functor.generator.range;
+package org.apache.commons.functor.range;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -30,8 +30,8 @@ import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.UnaryFunction;
-import org.apache.commons.functor.UnaryProcedure;
 import org.apache.commons.functor.generator.Generator;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,10 +88,9 @@ public class TestDoubleRange extends BaseFunctorTest {
         // generates a collection of Doubles from 0 (inclusive) to 10
         // (exclusive)
         {
-            List<? super Double> list = (List<? super Double>) (Ranges.doubleRange(
-                                                                                    0,
-                                                                                    10)
-                .to(new ArrayList<Double>()));
+            List<? super Double> list = (List<? super Double>) (
+                IteratorToGeneratorAdapter.adapt(Ranges.doubleRange(0, 10))
+                    .to(new ArrayList<Double>()));
             for (int i = 0; i < 10; i++) {
                 assertEquals(new Double(i), list.get(i));
             }
@@ -100,9 +99,8 @@ public class TestDoubleRange extends BaseFunctorTest {
         // generates a collection of Doubles from 10 (inclusive) to 0
         // (exclusive)
         {
-            List<? super Double> list = (List<? super Double>) (Ranges.doubleRange(
-                                                                                    10,
-                                                                                    0)
+            List<? super Double> list = (List<? super Double>) (
+                IteratorToGeneratorAdapter.adapt(Ranges.doubleRange(10, 0))
                 .to(new ArrayList<Double>()));
             for (int i = 10; i > 0; i--) {
                 assertEquals(new Double(i), list.get(10 - i));
@@ -153,46 +151,36 @@ public class TestDoubleRange extends BaseFunctorTest {
     public void testObjectConstructor() {
         DoubleRange range = Ranges.doubleRange(new Double(0),
                                                     new Double(5));
-        assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", range.toCollection()
+        assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
         range = Ranges.doubleRange(new Double(0), new Double(5), new Double(1));
-        assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", range.toCollection()
-            .toString());
     }
 
     @Test
     public void testReverseStep() {
         DoubleRange range = Ranges.doubleRange(10, 0, -2);
-        assertEquals("[10.0, 8.0, 6.0, 4.0, 2.0]", range.toCollection()
-            .toString());
-        assertEquals("[10.0, 8.0, 6.0, 4.0, 2.0]", range.toCollection()
+        assertEquals("[10.0, 8.0, 6.0, 4.0, 2.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
     }
 
     @Test
     public void testStep() {
         DoubleRange range = Ranges.doubleRange(0, 10, 2);
-        assertEquals("[0.0, 2.0, 4.0, 6.0, 8.0]", range.toCollection()
-            .toString());
-        assertEquals("[0.0, 2.0, 4.0, 6.0, 8.0]", range.toCollection()
+        assertEquals("[0.0, 2.0, 4.0, 6.0, 8.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
     }
 
     @Test
     public void testForwardRange() {
         DoubleRange range = Ranges.doubleRange(0, 5);
-        assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", range.toCollection()
-            .toString());
-        assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", range.toCollection()
+        assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
     }
 
     @Test
     public void testReverseRange() {
         DoubleRange range = Ranges.doubleRange(5, 0);
-        assertEquals("[5.0, 4.0, 3.0, 2.0, 1.0]", range.toCollection()
-            .toString());
-        assertEquals("[5.0, 4.0, 3.0, 2.0, 1.0]", range.toCollection()
+        assertEquals("[5.0, 4.0, 3.0, 2.0, 1.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
     }
 
@@ -201,9 +189,9 @@ public class TestDoubleRange extends BaseFunctorTest {
     // DoubleRange range = Ranges.doubleRange(Double.MAX_VALUE - 3.0d,
     // Double.MAX_VALUE);
     // assertEquals("[9223372036854775804, 9223372036854775805, 9223372036854775806]",
-    // range.toCollection().toString());
+    // IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     // assertEquals("[9223372036854775804, 9223372036854775805, 9223372036854775806]",
-    // range.toCollection().toString());
+    // IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     // }
 
     @Test
@@ -222,7 +210,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.CLOSED, 3.0d);
         // [-5.0d, 5.0d], 3.0d = -5.0d, -2.0d, 1.0d, 4.0d
         List<Double> expected = Arrays.asList(-5.0d, -2.0d, 1.0d, 4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -233,7 +221,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.CLOSED, 3.0d);
         // (-5.0d, 5.0d], 3.0d = -2.0d, 1.0d, 4.0d
         List<Double> expected = Arrays.asList(-2.0d, 1.0d, 4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -244,7 +232,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.OPEN, 3.0d);
         // (-5.0d, 5.0d], 3.0d = -5.0d, -2.0d, 1.0d, 4.0d
         List<Double> expected = Arrays.asList(-5.0d, -2.0d, 1.0d, 4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -255,7 +243,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.OPEN, 3.0d);
         // (-5.0d, 5.0d), 3.0d = -2.0d, 1.0d, 4.0d
         List<Double> expected = Arrays.asList(-2.0d, 1.0d, 4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -266,7 +254,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.CLOSED, 1.0d);
         // (-2.0d, 2.0d], 1.0d = -1.0d, 0.0d, 1.0d, 2.0d
         List<Double> expected = Arrays.asList(-1.0d, 0.0d, 1.0d, 2.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -277,7 +265,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.CLOSED, -3.0d);
         // [5.0d, -5.0d], -3.0d = 5.0d, 2.0d, -1.0d, -4.0d
         List<Double> expected = Arrays.asList(5.0d, 2.0d, -1.0d, -4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -288,7 +276,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.CLOSED, -3.0d);
         // (5.0d, -5.0d], -3.0d = 2.0d, -1.0d, -4.0d
         List<Double> expected = Arrays.asList(2.0d, -1.0d, -4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -299,7 +287,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.OPEN, -3.0d);
         // [5.0d, -5.0d), -3.0d = 5.0d, 2.0d, -1.0d, -4.0d
         List<Double> expected = Arrays.asList(5.0d, 2.0d, -1.0d, -4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -310,7 +298,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.OPEN, -3.0d);
         // (5.0d, -5.0d), -3.0d = 2.0d, -1.0d, -4.0d
         List<Double> expected = Arrays.asList(2.0d, -1.0d, -4.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
@@ -321,46 +309,40 @@ public class TestDoubleRange extends BaseFunctorTest {
                                             BoundType.OPEN, -1.0d);
         // [2.0d, -2.0d), -1.0d = 2.0d, 1.0d, 0.0d, -1.0d
         List<Double> expected = Arrays.asList(2.0d, 1.0d, 0.0d, -1.0d);
-        Collection<Double> elements = range.toCollection();
+        Collection<Double> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
     }
 
     @Test
     public void testAscending() {
         final List<Double> list = new ArrayList<Double>();
-        ascDoubleRange.run(new UnaryProcedure<Double>() {
-
-            public void run(Double obj) {
-                list.add(obj);
-            }
-        });
+        for (double d : ascDoubleRange) {
+            list.add(d);
+        }
         assertTrue(expectedAsc.containsAll(list));
     }
 
     @Test
     public void testDescending() {
         final List<Double> list = new ArrayList<Double>();
-        descDoubleRange.run(new UnaryProcedure<Double>() {
-
-            public void run(Double obj) {
-                list.add(obj);
-            }
-        });
+        for (double d : descDoubleRange) {
+            list.add(d);
+        }
         assertTrue(expectedDesc.containsAll(list));
     }
 
     @Test
     public void testToCollection() {
-        Collection<Double> ascCol = ascDoubleRange.toCollection();
+        Collection<Double> ascCol = IteratorToGeneratorAdapter.adapt(ascDoubleRange).toCollection();
         assertEquals("Different collections", expectedAsc, ascCol);
-        Collection<Double> descCol = descDoubleRange.toCollection();
+        Collection<Double> descCol = IteratorToGeneratorAdapter.adapt(descDoubleRange).toCollection();
         assertEquals("Different collections", expectedDesc, descCol);
     }
 
     @Test
     public void testTransformedGenerator() {
         double expected = 45.0d;
-        double total = ascDoubleRange
+        double total = IteratorToGeneratorAdapter.adapt(ascDoubleRange)
             .to(new UnaryFunction<Generator<? extends Double>, Double>() {
 
                 public Double evaluate(Generator<? extends Double> obj) {
@@ -373,7 +355,7 @@ public class TestDoubleRange extends BaseFunctorTest {
             });
         assertTrue(expected == total);
         expected = 55.0d;
-        total = descDoubleRange
+        total = IteratorToGeneratorAdapter.adapt(descDoubleRange)
             .to(new UnaryFunction<Generator<? extends Double>, Double>() {
 
                 public Double evaluate(Generator<? extends Double> obj) {
