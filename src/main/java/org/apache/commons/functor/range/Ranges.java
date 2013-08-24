@@ -27,6 +27,7 @@ public final class Ranges {
     private Ranges() {
     }
 
+    // Integer ranges
     /**
      * Create a new IntegerRange.
      *
@@ -71,6 +72,20 @@ public final class Ranges {
      */
     public static IntegerRange integerRange(int from, int to, int step) {
         return new IntegerRange(from, to, step);
+    }
+
+    /**
+     * Create a new IntegerRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     * @return IntegerRange
+     */
+    public static IntegerRange integerRange(int from, BoundType leftBoundType,
+                                            int to, BoundType rightBoundType) {
+        return new IntegerRange(from, leftBoundType, to, rightBoundType);
     }
 
     /**
@@ -126,6 +141,7 @@ public final class Ranges {
         return new LongRange(from, to, step);
     }
 
+    // Long ranges
     /**
      * Create a new LongRange.
      *
@@ -147,6 +163,20 @@ public final class Ranges {
      */
     public static LongRange longRange(long from, long to, long step) {
         return new LongRange(from, to, step);
+    }
+
+    /**
+     * Create a new LongRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     * @return LongRange
+     */
+    public static LongRange longRange(long from, BoundType leftBoundType,
+                                      long to, BoundType rightBoundType) {
+        return new LongRange(from, leftBoundType, to, rightBoundType);
     }
 
     /**
@@ -179,6 +209,7 @@ public final class Ranges {
         return new LongRange(leftEndpoint, rightEndpoint, step);
     }
 
+    // Float ranges
     /**
      * Create a new FloatRange.
      *
@@ -232,6 +263,20 @@ public final class Ranges {
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
+     * @return FloatRange
+     */
+    public static FloatRange floatRange(float from, BoundType leftBoundType,
+                                        float to, BoundType rightBoundType) {
+        return new FloatRange(from, leftBoundType, to, rightBoundType);
+    }
+
+    /**
+     * Create a new FloatRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
      * @param step increment
      * @return FloatRange
      */
@@ -255,6 +300,7 @@ public final class Ranges {
         return new FloatRange(leftEndpoint, rightEndpoint, step);
     }
 
+    // Double ranges
     /**
      * Create a new DoubleRange.
      *
@@ -320,6 +366,20 @@ public final class Ranges {
     /**
      * Create a new DoubleRange.
      *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     * @return DoubleRange
+     */
+    public static DoubleRange doubleRange(double from, BoundType leftBoundType,
+                                          double to, BoundType rightBoundType) {
+        return new DoubleRange(from, leftBoundType, to, rightBoundType);
+    }
+
+    /**
+     * Create a new DoubleRange.
+     *
      * @param leftEndpoint start
      * @param rightEndpoint end
      * @param step increment
@@ -331,6 +391,7 @@ public final class Ranges {
         return new DoubleRange(leftEndpoint, rightEndpoint, step);
     }
 
+    // Character ranges
     /**
      * Create a new CharacterRange.
      *
@@ -352,6 +413,22 @@ public final class Ranges {
      */
     public static CharacterRange characterRange(char from, char to, int step) {
         return new CharacterRange(from, to, step);
+    }
+
+    /**
+     * Create a new CharacterRange.
+     *
+     * @param from start
+     * @param leftBoundType type of left bound
+     * @param to end
+     * @param rightBoundType type of right bound
+     * @return CharacterRange
+     */
+    public static CharacterRange characterRange(char from,
+                                                BoundType leftBoundType,
+                                                char to,
+                                                BoundType rightBoundType) {
+        return new CharacterRange(from, leftBoundType, to, rightBoundType);
     }
 
     /**
