@@ -14,6 +14,7 @@
 package org.apache.commons.functor.range;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 
 /**
@@ -33,7 +34,7 @@ import java.util.Collection;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public interface Range<T extends Comparable<?>, S extends Comparable<?>> {
+public interface Range<T extends Comparable<?>, S extends Comparable<?>> extends Iterable<T>, Iterator<T> {
 
     /**
      * Default left bound type.

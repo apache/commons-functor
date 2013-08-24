@@ -28,7 +28,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public class DoubleRange extends NumericRange<Double> implements Iterable<Double>, Iterator<Double> {
+public class DoubleRange extends NumericRange<Double> {
 
     // attributes
     // ---------------------------------------------------------------

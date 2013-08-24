@@ -28,7 +28,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision: 1385335 $ $Date: 2012-09-16 15:08:31 -0300 (Sun, 16 Sep 2012) $
  */
-public class IntegerRange extends NumericRange<Integer> implements Iterable<Integer>, Iterator<Integer> {
+public class IntegerRange extends NumericRange<Integer> {
 
     // attributes
     // ---------------------------------------------------------------

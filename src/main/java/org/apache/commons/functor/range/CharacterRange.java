@@ -29,7 +29,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public final class CharacterRange implements Range<Character, Integer>, Iterable<Character>, Iterator<Character> {
+public final class CharacterRange implements Range<Character, Integer> {
 
     // attributes
     // ---------------------------------------------------------------

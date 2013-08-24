@@ -28,7 +28,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision: $ $Date: $
  */
-public class FloatRange extends NumericRange<Float> implements Iterable<Float>, Iterator<Float> {
+public class FloatRange extends NumericRange<Float> {
 
     // attributes
     // ---------------------------------------------------------------
