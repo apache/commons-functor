@@ -14,27 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator;
+package org.apache.commons.functor.generator.loop;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.functor.Predicate;
-import org.apache.commons.functor.generator.util.IntegerRange;
+import org.apache.commons.functor.generator.Generator;
+import org.apache.commons.functor.generator.loop.GenerateWhile;
+import org.apache.commons.functor.range.IntegerRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Tests the Generate While class.
- * @version $Revision$ $Date$
+ * @version $Revision: 1508677 $ $Date: 2013-07-30 19:48:02 -0300 (Tue, 30 Jul 2013) $
  */
 public class TestGenerateWhile
 {
 
     @Before
     public void setUp() throws Exception {
-        wrappedGenerator = new IntegerRange(1, 10);
+        wrappedGenerator = IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10));
         generateWhile = new GenerateWhile<Integer>(wrappedGenerator, isLessThanFive);
     }
 
@@ -65,21 +67,23 @@ public class TestGenerateWhile
 
     @Test
     public void testEquals() {
-        Generator<Integer> anotherGenerate = new GenerateWhile<Integer>(new IntegerRange(1, 10), isLessThanFive);
+        Generator<Integer> anotherGenerate = new GenerateWhile<Integer>(
+                IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10)), isLessThanFive);
         assertEquals(generateWhile, generateWhile);
         assertEquals(generateWhile, anotherGenerate);
         assertTrue(!generateWhile.equals((GenerateWhile<Integer>)null));
 
 		Generator<Integer> aGenerateWithADifferentPredicate = new GenerateWhile<Integer>(
-			new IntegerRange(1, 10), new Predicate<Integer>() {
-				public boolean test(Integer obj) {
-					return obj < FIVE;
-				}
+            IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 10)), new Predicate<Integer>() {
+                public boolean test(Integer obj) {
+                    return obj < FIVE;
+    			}
 			});
 
         assertTrue(!generateWhile.equals(aGenerateWithADifferentPredicate));
 
-        Generator<Integer> aGenerateWithADifferentWrapped = new GenerateWhile<Integer>(new IntegerRange(1,11), isLessThanFive);
+        Generator<Integer> aGenerateWithADifferentWrapped = new GenerateWhile<Integer>(
+                IteratorToGeneratorAdapter.adapt(new IntegerRange(1,11)), isLessThanFive);
         assertTrue(!generateWhile.equals(aGenerateWithADifferentWrapped));
     }
 

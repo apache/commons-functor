@@ -18,7 +18,9 @@ package org.apache.commons.functor.example.kata.two;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.functor.NullaryFunction;
@@ -26,7 +28,7 @@ import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.core.algorithm.RecursiveEvaluation;
 import org.apache.commons.functor.core.algorithm.UntilDo;
-import org.apache.commons.functor.generator.util.IntegerRange;
+import org.apache.commons.functor.range.IntegerRange;
 import org.junit.Test;
 
 /**
@@ -102,7 +104,10 @@ public class TestBinaryChop {
         assertEquals(-1, chopper.find(6, new int[] { 1, 3, 5, 7 }));
         assertEquals(-1, chopper.find(8, new int[] { 1, 3, 5, 7 }));
 
-        List<Integer> largeList = (List<Integer>) (new IntegerRange(0, 100001).toCollection());
+        List<Integer> largeList = new ArrayList<Integer>();
+        Iterator<Integer> ints = new IntegerRange(0, 100001);
+        while(ints.hasNext())
+            largeList.add(ints.next());
         assertEquals(-1, chopper.find(new Integer(-5), largeList));
         assertEquals(100000, chopper.find(new Integer(100000), largeList));
         assertEquals(0, chopper.find(new Integer(0), largeList));

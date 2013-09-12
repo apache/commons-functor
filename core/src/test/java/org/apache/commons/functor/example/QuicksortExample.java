@@ -33,7 +33,7 @@ import org.apache.commons.functor.core.comparator.IsGreaterThanOrEqual;
 import org.apache.commons.functor.core.comparator.IsLessThan;
 import org.apache.commons.functor.core.composite.ConditionalFunction;
 import org.apache.commons.functor.generator.FilteredGenerator;
-import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 import org.junit.Test;
 
 /*

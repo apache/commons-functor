@@ -28,7 +28,7 @@ import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.LeftBoundPredicate;
 import org.apache.commons.functor.core.IsEqual;
-import org.apache.commons.functor.generator.IteratorToGeneratorAdapter;
+import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 import org.junit.Test;
 
 /**

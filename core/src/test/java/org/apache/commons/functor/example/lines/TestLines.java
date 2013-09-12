@@ -31,7 +31,7 @@ import org.apache.commons.functor.core.collection.Size;
 import org.apache.commons.functor.core.composite.And;
 import org.apache.commons.functor.core.composite.Not;
 import org.apache.commons.functor.generator.FilteredGenerator;
-import org.apache.commons.functor.generator.TransformedGenerator;
+import org.apache.commons.functor.generator.loop.TransformedGenerator;
 
 /**
  * @version $Revision$ $Date$

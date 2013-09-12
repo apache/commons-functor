@@ -24,7 +24,7 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
- * {@link BinaryNullaryPredicate BinaryNullaryPredicate}
+ * {@link BinaryPredicate BinaryPredicate}
  * to the
  * {@link org.apache.commons.functor.NullaryPredicate NullaryPredicate} interface
  * using a constant left-side argument.

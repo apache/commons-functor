@@ -33,21 +33,10 @@ public interface Generator<E> {
     void run(Procedure<? super E> proc);
 
     /**
-     * Stop the generator. Will stop the wrapped generator if one was set.
-     */
-    void stop();
-
-    /**
-     * Check if the generator is stopped.
-     * @return true if stopped
-     */
-    boolean isStopped();
-
-    /**
      * Transforms this generator using the passed in
      * transformer. An example transformer might turn the contents of the
      * generator into a {@link Collection} of elements.
-     * @param <Z> the returned value type of the input {@link Function}.
+     * @param <Z> the returned value type of the input {@link Function}
      * @param transformer Function to apply to this
      * @return transformation result
      */
@@ -55,7 +44,7 @@ public interface Generator<E> {
 
     /**
      * Same as to(new CollectionTransformer(collection)).
-     * @param <C> the collection type
+     * @param <C> the returned collection type
      * @param collection Collection to which my elements should be added
      * @return <code>collection</code>
      */

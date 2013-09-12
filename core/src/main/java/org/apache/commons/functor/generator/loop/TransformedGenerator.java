@@ -14,10 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.functor.generator;
+package org.apache.commons.functor.generator.loop;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Procedure;
+import org.apache.commons.functor.generator.Generator;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -25,9 +26,9 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <I> the type of elements held in the wrapped generator.
  * @param <E> the type of elements held in this generator.
- * @version $Revision$ $Date$
+ * @version $Revision: 1508677 $ $Date: 2013-07-30 19:48:02 -0300 (Tue, 30 Jul 2013) $
  */
-public class TransformedGenerator<I, E> extends BaseGenerator<E> {
+public class TransformedGenerator<I, E> extends LoopGenerator<E> {
 
     /**
      * The Function to apply to each element.
@@ -39,29 +40,26 @@ public class TransformedGenerator<I, E> extends BaseGenerator<E> {
      * @param wrapped Generator to transform
      * @param func Function to apply to each element
      */
+    // Even though we are passing a Generator<? extends I> to super, and using
+    // it in TransformedGenerator#run, what gets actually passed to the Procedure
+    // is a <? extends E>, returned by func.
+    @SuppressWarnings("unchecked")
     public TransformedGenerator(Generator<? extends I> wrapped, Function<? super I, ? extends E> func) {
-        super(Validate.notNull(wrapped, "Generator argument was null"));
+        super((Generator<? extends E>) Validate.notNull(wrapped, "Generator argument was null"));
         this.func = Validate.notNull(func, "Function argument was null");
     }
 
     /**
      * {@inheritDoc}
      */
+    // See comment above in the public constructor
+    @SuppressWarnings("unchecked")
     public void run(final Procedure<? super E> proc) {
-        getWrappedGenerator().run(new Procedure<I>() {
+        ((Generator<? extends I>) getWrappedGenerator()).run(new Procedure<I>() {
             public void run(I obj) {
                 proc.run(func.evaluate(obj));
             }
         });
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected Generator<? extends I> getWrappedGenerator() {
-        return (Generator<? extends I>) super.getWrappedGenerator();
     }
 
     /**

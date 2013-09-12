@@ -24,7 +24,7 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a
- * {@link BinaryNullaryProcedure BinaryNullaryProcedure}
+ * {@link BinaryProcedure BinaryProcedure}
  * to the
  * {@link NullaryProcedure NullaryProcedure} interface
  * using a constant left-side argument.
@@ -43,7 +43,7 @@ public final class FullyBoundNullaryProcedure implements NullaryProcedure, Seria
      * serialVersionUID declaration.
      */
     private static final long serialVersionUID = -904891610081737737L;
-    /** The {@link BinaryNullaryProcedure BinaryNullaryProcedure} I'm wrapping. */
+    /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */
     private final BinaryProcedure<Object, Object> procedure;
     /** The left parameter to pass to {@code procedure}. */
     private final Object left;
