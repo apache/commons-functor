@@ -28,7 +28,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Commons Functor</name>
+  <name>Apache Commons Functor</name>
   <inceptionYear>2003</inceptionYear>
   <description>
     A "functor" is an entity that serves the role of a function but can be operated upon like an object.
