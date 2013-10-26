@@ -111,21 +111,17 @@ public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalBinaryProcedure<?, ?>
-                                    && equals((ConditionalBinaryProcedure<?, ?>) that));
-    }
-
-    /**
-     * Learn whether a given ConditionalBinaryProcedure is equal to this.
-     * @param that compared object
-     * @return boolean
-     */
-    public boolean equals(ConditionalBinaryProcedure<?, ?> that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenProc.equals(that.thenProc)
-                && elseProc.equals(that.elseProc);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalBinaryProcedure<?, ?>)) {
+            return false;
+        }
+        ConditionalBinaryProcedure<?, ?> that = (ConditionalBinaryProcedure<?, ?>) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenProc.equals(that.thenProc)
+                && this.elseProc.equals(that.elseProc);
     }
 
     /**

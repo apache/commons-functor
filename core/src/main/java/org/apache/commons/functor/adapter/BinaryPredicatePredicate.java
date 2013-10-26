@@ -51,20 +51,14 @@ public final class BinaryPredicatePredicate<A> implements Predicate<A> {
      */
     @Override
     public boolean equals(Object obj) {
-        return obj == this || obj instanceof BinaryPredicatePredicate<?>
-                && equals((BinaryPredicatePredicate<?>) obj);
-    }
-
-    /**
-     * Learn whether another BinaryPredicatePredicate is equal to
-     * <code>this</code>.
-     *
-     * @param that BinaryPredicatePredicate to check
-     *
-     * @return whether equal
-     */
-    public boolean equals(BinaryPredicatePredicate<?> that) {
-        return that != null && that.predicate.equals(this.predicate);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinaryPredicatePredicate<?>)) {
+            return false;
+        }
+        BinaryPredicatePredicate<?> that = (BinaryPredicatePredicate<?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

@@ -71,17 +71,15 @@ public final class BinaryNot<L, R> implements BinaryPredicate<L, R>, Serializabl
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof BinaryNot<?, ?> && equals((BinaryNot<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another BinaryNot is equal to this.
-     * @param that BinaryNot to test
-     * @return boolean
-     */
-    public boolean equals(BinaryNot<?, ?> that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinaryNot<?, ?>)) {
+            return false;
+        }
+        BinaryNot<?, ?> that = (BinaryNot<?, ?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

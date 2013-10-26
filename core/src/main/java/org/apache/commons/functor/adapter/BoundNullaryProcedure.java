@@ -73,18 +73,15 @@ public final class BoundNullaryProcedure implements NullaryProcedure, Serializab
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof BoundNullaryProcedure && equals((BoundNullaryProcedure) that));
-    }
-
-    /**
-     * Learn whether a given BoundNullaryProcedure is equal to this.
-     * @param that the BoundNullaryProcedure to test
-     * @return boolean
-     */
-    public boolean equals(BoundNullaryProcedure that) {
-        return null != that
-                && procedure.equals(that.procedure)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BoundNullaryProcedure)) {
+            return false;
+        }
+        BoundNullaryProcedure that = (BoundNullaryProcedure) obj;
+        return procedure.equals(that.procedure)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 

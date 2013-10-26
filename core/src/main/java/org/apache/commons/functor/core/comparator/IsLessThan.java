@@ -86,20 +86,15 @@ public final class IsLessThan<T> implements BinaryPredicate<T, T>, Serializable 
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof IsLessThan<?> && equals((IsLessThan<?>) that));
-    }
-
-    /**
-     * Learn whether a given IsLessThan is equal to this.
-     * @param that IsLessThan to test
-     * @return boolean
-     */
-    public boolean equals(IsLessThan<?> that) {
-        if (null != that) {
-            return comparator.equals(that.comparator);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return false;
+        if (!(obj instanceof IsLessThan<?>)) {
+            return false;
+        }
+        IsLessThan<?> that = (IsLessThan<?>) obj;
+        return this.comparator.equals(that.comparator);
     }
 
     /**

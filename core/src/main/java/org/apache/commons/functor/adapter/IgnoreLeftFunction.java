@@ -68,18 +68,15 @@ public final class IgnoreLeftFunction<L, R, T> implements BinaryFunction<L, R, T
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof IgnoreLeftFunction<?, ?, ?>
-                && equals((IgnoreLeftFunction<?, ?, ?>) that));
-    }
-
-    /**
-     * Learn whether another IgnoreLeftFunction is equal to this.
-     * @param that IgnoreLeftFunction to test
-     * @return boolean
-     */
-    public boolean equals(IgnoreLeftFunction<?, ?, ?> that) {
-        return null != that && function.equals(that.function);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof IgnoreLeftFunction<?, ?, ?>)) {
+            return false;
+        }
+        IgnoreLeftFunction<?, ?, ?> that = (IgnoreLeftFunction<?, ?, ?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

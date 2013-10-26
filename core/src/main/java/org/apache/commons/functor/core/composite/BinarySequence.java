@@ -117,18 +117,15 @@ public class BinarySequence<L, R> implements BinaryProcedure<L, R>, Serializable
      * {@inheritDoc}
      */
     @Override
-    public final boolean equals(Object that) {
-        return that == this || (that instanceof BinarySequence<?, ?> && equals((BinarySequence<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another BinarySequence is equal to this.
-     * @param that BinarySequence to test
-     * @return boolean
-     */
-    public final boolean equals(BinarySequence<?, ?> that) {
-        // by construction, list is never null
-        return null != that && list.equals(that.list);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinarySequence<?, ?>)) {
+            return false;
+        }
+        BinarySequence<?, ?> that = (BinarySequence<?, ?>) obj;
+        return this.list.equals(that.list);
     }
 
     /**

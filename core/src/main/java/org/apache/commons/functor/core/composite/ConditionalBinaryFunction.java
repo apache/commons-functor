@@ -100,21 +100,17 @@ public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalBinaryFunction<?, ?, ?>
-                                    && equals((ConditionalBinaryFunction<?, ?, ?>) that));
-    }
-
-    /**
-     * Learn whether another ConditionalBinaryFunction is equal to this.
-     * @param that ConditionalBinaryFunction to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalBinaryFunction<?, ?, ?> that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenFunc.equals(that.thenFunc)
-                && elseFunc.equals(that.elseFunc);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalBinaryFunction<?, ?, ?>)) {
+            return false;
+        }
+        ConditionalBinaryFunction<?, ?, ?> that = (ConditionalBinaryFunction<?, ?, ?>) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenFunc.equals(that.thenFunc)
+                && this.elseFunc.equals(that.elseFunc);
     }
 
     /**

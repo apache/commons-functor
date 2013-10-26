@@ -75,17 +75,15 @@ public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof Min<?> && equals((Min<?>) that));
-    }
-
-    /**
-     * Learn whether another Min is equal to this.
-     * @param that Min to test
-     * @return boolean
-     */
-    public boolean equals(Min<?> that) {
-        return null != that && comparator.equals(that.comparator);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Min<?>)) {
+            return false;
+        }
+        Min<?> that = (Min<?>) obj;
+        return this.comparator.equals(that.comparator);
     }
 
     /**

@@ -69,18 +69,15 @@ public final class FunctionPredicate<A> implements Predicate<A>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this
-                || (that instanceof FunctionPredicate<?> && equals((FunctionPredicate<?>) that));
-    }
-
-    /**
-     * Learn whether another FunctionPredicate is equal to this.
-     * @param that FunctionPredicate to test
-     * @return boolean
-     */
-    public boolean equals(FunctionPredicate<?> that) {
-        return null != that && function.equals(that.function);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof FunctionPredicate<?>)) {
+            return false;
+        }
+        FunctionPredicate<?> that = (FunctionPredicate<?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

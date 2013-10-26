@@ -137,21 +137,17 @@ public class CompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof CompositeBinaryFunction<?, ?, ?>
-                                    && equals((CompositeBinaryFunction<?, ?, ?>) that));
-    }
-
-    /**
-     * Learn whether a given CompositeBinaryFunction is equal to this.
-     * @param that CompositeBinaryFunction to test
-     * @return boolean
-     */
-    public boolean equals(CompositeBinaryFunction<?, ?, ?> that) {
-        return null != that
-                && helper.f.equals(that.helper.f)
-                && helper.g.equals(that.helper.g)
-                && helper.h.equals(that.helper.h);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof CompositeBinaryFunction<?, ?, ?>)) {
+            return false;
+        }
+        CompositeBinaryFunction<?, ?, ?> that = (CompositeBinaryFunction<?, ?, ?>) obj;
+        return this.helper.f.equals(that.helper.f)
+                && this.helper.g.equals(that.helper.g)
+                && this.helper.h.equals(that.helper.h);
     }
 
     /**

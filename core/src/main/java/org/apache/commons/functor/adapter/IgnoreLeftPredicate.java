@@ -67,17 +67,15 @@ public final class IgnoreLeftPredicate<L, R> implements BinaryPredicate<L, R>, S
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof IgnoreLeftPredicate<?, ?> && equals((IgnoreLeftPredicate<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another IgnoreLeftPredicate is equal to this.
-     * @param that the IgnoreLeftPredicate to test
-     * @return boolean
-     */
-    public boolean equals(IgnoreLeftPredicate<?, ?> that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof IgnoreLeftPredicate<?, ?>)) {
+            return false;
+        }
+        IgnoreLeftPredicate<?, ?> that = (IgnoreLeftPredicate<?, ?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

@@ -86,20 +86,15 @@ public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializ
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof IsNotEquivalent<?> && equals((IsNotEquivalent<?>) that));
-    }
-
-    /**
-     * Learn whether another IsNotEquivalent is equal to this.
-     * @param that IsNotEquivalent to test
-     * @return boolean
-     */
-    public boolean equals(IsNotEquivalent<?> that) {
-        if (null != that) {
-            return comparator.equals(that.comparator);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return false;
+        if (!(obj instanceof IsNotEquivalent<?>)) {
+            return false;
+        }
+        IsNotEquivalent<?> that = (IsNotEquivalent<?>) obj;
+        return this.comparator.equals(that.comparator);
     }
 
     /**

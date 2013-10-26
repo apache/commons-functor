@@ -184,19 +184,15 @@ public class CompositeFunction<A, T> implements Function<A, T>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public final boolean equals(Object that) {
-        return that == this
-                || (that instanceof CompositeFunction<?, ?> && equals((CompositeFunction<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another CompositeFunction is equal to this.
-     * @param that CompositeFunction to test
-     * @return boolean
-     */
-    public final boolean equals(CompositeFunction<?, ?> that) {
-        // by construction, list is never null
-        return null != that && function.equals(that.function);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof CompositeFunction<?, ?>)) {
+            return false;
+        }
+        CompositeFunction<?, ?> that = (CompositeFunction<?, ?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

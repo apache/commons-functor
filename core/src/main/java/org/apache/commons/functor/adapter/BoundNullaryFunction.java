@@ -74,19 +74,14 @@ public final class BoundNullaryFunction<T> implements NullaryFunction<T>, Serial
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof BoundNullaryFunction<?> && equals((BoundNullaryFunction<?>) that));
-    }
-
-    /**
-     * Learn whether another BoundNullaryFunction is equal to this.
-     * @param that BoundNullaryFunction to test
-     * @return boolean
-     */
-    public boolean equals(BoundNullaryFunction<?> that) {
-        if (that == null) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BoundNullaryFunction<?>)) {
             return false;
         }
+        BoundNullaryFunction<?> that = (BoundNullaryFunction<?>) obj;
         if (!(that.function.equals(this.function))) {
             return false;
         }

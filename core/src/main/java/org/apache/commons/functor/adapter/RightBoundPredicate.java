@@ -74,19 +74,16 @@ public final class RightBoundPredicate<A> implements Predicate<A>, Serializable 
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof RightBoundPredicate<?> && equals((RightBoundPredicate<?>) that));
-    }
-
-    /**
-     * Learn whether another RightBoundPredicate is equal to this.
-     * @param that RightBoundPredicate to test
-     * @return boolean
-     */
-    public boolean equals(RightBoundPredicate<?> that) {
-        return null != that
-                && predicate.equals(that.predicate)
-                && (null == param ? null == that.param : param.equals(that.param));
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof RightBoundPredicate<?>)) {
+            return false;
+        }
+        RightBoundPredicate<?> that = (RightBoundPredicate<?>) obj;
+        return this.predicate.equals(that.predicate)
+                && (null == this.param ? null == that.param : this.param.equals(that.param));
     }
 
     /**

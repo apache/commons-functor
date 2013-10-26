@@ -86,20 +86,15 @@ public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializab
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof IsGreaterThan<?> && equals((IsGreaterThan<?>) that));
-    }
-
-    /**
-     * Learn whether a given IsGreaterThan is equal to this.
-     * @param that the IsGreaterThan to test
-     * @return boolean
-     */
-    public boolean equals(IsGreaterThan<?> that) {
-        if (null != that) {
-            return comparator.equals(that.comparator);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return false;
+        if (!(obj instanceof IsGreaterThan<?>)) {
+            return false;
+        }
+        IsGreaterThan<?> that = (IsGreaterThan<?>) obj;
+        return this.comparator.equals(that.comparator);
     }
 
     /**

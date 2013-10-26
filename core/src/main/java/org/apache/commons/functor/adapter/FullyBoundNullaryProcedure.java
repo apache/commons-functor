@@ -78,18 +78,15 @@ public final class FullyBoundNullaryProcedure implements NullaryProcedure, Seria
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof FullyBoundNullaryProcedure
-                && equals((FullyBoundNullaryProcedure) that));
-    }
-
-    /**
-     * Learn whether another FullyBoundNullaryProcedure is equal to this.
-     * @param that FullyBoundNullaryProcedure to test
-     * @return boolean
-     */
-    public boolean equals(FullyBoundNullaryProcedure that) {
-        return null != that && procedure.equals(that.procedure)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof FullyBoundNullaryProcedure)) {
+            return false;
+        }
+        FullyBoundNullaryProcedure that = (FullyBoundNullaryProcedure) obj;
+        return procedure.equals(that.procedure)
                 && (null == left ? null == that.left : left.equals(that.left))
                 && (null == right ? null == that.right : right.equals(that.right));
     }

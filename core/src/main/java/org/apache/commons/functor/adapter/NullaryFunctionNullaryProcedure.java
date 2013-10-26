@@ -67,18 +67,15 @@ public final class NullaryFunctionNullaryProcedure implements NullaryProcedure, 
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof NullaryFunctionNullaryProcedure
-                && equals((NullaryFunctionNullaryProcedure) that));
-    }
-
-    /**
-     * Learn whether another NullaryFunctionNullaryProcedure is equal to this.
-     * @param that NullaryFunctionNullaryProcedure to test
-     * @return boolean
-     */
-    public boolean equals(NullaryFunctionNullaryProcedure that) {
-        return null != that && function.equals(that.function);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NullaryFunctionNullaryProcedure)) {
+            return false;
+        }
+        NullaryFunctionNullaryProcedure that = (NullaryFunctionNullaryProcedure) obj;
+        return this.function.equals(that.function);
     }
 
     /**

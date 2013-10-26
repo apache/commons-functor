@@ -118,18 +118,15 @@ public class NullarySequence implements NullaryProcedure, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public final boolean equals(Object that) {
-        return that == this || (that instanceof NullarySequence && equals((NullarySequence) that));
-    }
-
-    /**
-     * Learn whether a given NullarySequence is equal to this.
-     * @param that NullarySequence to test
-     * @return boolean
-     */
-    public boolean equals(NullarySequence that) {
-        // by construction, list is never null
-        return null != that && list.equals(that.list);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof NullarySequence)) {
+            return false;
+        }
+        NullarySequence that = (NullarySequence) obj;
+        return this.list.equals(that.list);
     }
 
     /**

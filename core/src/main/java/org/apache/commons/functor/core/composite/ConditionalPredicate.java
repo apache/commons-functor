@@ -92,21 +92,17 @@ public final class ConditionalPredicate<A> implements Predicate<A>, Serializable
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalPredicate<?>
-                                    && equals((ConditionalPredicate<?>) that));
-    }
-
-    /**
-     * Learn whether another ConditionalPredicate is equal to this.
-     * @param that ConditionalPredicate to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalPredicate<?> that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenPred.equals(that.thenPred)
-                && elsePred.equals(that.elsePred);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalPredicate<?>)) {
+            return false;
+        }
+        ConditionalPredicate<?> that = (ConditionalPredicate<?>) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenPred.equals(that.thenPred)
+                && this.elsePred.equals(that.elsePred);
     }
 
     /**

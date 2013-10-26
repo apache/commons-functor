@@ -68,18 +68,15 @@ public final class ProcedureFunction<A, T> implements Function<A, T>, Serializab
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ProcedureFunction<?, ?>
-                                    && equals((ProcedureFunction<?, ?>) that));
-    }
-
-    /**
-     * Learn whether a given ProcedureFunction is equal to this.
-     * @param that ProcedureFunction to test
-     * @return boolean
-     */
-    public boolean equals(ProcedureFunction<?, ?> that) {
-        return null != that && procedure.equals(that.procedure);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ProcedureFunction<?, ?>)) {
+            return false;
+        }
+        ProcedureFunction<?, ?> that = (ProcedureFunction<?, ?>) obj;
+        return this.procedure.equals(that.procedure);
     }
 
     /**

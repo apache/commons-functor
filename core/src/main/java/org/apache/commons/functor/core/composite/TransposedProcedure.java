@@ -76,17 +76,15 @@ public class TransposedProcedure<L, R> implements BinaryProcedure<L, R>, Seriali
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof TransposedProcedure<?, ?> && equals((TransposedProcedure<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another TransposedProcedure is equal to this.
-     * @param that TransposedPredicate to test
-     * @return boolean
-     */
-    public boolean equals(TransposedProcedure<?, ?> that) {
-        return null != that && procedure.equals(that.procedure);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof TransposedProcedure<?, ?>)) {
+            return false;
+        }
+        TransposedProcedure<?, ?> that = (TransposedProcedure<?, ?>) obj;
+        return this.procedure.equals(that.procedure);
     }
 
     /**

@@ -74,18 +74,15 @@ public final class RightBoundFunction<A, T> implements Function<A, T>, Serializa
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof RightBoundFunction<?, ?> && equals((RightBoundFunction<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another RightBoundFunction is equal to this.
-     * @param that RightBoundFunction to test
-     * @return boolean
-     */
-    public boolean equals(RightBoundFunction<?, ?> that) {
-        return null != that
-                && function.equals(that.function)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof RightBoundFunction<?, ?>)) {
+            return false;
+        }
+        RightBoundFunction<?, ?> that = (RightBoundFunction<?, ?>) obj;
+        return function.equals(that.function)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 

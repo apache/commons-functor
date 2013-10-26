@@ -102,18 +102,15 @@ public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, 
      */
     @Override
     public final boolean equals(Object obj) {
-        return obj == this || obj instanceof TransformedBinaryFunction<?, ?, ?>
-                && equals((TransformedBinaryFunction<?, ?, ?>) obj);
-    }
-
-    /**
-     * Learn whether another TransformedBinaryFunction is equal to <code>this</code>.
-     * @param that instance to test
-     * @return whether equal
-     */
-    public final boolean equals(TransformedBinaryFunction<?, ?, ?> that) {
-        return that != null && that.helper.preceding.equals(this.helper.preceding)
-                && that.helper.following.equals(this.helper.following);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof TransformedBinaryFunction<?, ?, ?>)) {
+            return false;
+        }
+        TransformedBinaryFunction<?, ?, ?> that = (TransformedBinaryFunction<?, ?, ?>) obj;
+        return this.helper.preceding.equals(that.helper.preceding)
+                && this.helper.following.equals(that.helper.following);
     }
 
     /**

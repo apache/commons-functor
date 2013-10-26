@@ -98,16 +98,14 @@ public final class NullaryAnd extends BaseNullaryPredicateList {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof NullaryAnd && equals((NullaryAnd) that));
-    }
-
-    /**
-     * Learn whether a given And is equal to this.
-     * @param that the And to test
-     * @return boolean
-     */
-    public boolean equals(NullaryAnd that) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NullaryAnd)) {
+            return false;
+        }
+        NullaryAnd that = (NullaryAnd) obj;
         return getNullaryPredicateListEquals(that);
     }
 

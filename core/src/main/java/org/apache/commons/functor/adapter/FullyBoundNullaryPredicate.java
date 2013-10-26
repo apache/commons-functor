@@ -79,18 +79,15 @@ public final class FullyBoundNullaryPredicate implements NullaryPredicate, Seria
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof FullyBoundNullaryPredicate
-                && equals((FullyBoundNullaryPredicate) that));
-    }
-
-    /**
-     * Learn whether another FullyBoundNullaryPredicate is equal to this.
-     * @param that FullyBoundNullaryPredicate to test
-     * @return boolean
-     */
-    public boolean equals(FullyBoundNullaryPredicate that) {
-        return null != that && predicate.equals(that.predicate)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof FullyBoundNullaryPredicate)) {
+            return false;
+        }
+        FullyBoundNullaryPredicate that = (FullyBoundNullaryPredicate) obj;
+        return predicate.equals(that.predicate)
                 && (null == left ? null == that.left : left.equals(that.left))
                 && (null == right ? null == that.right : right.equals(that.right));
     }

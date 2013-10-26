@@ -102,18 +102,15 @@ public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, 
      */
     @Override
     public final boolean equals(Object obj) {
-        return obj == this || obj instanceof TransformedBinaryProcedure<?, ?>
-                && equals((TransformedBinaryProcedure<?, ?>) obj);
-    }
-
-    /**
-     * Learn whether another TransformedBinaryProcedure is equal to <code>this</code>.
-     * @param that instance to test
-     * @return whether equal
-     */
-    public final boolean equals(TransformedBinaryProcedure<?, ?> that) {
-        return that != null && that.helper.function.equals(this.helper.function)
-                && that.helper.procedure.equals(this.helper.procedure);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof TransformedBinaryProcedure<?, ?>)) {
+            return false;
+        }
+        TransformedBinaryProcedure<?, ?> that = (TransformedBinaryProcedure<?, ?>) obj;
+        return this.helper.function.equals(that.helper.function)
+                && this.helper.procedure.equals(that.helper.procedure);
     }
 
     /**

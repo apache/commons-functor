@@ -75,17 +75,15 @@ public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof Max<?> && equals((Max<?>) that));
-    }
-
-    /**
-     * Learn whether another Max is equal to this.
-     * @param that Max to test
-     * @return boolean
-     */
-    public boolean equals(Max<?> that) {
-        return null != that && comparator.equals(that.comparator);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Max<?>)) {
+            return false;
+        }
+        Max<?> that = (Max<?>) obj;
+        return this.comparator.equals(that.comparator);
     }
 
     /**

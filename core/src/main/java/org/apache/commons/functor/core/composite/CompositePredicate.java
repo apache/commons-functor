@@ -104,18 +104,15 @@ public final class CompositePredicate<A> implements Predicate<A>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof CompositePredicate<?>
-                                    && equals((CompositePredicate<?>) that));
-    }
-
-    /**
-     * Learn whether another CompositePredicate is equal to this.
-     * @param that CompositePredicate to test
-     * @return boolean
-     */
-    public boolean equals(CompositePredicate<?> that) {
-        return null != that && function.equals(that.function);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof CompositePredicate<?>)) {
+            return false;
+        }
+        CompositePredicate<?> that = (CompositePredicate<?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

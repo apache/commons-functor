@@ -53,17 +53,14 @@ public final class BinaryFunctionFunction<A, T> implements Function<A, T> {
      */
     @Override
     public boolean equals(Object obj) {
-        return obj == this || obj instanceof BinaryFunctionFunction<?, ?>
-                && equals((BinaryFunctionFunction<?, ?>) obj);
-    }
-
-    /**
-     * Learn whether another BinaryFunctionFunction is equal to <code>this</code>.
-     * @param that BinaryFunctionFunction to check
-     * @return whether equal
-     */
-    public boolean equals(BinaryFunctionFunction<?, ?> that) {
-        return that != null && that.function.equals(this.function);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinaryFunctionFunction<?, ?>)) {
+            return false;
+        }
+        BinaryFunctionFunction<?, ?> that = (BinaryFunctionFunction<?, ?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

@@ -104,18 +104,15 @@ public final class CompositeProcedure<A> implements Procedure<A>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof CompositeProcedure<?>
-                                    && equals((CompositeProcedure<?>) that));
-    }
-
-    /**
-     * Learn whether another CompositeProcedure is equal to this.
-     * @param that CompositeProcedure to test
-     * @return boolean
-     */
-    public boolean equals(CompositeProcedure<?> that) {
-        return null != that && function.equals(that.function);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof CompositeProcedure<?>)) {
+            return false;
+        }
+        CompositeProcedure<?> that = (CompositeProcedure<?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

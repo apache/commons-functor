@@ -65,17 +65,15 @@ public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ComparatorFunction<?> && equals((ComparatorFunction<?>) that));
-    }
-
-    /**
-     * Learn whether a specified ComparatorFunction is equal to this.
-     * @param that the ComparatorFunction to test
-     * @return boolean
-     */
-    public boolean equals(ComparatorFunction<?> that) {
-        return null != that && comparator.equals(that.comparator);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ComparatorFunction<?>)) {
+            return false;
+        }
+        ComparatorFunction<?> that = (ComparatorFunction<?>) obj;
+        return this.comparator.equals(that.comparator);
     }
 
     /**

@@ -67,18 +67,15 @@ public final class NullaryFunctionFunction<A, T> implements Function<A, T>, Seri
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof NullaryFunctionFunction<?, ?>
-                && equals((NullaryFunctionFunction<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another NullaryFunctionFunction is equal to this.
-     * @param that NullaryFunctionFunction to test
-     * @return boolean
-     */
-    public boolean equals(NullaryFunctionFunction<?, ?> that) {
-        return null != that && function.equals(that.function);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NullaryFunctionFunction<?, ?>)) {
+            return false;
+        }
+        NullaryFunctionFunction<?, ?> that = (NullaryFunctionFunction<?, ?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

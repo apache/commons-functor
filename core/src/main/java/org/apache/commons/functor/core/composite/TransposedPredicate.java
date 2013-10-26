@@ -76,17 +76,15 @@ public class TransposedPredicate<L, R> implements BinaryPredicate<L, R>, Seriali
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof TransposedPredicate<?, ?> && equals((TransposedPredicate<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another TransposedPredicate is equal to this.
-     * @param that the TransposedPredicate to test
-     * @return boolean
-     */
-    public boolean equals(TransposedPredicate<?, ?> that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof TransposedPredicate<?, ?>)) {
+            return false;
+        }
+        TransposedPredicate<?, ?> that = (TransposedPredicate<?, ?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

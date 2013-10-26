@@ -98,21 +98,17 @@ public final class ConditionalFunction<A, T> implements Function<A, T>, Serializ
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalFunction<?, ?>
-                                    && equals((ConditionalFunction<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another ConditionalFunction is equal to this.
-     * @param that ConditionalFunction to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalFunction<?, ?> that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenFunc.equals(that.thenFunc)
-                && elseFunc.equals(that.elseFunc);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalFunction<?, ?>)) {
+            return false;
+        }
+        ConditionalFunction<?, ?> that = (ConditionalFunction<?, ?>) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenFunc.equals(that.thenFunc)
+                && this.elseFunc.equals(that.elseFunc);
     }
 
     /**

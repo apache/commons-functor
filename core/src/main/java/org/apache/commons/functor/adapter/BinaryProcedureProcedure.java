@@ -51,20 +51,14 @@ public final class BinaryProcedureProcedure<A> implements Procedure<A> {
      */
     @Override
     public boolean equals(Object obj) {
-        return obj == this || obj instanceof BinaryProcedureProcedure<?>
-                && equals((BinaryProcedureProcedure<?>) obj);
-    }
-
-    /**
-     * Learn whether another BinaryProcedureProcedure is equal to
-     * <code>this</code>.
-     *
-     * @param that BinaryProcedureProcedure to check
-     *
-     * @return whether equal
-     */
-    public boolean equals(BinaryProcedureProcedure<?> that) {
-        return that != null && that.procedure.equals(this.procedure);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinaryProcedureProcedure<?>)) {
+            return false;
+        }
+        BinaryProcedureProcedure<?> that = (BinaryProcedureProcedure<?>) obj;
+        return this.procedure.equals(that.procedure);
     }
 
     /**

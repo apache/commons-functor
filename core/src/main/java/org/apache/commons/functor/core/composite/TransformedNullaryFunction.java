@@ -99,18 +99,15 @@ public class TransformedNullaryFunction<T> implements NullaryFunction<T>, Serial
      */
     @Override
     public final boolean equals(Object obj) {
-        return obj == this || obj instanceof TransformedNullaryFunction<?>
-                && equals((TransformedNullaryFunction<?>) obj);
-    }
-
-    /**
-     * Learn whether another TransformedNullaryFunction is equal to <code>this</code>.
-     * @param that instance to test
-     * @return whether equal
-     */
-    public final boolean equals(TransformedNullaryFunction<?> that) {
-        return that != null && that.helper.preceding.equals(this.helper.preceding)
-                && that.helper.following.equals(this.helper.following);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof TransformedNullaryFunction<?>)) {
+            return false;
+        }
+        TransformedNullaryFunction<?> that = (TransformedNullaryFunction<?>) obj;
+        return this.helper.preceding.equals(that.helper.preceding)
+                && this.helper.following.equals(that.helper.following);
     }
 
     /**

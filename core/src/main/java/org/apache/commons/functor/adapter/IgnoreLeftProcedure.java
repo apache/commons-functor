@@ -67,17 +67,15 @@ public final class IgnoreLeftProcedure<L, R> implements BinaryProcedure<L, R>, S
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof IgnoreLeftProcedure<?, ?> && equals((IgnoreLeftProcedure<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another IgnoreLeftProcedure is equal to this.
-     * @param that IgnoreLeftProcedure to test
-     * @return boolean
-     */
-    public boolean equals(IgnoreLeftProcedure<?, ?> that) {
-        return null != that && procedure.equals(that.procedure);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof IgnoreLeftProcedure<?, ?>)) {
+            return false;
+        }
+        IgnoreLeftProcedure<?, ?> that = (IgnoreLeftProcedure<?, ?>) obj;
+        return this.procedure.equals(that.procedure);
     }
 
     /**

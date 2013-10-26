@@ -66,18 +66,15 @@ public final class NullaryPredicatePredicate<A> implements Predicate<A>, Seriali
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof NullaryPredicatePredicate<?>
-                                    && equals((NullaryPredicatePredicate<?>) that));
-    }
-
-    /**
-     * Learn whether a given NullaryPredicatePredicate is equal to this.
-     * @param that NullaryPredicatePredicate to test
-     * @return boolean
-     */
-    public boolean equals(NullaryPredicatePredicate<?> that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NullaryPredicatePredicate<?>)) {
+            return false;
+        }
+        NullaryPredicatePredicate<?> that = (NullaryPredicatePredicate<?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

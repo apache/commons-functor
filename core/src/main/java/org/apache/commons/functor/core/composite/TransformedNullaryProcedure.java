@@ -99,18 +99,15 @@ public class TransformedNullaryProcedure implements NullaryProcedure, Serializab
      */
     @Override
     public final boolean equals(Object obj) {
-        return obj == this || obj instanceof TransformedNullaryProcedure
-                && equals((TransformedNullaryProcedure) obj);
-    }
-
-    /**
-     * Learn whether another TransformedNullaryProcedure is equal to <code>this</code>.
-     * @param that instance to test
-     * @return whether equal
-     */
-    public final boolean equals(TransformedNullaryProcedure that) {
-        return that != null && that.helper.function.equals(this.helper.function)
-                && that.helper.procedure.equals(this.helper.procedure);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof TransformedNullaryProcedure)) {
+            return false;
+        }
+        TransformedNullaryProcedure that = (TransformedNullaryProcedure) obj;
+        return this.helper.function.equals(that.helper.function)
+                && this.helper.procedure.equals(that.helper.procedure);
     }
 
     /**

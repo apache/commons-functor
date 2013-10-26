@@ -74,18 +74,15 @@ public final class LeftBoundProcedure<A> implements Procedure<A>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof LeftBoundProcedure<?> && equals((LeftBoundProcedure<?>) that));
-    }
-
-    /**
-     * Learn whether another LeftBoundProcedure is equal to this.
-     * @param that LeftBoundProcedure to test
-     * @return boolean
-     */
-    public boolean equals(LeftBoundProcedure<?> that) {
-        return null != that
-                && procedure.equals(that.procedure)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof LeftBoundProcedure<?>)) {
+            return false;
+        }
+        LeftBoundProcedure<?> that = (LeftBoundProcedure<?>) obj;
+        return procedure.equals(that.procedure)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 

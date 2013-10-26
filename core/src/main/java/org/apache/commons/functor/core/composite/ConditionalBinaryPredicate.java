@@ -93,21 +93,17 @@ public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalBinaryPredicate<?, ?>
-                                    && equals((ConditionalBinaryPredicate<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another ConditionalBinaryPredicate is equal to this.
-     * @param that ConditionalBinaryPredicate to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalBinaryPredicate<?, ?> that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenPred.equals(that.thenPred)
-                && elsePred.equals(that.elsePred);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalBinaryPredicate<?, ?>)) {
+            return false;
+        }
+        ConditionalBinaryPredicate<?, ?> that = (ConditionalBinaryPredicate<?, ?>) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenPred.equals(that.thenPred)
+                && this.elsePred.equals(that.elsePred);
     }
 
     /**

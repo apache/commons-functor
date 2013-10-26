@@ -105,21 +105,17 @@ public final class ConditionalNullaryProcedure implements NullaryProcedure, Seri
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalNullaryProcedure
-                && equals((ConditionalNullaryProcedure) that));
-    }
-
-    /**
-     * Learn whether another ConditionalProcecure is equal to this.
-     * @param that the ConditionalNullaryProcedure to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalNullaryProcedure that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenProc.equals(that.thenProc)
-                && elseProc.equals(that.elseProc);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalNullaryProcedure)) {
+            return false;
+        }
+        ConditionalNullaryProcedure that = (ConditionalNullaryProcedure) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenProc.equals(that.thenProc)
+                && this.elseProc.equals(that.elseProc);
     }
 
     /**

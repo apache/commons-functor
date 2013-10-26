@@ -81,18 +81,15 @@ public final class FullyBoundNullaryFunction<T> implements NullaryFunction<T>, S
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof FullyBoundNullaryFunction<?>
-                && equals((FullyBoundNullaryFunction<?>) that));
-    }
-
-    /**
-     * Learn whether another FullyBoundNullaryFunction is equal to this.
-     * @param that FullyBoundNullaryFunction to test
-     * @return boolean
-     */
-    public boolean equals(FullyBoundNullaryFunction<?> that) {
-        return null != that && function.equals(that.function)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof FullyBoundNullaryFunction<?>)) {
+            return false;
+        }
+        FullyBoundNullaryFunction<?> that = (FullyBoundNullaryFunction<?>) obj;
+        return function.equals(that.function)
                 && (null == left ? null == that.left : left.equals(that.left))
                 && (null == right ? null == that.right : right.equals(that.right));
     }

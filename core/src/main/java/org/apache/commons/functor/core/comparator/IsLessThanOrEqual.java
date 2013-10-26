@@ -86,20 +86,15 @@ public final class IsLessThanOrEqual<T> implements BinaryPredicate<T, T>, Serial
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof IsLessThanOrEqual<?> && equals((IsLessThanOrEqual<?>) that));
-    }
-
-    /**
-     * Learn whether another IsLessThanOrEqual is equal to this.
-     * @param that the IsLessThanOrEqual to test.
-     * @return boolean
-     */
-    public boolean equals(IsLessThanOrEqual<?> that) {
-        if (null != that) {
-            return comparator.equals(that.comparator);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return false;
+        if (!(obj instanceof IsLessThanOrEqual<?>)) {
+            return false;
+        }
+        IsLessThanOrEqual<?> that = (IsLessThanOrEqual<?>) obj;
+        return this.comparator.equals(that.comparator);
     }
 
     /**

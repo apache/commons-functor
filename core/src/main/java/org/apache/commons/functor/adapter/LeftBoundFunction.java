@@ -75,19 +75,16 @@ public final class LeftBoundFunction<A, T> implements Function<A, T>, Serializab
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof LeftBoundFunction<?, ?> && equals((LeftBoundFunction<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another LeftBoundFunction is equal to this.
-     * @param that LeftBoundFunction to test
-     * @return boolean
-     */
-    public boolean equals(LeftBoundFunction<?, ?> that) {
-        return null != that
-                && function.equals(that.function)
-                && (null == param ? null == that.param : param.equals(that.param));
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof LeftBoundFunction<?, ?>)) {
+            return false;
+        }
+        LeftBoundFunction<?, ?> that = (LeftBoundFunction<?, ?>) obj;
+        return this.function.equals(that.function)
+                && (null == this.param ? null == that.param : this.param.equals(that.param));
     }
 
     /**

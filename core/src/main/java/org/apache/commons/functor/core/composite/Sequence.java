@@ -119,18 +119,15 @@ public class Sequence<A> implements Procedure<A>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof Sequence<?> && equals((Sequence<?>) that));
-    }
-
-    /**
-     * Learn whether another Sequence is equal to this.
-     * @param that Sequence to test
-     * @return boolean
-     */
-    public boolean equals(Sequence<?> that) {
-        // by construction, list is never null
-        return null != that && list.equals(that.list);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Sequence<?>)) {
+            return false;
+        }
+        Sequence<?> that = (Sequence<?>) obj;
+        return this.list.equals(that.list);
     }
 
     /**

@@ -136,19 +136,17 @@ public class CompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Se
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof CompositeBinaryPredicate<?, ?>
-                                    && equals((CompositeBinaryPredicate<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another CompositeBinaryPredicate is equal to this.
-     * @param that CompositeBinaryPredicate to test
-     * @return boolean
-     */
-    public boolean equals(CompositeBinaryPredicate<?, ?> that) {
-        return null != that && helper.f.equals(that.helper.f) && helper.g.equals(that.helper.g)
-                && helper.h.equals(that.helper.h);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof CompositeBinaryPredicate<?, ?>)) {
+            return false;
+        }
+        CompositeBinaryPredicate<?, ?> that = (CompositeBinaryPredicate<?, ?>) obj;
+        return this.helper.f.equals(that.helper.f)
+                && this.helper.g.equals(that.helper.g)
+                && this.helper.h.equals(that.helper.h);
     }
 
     /**

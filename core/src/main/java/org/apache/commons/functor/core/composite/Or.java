@@ -98,16 +98,14 @@ public final class Or<A> extends BasePredicateList<A> {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof Or<?> && equals((Or<?>) that));
-    }
-
-    /**
-     * Learn whether another Or is equal to this.
-     * @param that Or to test
-     * @return boolean
-     */
-    public boolean equals(Or<?> that) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Or<?>)) {
+            return false;
+        }
+        Or<?> that = (Or<?>) obj;
         return getPredicateListEquals(that);
     }
 

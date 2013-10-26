@@ -70,17 +70,15 @@ public final class Not<A> implements Predicate<A>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof Not<?> && equals((Not<?>) that));
-    }
-
-    /**
-     * Learn whether another Not is equal to this.
-     * @param that Not to test
-     * @return boolean
-     */
-    public boolean equals(Not<?> that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Not<?>)) {
+            return false;
+        }
+        Not<?> that = (Not<?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

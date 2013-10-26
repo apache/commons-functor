@@ -99,16 +99,14 @@ public final class BinaryOr<L, R> extends BaseBinaryPredicateList<L, R> {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof BinaryOr<?, ?> && equals((BinaryOr<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another BinaryOr is equal to this.
-     * @param that BinaryOr to test
-     * @return boolean
-     */
-    public boolean equals(BinaryOr<?, ?> that) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinaryOr<?, ?>)) {
+            return false;
+        }
+        BinaryOr<?, ?> that = (BinaryOr<?, ?>) obj;
         return getBinaryPredicateListEquals(that);
     }
 

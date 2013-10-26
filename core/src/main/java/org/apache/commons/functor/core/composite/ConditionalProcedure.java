@@ -107,21 +107,17 @@ public final class ConditionalProcedure<A> implements Procedure<A>, Serializable
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalProcedure<?>
-                                    && equals((ConditionalProcedure<?>) that));
-    }
-
-    /**
-     * Learn whether another ConditionalProcedure is equal to this.
-     * @param that ConditionalProcedure to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalProcedure<?> that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenProc.equals(that.thenProc)
-                && elseProc.equals(that.elseProc);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalProcedure<?>)) {
+            return false;
+        }
+        ConditionalProcedure<?> that = (ConditionalProcedure<?>) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenProc.equals(that.thenProc)
+                && this.elseProc.equals(that.elseProc);
     }
 
     /**

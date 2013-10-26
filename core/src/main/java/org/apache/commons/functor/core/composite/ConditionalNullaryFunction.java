@@ -97,21 +97,17 @@ public final class ConditionalNullaryFunction<T> implements NullaryFunction<T>, 
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalNullaryFunction<?>
-                && equals((ConditionalNullaryFunction<?>) that));
-    }
-
-    /**
-     * Learn whether another ConditionalNullaryFunction is equal to this.
-     * @param that ConditionalNullaryFunction to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalNullaryFunction<?> that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenFunc.equals(that.thenFunc)
-                && elseFunc.equals(that.elseFunc);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalNullaryFunction<?>)) {
+            return false;
+        }
+        ConditionalNullaryFunction<?> that = (ConditionalNullaryFunction<?>) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenFunc.equals(that.thenFunc)
+                && this.elseFunc.equals(that.elseFunc);
     }
 
     /**

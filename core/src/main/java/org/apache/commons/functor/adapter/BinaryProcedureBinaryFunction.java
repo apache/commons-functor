@@ -69,18 +69,15 @@ public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunct
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof BinaryProcedureBinaryFunction<?, ?, ?>
-                                    && equals((BinaryProcedureBinaryFunction<?, ?, ?>) that));
-    }
-
-    /**
-     * Learn whether another BinaryProcedureBinaryFunction is equal to this.
-     * @param that the BinaryProcedureBinaryFunction to test
-     * @return boolean
-     */
-    public boolean equals(BinaryProcedureBinaryFunction<?, ?, ?> that) {
-        return null != that && procedure.equals(that.procedure);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinaryProcedureBinaryFunction<?, ?, ?>)) {
+            return false;
+        }
+        BinaryProcedureBinaryFunction<?, ?, ?> that = (BinaryProcedureBinaryFunction<?, ?, ?>) obj;
+        return this.procedure.equals(that.procedure);
     }
 
     /**

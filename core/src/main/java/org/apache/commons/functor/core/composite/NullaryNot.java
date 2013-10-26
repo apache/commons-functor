@@ -70,17 +70,15 @@ public final class NullaryNot implements NullaryPredicate, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof NullaryNot && equals((NullaryNot) that));
-    }
-
-    /**
-     * Learn whether another NullaryNot is equal to this.
-     * @param that the NullaryNot to test
-     * @return boolean
-     */
-    public boolean equals(NullaryNot that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NullaryNot)) {
+            return false;
+        }
+        NullaryNot that = (NullaryNot) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

@@ -74,18 +74,15 @@ public final class RightBoundProcedure<A> implements Procedure<A>, Serializable 
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof RightBoundProcedure<?> && equals((RightBoundProcedure<?>) that));
-    }
-
-    /**
-     * Learn whether another RightBoundProcedure is equal to this.
-     * @param that RightBoundProcedure to test
-     * @return boolean
-     */
-    public boolean equals(RightBoundProcedure<?> that) {
-        return null != that
-                && procedure.equals(that.procedure)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof RightBoundProcedure<?>)) {
+            return false;
+        }
+        RightBoundProcedure<?> that = (RightBoundProcedure<?>) obj;
+        return this.procedure.equals(that.procedure)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 

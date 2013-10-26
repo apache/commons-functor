@@ -70,18 +70,15 @@ public final class PredicateFunction<A> implements Function<A, Boolean>, Seriali
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this
-                || (that instanceof PredicateFunction<?> && equals((PredicateFunction<?>) that));
-    }
-
-    /**
-     * Learn whether another PredicateFunction is equal to this.
-     * @param that PredicateFunction to test
-     * @return boolean
-     */
-    public boolean equals(PredicateFunction<?> that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof PredicateFunction<?>)) {
+            return false;
+        }
+        PredicateFunction<?> that = (PredicateFunction<?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

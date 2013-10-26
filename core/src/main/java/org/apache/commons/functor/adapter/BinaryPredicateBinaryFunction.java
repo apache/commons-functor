@@ -70,19 +70,15 @@ public final class BinaryPredicateBinaryFunction<L, R> implements BinaryFunction
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this
-                || (that instanceof BinaryPredicateBinaryFunction<?, ?>
-                && equals((BinaryPredicateBinaryFunction<?, ?>) that));
-    }
-
-    /**
-     * Learn whether another BinaryPredicateBinaryFunction is equal to this.
-     * @param that BinaryPredicateBinaryFunction to test
-     * @return boolean
-     */
-    public boolean equals(BinaryPredicateBinaryFunction<?, ?> that) {
-        return null != that && predicate.equals(that.predicate);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BinaryPredicateBinaryFunction<?, ?>)) {
+            return false;
+        }
+        BinaryPredicateBinaryFunction<?, ?> that = (BinaryPredicateBinaryFunction<?, ?>) obj;
+        return this.predicate.equals(that.predicate);
     }
 
     /**

@@ -78,18 +78,15 @@ public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Ser
      * {@inheritDoc}
      */
     @Override
-    public final boolean equals(Object that) {
-        return that == this || (that instanceof TransposedFunction<?, ?, ?>
-                                    && equals((TransposedFunction<?, ?, ?>) that));
-    }
-
-    /**
-     * Learn whether another TransposedFunction is equal to this.
-     * @param that TransposedFunction to test
-     * @return boolean
-     */
-    public final boolean equals(TransposedFunction<?, ?, ?> that) {
-        return null != that && function.equals(that.function);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof TransposedFunction<?, ?, ?>)) {
+            return false;
+        }
+        TransposedFunction<?, ?, ?> that = (TransposedFunction<?, ?, ?>) obj;
+        return this.function.equals(that.function);
     }
 
     /**

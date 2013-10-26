@@ -98,16 +98,14 @@ public final class And<A> extends BasePredicateList<A> {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof And<?> && equals((And<?>) that));
-    }
-
-    /**
-     * Learn whether another And is equal to this.
-     * @param that And to test
-     * @return boolean
-     */
-    public boolean equals(And<?> that) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof And<?>)) {
+            return false;
+        }
+        And<?> that = (And<?>) obj;
         return getPredicateListEquals(that);
     }
 

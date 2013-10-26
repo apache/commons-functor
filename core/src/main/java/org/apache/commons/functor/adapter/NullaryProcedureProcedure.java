@@ -66,18 +66,15 @@ public final class NullaryProcedureProcedure<A> implements Procedure<A>, Seriali
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof NullaryProcedureProcedure<?>
-                                    && equals((NullaryProcedureProcedure<?>) that));
-    }
-
-    /**
-     * Learn whether another NullaryProcedureProcedure is equal to this.
-     * @param that NullaryProcedureProcedure to test
-     * @return boolean
-     */
-    public boolean equals(NullaryProcedureProcedure<?> that) {
-        return null != that && procedure.equals(that.procedure);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NullaryProcedureProcedure<?>)) {
+            return false;
+        }
+        NullaryProcedureProcedure<?> that = (NullaryProcedureProcedure<?>) obj;
+        return this.procedure.equals(that.procedure);
     }
 
     /**

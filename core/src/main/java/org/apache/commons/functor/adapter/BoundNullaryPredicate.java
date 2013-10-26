@@ -73,20 +73,16 @@ public final class BoundNullaryPredicate implements NullaryPredicate, Serializab
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof BoundNullaryPredicate && equals((BoundNullaryPredicate) that));
-    }
-
-    /**
-     * Learn whether another BoundNullaryPredicate is equal to this.
-     * @param that BoundNullaryPredicate to test
-     * @return boolean
-     */
-    public boolean equals(BoundNullaryPredicate that) {
-        return null != that
-                && predicate.equals(that.predicate)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof BoundNullaryPredicate)) {
+            return false;
+        }
+        BoundNullaryPredicate that = (BoundNullaryPredicate) obj;
+        return predicate.equals(that.predicate)
                 && (null == param ? null == that.param : param.equals(that.param));
-
     }
 
     /**

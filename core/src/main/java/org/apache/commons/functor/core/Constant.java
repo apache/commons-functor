@@ -127,17 +127,15 @@ public final class Constant<T> implements NullaryFunction<T>, Function<Object, T
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof Constant<?> && equals((Constant<?>) that));
-    }
-
-    /**
-     * Learn whether another Constant is equal to this.
-     * @param that Constant to test
-     * @return boolean
-     */
-    public boolean equals(Constant<?> that) {
-        return (null != that && (null == this.value ? null == that.value : this.value.equals(that.value)));
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Constant<?>)) {
+            return false;
+        }
+        Constant<?> that = (Constant<?>) obj;
+        return null == this.value ? null == that.value : this.value.equals(that.value);
     }
 
     /**

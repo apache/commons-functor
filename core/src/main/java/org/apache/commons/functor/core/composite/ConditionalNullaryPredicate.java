@@ -90,21 +90,17 @@ public final class ConditionalNullaryPredicate implements NullaryPredicate, Seri
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof ConditionalNullaryPredicate
-                && equals((ConditionalNullaryPredicate) that));
-    }
-
-    /**
-     * Learn whether another ConditionalNullaryPredicate is equal to this.
-     * @param that ConditionalNullaryPredicate to test
-     * @return boolean
-     */
-    public boolean equals(ConditionalNullaryPredicate that) {
-        return null != that
-                && ifPred.equals(that.ifPred)
-                && thenPred.equals(that.thenPred)
-                && elsePred.equals(that.elsePred);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConditionalNullaryPredicate)) {
+            return false;
+        }
+        ConditionalNullaryPredicate that = (ConditionalNullaryPredicate) obj;
+        return this.ifPred.equals(that.ifPred)
+                && this.thenPred.equals(that.thenPred)
+                && this.elsePred.equals(that.elsePred);
     }
 
     /**

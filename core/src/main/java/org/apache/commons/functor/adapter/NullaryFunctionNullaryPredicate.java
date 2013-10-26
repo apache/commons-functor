@@ -67,18 +67,15 @@ public final class NullaryFunctionNullaryPredicate implements NullaryPredicate, 
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof NullaryFunctionNullaryPredicate
-                && equals((NullaryFunctionNullaryPredicate) that));
-    }
-
-    /**
-     * Learn whether another NullaryFunctionNullaryPredicate is equal to this.
-     * @param that NullaryFunctionNullaryPredicate to test
-     * @return boolean
-     */
-    public boolean equals(NullaryFunctionNullaryPredicate that) {
-        return null != that && function.equals(that.function);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NullaryFunctionNullaryPredicate)) {
+            return false;
+        }
+        NullaryFunctionNullaryPredicate that = (NullaryFunctionNullaryPredicate) obj;
+        return this.function.equals(that.function);
     }
 
     /**

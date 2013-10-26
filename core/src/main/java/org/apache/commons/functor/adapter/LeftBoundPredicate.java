@@ -75,18 +75,15 @@ public final class LeftBoundPredicate<A> implements Predicate<A>, Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object that) {
-        return that == this || (that instanceof LeftBoundPredicate<?> && equals((LeftBoundPredicate<?>) that));
-    }
-
-    /**
-     * Learn whether another LeftBoundPredicate is equal to this.
-     * @param that LeftBoundPredicate to test
-     * @return boolean
-     */
-    public boolean equals(LeftBoundPredicate<?> that) {
-        return null != that
-                && predicate.equals(that.predicate)
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof LeftBoundPredicate<?>)) {
+            return false;
+        }
+        LeftBoundPredicate<?> that = (LeftBoundPredicate<?>) obj;
+        return predicate.equals(that.predicate)
                 && (null == param ? null == that.param : param.equals(that.param));
     }
 
