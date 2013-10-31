@@ -23,22 +23,9 @@ import org.apache.commons.functor.NullaryPredicate;
  * at least one of its children test <code>true</code>.
  * Note that by this definition, the "or" of
  * an empty collection of predicates tests <code>false</code>.
- * <p>
- * Note that although this class implements
- * {@link java.io.Serializable Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class NullaryOr extends BaseNullaryPredicateList {
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -1636233158061690073L;
 
     // constructor
     // ------------------------------------------------------------------------

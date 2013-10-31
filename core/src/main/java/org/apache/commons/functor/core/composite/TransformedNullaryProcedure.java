@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Procedure;
@@ -27,11 +25,7 @@ import org.apache.commons.lang3.Validate;
  * A NullaryProcedure composed of a NullaryFunction whose result is then run through a Procedure.
  * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
-public class TransformedNullaryProcedure implements NullaryProcedure, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -4111958123789033410L;
+public class TransformedNullaryProcedure implements NullaryProcedure {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 2;
@@ -40,11 +34,7 @@ public class TransformedNullaryProcedure implements NullaryProcedure, Serializab
      * Type-remembering helper.
      * @param <X> the adapted function argument type.
      */
-    private static final class Helper<X> implements NullaryProcedure, Serializable {
-        /**
-         * serialVersionUID declaration.
-         */
-        private static final long serialVersionUID = -4093503167446891318L;
+    private static final class Helper<X> implements NullaryProcedure {
         /**
          * The adapted function.
          */

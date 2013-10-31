@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.Procedure;
@@ -30,22 +28,13 @@ import org.apache.commons.lang3.Validate;
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7559182250073101798L;
-
+public class TransformedBinaryProcedure<L, R> implements BinaryProcedure<L, R> {
     /**
      * Type-remembering helper.
      *
      * @param <X> the wrapped procedure argument.
      */
-    private static final class Helper<X, L, R> implements BinaryProcedure<L, R>, Serializable {
-        /**
-         * serialVersionUID declaration.
-         */
-        private static final long serialVersionUID = -4229496007094829301L;
+    private static final class Helper<X, L, R> implements BinaryProcedure<L, R> {
         /**
          * The wrapped function.
          */

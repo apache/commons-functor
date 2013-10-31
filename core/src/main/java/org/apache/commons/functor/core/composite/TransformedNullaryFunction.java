@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
@@ -28,22 +26,14 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the returned value type.
  * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
-public class TransformedNullaryFunction<T> implements NullaryFunction<T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 1201423110871342081L;
+public class TransformedNullaryFunction<T> implements NullaryFunction<T> {
 
     /**
      * Type-remembering helper.
      *
      * @param <X> the adapted function argument type
      */
-    private static final class Helper<X, T> implements NullaryFunction<T>, Serializable {
-        /**
-         * serialVersionUID declaration.
-         */
-        private static final long serialVersionUID = -7177784125292465809L;
+    private static final class Helper<X, T> implements NullaryFunction<T> {
         /**
          * The preceding function.
          */

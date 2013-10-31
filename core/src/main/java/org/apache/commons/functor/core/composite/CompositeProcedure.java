@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.adapter.ProcedureFunction;
@@ -35,22 +33,10 @@ import org.apache.commons.lang3.Validate;
  * <pre>new CompositeProcedure(p).of(f).of(g)</pre>
  * {@link #run runs}
  * <code>p.run(f.evaluate(g.evaluate(obj)))</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <A> the procedure argument type.
  * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
-public final class CompositeProcedure<A> implements Procedure<A>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7496282561355676509L;
+public final class CompositeProcedure<A> implements Procedure<A> {
     // attributes
     // ------------------------------------------------------------------------
     /**

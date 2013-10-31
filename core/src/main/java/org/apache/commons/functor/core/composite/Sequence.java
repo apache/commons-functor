@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,23 +28,11 @@ import org.apache.commons.functor.Procedure;
  * sequence of {@link Procedure Procedures}.
  * When the sequence is empty, this procedure is does
  * nothing.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public class Sequence<A> implements Procedure<A>, Serializable {
+public class Sequence<A> implements Procedure<A> {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 9194268249717820246L;
     // attributes
     // ------------------------------------------------------------------------
     /**

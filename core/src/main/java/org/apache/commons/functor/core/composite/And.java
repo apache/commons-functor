@@ -23,23 +23,10 @@ import org.apache.commons.functor.Predicate;
  * none of its children test <code>false</code>.
  * Note that by this definition, the "and" of
  * an empty collection of predicates tests <code>true</code>.
- * <p>
- * Note that although this class implements
- * {@link java.io.Serializable Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
 public final class And<A> extends BasePredicateList<A> {
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 8324861737107307302L;
 
     // constructor
     // ------------------------------------------------------------------------

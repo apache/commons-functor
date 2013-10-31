@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
@@ -30,22 +28,13 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 3312781645741807814L;
-
+public class TransformedBinaryFunction<L, R, T> implements BinaryFunction<L, R, T> {
     /**
      * Type-remembering helper.
      *
      * @param <X> the following function left argument.
      */
-    private static final class Helper<X, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
-        /**
-         * serialVersionUID declaration.
-         */
-        private static final long serialVersionUID = 8141488776884860650L;
+    private static final class Helper<X, L, R, T> implements BinaryFunction<L, R, T> {
         /**
          * The preceding function.
          */

@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.lang3.Validate;
 
@@ -29,25 +27,13 @@ import org.apache.commons.lang3.Validate;
  * <i>b</i>.
  * {@link #evaluate evaluates} to
  * <code>f.evaluate(b,a)</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying functor is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
- * </p>
  *
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -5824252875453493940L;
+public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T> {
     // attributes
     // ------------------------------------------------------------------------
     /**

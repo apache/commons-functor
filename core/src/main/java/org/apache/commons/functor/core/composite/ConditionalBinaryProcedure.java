@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.core.NoOp;
@@ -31,24 +29,11 @@ import org.apache.commons.lang3.Validate;
  * <i>p</i> and {@link BinaryProcedure procedures}
  * <i>q</i> and <i>r</i>, {@link #run runs}
  * <code>if (p.test(x,y)) { q.run(x,y); } else { r.run(x,y); }</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -3521992036791188475L;
+public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L, R> {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;

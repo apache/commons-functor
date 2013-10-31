@@ -23,25 +23,12 @@ import org.apache.commons.functor.NullaryPredicate;
  * none of its children test <code>false</code>.
  * Note that by this definition, the "and" of
  * an empty collection of predicates tests <code>true</code>.
- * <p>
- * Note that although this class implements
- * {@link java.io.Serializable Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class NullaryAnd extends BaseNullaryPredicateList {
 
     // constructor
     // ------------------------------------------------------------------------
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -6053343095016685571L;
 
     /**
      * Create a new NullaryAnd.

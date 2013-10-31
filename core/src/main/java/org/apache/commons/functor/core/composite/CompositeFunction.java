@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
 
@@ -37,24 +35,11 @@ import org.apache.commons.lang3.Validate;
  * When the collection is empty, this function is
  * an identity function.
  * </p>
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <A> the argument type.
  * @param <T> the returned value type.
  * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
-public class CompositeFunction<A, T> implements Function<A, T>, Serializable {
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 4945193629275757281L;
+public class CompositeFunction<A, T> implements Function<A, T> {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
@@ -65,11 +50,7 @@ public class CompositeFunction<A, T> implements Function<A, T>, Serializable {
      * @param <X> intermediate type
      * @param <T> return type
      */
-    private static class Helper<X, A, T> implements Function<A, T>, Serializable {
-        /**
-         * serialVersionUID declaration.
-         */
-        private static final long serialVersionUID = 8167255331321876718L;
+    private static class Helper<X, A, T> implements Function<A, T> {
         /**
          * The last evaluator function.
          */

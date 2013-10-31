@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
@@ -28,25 +26,13 @@ import org.apache.commons.lang3.Validate;
  * functions, <i>f</i> and <i>g</i>,
  * evaluating the ordered parameters <i>x</i>, <i>y</i>
  * to <code><i>p</i>(<i>f</i>(<i>x</i>),<i>g</i>(<i>y</i>))</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
-public class CompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 3841123079006929493L;
+public class CompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R> {
 
-    /** Base hash integer used to shift hash. */
+	/** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
 
     /**
@@ -57,11 +43,7 @@ public class CompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Se
      * @param <L> left function type.
      * @param <R> left function type.
      */
-    private static class Helper<G, H, L, R> implements BinaryPredicate<L, R>, Serializable {
-        /**
-         * serialVersionUID declaration.
-         */
-        private static final long serialVersionUID = -3463108273324567825L;
+    private static class Helper<G, H, L, R> implements BinaryPredicate<L, R> {
         /**
          * BinaryPredicate to test <i>output(</i><code>f</code><i>), output(</i><code>g</code><i>)</i>.
          */

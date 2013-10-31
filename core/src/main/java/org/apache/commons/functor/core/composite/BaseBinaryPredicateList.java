@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,25 +24,13 @@ import org.apache.commons.functor.BinaryPredicate;
 /**
  * Abstract base class for {@link BinaryPredicate BinaryPredicates}
  * composed of a list of {@link BinaryPredicate BinaryPredicates}.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R>, Serializable {
+abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R> {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -8218822378485819939L;
-    // attributes
+	// attributes
     // ------------------------------------------------------------------------
     /**
      * A list to maintain all the adapted predicates.

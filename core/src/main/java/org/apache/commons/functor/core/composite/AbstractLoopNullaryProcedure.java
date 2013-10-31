@@ -20,19 +20,13 @@ import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.lang3.Validate;
 
-import java.io.Serializable;
-
 /**
  * Abstract base class for {@link WhileDoNullaryProcedure} and {@link DoWhileNullaryProcedure}
  * used to implement loop procedures.
  * <p>
  * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
-public abstract class AbstractLoopNullaryProcedure implements NullaryProcedure, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -5903381842630236070L;
+public abstract class AbstractLoopNullaryProcedure implements NullaryProcedure {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;

@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.lang3.Validate;
 
@@ -26,25 +24,12 @@ import org.apache.commons.lang3.Validate;
  * three binary functions, <i>f</i>, <i>g</i> and <i>h</i>,
  * evaluating the ordered parameters <i>x</i>, <i>y</i>
  * to <code><i>f</i>(<i>g</i>(<i>x</i>,<i>y</i>),<i>h</i>(<i>x</i>,<i>y</i>))</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <L> the function left argument type.
  * @param <R> the function right argument type.
  * @param <T> the function returned value type.
  * @version $Revision$ $Date$
  */
-public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 2570517284319064043L;
+public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T> {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
@@ -55,11 +40,7 @@ public class BinaryCompositeBinaryFunction<L, R, T> implements BinaryFunction<L,
      * @param <G> the function left argument type.
      * @param <H> the function right argument type.
      */
-    private static class Helper<G, H, L, R, T> implements BinaryFunction<L, R, T>, Serializable {
-        /**
-         * serialVersionUID declaration.
-         */
-        private static final long serialVersionUID = 6013646799505641592L;
+    private static class Helper<G, H, L, R, T> implements BinaryFunction<L, R, T> {
         /**
          * Global evaluator.
          */

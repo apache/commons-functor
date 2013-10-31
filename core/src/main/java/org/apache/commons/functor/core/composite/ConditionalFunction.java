@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
@@ -31,23 +29,11 @@ import org.apache.commons.lang3.Validate;
  * <i>f</i> and <i>g</i>, {@link #evaluate evalautes}
  * to
  * <code>p.test(x) ? f.evaluate(x) : g.evaluate(x)</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <A> the argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class ConditionalFunction<A, T> implements Function<A, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -8152490481969255068L;
+public final class ConditionalFunction<A, T> implements Function<A, T> {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;

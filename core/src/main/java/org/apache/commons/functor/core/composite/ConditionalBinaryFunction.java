@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.lang3.Validate;
@@ -31,24 +29,12 @@ import org.apache.commons.lang3.Validate;
  * <i>f</i> and <i>g</i>, {@link #evaluate evaluates}
  * to
  * <code>p.test(x,y) ? f.evaluate(x,y) : g.evaluate(x,y)</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the output function returned value type.
  * @version $Revision$ $Date$
  */
-public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -994698971284481482L;
+public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<L, R, T> {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;

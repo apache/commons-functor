@@ -16,31 +16,17 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.lang3.Validate;
 
 /**
  * {@link #test Tests} to the logical inverse
  * of some other predicate.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying functor is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
-public final class NullaryNot implements NullaryPredicate, Serializable {
+public final class NullaryNot implements NullaryPredicate {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 8268713706856765874L;
-    // attributes
+	// attributes
     // ------------------------------------------------------------------------
     /**
      * The adapted predicate has to be negated.

@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,22 +28,10 @@ import org.apache.commons.functor.NullaryProcedure;
  * sequence of {@link NullaryProcedure NullaryProcedures}.
  * When the sequence is empty, this procedure is does
  * nothing.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
-public class NullarySequence implements NullaryProcedure, Serializable {
+public class NullarySequence implements NullaryProcedure {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 8041703589149547883L;
     // attributes
     // ------------------------------------------------------------------------
     /**

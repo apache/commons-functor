@@ -24,22 +24,9 @@ import org.apache.commons.functor.NullaryProcedure;
  * A {@link NullaryProcedure} implementation of a while loop. Given a {@link NullaryPredicate}
  * <i>c</i> and an {@link NullaryProcedure} <i>p</i>, {@link #run runs}
  * <code>while(c.test()) { p.run(); }</code>.
- * <p>
- * Note that although this class implements
- * {@link java.io.Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public class WhileDoNullaryProcedure extends AbstractLoopNullaryProcedure {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 8157389586531784657L;
-
     /**
      * Create a new WhileDoNullaryProcedure.
      * @param condition while

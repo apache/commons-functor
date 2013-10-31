@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,23 +24,11 @@ import org.apache.commons.functor.Predicate;
 /**
  * Abstract base class for {@link Predicate Predicates}
  * composed of a list of {@link Predicate Predicates}.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-abstract class BasePredicateList<A> implements Predicate<A>, Serializable {
+abstract class BasePredicateList<A> implements Predicate<A> {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 1467575113401282954L;
     // attributes
     // ------------------------------------------------------------------------
     /**

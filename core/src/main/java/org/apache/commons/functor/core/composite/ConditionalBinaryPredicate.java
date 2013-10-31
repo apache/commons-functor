@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.composite;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.lang3.Validate;
 
@@ -30,23 +28,11 @@ import org.apache.commons.lang3.Validate;
  * {@link #test tests}
  * to
  * <code>p.test(x,y) ? q.test(x,y) : r.test(x,y)</code>.
- * <p>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if all the
- * underlying functors are.  Attempts to serialize
- * an instance whose delegates are not all
- * <code>Serializable</code> will result in an exception.
- * </p>
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -4511946801764080748L;
+public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L, R> {
 
     /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
