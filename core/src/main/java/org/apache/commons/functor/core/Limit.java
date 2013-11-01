@@ -17,8 +17,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.Predicate;
@@ -31,13 +29,7 @@ import org.apache.commons.functor.Predicate;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class Limit implements NullaryPredicate, Predicate<Object>, BinaryPredicate<Object, Object>, Serializable {
-    // static attributes
-    // ------------------------------------------------------------------------
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 8974528922587619067L;
+public final class Limit implements NullaryPredicate, Predicate<Object>, BinaryPredicate<Object, Object> {
     // instance variables
     //---------------------------------------------------------------
     /**

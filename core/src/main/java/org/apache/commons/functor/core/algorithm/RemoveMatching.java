@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
 import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryProcedure;
@@ -29,11 +28,7 @@ import org.apache.commons.functor.Predicate;
  * @version $Revision$ $Date$
  */
 public final class RemoveMatching<T>
-    implements BinaryProcedure<Iterator<? extends T>, Predicate<? super T>>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -8376577687898040683L;
+    implements BinaryProcedure<Iterator<? extends T>, Predicate<? super T>> {
     /**
      * A static {@link RemoveMatching} instance reference.
      */

@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Function;
@@ -30,19 +28,12 @@ import org.apache.commons.functor.Predicate;
  * <p>
  * {@link #test Tests} to a constant value, assuming
  * a boolean of Boolean value is supplied.
- *
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * constant <code>Object</code> is.  Attempts to serialize
- * an instance whose value is not
- * <code>Serializable</code> will result in an exception.
  * </p>
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
 public final class Constant<T> implements NullaryFunction<T>, Function<Object, T>, BinaryFunction<Object, Object, T>,
-        NullaryPredicate, Predicate<Object>, BinaryPredicate<Object, Object>, Serializable {
+        NullaryPredicate, Predicate<Object>, BinaryPredicate<Object, Object> {
 
     // static attributes
     // ------------------------------------------------------------------------
@@ -55,11 +46,6 @@ public final class Constant<T> implements NullaryFunction<T>, Function<Object, T
      * Constant for <code>false</code>.
      */
     public static final Constant<Boolean> FALSE = of(Boolean.FALSE);
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -8754373778528773039L;
 
     // attributes
     // ------------------------------------------------------------------------

@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
@@ -28,23 +26,12 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link Function Function} interface
  * by always returning <code>null</code>.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying procedure is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <A> the argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class ProcedureFunction<A, T> implements Function<A, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 6153848695167906659L;
+public final class ProcedureFunction<A, T> implements Function<A, T> {
     /** The {@link Procedure Procedure} I'm wrapping. */
     private final Procedure<? super A> procedure;
 

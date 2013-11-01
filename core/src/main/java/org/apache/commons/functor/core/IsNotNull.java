@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.IgnoreLeftPredicate;
@@ -31,7 +29,7 @@ import org.apache.commons.functor.adapter.IgnoreRightPredicate;
  * @param <T> the argument type.
  * @version $Revision$ $Date$
  */
-public final class IsNotNull<T> implements Predicate<T>, Serializable {
+public final class IsNotNull<T> implements Predicate<T> {
 
     // static attributes
     // ------------------------------------------------------------------------
@@ -49,11 +47,6 @@ public final class IsNotNull<T> implements Predicate<T>, Serializable {
      * Right-handed BinaryPredicate.
      */
     public static final BinaryPredicate<Object, Object> RIGHT = IsNotNull.<Object>right();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -6856387958371590330L;
 
     // constructor
     // ------------------------------------------------------------------------

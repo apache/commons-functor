@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.lang3.Validate;
 
@@ -27,11 +25,7 @@ import org.apache.commons.lang3.Validate;
  * is executed. Functions are executed until a non function value or a
  * function of a type other than that expected is returned.
  */
-public class RecursiveEvaluation implements NullaryFunction<Object>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7992078213921938619L;
+public class RecursiveEvaluation implements NullaryFunction<Object> {
     /**
      * The initial recursive NullaryFunction type.
      */

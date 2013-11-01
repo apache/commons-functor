@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
 import java.util.ListIterator;
 
 import org.apache.commons.functor.BinaryProcedure;
@@ -29,11 +28,7 @@ import org.apache.commons.functor.Function;
  * @version $Revision$ $Date$
  */
 public final class InPlaceTransform<T>
-    implements BinaryProcedure<ListIterator<T>, Function<? super T, ? extends T>>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 4365206078517376006L;
+    implements BinaryProcedure<ListIterator<T>, Function<? super T, ? extends T>> {
     /**
      * A static {@code InPlaceTransform} instance reference.
      */

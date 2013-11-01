@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
@@ -35,17 +33,13 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public final class IsNotEqual<L, R> implements BinaryPredicate<L, R>, Serializable {
+public final class IsNotEqual<L, R> implements BinaryPredicate<L, R> {
     // static attributes
     // ------------------------------------------------------------------------
     /**
      * Basic IsNotEqual<Object, Object> instance.
      */
     public static final IsNotEqual<Object, Object> INSTANCE = IsNotEqual.<Object, Object>instance();
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7303588338955281317L;
 
     // constructor
     // ------------------------------------------------------------------------

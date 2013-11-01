@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
@@ -28,23 +26,12 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link Predicate Predicate} interface
  * using a constant left-side argument.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying objects are.  Attempts to serialize
- * an instance whose delegates are not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class LeftBoundPredicate<A> implements Predicate<A>, Serializable {
+public final class LeftBoundPredicate<A> implements Predicate<A> {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 3851481216909573294L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */
     private final BinaryPredicate<Object, ? super A> predicate;
     /** The parameter to pass to {@code predicate}. */

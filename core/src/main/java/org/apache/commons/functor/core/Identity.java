@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
 
@@ -33,18 +31,13 @@ import org.apache.commons.functor.Predicate;
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class Identity<T> implements Function<T, T>, Predicate<T>, Serializable {
+public final class Identity<T> implements Function<T, T>, Predicate<T> {
     // static attributes
     // ------------------------------------------------------------------------
     /**
      * A generic {@code Identity<Object>} instance.
      */
     public static final Identity<Object> INSTANCE = new Identity<Object>();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 4145504259013789494L;
 
     // constructor
     // ------------------------------------------------------------------------

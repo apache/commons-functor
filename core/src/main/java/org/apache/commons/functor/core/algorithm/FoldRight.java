@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
 import java.util.Stack;
 
 import org.apache.commons.functor.BinaryFunction;
@@ -33,12 +32,7 @@ import org.apache.commons.functor.generator.Generator;
  * @param <T> the returned evaluation type.
  * @version $Revision$ $Date$
  */
-public class FoldRight<T> implements Function<Generator<T>, T>, BinaryFunction<Generator<T>, T, T>, Serializable {
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 4671387086700391506L;
+public class FoldRight<T> implements Function<Generator<T>, T>, BinaryFunction<Generator<T>, T, T> {
 
     /**
      * Helper class.

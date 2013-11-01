@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.Function;
 import org.apache.commons.lang3.Validate;
@@ -28,23 +26,12 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link Function Function} interface
  * using a constant left-side argument.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying objects are.  Attempts to serialize
- * an instance whose delegates are not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <A> the argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class LeftBoundFunction<A, T> implements Function<A, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7456827102718911769L;
+public final class LeftBoundFunction<A, T> implements Function<A, T> {
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */
     private final BinaryFunction<Object, ? super A, ? extends T> function;
     /** The parameter to pass to {@code function}. */

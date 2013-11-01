@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.lang3.Validate;
@@ -28,22 +26,11 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link NullaryFunction NullaryFunction} interface
  * using constant arguments.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying objects are.  Attempts to serialize
- * an instance whose delegates are not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <T> the returned value type.
  * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
-public final class FullyBoundNullaryFunction<T> implements NullaryFunction<T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -8588331452137525985L;
+public final class FullyBoundNullaryFunction<T> implements NullaryFunction<T> {
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */
     private final BinaryFunction<Object, Object, ? extends T> function;
     /** The left parameter to pass to {@code function}. */

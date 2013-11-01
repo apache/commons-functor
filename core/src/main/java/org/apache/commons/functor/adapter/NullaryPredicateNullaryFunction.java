@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.lang3.Validate;
@@ -27,21 +25,10 @@ import org.apache.commons.lang3.Validate;
  * {@link NullaryPredicate Predicate}
  * to the
  * {@link NullaryFunction NullaryFunction} interface.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying predicate is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
-public final class NullaryPredicateNullaryFunction implements NullaryFunction<Boolean>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -8858981355549412629L;
+public final class NullaryPredicateNullaryFunction implements NullaryFunction<Boolean> {
     /** The {@link NullaryPredicate NullaryPredicate} I'm wrapping. */
     private final NullaryPredicate predicate;
 

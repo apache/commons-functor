@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
@@ -27,22 +25,11 @@ import org.apache.commons.lang3.Validate;
  * {@link Function Function}
  * to the {@link Predicate Predicate}
  * interface.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying function is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class FunctionPredicate<A> implements Predicate<A>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -9211927278252224707L;
+public final class FunctionPredicate<A> implements Predicate<A> {
     /** The {@link Function Function} I'm wrapping. */
     private final Function<? super A, Boolean> function;
 

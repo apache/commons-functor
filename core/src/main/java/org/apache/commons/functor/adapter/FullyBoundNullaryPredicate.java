@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.lang3.Validate;
@@ -28,22 +26,11 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link org.apache.commons.functor.NullaryPredicate NullaryPredicate} interface
  * using a constant left-side argument.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying objects are.  Attempts to serialize
- * an instance whose delegates are not
- * <code>Serializable</code> will result in an exception.
  *
  * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
-public final class FullyBoundNullaryPredicate implements NullaryPredicate, Serializable {
+public final class FullyBoundNullaryPredicate implements NullaryPredicate {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 7676235030688391839L;
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */
     private final BinaryPredicate<Object, Object> predicate;
     /** The left parameter to pass to {@code predicate}. */

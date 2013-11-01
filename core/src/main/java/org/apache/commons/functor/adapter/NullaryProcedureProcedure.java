@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
@@ -28,22 +26,11 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link Procedure Procedure} interface
  * by ignoring the arguments.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying functor is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <A> the argument type.
  * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
-public final class NullaryProcedureProcedure<A> implements Procedure<A>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 501530698794315412L;
+public final class NullaryProcedureProcedure<A> implements Procedure<A> {
     /** The {@link NullaryProcedure Procedure} I'm wrapping. */
     private final NullaryProcedure procedure;
 

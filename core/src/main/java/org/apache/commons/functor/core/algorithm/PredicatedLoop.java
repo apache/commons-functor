@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.NullaryProcedure;
 
@@ -26,11 +24,7 @@ import org.apache.commons.functor.NullaryProcedure;
  *
  * @version $Revision$ $Date$
  */
-abstract class PredicatedLoop implements NullaryProcedure, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 3221684231735316893L;
+abstract class PredicatedLoop implements NullaryProcedure {
     /**
      * The procedure body to execute.
      */

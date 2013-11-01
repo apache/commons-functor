@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
@@ -31,11 +29,7 @@ import org.apache.commons.functor.generator.loop.LoopGenerator;
  * @version $Revision$ $Date$
  */
 public final class IndexOfInGenerator<T>
-    implements BinaryFunction<LoopGenerator<? extends T>, Predicate<? super T>, Number>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -2672603607256310480L;
+    implements BinaryFunction<LoopGenerator<? extends T>, Predicate<? super T>, Number> {
     /**
      * A static {@code IndexOfInGenerator} instance reference.
      */

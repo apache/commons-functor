@@ -27,11 +27,6 @@ import org.apache.commons.functor.NullaryProcedure;
 public class UntilDo extends PredicatedLoop {
 
     /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 5096382396346484750L;
-
-    /**
      * Create a new UntilDo.
      * @param test whether to keep going
      * @param body to execute

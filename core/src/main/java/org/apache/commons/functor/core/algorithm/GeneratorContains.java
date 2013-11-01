@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
@@ -29,12 +27,7 @@ import org.apache.commons.functor.generator.Generator;
  * @param <T> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public final class GeneratorContains<T> implements BinaryPredicate<Generator<? extends T>, Predicate<? super T>>,
-        Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -1539983619621733276L;
+public final class GeneratorContains<T> implements BinaryPredicate<Generator<? extends T>, Predicate<? super T>> {
     /**
      * A static {@link GeneratorContains} instance reference.
      */

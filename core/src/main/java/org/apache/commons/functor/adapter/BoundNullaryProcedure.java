@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
@@ -28,21 +26,10 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link NullaryProcedure NullaryProcedure} interface
  * using a constant unary argument.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying objects are.  Attempts to serialize
- * an instance whose delegates are not
- * <code>Serializable</code> will result in an exception.
  *
  * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
-public final class BoundNullaryProcedure implements NullaryProcedure, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -6010802933400471747L;
+public final class BoundNullaryProcedure implements NullaryProcedure {
     /** The {@link Procedure Procedure} I'm wrapping. */
     private final Procedure<Object> procedure;
     /** The parameter to pass to {@code procedure}. */

@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.lang3.Validate;
@@ -27,24 +25,13 @@ import org.apache.commons.lang3.Validate;
  * to the {@link BinaryProcedure BinaryProcedure}
  * interface by ignoring the value returned
  * by the function.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying function is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedure<L, R>, Serializable {
+public final class BinaryFunctionBinaryProcedure<L, R> implements BinaryProcedure<L, R> {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 4498276997127058865L;
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */
     private final BinaryFunction<? super L, ? super R, ?> function;
 

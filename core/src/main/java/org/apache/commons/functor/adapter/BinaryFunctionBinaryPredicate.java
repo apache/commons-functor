@@ -16,28 +16,18 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.lang3.Validate;
 
 /**
  * Adapts a <code>Boolean</code>-valued {@link BinaryFunction BinaryFunction} to
- * the {@link BinaryPredicate BinaryPredicate} interface. <p> Note that although
- * this class implements {@link Serializable}, a given instance will only be
- * truly <code>Serializable</code> if the underlying functor is. Attempts to
- * serialize an instance whose delegate is not <code>Serializable</code> will
- * result in an exception. </p>
+ * the {@link BinaryPredicate BinaryPredicate} interface.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -5150315320718936186L;
+public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicate<L, R> {
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */
     private final BinaryFunction<? super L, ? super R, Boolean> function;
 

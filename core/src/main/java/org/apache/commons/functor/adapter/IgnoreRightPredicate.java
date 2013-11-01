@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
@@ -28,23 +26,12 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link BinaryPredicate BinaryPredicate} interface
  * by ignoring the second binary argument.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying functor is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -4236624667788627722L;
+public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R> {
     /** The {@link Predicate Predicate} I'm wrapping. */
     private final Predicate<? super L> predicate;
 

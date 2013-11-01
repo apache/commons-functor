@@ -27,11 +27,6 @@ import org.apache.commons.functor.NullaryProcedure;
 public class DoUntil extends PredicatedLoop {
 
     /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -961919312045591167L;
-
-    /**
      * Create a new DoUntil.
      * @param body to execute
      * @param test whether to keep going

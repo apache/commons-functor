@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.Procedure;
@@ -30,17 +28,13 @@ import org.apache.commons.functor.Procedure;
  * </p>
  * @version $Revision$ $Date$
  */
-public final class NoOp implements NullaryProcedure, Procedure<Object>, BinaryProcedure<Object, Object>, Serializable {
+public final class NoOp implements NullaryProcedure, Procedure<Object>, BinaryProcedure<Object, Object> {
     // static attributes
     // ------------------------------------------------------------------------
     /**
      * Basic NoOp instance.
      */
     public static final NoOp INSTANCE = new NoOp();
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 3768926349922273291L;
 
     // constructor
     // ------------------------------------------------------------------------

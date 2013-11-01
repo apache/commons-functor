@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
@@ -31,15 +29,11 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @param <T> the object instance has to be tested against the input class.
  * @version $Revision$ $Date$
  */
-public final class IsInstance<T> implements BinaryPredicate<T, Class<?>>, Serializable {
+public final class IsInstance<T> implements BinaryPredicate<T, Class<?>> {
     /**
      * Basic IsInstanceOf instance.
      */
     public static final IsInstance<Object> INSTANCE = IsInstance.<Object>instance();
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 9104265415387129627L;
     /**
      * The non zero number used to shift the initial hashcode.
      */

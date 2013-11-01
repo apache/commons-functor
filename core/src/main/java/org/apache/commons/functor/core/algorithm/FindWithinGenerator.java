@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.algorithm;
 
-import java.io.Serializable;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.functor.BinaryFunction;
@@ -31,17 +30,12 @@ import org.apache.commons.functor.generator.Generator;
  * @version $Revision$ $Date$
  */
 public final class FindWithinGenerator<E>
-    implements BinaryFunction<Generator<? extends E>, Predicate<? super E>, E>, Serializable {
+    implements BinaryFunction<Generator<? extends E>, Predicate<? super E>, E> {
 
     /**
      * Basic instance.
      */
     public static final FindWithinGenerator<Object> INSTANCE = new FindWithinGenerator<Object>();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -2824239991638326134L;
 
     /**
      * Helper procedure.

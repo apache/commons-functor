@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.functor.Procedure;
 import org.apache.commons.lang3.Validate;
@@ -28,22 +26,11 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link Procedure Procedure} interface
  * using a constant left-side argument.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying objects are.  Attempts to serialize
- * an instance whose delegates are not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <A> the argument type.
  * @version $Revision$ $Date$
  */
-public final class RightBoundProcedure<A> implements Procedure<A>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 3267188080481758226L;
+public final class RightBoundProcedure<A> implements Procedure<A> {
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */
     private final BinaryProcedure<? super A, Object> procedure;
     /** The parameter to pass to {@code procedure}. */

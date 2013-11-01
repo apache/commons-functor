@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.lang3.Validate;
@@ -27,21 +25,10 @@ import org.apache.commons.lang3.Validate;
  * to the {@link NullaryProcedure NullaryProcedure}
  * interface by ignoring the value returned
  * by the function.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying function is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
-public final class NullaryFunctionNullaryProcedure implements NullaryProcedure, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7300031015086684901L;
+public final class NullaryFunctionNullaryProcedure implements NullaryProcedure {
     /** The {@link NullaryFunction NullaryFunction} I'm wrapping. */
     private final NullaryFunction<?> function;
 

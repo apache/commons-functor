@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.core;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.adapter.RightBoundPredicate;
@@ -29,17 +27,13 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * @param <R> the right argument type.
  * @version $Revision$ $Date$
  */
-public final class IsSame<L, R> implements BinaryPredicate<L, R>, Serializable {
+public final class IsSame<L, R> implements BinaryPredicate<L, R> {
     // static attributes
     // ------------------------------------------------------------------------
     /**
      * Basic IsSame<Object, Object> instance.
      */
     public static final IsSame<Object, Object> INSTANCE = IsSame.<Object, Object>instance();
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 7024585699909734072L;
 
     // constructor
     // ------------------------------------------------------------------------

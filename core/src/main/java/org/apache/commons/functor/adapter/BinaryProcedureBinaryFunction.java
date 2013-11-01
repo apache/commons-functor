@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.adapter;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.BinaryProcedure;
 import org.apache.commons.lang3.Validate;
@@ -28,24 +26,13 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link BinaryFunction BinaryFunction} interface
  * by always returning <code>null</code>.
- * <p/>
- * Note that although this class implements
- * {@link Serializable}, a given instance will
- * only be truly <code>Serializable</code> if the
- * underlying procedure is.  Attempts to serialize
- * an instance whose delegate is not
- * <code>Serializable</code> will result in an exception.
  *
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the returned value type.
  * @version $Revision$ $Date$
  */
-public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunction<L, R, T>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 2099210273403668624L;
+public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunction<L, R, T> {
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */
     private final BinaryProcedure<? super L, ? super R> procedure;
 
