@@ -32,7 +32,7 @@ import org.apache.commons.lang3.Validate;
  */
 public class CompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R> {
 
-	/** Base hash integer used to shift hash. */
+    /** Base hash integer used to shift hash. */
     private static final int HASH_SHIFT = 4;
 
     /**

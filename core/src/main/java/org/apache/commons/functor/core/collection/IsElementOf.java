@@ -38,7 +38,7 @@ public final class IsElementOf<L, R> implements BinaryPredicate<L, R> {
     // static members
     //---------------------------------------------------------------
 
-	/**
+    /**
      * A static {@link IsElementOf} instance reference.
      */
     private static final IsElementOf<Object, Object> INSTANCE = new IsElementOf<Object, Object>();

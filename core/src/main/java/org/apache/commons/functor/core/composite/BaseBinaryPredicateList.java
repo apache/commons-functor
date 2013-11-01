@@ -30,7 +30,7 @@ import org.apache.commons.functor.BinaryPredicate;
  */
 abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R> {
 
-	// attributes
+    // attributes
     // ------------------------------------------------------------------------
     /**
      * A list to maintain all the adapted predicates.

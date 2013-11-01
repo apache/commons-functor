@@ -26,7 +26,7 @@ import org.apache.commons.lang3.Validate;
  */
 public final class NullaryNot implements NullaryPredicate {
 
-	// attributes
+    // attributes
     // ------------------------------------------------------------------------
     /**
      * The adapted predicate has to be negated.
