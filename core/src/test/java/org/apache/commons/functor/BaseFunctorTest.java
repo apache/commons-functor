@@ -60,23 +60,6 @@ public abstract class BaseFunctorTest {
     }
 
     @Test
-    public final void testSerializeDeserializeThenCompare() throws Exception {
-        Object obj = makeFunctor();
-        if (obj instanceof Serializable) {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutputStream out = new ObjectOutputStream(buffer);
-            out.writeObject(obj);
-            out.close();
-
-            ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
-            Object dest = in.readObject();
-            in.close();
-            assertEquals("obj != deserialize(serialize(obj))",obj,dest);
-            assertEquals("obj.hash != deserialize(serialize(obj.hash))",obj.hashCode(),dest.hashCode());
-        }
-    }
-
-    @Test
     public void testToStringIsOverridden() throws Exception {
         Object obj = makeFunctor();
         assertNotNull("toString should never return null",obj.toString());
