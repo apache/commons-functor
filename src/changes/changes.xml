@@ -23,6 +23,15 @@
   </properties>
   <body>
     <release version="1.0" date="2012-??-??" description="First release.">
+      <action issue="FUNCTOR-29" dev="kinow">
+        Drop support to serialization
+      </action>
+      <action issue="FUNCTOR-11" dev="kinow">
+        Reduce API clutter by removing or reducing scope of FunctorType.equals(FunctorType) methods
+      </action>
+      <action issue="FUNCTOR-25" dev="kinow">
+        Update site after new project structure
+      </action>
       <action issue="FUNCTOR-14" dev="kinow">
         Enhancements on the Generator API
       </action>
