@@ -18,8 +18,6 @@ package org.apache.commons.functor.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.NullaryProcedure;
 import org.apache.commons.functor.core.Limit;
@@ -52,8 +50,7 @@ public class TestWhileDo extends BaseFunctorTest {
     // Classes
     // ------------------------------------------------------------------------
 
-    static class Counter implements NullaryProcedure, Serializable {
-        private static final long serialVersionUID = 1L;
+    static class Counter implements NullaryProcedure {
         public void run() {
             count++;
         }

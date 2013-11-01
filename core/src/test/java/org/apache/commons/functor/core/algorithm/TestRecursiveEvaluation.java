@@ -19,8 +19,6 @@ package org.apache.commons.functor.core.algorithm;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.NullaryFunction;
 import org.junit.Test;
@@ -62,8 +60,7 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
     // ------------------------------------------------------------------------
     
     /** Recursive function for test. */
-    static class RecFunc implements NullaryFunction<Object>, Serializable {
-        private static final long serialVersionUID = 1L;
+    static class RecFunc implements NullaryFunction<Object> {
 
         int times = 0; 
         boolean returnFunc = false;
@@ -103,8 +100,7 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
     }
     
     /** Inner function called from recursive function */
-    static class InnerNullaryFunction implements NullaryFunction<Object>, Serializable {
-        private static final long serialVersionUID = 1L;
+    static class InnerNullaryFunction implements NullaryFunction<Object> {
         
         private int times;
         

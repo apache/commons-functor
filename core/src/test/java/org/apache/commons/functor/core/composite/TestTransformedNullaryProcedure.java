@@ -19,8 +19,6 @@ package org.apache.commons.functor.core.composite;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.NullaryFunction;
 import org.apache.commons.functor.Procedure;
@@ -32,8 +30,7 @@ import org.junit.Test;
  */
 public class TestTransformedNullaryProcedure extends BaseFunctorTest{
 
-    private static class One implements NullaryFunction<Integer>, Serializable {
-        private static final long serialVersionUID = 7385852113529459456L;
+    private static class One implements NullaryFunction<Integer> {
         public Integer evaluate() {
             return new Integer(1);
         }
@@ -47,8 +44,7 @@ public class TestTransformedNullaryProcedure extends BaseFunctorTest{
         }
     };
 
-    private static class AggregatorProcedure implements Procedure<Integer>, Serializable {
-        private static final long serialVersionUID = -2744193737701268327L;
+    private static class AggregatorProcedure implements Procedure<Integer> {
         private int total = 0;
         public void run(Integer obj) {
             total += obj;

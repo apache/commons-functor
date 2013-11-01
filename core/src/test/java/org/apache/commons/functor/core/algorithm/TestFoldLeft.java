@@ -18,7 +18,6 @@ package org.apache.commons.functor.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,8 +57,7 @@ public class TestFoldLeft extends BaseFunctorTest {
     // Classes
     // ------------------------------------------------------------------------
     
-    static class Sum implements BinaryFunction<Integer, Integer, Integer>, Serializable {
-        private static final long serialVersionUID = 1L;
+    static class Sum implements BinaryFunction<Integer, Integer, Integer> {
         
         public Integer evaluate(Integer a, Integer b) {
             return new Integer(a + b);

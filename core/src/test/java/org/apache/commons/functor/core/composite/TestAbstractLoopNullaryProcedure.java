@@ -52,7 +52,6 @@ public class TestAbstractLoopNullaryProcedure extends BaseFunctorTest {
 }
 
 class MockLoopProcedure extends AbstractLoopNullaryProcedure {
-    private static final long serialVersionUID = 1L;
     public MockLoopProcedure(NullaryPredicate condition, NullaryProcedure action) {
         super(condition,action);
     }

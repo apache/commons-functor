@@ -19,8 +19,6 @@ package org.apache.commons.functor.core.composite;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.Serializable;
-
 import org.apache.commons.functor.BaseFunctorTest;
 import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.Procedure;
@@ -33,8 +31,7 @@ import org.junit.Test;
  */
 public class TestTransformedBinaryProcedure extends BaseFunctorTest {
 
-    private static class Sum implements BinaryFunction<Integer, Integer, Integer>, Serializable {
-        private static final long serialVersionUID = 2255396324585938931L;
+    private static class Sum implements BinaryFunction<Integer, Integer, Integer> {
         public Integer evaluate(Integer left, Integer right) {
             return left+right;
         }
@@ -48,8 +45,7 @@ public class TestTransformedBinaryProcedure extends BaseFunctorTest {
         }
     }
 
-    private static class Total implements Procedure<Integer>, Serializable {
-        private static final long serialVersionUID = 8532164308852418241L;
+    private static class Total implements Procedure<Integer> {
         private int total = 0;
         public void run(Integer obj) {
             total += obj;

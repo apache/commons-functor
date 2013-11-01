@@ -18,7 +18,6 @@ package org.apache.commons.functor.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,8 +57,7 @@ public class TestFoldRight extends BaseFunctorTest {
     // Classes
     // ------------------------------------------------------------------------
     
-    static class StringConcatenator implements BinaryFunction<Object, Object, Object>, Serializable {
-        private static final long serialVersionUID = 1L;
+    static class StringConcatenator implements BinaryFunction<Object, Object, Object> {
 
         public Object evaluate(Object left, Object right) {
             StringBuilder buf = left instanceof StringBuilder ? (StringBuilder) left : new StringBuilder().append(left);
