@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.collection;
 
-import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Collection;
 
@@ -35,15 +34,11 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class IsElementOf<L, R> implements BinaryPredicate<L, R>, Serializable {
+public final class IsElementOf<L, R> implements BinaryPredicate<L, R> {
     // static members
     //---------------------------------------------------------------
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7639051806015321070L;
-    /**
+	/**
      * A static {@link IsElementOf} instance reference.
      */
     private static final IsElementOf<Object, Object> INSTANCE = new IsElementOf<Object, Object>();

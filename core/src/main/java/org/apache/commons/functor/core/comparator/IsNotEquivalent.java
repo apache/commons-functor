@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryPredicate;
@@ -35,17 +34,12 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the binary predicate input types
  * @version $Revision$ $Date$
  */
-public final class IsNotEquivalent<T> implements BinaryPredicate<T, T>, Serializable {
+public final class IsNotEquivalent<T> implements BinaryPredicate<T, T> {
 
     /**
      * Basic IsNotEquivalent instance.
      */
     public static final IsNotEquivalent<Comparable<?>> INSTANCE = IsNotEquivalent.<Comparable<?>>instance();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 1021154684877529051L;
 
     /**
      * The wrapped comparator.

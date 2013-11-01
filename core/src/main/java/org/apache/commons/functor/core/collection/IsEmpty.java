@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.collection;
 
-import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;
@@ -28,7 +27,7 @@ import org.apache.commons.lang3.Validate;
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public final class IsEmpty<A> implements Predicate<A>, Serializable {
+public final class IsEmpty<A> implements Predicate<A> {
 
     // class variables
     // ------------------------------------------------------------------------
@@ -37,11 +36,6 @@ public final class IsEmpty<A> implements Predicate<A>, Serializable {
      * Basic IsEmpty instance.
      */
     public static final IsEmpty<Object> INSTANCE = new IsEmpty<Object>();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 6555097970639642373L;
 
     // constructor
     // ------------------------------------------------------------------------

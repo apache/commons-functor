@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryFunction;
@@ -31,17 +30,12 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the binary function arguments and return types.
  * @version $Revision$ $Date$
  */
-public final class Max<T> implements BinaryFunction<T, T, T>, Serializable {
+public final class Max<T> implements BinaryFunction<T, T, T> {
 
     /**
      * Basic Max instance.
      */
     public static final Max<Comparable<?>> INSTANCE = Max.<Comparable<?>>instance();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 6514424464263828685L;
 
     /**
      * The wrapped comparator.

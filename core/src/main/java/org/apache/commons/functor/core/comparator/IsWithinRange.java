@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import java.io.Serializable;
 import org.apache.commons.functor.Predicate;
 import org.apache.commons.lang3.Validate;
 
@@ -28,11 +27,7 @@ import org.apache.commons.lang3.Validate;
  * @param <A> the predicate argument type.
  * @version $Revision$ $Date$
  */
-public class IsWithinRange<A extends Comparable<A>> implements Predicate<A>, Serializable {
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -7584005207181667878L;
+public class IsWithinRange<A extends Comparable<A>> implements Predicate<A> {
 
     /** Hashcode of the name of this Predicate. */
     private static final int NAME_HASH_CODE = "IsWithinRange".hashCode();

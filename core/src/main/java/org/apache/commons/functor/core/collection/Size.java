@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.collection;
 
-import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Collection;
 
@@ -30,12 +29,8 @@ import org.apache.commons.lang3.Validate;
  * @param <A> the function argument type.
  * @version $Revision$ $Date$
  */
-public final class Size<A> implements Function<A, Integer>, Serializable {
+public final class Size<A> implements Function<A, Integer> {
 
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -12374650738412129L;
     /**
      * A static {@code Size} instance reference.
      */

@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryPredicate;
@@ -34,17 +33,12 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the binary predicate input types
  * @version $Revision$ $Date$
  */
-public final class IsGreaterThan<T> implements BinaryPredicate<T, T>, Serializable {
+public final class IsGreaterThan<T> implements BinaryPredicate<T, T> {
 
     /**
      * Basic IsGreaterThan instance.
      */
     public static final IsGreaterThan<Comparable<?>> INSTANCE = IsGreaterThan.<Comparable<?>>instance();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 377027098765821021L;
 
     /**
      * The wrapped comparator.

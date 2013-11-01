@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -28,16 +27,11 @@ import java.util.Comparator;
  * @param <E> the comparable type
  * @version $Revision$ $Date$
  */
-final class ComparableComparator<E extends Comparable<? super E>> implements Comparator<E>, Serializable {
+final class ComparableComparator<E extends Comparable<? super E>> implements Comparator<E> {
 
     /** Singleton. */
     @SuppressWarnings("rawtypes")
     public static final ComparableComparator<?> INSTANCE = new ComparableComparator();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 9098756963321230038L;
 
     /**
      * Create a new ComparableComparator.

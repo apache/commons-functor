@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryFunction;
@@ -29,17 +28,12 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the binary function input types
  * @version $Revision$ $Date$
  */
-public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer>, Serializable {
+public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer> {
 
     /**
      * Basic ComparatorFunction instance.
      */
     public static final ComparatorFunction<Comparable<?>> INSTANCE = ComparatorFunction.<Comparable<?>>instance();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = 1642024869929206095L;
 
     /**
      * The comparator to wrap.

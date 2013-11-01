@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.core.comparator;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 import org.apache.commons.functor.BinaryFunction;
@@ -31,17 +30,12 @@ import org.apache.commons.lang3.Validate;
  * @param <T> the binary function arguments and return types.
  * @version $Revision$ $Date$
  */
-public final class Min<T> implements BinaryFunction<T, T, T>, Serializable {
+public final class Min<T> implements BinaryFunction<T, T, T> {
 
     /**
      * Basic Min instance.
      */
     public static final Min<Comparable<?>> INSTANCE = Min.<Comparable<?>>instance();
-
-    /**
-     * serialVersionUID declaration.
-     */
-    private static final long serialVersionUID = -3538911698805767997L;
 
     /**
      * The wrapped comparator.
