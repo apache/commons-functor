@@ -37,11 +37,6 @@ public class TestConditional {
     // ------------------------------------------------------------------------
 
     @Test
-    public void testHasNoArgConstructor() throws Exception {
-        assertNotNull(new Conditional());
-    }
-
-    @Test
     public void testNullaryMethods() {
         assertNotNull(Conditional.procedure(new NullaryNot(Constant.TRUE),new NullarySequence()));
         assertNotNull(Conditional.procedure(new NullaryNot(Constant.TRUE),new NullarySequence(),new NullarySequence()));

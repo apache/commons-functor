@@ -81,11 +81,6 @@ public class TestEachElement extends BaseFunctorTest {
     // ------------------------------------------------------------------------
 
     @Test
-    public void testJavabeanConstructor() {
-        assertNotNull(new EachElement()); // Public constructor for JavaBean
-    }
-
-    @Test
     public void testFromNull() {
         assertNull(EachElement.from((Collection<?>) null));
         assertNull(EachElement.from((Map<?, ?>) null));

@@ -28,15 +28,8 @@ import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
  * @version $Revision$ $Date$
  */
 public final class EachElement {
-    /**
-     * <p>{@code EachElement} instances should NOT be constructed in
-     * standard programming. Instead, the methods of the class should be invoked
-     * statically.</p>
-     *
-     * <p>This constructor is public to permit tools that require a JavaBean
-     * instance to operate.</p>
-     */
-    public EachElement() {
+
+    private EachElement() {
     }
 
     /**

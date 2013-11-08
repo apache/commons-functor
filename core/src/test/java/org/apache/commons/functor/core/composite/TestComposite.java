@@ -33,11 +33,6 @@ public class TestComposite {
     // ------------------------------------------------------------------------
 
     @Test
-    public void testHasNoArgConstructor() throws Exception {
-        assertNotNull(new Composite());
-    }
-
-    @Test
     public void testUnaryMethods() {
         assertNotNull(Composite.procedure(NoOp.instance()));
         assertNotNull(Composite.procedure(NoOp.instance(),Identity.instance()));

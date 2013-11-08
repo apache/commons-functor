@@ -27,17 +27,9 @@ import org.apache.commons.functor.Procedure;
  * @version $Revision$ $Date$
  */
 public final class Composite {
-    // constructor - for beanish apis
-    // ------------------------------------------------------------------------
-    /**
-     * <p>{@code Composite} instances should NOT be constructed in
-     * standard programming. Instead, the methods of the class should be invoked
-     * statically.</p>
-     *
-     * <p>This constructor is public to permit tools that require a JavaBean
-     * instance to operate.</p>
-     */
-    public Composite() { }
+
+    private Composite() {
+    }
 
     /**
      * Create a composite Procedure.
