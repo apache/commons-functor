@@ -16,9 +16,12 @@
  */
 package org.apache.commons.functor.core;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A predicate that returns <code>false</code>
@@ -39,26 +42,24 @@ public final class Offset implements NullaryPredicate, Predicate<Object>,
     /**
      * The current number of times the predicate has been invoked.
      */
-    private int current;
+    private AtomicInteger state = new AtomicInteger();
 
     /**
      * Create a new Offset.
      * @param count offset
      */
     public Offset(int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException("Argument must be a non-negative integer.");
-        }
+        Validate.isTrue(count >= 0, "Argument must be a non-negative integer.");
         this.min = count;
     }
 
     /**
      * {@inheritDoc}
      */
-    public synchronized boolean test() {
+    public boolean test() {
         // stop incrementing when we've hit max, so we don't loop around
-        if (current < min) {
-            current++;
+        if (state.get() < min) {
+            state.incrementAndGet();
             return false;
         }
         return true;

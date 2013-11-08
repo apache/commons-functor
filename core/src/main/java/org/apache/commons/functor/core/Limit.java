@@ -17,9 +17,12 @@
  */
 package org.apache.commons.functor.core;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.apache.commons.functor.BinaryPredicate;
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.Predicate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * A predicate that returns <code>true</code>
@@ -39,26 +42,24 @@ public final class Limit implements NullaryPredicate, Predicate<Object>, BinaryP
     /**
      * The current number of times the predicate has been invoked.
      */
-    private int current;
+    private final AtomicInteger state = new AtomicInteger();
 
     /**
      * Create a new Limit.
      * @param count limit
      */
     public Limit(int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException("Argument must be a non-negative integer.");
-        }
+        Validate.isTrue(count >= 0, "Argument must be a non-negative integer.");
         this.max = count;
     }
 
     /**
      * {@inheritDoc}
      */
-    public synchronized boolean test() {
+    public boolean test() {
         // stop incrementing when we've hit max, so we don't loop around
-        if (current < max) {
-            current++;
+        if (state.get() < max) {
+            state.incrementAndGet();
             return true;
         }
         return false;
