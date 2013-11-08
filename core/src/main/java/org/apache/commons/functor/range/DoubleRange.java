@@ -111,10 +111,10 @@ public class DoubleRange extends NumericRange<Double> {
      *
      * @param from start
      * @param to end
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public DoubleRange(Endpoint<Double> from, Endpoint<Double> to) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
-                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+        this(from, to, DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
     }
 
     /**
@@ -124,6 +124,7 @@ public class DoubleRange extends NumericRange<Double> {
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
+     * @throws NullPointerException if either bound type is {@code null}
      */
     public DoubleRange(double from, BoundType leftBoundType, double to,
                         BoundType rightBoundType) {
@@ -136,9 +137,23 @@ public class DoubleRange extends NumericRange<Double> {
      * @param from start
      * @param to end
      * @param step increment
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public DoubleRange(Endpoint<Double> from, Endpoint<Double> to, double step) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
+        this.step = step;
+        final double f = from.getValue();
+        final double t = to.getValue();
+
+        Validate.isTrue(f == t || Math.signum(step) == Math.signum(t - f),
+            "Will never reach '%s' from '%s' using step %s", t, f, step);
+
+        if (from.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = f;
+        } else {
+            this.currentValue = f + step;
+        }
     }
 
     /**
@@ -149,26 +164,11 @@ public class DoubleRange extends NumericRange<Double> {
      * @param to end
      * @param rightBoundType type of right bound
      * @param step increment
+     * @throws NullPointerException if either bound type is {@code null}
      */
     public DoubleRange(double from, BoundType leftBoundType, double to,
                        BoundType rightBoundType, double step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Double>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Double>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Math.signum(step) != Math.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
-        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = this.leftEndpoint.getValue();
-        } else {
-            this.currentValue = this.leftEndpoint.getValue() + this.step;
-        }
+        this(new Endpoint<Double>(from, leftBoundType), new Endpoint<Double>(to, rightBoundType), step);
     }
 
     // range methods
@@ -191,7 +191,7 @@ public class DoubleRange extends NumericRange<Double> {
      * {@inheritDoc}
      */
     public Double getStep() {
-        return this.step;
+        return Double.valueOf(step);
     }
  // iterable, iterator methods
     // ---------------------------------------------------------------
@@ -222,7 +222,7 @@ public class DoubleRange extends NumericRange<Double> {
         final double step = this.getStep();
         final double r = this.currentValue;
         this.currentValue += step;
-        return r;
+        return Double.valueOf(r);
     }
 
     /**

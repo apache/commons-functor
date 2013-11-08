@@ -110,10 +110,10 @@ public final class LongRange extends NumericRange<Long> {
      *
      * @param from start
      * @param to end
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public LongRange(Endpoint<Long> from, Endpoint<Long> to) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
-                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+        this(from, to, DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
     }
 
     /**
@@ -122,11 +122,11 @@ public final class LongRange extends NumericRange<Long> {
      * @param from start
      * @param to end
      * @param step increment
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public LongRange(Endpoint<Long> from, Endpoint<Long> to, int step) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+        this(from, to, (long) step);
     }
-
 
     /**
      * Create a new LongRange.
@@ -135,9 +135,9 @@ public final class LongRange extends NumericRange<Long> {
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
+     * @throws NullPointerException if either {@link BoundType} is {@code null}
      */
-    public LongRange(long from, BoundType leftBoundType, long to,
-                        BoundType rightBoundType) {
+    public LongRange(long from, BoundType leftBoundType, long to, BoundType rightBoundType) {
         this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
     }
 
@@ -147,9 +147,23 @@ public final class LongRange extends NumericRange<Long> {
      * @param from start
      * @param to end
      * @param step increment
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public LongRange(Endpoint<Long> from, Endpoint<Long> to, long step) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
+        this.step = step;
+        final long f = from.getValue();
+        final long t = to.getValue();
+
+        Validate.isTrue(f == t || Long.signum(step) == Long.signum(t - f),
+            "Will never reach '%s' from '%s' using step %s", t, f, step);
+
+        if (from.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = f;
+        } else {
+            this.currentValue = f + step;
+        }
     }
 
     /**
@@ -160,26 +174,11 @@ public final class LongRange extends NumericRange<Long> {
      * @param to end
      * @param rightBoundType type of right bound
      * @param step increment
+     * @throws NullPointerException if either {@link BoundType} is {@code null}
      */
     public LongRange(long from, BoundType leftBoundType, long to,
                      BoundType rightBoundType, long step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Long>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Long>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Long.signum(step) != Long.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
-        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = this.leftEndpoint.getValue();
-        } else {
-            this.currentValue = this.leftEndpoint.getValue() + this.step;
-        }
+        this(new Endpoint<Long>(from, leftBoundType), new Endpoint<Long>(to, rightBoundType), step);
     }
 
     // range methods
@@ -202,7 +201,7 @@ public final class LongRange extends NumericRange<Long> {
      * {@inheritDoc}
      */
     public Long getStep() {
-        return this.step;
+        return Long.valueOf(step);
     }
 
     // iterable, iterator methods
@@ -234,7 +233,7 @@ public final class LongRange extends NumericRange<Long> {
         final long step = this.getStep();
         final long r = this.currentValue;
         this.currentValue += step;
-        return r;
+        return Long.valueOf(r);
     }
 
     /**

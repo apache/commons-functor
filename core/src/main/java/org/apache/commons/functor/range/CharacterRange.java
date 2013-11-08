@@ -101,10 +101,10 @@ public final class CharacterRange implements Range<Character, Integer> {
      *
      * @param from start
      * @param to end
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public CharacterRange(Endpoint<Character> from, Endpoint<Character> to) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
-                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+        this(from, to, DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
     }
 
     /**
@@ -113,9 +113,23 @@ public final class CharacterRange implements Range<Character, Integer> {
      * @param from start
      * @param to end
      * @param step increment
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public CharacterRange(Endpoint<Character> from, Endpoint<Character> to, int step) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
+        this.step = step;
+        final char f = from.getValue();
+        final char t = to.getValue();
+
+        Validate.isTrue(f == t || Integer.signum(step) == Integer.signum(t - f),
+            "Will never reach '%s' from '%s' using step %s", t, f, step);
+
+        if (from.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = f;
+        } else {
+            this.currentValue = (char) (f + step);
+        }
     }
 
     /**
@@ -125,9 +139,9 @@ public final class CharacterRange implements Range<Character, Integer> {
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
+     * @throws NullPointerException if either bound type is {@code null}
      */
-    public CharacterRange(char from, BoundType leftBoundType, char to,
-                        BoundType rightBoundType) {
+    public CharacterRange(char from, BoundType leftBoundType, char to, BoundType rightBoundType) {
         this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
     }
 
@@ -139,27 +153,12 @@ public final class CharacterRange implements Range<Character, Integer> {
      * @param to end
      * @param rightBoundType type of right bound
      * @param step increment
+     * @throws NullPointerException if either bound type is {@code null}
      */
-    public CharacterRange(char from, BoundType leftBoundType, char to,
-                          BoundType rightBoundType, int step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Character>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Character>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Integer.signum(step) != Integer.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
-        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = this.leftEndpoint.getValue();
-        } else {
-            this.currentValue = (char) (this.leftEndpoint.getValue() + this.step);
-        }
+    public CharacterRange(char from, BoundType leftBoundType, char to, BoundType rightBoundType, int step) {
+        this(new Endpoint<Character>(from, leftBoundType), new Endpoint<Character>(to, rightBoundType), step);
     }
+
     // range methods
     // ---------------------------------------------------------------
     /**
@@ -180,7 +179,7 @@ public final class CharacterRange implements Range<Character, Integer> {
      * {@inheritDoc}
      */
     public Integer getStep() {
-        return this.step;
+        return Integer.valueOf(step);
     }
 
     // iterable, iterator methods
@@ -212,7 +211,7 @@ public final class CharacterRange implements Range<Character, Integer> {
         final int step = this.getStep();
         final char r = this.currentValue;
         this.currentValue += step;
-        return r;
+        return Character.valueOf(r);
     }
 
     /**

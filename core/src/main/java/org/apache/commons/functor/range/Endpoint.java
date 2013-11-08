@@ -16,6 +16,8 @@
  */
 package org.apache.commons.functor.range;
 
+import org.apache.commons.lang3.Validate;
+
 /**
  * Represent an endpoint of a range. This can be the left endpoint or the right
  * endpoint. It is also called left limit or right limit, and can be open
@@ -45,7 +47,7 @@ public class Endpoint<T extends Comparable<?>> {
      */
     public Endpoint(T value, BoundType boundType) {
         this.value = value;
-        this.boundType = boundType;
+        this.boundType = Validate.notNull(boundType, "bound type must not be null");
     }
 
     /**

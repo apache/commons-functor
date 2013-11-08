@@ -111,10 +111,10 @@ public class IntegerRange extends NumericRange<Integer> {
      *
      * @param from start
      * @param to end
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
-                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+        this(from, to, DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
     }
 
     /**
@@ -123,9 +123,23 @@ public class IntegerRange extends NumericRange<Integer> {
      * @param from start
      * @param to end
      * @param step increment
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, int step) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
+        this.step = step;
+        final int f = from.getValue();
+        final int t = to.getValue();
+
+        Validate.isTrue(f == t || Integer.signum(step) == Integer.signum(t - f),
+            "Will never reach '%s' from '%s' using step %s", t, f, step);
+
+        if (from.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = f;
+        } else {
+            this.currentValue = f + step;
+        }
     }
 
     /**
@@ -135,6 +149,7 @@ public class IntegerRange extends NumericRange<Integer> {
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
+     * @throws NullPointerException if either {@link BoundType} is {@code null}
      */
     public IntegerRange(int from, BoundType leftBoundType, int to,
                         BoundType rightBoundType) {
@@ -149,26 +164,10 @@ public class IntegerRange extends NumericRange<Integer> {
      * @param to end
      * @param rightBoundType type of right bound
      * @param step increment
+     * @throws NullPointerException if either {@link BoundType} is {@code null}
      */
-    public IntegerRange(int from, BoundType leftBoundType, int to,
-                        BoundType rightBoundType, int step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Integer>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Integer>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Integer.signum(step) != Integer.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
-        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = this.leftEndpoint.getValue();
-        } else {
-            this.currentValue = this.leftEndpoint.getValue() + this.step;
-        }
+    public IntegerRange(int from, BoundType leftBoundType, int to, BoundType rightBoundType, int step) {
+        this(new Endpoint<Integer>(from, leftBoundType), new Endpoint<Integer>(to, rightBoundType), step);
     }
 
     // range methods
@@ -191,7 +190,7 @@ public class IntegerRange extends NumericRange<Integer> {
      * {@inheritDoc}
      */
     public Integer getStep() {
-        return this.step;
+        return Integer.valueOf(step);
     }
 
     // iterable, iterator methods
@@ -223,7 +222,7 @@ public class IntegerRange extends NumericRange<Integer> {
         final int step = this.getStep();
         final int r = this.currentValue;
         this.currentValue += step;
-        return r;
+        return Integer.valueOf(r);
     }
 
     /**

@@ -110,10 +110,10 @@ public class FloatRange extends NumericRange<Float> {
      *
      * @param from start
      * @param to end
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public FloatRange(Endpoint<Float> from, Endpoint<Float> to) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(),
-                DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
+        this(from, to, DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
     }
 
     /**
@@ -122,9 +122,23 @@ public class FloatRange extends NumericRange<Float> {
      * @param from start
      * @param to end
      * @param step increment
+     * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public FloatRange(Endpoint<Float> from, Endpoint<Float> to, float step) {
-        this(from.getValue(), from.getBoundType(), to.getValue(), to.getBoundType(), step);
+        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
+        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
+        this.step = step;
+        final float f = from.getValue();
+        final float t = to.getValue();
+
+        Validate.isTrue(f == t || Math.signum(step) == Math.signum(t - f),
+            "Will never reach '%s' from '%s' using step %s", t, f, step);
+
+        if (from.getBoundType() == BoundType.CLOSED) {
+            this.currentValue = f;
+        } else {
+            this.currentValue = f + step;
+        }
     }
 
     /**
@@ -134,6 +148,7 @@ public class FloatRange extends NumericRange<Float> {
      * @param leftBoundType type of left bound
      * @param to end
      * @param rightBoundType type of right bound
+     * @throws NullPointerException if either bound type is {@code null}
      */
     public FloatRange(float from, BoundType leftBoundType, float to,
                         BoundType rightBoundType) {
@@ -148,26 +163,11 @@ public class FloatRange extends NumericRange<Float> {
      * @param to end
      * @param rightBoundType type of right bound
      * @param step increment
+     * @throws NullPointerException if either bound type is {@code null}
      */
     public FloatRange(float from, BoundType leftBoundType, float to,
                       BoundType rightBoundType, float step) {
-        this.leftEndpoint = Validate
-            .notNull(new Endpoint<Float>(from, leftBoundType),
-                     "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate
-            .notNull(new Endpoint<Float>(to, rightBoundType),
-                     "Right Endpoint argument must not be null");
-        this.step = step;
-        if (from != to && Math.signum(step) != Math.signum(to - from)) {
-            throw new IllegalArgumentException("Will never reach " + to
-                                               + " from " + from
-                                               + " using step " + step);
-        }
-        if (this.leftEndpoint.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = this.leftEndpoint.getValue();
-        } else {
-            this.currentValue = this.leftEndpoint.getValue() + this.step;
-        }
+        this(new Endpoint<Float>(from, leftBoundType), new Endpoint<Float>(to, rightBoundType), step);
     }
 
     // range methods
@@ -190,7 +190,7 @@ public class FloatRange extends NumericRange<Float> {
      * {@inheritDoc}
      */
     public Float getStep() {
-        return this.step;
+        return Float.valueOf(step);
     }
 
     // iterable, iterator methods
@@ -222,7 +222,7 @@ public class FloatRange extends NumericRange<Float> {
         final float step = this.getStep();
         final float r = this.currentValue;
         this.currentValue += step;
-        return r;
+        return Float.valueOf(r);
     }
 
     /**
