@@ -32,6 +32,9 @@ import org.apache.commons.functor.Procedure;
  */
 public final class Conditional {
 
+    /**
+     * Hidden constructor as this only is a helper class with static methods.
+     */
     private Conditional() {
     }
 

@@ -29,6 +29,9 @@ import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
  */
 public final class EachElement {
 
+    /**
+     * Hidden constructor as this only is a helper class with static methods.
+     */
     private EachElement() {
     }
 
