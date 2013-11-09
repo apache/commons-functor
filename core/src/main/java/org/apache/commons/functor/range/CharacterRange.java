@@ -16,7 +16,6 @@
  */
 package org.apache.commons.functor.range;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.apache.commons.functor.BinaryFunction;
@@ -28,7 +27,7 @@ import org.apache.commons.lang3.Validate;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public final class CharacterRange implements Range<Character, Integer> {
+public final class CharacterRange extends AbstractRange<Character, Integer> {
 
     // attributes
     // ---------------------------------------------------------------
@@ -41,21 +40,6 @@ public final class CharacterRange implements Range<Character, Integer> {
      * Default right bound type.
      */
     public static final BoundType DEFAULT_RIGHT_BOUND_TYPE = BoundType.CLOSED;
-
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Character> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Character> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final int step;
 
     /**
      * Current value.
@@ -116,9 +100,7 @@ public final class CharacterRange implements Range<Character, Integer> {
      * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public CharacterRange(Endpoint<Character> from, Endpoint<Character> to, int step) {
-        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
+        super(from, to, Integer.valueOf(step));
         final char f = from.getValue();
         final char t = to.getValue();
 
@@ -161,26 +143,6 @@ public final class CharacterRange implements Range<Character, Integer> {
 
     // range methods
     // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Character> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Character> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Integer getStep() {
-        return Integer.valueOf(step);
-    }
 
     // iterable, iterator methods
     // ---------------------------------------------------------------
@@ -217,58 +179,8 @@ public final class CharacterRange implements Range<Character, Integer> {
     /**
      * {@inheritDoc}
      */
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public Iterator<Character> iterator() {
         return this;
-    }
-
-    // object methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "CharacterRange<" + this.leftEndpoint.toLeftString() + ", "
-                + this.rightEndpoint.toRightString() + ", " + step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof CharacterRange)) {
-            return false;
-        }
-        CharacterRange that = (CharacterRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "CharacterRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.step;
-        return hash;
     }
 
     /**
@@ -326,23 +238,6 @@ public final class CharacterRange implements Range<Character, Integer> {
             }
         }
         return ((double) (value - firstValue) / step + 1) % 1.0 == 0.0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean containsAll(Collection<Character> col) {
-        if (col == null || col.size() == 0) {
-            return Boolean.FALSE;
-        }
-        boolean r = Boolean.TRUE;
-        for (Character t : col) {
-            if (!this.contains(t)) {
-                r = Boolean.FALSE;
-                break;
-            }
-        }
-        return r;
     }
 
 }

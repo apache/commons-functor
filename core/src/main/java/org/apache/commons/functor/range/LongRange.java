@@ -32,21 +32,6 @@ public final class LongRange extends NumericRange<Long> {
     //---------------------------------------------------------------
 
     /**
-     * Left limit.
-     */
-    private final Endpoint<Long> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Long> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final long step;
-
-    /**
      * Current value.
      */
     private long currentValue;
@@ -150,9 +135,7 @@ public final class LongRange extends NumericRange<Long> {
      * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public LongRange(Endpoint<Long> from, Endpoint<Long> to, long step) {
-        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
+        super(from, to, Long.valueOf(step));
         final long f = from.getValue();
         final long t = to.getValue();
 
@@ -179,29 +162,6 @@ public final class LongRange extends NumericRange<Long> {
     public LongRange(long from, BoundType leftBoundType, long to,
                      BoundType rightBoundType, long step) {
         this(new Endpoint<Long>(from, leftBoundType), new Endpoint<Long>(to, rightBoundType), step);
-    }
-
-    // range methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Long> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Long> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Long getStep() {
-        return Long.valueOf(step);
     }
 
     // iterable, iterator methods
@@ -239,58 +199,8 @@ public final class LongRange extends NumericRange<Long> {
     /**
      * {@inheritDoc}
      */
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public Iterator<Long> iterator() {
         return this;
-    }
-
-    // object methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "LongRange<" + this.leftEndpoint.toLeftString() + ", "
-                + this.rightEndpoint.toRightString() + ", " + step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof LongRange)) {
-            return false;
-        }
-        LongRange that = (LongRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "LongRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.step;
-        return hash;
     }
 
 }

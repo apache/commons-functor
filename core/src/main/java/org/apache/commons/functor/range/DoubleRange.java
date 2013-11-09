@@ -31,20 +31,6 @@ public class DoubleRange extends NumericRange<Double> {
 
     // attributes
     // ---------------------------------------------------------------
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Double> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Double> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final double step;
 
     /**
      * Current value.
@@ -140,9 +126,7 @@ public class DoubleRange extends NumericRange<Double> {
      * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public DoubleRange(Endpoint<Double> from, Endpoint<Double> to, double step) {
-        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
+        super(from, to, Double.valueOf(step));
         final double f = from.getValue();
         final double t = to.getValue();
 
@@ -171,29 +155,7 @@ public class DoubleRange extends NumericRange<Double> {
         this(new Endpoint<Double>(from, leftBoundType), new Endpoint<Double>(to, rightBoundType), step);
     }
 
-    // range methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Double> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Double> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Double getStep() {
-        return Double.valueOf(step);
-    }
- // iterable, iterator methods
+    // iterable, iterator methods
     // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
@@ -228,58 +190,8 @@ public class DoubleRange extends NumericRange<Double> {
     /**
      * {@inheritDoc}
      */
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public Iterator<Double> iterator() {
         return this;
-    }
-
-    // object methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "DoubleRange<" + this.leftEndpoint.toLeftString() + ", "
-                + this.rightEndpoint.toRightString() + ", " + this.step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof DoubleRange)) {
-            return false;
-        }
-        DoubleRange that = (DoubleRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "DoubleRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= Double.valueOf(this.step).hashCode();
-        return hash;
     }
 
 }

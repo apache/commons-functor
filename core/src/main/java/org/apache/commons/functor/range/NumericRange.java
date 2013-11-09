@@ -16,8 +16,6 @@
  */
 package org.apache.commons.functor.range;
 
-import java.util.Collection;
-
 /**
  * A base class for numeric ranges. The elements within this range must be a
  * <b>Number</b> and <b>Comparable</b>.
@@ -31,7 +29,17 @@ import java.util.Collection;
  * @since 0.1
  * @version $Revision$ $Date$
  */
-public abstract class NumericRange<T extends Number & Comparable<?>> implements Range<T, T> {
+public abstract class NumericRange<T extends Number & Comparable<?>> extends AbstractRange<T, T> {
+
+    /**
+     * Construct a new {@link NumericRange}.
+     * @param leftEndpoint
+     * @param rightEndpoint
+     * @param step
+     */
+    protected NumericRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, T step) {
+        super(leftEndpoint, rightEndpoint, step);
+    }
 
     /**
      * {@inheritDoc}
@@ -90,21 +98,6 @@ public abstract class NumericRange<T extends Number & Comparable<?>> implements 
             }
         }
         return ((value - firstValue) / step + 1) % 1.0 == 0.0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean containsAll(Collection<T> col) {
-        if (col == null || col.isEmpty()) {
-            return false;
-        }
-        for (T t : col) {
-            if (!contains(t)) {
-                return false;
-            }
-        }
-        return true;
     }
 
 }

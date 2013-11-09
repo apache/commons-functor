@@ -31,20 +31,6 @@ public class IntegerRange extends NumericRange<Integer> {
 
     // attributes
     // ---------------------------------------------------------------
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Integer> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Integer> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final int step;
 
     /**
      * Current value.
@@ -126,9 +112,7 @@ public class IntegerRange extends NumericRange<Integer> {
      * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, int step) {
-        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
+        super(from, to, Integer.valueOf(step));
         final int f = from.getValue();
         final int t = to.getValue();
 
@@ -170,29 +154,6 @@ public class IntegerRange extends NumericRange<Integer> {
         this(new Endpoint<Integer>(from, leftBoundType), new Endpoint<Integer>(to, rightBoundType), step);
     }
 
-    // range methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Integer> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Integer> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Integer getStep() {
-        return Integer.valueOf(step);
-    }
-
     // iterable, iterator methods
     // ---------------------------------------------------------------
     /**
@@ -228,59 +189,8 @@ public class IntegerRange extends NumericRange<Integer> {
     /**
      * {@inheritDoc}
      */
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public Iterator<Integer> iterator() {
         return this;
-    }
-
-    // object methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "IntegerRange<" + this.leftEndpoint.toLeftString()
-                + ", " + this.rightEndpoint.toRightString()
-                + ", " + this.step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof IntegerRange)) {
-            return false;
-        }
-        IntegerRange that = (IntegerRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "IntegerRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue();
-        hash <<= 2;
-        hash ^= this.step;
-        return hash;
     }
 
 }

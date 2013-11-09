@@ -31,20 +31,6 @@ public class FloatRange extends NumericRange<Float> {
 
     // attributes
     // ---------------------------------------------------------------
-    /**
-     * Left limit.
-     */
-    private final Endpoint<Float> leftEndpoint;
-
-    /**
-     * Right limit.
-     */
-    private final Endpoint<Float> rightEndpoint;
-
-    /**
-     * Increment step.
-     */
-    private final float step;
 
     /**
      * Current value.
@@ -125,9 +111,7 @@ public class FloatRange extends NumericRange<Float> {
      * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public FloatRange(Endpoint<Float> from, Endpoint<Float> to, float step) {
-        this.leftEndpoint = Validate.notNull(from, "Left Endpoint argument must not be null");
-        this.rightEndpoint = Validate.notNull(to, "Right Endpoint argument must not be null");
-        this.step = step;
+        super(from, to, Float.valueOf(step));
         final float f = from.getValue();
         final float t = to.getValue();
 
@@ -170,29 +154,6 @@ public class FloatRange extends NumericRange<Float> {
         this(new Endpoint<Float>(from, leftBoundType), new Endpoint<Float>(to, rightBoundType), step);
     }
 
-    // range methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Float> getLeftEndpoint() {
-        return this.leftEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Endpoint<Float> getRightEndpoint() {
-        return this.rightEndpoint;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Float getStep() {
-        return Float.valueOf(step);
-    }
-
     // iterable, iterator methods
     // ---------------------------------------------------------------
     /**
@@ -228,58 +189,8 @@ public class FloatRange extends NumericRange<Float> {
     /**
      * {@inheritDoc}
      */
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public Iterator<Float> iterator() {
         return this;
-    }
-
-    // object methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "FloatRange<" + this.leftEndpoint.toLeftString() + ", "
-                + this.rightEndpoint.toRightString() + ", " + this.step + ">";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof FloatRange)) {
-            return false;
-        }
-        FloatRange that = (FloatRange) obj;
-        return this.leftEndpoint.equals(that.leftEndpoint)
-                && this.rightEndpoint.equals(that.rightEndpoint)
-                && this.step == that.step;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        int hash = "FloatRange".hashCode();
-        hash <<= 2;
-        hash ^= this.leftEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= this.rightEndpoint.getValue().hashCode();
-        hash <<= 2;
-        hash ^= Float.valueOf(this.step).hashCode();
-        return hash;
     }
 
 }
