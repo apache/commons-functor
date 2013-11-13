@@ -28,7 +28,8 @@ import org.apache.commons.lang3.Validate;
  */
 public final class IteratorToGeneratorAdapter<E> extends LoopGenerator<E> {
     /**
-     * Helper iterator.
+     * Helper iterator; enforces that iterators from equal owners are considered equal.
+     * 
      * @param <E> the type of elements in this iterator.
      */
     private static class EqualityIterator<E> implements Iterator<E> {
@@ -36,10 +37,12 @@ public final class IteratorToGeneratorAdapter<E> extends LoopGenerator<E> {
          * Iterable that owns this iterator.
          */
         final Iterable<? extends E> owner;
+
         /**
          * Wrapped iterator.
          */
         final Iterator<? extends E> wrapped;
+
         /**
          * Create a new EqualityIterator.
          * @param owner iterable that owns this iterator
@@ -90,7 +93,7 @@ public final class IteratorToGeneratorAdapter<E> extends LoopGenerator<E> {
          */
         @Override
         public int hashCode() {
-            int hash = "IteratorToGeneratorAdapater$EqualityIterator".hashCode();
+            int hash = "IteratorToGeneratorAdapter$EqualityIterator".hashCode();
             hash <<= 2;
             hash ^= owner.hashCode();
             return hash;
