@@ -33,9 +33,9 @@ public abstract class NumericRange<T extends Number & Comparable<?>> extends Abs
 
     /**
      * Construct a new {@link NumericRange}.
-     * @param leftEndpoint
-     * @param rightEndpoint
-     * @param step
+     * @param leftEndpoint left endpoint
+     * @param rightEndpoint right endpoint
+     * @param step increment step
      */
     protected NumericRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, T step) {
         super(leftEndpoint, rightEndpoint, step);

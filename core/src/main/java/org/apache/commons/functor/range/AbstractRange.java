@@ -22,8 +22,8 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 /**
- * Abstract {@link Range}
- * 
+ * Abstract {@link Range}.
+ *
  * @param <T>
  * @param <S>
  */
@@ -46,10 +46,10 @@ public abstract class AbstractRange<T extends Comparable<?>, S extends Comparabl
 
     /**
      * Create a new {@link AbstractRange}.
-     * 
-     * @param leftEndpoint
-     * @param rightEndpoint
-     * @param step
+     *
+     * @param leftEndpoint left endpoint
+     * @param rightEndpoint right endpoint
+     * @param step increment step
      */
     protected AbstractRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, S step) {
         super();
