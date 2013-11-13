@@ -153,7 +153,7 @@ public class AbstractTimedAggregatorTest extends BaseFunctorTest {
 
         @Override
         protected void doReset() {
-            object = Integer.valueOf(   0);
+            object = Integer.valueOf(0);
         }
     }
 }
