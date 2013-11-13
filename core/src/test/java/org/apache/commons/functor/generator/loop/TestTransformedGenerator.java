@@ -112,7 +112,7 @@ public class TestTransformedGenerator
 
     // Attributes
     // ------------------------------------------------------------------------
-    private static final Integer TWO = new Integer(2);
+    private static final Integer TWO = Integer.valueOf(2);
 
     private Generator<Integer> wrappedGenerator = null;
     private Function<Integer, Integer> sumsTwo = new Function<Integer, Integer>() {

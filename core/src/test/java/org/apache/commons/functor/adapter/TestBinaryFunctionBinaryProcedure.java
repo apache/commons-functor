@@ -48,7 +48,7 @@ public class TestBinaryFunctionBinaryProcedure extends BaseFunctorTest {
     public void testRun() throws Exception {
         class EvaluateCounter implements BinaryFunction<Object, Object, Integer> {
             int count = 0;
-            public Integer evaluate(Object a, Object b) { return new Integer(count++); }
+            public Integer evaluate(Object a, Object b) { return Integer.valueOf(count++); }
         }
         EvaluateCounter counter = new EvaluateCounter();
         BinaryProcedure<Object, Object> p = new BinaryFunctionBinaryProcedure<Object, Object>(counter);

@@ -41,9 +41,9 @@ public class TestInPlaceTransform extends BaseFunctorTest {
     public void setUp() throws Exception {
         list = new ArrayList<Integer>();
         doubled = new ArrayList<Integer>();
-        for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
-            doubled.add(new Integer(i*2));
+        for (int i = 0; i < 10; i++) {
+            list.add(Integer.valueOf(i));
+            doubled.add(Integer.valueOf(i * 2));
         }
     }
 
@@ -63,15 +63,12 @@ public class TestInPlaceTransform extends BaseFunctorTest {
 
     @Test
     public void testTransform() {
-        new InPlaceTransform<Integer>().run(
-            list.listIterator(),
-            new Function<Integer, Integer>() {
-                public Integer evaluate(Integer obj) {
-                    return new Integer(obj*2);
-                }
+        new InPlaceTransform<Integer>().run(list.listIterator(), new Function<Integer, Integer>() {
+            public Integer evaluate(Integer obj) {
+                return Integer.valueOf(obj * 2);
             }
-        );
-        assertEquals(doubled,list);
+        });
+        assertEquals(doubled, list);
     }
 
     public void testInstance() {
@@ -88,7 +85,7 @@ public class TestInPlaceTransform extends BaseFunctorTest {
 
     static class Doubler implements Function<Integer, Integer> {
         public Integer evaluate(Integer obj) {
-            return new Integer(2*obj);
+            return Integer.valueOf(2 * obj);
         }
     }
 

@@ -55,11 +55,11 @@ public class TestEachElement extends BaseFunctorTest {
     @Before
     public void setUp() throws Exception {
         list = new ArrayList<Integer>();
-        list.add(new Integer(0));
-        list.add(new Integer(1));
-        list.add(new Integer(2));
-        list.add(new Integer(3));
-        list.add(new Integer(4));
+        list.add(Integer.valueOf(0));
+        list.add(Integer.valueOf(1));
+        list.add(Integer.valueOf(2));
+        list.add(Integer.valueOf(3));
+        list.add(Integer.valueOf(4));
 
         map = new HashMap<String, String>();
         map.put("1", "1-1");

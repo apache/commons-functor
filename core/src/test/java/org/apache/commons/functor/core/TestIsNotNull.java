@@ -44,20 +44,20 @@ public class TestIsNotNull extends BaseFunctorTest {
         Predicate<Object> p = new IsNotNull<Object>();
         assertTrue(!p.test(null));
         assertTrue(p.test("foo"));
-        assertTrue(p.test(new Integer(3)));
+        assertTrue(p.test(Integer.valueOf(3)));
     }
 
     @Test
     public void testEquals() throws Exception {
         Predicate<Object> p = new IsNotNull<Object>();
-        assertEquals(p,p);
-        assertObjectsAreEqual(p,new IsNotNull<Object>());
-        assertObjectsAreEqual(p,IsNotNull.instance());
-        assertObjectsAreNotEqual(p,Constant.TRUE);
+        assertEquals(p, p);
+        assertObjectsAreEqual(p, new IsNotNull<Object>());
+        assertObjectsAreEqual(p, IsNotNull.instance());
+        assertObjectsAreNotEqual(p, Constant.TRUE);
     }
 
     @Test
     public void testConstant() throws Exception {
-        assertEquals(IsNotNull.instance(),IsNotNull.instance());
+        assertEquals(IsNotNull.instance(), IsNotNull.instance());
     }
 }

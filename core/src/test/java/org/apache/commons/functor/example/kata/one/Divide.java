@@ -25,7 +25,7 @@ import org.apache.commons.functor.adapter.RightBoundFunction;
 public class Divide extends ArithmeticOperation {
 
     public Number evaluate(Number left, Number right) {
-        return new Integer(left.intValue() / right.intValue());
+        return Integer.valueOf(left.intValue() / right.intValue());
     }
 
     public static Divide instance() {

@@ -91,7 +91,7 @@ public class TestFloatRange extends BaseFunctorTest {
                 IteratorToGeneratorAdapter.adapt(Ranges.floatRange(0, 10))
                     .to(new ArrayList<Float>()));
             for (int i = 0; i < 10; i++) {
-                assertEquals(new Float(i), list.get(i));
+                assertEquals(Float.valueOf(i), list.get(i));
             }
         }
 
@@ -101,7 +101,7 @@ public class TestFloatRange extends BaseFunctorTest {
                 IteratorToGeneratorAdapter.adapt(Ranges.floatRange(10, 0))
                     .to(new ArrayList<Float>()));
             for (int i = 10; i > 0; i--) {
-                assertEquals(new Float(i), list.get(10 - i));
+                assertEquals(Float.valueOf(i), list.get(10 - i));
             }
         }
     }
@@ -147,10 +147,10 @@ public class TestFloatRange extends BaseFunctorTest {
 
     @Test
     public void testObjectConstructor() {
-        FloatRange range = Ranges.floatRange(new Float(0), new Float(5));
+        FloatRange range = Ranges.floatRange(Float.valueOf(0), Float.valueOf(5));
         assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
-        range = Ranges.floatRange(new Float(0), new Float(5), new Float(1));
+        range = Ranges.floatRange(Float.valueOf(0), Float.valueOf(5), Float.valueOf(1));
         assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
     }

@@ -43,12 +43,12 @@ public class TestConstant extends BaseFunctorTest {
     @Test
     public void testEvaluate() throws Exception {
         Constant<Object> f = new Constant<Object>("xyzzy");
-        assertEquals("xyzzy",f.evaluate());
-        assertEquals("xyzzy",f.evaluate(null));
-        assertEquals("xyzzy",f.evaluate(null,null));
-        assertEquals("xyzzy",f.evaluate());
-        assertEquals("xyzzy",f.evaluate("foo"));
-        assertEquals("xyzzy",f.evaluate("foo",new Integer(2)));
+        assertEquals("xyzzy", f.evaluate());
+        assertEquals("xyzzy", f.evaluate(null));
+        assertEquals("xyzzy", f.evaluate(null, null));
+        assertEquals("xyzzy", f.evaluate());
+        assertEquals("xyzzy", f.evaluate("foo"));
+        assertEquals("xyzzy", f.evaluate("foo", Integer.valueOf(2)));
     }
 
     @Test
@@ -56,10 +56,10 @@ public class TestConstant extends BaseFunctorTest {
         Constant<Object> f = new Constant<Object>(null);
         assertNull(f.evaluate());
         assertNull(f.evaluate(null));
-        assertNull(f.evaluate(null,null));
+        assertNull(f.evaluate(null, null));
         assertNull(f.evaluate());
         assertNull(f.evaluate("foo"));
-        assertNull(f.evaluate("foo",new Integer(2)));
+        assertNull(f.evaluate("foo", Integer.valueOf(2)));
     }
 
     @Test
@@ -67,11 +67,11 @@ public class TestConstant extends BaseFunctorTest {
         Constant<Object> truePred = new Constant<Object>(Boolean.TRUE);
         assertTrue(truePred.test());
         assertTrue(truePred.test(null));
-        assertTrue(truePred.test(null,null));
+        assertTrue(truePred.test(null, null));
 
         assertTrue(truePred.test());
         assertTrue(truePred.test("foo"));
-        assertTrue(truePred.test("foo",new Integer(2)));
+        assertTrue(truePred.test("foo", Integer.valueOf(2)));
     }
 
     @Test
@@ -79,41 +79,40 @@ public class TestConstant extends BaseFunctorTest {
         Constant<Object> falsePred = new Constant<Object>(Boolean.FALSE);
         assertTrue(!falsePred.test());
         assertTrue(!falsePred.test(null));
-        assertTrue(!falsePred.test(null,null));
+        assertTrue(!falsePred.test(null, null));
 
         assertTrue(!falsePred.test());
         assertTrue(!falsePred.test("foo"));
-        assertTrue(!falsePred.test("foo",new Integer(2)));
+        assertTrue(!falsePred.test("foo", Integer.valueOf(2)));
     }
 
     @Test
     public void testEquals() throws Exception {
         Constant<Object> f = new Constant<Object>("xyzzy");
-        assertEquals(f,f);
+        assertEquals(f, f);
 
-        assertObjectsAreEqual(f,new Constant<Object>("xyzzy"));
-        assertObjectsAreNotEqual(f,new Constant<Object>("abcde"));
-        assertObjectsAreNotEqual(f,new Constant<Object>(null));
-        assertObjectsAreEqual(new Constant<Object>(null),new Constant<Object>(null));
+        assertObjectsAreEqual(f, new Constant<Object>("xyzzy"));
+        assertObjectsAreNotEqual(f, new Constant<Object>("abcde"));
+        assertObjectsAreNotEqual(f, new Constant<Object>(null));
+        assertObjectsAreEqual(new Constant<Object>(null), new Constant<Object>(null));
         assertTrue(!f.equals(null));
     }
 
     @Test
     public void testConstants() throws Exception {
-        assertEquals(Constant.predicate(true),Constant.TRUE);
+        assertEquals(Constant.predicate(true), Constant.TRUE);
 
-        assertEquals(Constant.truePredicate(),Constant.TRUE);
-        assertSame(Constant.truePredicate(),Constant.TRUE);
+        assertEquals(Constant.truePredicate(), Constant.TRUE);
+        assertSame(Constant.truePredicate(), Constant.TRUE);
 
-        assertEquals(Constant.predicate(true),Constant.TRUE);
-        assertSame(Constant.predicate(true),Constant.TRUE);
+        assertEquals(Constant.predicate(true), Constant.TRUE);
+        assertSame(Constant.predicate(true), Constant.TRUE);
 
-        assertEquals(Constant.falsePredicate(),Constant.FALSE);
-        assertSame(Constant.falsePredicate(),Constant.FALSE);
+        assertEquals(Constant.falsePredicate(), Constant.FALSE);
+        assertSame(Constant.falsePredicate(), Constant.FALSE);
 
-        assertEquals(Constant.predicate(false),Constant.FALSE);
-        assertSame(Constant.predicate(false),Constant.FALSE);
+        assertEquals(Constant.predicate(false), Constant.FALSE);
+        assertSame(Constant.predicate(false), Constant.FALSE);
     }
-
 
 }

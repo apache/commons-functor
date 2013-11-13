@@ -43,17 +43,17 @@ public class TestFilteredIterator extends BaseFunctorTest {
     public Object makeFunctor() {
         List<String> list = new ArrayList<String>();
         list.add("xyzzy");
-        return FilteredIterator.filter(list.iterator(),Constant.truePredicate());
+        return FilteredIterator.filter(list.iterator(), Constant.truePredicate());
     }
 
     @Before
     public void setUp() throws Exception {
         list = new ArrayList<Integer>();
         evens = new ArrayList<Integer>();
-        for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
-            if (i%2 == 0) {
-                evens.add(new Integer(i));
+        for (int i = 0; i < 10; i++) {
+            list.add(Integer.valueOf(i));
+            if (i % 2 == 0) {
+                evens.add(Integer.valueOf(i));
             }
         }
     }
@@ -70,10 +70,10 @@ public class TestFilteredIterator extends BaseFunctorTest {
     @Test
     public void testSomePass() {
         Iterator<Integer> expected = evens.iterator();
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
-        while(expected.hasNext()) {
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), isEven);
+        while (expected.hasNext()) {
             assertTrue(testing.hasNext());
-            assertEquals(expected.next(),testing.next());
+            assertEquals(expected.next(), testing.next());
         }
         assertTrue(!testing.hasNext());
     }
@@ -81,10 +81,10 @@ public class TestFilteredIterator extends BaseFunctorTest {
     @Test
     public void testAllPass() {
         Iterator<Integer> expected = list.iterator();
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),Constant.truePredicate());
-        while(expected.hasNext()) {
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), Constant.truePredicate());
+        while (expected.hasNext()) {
             assertTrue(testing.hasNext());
-            assertEquals(expected.next(),testing.next());
+            assertEquals(expected.next(), testing.next());
         }
         assertTrue(!testing.hasNext());
     }
@@ -92,61 +92,62 @@ public class TestFilteredIterator extends BaseFunctorTest {
     @Test
     public void testAllPass2() {
         Iterator<Integer> expected = list.iterator();
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),Constant.truePredicate());
-        while(expected.hasNext()) {
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), Constant.truePredicate());
+        while (expected.hasNext()) {
             assertTrue(testing.hasNext());
-            assertEquals(expected.next(),testing.next());
+            assertEquals(expected.next(), testing.next());
         }
         assertTrue(!testing.hasNext());
     }
 
     @Test
     public void testEmptyList() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(new ArrayList<Integer>().iterator(),isEven);
+        Iterator<Integer> testing = new FilteredIterator<Integer>(new ArrayList<Integer>().iterator(), isEven);
         assertTrue(!testing.hasNext());
     }
 
     @Test
     public void testNonePass() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(new ArrayList<Integer>().iterator(),Constant.falsePredicate());
+        Iterator<Integer> testing =
+            new FilteredIterator<Integer>(new ArrayList<Integer>().iterator(), Constant.falsePredicate());
         assertTrue(!testing.hasNext());
     }
 
     @Test
     public void testNextWithoutHasNext() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), isEven);
         Iterator<Integer> expected = evens.iterator();
-        while(expected.hasNext()) {
-            assertEquals(expected.next(),testing.next());
+        while (expected.hasNext()) {
+            assertEquals(expected.next(), testing.next());
         }
         assertTrue(!(testing.hasNext()));
     }
 
-    @Test(expected=NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class)
     public void testNextAfterEndOfList() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), isEven);
         Iterator<Integer> expected = evens.iterator();
-        while(expected.hasNext()) {
-            assertEquals(expected.next(),testing.next());
+        while (expected.hasNext()) {
+            assertEquals(expected.next(), testing.next());
         }
         testing.next();
     }
 
-    @Test(expected=NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class)
     public void testNextOnEmptyList() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(new ArrayList<Integer>().iterator(),isEven);
+        Iterator<Integer> testing = new FilteredIterator<Integer>(new ArrayList<Integer>().iterator(), isEven);
         testing.next();
     }
 
-    @Test(expected=IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void testRemoveBeforeNext() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), isEven);
         testing.remove();
     }
 
-    @Test(expected=IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void testRemoveAfterNext() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), isEven);
         testing.next();
         testing.remove();
         testing.remove();
@@ -154,20 +155,20 @@ public class TestFilteredIterator extends BaseFunctorTest {
 
     @Test
     public void testRemoveSome() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),isEven);
-        while(testing.hasNext()) {
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), isEven);
+        while (testing.hasNext()) {
             testing.next();
             testing.remove();
         }
         for (Iterator<Integer> iter = list.iterator(); iter.hasNext();) {
-            assertTrue(! isEven.test(iter.next()) );
+            assertTrue(!isEven.test(iter.next()));
         }
     }
 
     @Test
     public void testRemoveAll() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),Constant.truePredicate());
-        while(testing.hasNext()) {
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), Constant.truePredicate());
+        while (testing.hasNext()) {
             testing.next();
             testing.remove();
         }
@@ -176,8 +177,8 @@ public class TestFilteredIterator extends BaseFunctorTest {
 
     @Test
     public void testRemoveWithoutHasNext() {
-        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(),Constant.truePredicate());
-        for (int i=0,m = list.size();i<m;i++) {
+        Iterator<Integer> testing = new FilteredIterator<Integer>(list.iterator(), Constant.truePredicate());
+        for (int i = 0, m = list.size(); i < m; i++) {
             testing.next();
             testing.remove();
         }
@@ -186,30 +187,30 @@ public class TestFilteredIterator extends BaseFunctorTest {
 
     @Test
     public void testFilterWithNullIteratorReturnsNull() {
-        assertNull(FilteredIterator.filter(null,Constant.truePredicate()));
+        assertNull(FilteredIterator.filter(null, Constant.truePredicate()));
     }
 
     @Test
     public void testFilterWithNullPredicateReturnsIdentity() {
         Iterator<Integer> iter = list.iterator();
-        assertSame(iter,FilteredIterator.filter(iter,null));
+        assertSame(iter, FilteredIterator.filter(iter, null));
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorProhibitsNull() {
-        new FilteredIterator<Integer>(null,null);
+        new FilteredIterator<Integer>(null, null);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorProhibitsNull2() {
-        new FilteredIterator<Integer>(null,Constant.truePredicate());
+        new FilteredIterator<Integer>(null, Constant.truePredicate());
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorProhibitsNull3() {
-        new FilteredIterator<Integer>(list.iterator(),null);
+        new FilteredIterator<Integer>(list.iterator(), null);
     }
-    
+
     @Test
     public void testEquals() {
         Iterator<Integer> iter = list.iterator();
@@ -224,7 +225,7 @@ public class TestFilteredIterator extends BaseFunctorTest {
                 return obj.intValue() % 2 != 0;
             }
         };
-        assertEquals(t,new FilteredIterator<Integer>(iter, isEven));
+        assertEquals(t, new FilteredIterator<Integer>(iter, isEven));
         assertTrue(!t.equals(new FilteredIterator<Integer>(list.iterator(), isOdd)));
         assertTrue(!t.equals(new FilteredIterator<Float>(Arrays.asList(0.0f, 0.1f).iterator(), isOddFloat)));
         assertTrue(!t.equals(null));

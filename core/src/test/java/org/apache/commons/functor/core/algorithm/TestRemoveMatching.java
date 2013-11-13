@@ -41,10 +41,10 @@ public class TestRemoveMatching extends BaseFunctorTest {
     public void setUp() throws Exception {
         list = new ArrayList<Integer>();
         evens = new ArrayList<Integer>();
-        for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
-            if (i%2 == 0) {
-                evens.add(new Integer(i));
+        for (int i = 0; i < 10; i++) {
+            list.add(Integer.valueOf(i));
+            if (i % 2 == 0) {
+                evens.add(Integer.valueOf(i));
             }
         }
     }
@@ -65,8 +65,8 @@ public class TestRemoveMatching extends BaseFunctorTest {
 
     @Test
     public void testRemove() {
-        new RemoveMatching<Integer>().run(list.iterator(),isOdd);
-        assertEquals(evens,list);
+        new RemoveMatching<Integer>().run(list.iterator(), isOdd);
+        assertEquals(evens, list);
     }
 
     // Attributes
@@ -84,7 +84,7 @@ public class TestRemoveMatching extends BaseFunctorTest {
 
     static class Doubler implements Function<Integer, Integer> {
         public Integer evaluate(Integer obj) {
-            return new Integer(2*obj);
+            return Integer.valueOf(2 * obj);
         }
     }
 

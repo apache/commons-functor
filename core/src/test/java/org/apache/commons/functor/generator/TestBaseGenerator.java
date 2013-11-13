@@ -45,8 +45,8 @@ public class TestBaseGenerator {
     public void setUp() throws Exception {
         simpleGenerator = new BaseGenerator<Integer>() {
             public void run(Procedure<? super Integer> proc) {
-                for (int i=0;i<5;i++) {
-                    proc.run(new Integer(i));
+                for (int i = 0; i < 5; i++) {
+                    proc.run(Integer.valueOf(i));
                 }
             }
         };
@@ -56,14 +56,14 @@ public class TestBaseGenerator {
         doubled = new ArrayList<Integer>();
         listWithDuplicates = new ArrayList<Integer>();
         sum = 0;
-        for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
-            doubled.add(new Integer(i*2));
-            listWithDuplicates.add(new Integer(i));
-            listWithDuplicates.add(new Integer(i));
+        for (int i = 0; i < 10; i++) {
+            list.add(Integer.valueOf(i));
+            doubled.add(Integer.valueOf(i * 2));
+            listWithDuplicates.add(Integer.valueOf(i));
+            listWithDuplicates.add(Integer.valueOf(i));
             sum += i;
-            if (i%2 == 0) {
-                evens.add(new Integer(i));
+            if (i % 2 == 0) {
+                evens.add(Integer.valueOf(i));
             }
         }
     }
@@ -82,7 +82,7 @@ public class TestBaseGenerator {
 
     @Test
     public void testSimpleGenerator() {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         simpleGenerator.run(new Procedure<Integer>() {
             public void run(Integer obj) {
                 result.append(obj);
@@ -105,12 +105,12 @@ public class TestBaseGenerator {
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
-        col = (Collection<Integer>)simpleGenerator.toCollection();
+        col = (Collection<Integer>) simpleGenerator.toCollection();
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
         fillThis = new LinkedList<Integer>();
-        col = (Collection<Integer>)simpleGenerator.to(fillThis);
+        col = (Collection<Integer>) simpleGenerator.to(fillThis);
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
     }
@@ -123,18 +123,6 @@ public class TestBaseGenerator {
     private List<Integer> listWithDuplicates = null;
     @SuppressWarnings("unused")
     private int sum = 0;
-//    private Predicate equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
-//    private Predicate equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
-//    private Predicate isEven = new Predicate() {
-//        public boolean test(Object obj) {
-//            return ((Number) obj).intValue() % 2 == 0;
-//        }
-//    };
-//    private Predicate isOdd = new Predicate() {
-//        public boolean test(Object obj) {
-//            return ((Number) obj).intValue() % 2 != 0;
-//        }
-//    };
 
     // Classes
     // ------------------------------------------------------------------------
@@ -143,6 +131,7 @@ public class TestBaseGenerator {
         public void run(Number that) {
             sum += (that).intValue();
         }
+
         public int sum = 0;
     }
 }

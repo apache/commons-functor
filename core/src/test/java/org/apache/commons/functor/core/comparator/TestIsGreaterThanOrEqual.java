@@ -42,28 +42,28 @@ public class TestIsGreaterThanOrEqual extends BaseComparisonPredicateTest {
     @Test
     public void testTest() throws Exception {
         IsGreaterThanOrEqual<Integer> p = new IsGreaterThanOrEqual<Integer>();
-        assertFalse(p.test(new Integer(2),new Integer(4)));
-        assertFalse(p.test(new Integer(3),new Integer(4)));
-        assertTrue(p.test(new Integer(4),new Integer(4)));
-        assertTrue(p.test(new Integer(5),new Integer(4)));
-        assertTrue(p.test(new Integer(6),new Integer(4)));
+        assertFalse(p.test(Integer.valueOf(2), Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(3), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(4), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(5), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(6), Integer.valueOf(4)));
     }
 
     @Test
     public void testInstance() {
-        assertTrue(IsGreaterThanOrEqual.instance(new Integer(7)).test(new Integer(8)));
-        assertTrue(! IsGreaterThanOrEqual.instance(new Integer(7)).test(new Integer(6)));
+        assertTrue(IsGreaterThanOrEqual.instance(Integer.valueOf(7)).test(Integer.valueOf(8)));
+        assertTrue(!IsGreaterThanOrEqual.instance(Integer.valueOf(7)).test(Integer.valueOf(6)));
     }
 
     @Test
     public void testEquals() throws Exception {
         IsGreaterThanOrEqual<Comparable<?>> p = new IsGreaterThanOrEqual<Comparable<?>>();
-        assertEquals(p,p);
+        assertEquals(p, p);
 
-        assertObjectsAreEqual(p,new IsGreaterThanOrEqual<Comparable<?>>());
-        assertObjectsAreEqual(p,new IsGreaterThanOrEqual<Integer>(ComparableComparator.<Integer>instance()));
-        assertObjectsAreEqual(p,IsGreaterThanOrEqual.instance());
-        assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertObjectsAreEqual(p, new IsGreaterThanOrEqual<Comparable<?>>());
+        assertObjectsAreEqual(p, new IsGreaterThanOrEqual<Integer>(ComparableComparator.<Integer> instance()));
+        assertObjectsAreEqual(p, IsGreaterThanOrEqual.instance());
+        assertObjectsAreNotEqual(p, Constant.FALSE);
         assertFalse(p.equals(null));
     }
 

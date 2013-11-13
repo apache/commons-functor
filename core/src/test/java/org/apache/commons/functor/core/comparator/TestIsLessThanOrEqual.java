@@ -42,17 +42,17 @@ public class TestIsLessThanOrEqual extends BaseComparisonPredicateTest {
     @Test
     public void testTest() throws Exception {
         IsLessThanOrEqual<Integer> p = new IsLessThanOrEqual<Integer>();
-        assertTrue(p.test(new Integer(2),new Integer(4)));
-        assertTrue(p.test(new Integer(3),new Integer(4)));
-        assertTrue(p.test(new Integer(4),new Integer(4)));
-        assertFalse(p.test(new Integer(5),new Integer(4)));
-        assertFalse(p.test(new Integer(6),new Integer(4)));
+        assertTrue(p.test(Integer.valueOf(2),Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(3),Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(4),Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(5),Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(6),Integer.valueOf(4)));
     }
 
     @Test
     public void testInstance() {
-        assertFalse(IsLessThanOrEqual.instance(new Integer(7)).test(new Integer(8)));
-        assertTrue(IsLessThanOrEqual.instance(new Integer(7)).test(new Integer(6)));
+        assertFalse(IsLessThanOrEqual.instance(Integer.valueOf(7)).test(Integer.valueOf(8)));
+        assertTrue(IsLessThanOrEqual.instance(Integer.valueOf(7)).test(Integer.valueOf(6)));
     }
 
     @Test

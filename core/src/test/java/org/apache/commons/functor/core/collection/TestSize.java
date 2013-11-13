@@ -50,24 +50,24 @@ public class TestSize extends BaseFunctorTest {
 
     @Test
     public void testEvaluate() throws Exception {
-        assertEquals(new Integer(0),Size.instance().evaluate(Collections.EMPTY_LIST));
-        assertEquals(new Integer(0),Size.instance().evaluate(Collections.EMPTY_SET));
+        assertEquals(Integer.valueOf(0), Size.instance().evaluate(Collections.EMPTY_LIST));
+        assertEquals(Integer.valueOf(0), Size.instance().evaluate(Collections.EMPTY_SET));
         {
             List<Integer> list = new ArrayList<Integer>();
-            assertEquals(new Integer(0),Size.instance().evaluate(list));
-            for (int i=0;i<2;i++) {
-                assertEquals(new Integer(i),Size.instance().evaluate(list));
-                list.add(new Integer(i));
-                assertEquals(new Integer(i+1),Size.instance().evaluate(list));
+            assertEquals(Integer.valueOf(0), Size.instance().evaluate(list));
+            for (int i = 0; i < 2; i++) {
+                assertEquals(Integer.valueOf(i), Size.instance().evaluate(list));
+                list.add(Integer.valueOf(i));
+                assertEquals(Integer.valueOf(i + 1), Size.instance().evaluate(list));
             }
         }
         {
             Set<Integer> set = new HashSet<Integer>();
-            assertEquals(new Integer(0),Size.instance().evaluate(set));
-            for (int i=0;i<2;i++) {
-                assertEquals(new Integer(i),Size.instance().evaluate(set));
-                set.add(new Integer(i));
-                assertEquals(new Integer(i+1),Size.instance().evaluate(set));
+            assertEquals(Integer.valueOf(0), Size.instance().evaluate(set));
+            for (int i = 0; i < 2; i++) {
+                assertEquals(Integer.valueOf(i), Size.instance().evaluate(set));
+                set.add(Integer.valueOf(i));
+                assertEquals(Integer.valueOf(i + 1), Size.instance().evaluate(set));
             }
         }
     }
@@ -80,33 +80,33 @@ public class TestSize extends BaseFunctorTest {
     @Test
     public void testEvaluateNonCollection() throws Exception {
         try {
-            Size.instance().evaluate(new Integer(3));
+            Size.instance().evaluate(Integer.valueOf(3));
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }
 
     @Test
     public void testEvaluateArray() throws Exception {
-        assertEquals(new Integer(10),Size.instance().evaluate(new int[10]));
-        assertEquals(new Integer(7),Size.instance().evaluate(new String[7]));
+        assertEquals(Integer.valueOf(10), Size.instance().evaluate(new int[10]));
+        assertEquals(Integer.valueOf(7), Size.instance().evaluate(new String[7]));
     }
 
     @Test
     public void testEvaluateString() throws Exception {
-        assertEquals(new Integer("xyzzy".length()),Size.instance().evaluate("xyzzy"));
+        assertEquals(Integer.valueOf("xyzzy".length()), Size.instance().evaluate("xyzzy"));
     }
 
     @Test
     public void testEquals() throws Exception {
         Function<Object, Integer> f = new Size<Object>();
-        assertEquals(f,f);
-        assertObjectsAreEqual(f,new Size<Object>());
-        assertObjectsAreEqual(f,Size.instance());
-        assertSame(Size.instance(),Size.instance());
-        assertObjectsAreNotEqual(f,new Constant<Object>(null));
-        assertTrue(! f.equals((Size<?>) null) );
+        assertEquals(f, f);
+        assertObjectsAreEqual(f, new Size<Object>());
+        assertObjectsAreEqual(f, Size.instance());
+        assertSame(Size.instance(), Size.instance());
+        assertObjectsAreNotEqual(f, new Constant<Object>(null));
+        assertTrue(!f.equals((Size<?>) null));
     }
 
 }

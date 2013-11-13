@@ -50,14 +50,14 @@ public class TestIsEqual extends BaseFunctorTest {
         assertTrue(p.test("foo", "foo"));
         assertFalse(p.test(null, "foo"));
         assertFalse(p.test("foo", null));
-        assertTrue(p.test(new Integer(3), new Integer(3)));
-        assertFalse(p.test(null, new Integer(3)));
-        assertFalse(p.test(new Integer(3), null));
+        assertTrue(p.test(Integer.valueOf(3), Integer.valueOf(3)));
+        assertFalse(p.test(null, Integer.valueOf(3)));
+        assertFalse(p.test(Integer.valueOf(3), null));
 
-        assertFalse(p.test(new Integer(3), new Integer(4)));
-        assertFalse(p.test(new Integer(4), new Integer(3)));
-        assertFalse(p.test("3", new Integer(3)));
-        assertFalse(p.test(new Integer(3), "3"));
+        assertFalse(p.test(Integer.valueOf(3), Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(4), Integer.valueOf(3)));
+        assertFalse(p.test("3", Integer.valueOf(3)));
+        assertFalse(p.test(Integer.valueOf(3), "3"));
     }
 
     @Test
@@ -79,8 +79,8 @@ public class TestIsEqual extends BaseFunctorTest {
 
     @Test
     public void testToPredicate() {
-       Predicate<Integer> isEqual = IsEqual.to(new Integer(1));
-       assertTrue(isEqual.test(new Integer(1)));
-       assertFalse(isEqual.test(new Integer(2)));
+       Predicate<Integer> isEqual = IsEqual.to(Integer.valueOf(1));
+       assertTrue(isEqual.test(Integer.valueOf(1)));
+       assertFalse(isEqual.test(Integer.valueOf(2)));
     }
 }

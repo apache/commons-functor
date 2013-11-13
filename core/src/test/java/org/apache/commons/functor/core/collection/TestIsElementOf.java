@@ -48,17 +48,17 @@ public class TestIsElementOf extends BaseFunctorTest {
     @Test
     public void testTestCollection() throws Exception {
         List<Integer> list = new ArrayList<Integer>();
-        list.add(new Integer(5));
-        list.add(new Integer(10));
-        list.add(new Integer(15));
+        list.add(Integer.valueOf(5));
+        list.add(Integer.valueOf(10));
+        list.add(Integer.valueOf(15));
 
         Predicate<Integer> p = IsElementOf.instance(list);
-        assertTrue(p.test(new Integer(5)));
-        assertTrue(p.test(new Integer(10)));
-        assertTrue(p.test(new Integer(15)));
+        assertTrue(p.test(Integer.valueOf(5)));
+        assertTrue(p.test(Integer.valueOf(10)));
+        assertTrue(p.test(Integer.valueOf(15)));
 
-        assertTrue(!p.test(new Integer(4)));
-        assertTrue(!p.test(new Integer(11)));
+        assertTrue(!p.test(Integer.valueOf(4)));
+        assertTrue(!p.test(Integer.valueOf(11)));
 
     }
 
@@ -67,19 +67,19 @@ public class TestIsElementOf extends BaseFunctorTest {
         int[] list = new int[] { 5, 10, 15 };
 
         Predicate<Integer> p = IsElementOf.instance(list);
-        assertTrue(p.test(new Integer(5)));
-        assertTrue(p.test(new Integer(10)));
-        assertTrue(p.test(new Integer(15)));
+        assertTrue(p.test(Integer.valueOf(5)));
+        assertTrue(p.test(Integer.valueOf(10)));
+        assertTrue(p.test(Integer.valueOf(15)));
 
-        assertTrue(!p.test(new Integer(4)));
-        assertTrue(!p.test(new Integer(11)));
+        assertTrue(!p.test(Integer.valueOf(4)));
+        assertTrue(!p.test(Integer.valueOf(11)));
     }
 
     @Test
     public void testTestArrayWithNull() throws Exception {
         assertTrue(! IsElementOf.instance().test(null,new int[] { 5, 10, 15 }));
-        assertTrue(IsElementOf.instance().test(null,new Integer[] { new Integer(5), null, new Integer(15) }));
-        assertTrue(IsElementOf.instance().test(new Integer(15),new Integer[] { new Integer(5), null, new Integer(15) }));
+        assertTrue(IsElementOf.instance().test(null,new Integer[] { Integer.valueOf(5), null, Integer.valueOf(15) }));
+        assertTrue(IsElementOf.instance().test(Integer.valueOf(15),new Integer[] { Integer.valueOf(5), null, Integer.valueOf(15) }));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class TestIsElementOf extends BaseFunctorTest {
     @Test
     public void testWrapNonCollection() {
         try {
-            IsElementOf.instance(new Integer(3));
+            IsElementOf.instance(Integer.valueOf(3));
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
             // expected
@@ -104,13 +104,13 @@ public class TestIsElementOf extends BaseFunctorTest {
 
     @Test(expected = NullPointerException.class)
     public void testTestNull() {
-        IsElementOf.instance().test(new Integer(5),null);
+        IsElementOf.instance().test(Integer.valueOf(5),null);
     }
 
     @Test
     public void testTestNonCollection() {
         try {
-            IsElementOf.instance().test(new Integer(5),new Long(5));
+            IsElementOf.instance().test(Integer.valueOf(5),Long.valueOf(5));
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
             // expected

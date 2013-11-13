@@ -86,7 +86,6 @@ public class AbstractTimedAggregatorTest extends BaseFunctorTest {
         // give enough time for the timer to kick in again
         TimeUnit.MILLISECONDS.sleep(interval + SLEEP);
         assertEquals(saveValue, count.get());
-
     }
 
     @Test
@@ -154,7 +153,7 @@ public class AbstractTimedAggregatorTest extends BaseFunctorTest {
 
         @Override
         protected void doReset() {
-            object = new Integer(0);
+            object = Integer.valueOf(   0);
         }
     }
 }

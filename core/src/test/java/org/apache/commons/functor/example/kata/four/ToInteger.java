@@ -19,19 +19,17 @@ package org.apache.commons.functor.example.kata.four;
 import org.apache.commons.functor.Function;
 
 /**
- * Converts a String value to an Integer, throwing
- * an exception if no such conversion can be made.
- *
- * Trailing, non-{@link Character#isDigit digit} characters
- * are ignored.
- *
+ * Converts a String value to an Integer, throwing an exception if no such conversion can be made.
+ * 
+ * Trailing, non-{@link Character#isDigit digit} characters are ignored.
+ * 
  * @version $Revision$ $Date$
  */
 public final class ToInteger implements Function<String, Integer> {
 
     public Integer evaluate(String str) {
-        StringBuffer buf = new StringBuffer();
-        for (int i=0;i<str.length();i++) {
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
             if (Character.isDigit(str.charAt(i))) {
                 buf.append(str.charAt(i));
             } else {
@@ -39,8 +37,8 @@ public final class ToInteger implements Function<String, Integer> {
             }
         }
         try {
-            return new Integer(buf.toString());
-        } catch(NumberFormatException e) {
+            return Integer.valueOf(buf.toString());
+        } catch (NumberFormatException e) {
             throw new NumberFormatException(str);
         }
     }

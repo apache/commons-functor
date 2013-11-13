@@ -27,7 +27,7 @@ import org.apache.commons.functor.Function;
 public final class Abs implements Function<Number, Integer> {
 
     public Integer evaluate(Number num) {
-        return new Integer(Math.abs(num.intValue()));
+        return Integer.valueOf(Math.abs(num.intValue()));
     }
 
     public static final Abs instance() {

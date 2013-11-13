@@ -45,28 +45,28 @@ public class TestIsNull extends BaseFunctorTest {
         Predicate<Object> p = new IsNull<Object>();
         assertTrue(p.test(null));
         assertFalse(p.test("foo"));
-        assertFalse(p.test(new Integer(3)));
+        assertFalse(p.test(Integer.valueOf(3)));
     }
 
     @Test
     public void testAsBinary() throws Exception {
-        assertTrue(IsNull.left().test(null,"not null"));
-        assertFalse(IsNull.left().test("not null",null));
-        assertTrue(IsNull.right().test("not null",null));
-        assertFalse(IsNull.right().test(null,"not null"));
+        assertTrue(IsNull.left().test(null, "not null"));
+        assertFalse(IsNull.left().test("not null", null));
+        assertTrue(IsNull.right().test("not null", null));
+        assertFalse(IsNull.right().test(null, "not null"));
     }
 
     @Test
     public void testEquals() throws Exception {
         Predicate<Object> p = new IsNull<Object>();
-        assertEquals(p,p);
-        assertObjectsAreEqual(p,new IsNull<Object>());
-        assertObjectsAreEqual(p,IsNull.instance());
-        assertObjectsAreNotEqual(p,Constant.TRUE);
+        assertEquals(p, p);
+        assertObjectsAreEqual(p, new IsNull<Object>());
+        assertObjectsAreEqual(p, IsNull.instance());
+        assertObjectsAreNotEqual(p, Constant.TRUE);
     }
 
     @Test
     public void testConstant() throws Exception {
-        assertEquals(IsNull.instance(),IsNull.instance());
+        assertEquals(IsNull.instance(), IsNull.instance());
     }
 }

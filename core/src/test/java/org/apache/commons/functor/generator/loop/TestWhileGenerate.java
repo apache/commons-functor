@@ -112,7 +112,7 @@ public class TestWhileGenerate {
 
     // Attributes
     // ------------------------------------------------------------------------
-	private static final Integer FIVE = new Integer(5);
+	private static final Integer FIVE = Integer.valueOf(5);
 
     private Generator<Integer> wrappedGenerator = null;
     private Predicate<Integer> isLessThanFive = new Predicate<Integer>() {

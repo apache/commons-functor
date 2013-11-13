@@ -23,7 +23,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-
 /**
  * @version $Revision$ $Date$
  */
@@ -44,11 +43,11 @@ public class TestFixedSizeMap extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
         baseMap = new HashMap<Object, Object>();
-        baseMap.put(new Integer(1),"one");
-        baseMap.put(new Integer(2),"two");
-        baseMap.put(new Integer(3),"three");
-        baseMap.put(new Integer(4),"four");
-        baseMap.put(new Integer(5),"five");
+        baseMap.put(Integer.valueOf(1), "one");
+        baseMap.put(Integer.valueOf(2), "two");
+        baseMap.put(Integer.valueOf(3), "three");
+        baseMap.put(Integer.valueOf(4), "four");
+        baseMap.put(Integer.valueOf(5), "five");
 
         fixedMap = new FixedSizeMap<Object, Object>(baseMap);
     }
@@ -64,66 +63,65 @@ public class TestFixedSizeMap extends TestCase {
 
     public void testCantPutNewPair() {
         try {
-            fixedMap.put("xyzzy","xyzzy");
+            fixedMap.put("xyzzy", "xyzzy");
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }
 
     public void testCantPutNewPairViaPutAll() {
         Map<Object, Object> map = new HashMap<Object, Object>();
-        map.put(new Integer(1),"uno");
-        map.put("xyzzy","xyzzy");
-        map.put(new Integer(2),"dos");
+        map.put(Integer.valueOf(1), "uno");
+        map.put("xyzzy", "xyzzy");
+        map.put(Integer.valueOf(2), "dos");
 
         try {
             fixedMap.putAll(map);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
 
-        assertEquals("one",fixedMap.get(new Integer(1)));
-        assertEquals("two",fixedMap.get(new Integer(2)));
+        assertEquals("one", fixedMap.get(Integer.valueOf(1)));
+        assertEquals("two", fixedMap.get(Integer.valueOf(2)));
     }
 
     public void testCantClear() {
         try {
             fixedMap.clear();
             fail("Expected UnsupportedOperationException");
-        } catch(UnsupportedOperationException e) {
+        } catch (UnsupportedOperationException e) {
             // expected
         }
     }
 
     public void testCantRemove() {
         try {
-            fixedMap.remove(new Integer(1));
+            fixedMap.remove(Integer.valueOf(1));
             fail("Expected UnsupportedOperationException");
-        } catch(UnsupportedOperationException e) {
+        } catch (UnsupportedOperationException e) {
             // expected
         }
     }
 
     public void testCanAssociateNewValueWithOldKey() {
-        fixedMap.put(new Integer(1),"uno");
-        assertEquals("uno",fixedMap.get(new Integer(1)));
-        assertEquals("two",fixedMap.get(new Integer(2)));
-        assertEquals("three",fixedMap.get(new Integer(3)));
+        fixedMap.put(Integer.valueOf(1), "uno");
+        assertEquals("uno", fixedMap.get(Integer.valueOf(1)));
+        assertEquals("two", fixedMap.get(Integer.valueOf(2)));
+        assertEquals("three", fixedMap.get(Integer.valueOf(3)));
     }
 
     public void testCanAssociateNewValueWithOldKeyViaPutAll() {
         Map<Object, Object> map = new HashMap<Object, Object>();
-        map.put(new Integer(1),"uno");
-        map.put(new Integer(2),"dos");
+        map.put(Integer.valueOf(1), "uno");
+        map.put(Integer.valueOf(2), "dos");
 
         fixedMap.putAll(map);
 
-        assertEquals("uno",fixedMap.get(new Integer(1)));
-        assertEquals("dos",fixedMap.get(new Integer(2)));
-        assertEquals("three",fixedMap.get(new Integer(3)));
+        assertEquals("uno", fixedMap.get(Integer.valueOf(1)));
+        assertEquals("dos", fixedMap.get(Integer.valueOf(2)));
+        assertEquals("three", fixedMap.get(Integer.valueOf(3)));
     }
-
 
 }

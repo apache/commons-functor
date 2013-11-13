@@ -78,7 +78,7 @@ public class TestIntegerRange extends BaseFunctorTest {
             List<? super Integer> list = (List<? super Integer>) (
                 IteratorToGeneratorAdapter.adapt(Ranges.integerRange(0,10)).to(new ArrayList<Integer>()));
             for (int i=0;i<10;i++) {
-                assertEquals(new Integer(i),list.get(i));
+                assertEquals(Integer.valueOf(i),list.get(i));
             }
         }
 
@@ -87,7 +87,7 @@ public class TestIntegerRange extends BaseFunctorTest {
             List<? super Integer> list = (List<? super Integer>) (
                 IteratorToGeneratorAdapter.adapt(Ranges.integerRange(10,0)).to(new ArrayList<Integer>()));
             for (int i=10;i>0;i--) {
-                assertEquals(new Integer(i),list.get(10-i));
+                assertEquals(Integer.valueOf(i),list.get(10-i));
             }
         }
     }
@@ -131,9 +131,9 @@ public class TestIntegerRange extends BaseFunctorTest {
 
     @Test
     public void testObjectConstructor() {
-        IntegerRange range = Ranges.integerRange(new Integer(0), new Integer(5));
+        IntegerRange range = Ranges.integerRange(Integer.valueOf(0), Integer.valueOf(5));
         assertEquals("[0, 1, 2, 3, 4]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
-        range = Ranges.integerRange(new Integer(0), new Integer(5), new Integer(1));
+        range = Ranges.integerRange(Integer.valueOf(0), Integer.valueOf(5), Integer.valueOf(1));
         assertEquals("[0, 1, 2, 3, 4]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 

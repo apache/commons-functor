@@ -84,7 +84,7 @@ public class TestLongRange extends BaseFunctorTest {
             LongRange range = Ranges.longRange(0, 10);
             Iterator<Long> iter = range.iterator();
             for (int i=0;i<10;i++) {
-                assertEquals(new Long(i), iter.next());
+                assertEquals(Long.valueOf(i), iter.next());
             }
         }
 
@@ -93,7 +93,7 @@ public class TestLongRange extends BaseFunctorTest {
             LongRange range = Ranges.longRange(10, 0);
             Iterator<Long> iter = range.iterator();
             for (int i=10;i>0;i--) {
-                assertEquals(new Long(i), iter.next());
+                assertEquals(Long.valueOf(i), iter.next());
             }
         }
     }
@@ -137,9 +137,9 @@ public class TestLongRange extends BaseFunctorTest {
 
     @Test
     public void testObjectConstructor() {
-        LongRange range = Ranges.longRange(new Long(0), new Long(5));
+        LongRange range = Ranges.longRange(Long.valueOf(0), Long.valueOf(5));
         assertEquals("[0, 1, 2, 3, 4]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
-        range = Ranges.longRange(new Integer(0), new Long(5), new Long(1));
+        range = Ranges.longRange(Integer.valueOf(0), Long.valueOf(5), Long.valueOf(1));
         assertEquals("[0, 1, 2, 3, 4]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 

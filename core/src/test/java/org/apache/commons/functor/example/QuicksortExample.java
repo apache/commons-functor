@@ -140,7 +140,7 @@ public class QuicksortExample {
     public void testSortSorted() {
         List<Object> list = new ArrayList<Object>();
         for (int i = 0; i < 10; i++) {
-            list.add(new Integer(i));
+            list.add(Integer.valueOf(i));
         }
 
         List<?> sorted = quicksort(list);
@@ -167,11 +167,11 @@ public class QuicksortExample {
             /*
              * The "expected" list contains the integers in order.
              */
-            expected.add(new Integer(i));
+            expected.add(Integer.valueOf(i));
             /*
              * The "tosort" list contains the integers in reverse order.
              */
-            tosort.add(new Integer(9 - i));
+            tosort.add(Integer.valueOf(9 - i));
         }
 
         assertEquals(expected, quicksort(tosort));
@@ -184,7 +184,7 @@ public class QuicksortExample {
     public void testSortShuffled() {
         List<Object> expected = new ArrayList<Object>();
         for (int i = 0; i < 10; i++) {
-            expected.add(new Integer(i));
+            expected.add(Integer.valueOf(i));
         }
         List<Object> tosort = new ArrayList<Object>(expected);
         Collections.shuffle(tosort);
@@ -203,7 +203,7 @@ public class QuicksortExample {
          */
         List<Integer> tosort = new ArrayList<Integer>();
         for (int i = 0; i < 10; i++) {
-            tosort.add(new Integer(random.nextInt(10)));
+            tosort.add(Integer.valueOf(random.nextInt(10)));
         }
         /*
          * and use java.util.Collections.sort to
@@ -248,7 +248,7 @@ public class QuicksortExample {
              */
             List<Object> tosort = new ArrayList<Object>(SIZE);
             for (int j = 0; j < SIZE; j++) {
-                tosort.add(new Integer(random.nextInt(SIZE)));
+                tosort.add(Integer.valueOf(random.nextInt(SIZE)));
             }
 
             /*
@@ -535,14 +535,14 @@ public class QuicksortExample {
     public void testLesserTail() {
         List<Integer> list = new ArrayList<Integer>();
         for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
+            list.add(Integer.valueOf(i));
         }
         for (int i=0;i<10;i++) {
-            Integer val = new Integer(i);
+            Integer val = Integer.valueOf(i);
             List<Integer> lesser = (List<Integer>) lesserTail.evaluate(val,list);
             assertEquals(i,lesser.size());
             for (int j=0;j<i;j++) {
-                assertEquals(new Integer(j),lesser.get(j));
+                assertEquals(Integer.valueOf(j),lesser.get(j));
             }
         }
     }
@@ -550,14 +550,14 @@ public class QuicksortExample {
     public void testGreaterTail() {
         List<Integer> list = new ArrayList<Integer>();
         for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
+            list.add(Integer.valueOf(i));
         }
         for (int i=0;i<10;i++) {
-            Integer val = new Integer(i);
+            Integer val = Integer.valueOf(i);
             List<Integer> greater = (List<Integer>) greaterTail.evaluate(val,list);
             assertEquals(10-i,greater.size());
             for (int j=i;j<10;j++) {
-                assertEquals(new Integer(j),greater.get(j-i));
+                assertEquals(Integer.valueOf(j),greater.get(j-i));
             }
         }
     }

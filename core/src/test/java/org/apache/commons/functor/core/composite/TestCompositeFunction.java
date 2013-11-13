@@ -44,10 +44,10 @@ public class TestCompositeFunction extends BaseFunctorTest {
     @Test
     public void testEvaluate() throws Exception {
 
-        assertEquals(new Integer(4),(new CompositeFunction<Object, Integer>(Constant.of(4))).evaluate(null));
+        assertEquals(Integer.valueOf(4),(new CompositeFunction<Object, Integer>(Constant.of(4))).evaluate(null));
 
-        assertEquals(new Integer(4),(Composite.function(Constant.of(4)).of(Constant.of(3)).evaluate("xyzzy")));
-        assertEquals(new Integer(3),(new CompositeFunction<Object, Integer>(Constant.of(3)).of(Constant.of(4)).evaluate("xyzzy")));
+        assertEquals(Integer.valueOf(4),(Composite.function(Constant.of(4)).of(Constant.of(3)).evaluate("xyzzy")));
+        assertEquals(Integer.valueOf(3),(new CompositeFunction<Object, Integer>(Constant.of(3)).of(Constant.of(4)).evaluate("xyzzy")));
     }
 
     @Test

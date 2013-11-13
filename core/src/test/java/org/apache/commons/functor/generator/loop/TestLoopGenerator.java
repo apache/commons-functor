@@ -45,8 +45,8 @@ public class TestLoopGenerator {
     public void setUp() throws Exception {
         simpleGenerator = new LoopGenerator<Integer>() {
             public void run(Procedure<? super Integer> proc) {
-                for (int i=0;i<5;i++) {
-                    proc.run(new Integer(i));
+                for (int i = 0; i < 5; i++) {
+                    proc.run(Integer.valueOf(i));
                     if (isStopped()) {
                         break;
                     }
@@ -59,14 +59,14 @@ public class TestLoopGenerator {
         doubled = new ArrayList<Integer>();
         listWithDuplicates = new ArrayList<Integer>();
         sum = 0;
-        for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
-            doubled.add(new Integer(i*2));
-            listWithDuplicates.add(new Integer(i));
-            listWithDuplicates.add(new Integer(i));
+        for (int i = 0; i < 10; i++) {
+            list.add(Integer.valueOf(i));
+            doubled.add(Integer.valueOf(i * 2));
+            listWithDuplicates.add(Integer.valueOf(i));
+            listWithDuplicates.add(Integer.valueOf(i));
             sum += i;
-            if (i%2 == 0) {
-                evens.add(new Integer(i));
+            if (i % 2 == 0) {
+                evens.add(Integer.valueOf(i));
             }
         }
     }
@@ -85,7 +85,7 @@ public class TestLoopGenerator {
 
     @Test
     public void testSimpleGenerator() {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         simpleGenerator.run(new Procedure<Integer>() {
             public void run(Integer obj) {
                 result.append(obj);
@@ -97,9 +97,10 @@ public class TestLoopGenerator {
 
     @Test
     public void testStop() {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         simpleGenerator.run(new Procedure<Integer>() {
-            int i=0;
+            int i = 0;
+
             public void run(Integer obj) {
                 result.append(obj);
                 if (i++ > 1) {
@@ -113,14 +114,14 @@ public class TestLoopGenerator {
 
     @Test
     public void testWrappingGenerator() {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         final LoopGenerator<Integer> gen = new LoopGenerator<Integer>(simpleGenerator) {
             public void run(final Procedure<? super Integer> proc) {
-                LoopGenerator<Integer> wrapped = (LoopGenerator<Integer>)getWrappedGenerator();
+                LoopGenerator<Integer> wrapped = (LoopGenerator<Integer>) getWrappedGenerator();
                 assertSame(simpleGenerator, wrapped);
                 wrapped.run(new Procedure<Integer>() {
                     public void run(Integer obj) {
-                        proc.run(new Integer(obj.intValue() + 1));
+                        proc.run(Integer.valueOf(obj.intValue() + 1));
                     }
                 });
             }
@@ -135,9 +136,10 @@ public class TestLoopGenerator {
         assertEquals("12345", result.toString());
 
         // try to stop the wrapped generator
-        final StringBuffer result2 = new StringBuffer();
+        final StringBuilder result2 = new StringBuilder();
         gen.run(new Procedure<Integer>() {
-            int i=0;
+            int i = 0;
+
             public void run(Integer obj) {
                 result2.append(obj);
                 if (i++ > 1) {
@@ -162,12 +164,12 @@ public class TestLoopGenerator {
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
-        col = (Collection<Integer>)simpleGenerator.toCollection();
+        col = (Collection<Integer>) simpleGenerator.toCollection();
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
 
         fillThis = new LinkedList<Integer>();
-        col = (Collection<Integer>)simpleGenerator.to(fillThis);
+        col = (Collection<Integer>) simpleGenerator.to(fillThis);
         assertSame(fillThis, col);
         assertEquals("[0, 1, 2, 3, 4]", col.toString());
     }
@@ -180,18 +182,6 @@ public class TestLoopGenerator {
     private List<Integer> listWithDuplicates = null;
     @SuppressWarnings("unused")
     private int sum = 0;
-//    private UnaryPredicate equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
-//    private UnaryPredicate equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
-//    private UnaryPredicate isEven = new UnaryPredicate() {
-//        public boolean test(Object obj) {
-//            return ((Number) obj).intValue() % 2 == 0;
-//        }
-//    };
-//    private UnaryPredicate isOdd = new UnaryPredicate() {
-//        public boolean test(Object obj) {
-//            return ((Number) obj).intValue() % 2 != 0;
-//        }
-//    };
 
     // Classes
     // ------------------------------------------------------------------------
@@ -200,6 +190,7 @@ public class TestLoopGenerator {
         public void run(Number that) {
             sum += (that).intValue();
         }
+
         public int sum = 0;
     }
 }

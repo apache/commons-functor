@@ -44,55 +44,62 @@ public class TestFindWithinGenerator extends BaseFunctorTest {
     @Test
     public void testObjectEqualsWithIfNone() throws Exception {
         Object obj = new FindWithinGenerator<Object>(1);
-        assertEquals("equals must be reflexive",obj,obj);
-        assertEquals("hashCode must be reflexive",obj.hashCode(),obj.hashCode());
-        assertTrue(! obj.equals(null) ); // should be able to compare to null
+        assertEquals("equals must be reflexive", obj, obj);
+        assertEquals("hashCode must be reflexive", obj.hashCode(), obj.hashCode());
+        assertTrue(!obj.equals(null)); // should be able to compare to null
 
         Object obj2 = new FindWithinGenerator<Object>(1);
         if (obj.equals(obj2)) {
-            assertEquals("equals implies hash equals",obj.hashCode(),obj2.hashCode());
-            assertEquals("equals must be symmetric",obj2,obj);
+            assertEquals("equals implies hash equals", obj.hashCode(), obj2.hashCode());
+            assertEquals("equals must be symmetric", obj2, obj);
         } else {
-            assertTrue("equals must be symmetric",! obj2.equals(obj));
+            assertTrue("equals must be symmetric", !obj2.equals(obj));
         }
     }
 
     @Test
     public void testObjectEqualsWithNullDefault() throws Exception {
         Object obj = new FindWithinGenerator<Object>(null);
-        assertEquals("equals must be reflexive",obj,obj);
-        assertEquals("hashCode must be reflexive",obj.hashCode(),obj.hashCode());
-        assertTrue(! obj.equals(null) ); // should be able to compare to null
+        assertEquals("equals must be reflexive", obj, obj);
+        assertEquals("hashCode must be reflexive", obj.hashCode(), obj.hashCode());
+        assertTrue(!obj.equals(null)); // should be able to compare to null
 
         Object obj2 = new FindWithinGenerator<Object>(null);
         if (obj.equals(obj2)) {
-            assertEquals("equals implies hash equals",obj.hashCode(),obj2.hashCode());
-            assertEquals("equals must be symmetric",obj2,obj);
+            assertEquals("equals implies hash equals", obj.hashCode(), obj2.hashCode());
+            assertEquals("equals must be symmetric", obj2, obj);
         } else {
-            assertTrue("equals must be symmetric",! obj2.equals(obj));
+            assertTrue("equals must be symmetric", !obj2.equals(obj));
         }
     }
 
     @Test
     public void testEquals() {
         FindWithinGenerator<Object> f = new FindWithinGenerator<Object>();
-        assertEquals(f,f);
+        assertEquals(f, f);
 
-        assertObjectsAreEqual(f,new FindWithinGenerator<Object>());
-        assertObjectsAreEqual(new FindWithinGenerator<Object>(new Double(0)),new FindWithinGenerator<Object>(new Double(0)));
-        assertObjectsAreNotEqual(f, new FindWithinGenerator<Object>(new Integer(0)));
+        assertObjectsAreEqual(f, new FindWithinGenerator<Object>());
+        assertObjectsAreEqual(new FindWithinGenerator<Object>(Double.valueOf(0)), new FindWithinGenerator<Object>(
+            Double.valueOf(0)));
+        assertObjectsAreNotEqual(f, new FindWithinGenerator<Object>(Integer.valueOf(0)));
     }
 
-    @Test(expected=NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class)
     public void testDetect() {
-        assertEquals(new Integer(3),new FindWithinGenerator<Integer>().evaluate(IteratorToGeneratorAdapter.adapt(numbers.iterator()),equalsThree));
-        new FindWithinGenerator<Integer>().evaluate(IteratorToGeneratorAdapter.adapt(numbers.iterator()),equalsTwentyThree);
+        assertEquals(Integer.valueOf(3), new FindWithinGenerator<Integer>().evaluate(
+            IteratorToGeneratorAdapter.adapt(numbers.iterator()), equalsThree));
+        new FindWithinGenerator<Integer>().evaluate(IteratorToGeneratorAdapter.adapt(numbers.iterator()),
+            equalsTwentyThree);
     }
 
     @Test
     public void testDetectIfNone() {
-        assertEquals(new Integer(3),new FindWithinGenerator<Integer>(new Integer(3)).evaluate(IteratorToGeneratorAdapter.adapt(numbers.iterator()),equalsThree));
-        assertEquals("Xyzzy",new FindWithinGenerator<String>("Xyzzy").evaluate(IteratorToGeneratorAdapter.adapt(strings.iterator()),equalsXyZ));
+        assertEquals(
+            Integer.valueOf(3),
+            new FindWithinGenerator<Integer>(Integer.valueOf(3)).evaluate(
+                IteratorToGeneratorAdapter.adapt(numbers.iterator()), equalsThree));
+        assertEquals("Xyzzy", new FindWithinGenerator<String>("Xyzzy").evaluate(
+            IteratorToGeneratorAdapter.adapt(strings.iterator()), equalsXyZ));
     }
 
     @Test
@@ -103,10 +110,10 @@ public class TestFindWithinGenerator extends BaseFunctorTest {
     // Attributes
     // ------------------------------------------------------------------------
 
-    private List<Integer> numbers = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
+    private List<Integer> numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
     private List<String> strings = Arrays.asList("Zyx", "xxyZ");
-    private Predicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
-    private Predicate<Integer> equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
-    private Predicate<String> equalsXyZ = LeftBoundPredicate.bind(IsEqual.instance(),"xyZ");
+    private Predicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(), Integer.valueOf(3));
+    private Predicate<Integer> equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(), Integer.valueOf(23));
+    private Predicate<String> equalsXyZ = LeftBoundPredicate.bind(IsEqual.instance(), "xyZ");
 
 }

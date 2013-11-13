@@ -26,18 +26,21 @@ import org.junit.Test;
 
 /**
  * Tests for TransformedNullaryProcedure.
+ * 
  * @version $Revision: $ $Date: $
  */
-public class TestTransformedNullaryProcedure extends BaseFunctorTest{
+public class TestTransformedNullaryProcedure extends BaseFunctorTest {
 
     private static class One implements NullaryFunction<Integer> {
         public Integer evaluate() {
-            return new Integer(1);
+            return Integer.valueOf(1);
         }
+
         @Override
         public boolean equals(Object obj) {
             return obj == this || obj != null && obj instanceof One;
         }
+
         @Override
         public int hashCode() {
             return "One".hashCode();
@@ -46,16 +49,20 @@ public class TestTransformedNullaryProcedure extends BaseFunctorTest{
 
     private static class AggregatorProcedure implements Procedure<Integer> {
         private int total = 0;
+
         public void run(Integer obj) {
             total += obj;
         }
+
         public int getTotal() {
             return total;
         }
+
         @Override
         public boolean equals(Object obj) {
             return obj == this || obj != null && obj instanceof AggregatorProcedure;
         }
+
         @Override
         public int hashCode() {
             return "AggregatorProcedure".hashCode();
@@ -74,7 +81,7 @@ public class TestTransformedNullaryProcedure extends BaseFunctorTest{
     public void testRun() {
         TransformedNullaryProcedure p = new TransformedNullaryProcedure(one, aggregator);
         p.run();
-        assertEquals(1,aggregator.getTotal());
+        assertEquals(1, aggregator.getTotal());
     }
 
     @Test
@@ -82,7 +89,7 @@ public class TestTransformedNullaryProcedure extends BaseFunctorTest{
         TransformedNullaryProcedure t = new TransformedNullaryProcedure(one, aggregator);
         NullaryFunction<Integer> f = new NullaryFunction<Integer>() {
             public Integer evaluate() {
-                return new Integer(2);
+                return Integer.valueOf(2);
             }
         };
         Procedure<Integer> p = new Procedure<Integer>() {
@@ -90,10 +97,10 @@ public class TestTransformedNullaryProcedure extends BaseFunctorTest{
                 // Do nothing
             }
         };
-        assertEquals(t,t);
-        assertObjectsAreEqual(t,new TransformedNullaryProcedure(one, aggregator));
-        assertObjectsAreNotEqual(t,new TransformedNullaryProcedure(f, aggregator));
-        assertObjectsAreNotEqual(t,new TransformedNullaryProcedure(one, p));
+        assertEquals(t, t);
+        assertObjectsAreEqual(t, new TransformedNullaryProcedure(one, aggregator));
+        assertObjectsAreNotEqual(t, new TransformedNullaryProcedure(f, aggregator));
+        assertObjectsAreNotEqual(t, new TransformedNullaryProcedure(one, p));
         assertTrue(!t.equals(null));
     }
 }

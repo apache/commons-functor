@@ -24,7 +24,7 @@ import org.apache.commons.functor.adapter.LeftBoundFunction;
  */
 public class Add extends ArithmeticOperation {
     public Number evaluate(Number left, Number right) {
-        return new Integer(left.intValue() + right.intValue());
+        return Integer.valueOf(left.intValue() + right.intValue());
     }
 
     public static Add instance() {

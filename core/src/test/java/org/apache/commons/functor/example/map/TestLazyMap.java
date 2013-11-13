@@ -26,7 +26,6 @@ import junit.framework.TestSuite;
 
 import org.apache.commons.functor.core.collection.Size;
 
-
 /**
  * @version $Revision$ $Date$
  */
@@ -48,14 +47,14 @@ public class TestLazyMap extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
         expectedMap = new HashMap<Object, Integer>();
-        expectedMap.put("one",new Integer(3));
-        expectedMap.put("two",new Integer(3));
-        expectedMap.put("three", new Integer(5));
-        expectedMap.put("four", new Integer(4));
-        expectedMap.put("five", new Integer(4));
+        expectedMap.put("one", Integer.valueOf(3));
+        expectedMap.put("two", Integer.valueOf(3));
+        expectedMap.put("three", Integer.valueOf(5));
+        expectedMap.put("four", Integer.valueOf(4));
+        expectedMap.put("five", Integer.valueOf(4));
 
         baseMap = new HashMap<Object, Integer>();
-        lazyMap = new LazyMap<Object, Integer>(baseMap,Size.instance());
+        lazyMap = new LazyMap<Object, Integer>(baseMap, Size.instance());
     }
 
     @Override
@@ -73,32 +72,31 @@ public class TestLazyMap extends TestCase {
             Object key = iter.next();
             assertFalse(baseMap.containsKey(key));
             assertFalse(lazyMap.containsKey(key));
-            assertEquals(expectedMap.get(key),lazyMap.get(key));
-            assertEquals(expectedMap.get(key),baseMap.get(key));
+            assertEquals(expectedMap.get(key), lazyMap.get(key));
+            assertEquals(expectedMap.get(key), baseMap.get(key));
             assertTrue(lazyMap.containsKey(key));
             assertTrue(baseMap.containsKey(key));
         }
-        assertEquals(expectedMap,lazyMap);
-        assertEquals(expectedMap,baseMap);
+        assertEquals(expectedMap, lazyMap);
+        assertEquals(expectedMap, baseMap);
         baseMap.clear();
         for (Iterator<Object> iter = expectedMap.keySet().iterator(); iter.hasNext();) {
             Object key = iter.next();
             assertFalse(baseMap.containsKey(key));
             assertFalse(lazyMap.containsKey(key));
-            assertEquals(expectedMap.get(key),lazyMap.get(key));
-            assertEquals(expectedMap.get(key),baseMap.get(key));
+            assertEquals(expectedMap.get(key), lazyMap.get(key));
+            assertEquals(expectedMap.get(key), baseMap.get(key));
             assertTrue(lazyMap.containsKey(key));
             assertTrue(baseMap.containsKey(key));
         }
-        assertEquals(expectedMap,lazyMap);
-        assertEquals(expectedMap,baseMap);
+        assertEquals(expectedMap, lazyMap);
+        assertEquals(expectedMap, baseMap);
     }
 
-
     public void testBaseMapOverrides() {
-        assertEquals(new Integer(5),lazyMap.get("xyzzy"));
-        baseMap.put("xyzzy",new Integer(3));
-        assertEquals(Integer.valueOf(3),lazyMap.get("xyzzy"));
+        assertEquals(Integer.valueOf(5), lazyMap.get("xyzzy"));
+        baseMap.put("xyzzy", Integer.valueOf(3));
+        assertEquals(Integer.valueOf(3), lazyMap.get("xyzzy"));
     }
 
 }

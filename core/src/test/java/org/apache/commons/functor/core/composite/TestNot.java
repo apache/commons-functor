@@ -47,17 +47,17 @@ public class TestNot extends BaseFunctorTest {
         Predicate<Object> truePred = new Not<Object>(Constant.FALSE);
         assertTrue(truePred.test(null));
         assertTrue(truePred.test("xyzzy"));
-        assertTrue(truePred.test(new Integer(3)));
+        assertTrue(truePred.test(Integer.valueOf(3)));
     }
 
     @Test
     public void testEquals() throws Exception {
         Not<Object> p = new Not<Object>(Constant.TRUE);
-        assertEquals(p,p);
-        assertObjectsAreEqual(p,new Not<Object>(Constant.TRUE));
-        assertObjectsAreEqual(p,Not.not(Constant.TRUE));
-        assertObjectsAreNotEqual(p,new Not<Object>(Constant.FALSE));
-        assertObjectsAreNotEqual(p,Constant.TRUE);
+        assertEquals(p, p);
+        assertObjectsAreEqual(p, new Not<Object>(Constant.TRUE));
+        assertObjectsAreEqual(p, Not.not(Constant.TRUE));
+        assertObjectsAreNotEqual(p, new Not<Object>(Constant.FALSE));
+        assertObjectsAreNotEqual(p, Constant.TRUE);
         assertTrue(!p.equals(null));
     }
 

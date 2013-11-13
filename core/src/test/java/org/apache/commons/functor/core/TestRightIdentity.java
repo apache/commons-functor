@@ -55,8 +55,8 @@ public class TestRightIdentity extends BaseFunctorTest {
         assertNull(f.evaluate("xyzzy",null));
         assertEquals("xyzzy",f.evaluate("abcdefg","xyzzy"));
         assertEquals("xyzzy",f.evaluate(null,"xyzzy"));
-        assertEquals(new Integer(3),f.evaluate(null,new Integer(3)));
-        Object obj = new Long(12345L);
+        assertEquals(Integer.valueOf(3),f.evaluate(null,Integer.valueOf(3)));
+        Object obj = Long.valueOf(12345L);
         assertSame(obj,f.evaluate(null,obj));
         assertSame(obj,f.evaluate(obj,obj));
     }

@@ -54,14 +54,14 @@ public class TestAlgorithms {
         doubled = new ArrayList<Integer>();
         listWithDuplicates = new ArrayList<Integer>();
         sum = 0;
-        for (int i=0;i<10;i++) {
-            list.add(new Integer(i));
-            doubled.add(new Integer(i*2));
-            listWithDuplicates.add(new Integer(i));
-            listWithDuplicates.add(new Integer(i));
+        for (int i = 0; i < 10; i++) {
+            list.add(Integer.valueOf(i));
+            doubled.add(Integer.valueOf(i * 2));
+            listWithDuplicates.add(Integer.valueOf(i));
+            listWithDuplicates.add(Integer.valueOf(i));
             sum += i;
-            if (i%2 == 0) {
-                evens.add(new Integer(i));
+            if (i % 2 == 0) {
+                evens.add(Integer.valueOf(i));
             }
         }
     }
@@ -77,68 +77,72 @@ public class TestAlgorithms {
     // Tests
     // ------------------------------------------------------------------------
 
-
-
     @Test
     public void testRun() {
         Summer summer = new Summer();
         IteratorToGeneratorAdapter.adapt(list.iterator()).run(summer);
-        assertEquals(sum,summer.sum);
+        assertEquals(sum, summer.sum);
     }
 
     @Test
     public void testSelect1() {
-        Collection<Integer> result = new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),isEven).toCollection();
+        Collection<Integer> result =
+            new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()), isEven).toCollection();
         assertNotNull(result);
-        assertEquals(evens,result);
+        assertEquals(evens, result);
     }
 
     @Test
     public void testSelect2() {
         List<Integer> result = new ArrayList<Integer>();
-        assertSame(result,new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),isEven).to(result));
-        assertEquals(evens,result);
+        assertSame(result,
+            new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()), isEven).to(result));
+        assertEquals(evens, result);
     }
 
     @Test
     public void testReject1() {
-        Collection<Integer> result = new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),new Not<Integer>(isOdd)).toCollection();
+        Collection<Integer> result =
+            new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()), new Not<Integer>(isOdd))
+                .toCollection();
         assertNotNull(result);
-        assertEquals(evens,result);
+        assertEquals(evens, result);
     }
 
     @Test
     public void testReject2() {
         List<Object> result = new ArrayList<Object>();
-        assertSame(result,new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),new Not<Integer>(isOdd)).to(result));
-        assertEquals(evens,result);
+        assertSame(result, new FilteredGenerator<Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),
+            new Not<Integer>(isOdd)).to(result));
+        assertEquals(evens, result);
     }
 
     @Test
     public void testApplyToGenerator() {
-        LoopGenerator<Integer> gen = IteratorToGeneratorAdapter.adapt(new IntegerRange(1,5));
+        LoopGenerator<Integer> gen = IteratorToGeneratorAdapter.adapt(new IntegerRange(1, 5));
         Summer summer = new Summer();
 
         new TransformedGenerator<Integer, Integer>(gen, new Doubler()).run(summer);
 
-        assertEquals(2*(1+2+3+4),summer.sum);
+        assertEquals(2 * (1 + 2 + 3 + 4), summer.sum);
     }
 
     @Test
     public void testApply() {
-        Collection<Integer> result = new TransformedGenerator<Integer, Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()), new Doubler())
+        Collection<Integer> result =
+            new TransformedGenerator<Integer, Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()), new Doubler())
                 .toCollection();
         assertNotNull(result);
-        assertEquals(doubled,result);
+        assertEquals(doubled, result);
     }
 
     @Test
     public void testApply2() {
         Set<Integer> set = new HashSet<Integer>();
-        assertSame(set, new TransformedGenerator<Integer, Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()), Identity.<Integer>instance())
-                .to(set));
-        assertEquals(list.size(),set.size());
-        for (Iterator<Integer> iter = list.iterator(); iter.hasNext(); ) {
+        assertSame(set, new TransformedGenerator<Integer, Integer>(IteratorToGeneratorAdapter.adapt(list.iterator()),
+            Identity.<Integer> instance()).to(set));
+        assertEquals(list.size(), set.size());
+        for (Iterator<Integer> iter = list.iterator(); iter.hasNext();) {
             assertTrue(set.contains(iter.next()));
         }
     }
@@ -146,10 +150,11 @@ public class TestAlgorithms {
     @Test
     public void testApply3() {
         Set<Object> set = new HashSet<Object>();
-        assertSame(set, new TransformedGenerator<Object, Object>(IteratorToGeneratorAdapter.adapt(listWithDuplicates.iterator()),
+        assertSame(set,
+            new TransformedGenerator<Object, Object>(IteratorToGeneratorAdapter.adapt(listWithDuplicates.iterator()),
                 Identity.instance()).to(set));
         assertTrue(listWithDuplicates.size() > set.size());
-        for (Iterator<Integer> iter = listWithDuplicates.iterator(); iter.hasNext(); ) {
+        for (Iterator<Integer> iter = listWithDuplicates.iterator(); iter.hasNext();) {
             assertTrue(set.contains(iter.next()));
         }
     }
@@ -179,6 +184,7 @@ public class TestAlgorithms {
         public void run() {
             count++;
         }
+
         public int count = 0;
     }
 
@@ -186,12 +192,13 @@ public class TestAlgorithms {
         public void run(Integer that) {
             sum += that.intValue();
         }
+
         public int sum = 0;
     }
 
     static class Doubler implements Function<Integer, Integer> {
         public Integer evaluate(Integer obj) {
-            return new Integer(2* obj.intValue());
+            return Integer.valueOf(2 * obj.intValue());
         }
     }
 }

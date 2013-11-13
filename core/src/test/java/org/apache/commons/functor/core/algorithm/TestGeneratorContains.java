@@ -42,15 +42,17 @@ public class TestGeneratorContains extends BaseFunctorTest {
 
     @Test
     public void testContains() {
-        assertTrue(new GeneratorContains<Integer>().test(IteratorToGeneratorAdapter.adapt(list.iterator()),equalsThree));
-        assertFalse(new GeneratorContains<Integer>().test(IteratorToGeneratorAdapter.adapt(list.iterator()),equalsTwentyThree));
+        assertTrue(new GeneratorContains<Integer>()
+            .test(IteratorToGeneratorAdapter.adapt(list.iterator()), equalsThree));
+        assertFalse(new GeneratorContains<Integer>().test(IteratorToGeneratorAdapter.adapt(list.iterator()),
+            equalsTwentyThree));
     }
 
     // Attributes
     // ------------------------------------------------------------------------
 
-    private List<Integer> list = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
-    private Predicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(3));
-    private Predicate<Integer> equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(),new Integer(23));
+    private List<Integer> list = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    private Predicate<Integer> equalsThree = LeftBoundPredicate.bind(IsEqual.instance(), Integer.valueOf(3));
+    private Predicate<Integer> equalsTwentyThree = LeftBoundPredicate.bind(IsEqual.instance(), Integer.valueOf(23));
 
 }

@@ -75,24 +75,24 @@ public class TestIsEmpty extends BaseFunctorTest {
     @Test
     public void testTestNonCollection() throws Exception {
         try {
-            IsEmpty.instance().test(new Integer(3));
+            IsEmpty.instance().test(Integer.valueOf(3));
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }
 
     @Test
     public void testTestArray() throws Exception {
-        assertTrue(! IsEmpty.instance().test(new int[10]));
-        assertTrue(! IsEmpty.instance().test(new Object[10]));
+        assertTrue(!IsEmpty.instance().test(new int[10]));
+        assertTrue(!IsEmpty.instance().test(new Object[10]));
         assertTrue(IsEmpty.instance().test(new int[0]));
         assertTrue(IsEmpty.instance().test(new Object[0]));
     }
 
     @Test
     public void testTestString() throws Exception {
-        assertTrue(! IsEmpty.instance().test("xyzzy"));
+        assertTrue(!IsEmpty.instance().test("xyzzy"));
         assertTrue(IsEmpty.instance().test(""));
     }
 
@@ -100,17 +100,17 @@ public class TestIsEmpty extends BaseFunctorTest {
     public void testTestMap() throws Exception {
         Map<String, String> map = new HashMap<String, String>();
         assertTrue(IsEmpty.instance().test(map));
-        map.put("x","y");
-        assertTrue(! IsEmpty.instance().test(map));
+        map.put("x", "y");
+        assertTrue(!IsEmpty.instance().test(map));
     }
 
     @Test
     public void testEquals() throws Exception {
         Predicate<String> p = new IsEmpty<String>();
-        assertEquals(p,p);
-        assertObjectsAreEqual(p,new IsEmpty<Long>());
-        assertObjectsAreEqual(p,IsEmpty.instance());
-        assertObjectsAreNotEqual(p,new Constant<Boolean>(Boolean.TRUE));
+        assertEquals(p, p);
+        assertObjectsAreEqual(p, new IsEmpty<Long>());
+        assertObjectsAreEqual(p, IsEmpty.instance());
+        assertObjectsAreNotEqual(p, new Constant<Boolean>(Boolean.TRUE));
     }
 
 }

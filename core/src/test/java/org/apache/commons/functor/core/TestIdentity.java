@@ -48,8 +48,8 @@ public class TestIdentity extends BaseFunctorTest {
         Function<Object, Object> f = new Identity<Object>();
         assertNull(f.evaluate(null));
         assertEquals("xyzzy",f.evaluate("xyzzy"));
-        assertEquals(new Integer(3),f.evaluate(new Integer(3)));
-        Object obj = new Long(12345L);
+        assertEquals(Integer.valueOf(3),f.evaluate(Integer.valueOf(3)));
+        Object obj = Long.valueOf(12345L);
         assertSame(obj,f.evaluate(obj));
     }
 

@@ -25,7 +25,7 @@ import org.apache.commons.functor.adapter.LeftBoundFunction;
 public class Multiply extends ArithmeticOperation {
 
     public Number evaluate(Number left, Number right) {
-        return new Integer(left.intValue() * right.intValue());
+        return Integer.valueOf(left.intValue() * right.intValue());
     }
 
     public static Multiply instance() {

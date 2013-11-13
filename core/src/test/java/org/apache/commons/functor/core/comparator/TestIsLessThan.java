@@ -42,28 +42,28 @@ public class TestIsLessThan extends BaseComparisonPredicateTest {
     @Test
     public void testTest() throws Exception {
         IsLessThan<Integer> p = new IsLessThan<Integer>();
-        assertTrue(p.test(new Integer(2),new Integer(4)));
-        assertTrue(p.test(new Integer(3),new Integer(4)));
-        assertFalse(p.test(new Integer(4),new Integer(4)));
-        assertFalse(p.test(new Integer(5),new Integer(4)));
-        assertFalse(p.test(new Integer(6),new Integer(4)));
+        assertTrue(p.test(Integer.valueOf(2), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(3), Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(4), Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(5), Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(6), Integer.valueOf(4)));
     }
 
     @Test
     public void testInstance() {
-        assertFalse(IsLessThan.instance(new Integer(7)).test(new Integer(8)));
-        assertTrue(IsLessThan.instance(new Integer(7)).test(new Integer(6)));
+        assertFalse(IsLessThan.instance(Integer.valueOf(7)).test(Integer.valueOf(8)));
+        assertTrue(IsLessThan.instance(Integer.valueOf(7)).test(Integer.valueOf(6)));
     }
 
     @Test
     public void testEquals() throws Exception {
         IsLessThan<Comparable<?>> p = new IsLessThan<Comparable<?>>();
-        assertEquals(p,p);
+        assertEquals(p, p);
 
-        assertObjectsAreEqual(p,new IsLessThan<Comparable<?>>());
-        assertObjectsAreEqual(p,new IsLessThan<Integer>(ComparableComparator.<Integer>instance()));
-        assertObjectsAreEqual(p,IsLessThan.instance());
-        assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertObjectsAreEqual(p, new IsLessThan<Comparable<?>>());
+        assertObjectsAreEqual(p, new IsLessThan<Integer>(ComparableComparator.<Integer> instance()));
+        assertObjectsAreEqual(p, IsLessThan.instance());
+        assertObjectsAreNotEqual(p, Constant.FALSE);
         assertFalse(p.equals(null));
     }
 

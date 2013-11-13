@@ -38,11 +38,11 @@ public class TestMax extends BaseFunctorTest {
         return Max.instance();
     }
 
-    private Integer MIN = new Integer(Integer.MIN_VALUE);
-    private Integer MINUS_TWO = new Integer(-2);
-    private Integer ZERO = new Integer(0);
-    private Integer ONE = new Integer(1);
-    private Integer MAX = new Integer(Integer.MAX_VALUE);
+    private Integer MIN = Integer.valueOf(Integer.MIN_VALUE);
+    private Integer MINUS_TWO = Integer.valueOf(-2);
+    private Integer ZERO = Integer.valueOf(0);
+    private Integer ONE = Integer.valueOf(1);
+    private Integer MAX = Integer.valueOf(Integer.MAX_VALUE);
     // Tests
     // ------------------------------------------------------------------------
 

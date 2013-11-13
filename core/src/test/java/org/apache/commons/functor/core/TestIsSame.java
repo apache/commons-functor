@@ -50,14 +50,14 @@ public class TestIsSame extends BaseFunctorTest {
         assertTrue(p.test("foo", "foo"));
         assertFalse(p.test(null, "foo"));
         assertFalse(p.test("foo", null));
-        assertFalse(p.test(new Integer(3), new Integer(3)));
-        assertFalse(p.test(null, new Integer(3)));
-        assertFalse(p.test(new Integer(3), null));
+        assertFalse(p.test(new Integer(3), Integer.valueOf(3)));
+        assertFalse(p.test(null, Integer.valueOf(3)));
+        assertFalse(p.test(Integer.valueOf(3), null));
 
-        assertFalse(p.test(new Integer(3), new Integer(4)));
-        assertFalse(p.test(new Integer(4), new Integer(3)));
-        assertFalse(p.test("3", new Integer(3)));
-        assertFalse(p.test(new Integer(3), "3"));
+        assertFalse(p.test(Integer.valueOf(3), Integer.valueOf(4)));
+        assertFalse(p.test(Integer.valueOf(4), Integer.valueOf(3)));
+        assertFalse(p.test("3", Integer.valueOf(3)));
+        assertFalse(p.test(Integer.valueOf(3), "3"));
     }
 
     @Test
@@ -79,9 +79,9 @@ public class TestIsSame extends BaseFunctorTest {
 
     @Test
     public void testAsPredicate() {
-        Integer one = new Integer(1);
+        Integer one = Integer.valueOf(1);
         Predicate<Integer> isSame = IsSame.as(one);
         assertTrue(isSame.test(one));
-        assertFalse(isSame.test(new Integer(2)));
+        assertFalse(isSame.test(Integer.valueOf(2)));
     }
 }

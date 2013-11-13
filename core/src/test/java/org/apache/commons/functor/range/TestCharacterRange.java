@@ -117,11 +117,11 @@ public class TestCharacterRange extends BaseFunctorTest {
 
     @Test
     public void testObjectConstructor() {
-        CharacterRange range = Ranges.characterRange(new Character('a'),
-                                                     new Character('e'));
+        CharacterRange range = Ranges.characterRange(Character.valueOf('a'),
+                                                     Character.valueOf('e'));
         assertEquals("[a, b, c, d, e]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
-        range = Ranges.characterRange(new Character('a'), new Character('e'),
-                                      new Integer(1));
+        range = Ranges.characterRange(Character.valueOf('a'), Character.valueOf('e'),
+                                      Integer.valueOf(1));
         assertEquals("[a, b, c, d, e]", IteratorToGeneratorAdapter.adapt(range).toCollection().toString());
     }
 

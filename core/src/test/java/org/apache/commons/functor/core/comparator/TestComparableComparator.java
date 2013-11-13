@@ -31,22 +31,24 @@ public class TestComparableComparator {
 
     @Test
     public void testCompareIntegers() {
-        assertTrue(ComparableComparator.<Integer>instance().compare(new Integer(Integer.MIN_VALUE),new Integer(Integer.MIN_VALUE)) == 0);
-        assertTrue(ComparableComparator.<Integer>instance().compare(new Integer(-1),new Integer(-1)) == 0);
-        assertTrue(ComparableComparator.<Integer>instance().compare(new Integer(0),new Integer(0)) == 0);
-        assertTrue(ComparableComparator.<Integer>instance().compare(new Integer(Integer.MAX_VALUE),new Integer(Integer.MAX_VALUE)) == 0);
-        assertTrue(ComparableComparator.<Integer>instance().compare(new Integer(1),new Integer(1)) == 0);
+        assertTrue(ComparableComparator.<Integer> instance().compare(Integer.valueOf(Integer.MIN_VALUE),
+            Integer.valueOf(Integer.MIN_VALUE)) == 0);
+        assertTrue(ComparableComparator.<Integer> instance().compare(Integer.valueOf(-1), Integer.valueOf(-1)) == 0);
+        assertTrue(ComparableComparator.<Integer> instance().compare(Integer.valueOf(0), Integer.valueOf(0)) == 0);
+        assertTrue(ComparableComparator.<Integer> instance().compare(Integer.valueOf(Integer.MAX_VALUE),
+            Integer.valueOf(Integer.MAX_VALUE)) == 0);
+        assertTrue(ComparableComparator.<Integer> instance().compare(Integer.valueOf(1), Integer.valueOf(1)) == 0);
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testCompareNull() {
-        ComparableComparator.<Integer>instance().compare(null,new Integer(2));
+        ComparableComparator.<Integer> instance().compare(null, Integer.valueOf(2));
     }
 
     @Test
     public void testEqualsAndHashCode() {
-        assertEquals(new ComparableComparator<Integer>(),new ComparableComparator<Integer>());
-        assertEquals(new ComparableComparator<Integer>().hashCode(),new ComparableComparator<Integer>().hashCode());
+        assertEquals(new ComparableComparator<Integer>(), new ComparableComparator<Integer>());
+        assertEquals(new ComparableComparator<Integer>().hashCode(), new ComparableComparator<Integer>().hashCode());
         assertTrue(!new ComparableComparator<Integer>().equals(null));
     }
 }

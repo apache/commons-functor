@@ -64,14 +64,14 @@ public class TestLines extends TestCase {
         Object result = new FoldLeft<Integer>(Sum.instance()).evaluate(
                 new TransformedGenerator<String, Integer>(Lines.from(reader), new Size<String>()));
 
-        assertEquals("Expected 990 characters",new Integer(990),result);
+        assertEquals("Expected 990 characters",Integer.valueOf(990),result);
     }
 
     public void testCountWords() throws Exception {
         Object result = new FoldLeft<Integer>(Sum.instance()).evaluate(
                 new TransformedGenerator<String, Integer>(Lines.from(reader),WordCount.instance()));
 
-        assertEquals("Expected 157 words",new Integer(157),result);
+        assertEquals("Expected 157 words",Integer.valueOf(157),result);
     }
 
     public void testCountLines() throws Exception {
@@ -88,7 +88,7 @@ public class TestLines extends TestCase {
                 new FilteredGenerator<String>(Lines.from(reader), Not.not(new StartsWith<String>("#"))), WordCount
                         .instance()));
 
-        assertEquals("Expected 90 words",new Integer(90),result);
+        assertEquals("Expected 90 words",Integer.valueOf(90),result);
     }
 
     public void testCountCommentLines() throws Exception {

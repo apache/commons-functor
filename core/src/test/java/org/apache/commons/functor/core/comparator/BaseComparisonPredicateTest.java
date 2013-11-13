@@ -33,23 +33,23 @@ public abstract class BaseComparisonPredicateTest extends BaseFunctorTest {
     @Test
     public final void testTestNull() throws Exception {
         @SuppressWarnings("unchecked")
-        BinaryPredicate<Object, Object> p = (BinaryPredicate<Object, Object>)(makeFunctor());
+        BinaryPredicate<Object, Object> p = (BinaryPredicate<Object, Object>) (makeFunctor());
         try {
-            p.test(new Integer(2),null);
+            p.test(Integer.valueOf(2), null);
             fail("Expected NullPointerException");
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             // expected
         }
         try {
-            p.test(null,new Integer(2));
+            p.test(null, Integer.valueOf(2));
             fail("Expected NullPointerException");
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             // expected
         }
         try {
-            p.test(null,null);
+            p.test(null, null);
             fail("Expected NullPointerException");
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             // expected
         }
     }
@@ -57,23 +57,23 @@ public abstract class BaseComparisonPredicateTest extends BaseFunctorTest {
     @Test
     public final void testTestNonComparable() throws Exception {
         @SuppressWarnings("unchecked")
-        BinaryPredicate<Object, Object> p = (BinaryPredicate<Object, Object>)(makeFunctor());
+        BinaryPredicate<Object, Object> p = (BinaryPredicate<Object, Object>) (makeFunctor());
         try {
-            p.test(new Integer(2),new Object());
+            p.test(Integer.valueOf(2), new Object());
             fail("Expected ClassCastException");
-        } catch(ClassCastException e) {
+        } catch (ClassCastException e) {
             // expected
         }
         try {
-            p.test(new Object(),new Integer(2));
+            p.test(new Object(), Integer.valueOf(2));
             fail("Expected ClassCastException");
-        } catch(ClassCastException e) {
+        } catch (ClassCastException e) {
             // expected
         }
         try {
-            p.test(new Object(),new Object());
+            p.test(new Object(), new Object());
             fail("Expected ClassCastException");
-        } catch(ClassCastException e) {
+        } catch (ClassCastException e) {
             // expected
         }
     }

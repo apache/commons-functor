@@ -38,38 +38,39 @@ public class TestMin extends BaseFunctorTest {
         return Min.instance();
     }
 
-    private Integer MIN = new Integer(Integer.MIN_VALUE);
-    private Integer MINUS_TWO = new Integer(-2);
-    private Integer ZERO = new Integer(0);
-    private Integer ONE = new Integer(1);
-    private Integer MAX = new Integer(Integer.MAX_VALUE);
+    private Integer MIN = Integer.valueOf(Integer.MIN_VALUE);
+    private Integer MINUS_TWO = Integer.valueOf(-2);
+    private Integer ZERO = Integer.valueOf(0);
+    private Integer ONE = Integer.valueOf(1);
+    private Integer MAX = Integer.valueOf(Integer.MAX_VALUE);
+
     // Tests
     // ------------------------------------------------------------------------
 
     @Test
     public void testEvaluate() {
         Min<Integer> f = Min.instance();
-        assertEquals(ONE,f.evaluate(ONE,ONE));
-        assertEquals(ZERO,f.evaluate(ZERO,ONE));
-        assertEquals(ZERO,f.evaluate(ONE,ZERO));
-        assertEquals(ONE,f.evaluate(ONE,MAX));
-        assertEquals(MIN,f.evaluate(MIN,MAX));
-        assertEquals(MIN,f.evaluate(MIN,MINUS_TWO));
+        assertEquals(ONE, f.evaluate(ONE, ONE));
+        assertEquals(ZERO, f.evaluate(ZERO, ONE));
+        assertEquals(ZERO, f.evaluate(ONE, ZERO));
+        assertEquals(ONE, f.evaluate(ONE, MAX));
+        assertEquals(MIN, f.evaluate(MIN, MAX));
+        assertEquals(MIN, f.evaluate(MIN, MINUS_TWO));
     }
 
     @Test
     public void testEquals() {
         Min<Comparable<?>> f = Min.instance();
-        assertObjectsAreEqual(f,f);
-        assertObjectsAreEqual(f,Min.instance());
-        assertObjectsAreEqual(f,new Min<Integer>(ComparableComparator.<Integer>instance()));
-        assertObjectsAreNotEqual(f,new Min<Comparable<?>>(Collections.<Comparable<?>>reverseOrder()));
+        assertObjectsAreEqual(f, f);
+        assertObjectsAreEqual(f, Min.instance());
+        assertObjectsAreEqual(f, new Min<Integer>(ComparableComparator.<Integer> instance()));
+        assertObjectsAreNotEqual(f, new Min<Comparable<?>>(Collections.<Comparable<?>> reverseOrder()));
         assertFalse(f.equals(null));
     }
 
     @Test
     public void testFunctionMin() {
         Function<Integer, Integer> min = Min.instance(ONE);
-        assertEquals(ZERO,min.evaluate(ZERO));
+        assertEquals(ZERO, min.evaluate(ZERO));
     }
 }

@@ -38,38 +38,37 @@ public abstract class BaseFunctorTest {
     @Test
     public final void testObjectEquals() throws Exception {
         Object obj = makeFunctor();
-        assertEquals("equals must be reflexive",obj,obj);
-        assertEquals("hashCode must be reflexive",obj.hashCode(),obj.hashCode());
-        assertTrue(! obj.equals(null) ); // should be able to compare to null
+        assertEquals("equals must be reflexive", obj, obj);
+        assertEquals("hashCode must be reflexive", obj.hashCode(), obj.hashCode());
+        assertTrue(!obj.equals(null)); // should be able to compare to null
 
         Object obj2 = makeFunctor();
         if (obj.equals(obj2)) {
-            assertEquals("equals implies hash equals",obj.hashCode(),obj2.hashCode());
-            assertEquals("equals must be symmetric",obj2,obj);
+            assertEquals("equals implies hash equals", obj.hashCode(), obj2.hashCode());
+            assertEquals("equals must be symmetric", obj2, obj);
         } else {
-            assertTrue("equals must be symmetric",! obj2.equals(obj));
+            assertTrue("equals must be symmetric", !obj2.equals(obj));
         }
-        
-        assertTrue("a functor is not equal to an integer", ! obj.equals(new Integer(1)));
+
+        assertTrue("a functor is not equal to an integer", !obj.equals(Integer.valueOf(1)));
     }
 
     @Test
     public void testToStringIsOverridden() throws Exception {
         Object obj = makeFunctor();
-        assertNotNull("toString should never return null",obj.toString());
-        assertTrue(
-            obj.getClass().getName()  + " should override toString(), found \"" + obj.toString() + "\"",
-            !obj.toString().equals(objectToString(obj)));
+        assertNotNull("toString should never return null", obj.toString());
+        assertTrue(obj.getClass().getName() + " should override toString(), found \"" + obj.toString() + "\"", !obj
+            .toString().equals(objectToString(obj)));
     }
 
     // protected utils
     // ------------------------------------------------------------------------
 
     public static void assertObjectsAreEqual(Object a, Object b) {
-        assertEquals(a,b);
-        assertEquals(b,a);
-        assertEquals(a.hashCode(),b.hashCode());
-        assertEquals(a.toString(),b.toString()); // not strictly required
+        assertEquals(a, b);
+        assertEquals(b, a);
+        assertEquals(a.hashCode(), b.hashCode());
+        assertEquals(a.toString(), b.toString()); // not strictly required
     }
 
     public static void assertObjectsAreNotEqual(Object a, Object b) {

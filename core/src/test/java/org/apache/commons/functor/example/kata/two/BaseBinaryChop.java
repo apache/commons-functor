@@ -20,18 +20,17 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * See http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v
- * for more information on this Kata.
- *
+ * See http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v for more information on this Kata.
+ * 
  * @version $Revision$ $Date$
  */
 public abstract class BaseBinaryChop implements BinaryChop {
     public int find(int seeking, int[] in) {
         Integer[] In = new Integer[in.length];
-        for (int i=0;i<in.length;i++) {
-            In[i] = new Integer(in[i]);
+        for (int i = 0; i < in.length; i++) {
+            In[i] = Integer.valueOf(in[i]);
         }
-        return find(new Integer(seeking), In);
+        return find(Integer.valueOf(seeking), In);
     }
 
     public int find(Integer seeking, Integer[] in) {
@@ -43,13 +42,13 @@ public abstract class BaseBinaryChop implements BinaryChop {
     }
 
     protected static boolean greaterThan(List<Integer> list, int index, Integer obj) {
-        return compare(list,index,obj) > 0;
+        return compare(list, index, obj) > 0;
     }
 
     protected static boolean equals(List<Integer> list, int index, Integer obj) {
-        return compare(list,index,obj) == 0;
+        return compare(list, index, obj) == 0;
     }
 
-    protected static final Integer NEGATIVE_ONE = new Integer(-1);
+    protected static final Integer NEGATIVE_ONE = Integer.valueOf(-1);
 
 }

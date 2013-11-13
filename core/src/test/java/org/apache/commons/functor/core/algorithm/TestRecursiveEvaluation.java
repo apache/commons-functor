@@ -35,13 +35,13 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
 
     @Test
     public void testRecurse() {
-        assertEquals(new Integer(5), new RecursiveEvaluation(new RecFunc(0, false)).evaluate());
+        assertEquals(Integer.valueOf(5), new RecursiveEvaluation(new RecFunc(0, false)).evaluate());
 
         // this version will return a function. since it is not the same type
         // as RecFunc recursion will end.
         @SuppressWarnings({ "unchecked", "rawtypes" })
         NullaryFunction<Object> func = (NullaryFunction) new RecursiveEvaluation(new RecFunc(0, true)).evaluate();
-        assertEquals(new Integer(5), func.evaluate());
+        assertEquals(Integer.valueOf(5), func.evaluate());
     }
     
     @Test
@@ -77,7 +77,7 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
                 if (returnFunc) {
                     return new InnerNullaryFunction(times);
                 } else {
-                    return new Integer(times);
+                    return Integer.valueOf(times);
                 }
             }
         }
@@ -109,7 +109,7 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
         }
         
         public Object evaluate() {
-            return new Integer(times);
+            return Integer.valueOf(times);
         }
         
         @Override

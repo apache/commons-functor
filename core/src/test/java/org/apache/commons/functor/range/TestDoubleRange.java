@@ -92,7 +92,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                 IteratorToGeneratorAdapter.adapt(Ranges.doubleRange(0, 10))
                     .to(new ArrayList<Double>()));
             for (int i = 0; i < 10; i++) {
-                assertEquals(new Double(i), list.get(i));
+                assertEquals(Double.valueOf(i), list.get(i));
             }
         }
 
@@ -103,7 +103,7 @@ public class TestDoubleRange extends BaseFunctorTest {
                 IteratorToGeneratorAdapter.adapt(Ranges.doubleRange(10, 0))
                 .to(new ArrayList<Double>()));
             for (int i = 10; i > 0; i--) {
-                assertEquals(new Double(i), list.get(10 - i));
+                assertEquals(Double.valueOf(i), list.get(10 - i));
             }
         }
     }
@@ -149,11 +149,11 @@ public class TestDoubleRange extends BaseFunctorTest {
 
     @Test
     public void testObjectConstructor() {
-        DoubleRange range = Ranges.doubleRange(new Double(0),
-                                                    new Double(5));
+        DoubleRange range = Ranges.doubleRange(Double.valueOf(0),
+                                                    Double.valueOf(5));
         assertEquals("[0.0, 1.0, 2.0, 3.0, 4.0]", IteratorToGeneratorAdapter.adapt(range).toCollection()
             .toString());
-        range = Ranges.doubleRange(new Double(0), new Double(5), new Double(1));
+        range = Ranges.doubleRange(Double.valueOf(0), Double.valueOf(5), Double.valueOf(1));
     }
 
     @Test

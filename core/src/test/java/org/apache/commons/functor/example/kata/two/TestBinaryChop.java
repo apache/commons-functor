@@ -107,10 +107,10 @@ public class TestBinaryChop {
         final List<Integer> largeList =
             IteratorToGeneratorAdapter.adapt(new IntegerRange(0, 100001)).to(new ArrayList<Integer>());
 
-        assertEquals(-1, chopper.find(new Integer(-5), largeList));
-        assertEquals(100000, chopper.find(new Integer(100000), largeList));
-        assertEquals(0, chopper.find(new Integer(0), largeList));
-        assertEquals(50000, chopper.find(new Integer(50000), largeList));
+        assertEquals(-1, chopper.find(Integer.valueOf(-5), largeList));
+        assertEquals(100000, chopper.find(Integer.valueOf(100000), largeList));
+        assertEquals(0, chopper.find(Integer.valueOf(0), largeList));
+        assertEquals(50000, chopper.find(Integer.valueOf(50000), largeList));
 
     }
 
@@ -303,7 +303,7 @@ public class TestBinaryChop {
                      * at the end of the loop.
                      */
                     public Object evaluate() {
-                        return new Integer(
+                        return Integer.valueOf(
                             list.isEmpty() ?
                             -1 :
                             (BaseBinaryChop.equals(list,low,seeking) ? low : -1));
@@ -360,7 +360,7 @@ public class TestBinaryChop {
 
             variant(new NullaryFunction<Object>() {
                 public Object evaluate() {
-                    return new Integer(high - low);
+                    return Integer.valueOf(high - low);
                 }
             });
 
@@ -459,7 +459,7 @@ public class TestBinaryChop {
                             return list.isEmpty() ?
                                 BaseBinaryChop.NEGATIVE_ONE :
                                 (BaseBinaryChop.equals(list,low,seeking) ?
-                                    new Integer(low) :
+                                    Integer.valueOf(low) :
                                     BaseBinaryChop.NEGATIVE_ONE);
                         }
                     }
@@ -527,7 +527,7 @@ public class TestBinaryChop {
                             return BaseBinaryChop.NEGATIVE_ONE;
                         } if (sublist.size() == 1) {
                             return (BaseBinaryChop.equals(sublist,0,seeking) ?
-                                new Integer(offset) :
+                                Integer.valueOf(offset) :
                                 BaseBinaryChop.NEGATIVE_ONE);
                         } else {
                             int mid = sublist.size() / 2;

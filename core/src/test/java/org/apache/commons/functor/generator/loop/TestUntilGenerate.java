@@ -113,7 +113,7 @@ public class TestUntilGenerate
 
     // Attributes
     // ------------------------------------------------------------------------
-    private static final Integer FIVE = new Integer(5);
+    private static final Integer FIVE = Integer.valueOf(5);
 
     private Generator<Integer> wrappedGenerator = null;
     private Predicate<Integer> isGreaterThanFive = new Predicate<Integer>() {

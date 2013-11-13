@@ -41,12 +41,12 @@ public class TestFoldLeft extends BaseFunctorTest {
     public void testFoldLeft() {
         FoldLeft<Integer> foldLeft = new FoldLeft<Integer>(new BinaryFunction<Integer, Integer, Integer>() {
             public Integer evaluate(Integer a, Integer b) {
-                return new Integer(a + b);
+                return Integer.valueOf(a + b);
             }
         });
-        assertEquals(new Integer(sum), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator())));
-        assertEquals(new Integer(sum), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()), new Integer(0)));
-        assertEquals(new Integer(0), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(new ArrayList<Integer>(0).iterator()), new Integer(0)), new Integer(0));
+        assertEquals(Integer.valueOf(sum), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator())));
+        assertEquals(Integer.valueOf(sum), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(list.iterator()), Integer.valueOf(0)));
+        assertEquals(Integer.valueOf(0), foldLeft.evaluate(IteratorToGeneratorAdapter.adapt(new ArrayList<Integer>(0).iterator()), Integer.valueOf(0)), Integer.valueOf(0));
     }
 
     // Attributes
@@ -60,7 +60,7 @@ public class TestFoldLeft extends BaseFunctorTest {
     static class Sum implements BinaryFunction<Integer, Integer, Integer> {
         
         public Integer evaluate(Integer a, Integer b) {
-            return new Integer(a + b);
+            return Integer.valueOf(a + b);
         }
         
         @Override

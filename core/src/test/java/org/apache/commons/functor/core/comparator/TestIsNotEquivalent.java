@@ -42,27 +42,27 @@ public class TestIsNotEquivalent extends BaseComparisonPredicateTest {
     @Test
     public void testTest() throws Exception {
         IsNotEquivalent<Integer> p = new IsNotEquivalent<Integer>();
-        assertTrue(p.test(new Integer(2),new Integer(4)));
-        assertTrue(p.test(new Integer(3),new Integer(4)));
-        assertTrue(!p.test(new Integer(4),new Integer(4)));
-        assertTrue(p.test(new Integer(5),new Integer(4)));
-        assertTrue(p.test(new Integer(6),new Integer(4)));
+        assertTrue(p.test(Integer.valueOf(2), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(3), Integer.valueOf(4)));
+        assertTrue(!p.test(Integer.valueOf(4), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(5), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(6), Integer.valueOf(4)));
     }
 
     @Test
     public void testInstance() {
-        assertTrue(! IsNotEquivalent.instance(new Integer(7)).test(new Integer(7)));
-        assertTrue(IsNotEquivalent.instance(new Integer(7)).test(new Integer(8)));
+        assertTrue(!IsNotEquivalent.instance(Integer.valueOf(7)).test(Integer.valueOf(7)));
+        assertTrue(IsNotEquivalent.instance(Integer.valueOf(7)).test(Integer.valueOf(8)));
     }
 
     @Test
     public void testEquals() throws Exception {
         IsNotEquivalent<Comparable<?>> p = new IsNotEquivalent<Comparable<?>>();
-        assertEquals(p,p);
+        assertEquals(p, p);
 
-        assertObjectsAreEqual(p,new IsNotEquivalent<Integer>(ComparableComparator.<Integer>instance()));
-        assertObjectsAreEqual(p,IsNotEquivalent.instance());
-        assertObjectsAreNotEqual(p,Constant.FALSE);
+        assertObjectsAreEqual(p, new IsNotEquivalent<Integer>(ComparableComparator.<Integer> instance()));
+        assertObjectsAreEqual(p, IsNotEquivalent.instance());
+        assertObjectsAreNotEqual(p, Constant.FALSE);
         assertFalse(p.equals(null));
     }
 

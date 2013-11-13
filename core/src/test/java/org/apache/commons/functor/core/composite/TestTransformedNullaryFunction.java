@@ -26,18 +26,21 @@ import org.junit.Test;
 
 /**
  * Tests for TransformedNullaryFunction.
+ * 
  * @version $Revision: $ $Date: $
  */
 public class TestTransformedNullaryFunction extends BaseFunctorTest {
 
     private static class One implements NullaryFunction<Integer> {
         public Integer evaluate() {
-            return new Integer(1);
+            return Integer.valueOf(1);
         }
+
         @Override
         public boolean equals(Object obj) {
             return obj == this || obj != null && obj instanceof One;
         }
+
         @Override
         public int hashCode() {
             return "One".hashCode();
@@ -48,10 +51,12 @@ public class TestTransformedNullaryFunction extends BaseFunctorTest {
         public Integer evaluate(Integer obj) {
             return obj + 1;
         }
+
         @Override
         public boolean equals(Object obj) {
             return obj == this || obj != null && obj instanceof AddOne;
         }
+
         @Override
         public int hashCode() {
             return "AddOne".hashCode();
@@ -69,7 +74,7 @@ public class TestTransformedNullaryFunction extends BaseFunctorTest {
     @Test
     public void testRun() {
         TransformedNullaryFunction<Integer> p = new TransformedNullaryFunction<Integer>(one, addOne);
-        assertEquals(Integer.valueOf(2),p.evaluate());
+        assertEquals(Integer.valueOf(2), p.evaluate());
     }
 
     @Test
@@ -77,7 +82,7 @@ public class TestTransformedNullaryFunction extends BaseFunctorTest {
         TransformedNullaryFunction<Integer> t = new TransformedNullaryFunction<Integer>(one, addOne);
         NullaryFunction<Integer> f = new NullaryFunction<Integer>() {
             public Integer evaluate() {
-                return new Integer(2);
+                return Integer.valueOf(2);
             }
         };
         Function<Integer, Integer> p = new Function<Integer, Integer>() {
@@ -85,10 +90,10 @@ public class TestTransformedNullaryFunction extends BaseFunctorTest {
                 return obj + 2;
             }
         };
-        assertEquals(t,t);
-        assertObjectsAreEqual(t,new TransformedNullaryFunction<Integer>(one, addOne));
-        assertObjectsAreNotEqual(t,new TransformedNullaryFunction<Integer>(f, addOne));
-        assertObjectsAreNotEqual(t,new TransformedNullaryFunction<Integer>(one, p));
+        assertEquals(t, t);
+        assertObjectsAreEqual(t, new TransformedNullaryFunction<Integer>(one, addOne));
+        assertObjectsAreNotEqual(t, new TransformedNullaryFunction<Integer>(f, addOne));
+        assertObjectsAreNotEqual(t, new TransformedNullaryFunction<Integer>(one, p));
         assertTrue(!t.equals(null));
     }
 

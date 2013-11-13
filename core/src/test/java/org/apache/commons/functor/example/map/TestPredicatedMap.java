@@ -58,7 +58,7 @@ public class TestPredicatedMap extends TestCase {
     // tests
 
     public void testCanPutMatchingPair() {
-        predicatedMap.put("xyzzy", new Integer(17));
+        predicatedMap.put("xyzzy", Integer.valueOf(17));
     }
     public void testCantPutInvalidValue() {
         try {
@@ -71,7 +71,7 @@ public class TestPredicatedMap extends TestCase {
 
     public void testCantPutInvalidKey() {
         try {
-            predicatedMap.put(new Long(1), new Integer(3));
+            predicatedMap.put(Long.valueOf(1), Integer.valueOf(3));
             fail("Expected IllegalArgumentException");
         } catch(IllegalArgumentException e) {
             // expected
@@ -80,17 +80,13 @@ public class TestPredicatedMap extends TestCase {
 
     public void testOnlyValidPairsAreAddedInPutAll() {
         HashMap<Object, Object> map = new HashMap<Object, Object>();
-        map.put("one", new Integer(17));
+        map.put("one", Integer.valueOf(17));
         map.put("two", "rejected");
-        map.put(new Integer(17), "xyzzy");
-        map.put(new Integer(7), new Integer(3));
+        map.put(Integer.valueOf(17), "xyzzy");
+        map.put(Integer.valueOf(7), Integer.valueOf(3));
 
         predicatedMap.putAll(map);
-        assertEquals(new Integer(17), predicatedMap.get("one"));
+        assertEquals(Integer.valueOf(17), predicatedMap.get("one"));
         assertFalse(predicatedMap.containsKey("two"));
-/*
-        assertFalse(predicatedMap.containsKey(new Integer(17)));
-        assertFalse(predicatedMap.containsKey(new Integer(7)));
-*/
     }
 }

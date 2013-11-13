@@ -44,38 +44,38 @@ public class TestIsNotEqual extends BaseFunctorTest {
     @Test
     public void testTest() throws Exception {
         IsNotEqual<Object, Object> p = new IsNotEqual<Object, Object>();
-        assertTrue("For symmetry, two nulls should be equal",!p.test(null,null));
-        assertTrue(!p.test("foo","foo"));
-        assertTrue(p.test(null,"foo"));
-        assertTrue(p.test("foo",null));
-        assertTrue(!p.test(new Integer(3),new Integer(3)));
-        assertTrue(p.test(null,new Integer(3)));
-        assertTrue(p.test(new Integer(3),null));
+        assertTrue("For symmetry, two nulls should be equal", !p.test(null, null));
+        assertTrue(!p.test("foo", "foo"));
+        assertTrue(p.test(null, "foo"));
+        assertTrue(p.test("foo", null));
+        assertTrue(!p.test(Integer.valueOf(3), Integer.valueOf(3)));
+        assertTrue(p.test(null, Integer.valueOf(3)));
+        assertTrue(p.test(Integer.valueOf(3), null));
 
-        assertTrue(p.test(new Integer(3),new Integer(4)));
-        assertTrue(p.test(new Integer(4),new Integer(3)));
-        assertTrue(p.test("3",new Integer(3)));
-        assertTrue(p.test(new Integer(3),"3"));
+        assertTrue(p.test(Integer.valueOf(3), Integer.valueOf(4)));
+        assertTrue(p.test(Integer.valueOf(4), Integer.valueOf(3)));
+        assertTrue(p.test("3", Integer.valueOf(3)));
+        assertTrue(p.test(Integer.valueOf(3), "3"));
     }
 
     @Test
     public void testEquals() throws Exception {
         BinaryPredicate<Object, Object> p = new IsNotEqual<Object, Object>();
-        assertEquals(p,p);
-        assertObjectsAreEqual(p,new IsNotEqual<Object, Object>());
-        assertObjectsAreEqual(p,IsNotEqual.instance());
-        assertObjectsAreNotEqual(p,Constant.truePredicate());
+        assertEquals(p, p);
+        assertObjectsAreEqual(p, new IsNotEqual<Object, Object>());
+        assertObjectsAreEqual(p, IsNotEqual.instance());
+        assertObjectsAreNotEqual(p, Constant.truePredicate());
     }
 
     @Test
     public void testConstant() throws Exception {
-        assertEquals(IsNotEqual.instance(),IsNotEqual.instance());
+        assertEquals(IsNotEqual.instance(), IsNotEqual.instance());
     }
 
     @Test
     public void testToPredicate() {
-        Predicate<Integer> isNotEqual = IsNotEqual.to(new Integer(1));
-        assertTrue(isNotEqual.test(new Integer(2)));
-        assertFalse(isNotEqual.test(new Integer(1)));
+        Predicate<Integer> isNotEqual = IsNotEqual.to(Integer.valueOf(1));
+        assertTrue(isNotEqual.test(Integer.valueOf(2)));
+        assertFalse(isNotEqual.test(Integer.valueOf(1)));
     }
 }

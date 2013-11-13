@@ -55,8 +55,8 @@ public class TestLeftIdentity extends BaseFunctorTest {
         assertNull(f.evaluate(null,"xyzzy"));
         assertEquals("xyzzy",f.evaluate("xyzzy","abcdefg"));
         assertEquals("xyzzy",f.evaluate("xyzzy",null));
-        assertEquals(new Integer(3),f.evaluate(new Integer(3),null));
-        Object obj = new Long(12345L);
+        assertEquals(Integer.valueOf(3),f.evaluate(Integer.valueOf(3),null));
+        Object obj = Long.valueOf(12345L);
         assertSame(obj,f.evaluate(obj,null));
         assertSame(obj,f.evaluate(obj,obj));
     }
