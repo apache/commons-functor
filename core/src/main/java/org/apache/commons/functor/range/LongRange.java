@@ -32,11 +32,6 @@ public final class LongRange extends NumericRange<Long> {
     //---------------------------------------------------------------
 
     /**
-     * Current value.
-     */
-    private long currentValue;
-
-    /**
      * Calculate default step.
      */
     public static final BinaryFunction<Long, Long, Long> DEFAULT_STEP = new BinaryFunction<Long, Long, Long>() {
@@ -135,18 +130,18 @@ public final class LongRange extends NumericRange<Long> {
      * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public LongRange(Endpoint<Long> from, Endpoint<Long> to, long step) {
-        super(from, to, Long.valueOf(step));
+        super(from, to, Long.valueOf(step), new BinaryFunction<Long, Long, Long>() {
+
+            public Long evaluate(Long left, Long right) {
+                return Long.valueOf(left.longValue() + right.longValue());
+            }
+        });
+
         final long f = from.getValue();
         final long t = to.getValue();
 
         Validate.isTrue(f == t || Long.signum(step) == Long.signum(t - f),
             "Will never reach '%s' from '%s' using step %s", t, f, step);
-
-        if (from.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = f;
-        } else {
-            this.currentValue = f + step;
-        }
     }
 
     /**
@@ -164,43 +159,47 @@ public final class LongRange extends NumericRange<Long> {
         this(new Endpoint<Long>(from, leftBoundType), new Endpoint<Long>(to, rightBoundType), step);
     }
 
-    // iterable, iterator methods
+    // iterable
     // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasNext() {
-        final long to = this.rightEndpoint.getValue();
-        if (step < 0) {
-            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
-                return this.currentValue >= to;
-            } else {
-                return this.currentValue > to;
-            }
-        } else {
-            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
-                return this.currentValue <= to;
-            } else {
-                return this.currentValue < to;
-            }
-        }
-    }
 
     /**
      * {@inheritDoc}
      */
-    public Long next() {
-        final long step = this.getStep();
-        final long r = this.currentValue;
-        this.currentValue += step;
-        return Long.valueOf(r);
-    }
+    protected Iterator<Long> createIterator() {
+        return new Iterator<Long>() {
+            private long currentValue;
 
-    /**
-     * {@inheritDoc}
-     */
-    public Iterator<Long> iterator() {
-        return this;
+            {
+                currentValue = leftEndpoint.getValue();
+
+                if (leftEndpoint.getBoundType() == BoundType.OPEN) {
+                    this.currentValue += step;
+                }
+            }
+
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+
+            public Long next() {
+                final long step = getStep();
+                final long r = currentValue;
+                currentValue += step;
+                return Long.valueOf(r);
+            }
+
+            public boolean hasNext() {
+                final int cmp = Long.compare(currentValue, rightEndpoint.getValue());
+
+                if (cmp == 0) {
+                    return rightEndpoint.getBoundType() == BoundType.CLOSED;
+                }
+                if (step > 0L) {
+                    return cmp < 0;
+                }
+                return cmp > 0;
+            }
+        };
     }
 
 }

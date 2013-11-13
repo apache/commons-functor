@@ -29,33 +29,16 @@ import org.apache.commons.lang3.Validate;
  */
 public final class CharacterRange extends AbstractRange<Character, Integer> {
 
-    // attributes
-    // ---------------------------------------------------------------
-    /**
-     * Default left bound type.
-     */
-    public static final BoundType DEFAULT_LEFT_BOUND_TYPE = BoundType.CLOSED;
-
-    /**
-     * Default right bound type.
-     */
-    public static final BoundType DEFAULT_RIGHT_BOUND_TYPE = BoundType.CLOSED;
-
-    /**
-     * Current value.
-     */
-    private char currentValue;
-
     /**
      * Calculate default step.
      */
-    public static final BinaryFunction<Character, Character, Integer> DEFAULT_STEP
-        = new BinaryFunction<Character, Character, Integer>() {
+    public static final BinaryFunction<Character, Character, Integer> DEFAULT_STEP =
+        new BinaryFunction<Character, Character, Integer>() {
 
-        public Integer evaluate(Character left, Character right) {
-            return left > right ? -1 : 1;
-        }
-    };
+            public Integer evaluate(Character left, Character right) {
+                return left > right ? -1 : 1;
+            }
+        };
 
     // constructors
     // ---------------------------------------------------------------
@@ -100,18 +83,17 @@ public final class CharacterRange extends AbstractRange<Character, Integer> {
      * @throws NullPointerException if either {@link Endpoint} is {@code null}
      */
     public CharacterRange(Endpoint<Character> from, Endpoint<Character> to, int step) {
-        super(from, to, Integer.valueOf(step));
+        super(from, to, Integer.valueOf(step), new BinaryFunction<Character, Integer, Character>() {
+
+            public Character evaluate(Character left, Integer right) {
+                return Character.valueOf((char) (left.charValue() + right.intValue()));
+            }
+        });
         final char f = from.getValue();
         final char t = to.getValue();
 
         Validate.isTrue(f == t || Integer.signum(step) == Integer.signum(t - f),
             "Will never reach '%s' from '%s' using step %s", t, f, step);
-
-        if (from.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = f;
-        } else {
-            this.currentValue = (char) (f + step);
-        }
     }
 
     /**
@@ -144,69 +126,6 @@ public final class CharacterRange extends AbstractRange<Character, Integer> {
     // range methods
     // ---------------------------------------------------------------
 
-    // iterable, iterator methods
-    // ---------------------------------------------------------------
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasNext() {
-        final int to = this.rightEndpoint.getValue();
-        if (step < 0) {
-            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
-                return this.currentValue >= to;
-            } else {
-                return this.currentValue > to;
-            }
-        } else {
-            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
-                return this.currentValue <= to;
-            } else {
-                return this.currentValue < to;
-            }
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Character next() {
-        final int step = this.getStep();
-        final char r = this.currentValue;
-        this.currentValue += step;
-        return Character.valueOf(r);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Iterator<Character> iterator() {
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isEmpty() {
-        double leftValue = this.getLeftEndpoint().getValue().charValue();
-        double rightValue = this.getRightEndpoint().getValue().charValue();
-        boolean closedLeft = this.getLeftEndpoint().getBoundType() == BoundType.CLOSED;
-        boolean closedRight = this.getRightEndpoint().getBoundType() == BoundType.CLOSED;
-        if (!closedLeft && !closedRight
-                && this.getLeftEndpoint().equals(this.getRightEndpoint())) {
-            return Boolean.TRUE;
-        }
-        double step = this.getStep().intValue();
-        if (step > 0.0) {
-            double firstValue = closedLeft ? leftValue : leftValue + step;
-            return closedRight ? firstValue > rightValue
-                              : firstValue >= rightValue;
-        } else {
-            double firstValue = closedLeft ? leftValue : leftValue + step;
-            return closedRight ? firstValue < rightValue
-                              : firstValue <= rightValue;
-        }
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -238,6 +157,46 @@ public final class CharacterRange extends AbstractRange<Character, Integer> {
             }
         }
         return ((double) (value - firstValue) / step + 1) % 1.0 == 0.0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected Iterator<Character> createIterator() {
+        return new Iterator<Character>() {
+            private char currentValue;
+
+            {
+                currentValue = leftEndpoint.getValue();
+
+                if (leftEndpoint.getBoundType() == BoundType.OPEN) {
+                    this.currentValue += step;
+                }
+            }
+
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+
+            public Character next() {
+                final int step = getStep();
+                final char r = currentValue;
+                currentValue += step;
+                return Character.valueOf(r);
+            }
+
+            public boolean hasNext() {
+                final int cmp = Integer.compare(currentValue, rightEndpoint.getValue());
+
+                if (cmp == 0) {
+                    return rightEndpoint.getBoundType() == BoundType.CLOSED;
+                }
+                if (step > 0) {
+                    return cmp < 0;
+                }
+                return cmp > 0;
+            }
+        };
     }
 
 }

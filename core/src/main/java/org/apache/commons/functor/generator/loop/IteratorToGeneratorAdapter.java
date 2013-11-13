@@ -27,6 +27,47 @@ import org.apache.commons.lang3.Validate;
  * @version $Revision: 1508677 $ $Date: 2013-07-30 19:48:02 -0300 (Tue, 30 Jul 2013) $
  */
 public final class IteratorToGeneratorAdapter<E> extends LoopGenerator<E> {
+    private static class EqualityIterator<E> implements Iterator<E> {
+        final Iterable<? extends E> owner;
+        final Iterator<? extends E> wrapped;
+
+        EqualityIterator(Iterable<? extends E> owner) {
+            super();
+            this.owner = Validate.notNull(owner);
+            this.wrapped = owner.iterator();
+        }
+
+        public boolean hasNext() {
+            return wrapped.hasNext();
+        }
+
+        public E next() {
+            return wrapped.next();
+        }
+
+        public void remove() {
+            wrapped.remove();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj instanceof EqualityIterator<?> == false) {
+                return false;
+            }
+            return ((EqualityIterator<?>) obj).owner.equals(owner);
+        }
+        
+        @Override
+        public int hashCode() {
+            int result = 71 << 4;
+            result |= owner.hashCode();
+            return result;
+        }
+    }
+
     // instance variables
     //-----------------------------------------------------
 
@@ -106,4 +147,14 @@ public final class IteratorToGeneratorAdapter<E> extends LoopGenerator<E> {
         return null == iter ? null : new IteratorToGeneratorAdapter<E>(iter);
     }
 
+    /**
+     * Adapt an Iterable to the Generator interface.
+     *
+     * @param <E> the type of elements held in this generator.
+     * @param iterable to adapt
+     * @return IteratorToGeneratorAdapter
+     */
+    public static <E> IteratorToGeneratorAdapter<E> adapt(Iterable<? extends E> iterable) {
+        return null == iterable ? null : new IteratorToGeneratorAdapter<E>(new EqualityIterator<E>(iterable));
+    }
 }

@@ -16,6 +16,8 @@
  */
 package org.apache.commons.functor.range;
 
+import org.apache.commons.functor.BinaryFunction;
+
 /**
  * A base class for numeric ranges. The elements within this range must be a
  * <b>Number</b> and <b>Comparable</b>.
@@ -29,40 +31,17 @@ package org.apache.commons.functor.range;
  * @since 0.1
  * @version $Revision$ $Date$
  */
-public abstract class NumericRange<T extends Number & Comparable<?>> extends AbstractRange<T, T> {
+public abstract class NumericRange<T extends Number & Comparable<T>> extends AbstractRange<T, T> {
 
     /**
-     * Construct a new {@link NumericRange}.
+     * Construct a new {@link NumericRange}.T
      * @param leftEndpoint left endpoint
      * @param rightEndpoint right endpoint
      * @param step increment step
+     * @param nextValue function to implement the taking of a step
      */
-    protected NumericRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, T step) {
-        super(leftEndpoint, rightEndpoint, step);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isEmpty() {
-        double leftValue = this.getLeftEndpoint().getValue().doubleValue();
-        double rightValue = this.getRightEndpoint().getValue().doubleValue();
-        boolean closedLeft = this.getLeftEndpoint().getBoundType() == BoundType.CLOSED;
-        boolean closedRight = this.getRightEndpoint().getBoundType() == BoundType.CLOSED;
-        if (!closedLeft && !closedRight
-             && this.getLeftEndpoint().equals(this.getRightEndpoint())) {
-            return true;
-        }
-        double step = this.getStep().doubleValue();
-        if (step > 0.0) {
-            double firstValue = closedLeft ? leftValue : leftValue + step;
-            return closedRight ? firstValue > rightValue
-                              : firstValue >= rightValue;
-        } else {
-            double firstValue = closedLeft ? leftValue : leftValue + step;
-            return closedRight ? firstValue < rightValue
-                              : firstValue <= rightValue;
-        }
+    protected NumericRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, T step, BinaryFunction<T, T, T> nextValue) {
+        super(leftEndpoint, rightEndpoint, step, nextValue);
     }
 
     /**

@@ -17,17 +17,21 @@
 package org.apache.commons.functor.range;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 
+import org.apache.commons.functor.BinaryFunction;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 /**
  * Abstract {@link Range}.
  *
- * @param <T>
- * @param <S>
+ * @param <T> type of element
+ * @param <S> type of step
  */
-public abstract class AbstractRange<T extends Comparable<?>, S extends Comparable<?>> implements Range<T, S> {
+public abstract class AbstractRange<T extends Comparable<T>, S> implements Range<T, S> {
 
     /**
      * Left limit.
@@ -44,18 +48,22 @@ public abstract class AbstractRange<T extends Comparable<?>, S extends Comparabl
      */
     protected final S step;
 
+    private final BinaryFunction<T, S, T> nextValue;
+
     /**
      * Create a new {@link AbstractRange}.
      *
      * @param leftEndpoint left endpoint
      * @param rightEndpoint right endpoint
      * @param step increment step
+     * @param nextValue function to implement the taking of a step
      */
-    protected AbstractRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, S step) {
+    protected AbstractRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, S step, BinaryFunction<T, S, T> nextValue) {
         super();
         this.leftEndpoint = Validate.notNull(leftEndpoint, "Left Endpoint argument must not be null");
         this.rightEndpoint = Validate.notNull(rightEndpoint, "Right Endpoint argument must not be null");
         this.step = Validate.notNull(step, "step must not be null");
+        this.nextValue = Validate.notNull(nextValue, "next value function");
     }
 
     /**
@@ -82,11 +90,11 @@ public abstract class AbstractRange<T extends Comparable<?>, S extends Comparabl
     /**
      * {@inheritDoc}
      */
-    public boolean containsAll(Collection<T> col) {
-        if (col == null || col.isEmpty()) {
+    public boolean containsAll(Collection<T> coll) {
+        if (coll == null || coll.isEmpty()) {
             return false;
         }
-        for (T t : col) {
+        for (T t : coll) {
             if (!contains(t)) {
                 return false;
             }
@@ -94,14 +102,29 @@ public abstract class AbstractRange<T extends Comparable<?>, S extends Comparabl
         return true;
     }
 
-    // iterable, iterator methods
+    // iterable
     // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
-    public void remove() {
-        throw new UnsupportedOperationException();
+    public final Iterator<T> iterator() {
+        // empty range -> empty iterator:
+        if (isEmpty()) {
+            return Collections.<T> emptySet().iterator();
+        }
+        // not empty and same values -> single-value range:
+        if (ObjectUtils.equals(leftEndpoint.getValue(), rightEndpoint.getValue())) {
+            return Collections.singleton(leftEndpoint.getValue()).iterator();
+        }
+        return createIterator();
     }
+
+    /**
+     * Create a non-empty iterator.
+     * 
+     * @return Iterator
+     */
+    protected abstract Iterator<T> createIterator();
 
     // object methods
     // ---------------------------------------------------------------
@@ -145,4 +168,32 @@ public abstract class AbstractRange<T extends Comparable<?>, S extends Comparabl
         hash ^= this.step.hashCode();
         return hash;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public final boolean isEmpty() {
+        final T leftValue = leftEndpoint.getValue();
+        final T rightValue = rightEndpoint.getValue();
+
+        final int cmp = ObjectUtils.compare(leftValue, rightValue);
+        final boolean closedLeft = leftEndpoint.getBoundType() == BoundType.CLOSED;
+        final boolean closedRight = rightEndpoint.getBoundType() == BoundType.CLOSED;
+
+        if (cmp == 0 && !(closedLeft && closedRight)) {
+            return true;
+        }
+
+        final T firstValue = closedLeft ? leftValue : nextValue.evaluate(leftValue, step);
+
+        final int cmpFirst = ObjectUtils.compare(firstValue, rightValue);
+
+        if (cmpFirst == 0) {
+            return !closedRight;
+        }
+
+        final boolean ascending = cmp < 0;
+        return ascending ? cmpFirst > 0 : cmpFirst < 0;
+    }
+
 }

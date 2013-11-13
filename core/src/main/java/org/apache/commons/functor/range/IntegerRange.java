@@ -23,7 +23,7 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * A range of integers.
- *
+ * 
  * @since 1.0
  * @version $Revision: 1385335 $ $Date: 2012-09-16 15:08:31 -0300 (Sun, 16 Sep 2012) $
  */
@@ -33,28 +33,25 @@ public class IntegerRange extends NumericRange<Integer> {
     // ---------------------------------------------------------------
 
     /**
-     * Current value.
-     */
-    private int currentValue;
-
-    /**
      * Calculate default step.
      */
     public static final BinaryFunction<Integer, Integer, Integer> DEFAULT_STEP =
-            new BinaryFunction<Integer, Integer, Integer>() {
+        new BinaryFunction<Integer, Integer, Integer>() {
 
-        public Integer evaluate(Integer left, Integer right) {
-            return left > right ? -1 : 1;
-        }
-    };
+            public Integer evaluate(Integer left, Integer right) {
+                return left > right ? -1 : 1;
+            }
+        };
 
     // constructors
     // ---------------------------------------------------------------
     /**
      * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param to end
+     * 
+     * @param from
+     *            start
+     * @param to
+     *            end
      */
     public IntegerRange(Number from, Number to) {
         this(from.intValue(), to.intValue());
@@ -62,10 +59,13 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
+     * 
+     * @param from
+     *            start
+     * @param to
+     *            end
+     * @param step
+     *            increment
      */
     public IntegerRange(Number from, Number to, Number step) {
         this(from.intValue(), to.intValue(), step.intValue());
@@ -73,9 +73,11 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param to end
+     * 
+     * @param from
+     *            start
+     * @param to
+     *            end
      */
     public IntegerRange(int from, int to) {
         this(from, to, DEFAULT_STEP.evaluate(from, to).intValue());
@@ -83,10 +85,13 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
+     * 
+     * @param from
+     *            start
+     * @param to
+     *            end
+     * @param step
+     *            increment
      */
     public IntegerRange(int from, int to, int step) {
         this(from, DEFAULT_LEFT_BOUND_TYPE, to, DEFAULT_RIGHT_BOUND_TYPE, step);
@@ -94,10 +99,13 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param to end
-     * @throws NullPointerException if either {@link Endpoint} is {@code null}
+     * 
+     * @param from
+     *            start
+     * @param to
+     *            end
+     * @throws NullPointerException
+     *             if either {@link Endpoint} is {@code null}
      */
     public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to) {
         this(from, to, DEFAULT_STEP.evaluate(from.getValue(), to.getValue()));
@@ -105,92 +113,107 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param to end
-     * @param step increment
-     * @throws NullPointerException if either {@link Endpoint} is {@code null}
+     * 
+     * @param from
+     *            start
+     * @param leftBoundType
+     *            type of left bound
+     * @param to
+     *            end
+     * @param rightBoundType
+     *            type of right bound
+     * @throws NullPointerException
+     *             if either {@link BoundType} is {@code null}
+     */
+    public IntegerRange(int from, BoundType leftBoundType, int to, BoundType rightBoundType) {
+        this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
+    }
+    
+    /**
+     * Create a new IntegerRange.
+     * 
+     * @param from
+     *            start
+     * @param to
+     *            end
+     * @param step
+     *            increment
+     * @throws NullPointerException
+     *             if either {@link Endpoint} is {@code null}
      */
     public IntegerRange(Endpoint<Integer> from, Endpoint<Integer> to, int step) {
-        super(from, to, Integer.valueOf(step));
+        super(from, to, Integer.valueOf(step), new BinaryFunction<Integer, Integer, Integer>() {
+
+            public Integer evaluate(Integer left, Integer right) {
+                return Integer.valueOf(left.intValue() + right.intValue());
+            }
+        });
+
         final int f = from.getValue();
         final int t = to.getValue();
 
         Validate.isTrue(f == t || Integer.signum(step) == Integer.signum(t - f),
             "Will never reach '%s' from '%s' using step %s", t, f, step);
-
-        if (from.getBoundType() == BoundType.CLOSED) {
-            this.currentValue = f;
-        } else {
-            this.currentValue = f + step;
-        }
     }
 
     /**
      * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param leftBoundType type of left bound
-     * @param to end
-     * @param rightBoundType type of right bound
-     * @throws NullPointerException if either {@link BoundType} is {@code null}
-     */
-    public IntegerRange(int from, BoundType leftBoundType, int to,
-                        BoundType rightBoundType) {
-        this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
-    }
-
-    /**
-     * Create a new IntegerRange.
-     *
-     * @param from start
-     * @param leftBoundType type of left bound
-     * @param to end
-     * @param rightBoundType type of right bound
-     * @param step increment
-     * @throws NullPointerException if either {@link BoundType} is {@code null}
+     * 
+     * @param from
+     *            start
+     * @param leftBoundType
+     *            type of left bound
+     * @param to
+     *            end
+     * @param rightBoundType
+     *            type of right bound
+     * @param step
+     *            increment
+     * @throws NullPointerException
+     *             if either {@link BoundType} is {@code null}
      */
     public IntegerRange(int from, BoundType leftBoundType, int to, BoundType rightBoundType, int step) {
         this(new Endpoint<Integer>(from, leftBoundType), new Endpoint<Integer>(to, rightBoundType), step);
     }
 
-    // iterable, iterator methods
-    // ---------------------------------------------------------------
     /**
      * {@inheritDoc}
      */
-    public boolean hasNext() {
-        final int to = this.rightEndpoint.getValue();
-        if (step < 0) {
-            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
-                return this.currentValue >= to;
-            } else {
-                return this.currentValue > to;
-            }
-        } else {
-            if (this.rightEndpoint.getBoundType() == BoundType.CLOSED) {
-                return this.currentValue <= to;
-            } else {
-                return this.currentValue < to;
-            }
-        }
-    }
+    protected Iterator<Integer> createIterator() {
+        return new Iterator<Integer>() {
+            private int currentValue;
 
-    /**
-     * {@inheritDoc}
-     */
-    public Integer next() {
-        final int step = this.getStep();
-        final int r = this.currentValue;
-        this.currentValue += step;
-        return Integer.valueOf(r);
-    }
+            {
+                currentValue = leftEndpoint.getValue();
 
-    /**
-     * {@inheritDoc}
-     */
-    public Iterator<Integer> iterator() {
-        return this;
+                if (leftEndpoint.getBoundType() == BoundType.OPEN) {
+                    this.currentValue += step;
+                }
+            }
+
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+
+            public Integer next() {
+                final int step = getStep();
+                final int r = currentValue;
+                currentValue += step;
+                return Integer.valueOf(r);
+            }
+
+            public boolean hasNext() {
+                final int cmp = Integer.compare(currentValue, rightEndpoint.getValue());
+
+                if (cmp == 0) {
+                    return rightEndpoint.getBoundType() == BoundType.CLOSED;
+                }
+                if (step > 0) {
+                    return cmp < 0;
+                }
+                return cmp > 0;
+            }
+        };
     }
 
 }

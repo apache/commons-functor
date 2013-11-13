@@ -17,8 +17,6 @@
 package org.apache.commons.functor.range;
 
 import java.util.Collection;
-import java.util.Iterator;
-
 
 /**
  * Represent an interval of elements that varies from the <b>left limit</b>
@@ -37,7 +35,7 @@ import java.util.Iterator;
  * @since 1.0
  * @version $Revision$ $Date$
  */
-public interface Range<T extends Comparable<?>, S extends Comparable<?>> extends Iterable<T>, Iterator<T> {
+public interface Range<T extends Comparable<?>, S> extends Iterable<T> {
 
     /**
      * Default left bound type.

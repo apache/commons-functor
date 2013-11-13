@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.functor.BaseFunctorTest;
@@ -81,16 +82,18 @@ public class TestLongRange extends BaseFunctorTest {
         // generates a collection of Integers from 0 (inclusive) to 10 (exclusive)
         {
             LongRange range = Ranges.longRange(0, 10);
+            Iterator<Long> iter = range.iterator();
             for (int i=0;i<10;i++) {
-                assertEquals(new Long(i), range.next());
+                assertEquals(new Long(i), iter.next());
             }
         }
 
         // generates a collection of Integers from 10 (inclusive) to 0 (exclusive)
         {
             LongRange range = Ranges.longRange(10, 0);
+            Iterator<Long> iter = range.iterator();
             for (int i=10;i>0;i--) {
-                assertEquals(new Long(i), range.next());
+                assertEquals(new Long(i), iter.next());
             }
         }
     }

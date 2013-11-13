@@ -69,7 +69,7 @@ public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {
 
     @Test
     public void testAdaptNull() {
-        assertNull(IteratorToGeneratorAdapter.adapt(null));
+        assertNull(IteratorToGeneratorAdapter.adapt((Iterator<?>) null));
     }
 
     @Test
