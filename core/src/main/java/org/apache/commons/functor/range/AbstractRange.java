@@ -48,6 +48,9 @@ public abstract class AbstractRange<T extends Comparable<T>, S> implements Range
      */
     protected final S step;
 
+    /**
+     * Function to implement the taking of a step.
+     */
     private final BinaryFunction<T, S, T> nextValue;
 
     /**
@@ -58,7 +61,8 @@ public abstract class AbstractRange<T extends Comparable<T>, S> implements Range
      * @param step increment step
      * @param nextValue function to implement the taking of a step
      */
-    protected AbstractRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, S step, BinaryFunction<T, S, T> nextValue) {
+    protected AbstractRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, S step,
+            BinaryFunction<T, S, T> nextValue) {
         super();
         this.leftEndpoint = Validate.notNull(leftEndpoint, "Left Endpoint argument must not be null");
         this.rightEndpoint = Validate.notNull(rightEndpoint, "Right Endpoint argument must not be null");
@@ -121,7 +125,7 @@ public abstract class AbstractRange<T extends Comparable<T>, S> implements Range
 
     /**
      * Create a non-empty iterator.
-     * 
+     *
      * @return Iterator
      */
     protected abstract Iterator<T> createIterator();

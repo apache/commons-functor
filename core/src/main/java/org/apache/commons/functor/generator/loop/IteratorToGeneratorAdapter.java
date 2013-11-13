@@ -27,44 +27,73 @@ import org.apache.commons.lang3.Validate;
  * @version $Revision: 1508677 $ $Date: 2013-07-30 19:48:02 -0300 (Tue, 30 Jul 2013) $
  */
 public final class IteratorToGeneratorAdapter<E> extends LoopGenerator<E> {
+    /**
+     * Helper iterator.
+     * @param <E> the type of elements in this iterator.
+     */
     private static class EqualityIterator<E> implements Iterator<E> {
+        /**
+         * Iterable that owns this iterator.
+         */
         final Iterable<? extends E> owner;
+        /**
+         * Wrapped iterator.
+         */
         final Iterator<? extends E> wrapped;
-
+        /**
+         * Create a new EqualityIterator.
+         * @param owner iterable that owns this iterator
+         */
         EqualityIterator(Iterable<? extends E> owner) {
             super();
             this.owner = Validate.notNull(owner);
             this.wrapped = owner.iterator();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public boolean hasNext() {
             return wrapped.hasNext();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public E next() {
             return wrapped.next();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public void remove() {
             wrapped.remove();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public boolean equals(Object obj) {
             if (obj == this) {
                 return true;
             }
-            if (obj instanceof EqualityIterator<?> == false) {
+            if (!(obj instanceof EqualityIterator)) {
                 return false;
             }
             return ((EqualityIterator<?>) obj).owner.equals(owner);
         }
-        
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public int hashCode() {
-            int result = 71 << 4;
-            result |= owner.hashCode();
-            return result;
+            int hash = "IteratorToGeneratorAdapater$EqualityIterator".hashCode();
+            hash <<= 2;
+            hash ^= owner.hashCode();
+            return hash;
         }
     }
 

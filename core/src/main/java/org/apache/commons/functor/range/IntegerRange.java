@@ -23,7 +23,7 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * A range of integers.
- * 
+ *
  * @since 1.0
  * @version $Revision: 1385335 $ $Date: 2012-09-16 15:08:31 -0300 (Sun, 16 Sep 2012) $
  */
@@ -47,7 +47,7 @@ public class IntegerRange extends NumericRange<Integer> {
     // ---------------------------------------------------------------
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param to
@@ -59,7 +59,7 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param to
@@ -73,7 +73,7 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param to
@@ -85,7 +85,7 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param to
@@ -99,7 +99,7 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param to
@@ -113,7 +113,7 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param leftBoundType
@@ -128,10 +128,10 @@ public class IntegerRange extends NumericRange<Integer> {
     public IntegerRange(int from, BoundType leftBoundType, int to, BoundType rightBoundType) {
         this(from, leftBoundType, to, rightBoundType, DEFAULT_STEP.evaluate(from, to));
     }
-    
+
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param to
@@ -158,7 +158,7 @@ public class IntegerRange extends NumericRange<Integer> {
 
     /**
      * Create a new IntegerRange.
-     * 
+     *
      * @param from
      *            start
      * @param leftBoundType

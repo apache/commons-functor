@@ -34,13 +34,14 @@ import org.apache.commons.functor.BinaryFunction;
 public abstract class NumericRange<T extends Number & Comparable<T>> extends AbstractRange<T, T> {
 
     /**
-     * Construct a new {@link NumericRange}.T
+     * Construct a new {@link NumericRange}.
      * @param leftEndpoint left endpoint
      * @param rightEndpoint right endpoint
      * @param step increment step
      * @param nextValue function to implement the taking of a step
      */
-    protected NumericRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, T step, BinaryFunction<T, T, T> nextValue) {
+    protected NumericRange(Endpoint<T> leftEndpoint, Endpoint<T> rightEndpoint, T step,
+            BinaryFunction<T, T, T> nextValue) {
         super(leftEndpoint, rightEndpoint, step, nextValue);
     }
 
