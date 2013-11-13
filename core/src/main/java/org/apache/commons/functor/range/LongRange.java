@@ -189,7 +189,7 @@ public final class LongRange extends NumericRange<Long> {
             }
 
             public boolean hasNext() {
-                final int cmp = Long.compare(currentValue, rightEndpoint.getValue());
+                final int cmp = Long.valueOf(currentValue).compareTo(rightEndpoint.getValue());
 
                 if (cmp == 0) {
                     return rightEndpoint.getBoundType() == BoundType.CLOSED;
