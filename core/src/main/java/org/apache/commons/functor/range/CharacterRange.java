@@ -186,7 +186,7 @@ public final class CharacterRange extends AbstractRange<Character, Integer> {
             }
 
             public boolean hasNext() {
-                final int cmp = Integer.compare(currentValue, rightEndpoint.getValue());
+                final int cmp = Character.valueOf(currentValue).compareTo(rightEndpoint.getValue());
 
                 if (cmp == 0) {
                     return rightEndpoint.getBoundType() == BoundType.CLOSED;
