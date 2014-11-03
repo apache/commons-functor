@@ -23,6 +23,6 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>commons-functor-api</artifactId>
-  <name>Commons Functor API</name>
+  <name>Apache Commons Functor API</name>
   <description>Provide the basic APIs</description>
 </project>
