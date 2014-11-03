@@ -22,6 +22,6 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>commons-functor-build-tools</artifactId>
-  <name>Commons Functor Build Tools</name>
+  <name>Apache Commons Functor Build Tools</name>
   <description>Provide common setup, from http://maven.apache.org/plugins/maven-checkstyle-plugin/examples/multi-module-config.html</description>
 </project>
