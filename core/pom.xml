@@ -23,7 +23,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>commons-functor</artifactId>
-  <name>Commons Functor Core</name>
+  <name>Apache Commons Functor Core</name>
   <description>Provide implementations of the functor APIs</description>
 
   <dependencies>
