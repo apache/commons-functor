@@ -123,6 +123,7 @@
     <maven.compiler.source>1.5</maven.compiler.source>
     <maven.compiler.target>1.5</maven.compiler.target>
     <commons.componentid>functor</commons.componentid>
+    <commons.module.name>org.apache.commons.functor</commons.module.name>
     <commons.release.version>1.0</commons.release.version>
     <commons.rc.version>RC1</commons.rc.version>
     <commons.jira.id>FUNCTOR</commons.jira.id>
