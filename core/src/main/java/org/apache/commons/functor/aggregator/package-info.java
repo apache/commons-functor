@@ -30,7 +30,7 @@
  * and be able to constantly report on the average (or mean) value of
  * this series. There is no specification about the maximum amount of data that
  * can be aggregated -- some subclasses might impose such restrictions,
- * if that is the case then that will be specified in their JavaDoc's.
+ * if that is the case then that will be specified in their Javadoc's.
  * </p>
  */
 package org.apache.commons.functor.aggregator;
