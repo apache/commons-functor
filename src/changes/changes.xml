@@ -45,7 +45,7 @@
         Add static Limit#of method to create new Limit's.
       </action>
       <action issue="FUNCTOR-23" dev="simonetripodi" due-to="Liviu Tudor">
-        aggregator.xml generates broken JavaDoc links
+        aggregator.xml generates broken Javadoc links
       </action>
       <action issue="FUNCTOR-22" dev="kinow">
         Generify ComparableComparator.
