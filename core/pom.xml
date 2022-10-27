@@ -59,7 +59,7 @@
         <artifactId>maven-shade-plugin</artifactId>
         <!-- v1.7 is somehow not compatible with commons-parent 25; see
              http://svn.apache.org/viewvc?diff_format=h&view=revision&revision=1350822 -->
-        <version>3.4.0</version>
+        <version>3.4.1</version>
         <configuration>
           <minimizeJar>true</minimizeJar>
           <createDependencyReducedPom>true</createDependencyReducedPom>
