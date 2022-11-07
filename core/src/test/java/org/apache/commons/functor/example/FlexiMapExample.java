@@ -68,7 +68,7 @@ public class FlexiMapExample {
      */
 
     /*
-     * In a "test first" style, let's first specify the Map behaviour we'd like to implement via unit tests.
+     * In a "test first" style, let's first specify the Map behavior we'd like to implement via unit tests.
      */
 
     /*

@@ -59,7 +59,7 @@ public class IntMedianValueAggregatorFunctionTest extends BaseFunctorTest {
         IntegerMedianValueAggregatorFunction fct = new IntegerMedianValueAggregatorFunction(true);
         assertTrue(fct.isUseCopy());
         checkMedianCopy(fct);
-        // this is also the default behaviour so ensure that is the case
+        // this is also the default behavior so ensure that is the case
         fct = (IntegerMedianValueAggregatorFunction) makeFunctor();
         checkMedianCopy(fct);
     }

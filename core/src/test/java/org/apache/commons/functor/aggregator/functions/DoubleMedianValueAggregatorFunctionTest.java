@@ -62,7 +62,7 @@ public class DoubleMedianValueAggregatorFunctionTest extends BaseFunctorTest {
         DoubleMedianValueAggregatorFunction fct = new DoubleMedianValueAggregatorFunction(true);
         assertTrue(fct.isUseCopy());
         checkMedianCopy(fct);
-        // this is also the default behaviour so ensure that is the case
+        // this is also the default behavior so ensure that is the case
         fct = (DoubleMedianValueAggregatorFunction) makeFunctor();
         checkMedianCopy(fct);
     }
