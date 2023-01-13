@@ -47,7 +47,7 @@ public final class Composite {
     /**
      * Create a composite Procedure.
      * @param <A> the function argument type.
-     * @param <T> the the procedure argument type and function returned value type.
+     * @param <T> the procedure argument type and function returned value type.
      * @param procedure Procedure to execute against output of <code>f</code>
      * @param function Function to apply
      * @return CompositeProcedure<A>

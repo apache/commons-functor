@@ -349,7 +349,7 @@ public class QuicksortExample {
                 /* Create a list to contain the results. */
                 List<Object> result = new ArrayList<Object>(list.size());
                 /*
-                 * Recursively apply quicksort the the elements in the
+                 * Recursively apply quicksort the elements in the
                  * tail less than the head, adding the result to the
                  * sorted list we're generating.
                  */
@@ -363,7 +363,7 @@ public class QuicksortExample {
                  */
                 result.add(head.evaluate(list));
                 /*
-                 * Recursively apply quicksort the the elements in the
+                 * Recursively apply quicksort the elements in the
                  * tail greater than the head, adding the result to the
                  * sorted list we're generating.
                  */
