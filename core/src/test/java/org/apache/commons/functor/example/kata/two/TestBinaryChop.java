@@ -251,7 +251,7 @@ public class TestBinaryChop {
      * that these assertions will hold.
      *
      * Using the functor framework, we can make these notions
-     * explict.  Specifically, the construction above is:
+     * explicit.  Specifically, the construction above is:
      *
      *   Algorithms.untildo(BODY,TERM);
      *
@@ -317,7 +317,7 @@ public class TestBinaryChop {
     }
 
     /*
-     * Jim Weirich notes how Eiffel is very explict about loop invariants:
+     * Jim Weirich notes how Eiffel is very explicit about loop invariants:
      *
      *   from
      *     low := list.lower
