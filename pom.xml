@@ -237,7 +237,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.1</version>
         <configuration>
           <configLocation>org/apache/commons/functor/checkstyle.xml</configLocation>
           <headerLocation>org/apache/commons/functor/license-header.txt</headerLocation>
