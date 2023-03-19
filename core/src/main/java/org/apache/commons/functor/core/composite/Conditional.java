@@ -28,7 +28,6 @@ import org.apache.commons.functor.Procedure;
 
 /**
  * Utility methods for creating conditional functors.
- * @version $Revision$ $Date$
  */
 public final class Conditional {
 

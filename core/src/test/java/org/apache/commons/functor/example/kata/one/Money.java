@@ -17,7 +17,6 @@
 package org.apache.commons.functor.example.kata.one;
 
 /**
- * @version $Revision$ $Date$
  */
 public class Money {
     public Money(int cents) {

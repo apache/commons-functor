@@ -27,7 +27,6 @@ import org.apache.commons.lang3.Validate;
  * by the function.
  *
  * @param <A> the argument type.
- * @version $Revision$ $Date$
  */
 public final class FunctionProcedure<A> implements Procedure<A> {
 

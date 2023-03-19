@@ -27,7 +27,6 @@ import org.apache.commons.functor.adapter.RightBoundPredicate;
  * of some specified {@link Class Class}.
  *
  * @param <T> the object instance has to be tested against the input class.
- * @version $Revision$ $Date$
  */
 public final class IsInstance<T> implements BinaryPredicate<T, Class<?>> {
     /**

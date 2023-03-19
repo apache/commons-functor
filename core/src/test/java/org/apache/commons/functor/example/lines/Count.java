@@ -19,7 +19,6 @@ package org.apache.commons.functor.example.lines;
 import org.apache.commons.functor.NullaryProcedure;
 
 /**
- * @version $Revision$ $Date$
  */
 public class Count implements NullaryProcedure {
     public void run() {

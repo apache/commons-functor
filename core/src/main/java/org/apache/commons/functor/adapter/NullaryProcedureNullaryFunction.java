@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  * by always returning <code>null</code>.
  *
  * @param <T> the returned value type.
- * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
 public final class NullaryProcedureNullaryFunction<T> implements NullaryFunction<T> {
     /** The {@link NullaryProcedure NullaryProcedure} I'm wrapping. */

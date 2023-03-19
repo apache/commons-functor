@@ -27,7 +27,6 @@ import org.apache.commons.functor.core.composite.And;
 /**
  * Adds a fluent filtering API to any {@link Iterable}.
  *
- * @version $Revision$ $Date$
  * @param <T> the Iterable generic type
  */
 public class FilteredIterable<T> implements Iterable<T> {

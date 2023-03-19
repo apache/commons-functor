@@ -71,7 +71,6 @@ import org.junit.Test;
  * See http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v
  * for more information on this Kata.
  *
- * @version $Revision$ $Date$
  */
 public class TestBinaryChop {
 

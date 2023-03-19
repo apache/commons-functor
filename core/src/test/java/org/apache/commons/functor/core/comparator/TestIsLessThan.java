@@ -24,7 +24,6 @@ import org.apache.commons.functor.core.Constant;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestIsLessThan extends BaseComparisonPredicateTest {
 

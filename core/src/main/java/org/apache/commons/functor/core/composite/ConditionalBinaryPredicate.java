@@ -30,7 +30,6 @@ import org.apache.commons.lang3.Validate;
  * <code>p.test(x,y) ? q.test(x,y) : r.test(x,y)</code>.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 public final class ConditionalBinaryPredicate<L, R> implements BinaryPredicate<L, R> {
 

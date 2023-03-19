@@ -26,7 +26,6 @@ import org.apache.commons.functor.Function;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestMin extends BaseFunctorTest {
 

@@ -30,7 +30,6 @@ import org.apache.commons.functor.Predicate;
  * a boolean of Boolean value is supplied.
  * </p>
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public final class Constant<T> implements NullaryFunction<T>, Function<Object, T>, BinaryFunction<Object, Object, T>,
         NullaryPredicate, Predicate<Object>, BinaryPredicate<Object, Object> {

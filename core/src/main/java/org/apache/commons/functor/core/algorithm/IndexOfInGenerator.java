@@ -26,7 +26,6 @@ import org.apache.commons.functor.generator.loop.LoopGenerator;
  * {@link Predicate}, or -1 if not found.
  *
  * @param <T> the procedure argument types
- * @version $Revision$ $Date$
  */
 public final class IndexOfInGenerator<T>
     implements BinaryFunction<LoopGenerator<? extends T>, Predicate<? super T>, Number> {

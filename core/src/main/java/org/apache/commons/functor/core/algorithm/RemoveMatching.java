@@ -25,7 +25,6 @@ import org.apache.commons.functor.Predicate;
  * Remove elements from left Iterator that match right Predicate.
  *
  * @param <T> the procedure argument type.
- * @version $Revision$ $Date$
  */
 public final class RemoveMatching<T>
     implements BinaryProcedure<Iterator<? extends T>, Predicate<? super T>> {

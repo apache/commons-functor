@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <A> the argument type.
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public final class RightBoundFunction<A, T> implements Function<A, T> {
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */

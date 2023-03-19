@@ -25,7 +25,6 @@ import org.apache.commons.functor.core.Constant;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 @SuppressWarnings("unchecked")
 public class TestOr extends BaseFunctorTest {

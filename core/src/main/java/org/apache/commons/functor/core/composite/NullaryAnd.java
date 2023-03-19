@@ -23,7 +23,6 @@ import org.apache.commons.functor.NullaryPredicate;
  * none of its children test <code>false</code>.
  * Note that by this definition, the "and" of
  * an empty collection of predicates tests <code>true</code>.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class NullaryAnd extends BaseNullaryPredicateList {
 

@@ -34,7 +34,6 @@ import org.apache.commons.lang3.Validate;
  * {@link #test tests} to
  * <code>p.test(f.evaluate(g.evaluate(obj)))</code>.
  * @param <A> the predicate argument type.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class CompositePredicate<A> implements Predicate<A> {
     // attributes

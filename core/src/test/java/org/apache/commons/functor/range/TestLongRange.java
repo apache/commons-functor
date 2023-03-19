@@ -37,7 +37,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @version $Revision: 1515264 $ $Date: 2013-08-18 23:51:41 -0300 (Sun, 18 Aug 2013) $
  */
 public class TestLongRange extends BaseFunctorTest {
 

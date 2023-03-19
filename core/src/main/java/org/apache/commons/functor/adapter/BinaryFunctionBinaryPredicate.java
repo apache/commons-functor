@@ -25,7 +25,6 @@ import org.apache.commons.lang3.Validate;
  * the {@link BinaryPredicate BinaryPredicate} interface.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 public final class BinaryFunctionBinaryPredicate<L, R> implements BinaryPredicate<L, R> {
     /** The {@link BinaryFunction BinaryFunction} I'm wrapping. */

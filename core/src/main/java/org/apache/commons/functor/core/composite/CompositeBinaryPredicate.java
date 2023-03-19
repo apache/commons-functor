@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  * to <code><i>p</i>(<i>f</i>(<i>x</i>),<i>g</i>(<i>y</i>))</code>.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public class CompositeBinaryPredicate<L, R> implements BinaryPredicate<L, R> {
 

@@ -27,7 +27,6 @@ import org.apache.commons.functor.adapter.BinaryProcedureBinaryFunction;
 import org.apache.commons.functor.core.composite.ConditionalBinaryFunction;
 
 /**
- * @version $Revision$ $Date$
  */
 public class PredicatedMap<K, V> extends FunctoredMap<K, V> {
     public PredicatedMap(Map<K, V> map, final Predicate<K> keyPredicate, final Predicate<V> valuePredicate) {

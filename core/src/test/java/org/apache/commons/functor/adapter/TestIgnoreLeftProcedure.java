@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.composite.Sequence;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestIgnoreLeftProcedure extends BaseFunctorTest {
 

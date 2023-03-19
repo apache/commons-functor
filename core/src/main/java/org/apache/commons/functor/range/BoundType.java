@@ -22,7 +22,6 @@ package org.apache.commons.functor.range;
  * @see org.apache.commons.functor.range.Range
  * @see org.apache.commons.functor.range.Endpoint
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public enum BoundType {
     // values

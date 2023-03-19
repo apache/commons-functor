@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  * using a constant left-side argument.
  *
  * @param <A> the argument type.
- * @version $Revision$ $Date$
  */
 public final class RightBoundPredicate<A> implements Predicate<A> {
     /** The {@link BinaryPredicate BinaryPredicate} I'm wrapping. */

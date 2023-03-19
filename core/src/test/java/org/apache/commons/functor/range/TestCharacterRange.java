@@ -36,7 +36,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @version $Revision: $ $Date: $
  */
 public class TestCharacterRange extends BaseFunctorTest {
     // A base range with all chars between a and m

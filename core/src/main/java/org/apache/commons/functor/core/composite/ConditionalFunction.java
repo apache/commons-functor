@@ -31,7 +31,6 @@ import org.apache.commons.lang3.Validate;
  * <code>p.test(x) ? f.evaluate(x) : g.evaluate(x)</code>.
  * @param <A> the argument type.
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public final class ConditionalFunction<A, T> implements Function<A, T> {
 

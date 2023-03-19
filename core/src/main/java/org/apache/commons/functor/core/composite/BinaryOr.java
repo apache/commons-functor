@@ -25,7 +25,6 @@ import org.apache.commons.functor.BinaryPredicate;
  * an empty collection of predicates tests <code>false</code>.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 public final class BinaryOr<L, R> extends BaseBinaryPredicateList<L, R> {
 

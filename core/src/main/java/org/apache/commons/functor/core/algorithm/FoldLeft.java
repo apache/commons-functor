@@ -28,7 +28,6 @@ import org.apache.commons.functor.generator.Generator;
  * elements have been expended.
  *
  * @param <T> the returned evaluation type.
- * @version $Revision$ $Date$
  */
 public class FoldLeft<T> implements Function<Generator<T>, T>, BinaryFunction<Generator<T>, T, T> {
 

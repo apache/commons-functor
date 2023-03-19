@@ -27,7 +27,6 @@ import org.apache.commons.lang3.Validate;
  * interface.
  *
  * @param <A> the argument type.
- * @version $Revision$ $Date$
  */
 public final class FunctionPredicate<A> implements Predicate<A> {
     /** The {@link Function Function} I'm wrapping. */

@@ -32,7 +32,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public final class IsElementOf<L, R> implements BinaryPredicate<L, R> {
     // static members

@@ -27,7 +27,6 @@ import org.apache.commons.functor.core.composite.Not;
 import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
 
 /**
- * @version $Revision$ $Date$
  */
 @SuppressWarnings("unchecked")
 public class FixedSizeMap<K, V> extends FunctoredMap<K, V> {

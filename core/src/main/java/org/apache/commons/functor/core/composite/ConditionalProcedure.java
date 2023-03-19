@@ -30,7 +30,6 @@ import org.apache.commons.lang3.Validate;
  * <i>q</i> and <i>r</i>, {@link #run runs}
  * <code>if (p.test(x)) { q.run(x); } else { r.run(x); }</code>.
  * @param <A> the argument type.
- * @version $Revision$ $Date$
  */
 public final class ConditionalProcedure<A> implements Procedure<A> {
     /** Base hash integer used to shift hash. */

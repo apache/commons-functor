@@ -27,7 +27,6 @@ import org.apache.commons.functor.core.NoOp;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestConditionalBinaryProcedure extends BaseFunctorTest {
 

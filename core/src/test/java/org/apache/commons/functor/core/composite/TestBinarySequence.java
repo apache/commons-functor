@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.NoOp;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 @SuppressWarnings("unchecked")
 public class TestBinarySequence extends BaseFunctorTest {

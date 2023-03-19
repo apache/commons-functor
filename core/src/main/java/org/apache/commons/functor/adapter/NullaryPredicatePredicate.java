@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  * by ignoring the given argument.
  *
  * @param <A> the argument type.
- * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
 public final class NullaryPredicatePredicate<A> implements Predicate<A> {
     /** The {@link NullaryPredicate NullaryPredicate} I'm wrapping. */

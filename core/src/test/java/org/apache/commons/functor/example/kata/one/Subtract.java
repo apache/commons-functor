@@ -20,7 +20,6 @@ import org.apache.commons.functor.Function;
 import org.apache.commons.functor.adapter.LeftBoundFunction;
 
 /**
- * @version $Revision$ $Date$
  */
 public class Subtract extends ArithmeticOperation {
     public Number evaluate(Number left, Number right) {

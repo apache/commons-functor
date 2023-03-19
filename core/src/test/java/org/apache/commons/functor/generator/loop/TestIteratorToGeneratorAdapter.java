@@ -34,7 +34,6 @@ import org.junit.Test;
 
 /**
  * Tests the Iterator to Generator Adapter class.
- * @version $Revision: 1363514 $ $Date: 2012-07-19 17:13:49 -0300 (Thu, 19 Jul 2012) $
  */
 @SuppressWarnings("unchecked")
 public class TestIteratorToGeneratorAdapter extends BaseFunctorTest {

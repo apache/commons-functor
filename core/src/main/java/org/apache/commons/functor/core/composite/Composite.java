@@ -24,7 +24,6 @@ import org.apache.commons.functor.Procedure;
 
 /**
  * Utility/fluent methods for creating composite functors.
- * @version $Revision$ $Date$
  */
 public final class Composite {
 

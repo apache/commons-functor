@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.LeftIdentity;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestRightBoundPredicate extends BaseFunctorTest {
 

@@ -27,7 +27,6 @@ import org.apache.commons.functor.adapter.IgnoreRightPredicate;
  * is <code>null</code>.
  *
  * @param <T> the argument type.
- * @version $Revision$ $Date$
  */
 public final class IsNotNull<T> implements Predicate<T> {
 

@@ -29,7 +29,6 @@ import org.apache.commons.functor.Predicate;
  * <code>Boolean</code>.
  *
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public final class Identity<T> implements Function<T, T>, Predicate<T> {
     // static attributes

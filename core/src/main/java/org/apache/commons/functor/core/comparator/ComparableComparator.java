@@ -25,7 +25,6 @@ import java.util.Comparator;
  * This class was created based on commons-collection's ComparableComparator.
  *
  * @param <E> the comparable type
- * @version $Revision$ $Date$
  */
 final class ComparableComparator<E extends Comparable<? super E>> implements Comparator<E> {
 

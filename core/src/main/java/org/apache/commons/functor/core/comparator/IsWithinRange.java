@@ -25,7 +25,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @since 1.0
  * @param <A> the predicate argument type.
- * @version $Revision$ $Date$
  */
 public class IsWithinRange<A extends Comparable<A>> implements Predicate<A> {
 

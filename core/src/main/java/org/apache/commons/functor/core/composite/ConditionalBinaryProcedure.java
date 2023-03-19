@@ -31,7 +31,6 @@ import org.apache.commons.lang3.Validate;
  * <code>if (p.test(x,y)) { q.run(x,y); } else { r.run(x,y); }</code>.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 public final class ConditionalBinaryProcedure<L, R> implements BinaryProcedure<L, R> {
 

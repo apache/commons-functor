@@ -38,7 +38,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 @SuppressWarnings("unchecked")
 public class TestFilteredIterable extends BaseFunctorTest {

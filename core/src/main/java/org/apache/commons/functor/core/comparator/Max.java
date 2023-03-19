@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  * {@link BinaryFunction} interface.
  *
  * @param <T> the binary function arguments and return types.
- * @version $Revision$ $Date$
  */
 public final class Max<T> implements BinaryFunction<T, T, T> {
 

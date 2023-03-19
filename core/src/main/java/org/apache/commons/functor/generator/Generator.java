@@ -23,7 +23,6 @@ import org.apache.commons.functor.Procedure;
  * to each in a series of argument Objects.
  *
  * @param <E> the type of elements held in this generator.
- * @version $Revision$ $Date$
  */
 public interface Generator<E> {
     /**

@@ -22,7 +22,6 @@ import org.apache.commons.functor.BinaryFunction;
 import org.apache.commons.functor.Function;
 
 /**
- * @version $Revision$ $Date$
  */
 public class LazyMap<K, V> extends FunctoredMap<K, V> {
     public LazyMap(Map<K, V> map, final Function<K, V> factory) {

@@ -20,7 +20,6 @@ import org.apache.commons.functor.Predicate;
 
 
 /**
- * @version $Revision$ $Date$
  */
 public class Contains<T> implements Predicate<T> {
     public Contains(String str) {

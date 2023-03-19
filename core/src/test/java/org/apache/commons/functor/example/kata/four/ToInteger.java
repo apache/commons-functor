@@ -23,7 +23,6 @@ import org.apache.commons.functor.Function;
  * 
  * Trailing, non-{@link Character#isDigit digit} characters are ignored.
  * 
- * @version $Revision$ $Date$
  */
 public final class ToInteger implements Function<String, Integer> {
 

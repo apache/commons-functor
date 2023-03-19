@@ -25,7 +25,6 @@ import org.apache.commons.lang3.Validate;
  * A generator for a range of float.
  *
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public class FloatRange extends NumericRange<Float> {
 

@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  * <i>p</i> and {@link NullaryProcedure procedures}
  * <i>q</i> and <i>r</i>, {@link #run runs}
  * <code>if (p.test()) { q.run(); } else { r.run(); }</code>.
- * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
 public final class ConditionalNullaryProcedure implements NullaryProcedure {
     /** Base hash integer used to shift hash. */

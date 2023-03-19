@@ -26,7 +26,6 @@ package org.apache.commons.functor;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public interface BinaryProcedure<L, R> extends BinaryFunctor<L, R> {
     /**

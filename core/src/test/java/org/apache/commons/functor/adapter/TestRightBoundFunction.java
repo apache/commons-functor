@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.RightIdentity;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestRightBoundFunction extends BaseFunctorTest {
 

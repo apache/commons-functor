@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 public final class IgnoreRightPredicate<L, R> implements BinaryPredicate<L, R> {
     /** The {@link Predicate Predicate} I'm wrapping. */

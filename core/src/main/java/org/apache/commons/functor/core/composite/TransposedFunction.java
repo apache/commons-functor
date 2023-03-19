@@ -31,7 +31,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public class TransposedFunction<L, R, T> implements BinaryFunction<L, R, T> {
     // attributes

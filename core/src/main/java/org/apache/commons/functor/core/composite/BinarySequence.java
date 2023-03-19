@@ -31,7 +31,6 @@ import org.apache.commons.functor.BinaryProcedure;
  *
  * @param <L> the procedure left argument type.
  * @param <R> the procedure right argument type.
- * @version $Revision$ $Date$
  */
 public class BinarySequence<L, R> implements BinaryProcedure<L, R> {
     // attributes

@@ -25,7 +25,6 @@ import org.apache.commons.functor.generator.loop.IteratorToGeneratorAdapter;
  * Generator factory for each element of a "collection".
  *
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public final class EachElement {
 

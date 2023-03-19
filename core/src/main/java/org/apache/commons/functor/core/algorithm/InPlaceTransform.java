@@ -25,7 +25,6 @@ import org.apache.commons.functor.Function;
  * Implements an in-place transformation of a ListIterator's contents.
  *
  * @param <T> the arguments type
- * @version $Revision$ $Date$
  */
 public final class InPlaceTransform<T>
     implements BinaryProcedure<ListIterator<T>, Function<? super T, ? extends T>> {

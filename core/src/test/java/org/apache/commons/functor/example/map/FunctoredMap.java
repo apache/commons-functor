@@ -28,7 +28,6 @@ import org.apache.commons.functor.Predicate;
 import org.apache.commons.functor.Procedure;
 
 /**
- * @version $Revision$ $Date$
  */
 @SuppressWarnings("unchecked")
 public class FunctoredMap<K, V> implements Map<K, V> {

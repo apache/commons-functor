@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  * interface by ignoring the value returned
  * by the function.
  *
- * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
 public final class NullaryFunctionNullaryProcedure implements NullaryProcedure {
     /** The {@link NullaryFunction NullaryFunction} I'm wrapping. */

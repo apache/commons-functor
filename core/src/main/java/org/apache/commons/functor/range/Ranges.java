@@ -20,7 +20,6 @@ package org.apache.commons.functor.range;
  * Range factory.
  *
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public final class Ranges {
 

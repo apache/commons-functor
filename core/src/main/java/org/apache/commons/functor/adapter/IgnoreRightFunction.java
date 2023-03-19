@@ -30,7 +30,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public final class IgnoreRightFunction<L, R, T> implements BinaryFunction<L, R, T> {
     /** The {@link Function Function} I'm wrapping. */

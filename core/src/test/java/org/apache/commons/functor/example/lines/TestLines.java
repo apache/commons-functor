@@ -34,7 +34,6 @@ import org.apache.commons.functor.generator.FilteredGenerator;
 import org.apache.commons.functor.generator.loop.TransformedGenerator;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestLines extends TestCase {
 

@@ -24,7 +24,6 @@ import org.apache.commons.functor.BaseFunctorTest;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestComparatorFunction extends BaseFunctorTest {
 

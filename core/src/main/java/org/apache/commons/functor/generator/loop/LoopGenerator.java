@@ -23,7 +23,6 @@ import org.apache.commons.functor.generator.Generator;
  *
  * @param <E> the type of elements held in this generator.
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public abstract class LoopGenerator<E> extends BaseGenerator<E> {
 

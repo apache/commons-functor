@@ -34,7 +34,6 @@ import org.apache.commons.lang3.Validate;
  * {@link #run runs}
  * <code>p.run(f.evaluate(g.evaluate(obj)))</code>.
  * @param <A> the procedure argument type.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class CompositeProcedure<A> implements Procedure<A> {
     // attributes

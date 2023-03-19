@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the returned value type.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public class CompositeBinaryFunction<L, R, T> implements BinaryFunction<L, R, T> {
 

@@ -28,7 +28,6 @@ import org.apache.commons.functor.core.Identity;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestIgnoreRightFunction extends BaseFunctorTest {
 

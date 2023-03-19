@@ -29,7 +29,6 @@ import org.apache.commons.functor.Procedure;
  * When the sequence is empty, this procedure is does
  * nothing.
  * @param <A> the argument type.
- * @version $Revision$ $Date$
  */
 public class Sequence<A> implements Procedure<A> {
 

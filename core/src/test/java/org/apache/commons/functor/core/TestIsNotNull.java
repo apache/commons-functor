@@ -24,7 +24,6 @@ import org.apache.commons.functor.Predicate;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestIsNotNull extends BaseFunctorTest {
 

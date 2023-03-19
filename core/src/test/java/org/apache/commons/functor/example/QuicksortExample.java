@@ -56,7 +56,6 @@ import org.junit.Test;
  * <p>
  * See the extensive in line comments for details.
  *
- * @version $Revision$ $Date$
  */
 @SuppressWarnings("unchecked")
 public class QuicksortExample {

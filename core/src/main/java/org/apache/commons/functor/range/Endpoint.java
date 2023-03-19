@@ -25,7 +25,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <T> type of the value held by this endpoint
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public class Endpoint<T extends Comparable<?>> {
 

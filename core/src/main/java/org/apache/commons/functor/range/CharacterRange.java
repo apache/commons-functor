@@ -25,7 +25,6 @@ import org.apache.commons.lang3.Validate;
  * A generator for a range of characters.
  *
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public final class CharacterRange extends AbstractRange<Character, Integer> {
 

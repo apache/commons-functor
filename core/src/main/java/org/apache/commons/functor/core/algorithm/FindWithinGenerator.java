@@ -27,7 +27,6 @@ import org.apache.commons.functor.generator.Generator;
  * Return the first Object in a {@link Generator} matching a {@link Predicate}.
  *
  * @param <E> the arguments type.
- * @version $Revision$ $Date$
  */
 public final class FindWithinGenerator<E>
     implements BinaryFunction<Generator<? extends E>, Predicate<? super E>, E> {

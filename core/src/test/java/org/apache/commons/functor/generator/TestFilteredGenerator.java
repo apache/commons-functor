@@ -33,7 +33,6 @@ import org.junit.Test;
 
 /**
  * Tests the Filtered Generator class.
- * @version $Revision$ $Date$
  */
 public class TestFilteredGenerator
 {

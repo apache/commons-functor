@@ -19,7 +19,6 @@ package org.apache.commons.functor.example.lines;
 import org.apache.commons.functor.BinaryFunction;
 
 /**
- * @version $Revision$ $Date$
  */
 public class Sum implements BinaryFunction<Number, Number, Integer> {
     public Integer evaluate(Number left, Number right) {

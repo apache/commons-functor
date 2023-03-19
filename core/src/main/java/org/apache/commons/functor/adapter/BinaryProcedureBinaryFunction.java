@@ -30,7 +30,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public final class BinaryProcedureBinaryFunction<L, R, T> implements BinaryFunction<L, R, T> {
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */

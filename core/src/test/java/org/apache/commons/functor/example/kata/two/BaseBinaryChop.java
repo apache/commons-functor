@@ -22,7 +22,6 @@ import java.util.List;
 /**
  * See http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v for more information on this Kata.
  * 
- * @version $Revision$ $Date$
  */
 public abstract class BaseBinaryChop implements BinaryChop {
     public int find(int seeking, int[] in) {

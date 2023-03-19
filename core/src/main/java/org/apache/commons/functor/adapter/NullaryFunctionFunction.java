@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <A> the argument type.
  * @param <T> the returned value type.
- * @version $Revision: 1365377 $ $Date: 2012-07-24 21:59:23 -0300 (Tue, 24 Jul 2012) $
  */
 public final class NullaryFunctionFunction<A, T> implements Function<A, T> {
     /** The {@link NullaryFunction NullaryFunction} I'm wrapping. */

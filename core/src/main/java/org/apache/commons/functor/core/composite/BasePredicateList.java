@@ -25,7 +25,6 @@ import org.apache.commons.functor.Predicate;
  * Abstract base class for {@link Predicate Predicates}
  * composed of a list of {@link Predicate Predicates}.
  * @param <A> the predicate argument type.
- * @version $Revision$ $Date$
  */
 abstract class BasePredicateList<A> implements Predicate<A> {
 

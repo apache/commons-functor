@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  * <code>p.run(b,a)</code>.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 public class TransposedProcedure<L, R> implements BinaryProcedure<L, R> {
     // attributes

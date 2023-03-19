@@ -23,7 +23,6 @@ import org.apache.commons.lang3.Validate;
 /**
  * Adapts a BinaryProcedure as a Procedure by sending the same argument to both sides of the BinaryProcedure.
  * @param <A> the argument type.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class BinaryProcedureProcedure<A> implements Procedure<A> {
     /**

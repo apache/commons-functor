@@ -24,7 +24,6 @@ package org.apache.commons.functor;
  * </p>
  *
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public interface NullaryFunctor extends Functor {
 }

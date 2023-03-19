@@ -23,7 +23,6 @@ import org.apache.commons.functor.BinaryPredicate;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public abstract class BaseComparisonPredicateTest extends BaseFunctorTest {
 

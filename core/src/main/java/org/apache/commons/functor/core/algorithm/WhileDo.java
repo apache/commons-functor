@@ -22,7 +22,6 @@ import org.apache.commons.functor.NullaryProcedure;
 /**
  * While-do algorithm (test before).
  *
- * @version $Revision$ $Date$
  */
 public class WhileDo extends PredicatedLoop {
 

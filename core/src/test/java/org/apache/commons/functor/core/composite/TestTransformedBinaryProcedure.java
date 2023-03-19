@@ -27,7 +27,6 @@ import org.junit.Test;
 
 /**
  * Tests for TransformedBinaryProcedure.
- * @version $Revision: $ $Date: $
  */
 public class TestTransformedBinaryProcedure extends BaseFunctorTest {
 

@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  * {@link BinaryFunction} interface.
  *
  * @param <T> the binary function input types
- * @version $Revision$ $Date$
  */
 public final class ComparatorFunction<T> implements BinaryFunction<T, T, Integer> {
 

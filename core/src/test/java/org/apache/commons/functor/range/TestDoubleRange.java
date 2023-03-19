@@ -40,7 +40,6 @@ import org.junit.Test;
  * Tests for double range.
  * 
  * @since 1.0
- * @version $Revision: $ $Date: $
  */
 public class TestDoubleRange extends BaseFunctorTest {
 

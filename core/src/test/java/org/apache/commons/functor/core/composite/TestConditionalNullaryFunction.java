@@ -24,7 +24,6 @@ import org.apache.commons.functor.core.Constant;
 import org.junit.Test;
 
 /**
- * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
 public class TestConditionalNullaryFunction extends BaseFunctorTest {
 

@@ -33,7 +33,6 @@ import java.util.Collection;
  * @param <S> the type of the step of this range.
  * @see org.apache.commons.functor.range.Endpoint
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public interface Range<T extends Comparable<?>, S> extends Iterable<T> {
 

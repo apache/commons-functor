@@ -27,7 +27,6 @@ import junit.framework.TestSuite;
 import org.apache.commons.functor.core.collection.Size;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestLazyMap extends TestCase {
 

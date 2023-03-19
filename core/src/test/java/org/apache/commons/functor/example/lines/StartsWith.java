@@ -20,7 +20,6 @@ import org.apache.commons.functor.Predicate;
 
 
 /**
- * @version $Revision$ $Date$
  */
 public class StartsWith<T> implements Predicate<T> {
     public StartsWith(String prefix) {

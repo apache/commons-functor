@@ -25,7 +25,6 @@ package org.apache.commons.functor;
  *
  * @param <T> the returned value type.
  * @since 1.0
- * @version $Revision: 1438784 $ $Date: 2013-01-25 22:09:13 -0200 (Fri, 25 Jan 2013) $
  */
 public interface NullaryFunction<T> extends NullaryFunctor {
     /**

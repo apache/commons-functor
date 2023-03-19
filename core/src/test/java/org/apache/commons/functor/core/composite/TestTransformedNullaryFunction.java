@@ -27,7 +27,6 @@ import org.junit.Test;
 /**
  * Tests for TransformedNullaryFunction.
  * 
- * @version $Revision: $ $Date: $
  */
 public class TestTransformedNullaryFunction extends BaseFunctorTest {
 

@@ -27,7 +27,6 @@ import org.apache.commons.functor.core.IsInstance;
 
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestPredicatedMap extends TestCase {
 

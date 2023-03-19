@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <E> the function argument type
  * @param <T> the iterator elements type
- * @version $Revision$ $Date$
  */
 public final class TransformedIterator<E, T> implements Iterator<T> {
 

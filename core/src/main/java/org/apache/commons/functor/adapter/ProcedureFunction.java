@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  *
  * @param <A> the argument type.
  * @param <T> the returned value type.
- * @version $Revision$ $Date$
  */
 public final class ProcedureFunction<A, T> implements Function<A, T> {
     /** The {@link Procedure Procedure} I'm wrapping. */

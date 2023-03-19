@@ -37,7 +37,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestTransformedIterator extends BaseFunctorTest {
 

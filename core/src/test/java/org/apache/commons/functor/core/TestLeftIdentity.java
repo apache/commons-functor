@@ -28,7 +28,6 @@ import org.apache.commons.functor.BinaryPredicate;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestLeftIdentity extends BaseFunctorTest {
 

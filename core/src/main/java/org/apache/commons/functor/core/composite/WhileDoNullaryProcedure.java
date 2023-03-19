@@ -24,7 +24,6 @@ import org.apache.commons.functor.NullaryProcedure;
  * A {@link NullaryProcedure} implementation of a while loop. Given a {@link NullaryPredicate}
  * <i>c</i> and an {@link NullaryProcedure} <i>p</i>, {@link #run runs}
  * <code>while(c.test()) { p.run(); }</code>.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public class WhileDoNullaryProcedure extends AbstractLoopNullaryProcedure {
     /**

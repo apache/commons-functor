@@ -24,7 +24,6 @@ import org.apache.commons.functor.Predicate;
  * Note that by this definition, the "or" of
  * an empty collection of predicates tests <code>false</code>.
  * @param <A> the predicate argument type.
- * @version $Revision$ $Date$
  */
 public final class Or<A> extends BasePredicateList<A> {
 

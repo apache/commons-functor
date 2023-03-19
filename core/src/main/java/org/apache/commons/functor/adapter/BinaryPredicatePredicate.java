@@ -23,7 +23,6 @@ import org.apache.commons.lang3.Validate;
 /**
  * Adapts a BinaryPredicate as a Predicate by sending the same argument to both sides of the BinaryPredicate.
  * @param <A> the argument type.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class BinaryPredicatePredicate<A> implements Predicate<A> {
     /**

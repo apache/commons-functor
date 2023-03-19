@@ -27,7 +27,6 @@ import org.apache.commons.lang3.Validate;
  * of the specified array or String.
  *
  * @param <A> the function argument type.
- * @version $Revision$ $Date$
  */
 public final class Size<A> implements Function<A, Integer> {
 

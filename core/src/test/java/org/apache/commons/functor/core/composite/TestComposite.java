@@ -25,7 +25,6 @@ import org.apache.commons.functor.core.comparator.IsGreaterThan;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestComposite {
 

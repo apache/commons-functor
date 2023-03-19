@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.comparator.Max;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestConditional {
 

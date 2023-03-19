@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  * that are matched by a specified Predicate.
  *
  * @param <E> the type of elements held in this generator.
- * @version $Revision$ $Date$
  */
 public class FilteredGenerator<E> extends BaseGenerator<E> {
 

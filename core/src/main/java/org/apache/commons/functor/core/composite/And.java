@@ -24,7 +24,6 @@ import org.apache.commons.functor.Predicate;
  * Note that by this definition, the "and" of
  * an empty collection of predicates tests <code>true</code>.
  * @param <A> the predicate argument type.
- * @version $Revision$ $Date$
  */
 public final class And<A> extends BasePredicateList<A> {
 

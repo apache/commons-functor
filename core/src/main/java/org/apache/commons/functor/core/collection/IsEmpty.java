@@ -27,7 +27,6 @@ import org.apache.commons.lang3.Validate;
  * A {@link Predicate} that checks to see if the specified object is empty.
  *
  * @param <A> the predicate argument type.
- * @version $Revision$ $Date$
  */
 public final class IsEmpty<A> implements Predicate<A> {
 

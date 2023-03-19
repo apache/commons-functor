@@ -23,7 +23,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public abstract class BaseFunctorTest {
 

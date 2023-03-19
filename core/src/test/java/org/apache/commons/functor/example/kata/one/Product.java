@@ -20,7 +20,6 @@ import org.apache.commons.functor.Function;
 
 
 /**
- * @version $Revision$ $Date$
  */
 public class Product {
     public Product(String name, String sku, int cost) {

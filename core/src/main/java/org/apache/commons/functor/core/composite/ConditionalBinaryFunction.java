@@ -32,7 +32,6 @@ import org.apache.commons.lang3.Validate;
  * @param <L> the left argument type.
  * @param <R> the right argument type.
  * @param <T> the output function returned value type.
- * @version $Revision$ $Date$
  */
 public final class ConditionalBinaryFunction<L, R, T> implements BinaryFunction<L, R, T> {
 

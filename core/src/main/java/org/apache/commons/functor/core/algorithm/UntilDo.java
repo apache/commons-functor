@@ -22,7 +22,6 @@ import org.apache.commons.functor.NullaryProcedure;
 /**
  * Until-do algorithm (test before).
  *
- * @version $Revision$ $Date$
  */
 public class UntilDo extends PredicatedLoop {
 

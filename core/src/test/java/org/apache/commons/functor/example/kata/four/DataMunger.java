@@ -40,7 +40,6 @@ import org.apache.commons.functor.generator.FilteredGenerator;
  *
  * DataMunger wires together various functors and exposes them
  * as static utility methhods.
- * @version $Revision$ $Date$
  */
 public class DataMunger {
     /** See {@link #process(Reader,int,int,int)} */

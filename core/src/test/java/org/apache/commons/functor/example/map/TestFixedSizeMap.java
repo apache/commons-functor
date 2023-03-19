@@ -24,7 +24,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestFixedSizeMap extends TestCase {
 

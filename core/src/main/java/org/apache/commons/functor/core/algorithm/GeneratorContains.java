@@ -25,7 +25,6 @@ import org.apache.commons.functor.generator.Generator;
  * Tests whether a {@link Generator} contains an element that matches a {@link Predicate}.
  *
  * @param <T> the predicate argument type.
- * @version $Revision$ $Date$
  */
 public final class GeneratorContains<T> implements BinaryPredicate<Generator<? extends T>, Predicate<? super T>> {
     /**

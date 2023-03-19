@@ -22,7 +22,6 @@ import org.apache.commons.lang3.Validate;
 /**
  * {@link #test Tests} to the logical inverse
  * of some other predicate.
- * @version $Revision: 1365329 $ $Date: 2012-07-24 19:34:23 -0300 (Tue, 24 Jul 2012) $
  */
 public final class NullaryNot implements NullaryPredicate {
 

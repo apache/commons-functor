@@ -20,7 +20,6 @@ import org.apache.commons.functor.Function;
 import org.apache.commons.functor.adapter.RightBoundFunction;
 
 /**
- * @version $Revision$ $Date$
  */
 public class Divide extends ArithmeticOperation {
 

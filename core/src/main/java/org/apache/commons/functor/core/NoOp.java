@@ -26,7 +26,6 @@ import org.apache.commons.functor.Procedure;
  * Note that this class implements {@link Procedure},
  * {@link Procedure}, and {@link BinaryProcedure}.
  * </p>
- * @version $Revision$ $Date$
  */
 public final class NoOp implements NullaryProcedure, Procedure<Object>, BinaryProcedure<Object, Object> {
     // static attributes

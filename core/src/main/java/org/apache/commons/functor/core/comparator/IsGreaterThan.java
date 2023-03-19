@@ -31,7 +31,6 @@ import org.apache.commons.lang3.Validate;
  * a {@link Comparable Comparable} <code>Comparator</code> is used.
  *
  * @param <T> the binary predicate input types
- * @version $Revision$ $Date$
  */
 public final class IsGreaterThan<T> implements BinaryPredicate<T, T> {
 

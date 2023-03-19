@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  * <code>p.test(b,a)</code>.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 public class TransposedPredicate<L, R> implements BinaryPredicate<L, R> {
     // attributes

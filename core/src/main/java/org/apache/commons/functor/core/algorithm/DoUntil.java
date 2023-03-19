@@ -22,7 +22,6 @@ import org.apache.commons.functor.NullaryProcedure;
 /**
  * Do-until algorithm (test after).
  *
- * @version $Revision$ $Date$
  */
 public class DoUntil extends PredicatedLoop {
 

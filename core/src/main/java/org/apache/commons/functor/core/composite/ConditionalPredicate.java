@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  * to
  * <code>p.test(x) ? q.test(x) : r.test(x)</code>.
  * @param <A> the predicate argument type.
- * @version $Revision$ $Date$
  */
 public final class ConditionalPredicate<A> implements Predicate<A> {
 

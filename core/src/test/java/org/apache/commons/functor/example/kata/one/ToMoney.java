@@ -20,7 +20,6 @@ import org.apache.commons.functor.Function;
 import org.apache.commons.functor.core.composite.Composite;
 
 /**
- * @version $Revision$ $Date$
  */
 public class ToMoney implements Function<Number, Money> {
 

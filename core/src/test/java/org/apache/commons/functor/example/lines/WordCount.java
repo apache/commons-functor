@@ -21,7 +21,6 @@ import java.util.StringTokenizer;
 import org.apache.commons.functor.Function;
 
 /**
- * @version $Revision$ $Date$
  */
 public class WordCount implements Function<String, Integer> {
     public Integer evaluate(String obj) {

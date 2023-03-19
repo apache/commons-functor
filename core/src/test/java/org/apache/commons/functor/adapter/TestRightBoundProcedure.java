@@ -29,7 +29,6 @@ import org.apache.commons.functor.core.composite.BinarySequence;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestRightBoundProcedure extends BaseFunctorTest {
 

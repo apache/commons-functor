@@ -26,7 +26,6 @@ import org.apache.commons.functor.Procedure;
 import org.apache.commons.functor.generator.loop.LoopGenerator;
 
 /**
- * @version $Revision$ $Date$
  */
 public class Lines extends LoopGenerator<String> {
     public static Lines from(Reader reader) {

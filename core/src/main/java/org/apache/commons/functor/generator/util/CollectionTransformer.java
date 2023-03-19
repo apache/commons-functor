@@ -28,7 +28,6 @@ import org.apache.commons.lang3.Validate;
  * @param <E> the type of elements held in the adapted collection.
  * @param <C> the type of the adapted collection
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public class CollectionTransformer<E, C extends Collection<? super E>> implements Function<Generator<? extends E>, C> {
 

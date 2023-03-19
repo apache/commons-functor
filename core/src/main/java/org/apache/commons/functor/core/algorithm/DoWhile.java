@@ -22,7 +22,6 @@ import org.apache.commons.functor.NullaryProcedure;
 /**
  * Do-while algorithm (test after).
  *
- * @version $Revision$ $Date$
  */
 public class DoWhile extends PredicatedLoop {
 

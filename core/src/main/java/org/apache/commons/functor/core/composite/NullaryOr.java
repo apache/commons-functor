@@ -23,7 +23,6 @@ import org.apache.commons.functor.NullaryPredicate;
  * at least one of its children test <code>true</code>.
  * Note that by this definition, the "or" of
  * an empty collection of predicates tests <code>false</code>.
- * @version $Revision: 1345136 $ $Date: 2012-06-01 09:47:06 -0300 (Fri, 01 Jun 2012) $
  */
 public final class NullaryOr extends BaseNullaryPredicateList {
 

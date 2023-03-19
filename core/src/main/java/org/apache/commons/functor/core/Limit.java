@@ -30,7 +30,6 @@ import org.apache.commons.lang3.Validate;
  * <code>false</code> thereafter.
  *
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public final class Limit implements NullaryPredicate, Predicate<Object>, BinaryPredicate<Object, Object> {
     // instance variables

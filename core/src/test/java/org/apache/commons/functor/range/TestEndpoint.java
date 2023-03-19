@@ -26,7 +26,6 @@ import org.junit.Test;
  * Tests for endpoint.
  *
  * @since 1.0
- * @version $Revision: $ $Date: $
  */
 public class TestEndpoint {
 

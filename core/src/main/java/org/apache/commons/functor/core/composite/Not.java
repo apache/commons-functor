@@ -23,7 +23,6 @@ import org.apache.commons.lang3.Validate;
  * {@link #test Tests} to the logical inverse
  * of some other predicate.
  * @param <A> the argument type.
- * @version $Revision$ $Date$
  */
 public final class Not<A> implements Predicate<A> {
     // attributes

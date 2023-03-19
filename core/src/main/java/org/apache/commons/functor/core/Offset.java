@@ -29,7 +29,6 @@ import org.apache.commons.lang3.Validate;
  * <code>true</code> thereafter.
  *
  * @since 1.0
- * @version $Revision$ $Date$
  */
 public final class Offset implements NullaryPredicate, Predicate<Object>,
         BinaryPredicate<Object, Object> {

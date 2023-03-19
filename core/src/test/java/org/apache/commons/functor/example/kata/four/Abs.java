@@ -22,7 +22,6 @@ import org.apache.commons.functor.Function;
  * Evaluates to the absolute Integer value of the Number-valued
  * input parameter.
  *
- * @version $Revision$ $Date$
  */
 public final class Abs implements Function<Number, Integer> {
 

@@ -26,7 +26,6 @@ import org.apache.commons.functor.BinaryPredicate;
  * composed of a list of {@link BinaryPredicate BinaryPredicates}.
  * @param <L> the left argument type.
  * @param <R> the right argument type.
- * @version $Revision$ $Date$
  */
 abstract class BaseBinaryPredicateList<L, R> implements BinaryPredicate<L, R> {
 

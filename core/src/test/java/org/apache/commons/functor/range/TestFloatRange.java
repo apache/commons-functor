@@ -40,7 +40,6 @@ import org.junit.Test;
  * Tests for float range.
  * 
  * @since 1.0
- * @version $Revision: $ $Date: $
  */
 public class TestFloatRange extends BaseFunctorTest {
 

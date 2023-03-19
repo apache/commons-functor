@@ -26,7 +26,6 @@ import org.apache.commons.functor.Procedure;
 import org.junit.Test;
 
 /**
- * @version $Revision$ $Date$
  */
 public class TestNoOp extends BaseFunctorTest {
 
