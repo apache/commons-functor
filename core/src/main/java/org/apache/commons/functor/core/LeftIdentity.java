@@ -24,7 +24,6 @@ import org.apache.commons.functor.adapter.IgnoreRightFunction;
 /**
  * Holder class for a left-identity <code>BinaryFunction</code> (evaluates to the left argument) and a left-identity
  * <code>BinaryPredicate</code> (tests whether left <code>Boolean</code> argument equals <code>Boolean.TRUE</code>).
- *
  */
 public final class LeftIdentity {
 

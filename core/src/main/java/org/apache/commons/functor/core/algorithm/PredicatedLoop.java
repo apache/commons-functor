@@ -21,7 +21,6 @@ import org.apache.commons.functor.NullaryProcedure;
 
 /**
  * Base class for predicated procedure algorithms.
- *
  */
 abstract class PredicatedLoop implements NullaryProcedure {
     /**

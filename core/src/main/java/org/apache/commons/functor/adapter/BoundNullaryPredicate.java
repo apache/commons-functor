@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link NullaryPredicate NullaryPredicate} interface
  * using a constant unary argument.
- *
  */
 public final class BoundNullaryPredicate implements NullaryPredicate {
     /** The {@link Predicate Predicate} I'm wrapping. */

@@ -21,7 +21,6 @@ import java.util.List;
 /**
  * See http://pragprog.com/pragdave/Practices/Kata/KataTwo.rdoc,v
  * for more information on this Kata.
- *
  */
 public interface BinaryChop {
     int find(int seeking, int[] in);

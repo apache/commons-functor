@@ -24,7 +24,6 @@ import org.apache.commons.lang3.Validate;
  * Adapts a <code>Boolean</code>-valued
  * {@link NullaryFunction NullaryFunction} to the
  * {@link NullaryPredicate NullaryPredicate} interface.
- *
  */
 public final class NullaryFunctionNullaryPredicate implements NullaryPredicate {
 

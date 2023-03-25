@@ -21,7 +21,6 @@ import org.apache.commons.functor.NullaryProcedure;
 
 /**
  * Until-do algorithm (test before).
- *
  */
 public class UntilDo extends PredicatedLoop {
 

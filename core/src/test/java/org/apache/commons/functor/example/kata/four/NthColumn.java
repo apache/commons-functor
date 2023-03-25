@@ -23,7 +23,6 @@ import org.apache.commons.functor.Function;
 /**
  * Evaluates the input String to extrace the nth whitespace
  * delmited column.
- *
  */
 public final class NthColumn implements Function<String, String> {
     public NthColumn(int n) {

@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link org.apache.commons.functor.NullaryPredicate NullaryPredicate} interface
  * using a constant left-side argument.
- *
  */
 public final class FullyBoundNullaryPredicate implements NullaryPredicate {
 

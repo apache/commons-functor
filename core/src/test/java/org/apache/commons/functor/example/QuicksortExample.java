@@ -55,7 +55,6 @@ import org.junit.Test;
  * using commons-functor.
  * <p>
  * See the extensive in line comments for details.
- *
  */
 @SuppressWarnings("unchecked")
 public class QuicksortExample {

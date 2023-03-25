@@ -21,7 +21,6 @@ import org.apache.commons.functor.Predicate;
 /**
  * Tests to true iff the input object can be converted to
  * an Integer by {@link ToInteger}.
- *
  */
 public final class IsInteger implements Predicate<String> {
     public boolean test(String obj) {

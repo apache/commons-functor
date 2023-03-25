@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link NullaryProcedure NullaryProcedure} interface
  * using a constant unary argument.
- *
  */
 public final class BoundNullaryProcedure implements NullaryProcedure {
     /** The {@link Procedure Procedure} I'm wrapping. */

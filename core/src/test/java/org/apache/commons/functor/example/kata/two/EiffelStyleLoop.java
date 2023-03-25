@@ -38,7 +38,6 @@ import org.apache.commons.functor.core.NoOp;
  *
  * Note that <tt>new EiffelStyleLoop().run()</tt> executes just fine.
  * You only need to set the parts of the loop you want to use.
- *
  */
 public class EiffelStyleLoop implements NullaryProcedure {
     public EiffelStyleLoop from(NullaryProcedure procedure) {

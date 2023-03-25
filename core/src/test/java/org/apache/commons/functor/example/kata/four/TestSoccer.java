@@ -23,7 +23,6 @@ import org.junit.Test;
 /**
  * See http://pragprog.com/pragdave/Practices/Kata/KataFour.rdoc,v
  * for more information on this Kata.
- *
  */
 public class TestSoccer {
 

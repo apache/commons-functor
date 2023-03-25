@@ -26,7 +26,6 @@ import org.apache.commons.lang3.Validate;
  * to the
  * {@link NullaryProcedure NullaryProcedure} interface
  * using a constant left-side argument.
- *
  */
 public final class FullyBoundNullaryProcedure implements NullaryProcedure {
     /** The {@link BinaryProcedure BinaryProcedure} I'm wrapping. */
