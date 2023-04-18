@@ -49,11 +49,11 @@ public class TestRecursiveEvaluation extends BaseFunctorTest {
         try {
             new RecursiveEvaluation(new RecFunc(0, false), java.lang.Integer.class);
             fail("Not supposed to get here.");
-        } catch(IllegalArgumentException e) {}
+        } catch (IllegalArgumentException e) {}
         try {
             new RecursiveEvaluation(null);
             fail("Not supposed to get here.");
-        } catch(NullPointerException e) {}
+        } catch (NullPointerException e) {}
     }
 
     // Classes

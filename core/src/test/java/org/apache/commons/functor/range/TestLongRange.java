@@ -117,19 +117,19 @@ public class TestLongRange extends BaseFunctorTest {
         try {
             Ranges.longRange(0, 1, 0);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
         try {
             Ranges.longRange(0, 1, -1);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
         try {
             Ranges.longRange(0, -1, 1);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }

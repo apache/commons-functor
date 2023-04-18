@@ -49,9 +49,9 @@ public class Lines extends LoopGenerator<String> {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 proc.run(line);
             }
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw e;
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new TunneledException(e);
         } finally {
             stop();
@@ -63,9 +63,9 @@ public class Lines extends LoopGenerator<String> {
         super.stop();
         try {
             in.close();
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw e;
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new TunneledException(e);
         }
     }

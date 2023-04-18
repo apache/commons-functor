@@ -27,7 +27,7 @@ public final class IsInteger implements Predicate<String> {
         try {
             ToInteger.instance().evaluate(obj);
             return true;
-        } catch(RuntimeException e){
+        } catch (RuntimeException e){
             return false;
         }
     }

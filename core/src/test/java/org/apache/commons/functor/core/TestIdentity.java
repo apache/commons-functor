@@ -60,13 +60,13 @@ public class TestIdentity extends BaseFunctorTest {
         try {
             p.test("true");
             fail("Expected ClassCastException");
-        } catch(ClassCastException e) {
+        } catch (ClassCastException e) {
             // expected
         }
         try {
             p.test(null);
             fail("Expected NullPointerException");
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             // expected
         }
     }

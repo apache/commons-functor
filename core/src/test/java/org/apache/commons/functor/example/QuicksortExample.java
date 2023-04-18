@@ -492,7 +492,7 @@ public class QuicksortExample {
         try {
             head.evaluate(list);
             fail("Expected IndexOutOfBoundsException when evaluating head of an empty list");
-        } catch(IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             // expected
         }
 

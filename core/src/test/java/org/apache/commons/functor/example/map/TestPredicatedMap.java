@@ -63,7 +63,7 @@ public class TestPredicatedMap extends TestCase {
         try {
             predicatedMap.put("xyzzy", "xyzzy");
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }
@@ -72,7 +72,7 @@ public class TestPredicatedMap extends TestCase {
         try {
             predicatedMap.put(Long.valueOf(1), Integer.valueOf(3));
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }

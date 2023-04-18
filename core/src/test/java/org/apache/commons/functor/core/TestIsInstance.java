@@ -65,7 +65,7 @@ public class TestIsInstance extends BaseFunctorTest {
         try {
             p.test("foo", null);
             fail("Expected NullPointerException");
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             // expected
         }
     }

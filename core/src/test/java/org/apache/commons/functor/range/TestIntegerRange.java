@@ -111,19 +111,19 @@ public class TestIntegerRange extends BaseFunctorTest {
         try {
             Ranges.integerRange(0, 1, 0);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
         try {
             Ranges.integerRange(0, 1, -1);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
         try {
             Ranges.integerRange(0, -1, 1);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }

@@ -56,7 +56,7 @@ public class TestOffset extends BaseFunctorTest {
         try {
             new Offset(-1);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }

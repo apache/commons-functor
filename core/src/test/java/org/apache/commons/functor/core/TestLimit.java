@@ -55,7 +55,7 @@ public class TestLimit extends BaseFunctorTest {
         try {
             new Limit(-1);
             fail("Expected IllegalArgumentException");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }

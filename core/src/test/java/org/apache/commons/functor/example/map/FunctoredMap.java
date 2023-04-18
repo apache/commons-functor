@@ -192,7 +192,7 @@ public class FunctoredMap<K, V> implements Map<K, V> {
         public void run() {
             try {
                 throw (RuntimeException)(klass.newInstance());
-            } catch(IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 throw new RuntimeException();
             } catch (InstantiationException e) {
                 throw new RuntimeException();
