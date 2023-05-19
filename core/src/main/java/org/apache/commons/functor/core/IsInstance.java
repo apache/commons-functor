@@ -34,11 +34,11 @@ public final class IsInstance<T> implements BinaryPredicate<T, Class<?>> {
      */
     public static final IsInstance<Object> INSTANCE = IsInstance.<Object>instance();
     /**
-     * The non zero number used to shift the initial hashcode.
+     * The non zero number used to shift the initial hash code.
      */
     private static final int NONZERO_SHIFT_NUMBER = 4;
     /**
-     * The non zero number used to bitwise or the hashcode.
+     * The non zero number used to bitwise or the hash code.
      */
     private static final int NONZERO_BITWISE_NUMBER = 37;
 
