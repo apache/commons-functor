@@ -21,13 +21,13 @@ package org.apache.commons.functor;
  * <p>
  * While not strictly required,
  * it is <em>encouraged</em> that functor implementations:
+ * </p>
  * <ul>
  *   <li>Implement {@link java.io.Serializable Serializable}</li>
  *   <li>Override {@link java.lang.Object#equals(java.lang.Object)}</li>
  *   <li>Override {@link java.lang.Object#hashCode()}</li>
  *   <li>Override {@link java.lang.Object#toString()}</li>
  * </ul>
- * </p>
  *
  * @since 1.0
  */

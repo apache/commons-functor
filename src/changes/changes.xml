@@ -96,6 +96,9 @@
       <action dev="ggregory" type="update" due-to="Gary Gregory">
         Bump commons-parent from 53 to 58.
       </action>
+      <action dev="ggregory" type="update" due-to="Gary Gregory">
+        Bump compiler source and target from 1.5 to 1.8.
+      </action>
     </release>
   </body>
 </document>
