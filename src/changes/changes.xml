@@ -92,6 +92,10 @@
       <action issue="FUNCTOR-1" dev="simonetripodi" due-to="Liviu Tudor">
         New components: summarize and aggregate
       </action>
+      <!-- UPDATES -->
+      <action dev="ggregory" type="update" due-to="Gary Gregory">
+        Bump commons-parent from 53 to 58.
+      </action>
     </release>
   </body>
 </document>
