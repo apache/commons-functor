@@ -36,7 +36,7 @@
     implementations, and utilities.
   </description>
 
-  <url>http://commons.apache.org/proper/commons-functor/</url>
+  <url>http://commons.apache.org/dormant/commons-functor/</url>
 
   <issueManagement>
     <system>jira</system>
@@ -144,7 +144,7 @@
     <commons.jira.id>FUNCTOR</commons.jira.id>
     <commons.jira.pid>12312520</commons.jira.pid>
 
-    <commons.scmPubUrl>https://svn.apache.org/repos/infra/websites/production/commons/content/proper/commons-functor</commons.scmPubUrl>
+    <commons.scmPubUrl>https://svn.apache.org/repos/infra/websites/production/commons/content/dormant/commons-functor</commons.scmPubUrl>
   </properties>
 
   <build>
@@ -269,7 +269,7 @@
     <site>
       <id>apache.website</id>
       <name>Apache Commons Site</name>
-      <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/commons/content/proper/commons-functor/</url>
+      <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/commons/content/dormant/commons-functor/</url>
     </site>
   </distributionManagement>
 
