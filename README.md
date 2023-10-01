@@ -43,11 +43,13 @@
 Apache Commons Functor
 ===================
 
-[![Travis-CI Status](https://travis-ci.org/apache/commons-functor.svg)](https://travis-ci.org/apache/commons-functor)
-[![GitHub Actions Status](https://github.com/apache/commons-functor/workflows/Java%20CI/badge.svg)](https://github.com/apache/commons-functor/actions)
-[![Coverage Status](https://coveralls.io/repos/apache/commons-functor/badge.svg)](https://coveralls.io/r/apache/commons-functor)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.apache.commons/commons-functor-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.apache.commons/commons-functor-parent/)
-[![Javadocs](https://javadoc.io/badge/org.apache.commons/commons-functor-parent/1.0.svg)](https://javadoc.io/doc/org.apache.commons/commons-functor-parent/1.0)
+**Warning: The Apache Commons Functor component is now DORMANT, meaning
+this component is not being developed.**
+
+For queries, please contact the
+<a href="mailto:dev@commons.apache.org?subject=[FUNCTOR] question on dormant component">Commons Developer</a> list
+
+----------------
 
 A "functor" is an entity that serves the role of a function but can be operated upon like an object.
     The Apache Commons Functor library defines common functor and functor-related interfaces,
