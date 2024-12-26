@@ -19,7 +19,6 @@ package org.apache.commons.functor.core.composite;
 import org.apache.commons.functor.NullaryPredicate;
 import org.apache.commons.functor.NullaryProcedure;
 
-
 /**
  * A {@link NullaryProcedure} implementation of a while loop. Given a {@link NullaryPredicate}
  * <i>c</i> and an {@link NullaryProcedure} <i>p</i>, {@link #run runs}
