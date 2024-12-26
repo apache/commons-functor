@@ -18,6 +18,7 @@ package org.apache.commons.functor.core.collection;
 
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Objects;
 
 import org.apache.commons.functor.Function;
 import org.apache.commons.functor.Predicate;
@@ -104,9 +105,7 @@ public class FilteredIterable<T> implements Iterable<T> {
      * @return <code>this</code>, fluently
      */
     public FilteredIterable<T> retain(Predicate<? super T> filter) {
-        if (filter == null) {
-            throw new NullPointerException("filtering predicate was null");
-        }
+        Objects.requireNonNull(filter, "filtering predicate was null");
         synchronized (this) {
             if (this.predicate == null) {
                 this.predicate = new And<T>();
