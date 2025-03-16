@@ -118,8 +118,6 @@ public class AbstractTimedAggregatorTest extends BaseFunctorTest {
     /**
      * Simple timed aggregator which just stores the latest object and returns
      * it when evaluating the result.
-     *
-     * @author Liviu Tudor http://about.me/liviutudor
      */
     class SimpleStoreTimedAggregator extends AbstractTimedAggregator<Integer> {
         private Integer object;
