@@ -23,8 +23,8 @@ import org.apache.commons.lang3.Validate;
  * A {@link Predicate} that tests whether a {@link Comparable} object is
  * within a range. The range is defined in the constructor.
  *
- * @since 1.0
  * @param <A> the predicate argument type.
+ * @since 1.0
  */
 public class IsWithinRange<A extends Comparable<A>> implements Predicate<A> {
 
