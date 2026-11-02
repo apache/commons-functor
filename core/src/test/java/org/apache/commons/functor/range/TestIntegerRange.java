@@ -203,7 +203,7 @@ public class TestIntegerRange extends BaseFunctorTest {
         // [-5, 5), 3 = -5, -2, 1, 4
         IntegerRange range = Ranges.integerRange(-5, BoundType.CLOSED, 5,
                                               BoundType.OPEN, 3);
-        // (-5, 5], 3 = -5, -2, 1, 4
+        // [-5, 5), 3 = -5, -2, 1, 4
         List<Integer> expected = Arrays.asList(-5, -2, 1, 4);
         Collection<Integer> elements = IteratorToGeneratorAdapter.adapt(range).toCollection();
         assertEquals(expected, elements);
@@ -708,11 +708,7 @@ public class TestIntegerRange extends BaseFunctorTest {
         Endpoint<Integer> uniqueEndpoint = new Endpoint<Integer>(
                                                                  10,
                                                                  BoundType.CLOSED);
-        try {
-            Ranges.integerRange(uniqueEndpoint, uniqueEndpoint, 1);
-        } catch (IllegalArgumentException e) {
-            fail("Not expected to get here");
-        }
+        Ranges.integerRange(uniqueEndpoint, uniqueEndpoint, 1);
     }
 
     @Test
